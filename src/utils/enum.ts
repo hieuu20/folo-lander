@@ -1,0 +1,44 @@
+export enum STATUS_ENUM {
+    ENABLE = 'ENABLE',
+    DELETED = 'DELETED',
+    PENDING = 'PENDING',
+    BANNED = 'BANNED',
+}
+
+export enum SECTION_TYPE {
+    USER = 'USER',
+    CREATOR = 'CREATOR',
+    AGENCY = 'AGENCY',
+    BUSINESS = 'BUSINESS',
+}
+
+export enum USER_TYPE_ENUM {
+    BOSS = 'BOSS',
+    CREATOR = 'CREATOR',
+    ADMIN = 'ADMIN',
+    USER = 'USER',
+    CUSTOMER = 'CUSTOMER',
+}
+
+export enum CUSTOMER_TAG {
+    CREATE_VIA_API = 'CREATE_VIA_API',
+    DELETED = 'DELETED',
+}
+
+export enum EMAIL_TYPE_ENUM {
+    PRODUCT = 'PRODUCT',
+    STAY_IN_KNOW = 'STAY_IN_KNOW',
+}
+
+export enum OS_TYPE {
+    IOS,
+    ANDROID,
+    OTHER,
+}
+
+
+export enum SUB_PAGE_ENUM {
+    WATA_BOARD = 'Wata Board',
+    WATA_BANTER = 'Wata Banter',
+    NEE_FAKE_SHIT = 'Nee fake sh*t',
+}

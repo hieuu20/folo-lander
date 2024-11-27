@@ -1,0 +1,97 @@
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer components {
+  .center {
+      @apply flex justify-center items-center !important;
+  }
+
+  .container {
+      @apply px-4 md:px-16 lg:px-32 2xl:w-[1440px] 2xl:px-0 mx-auto w-full max-w-[1440px] !important;
+  }
+
+  .text-hover {
+    @apply transition hover:scale-110 ease-in-out !important;
+  }
+
+  .text-100 {
+      @apply text-[36px] leading-[44px] 2xl:text-[100px] 2xl:leading-[130px] lg:text-[70px] lg:leading-[100px] !important;
+  }
+
+  .text-56 {
+      @apply text-[26px] leading-[30px] lg:text-[42px] lg:leading-[58px] 2xl:text-[56px] 2xl:leading-[80px] !important;
+  }
+
+  .text-40 {
+      @apply text-[20px] leading-[22px] lg:text-[28px] lg:leading-[30px] 2xl:text-[40px] 2xl:leading-[56px] !important;
+  }
+
+  .text-48 {
+      @apply text-[20px] leading-[28px] lg:text-[34px] lg:leading-[44px] 2xl:text-[48px] 2xl:leading-[64px] !important;
+  }
+
+  .text-16 {
+      @apply text-[12px] leading-[18px] lg:text-[14px] lg:leading-[20px] 2xl:text-[16px] 2xl:leading-[24px] !important;
+  }
+
+  .text-24 {
+      @apply text-base leading-6 lg:text-[20px] lg:leading-[24px] 2xl:text-[24px] 2xl:leading-[38px] !important;
+  }
+
+  .text-20 {
+      @apply text-[14px] leading-[16px] lg:text-[16px] lg:leading-[22px] 2xl:text-[20px] 2xl:leading-[28px] !important;
+  }
+
+  .text-30 {
+      @apply text-[18px] leading-[24px] lg:text-[24px] lg:leading-[32px] 2xl:text-[30px] 2xl:leading-[42px] !important;
+  }
+
+  .text-27 {
+      @apply text-[12px] leading-[15px] lg:text-[18px] lg:leading-[24px] 2xl:text-[27px] 2xl:leading-[36px] !important;
+  }
+
+  .text-32 {
+    @apply text-[22px] leading-[28px] lg:text-[26px] lg:leading-[36px] 2xl:text-[32px] 2xl:leading-[48px] !important;
+}
+}
+
+*{
+  /* padding: 0;
+  margin: 0; */
+  box-sizing: border-box;
+}
+
+html {
+  overscroll-behavior: none;
+  scroll-behavior: smooth;
+  font-family: SF Pro Display, sans-serif;
+}
+
+body {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: revert;
+  font-weight: revert;
+  margin: 0 0 0 0;
+}
+
+@layer utilities {
+  /* .font-semibold,
+  .font-\[600\] {
+    font-family: '__Inter_120f1d', '__Inter_Fallback_120f1d';
+  }
+
+  .font-extrabold,
+  .font-\[800\] {
+    font-family: '__Inter_120f1d', '__Inter_Fallback_120f1d';
+  } */
+}

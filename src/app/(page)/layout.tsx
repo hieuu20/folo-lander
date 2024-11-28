@@ -8,7 +8,7 @@ import { theme } from "@/lib/theme";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 
 export const metadata: Metadata = {
-  title: "KNKY Agency",
+  title: "KNKY Business",
   description: "Manage your creators, employees, and revenue with precision and ease on KNKY!",
   icons: {
     icon: "/icons/shortcut-icon.png",
@@ -16,11 +16,11 @@ export const metadata: Metadata = {
     apple: "/icons/shortcut-icon.png",
   },
   openGraph: {
-    title: "KNKY Agency",
+    title: "KNKY Business",
     description: "Manage your creators, employees, and revenue with precision and ease on KNKY!",
     images: [
       {
-        url: "https://knky.co/agency-thumb.png",
+        url: "https://knky.co/business-thumb.png",
         width: 800,
         height: 500,
         alt: "Manage your creators, employees, and revenue with precision and ease on KNKY!",
@@ -52,7 +52,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="KNKY Agency" />
+        <meta name="apple-mobile-web-app-title" content="KNKY Business" />
 
         {/* <Script
           src={`https://www.googletagmanager.com/gtag/js?id=G-D8RVL2BLVD`}

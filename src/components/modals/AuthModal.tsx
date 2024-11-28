@@ -48,7 +48,7 @@ export function AuthModal(props: Props) {
             lh={1.4}
             fw={700}
           >
-            Agency Register
+            Brand Register
           </Text>
 
           <RegisterForm closeAuthModal={close} />

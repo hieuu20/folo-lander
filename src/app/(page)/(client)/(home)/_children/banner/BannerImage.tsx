@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Flex } from "@mantine/core";
+import { Box } from "@mantine/core";
 import React from "react";
 import bannerIcon from "@public/banner/icon.png";
 import bannerIconBg from "@public/banner/bg-icon.png";
@@ -9,23 +9,34 @@ import { motion } from "framer-motion";
 
 export default function BannerImage() {
   return (
-    <Flex w={'100%'} justify={'center'} pos={'relative'}>
-      <Box
-        w={{ base: "60%", md: "30%" }}
-        className="aspect-square"
+    <Box
+      w={{ base: "46%", md: "19.2%" }}
+      className="aspect-square"
+      pos={"relative"}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 1 }}
+        animate={{ opacity: [0, 1, 0], scale: [1, 2, 1] }}
+        transition={{
+          duration: 3.2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-0 left-0 w-full h-full z-0"
       >
-        <Image src={bannerIconBg} alt="banner icon bg" fill className="z-0" />
-      </Box>
-
-      <Box
-        w={{ base: "42%", md: "19%" }}
-        pos={'relative'}
-        className="aspect-square"
-      >
-        <Image src={bannerIcon} alt="banner icon bg" fill className="z-10" />
-      </Box>
-      
-
-    </Flex>
+        <Image
+          src={bannerIconBg}
+          alt="banner icon bg"
+          fill
+          className=" object-cover"
+        />
+      </motion.div>
+      <Image
+        src={bannerIcon}
+        alt="banner icon bg"
+        fill
+        className="z-10 object-cover "
+      />
+    </Box>
   );
 }

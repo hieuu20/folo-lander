@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 
-export interface IAgencyContact {
+export interface IBusinessContact {
   _id: string;
+  businessType: string;
+  businessName: string;
   email: string;
-  name: string;
   contactName: string;
   country: string;
   location: string;
@@ -11,17 +12,17 @@ export interface IAgencyContact {
   phoneNumber: string;
   taxNumber: string;
   timeOfOperation: string;
-  numberOfAgencies: string;
   deletedAt: string;
   createAt: string;
   updateAt: string;
   isContacted: boolean;
 }
 
-const agencyContactSchema: mongoose.Schema<IAgencyContact> =
-  new mongoose.Schema<IAgencyContact>({
+const businessContactSchema: mongoose.Schema<IBusinessContact> =
+  new mongoose.Schema<IBusinessContact>({
     email: String,
-    name: String,
+    businessType: String,
+    businessName: String,
     contactName: String,
     country: String,
     location: String,
@@ -29,13 +30,12 @@ const agencyContactSchema: mongoose.Schema<IAgencyContact> =
     phoneNumber: String,
     taxNumber: String,
     timeOfOperation: String,
-    numberOfAgencies: String,
     isContacted: Boolean,
     deletedAt: Date,
     createAt: Date,
     updateAt: Date,
   });
 
-export const AgencyContactModel: mongoose.Model<IAgencyContact> =
-  mongoose.models.AgencyContact ||
-  mongoose.model("AgencyContact", agencyContactSchema);
+export const BusinessContactModel: mongoose.Model<IBusinessContact> =
+  mongoose.models.BusinessContact ||
+  mongoose.model("BusinessContact", businessContactSchema);

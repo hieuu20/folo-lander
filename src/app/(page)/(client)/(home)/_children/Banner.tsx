@@ -13,13 +13,9 @@ interface Props {
 
 export function Banner({ usps }: Props) {
   return (
-    <Box
-      w={"100%"}
-      pos={"relative"}
-      className="aspect-[0.42] sm:aspect-[0.6] md:aspect-[1.43]"
-    >
-      <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0} bg={'black'}>
-        {/* <Image
+    <Box w={"100%"} pos={"relative"} className="aspect-[0.42] md:aspect-[1.4]">
+      <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0} bg={"black"}>
+        <Image
           src={bgPc}
           alt="banner background"
           fill
@@ -31,19 +27,20 @@ export function Banner({ usps }: Props) {
           alt="banner background"
           fill
           className="object-cover md:hidden"
-        /> */}
+        />
       </Box>
       <Box
         className="container"
-        pos={'relative'}
+        pos={"relative"}
         h={"100%"}
+        pt={{ base: "20%", md: "8%" }}
       >
         <Flex
           direction={{ base: "column" }}
-          gap={{ base: 54, lg: 24 }}
+          gap={{ base: 16, md: 24 }}
           align={"center"}
-          justify={{ base: "center", lg: "space-between" }}
-          w={'100%'}
+          justify={"center"}
+          w={"100%"}
         >
           <BannerImage />
           <BannerText usp={usps[0]} />

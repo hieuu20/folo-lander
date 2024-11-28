@@ -15,9 +15,9 @@ import {
   Text,
 } from "@mantine/core";
 import {
-  CreateAgencyContactDto,
-  CreateAgencyContactResponse,
-} from "@/app/api/(controller)/public/agency-contact/_service/dto";
+  CreateBusinessContactDto,
+  CreateBusinessContactResponse,
+} from "@/app/api/(controller)/public/business-contact/_service/dto";
 import { InputField } from "../custom-fields";
 import { SelectField } from "../custom-fields/SelectField";
 import Image from "next/image";
@@ -29,20 +29,31 @@ interface Props {
   closeAuthModal: () => void;
 }
 
+const businessTypes = [
+  {
+    label: 'Production Company',
+    value: 'production_company'
+  },
+  {
+    label: 'Store',
+    value: 'store'
+  }
+];
+
 export function RegisterForm({ closeAuthModal }: Props) {
   const [opened, { close: closeSuccess, open: openSuccess }] = useDisclosure();
 
   const handleRegister = async (
-    values: CreateAgencyContactDto,
-    { setSubmitting, resetForm }: FormikHelpers<CreateAgencyContactDto>
+    values: CreateBusinessContactDto,
+    { setSubmitting, resetForm }: FormikHelpers<CreateBusinessContactDto>
   ) => {
     try {
       setSubmitting(true);
-      const res = await fetch("api/public/agency-contact", {
+      const res = await fetch("api/public/business-contact", {
         method: "POST",
         body: JSON.stringify(values),
       });
-      const result: CreateAgencyContactResponse = await res.json();
+      const result: CreateBusinessContactResponse = await res.json();
 
       if (result.data) {
         resetForm();
@@ -84,7 +95,8 @@ export function RegisterForm({ closeAuthModal }: Props) {
       <Formik
         initialValues={{
           email: "",
-          name: "",
+          businessName: "",
+          businessType: businessTypes[0].value,
           contactName: "",
           country: "The United Kingdom",
           location: "",
@@ -92,7 +104,6 @@ export function RegisterForm({ closeAuthModal }: Props) {
           phoneNumber: "",
           taxNumber: "",
           timeOfOperation: "",
-          numberOfAgencies: "",
           isAccept: false,
         }}
         onSubmit={handleRegister}
@@ -102,10 +113,9 @@ export function RegisterForm({ closeAuthModal }: Props) {
             .matches(emailRegExp, "Invalid email address")
             .email("Invalid email address")
             .required("Please enter your email"),
-          name: Yup.string()
+          businessName: Yup.string()
             .trim()
-            .max(255, "Name cannot be more than 255 characters")
-            .required("Please enter your name"),
+            .required("Please enter your business name"),
           contactName: Yup.string()
             .trim()
             .max(255, "Contact name cannot be more than 255 characters")
@@ -127,10 +137,6 @@ export function RegisterForm({ closeAuthModal }: Props) {
             .trim()
             .max(255, "Cannot be more than 255 characters")
             .required("This field is required"),
-          numberOfAgencies: Yup.string()
-            .trim()
-            .max(255, "Cannot be more than 255 characters")
-            .required("This field is required"),
           isAccept: Yup.boolean()
             .oneOf([true], "You must agree to the terms")
             .required("This field is required"),
@@ -144,22 +150,35 @@ export function RegisterForm({ closeAuthModal }: Props) {
           return (
             <Form>
               <Grid mb={16}>
-                <Grid.Col span={12}>
+                <Grid.Col span={{ base: 12, md: 6 }}>
                   <Field
-                    name="name"
-                    id="Agency name"
-                    label={"Agency name"}
+                    name="businessType"
+                    id="Business type*"
+                    label={"Business type"}
                     required={true}
-                    placeholder="Enter agency name"
-                    value={values.name}
+                    placeholder="Enter business type"
+                    value={values.businessType}
+                    component={SelectField}
+                    data={businessTypes}
+                  />
+                </Grid.Col>
+
+                <Grid.Col span={{ base: 12, md: 6 }}>
+                  <Field
+                    name="businessName"
+                    id="businessName"
+                    label={"Business/Company name*"}
+                    required={true}
+                    placeholder="Enter business name"
+                    value={values.businessName}
                     component={InputField}
                   />
                 </Grid.Col>
 
-                <Grid.Col span={12}>
+                <Grid.Col span={{ base: 12, md: 6 }}>
                   <Field
                     name="contactName"
-                    id="Contact name"
+                    id="contactName"
                     label={"Contact name"}
                     required={true}
                     placeholder="Enter your first name"
@@ -168,7 +187,7 @@ export function RegisterForm({ closeAuthModal }: Props) {
                   />
                 </Grid.Col>
 
-                <Grid.Col span={12}>
+                <Grid.Col span={{ base: 12, md: 6 }}>
                   <Field
                     name="email"
                     id="Contact email"
@@ -250,22 +269,10 @@ export function RegisterForm({ closeAuthModal }: Props) {
                   <Field
                     name="timeOfOperation"
                     id="timeOfOperation"
-                    label={"How long has your agency been in operation?"}
+                    label={"How long has your business been in operation?"}
                     required={true}
                     placeholder="Enter here"
                     value={values.timeOfOperation}
-                    component={InputField}
-                  />
-                </Grid.Col>
-
-                <Grid.Col span={{ base: 12, md: 6 }}>
-                  <Field
-                    name="numberOfAgencies"
-                    id="numberOfAgencies"
-                    label={"How many hosts/models does your agency have?"}
-                    required={true}
-                    placeholder="0"
-                    value={values.numberOfAgencies}
                     component={InputField}
                   />
                 </Grid.Col>
@@ -282,13 +289,37 @@ export function RegisterForm({ closeAuthModal }: Props) {
                   pos={"relative"}
                   top={2}
                 />
-                <Text fz={14} lh={1.4} c={'#131416'}>
+                <Text fz={{base: 13, md: 14}} lh={1.4} c={"#131416"}>
                   By checking this box, you confirm that you are at least 18
                   years of age (or the legal age of consent in your respective
-                  country) and agree to our {' '}
-                  <a href="https://beta.knky.co/articles/terms-of-service" target="blank" rel="nofollow" className="underline">Agency Terms</a>{' '} & {' '}
-                  <a href="https://beta.knky.co/articles/community-guidelines" target="blank" rel="nofollow" className="underline">Conditions</a> {' '} and {' '}
-                  <a href="https://beta.knky.co/articles/privacy-policy" target="blank" rel="nofollow" className="underline">Privacy Policy</a> {' '}.
+                  country) and agree to our{" "}
+                  <a
+                    href="https://beta.knky.co/articles/terms-of-service"
+                    target="blank"
+                    rel="nofollow"
+                    className="underline"
+                  >
+                    Agency Terms
+                  </a>{" "}
+                  &{" "}
+                  <a
+                    href="https://beta.knky.co/articles/community-guidelines"
+                    target="blank"
+                    rel="nofollow"
+                    className="underline"
+                  >
+                    Conditions
+                  </a>{" "}
+                  and{" "}
+                  <a
+                    href="https://beta.knky.co/articles/privacy-policy"
+                    target="blank"
+                    rel="nofollow"
+                    className="underline"
+                  >
+                    Privacy Policy
+                  </a>{" "}
+                  .
                 </Text>
               </Flex>
               <Button
@@ -299,12 +330,12 @@ export function RegisterForm({ closeAuthModal }: Props) {
                 w={{ base: "100%", sm: 300, "2xl": 330 }}
                 h={{ base: 40 }}
                 loading={isSubmitting}
-                loaderProps={{ type: 'dots' }}
+                loaderProps={{ type: "dots" }}
                 fw={600}
                 fz={16}
                 className="rounded-[8px]"
               >
-                Submit agency information
+                Submit information
               </Button>
             </Form>
           );
@@ -316,7 +347,7 @@ export function RegisterForm({ closeAuthModal }: Props) {
           closeSuccess();
           closeAuthModal();
         }}
-        title="We’ve successfully received your agency registration!"
+        title="We’ve successfully received your business registration!"
         subTitle="Our team will review your business information and contact to you soon."
       />
     </React.Fragment>

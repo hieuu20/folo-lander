@@ -88,19 +88,19 @@ const footerList = [
     children: [
       {
         title: "Business Account",
-        href: "https://beta.knky.co/fresh",
+        href: "/",
       },
       {
         title: "Business Terms",
-        href: "https://beta.knky.co/fresh",
+        href: "https://beta.knky.co/articles/terms-of-service",
       },
       {
         title: "Agencies Account",
-        href: "https://beta.knky.co/fresh",
+        href: "https://agency.knky.co/",
       },
       {
         title: "Agency Terms",
-        href: "https://beta.knky.co/fresh",
+        href: "https://beta.knky.co/articles/terms-of-service",
       },
     ],
   },

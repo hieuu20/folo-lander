@@ -153,7 +153,7 @@ export function RegisterForm({ closeAuthModal }: Props) {
                 <Grid.Col span={{ base: 12, md: 6 }}>
                   <Field
                     name="businessType"
-                    id="Business type*"
+                    id="Business type"
                     label={"Business type"}
                     required={true}
                     placeholder="Enter business type"
@@ -167,7 +167,7 @@ export function RegisterForm({ closeAuthModal }: Props) {
                   <Field
                     name="businessName"
                     id="businessName"
-                    label={"Business/Company name*"}
+                    label={"Business/Company name"}
                     required={true}
                     placeholder="Enter business name"
                     value={values.businessName}

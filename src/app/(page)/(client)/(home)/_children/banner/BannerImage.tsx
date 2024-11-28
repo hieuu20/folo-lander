@@ -18,11 +18,11 @@ export default function BannerImage() {
         initial={{ opacity: 0, scale: 1 }}
         animate={{ opacity: [0, 1, 0], scale: [1, 2, 1] }}
         transition={{
-          duration: 3.2,
+          duration: 2.5,
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute top-0 left-0 w-full h-full z-0"
+        className="absolute bottom-[-14%] left-0 w-full h-full z-0"
       >
         <Image
           src={bannerIconBg}

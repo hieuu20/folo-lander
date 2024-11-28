@@ -13,7 +13,7 @@ interface Props {
 
 export function Banner({ usps }: Props) {
   return (
-    <Box w={"100%"} pos={"relative"} className="aspect-[0.42] md:aspect-[1.4]">
+    <Box w={"100%"} pos={"relative"} className="aspect-[0.454] sm:aspect-[0.58] md:aspect-[1.4]">
       <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0} bg={"black"}>
         <Image
           src={bgPc}

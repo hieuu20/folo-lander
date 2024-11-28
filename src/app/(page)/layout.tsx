@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Manage your creators, employees, and revenue with precision and ease on KNKY!",
     images: [
       {
-        url: "https://knky.co/business-thumb.png",
+        url: "https://lander.knky.co/images/business-thumb.png",
         width: 800,
         height: 500,
         alt: "Manage your creators, employees, and revenue with precision and ease on KNKY!",

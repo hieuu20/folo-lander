@@ -39,7 +39,7 @@ export default function SectionContent(props: Props) {
                 {usp.title}
               </SectionTitle>
 
-              <SectionSubTitle mb={8} ta={{ base: "center", md: "left" }}>
+              <SectionSubTitle mb={8} ta={{ base: "center", md: "left" }} className="whitespace-pre-line">
                 {usp.subTitle}
               </SectionSubTitle>
 

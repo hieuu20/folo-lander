@@ -170,6 +170,7 @@ const SlideItem = ({ usp }: { usp: IUSPManager }) => {
           lh={1.4}
           fw={400}
           ta={"center"}
+          className="whitespace-pre-line"
         >
           {usp.subTitle}
         </Title>

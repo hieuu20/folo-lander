@@ -10,7 +10,7 @@ export default function ProducerFeature(props: Props) {
   const { usps } = props;
   return (
     <SectionSlide
-      title="Easy Chatter Management"
+      title="Streamlined Management"
       usps={usps}
       rootProps={{
         bg: '#10011E'

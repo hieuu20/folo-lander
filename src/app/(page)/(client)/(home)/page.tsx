@@ -11,6 +11,8 @@ import { Producer } from "./_children/Producer";
 import ProducerFeature from "./_children/ProducerFeature";
 import { GoldStandard } from "./_children/GoldStandard";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   await connectDB();
 

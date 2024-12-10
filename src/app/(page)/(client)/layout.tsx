@@ -2,7 +2,7 @@ import { Footer } from "@/components/layouts";
 import React from "react";
 
 
-export default async function ClientLayout({
+export default function ClientLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

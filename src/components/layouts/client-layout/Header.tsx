@@ -2,8 +2,8 @@ import React from "react";
 import { HeaderLogo } from "./header-children/HeaderLogo";
 import { NavMenu } from "./header-children/NavMenu";
 import { Flex } from "@mantine/core";
-import RegisterButton from "@/components/buttons/RegisterButton";
 import { MobileMenu } from "./header-children";
+import SectionButton from "@/components/buttons/SectionButton";
 
 export async function Header() {
   return (
@@ -18,13 +18,17 @@ export async function Header() {
         <HeaderLogo />
         <NavMenu />
         <Flex gap={{ base: 16, md: 24 }} align={"center"}>
-          <RegisterButton
+          <SectionButton
+            title="Join us now"
+            href="https://beta.knky.co/fresh"
+            show={true}
             w={{ base: 104, md: 140 }}
             h={{ base: 40 }}
-            className="font-medium"
-          >
-            Register
-          </RegisterButton>
+            bg={'#AC1991'}
+            px={0}
+            fz={{base: 14, md: 16}}
+            fw={600}
+          />
           <MobileMenu />
         </Flex>
       </Flex>

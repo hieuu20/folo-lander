@@ -12,7 +12,7 @@ export function HeadBanner() {
     <Box
       w={"100%"}
       pos={"relative"}
-      className="aspect-[0.444] md:aspect-[1.92]"
+      className="aspect-[0.444] md:aspect-[1.92] overflow-hidden"
     >
       <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0} bg={"black"}>
         <Image

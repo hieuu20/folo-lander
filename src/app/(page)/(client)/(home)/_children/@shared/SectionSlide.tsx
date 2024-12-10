@@ -144,7 +144,7 @@ export default function SectionSlide(props: Props) {
               href={"https://lander.knky.co/creators"}
               w={{ base: "48.2%", sm: 210, md: 240, lg: 250, "2xl": 260 }}
               h={{ base: 40, sm: 42, md: 44, lg: 48, "2xl": 50 }}
-              fz={{ base: 16, md: 22 }}
+              fz={{ base: 16, md: 20, lg: 22 }}
               px={0}
               bg={"#27B1FF"}
               fw={600}
@@ -163,7 +163,7 @@ export default function SectionSlide(props: Props) {
               href={"https://lander.knky.co/fans"}
               w={{ base: "48.2%", sm: 210, md: 240, lg: 250, "2xl": 260 }}
               h={{ base: 40, sm: 42, md: 44, lg: 48, "2xl": 50 }}
-              fz={{ base: 16, md: 22 }}
+              fz={{ base: 16, md: 20, lg: 22 }}
               fw={600}
               px={0}
               bg={"#AC1991"}

@@ -22,6 +22,7 @@ export function NavMenu() {
           >
             <Link
               href={item.href}
+              target="blank"
               className={twMerge(pathName === item.href && "border-b-2", 'text-white')}
             >
               <span className="">{item.title}</span>

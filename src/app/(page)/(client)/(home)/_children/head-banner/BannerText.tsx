@@ -10,9 +10,10 @@ export default function BannerText() {
     <Flex
       direction={"column"}
       w={{ base: "100%", md: "48%" }}
-      h={'100%'}
+      h={"100%"}
       align={{ base: "start" }}
-      justify={'center'}
+      justify={"center"}
+      // pb={{ base: 12, md: 20, lg: 24, xl: 28, '2xl': 32 }}
     >
       <Title
         size={"h1"}
@@ -20,8 +21,7 @@ export default function BannerText() {
         lh={1.4}
         fw={700}
         c={"white"}
-        mb={{ base: 8, md: 12, '2xl': 16 }}
-        ta={{ base: "center", lg: "left" }}
+        mb={{ base: 8, md: 12, "2xl": 16 }}
       >
         Let’s get KNKY®
       </Title>
@@ -32,8 +32,7 @@ export default function BannerText() {
         lh={1.4}
         c={"white"}
         fw={500}
-        mb={{ base: 18, md: 24, lg: 32, '2xl': 40 }}
-        ta={{ base: "center", lg: "left" }}
+        mb={{ base: 16, sm: 18, md: 20, lg: 24, xl: 28, "2xl": 32 }}
       >
         A private, secure, and feature-rich social adult platform designed to
         Create, Consume, and Discover people, content, and experiences. 😘
@@ -49,8 +48,8 @@ export default function BannerText() {
           title={"For Creators"}
           href={"https://lander.knky.co/creators"}
           w={{ base: "48.2%", sm: 210, md: 240, lg: 250, "2xl": 260 }}
-          h={{ base: 40, sm: 42, md: 44, lg: 48, '2xl': 50 }}
-          fz={{ base: 16, md: 22 }}
+          h={{ base: 40, sm: 42, md: 44, lg: 48, "2xl": 50 }}
+          fz={{ base: 16, md: 20, lg: 22 }}
           px={0}
           bg={"#27B1FF"}
           fw={600}
@@ -68,8 +67,8 @@ export default function BannerText() {
           title={"For Fans"}
           href={"https://lander.knky.co/fans"}
           w={{ base: "48.2%", sm: 210, md: 240, lg: 250, "2xl": 260 }}
-          h={{ base: 40, sm: 42, md: 44, lg: 48, '2xl': 50 }}
-          fz={{ base: 16, md: 22 }}
+          h={{ base: 40, sm: 42, md: 44, lg: 48, "2xl": 50 }}
+          fz={{ base: 16, md: 20, lg: 22 }}
           fw={600}
           px={0}
           bg={"#AC1991"}

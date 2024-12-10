@@ -8,6 +8,11 @@ import tiktokIcon from "@public/icons/tiktok.svg";
 import { Box, Flex, Grid, Text } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
+import footerPay1 from "@public/footer/1.svg";
+import footerPay2 from "@public/footer/2.svg";
+import footerPay3 from "@public/footer/3.svg";
+import footerPay4 from "@public/footer/4.svg";
+import footerPay5 from "@public/footer/5.svg";
 
 const socials = [
   {
@@ -135,11 +140,13 @@ const footerList = [
   },
 ];
 
+const footerPays = [footerPay1, footerPay2, footerPay3, footerPay4, footerPay5];
+
 export async function Footer() {
   return (
     <footer>
-      <Box className="container">
-        <Flex direction={"column"} gap={{base: 32, md: 38, xl: 44}} py={{ base: 48, lg: 60, xl: 80 }}>
+      <Box className="container" py={{ base: 48, lg: 60, xl: 80 }}>
+        <Flex direction={"column"} gap={{ base: 32, md: 38, xl: 44 }}>
           <Flex direction={{ base: "column", lg: "row" }}>
             <Flex
               direction={"column"}
@@ -175,7 +182,11 @@ export async function Footer() {
               </Flex>
             </Flex>
 
-            <Grid w={{ base: "100%", lg: "70%" }} gutter={16} mt={{ base: 24, lg: 0 }}>
+            <Grid
+              w={{ base: "100%", lg: "70%" }}
+              gutter={16}
+              mt={{ base: 24, lg: 0 }}
+            >
               {footerList.map((f, index) => {
                 return (
                   <Grid.Col
@@ -220,14 +231,26 @@ export async function Footer() {
             </Grid>
           </Flex>
 
-          <Flex w={'100%'} justify={'center'}>
-            <Text ta={'center'} fz={14} c={'#6b7280'}>
-              © 2024 KNKY® | Social Commerce Ltd. Registered in England and Wales
-              | 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ, United
-            Kingdom
+          <Flex w={"100%"} justify={"center"}>
+            <Text ta={"center"} fz={14} c={"#6b7280"}>
+              © 2024 KNKY® | Social Commerce Ltd. Registered in England and
+              Wales | 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ,
+              United Kingdom
             </Text>
           </Flex>
         </Flex>
+
+        <Grid w={{ base: "100%", md: 460 }} mt={32} gutter={{ base: 16 }} mx={'auto'}>
+          {footerPays.map((o, index) => {
+            return (
+              <Grid.Col span={2.4} key={index}>
+                <Box w={"100%"} pos={"relative"} className="aspect-[2.47]">
+                  <Image src={o} alt="pay item" fill className="object-cover" />
+                </Box>
+              </Grid.Col>
+            );
+          })}
+        </Grid>
       </Box>
     </footer>
   );

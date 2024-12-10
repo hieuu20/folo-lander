@@ -1,6 +1,5 @@
-import { Footer, Header } from "@/components/layouts";
+import { Footer } from "@/components/layouts";
 import React from "react";
-import { twMerge } from "tailwind-merge";
 
 
 export default async function ClientLayout({
@@ -10,8 +9,7 @@ export default async function ClientLayout({
 }>) {
   return (
     <React.Fragment>
-      <Header />
-      <main className={twMerge('pt-16 lg:pt-[72px]')}>
+      <main>
         {children}
       </main>
       <Footer />

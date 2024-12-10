@@ -53,14 +53,14 @@ export const partnerOptions = [
 
 export const headerItem = [
     {
-        title: 'Stores',
-        keyActive: 'Stores',
-        href: '#Stores',
+        title: 'Fans',
+        keyActive: 'Fans',
+        href: 'https://lander.knky.co/fans',
     },
     {
-        title: 'Producers',
-        keyActive: 'Producers',
-        href: '#Producers',
+        title: 'Creators',
+        keyActive: 'Creators',
+        href: 'https://lander.knky.co/creators',
     },
 ];
 

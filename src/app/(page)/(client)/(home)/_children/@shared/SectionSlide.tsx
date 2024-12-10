@@ -8,6 +8,8 @@ import Slider from "react-slick";
 import { twMerge } from "tailwind-merge";
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import SectionButton from "@/components/buttons/SectionButton";
+import creatorIcon from "@public/icons/creator-icon.svg";
+import fanIcon from "@public/icons/fan-icon.svg";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const PrevArrow = (props: any) => {
@@ -23,7 +25,7 @@ const PrevArrow = (props: any) => {
       }}
       onClick={onClick}
     >
-      <IconChevronLeft color="#000" width={'100%'} height={'100%'} />
+      <IconChevronLeft color="#000" width={"100%"} height={"100%"} />
     </Box>
   );
 };
@@ -42,7 +44,7 @@ const NextArrow = (props: any) => {
       }}
       onClick={onClick}
     >
-      <IconChevronRight color="#000" width={'100%'} height={'100%'}/>
+      <IconChevronRight color="#000" width={"100%"} height={"100%"} />
     </Box>
   );
 };
@@ -84,7 +86,7 @@ interface Props {
     root?: string;
     content?: string;
     slide?: string;
-  }
+  };
   usps: IUSPManager[];
   title: string;
   buttonLabel: string;
@@ -92,11 +94,11 @@ interface Props {
 }
 
 export default function SectionSlide(props: Props) {
-  const { rootProps, contentProps, usps, title, classer, buttonLabel, buttonLink } = props;
+  const { rootProps, contentProps, usps, title, classer } = props;
 
   return (
-    <Box w={'100%'} {...rootProps} className={classer?.root}>
-      <Box className="container" pb={{ base: 48, lg: 60, xl: 80 }}>
+    <Box w={"100%"} {...rootProps} className={classer?.root}>
+      <Box className="container">
         <Flex
           direction={"column"}
           w={"100%"}
@@ -104,37 +106,76 @@ export default function SectionSlide(props: Props) {
           align={"center"}
           py={{ base: 16, sm: 20, lg: 24, xl: 48 }}
           gap={{ base: 24 }}
-          className={twMerge('rounded-[40px]', classer?.content)}
+          className={twMerge(classer?.content)}
           {...contentProps}
         >
           <Title
             size={"h4"}
-            fz={{ base: 24, md: 28, lg: 36, xl: 42, "2xl": 48 }}
+            fz={{ base: 30, md: 34, lg: 38, xl: 44, "2xl": 48 }}
             lh={1.4}
             fw={700}
-            ta={'center'}
+            ta={"center"}
           >
             {title}
           </Title>
 
           <Box w={"100%"} px={{ base: 24, lg: 32, xl: 38, "2xl": 44 }}>
-            <Slider {...settings} className={twMerge('[&_.slick-arrow]:before:hidden', classer?.slide)}>
+            <Slider
+              {...settings}
+              className={twMerge(
+                "[&_.slick-arrow]:before:hidden",
+                classer?.slide
+              )}
+            >
               {usps.map((usp, index) => {
                 return <SlideItem key={index} usp={usp} />;
               })}
             </Slider>
           </Box>
 
-          <SectionButton
-            w={{ base: 210 }}
-            h={{ base: 40 }}
-            fz={{ base: 14, md: 16 }}
-            px={0}
-            className="font-medium rounded-lg"
-            title={buttonLabel}
-            href={buttonLink}
-            show={true}
-          />
+          <Flex
+            w={{ base: "100%", md: "fit-content" }}
+            gap={{ base: 0, sm: 16 }}
+            justify={{ base: "space-between", sm: "center" }}
+          >
+            <SectionButton
+              show={true}
+              title={"For Creators"}
+              href={"https://lander.knky.co/creators"}
+              w={{ base: "48.2%", sm: 210, md: 240, lg: 250, "2xl": 260 }}
+              h={{ base: 40, sm: 42, md: 44, lg: 48, "2xl": 50 }}
+              fz={{ base: 16, md: 22 }}
+              px={0}
+              bg={"#27B1FF"}
+              fw={600}
+              icon={
+                <Image
+                  src={creatorIcon}
+                  alt="creator icon"
+                  className="w-6 md:w-8 aspect-square mr-3"
+                />
+              }
+            />
+
+            <SectionButton
+              show={true}
+              title={"For Fans"}
+              href={"https://lander.knky.co/fans"}
+              w={{ base: "48.2%", sm: 210, md: 240, lg: 250, "2xl": 260 }}
+              h={{ base: 40, sm: 42, md: 44, lg: 48, "2xl": 50 }}
+              fz={{ base: 16, md: 22 }}
+              fw={600}
+              px={0}
+              bg={"#AC1991"}
+              icon={
+                <Image
+                  src={fanIcon}
+                  alt="creator icon"
+                  className="w-6 md:w-8 aspect-square mr-3"
+                />
+              }
+            />
+          </Flex>
         </Flex>
       </Box>
     </Box>
@@ -148,9 +189,13 @@ const SlideItem = ({ usp }: { usp: IUSPManager }) => {
       justify={"center"}
       align={"center"}
       gap={{ base: 16, lg: 24 }}
-      pb={{base: 12, md: 16, lg: 20, xl: 24}}
+      pb={{ base: 12, md: 16, lg: 20, xl: 24 }}
     >
-      <Box pos={"relative"} w={{base: '64%', sm: "48%"}} className="aspect-square">
+      <Box
+        pos={"relative"}
+        w={{ base: "64%", sm: "48%" }}
+        className="aspect-square"
+      >
         <Image src={usp.img} alt={usp.title} fill className="object-cover" />
       </Box>
 
@@ -160,7 +205,13 @@ const SlideItem = ({ usp }: { usp: IUSPManager }) => {
         px={{ base: 16, lg: 20, xl: 28 }}
         align={"center"}
       >
-        <Title size={"h3"} fz={{ base: 20, lg: 22, xl: 24 }} lh={1.4} fw={600} ta={'center'}>
+        <Title
+          size={"h3"}
+          fz={{ base: 20, lg: 22, xl: 24 }}
+          lh={1.4}
+          fw={600}
+          ta={"center"}
+        >
           {usp.title}
         </Title>
 

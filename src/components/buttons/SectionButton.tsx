@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, ButtonProps } from "@mantine/core";
-import React from "react";
+import React, { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 import RegisterButton from "./RegisterButton";
 import Link from "next/link";
@@ -10,9 +10,10 @@ type Props = ButtonProps & {
   show?: boolean;
   title?: string;
   href?: string;
+  icon?: ReactNode;
 };
 export default function SectionButton(props: Props) {
-  const { show, title, href, ...rest } = props;
+  const { show, title, href, icon, ...rest } = props;
 
   if(!show){
     return null;
@@ -37,6 +38,9 @@ export default function SectionButton(props: Props) {
       className={twMerge("rounded-lg")}
       {...rest}
     >
+      {icon && (
+        icon
+      )}
       <Link href={href ?? "/"} target={href?.includes('http') ? '_blank' : undefined} className="text-white">{title}</Link>
     </Button>
   );

@@ -8,11 +8,11 @@ import tiktokIcon from "@public/icons/tiktok.svg";
 import { Box, Flex, Grid, Text } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
-import footerPay1 from "@public/footer/1.svg";
-import footerPay2 from "@public/footer/2.svg";
-import footerPay3 from "@public/footer/3.svg";
-import footerPay4 from "@public/footer/4.svg";
-import footerPay5 from "@public/footer/5.svg";
+import footerPay1 from "@public/footer/1.png";
+import footerPay2 from "@public/footer/2.png";
+import footerPay3 from "@public/footer/3.png";
+import footerPay4 from "@public/footer/4.png";
+import footerPay5 from "@public/footer/5.png";
 
 const socials = [
   {

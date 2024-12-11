@@ -13,26 +13,14 @@ import tailIcon from "@public/banner/tail.png";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const wingVariants = {
-  fly: {
-    scaleY: [1, 0.8, 1], // Bóp méo cánh theo chiều dọc
-    rotate: [0, -10, 0], // Xoay nhẹ cánh
-    transition: {
-      duration: 0.6,
-      repeat: Infinity,
-      repeatType: "mirror", // Lặp ngược
-      ease: "easeInOut",
-    },
-  },
-};
-
 export default function BannerImage() {
   return (
     <Box
-      w={{ base: "100vw", md: "52vw" }}
+      w={{ base: "120vw", sm: '100vw', md: "52vw" }}
       pos={"absolute"}
-      right={0}
-      h={"100%"}
+      right={{ base: '-2%', sm: 0}}
+      bottom={0}
+      className="aspect-[1.1]"
     >
       <Box
         pos={"absolute"}
@@ -52,7 +40,7 @@ export default function BannerImage() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute w-[15%] top-[14.8%] left-[37%] aspect-[4.5]"
+        className="absolute w-[15%] top-[15.2%] left-[37%] aspect-[4.5]"
       >
         <Image
           src={ellipseIcon}
@@ -95,8 +83,8 @@ export default function BannerImage() {
       <Box
         pos={"absolute"}
         w={"30%"}
-        bottom={"8%"}
-        left={"16%"}
+        bottom={"7.4%"}
+        left={"16.4%"}
         className="aspect-[1.37]"
       >
         <Image

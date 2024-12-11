@@ -10,29 +10,33 @@ export default function BannerText() {
     <Flex
       direction={"column"}
       w={{ base: "100%", md: "48%" }}
-      h={"100%"}
+      h={{ base: "48%", md: "100%" }}
       align={{ base: "start" }}
       justify={"center"}
+      pos={'relative'}
       // pb={{ base: 12, md: 20, lg: 24, xl: 28, '2xl': 32 }}
     >
       <Title
         size={"h1"}
-        fz={{ base: 40, md: 48, lg: 64, xl: 72, "2xl": 80 }}
+        fz={{ base: 40, sm: 44, md: 48, lg: 64, xl: 72, "2xl": 80 }}
         lh={1.4}
         fw={700}
         c={"white"}
+        w={'100%'}
         mb={{ base: 8, md: 12, "2xl": 16 }}
+        ta={{base: 'left', sm: 'center', md: 'start'}}
       >
         Let’s get KNKY®
       </Title>
 
       <Title
-        size={"h2"}
-        fz={{ base: 16, md: 20, lg: 24, xl: 28, "2xl": 32 }}
+        order={2}
+        fz={{ base: 16, sm: 18, md: 20, lg: 24, xl: 28, "2xl": 32 }}
         lh={1.4}
         c={"white"}
         fw={500}
         mb={{ base: 16, sm: 18, md: 20, lg: 24, xl: 28, "2xl": 32 }}
+        ta={{base: 'left', sm: 'center', md: 'start'}}
       >
         A private, secure, and feature-rich social adult platform designed to
         Create, Consume, and Discover people, content, and experiences. 😘
@@ -40,14 +44,14 @@ export default function BannerText() {
 
       <Flex
         w={{ base: "100%", md: "fit-content" }}
-        gap={{ base: 0, sm: 16 }}
-        justify={{ base: "space-between", sm: "center" }}
+        gap={{ base: 0, sm: 24 }}
+        justify={{ base: "space-between", sm: "center", md: 'start' }}
       >
         <SectionButton
           show={true}
           title={"For Creators"}
           href={"https://lander.knky.co/creators"}
-          w={{ base: "48.2%", sm: 210, md: 240, lg: 250, "2xl": 260 }}
+          w={{ base: "48.2%", sm: 210, lg: 240, xl: 250, "2xl": 260 }}
           h={{ base: 40, sm: 42, md: 44, lg: 48, "2xl": 50 }}
           fz={{ base: 16, md: 20, lg: 22 }}
           px={0}
@@ -66,7 +70,7 @@ export default function BannerText() {
           show={true}
           title={"For Fans"}
           href={"https://lander.knky.co/fans"}
-          w={{ base: "48.2%", sm: 210, md: 240, lg: 250, "2xl": 260 }}
+          w={{ base: "48.2%", sm: 210, lg: 240, xl: 250, "2xl": 260 }}
           h={{ base: 40, sm: 42, md: 44, lg: 48, "2xl": 50 }}
           fz={{ base: 16, md: 20, lg: 22 }}
           fw={600}

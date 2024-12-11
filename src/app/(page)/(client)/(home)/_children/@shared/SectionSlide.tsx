@@ -104,7 +104,7 @@ export default function SectionSlide(props: Props) {
           w={"100%"}
           justify={"center"}
           align={"center"}
-          py={{ base: 16, sm: 20, lg: 24, xl: 48 }}
+          py={{ base: 16, sm: 24, md: 30, lg: 36, xl: 42, '2xl': 48 }}
           gap={{ base: 24 }}
           className={twMerge(classer?.content)}
           {...contentProps}
@@ -207,9 +207,10 @@ const SlideItem = ({ usp }: { usp: IUSPManager }) => {
       >
         <Title
           size={"h3"}
-          fz={{ base: 20, lg: 22, xl: 24 }}
+          fz={{ base: 20, md: 22, xl: 24 }}
           lh={1.4}
           fw={600}
+          c={'#131416'}
           ta={"center"}
         >
           {usp.title}
@@ -217,10 +218,11 @@ const SlideItem = ({ usp }: { usp: IUSPManager }) => {
 
         <Title
           size={"h5"}
-          fz={{ base: 14, lg: 16, xl: 18, "2xl": 20 }}
+          fz={{ base: 14, md: 16, xl: 18, "2xl": 20 }}
           lh={1.4}
           fw={400}
           ta={"center"}
+          c={'#4D5053'}
           className="whitespace-pre-line"
         >
           {usp.subTitle}

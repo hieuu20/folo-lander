@@ -12,7 +12,7 @@ export function HeadBanner() {
     <Box
       w={"100%"}
       pos={"relative"}
-      className="aspect-[0.444] md:aspect-[1.92] overflow-hidden"
+      className="aspect-[0.47] sm:aspect-[0.6] md:aspect-[1.92] overflow-hidden"
     >
       <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0} bg={"black"}>
         <Image
@@ -29,15 +29,15 @@ export function HeadBanner() {
           className="object-cover md:hidden"
         />
       </Box>
-      <Flex direction={"column"} w={'100%'} h={'100%'}>
+      <Flex direction={"column"} w={"100%"} h={"100%"}>
         <Header />
         <Flex
           direction={{ base: "column", md: "row" }}
           gap={{ base: 40, lg: 24 }}
           align={"center"}
-          justify={{ base: "center", lg: "space-between" }}
+          justify={{ base: "start", lg: "space-between" }}
           flex={1}
-          pos={"relative"}
+          // pos={"relative"}
           className="container"
         >
           <BannerText />

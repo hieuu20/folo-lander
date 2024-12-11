@@ -240,7 +240,7 @@ export async function Footer() {
           </Flex>
         </Flex>
 
-        <Grid w={{ base: "100%", md: 460 }} mt={32} gutter={{ base: 16 }} mx={'auto'}>
+        <Grid w={{ base: "100%", md: 460 }} mt={32} gutter={{ base: 12, sm: 16 }} mx={'auto'}>
           {footerPays.map((o, index) => {
             return (
               <Grid.Col span={2.4} key={index}>

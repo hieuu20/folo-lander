@@ -8,22 +8,22 @@ import { theme } from "@/lib/theme";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 
 export const metadata: Metadata = {
-  title: "KNKY Main Page",
-  description: "Manage your creators, employees, and revenue with precision and ease on KNKY!",
+  title: "KNKY",
+  description: "Let's get KNKY! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
   icons: {
     icon: "/icons/shortcut-icon.png",
     shortcut: "/icons/shortcut-icon.png",
     apple: "/icons/shortcut-icon.png",
   },
   openGraph: {
-    title: "KNKY Main Page",
-    description: "Manage your creators, employees, and revenue with precision and ease on KNKY!",
+    title: "KNKY",
+    description: "Let's get KNKY! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
     images: [
       {
-        url: "https://lander.knky.co/images/business-thumb.png",
+        url: "https://lander.knky.co/images/main-page-thumb",
         width: 800,
         height: 500,
-        alt: "Manage your creators, employees, and revenue with precision and ease on KNKY!",
+        alt: "Let's get KNKY! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
       },
     ],
   },
@@ -52,7 +52,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="KNKY Main Page" />
+        <meta name="apple-mobile-web-app-title" content="KNKY" />
 
         {/* <Script
           src={`https://www.googletagmanager.com/gtag/js?id=G-D8RVL2BLVD`}

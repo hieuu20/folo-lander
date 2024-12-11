@@ -3,8 +3,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "KNKY Main Page",
-    short_name: "KNKY Main Page",
+    name: "KNKY",
+    short_name: "KNKY",
     description: "Let's get KNKY! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
     start_url: "/",
     display: "standalone",

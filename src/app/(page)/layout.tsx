@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Let's get KNKY! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
     images: [
       {
-        url: "https://lander.knky.co/images/main-page-thumb",
+        url: "https://lander.knky.co/images/main-page-thumb.png",
         width: 800,
         height: 500,
         alt: "Let's get KNKY! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",

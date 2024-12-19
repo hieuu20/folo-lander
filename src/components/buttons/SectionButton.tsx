@@ -41,7 +41,7 @@ export default function SectionButton(props: Props) {
       {icon && (
         icon
       )}
-      <Link href={href ?? "/"} target={href?.includes('http') ? '_blank' : undefined} className="text-white">{title}</Link>
+      <Link href={href ?? "/"} target={href?.includes('http') ? '_blank' : undefined}>{title}</Link>
     </Button>
   );
 }

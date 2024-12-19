@@ -1,5 +1,5 @@
 import React from "react";
-import SectionSlide from "./@shared/SectionSlide";
+import SectionSlide from "../../_shared/SectionSlide";
 import { IUSPManager } from "@/app/api/_entities";
 import { Flex } from "@mantine/core";
 

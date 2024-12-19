@@ -1,6 +1,5 @@
-import { Footer } from "@/components/layouts";
+import { Footer, Header } from "@/components/layouts";
 import React from "react";
-
 
 export default function ClientLayout({
   children,
@@ -9,9 +8,8 @@ export default function ClientLayout({
 }>) {
   return (
     <React.Fragment>
-      <main>
-        {children}
-      </main>
+      <Header />
+      <main className="">{children}</main>
       <Footer />
     </React.Fragment>
   );

@@ -1,2 +1,2 @@
-export * from './HeadBanner';
+export * from './MainBanner';
 export * from './Match';

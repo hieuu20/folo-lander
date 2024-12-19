@@ -1,15 +1,17 @@
 import "@/styles/globals.css";
-import '@mantine/core/styles.layer.css';
+import "@mantine/core/styles.layer.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Metadata } from "next";
 // import Script from "next/script";
 import { theme } from "@/lib/theme";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import { ProgressBarProvider } from "@/lib/ProgressBarProvider";
 
 export const metadata: Metadata = {
   title: "KNKY",
-  description: "Let's get KNKY! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
+  description:
+    "Let's get KNKY! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
   icons: {
     icon: "/icons/shortcut-icon.png",
     shortcut: "/icons/shortcut-icon.png",
@@ -17,7 +19,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "KNKY",
-    description: "Let's get KNKY! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
+    description:
+      "Let's get KNKY! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
     images: [
       {
         url: "https://lander.knky.co/images/main-page-thumb.png",
@@ -72,7 +75,9 @@ export default function RootLayout({
         /> */}
       </head>
       <body className={`antialiased`}>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+         <ProgressBarProvider>
+          <MantineProvider theme={theme}>{children}</MantineProvider>
+         </ProgressBarProvider>
       </body>
     </html>
   );

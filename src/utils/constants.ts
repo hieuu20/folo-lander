@@ -55,13 +55,59 @@ export const headerItem = [
     {
         title: 'Fans',
         keyActive: 'Fans',
-        href: 'https://lander.knky.co/fans',
+        href: '/fans',
     },
     {
         title: 'Creators',
         keyActive: 'Creators',
+        href: '/creators',
+    },
+];
+
+export const fanHeaderItem = [
+    {
+        title: 'Features',
+        keyActive: 'Fans',
+        href: 'https://lander.knky.co/fans',
+    },
+    {
+        title: 'Prime',
+        keyActive: 'Creators',
         href: 'https://lander.knky.co/creators',
     },
+    {
+        title: 'MatchMaker',
+        keyActive: 'Creators',
+        href: 'https://lander.knky.co/creators',
+    },
+    {
+        title: 'FAQs',
+        keyActive: 'Creators',
+        href: 'https://lander.knky.co/creators',
+    }
+];
+
+export const creatorHeaderItem = [
+    {
+        title: 'Features',
+        keyActive: 'Fans',
+        href: 'https://lander.knky.co/fans',
+    },
+    {
+        title: 'Prime',
+        keyActive: 'Creators',
+        href: 'https://lander.knky.co/creators',
+    },
+    {
+        title: 'MatchMaker',
+        keyActive: 'Creators',
+        href: 'https://lander.knky.co/creators',
+    },
+    {
+        title: 'FAQs',
+        keyActive: 'Creators',
+        href: 'https://lander.knky.co/creators',
+    }
 ];
 
 export interface ICategoryParent {

@@ -142,7 +142,7 @@ const footerList = [
 
 const footerPays = [footerPay1, footerPay2, footerPay3, footerPay4, footerPay5];
 
-export async function Footer() {
+export function Footer() {
   return (
     <footer>
       <Box className="container" py={{ base: 48, lg: 60, xl: 80 }}>

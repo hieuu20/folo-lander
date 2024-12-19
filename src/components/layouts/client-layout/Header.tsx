@@ -23,7 +23,7 @@ export function Header() {
   return (
     <header
       className={twMerge(
-        "z-10 w-full h-fit fixed top-0",
+        "z-50 w-full h-fit fixed top-0",
         isScrolled ? "bg-[#1C0532]" : "bg-transparent"
       )}
     >

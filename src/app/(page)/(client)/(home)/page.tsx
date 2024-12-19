@@ -1,11 +1,11 @@
 import { Box } from "@mantine/core";
 import React from "react";
-import { HeadBanner, Match } from "./_children";
+import { MainBanner, Match } from "./_children";
 
 export default function Home() {
   return (
     <Box>
-      <HeadBanner />
+      <MainBanner />
       <Match />
     </Box>
   );

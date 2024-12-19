@@ -13,6 +13,8 @@ export const STORAGE_KEY = {
 export const TIME_FORMAT = 'HH:mm MMM DD,YYYY';
 export const DATE_FORMAT = 'DD MMM, YYYY';
 
+export const TEXT_ANIMATION_DELAY = 0.02;
+
 export const emailRegExp =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 

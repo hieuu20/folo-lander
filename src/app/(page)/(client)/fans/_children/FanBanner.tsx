@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Flex } from "@mantine/core";
 import React from "react";
 import { IUSPManager } from "@/app/api/_entities";
@@ -5,7 +7,8 @@ import bgPc from "@public/fan-banner/bg-pc.png";
 import bgMb from "@public/fan-banner/bg-mb.png";
 import Image from "next/image";
 import BannerText from "./fan-banner/BannerText";
-import BannerImage from "./fan-banner/BannerImage";
+import dynamic from 'next/dynamic';
+const BannerImage = dynamic(() => import('./fan-banner/BannerImage'), { ssr: false });
 
 interface Props {
   usps: IUSPManager[];

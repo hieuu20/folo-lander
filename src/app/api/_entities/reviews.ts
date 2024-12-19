@@ -1,23 +1,22 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 export interface IReviews {
-    [x: string]: any
-    img: string
-    name: string
-    tagName: string
-    description: string
-    status: boolean
-    priority: number
+  img: string;
+  name: string;
+  tagName: string;
+  description: string;
+  status: boolean;
+  priority: number;
 }
 
 const reviewsSchema: mongoose.Schema<IReviews> = new mongoose.Schema<IReviews>({
-    img: String,
-    name: String,
-    tagName: String,
-    description: String,
-    status: Boolean,
-    priority: Number,
-})
+  img: String,
+  name: String,
+  tagName: String,
+  description: String,
+  status: Boolean,
+  priority: Number,
+});
 
 export const ReviewsModel: mongoose.Model<IReviews> =
-    mongoose.models.Reviews || mongoose.model('Reviews', reviewsSchema)
+  mongoose.models.Reviews || mongoose.model("Reviews", reviewsSchema);

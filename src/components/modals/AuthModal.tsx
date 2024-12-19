@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Box, Flex, Modal, Text } from "@mantine/core";
-import { RegisterForm } from "../forms/RegisterForm";
 import registerThumb from "@public/images/register-thumb.png";
 import Image from "next/image";
 import { IconX } from "@tabler/icons-react";
@@ -51,7 +50,7 @@ export function AuthModal(props: Props) {
             Brand Register
           </Text>
 
-          <RegisterForm closeAuthModal={close} />
+          {/* <RegisterForm closeAuthModal={close} /> */}
         </Flex>
       </Flex>
     </Modal>

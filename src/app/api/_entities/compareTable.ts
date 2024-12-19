@@ -1,25 +1,25 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 export interface ICompareTable {
-    _id: string
-    compareTable: string[][]
-    type: string
+  _id: string;
+  compareTable: string[][];
+  type: string;
 }
 
 const CompareTableSchema: mongoose.Schema<ICompareTable> =
-    new mongoose.Schema<ICompareTable>({
-        type: String,
-        compareTable: [
-            {
-                type: [
-                    {
-                        type: String,
-                    },
-                ],
-            },
+  new mongoose.Schema<ICompareTable>({
+    type: String,
+    compareTable: [
+      {
+        type: [
+          {
+            type: String,
+          },
         ],
-    })
+      },
+    ],
+  });
 
 export const CompareTableModel: mongoose.Model<ICompareTable> =
-    mongoose.models.CompareTable ||
-    mongoose.model('CompareTable', CompareTableSchema)
+  mongoose.models.CompareTable ||
+  mongoose.model("CompareTable", CompareTableSchema);

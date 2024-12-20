@@ -1,4 +1,5 @@
 import { IUSPManager } from "@/app/api/_entities";
+import TextAnimation from "@/components/animation/TextAnimation";
 import SectionButton from "@/components/buttons/SectionButton";
 import SectionSubTitle from "@/components/Typo/SectionSubTitle";
 import SectionTitle from "@/components/Typo/SectionTitle";
@@ -19,11 +20,19 @@ export function DeepConnectionText({ usp }: Props) {
       gap={8}
     >
       <SectionTitle c={"#131416"} ta={"center"}>
-        {usp.title}
+        {/* {usp.title} */}
+        <TextAnimation text={usp.title} rootProps={{ gap: {base: 8, md: 10, xl: 12} }} />
       </SectionTitle>
 
       <SectionSubTitle ta={"center"} c={{ base: "#4D5053", md: "#272932" }}>
-        {usp.subTitle}
+        {/* {usp.subTitle} */}
+        <TextAnimation 
+          text={usp.subTitle} 
+          initDelay={800} 
+          rootProps={{
+            justify: 'center'
+          }}
+        />
       </SectionSubTitle>
 
       {usp.isShowButton && (

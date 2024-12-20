@@ -1,4 +1,6 @@
 import { IUSPManager } from "@/app/api/_entities";
+import ElementAnimation from "@/components/animation/ElementAnimation";
+import TextAnimation from "@/components/animation/TextAnimation";
 import SectionButton from "@/components/buttons/SectionButton";
 import SectionSubTitle from "@/components/Typo/SectionSubTitle";
 import SectionTitle from "@/components/Typo/SectionTitle";
@@ -19,11 +21,18 @@ export function PrimeText({ usp }: Props) {
         gap={8}
       >
         <SectionTitle c={"#131416"} ta={"center"}>
-          {usp.title}
+          <TextAnimation text={usp.title} rootProps={{ gap: {base: 8, md: 10, xl: 12} }} />
         </SectionTitle>
 
         <SectionSubTitle c={{ base: "#4D5053", md: "#272932" }} ta={"center"}>
-          {usp.subTitle}
+          {/* {usp.subTitle} */}
+          <TextAnimation 
+            text={usp.subTitle} 
+            initDelay={800} 
+            rootProps={{
+              justify: 'center'
+            }}
+          />
         </SectionSubTitle>
 
         <Flex
@@ -32,30 +41,34 @@ export function PrimeText({ usp }: Props) {
           justify={{ base: "space-between", sm: "center" }}
           mt={{ base: 16 }}
         >
-          <SectionButton
-            show={usp.isShowButton}
-            title={usp.buttonLabel}
-            href={usp.buttonLink}
-            w={{ base: "48.2%", sm: 210 }}
-            h={{ base: 40 }}
-            fz={{ base: 14, md: 16 }}
-            px={0}
-            fw={600}
-          />
+          <ElementAnimation initDelay={1800} className="w-[48.2%] sm:w-[210px]">
+            <SectionButton
+              show={usp.isShowButton}
+              title={usp.buttonLabel}
+              href={usp.buttonLink}
+              w={{ base: "100%" }}
+              h={{ base: 40 }}
+              fz={{ base: 14, md: 16 }}
+              px={0}
+              fw={600}
+            />
+          </ElementAnimation>
 
-          <SectionButton
-            show={true}
-            title={"Try on Beta"}
-            href={"Try on Beta"}
-            w={{ base: "48.2%", sm: 210 }}
-            h={{ base: 40 }}
-            fz={{ base: 14, sm: 16 }}
-            px={0}
-            bg={"white"}
-            c={"#131416"}
-            bd={"1px solid #131416"}
-            fw={600}
-          />
+          <ElementAnimation initDelay={2200} className="w-[48.2%] sm:w-[210px]">
+            <SectionButton
+              show={true}
+              title={"Try on Beta"}
+              href={"Try on Beta"}
+              w={{ base: "100%" }}
+              h={{ base: 40 }}
+              fz={{ base: 14, sm: 16 }}
+              px={0}
+              bg={"white"}
+              c={"#131416"}
+              bd={"1px solid #131416"}
+              fw={600}
+            />
+          </ElementAnimation>
         </Flex>
       </Flex>
     </Box>

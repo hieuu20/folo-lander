@@ -1,4 +1,6 @@
 import { IUSPManager } from "@/app/api/_entities";
+import ElementAnimation from "@/components/animation/ElementAnimation";
+import TextAnimation from "@/components/animation/TextAnimation";
 import SectionButton from "@/components/buttons/SectionButton";
 import { Box, Flex, Text, Title } from "@mantine/core";
 import Image from "next/image";
@@ -45,13 +47,9 @@ const renderContent = (usp: IUSPManager) => {
       // pt={{ base: 40, md: 44, lg: 48, "2xl": 56 }}
       pt={{ base: 40, md: "3%" }}
     >
-      <Box
-        pos={"relative"}
-        w={{ base: "31.4%", md: "18%" }}
-        className="aspect-square"
-      >
+      <ElementAnimation className="relative w-[31.4%] md:w-[18%] aspect-square">
         <Image src={usp.img} alt={usp.title} fill className="object-cover" />
-      </Box>
+      </ElementAnimation>
 
       <Flex
         direction={"column"}
@@ -66,7 +64,7 @@ const renderContent = (usp: IUSPManager) => {
           lh={1.4}
           fw={{ base: 500, md: 600 }}
         >
-          {usp.title}
+          <TextAnimation text={usp.title} initDelay={600} />
         </Title>
 
         <Text
@@ -74,24 +72,26 @@ const renderContent = (usp: IUSPManager) => {
           fz={{ base: 16, md: 18, xl: 20, "2xl": 24 }}
           lh={1.4}
           fw={500}
-          ta={{ base: "center", md: "start" }}
         >
-          {usp.subTitle}
+          <TextAnimation text={usp.subTitle} initDelay={900} rootProps={{ justify: { base: 'center', md: 'start'}}} />
         </Text>
 
         {usp.isShowButton && (
-          <SectionButton
-            w={{ base: 180, md: 210 }}
-            h={{ base: 40 }}
-            fz={{ base: 14, md: 16 }}
-            px={0}
-            mt={{ base: 8 }}
-            fw={600}
-            className="rounded-lg"
-            title={usp.buttonLabel}
-            href={usp.buttonLink}
-            show={true}
-          />
+          
+          <ElementAnimation initDelay={1800}>
+            <SectionButton
+              w={{ base: 180, md: 210 }}
+              h={{ base: 40 }}
+              fz={{ base: 14, md: 16 }}
+              px={0}
+              mt={{ base: 8 }}
+              fw={600}
+              className="rounded-lg"
+              title={usp.buttonLabel}
+              href={usp.buttonLink}
+              show={true}
+            />
+          </ElementAnimation>
         )}
       </Flex>
     </Flex>

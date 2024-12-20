@@ -1,8 +1,9 @@
 import { IUSPManager } from "@/app/api/_entities";
 import SectionButton from "@/components/buttons/SectionButton";
-import TextAnimation from "@/components/Typo/TextAnimation";
+import TextAnimation from "@/components/animation/TextAnimation";
 import { Flex, Title } from "@mantine/core";
 import React from "react";
+import ElementAnimation from "@/components/animation/ElementAnimation";
 
 interface Props {
   usp: IUSPManager;
@@ -26,7 +27,7 @@ export default function BannerText({ usp }: Props) {
         ta={{ base: "center", lg: "left" }}
       >
         {/* {usp.title} */}
-        <TextAnimation text={usp.title} wordSpace={16} />
+        <TextAnimation text={usp.title} rootProps={{ gap: {base: 8, md: 10, lg: 12, xl: 14, '2xl': 16} }} />
       </Title>
       <Title
         order={4}
@@ -45,29 +46,33 @@ export default function BannerText({ usp }: Props) {
         gap={{ base: 0, sm: 16 }}
         justify={{ base: "space-between", sm: "center" }}
       >
-        <SectionButton
-          show={usp.isShowButton}
-          title={usp.buttonLabel}
-          href={usp.buttonLink}
-          w={{ base: "48.2%", sm: 210 }}
-          h={{ base: 40 }}
-          fz={{ base: 14, md: 16 }}
-          px={0}
-          fw={600}
-        />
+        <ElementAnimation initDelay={1800} className="w-[48.2%] sm:w-[210px]">
+          <SectionButton
+            show={usp.isShowButton}
+            title={usp.buttonLabel}
+            href={usp.buttonLink}
+            w={{ base: "100%" }}
+            h={{ base: 40 }}
+            fz={{ base: 14, md: 16 }}
+            px={0}
+            fw={600}
+          />
+        </ElementAnimation>
 
-        <SectionButton
-          show={true}
-          title={"I’m a Creator"}
-          href={"/creators"}
-          w={{ base: "48.2%", sm: 210 }}
-          h={{ base: 40 }}
-          fz={{ base: 14, sm: 16 }}
-          px={0}
-          bg={"transparent"}
-          bd={"1px solid #fff"}
-          fw={600}
-        />
+        <ElementAnimation initDelay={2200} className="w-[48.2%] sm:w-[210px]">
+          <SectionButton
+            show={true}
+            title={"I’m a Creator"}
+            href={"/creators"}
+            w={{ base: "100%" }}
+            h={{ base: 40 }}
+            fz={{ base: 14, sm: 16 }}
+            px={0}
+            bg={"transparent"}
+            bd={"1px solid #fff"}
+            fw={600}
+          />
+        </ElementAnimation>
       </Flex>
     </Flex>
   );

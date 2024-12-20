@@ -17,6 +17,7 @@ import { IUSPManager } from "@/app/api/_entities";
 import SectionButton from "@/components/buttons/SectionButton";
 import { twMerge } from "tailwind-merge";
 import { Box, Flex, Text, Title } from "@mantine/core";
+import SectionTitle from "@/components/Typo/SectionTitle";
 
 interface Props {
   usp: IUSPManager;
@@ -89,7 +90,8 @@ export function Community({ usp }: Props) {
   const communityImageBottom = useMemo(
     () => [
       {
-        className: "z-0 w-[39.2%] md:w-[29.6%] left-[-16%] md:left-0 bottom-[26vh] md:bottom-0",
+        className:
+          "z-0 w-[39.2%] md:w-[29.6%] left-[-16%] md:left-0 bottom-[26vh] md:bottom-0",
         photo: community_5,
         y: "42vh",
         ref: scope_5,
@@ -167,122 +169,122 @@ export function Community({ usp }: Props) {
   }, [animate_9, communityImageBottom, communityImageTop, isInView, scope_9]);
 
   return (
-    <Box
-      h={{ base: "100vh", md: "150vh" }}
-      bg={"#10011E"}
-      className="max-md:w-full md:container"
-    >
-      <Flex w={"100%"} h={"100%"} justify={'center'} align={'center'} pos={"relative"}>
+    <Box h={{ base: "116vh", md: "150vh" }} bg={"#10011E"} w={"100%"}>
+      <Box h={"100%"} className="max-md:w-full md:container">
         <Flex
-          direction={"column"}
-          wrap={"wrap"}
-          h={"100%"}
           w={"100%"}
-          pos={"absolute"}
-          top={0}
-          left={0}
-          className="overflow-hidden"
-        >
-          <Box pos={"relative"} w={"100%"} h={"50%"} className="z-10">
-            {communityImageTop?.map((v, index) => (
-              <Box
-                ref={v?.ref}
-                pos={"absolute"}
-                className={twMerge(
-                  "rounded-lg overflow-hidden aspect-[0.74]",
-                  v?.className ?? ""
-                )}
-                key={index}
-              >
-                <Image
-                  src={v?.photo}
-                  alt={v.name}
-                  fill
-                  className="object-cover"
-                />
-              </Box>
-            ))}
-          </Box>
-
-          <Box pos={"relative"} w={"100%"} h={"50%"}>
-            {communityImageBottom?.map((v, index) => (
-              <Box
-                pos={"absolute"}
-                className={twMerge(
-                  "rounded-lg overflow-hidden aspect-[0.74]",
-                  v?.className ?? ""
-                )}
-                key={index}
-                ref={v?.ref}
-              >
-                <Image
-                  src={v?.photo}
-                  alt={v.name}
-                  fill
-                  className="object-cover"
-                />
-              </Box>
-            ))}
-          </Box>
-        </Flex>
-        <Flex
-          ref={scope_9}
-          direction={"column"}
-          align={'center'}
+          h={"100%"}
+          justify={"center"}
+          align={"center"}
           pos={"relative"}
-          w={{ base: "100%", xl: "84%" }}
-          style={{
-            opacity: 0,
-          }}
-          gap={{ base: 4, md: 8 }}
-          c={"white"}
-          className="z-10"
         >
-          <Title
-            order={3}
-            fz={{ base: 30, md: 36, lg: 40, xl: 44, "2xl": 48 }}
-            fw={700}
-            lh={1.375}
+          <Flex
+            direction={"column"}
+            wrap={"wrap"}
+            h={"100%"}
+            w={"100%"}
+            pos={"absolute"}
+            top={0}
+            left={0}
+            className="overflow-hidden"
           >
-            🌟 Our Community
-          </Title>
+            <Box pos={"relative"} w={"100%"} h={"50%"} className="z-10">
+              {communityImageTop?.map((v, index) => (
+                <Box
+                  ref={v?.ref}
+                  pos={"absolute"}
+                  className={twMerge(
+                    "rounded-lg overflow-hidden aspect-[0.74]",
+                    v?.className ?? ""
+                  )}
+                  key={index}
+                >
+                  <Image
+                    src={v?.photo}
+                    alt={v.name}
+                    fill
+                    className="object-cover"
+                  />
+                </Box>
+              ))}
+            </Box>
 
-          <Title
-            order={2}
-            fz={{ base: 40, md: 56, lg: 72, xl: 88, "2xl": 104 }}
-            fw={700}
-            lh={1.32}
-            ta={"center"}
+            <Box pos={"relative"} w={"100%"} h={"50%"}>
+              {communityImageBottom?.map((v, index) => (
+                <Box
+                  pos={"absolute"}
+                  className={twMerge(
+                    "rounded-lg overflow-hidden aspect-[0.74]",
+                    v?.className ?? ""
+                  )}
+                  key={index}
+                  ref={v?.ref}
+                >
+                  <Image
+                    src={v?.photo}
+                    alt={v.name}
+                    fill
+                    className="object-cover"
+                  />
+                </Box>
+              ))}
+            </Box>
+          </Flex>
+          <Flex
+            ref={scope_9}
+            direction={"column"}
+            align={"center"}
+            pos={"relative"}
+            w={{ base: "100%", xl: "84%" }}
+            style={{
+              opacity: 0,
+            }}
+            gap={{ base: 4, md: 8 }}
+            c={"white"}
+            className="z-10"
           >
-            Discover, experience, and interact with{" "}
-            <Text
-              span={true}
+            <SectionTitle c={"white"} ta={"center"}>
+              🌟 Our Community
+              {/* <TextAnimation text={"🌟 Our Community"} rootProps={{ gap: 12 }} /> */}
+            </SectionTitle>
+
+            <Title
+              order={2}
               fz={{ base: 40, md: 56, lg: 72, xl: 88, "2xl": 104 }}
               fw={700}
-              lh={1.375}
+              lh={1.32}
               ta={"center"}
-              c={"#7A29CC"}
             >
-              Amazing Creators.
-            </Text>{" "}
-            Be part of the KNKY revolution!
-          </Title>
-          {usp.isShowButton && (
-            <SectionButton
-              w={{ base: 180, md: 210 }}
-              h={{ base: 40 }}
-              fz={{ base: 14, md: 16 }}
-              px={0}
-              mt={{ base: 8 }}
-              fw={600}
-              className="rounded-lg"
-              title={usp.buttonLabel}
-              href={usp.buttonLink}
-              show={true}
-            />
-          )}
+              Discover, experience, and interact with{" "}
+              <Text
+                span={true}
+                fz={{ base: 40, md: 56, lg: 72, xl: 88, "2xl": 104 }}
+                fw={700}
+                lh={1.375}
+                ta={"center"}
+                c={"#7A29CC"}
+              >
+                Amazing Creators.
+              </Text>{" "}
+              Be part of the KNKY revolution!
+            </Title>
+            {usp.isShowButton && (
+              <SectionButton
+                w={{ base: 180, md: 210 }}
+                h={{ base: 40 }}
+                fz={{ base: 14, md: 16 }}
+                px={0}
+                mt={{ base: 8 }}
+                fw={600}
+                className="rounded-lg"
+                title={usp.buttonLabel}
+                href={usp.buttonLink}
+                show={true}
+              />
+            )}
+          </Flex>
         </Flex>
-      </Flex>
+      </Box>
     </Box>
   );
 }

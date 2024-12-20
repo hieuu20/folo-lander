@@ -7,14 +7,15 @@ import React, { useEffect, useMemo, useState } from "react";
 interface Props {
   text: string;
   animationProps?: HTMLMotionProps<"span">;
-  wordSpace?: FlexProps["gap"];
+  rootProps?: FlexProps;
   initDelay?: number;
 }
 export default function TextAnimation({
   text,
   animationProps,
-  wordSpace = 8,
+  rootProps = {},
   initDelay = 0,
+  // ali
 }: Props) {
   let [delay] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
@@ -24,11 +25,10 @@ export default function TextAnimation({
   }, [initDelay]);
 
   const delayDuration = useMemo(() => 0.5 / text.length, [text]);
-  console.log({ initDelay });
 
   if (!isVisible) return <span className="invisible">{text}</span>;
   return (
-    <Flex wrap={"wrap"} gap={wordSpace} className="gap-y-0">
+    <Flex wrap={"wrap"} {...{gap: 8, ...rootProps}} className="gap-y-0">
       {text.split(" ").map((o, index) => {
         return (
           <motion.span key={index} className="flex flex-nowrap">

@@ -61,7 +61,7 @@ export default async function Page() {
       isShowButton: true,
       buttonLabel: "Join Beta now",
       buttonLink: "https://beta.knky.co/",
-      img: "https://loosefstvl.s3.eu-west-2.amazonaws.com/1685806331467_ring.png",
+      img: "/fan-notify/1.png",
     },
   ];
 

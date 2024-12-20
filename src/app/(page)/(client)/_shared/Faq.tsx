@@ -1,6 +1,7 @@
 "use client";
 
 import { IFaq } from "@/app/api/_entities";
+import TextAnimation from "@/components/animation/TextAnimation";
 import SectionSubTitle from "@/components/Typo/SectionSubTitle";
 import SectionTitle from "@/components/Typo/SectionTitle";
 import { Accordion, Flex, Text, Title } from "@mantine/core";
@@ -18,7 +19,7 @@ export function Faq({ title, description, faqs }: Props) {
     <Flex
       direction={{ base: "column", md: "row" }}
       gap={{ base: 16, md: 0 }}
-      py={{ base: 40, md: 48, lg: 60, xl: 72, '2xl': 80 }}
+      py={{ base: 40, md: 48, lg: 60, xl: 72, "2xl": 80 }}
       className="container"
     >
       <Flex
@@ -27,8 +28,18 @@ export function Faq({ title, description, faqs }: Props) {
         gap={{ base: 12, md: 14, xl: 16 }}
         align={{ base: "center", md: "start" }}
       >
-        <SectionTitle>{title}</SectionTitle>
-        <SectionSubTitle>{description}</SectionSubTitle>
+        <SectionTitle>
+          <TextAnimation
+            text={title}
+            rootProps={{ gap: { base: 8, md: 10, xl: 12 } }}
+          />
+        </SectionTitle>
+        <SectionSubTitle>
+          <TextAnimation
+            text={description}
+            initDelay={700}
+          />
+        </SectionSubTitle>
       </Flex>
 
       <Flex direction={"column"} w={{ base: "100%", md: "50%" }}>

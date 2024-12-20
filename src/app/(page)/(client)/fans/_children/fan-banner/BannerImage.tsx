@@ -13,10 +13,11 @@ export default function BannerImage() {
   useEffect(() => {
     const animation = lottie.loadAnimation({
       container: container.current,
-      renderer: 'svg',
+      renderer: 'svg', // canvas html
       loop: true,
       autoplay: true,
       path: '/lottie/animation.json',
+      // assetsPath: '/path/to/assets/',
     });
 
     return () => animation.destroy();

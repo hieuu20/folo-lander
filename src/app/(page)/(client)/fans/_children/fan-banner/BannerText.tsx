@@ -16,6 +16,7 @@ export default function BannerText({ usp }: Props) {
       w={{ base: "100%", md: "50%" }}
       align={{ base: "center", md: "start" }}
       className="order-2 md:order-1"
+      pt={{ base: 0, md: "5%" }}
     >
       <Title
         order={1}
@@ -27,7 +28,13 @@ export default function BannerText({ usp }: Props) {
         ta={{ base: "center", lg: "left" }}
       >
         {/* {usp.title} */}
-        <TextAnimation text={usp.title} rootProps={{ gap: {base: 8, md: 10, lg: 12, xl: 14, '2xl': 16} }} />
+        <TextAnimation
+          text={usp.title}
+          rootProps={{
+            gap: { base: 8, md: 10, lg: 12, xl: 14, "2xl": 16 },
+            justify: { base: "center", md: "start" },
+          }}
+        />
       </Title>
       <Title
         order={4}
@@ -38,7 +45,13 @@ export default function BannerText({ usp }: Props) {
         mb={{ base: 24, md: 28, lg: 32, xl: 36, "2xl": 40 }}
         ta={{ base: "center", lg: "left" }}
       >
-        <TextAnimation text={usp.subTitle} initDelay={usp.title.length * 28}/>
+        <TextAnimation
+          text={usp.subTitle}
+          initDelay={usp.title.length * 28}
+          rootProps={{
+            justify: { base: "center", md: "start" },
+          }}
+        />
       </Title>
 
       <Flex
@@ -46,7 +59,7 @@ export default function BannerText({ usp }: Props) {
         gap={{ base: 0, sm: 16 }}
         justify={{ base: "space-between", sm: "center" }}
       >
-        <ElementAnimation initDelay={1800} className="w-[48.2%] sm:w-[210px]">
+        <ElementAnimation initDelay={1200} className="w-[48.2%] sm:w-[210px]">
           <SectionButton
             show={usp.isShowButton}
             title={usp.buttonLabel}
@@ -59,7 +72,7 @@ export default function BannerText({ usp }: Props) {
           />
         </ElementAnimation>
 
-        <ElementAnimation initDelay={2200} className="w-[48.2%] sm:w-[210px]">
+        <ElementAnimation initDelay={1500} className="w-[48.2%] sm:w-[210px]">
           <SectionButton
             show={true}
             title={"I’m a Creator"}

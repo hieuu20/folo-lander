@@ -11,7 +11,7 @@
   }
 
   .container {
-      @apply px-4 md:px-16 lg:px-32 2xl:w-[1440px] 2xl:px-0 mx-auto w-full max-w-[1440px] !important;
+      @apply px-4 sm:px-8 md:px-16 lg:px-32 2xl:w-[1440px] 2xl:px-0 mx-auto w-full max-w-[1440px] !important;
   }
 
   .text-hover {

@@ -5,6 +5,8 @@ import facebookIcon from "@public/icons/facebook.svg";
 import xIcon from "@public/icons/x.svg";
 import instagramIcon from "@public/icons/instagram.svg";
 import tiktokIcon from "@public/icons/tiktok.svg";
+import redditIcon from "@public/icons/reddit.svg";
+import blueSkyIcon from "@public/icons/bluesky.svg";
 import { Box, Flex, Grid, Text } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,6 +32,14 @@ const socials = [
   {
     icon: tiktokIcon,
     href: "https://www.tiktok.com/@knkyco",
+  },
+  {
+    icon: redditIcon,
+    href: "https://www.reddit.com/@knkyco",
+  },
+  {
+    icon: blueSkyIcon,
+    href: "https://www.bsky.com/@knkyco",
   },
 ];
 

@@ -18,6 +18,7 @@ import SectionButton from "@/components/buttons/SectionButton";
 import { twMerge } from "tailwind-merge";
 import { Box, Flex, Text, Title } from "@mantine/core";
 import SectionTitle from "@/components/Typo/SectionTitle";
+import TextAnimation from "@/components/animation/TextAnimation";
 
 interface Props {
   usp: IUSPManager;
@@ -244,8 +245,14 @@ export function Community({ usp }: Props) {
             className="z-10"
           >
             <SectionTitle c={"white"} ta={"center"}>
-              🌟 Our Community
-              {/* <TextAnimation text={"🌟 Our Community"} rootProps={{ gap: 12 }} /> */}
+              <TextAnimation
+                text={"🌟 Our Community"}
+                rootProps={{
+                  gap: { base: 6, md: 8, lg: 10, "2xl": 12 },
+                  justify: "center",
+                }}
+                initDelay={2000}
+              />
             </SectionTitle>
 
             <Title

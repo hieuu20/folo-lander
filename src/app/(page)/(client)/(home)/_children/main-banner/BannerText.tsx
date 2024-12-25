@@ -49,7 +49,7 @@ export default function BannerText() {
         <SectionButton
           show={true}
           title={"For Creators"}
-          href={"https://lander.knky.co/creators"}
+          href={"/creators"}
           w={{ base: "48.2%", sm: 210, lg: 240, xl: 250, "2xl": 260 }}
           h={{ base: 40, sm: 42, md: 44, lg: 48, "2xl": 50 }}
           fz={{ base: 16, md: 20, lg: 22 }}
@@ -68,7 +68,7 @@ export default function BannerText() {
         <SectionButton
           show={true}
           title={"For Fans"}
-          href={"https://lander.knky.co/fans"}
+          href={"/fans"}
           w={{ base: "48.2%", sm: 210, lg: 240, xl: 250, "2xl": 260 }}
           h={{ base: 40, sm: 42, md: 44, lg: 48, "2xl": 50 }}
           fz={{ base: 16, md: 20, lg: 22 }}

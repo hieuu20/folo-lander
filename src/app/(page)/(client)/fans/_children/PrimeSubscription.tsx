@@ -12,6 +12,7 @@ export function PrimeSubscription() {
       w={"100%"}
       bg={"#F5F5F6"}
       py={{ base: 40, md: 48, lg: 60, xl: 72, "2xl": 80 }}
+      className="scroll-mt-[72px]"
     >
       <PrimeImage />
       <PrimeText

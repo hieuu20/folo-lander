@@ -70,22 +70,22 @@ export const fanHeaderItem = [
     {
         title: 'Features',
         keyActive: 'Fans',
-        href: 'https://lander.knky.co/fans',
+        href: '#Features',
     },
     {
         title: 'Prime',
         keyActive: 'Creators',
-        href: 'https://lander.knky.co/creators',
+        href: '#Prime',
     },
     {
         title: 'MatchMaker',
         keyActive: 'Creators',
-        href: 'https://lander.knky.co/creators',
+        href: '#MatchMaker',
     },
     {
         title: 'FAQs',
         keyActive: 'Creators',
-        href: 'https://lander.knky.co/creators',
+        href: '#FAQs',
     }
 ];
 

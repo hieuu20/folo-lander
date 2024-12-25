@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.1",
     "@mantine/core": "^7.14.1",
     "@tabler/icons-react": "^3.22.0",
     "formik": "^2.4.6",
     "framer-motion": "^11.11.17",
+    "gsap": "^3.12.5",
+    "gsap-trial": "^3.12.5",
     "lodash": "^4.17.21",
     "lottie-web": "^5.12.2",
     "mongoose": "^8.8.2",

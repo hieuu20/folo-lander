@@ -14,13 +14,13 @@ interface Props {
   faqs: IFaq[];
 }
 export function Faq({ title, description, faqs }: Props) {
-  console.log({ faqs });
   return (
     <Flex
+      id="FAQs"
       direction={{ base: "column", md: "row" }}
       gap={{ base: 16, md: 0 }}
       py={{ base: 40, md: 48, lg: 60, xl: 72, "2xl": 80 }}
-      className="container"
+      className="container scroll-mt-[72px]"
     >
       <Flex
         direction={"column"}
@@ -31,13 +31,13 @@ export function Faq({ title, description, faqs }: Props) {
         <SectionTitle>
           <TextAnimation
             text={title}
-            rootProps={{ gap: { base: 8, md: 10, xl: 12 } }}
+            rootProps={{ gap: { base: 6, md: 8, lg: 10, '2xl': 12 } }}
           />
         </SectionTitle>
         <SectionSubTitle>
           <TextAnimation
             text={description}
-            initDelay={700}
+            initDelay={1000}
           />
         </SectionSubTitle>
       </Flex>

@@ -21,16 +21,18 @@ export function PrimeText({ usp }: Props) {
         gap={8}
       >
         <SectionTitle c={"#131416"} ta={"center"}>
-          <TextAnimation text={usp.title} rootProps={{ gap: {base: 8, md: 10, xl: 12} }} />
+          <TextAnimation
+            text={usp.title}
+            rootProps={{ gap: { base: 6, md: 8, lg: 10, '2xl': 12 } }}
+          />
         </SectionTitle>
 
         <SectionSubTitle c={{ base: "#4D5053", md: "#272932" }} ta={"center"}>
-          {/* {usp.subTitle} */}
-          <TextAnimation 
-            text={usp.subTitle} 
-            initDelay={800} 
+          <TextAnimation
+            text={usp.subTitle}
+            initDelay={800}
             rootProps={{
-              justify: 'center'
+              justify: "center",
             }}
           />
         </SectionSubTitle>

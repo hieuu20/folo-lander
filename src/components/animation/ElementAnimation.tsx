@@ -21,8 +21,9 @@ export default function ElementAnimation({ children, initDelay = 0, animationPro
         <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 1 }}
             transition={{
+                delay: initDelay/2000,
                 duration: 0.4,
                 ease: "easeIn",
             }}

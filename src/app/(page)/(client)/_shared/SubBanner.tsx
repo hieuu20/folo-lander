@@ -64,7 +64,7 @@ const renderContent = (usp: IUSPManager) => {
           lh={1.4}
           fw={{ base: 500, md: 600 }}
         >
-          <TextAnimation text={usp.title} initDelay={600} />
+          <TextAnimation text={usp.title} initDelay={700} />
         </Title>
 
         <Text
@@ -73,11 +73,10 @@ const renderContent = (usp: IUSPManager) => {
           lh={1.4}
           fw={500}
         >
-          <TextAnimation text={usp.subTitle} initDelay={900} rootProps={{ justify: { base: 'center', md: 'start'}}} />
+          <TextAnimation text={usp.subTitle} initDelay={1100} rootProps={{ justify: { base: 'center', md: 'start'}}} />
         </Text>
 
         {usp.isShowButton && (
-          
           <ElementAnimation initDelay={1800}>
             <SectionButton
               w={{ base: 180, md: 210 }}

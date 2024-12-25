@@ -7,8 +7,9 @@ import bgPc from "@public/fan-banner/bg-pc.png";
 import bgMb from "@public/fan-banner/bg-mb.png";
 import Image from "next/image";
 import BannerText from "./fan-banner/BannerText";
-import dynamic from 'next/dynamic';
-const BannerImage = dynamic(() => import('./fan-banner/BannerImage'), { ssr: false });
+import BannerImage from "./fan-banner/BannerImage";
+// import dynamic from 'next/dynamic';
+// const BannerImage = dynamic(() => import('./fan-banner/BannerImage'), { ssr: false });
 
 interface Props {
   usps: IUSPManager[];
@@ -19,7 +20,7 @@ export function FanBanner({ usps }: Props) {
     <Box
       w={"100%"}
       pos={"relative"}
-      className="aspect-[0.328] sm:aspect-[0.5] md:aspect-[1.4]"
+      className="aspect-[0.3] sm:aspect-[0.44] md:aspect-[1.2] lg:aspect-[1.32]"
     >
       <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0}>
         <Image
@@ -38,11 +39,11 @@ export function FanBanner({ usps }: Props) {
       </Box>
       <Flex
         direction={{ base: "column", md: "row" }}
-        gap={{ base: 54, lg: 24 }}
+        gap={{ base: 32, lg: 24 }}
         h={"100%"}
         pos={'relative'}
         className="container"
-        pt={{ base: "0", md: "10%", '2xl': '12%' }}
+        pt={{ base: 72, md: 80, lg: 90, '2xl': 100 }}
       >
         <BannerText usp={usps[0]} />
         <BannerImage />

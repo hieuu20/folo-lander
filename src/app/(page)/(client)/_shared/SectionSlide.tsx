@@ -10,6 +10,8 @@ import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import SectionButton from "@/components/buttons/SectionButton";
 import creatorIcon from "@public/icons/creator-icon.svg";
 import fanIcon from "@public/icons/fan-icon.svg";
+import TextAnimation from "@/components/animation/TextAnimation";
+import SectionTitle from "@/components/Typo/SectionTitle";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const PrevArrow = (props: any) => {
@@ -119,15 +121,15 @@ export default function SectionSlide(props: Props) {
           className={twMerge("rounded-[40px]", classer?.content)}
           {...contentProps}
         >
-          <Title
-            size={"h4"}
-            fz={{ base: 30, md: 34, lg: 38, xl: 44, "2xl": 48 }}
-            lh={1.36}
-            fw={700}
-            ta={"center"}
-          >
-            {title}
-          </Title>
+          <SectionTitle>
+            <TextAnimation
+              text={title}
+              rootProps={{
+                gap: { base: 6, md: 8, lg: 10, "2xl": 12 },
+                justify: "center",
+              }}
+            />
+          </SectionTitle>
 
           {subTitle && (
             <Text
@@ -139,7 +141,13 @@ export default function SectionSlide(props: Props) {
               c={"#131416"}
               w={{ base: "94%", md: "80%", "2xl": "74%" }}
             >
-              {subTitle}
+              <TextAnimation
+                text={subTitle}
+                initDelay={800}
+                rootProps={{
+                  justify: "center",
+                }}
+              />
             </Text>
           )}
 
@@ -170,7 +178,7 @@ export default function SectionSlide(props: Props) {
               <SectionButton
                 show={true}
                 title={"For Creators"}
-                href={"https://lander.knky.co/creators"}
+                href={"/creators"}
                 w={{ base: "48.2%", sm: 210, md: 240, lg: 250, "2xl": 260 }}
                 h={{ base: 40, sm: 42, md: 44, lg: 48, "2xl": 50 }}
                 fz={{ base: 16, md: 20, lg: 22 }}
@@ -189,7 +197,7 @@ export default function SectionSlide(props: Props) {
               <SectionButton
                 show={true}
                 title={"For Fans"}
-                href={"https://lander.knky.co/fans"}
+                href={"/fans"}
                 w={{ base: "48.2%", sm: 210, md: 240, lg: 250, "2xl": 260 }}
                 h={{ base: 40, sm: 42, md: 44, lg: 48, "2xl": 50 }}
                 fz={{ base: 16, md: 20, lg: 22 }}

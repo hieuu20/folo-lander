@@ -1,9 +1,12 @@
+"use client";
+
 import { IUSPManager } from "@/app/api/_entities";
 import TextAnimation from "@/components/animation/TextAnimation";
 import SectionButton from "@/components/buttons/SectionButton";
 import SectionSubTitle from "@/components/Typo/SectionSubTitle";
 import SectionTitle from "@/components/Typo/SectionTitle";
 import { Box, Flex } from "@mantine/core";
+import { useAnimate, useInView } from "framer-motion";
 import React from "react";
 
 interface Props {
@@ -11,9 +14,13 @@ interface Props {
 }
 
 export function DeepConnectionText({ usp }: Props) {
+  const [scope] = useAnimate();
+  const isInView = useInView(scope, { amount: 0.5 });
+
   return (
     <Box className="container">
       <Flex
+        ref={scope}
         w={{ base: "100%", md: "72%" }}
         mx={"auto"}
         direction={"column"}
@@ -21,16 +28,21 @@ export function DeepConnectionText({ usp }: Props) {
         gap={8}
       >
         <SectionTitle c={"#131416"} ta={"center"}>
-          <TextAnimation text={usp.title} rootProps={{ gap: {base: 6, md: 8, lg: 10, '2xl': 12} }} />
+          <TextAnimation
+            text={usp.title}
+            rootProps={{ gap: { base: 6, md: 8, lg: 10, "2xl": 12 } }}
+            isInView={isInView}
+          />
         </SectionTitle>
 
         <SectionSubTitle ta={"center"} c={{ base: "#4D5053", md: "#272932" }}>
-          <TextAnimation 
-            text={usp.subTitle} 
-            initDelay={800} 
+          <TextAnimation
+            text={usp.subTitle}
+            initDelay={800}
             rootProps={{
-              justify: 'center'
+              justify: "center",
             }}
+            isInView={isInView}
           />
         </SectionSubTitle>
 

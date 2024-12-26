@@ -1,8 +1,11 @@
+"use client";
+
 import { IUSPManager } from "@/app/api/_entities";
 import ElementAnimation from "@/components/animation/ElementAnimation";
 import TextAnimation from "@/components/animation/TextAnimation";
 import SectionButton from "@/components/buttons/SectionButton";
 import { Box, Flex, Text, Title } from "@mantine/core";
+import { useAnimate, useInView } from "framer-motion";
 import Image from "next/image";
 import React from "react";
 
@@ -21,19 +24,27 @@ export function SubBanner(props: Props) {
         w={"100%"}
         className="md:hidden rounded-t-2xl overflow-hidden translate-y-[-100%]"
       >
-        <Box className="container">{renderContent(usp)}</Box>
+        <Box className="container">
+          <Content usp={usp} />
+        </Box>
       </Box>
 
       <Box className="container hidden md:block translate-y-[-100%]">
-        <Box w={"100%"}>{renderContent(usp)}</Box>
+        <Box w={"100%"}>
+          <Content usp={usp} />
+        </Box>
       </Box>
     </Box>
   );
 }
 
-const renderContent = (usp: IUSPManager) => {
+const Content = ({ usp }: { usp: IUSPManager }) => {
+  const [scope] = useAnimate();
+  const isInView = useInView(scope, { amount: 0.2 });
+
   return (
     <Flex
+      ref={scope}
       direction={{ base: "column", md: "row" }}
       bg={"linear-gradient(180deg, #641CB6 0%, #250648 100%)"}
       w={"100%"}
@@ -44,10 +55,12 @@ const renderContent = (usp: IUSPManager) => {
       className="rounded-t-[40px]"
       px={{ base: 0, md: "5.2%" }}
       pb={{ base: 40, md: "5.2%" }}
-      // pt={{ base: 40, md: 44, lg: 48, "2xl": 56 }}
       pt={{ base: 40, md: "3%" }}
     >
-      <ElementAnimation className="relative w-[31.4%] md:w-[18%] aspect-square">
+      <ElementAnimation
+        isInView={isInView}
+        className="relative w-[31.4%] md:w-[18%] aspect-square"
+      >
         <Image src={usp.img} alt={usp.title} fill className="object-cover" />
       </ElementAnimation>
 
@@ -64,7 +77,7 @@ const renderContent = (usp: IUSPManager) => {
           lh={1.4}
           fw={{ base: 500, md: 600 }}
         >
-          <TextAnimation text={usp.title} initDelay={700} />
+          <TextAnimation isInView={isInView} text={usp.title} initDelay={600} />
         </Title>
 
         <Text
@@ -73,11 +86,16 @@ const renderContent = (usp: IUSPManager) => {
           lh={1.4}
           fw={500}
         >
-          <TextAnimation text={usp.subTitle} initDelay={1100} rootProps={{ justify: { base: 'center', md: 'start'}}} />
+          <TextAnimation
+            isInView={isInView}
+            text={usp.subTitle}
+            initDelay={1200}
+            rootProps={{ justify: { base: "center", md: "start" } }}
+          />
         </Text>
 
         {usp.isShowButton && (
-          <ElementAnimation initDelay={1800}>
+          <ElementAnimation isInView={isInView} initDelay={2000}>
             <SectionButton
               w={{ base: 180, md: 210 }}
               h={{ base: 40 }}
@@ -85,7 +103,6 @@ const renderContent = (usp: IUSPManager) => {
               px={0}
               mt={{ base: 8 }}
               fw={600}
-              className="rounded-lg"
               title={usp.buttonLabel}
               href={usp.buttonLink}
               show={true}

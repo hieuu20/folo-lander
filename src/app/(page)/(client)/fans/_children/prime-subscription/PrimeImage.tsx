@@ -17,19 +17,23 @@ import bot5 from "@public/prime-subscription/bot-5.png";
 import Image, { StaticImageData } from "next/image";
 
 export function PrimeImage() {
+  const [scope] = useAnimate();
+  const isInView = useInView(scope, { amount: 0.4 });
+
   return (
     <Flex
+      ref={scope}
       w={{ base: "100%" }}
       direction={"column"}
       gap={{ base: 8, sm: 10, lg: 12, xl: 14, "2xl": 16 }}
     >
-      <Top />
-      <Bottom />
+      <Top isInView={isInView} />
+      <Bottom isInView={isInView} />
     </Flex>
   );
 }
 
-const Top = () => {
+const Top = ({ isInView }: { isInView: boolean }) => {
   return (
     <Grid gutter={{ base: 8, sm: 10, lg: 12, xl: 14, "2xl": 16 }}>
       <Grid.Col span={6} className="overflow-hidden flex justify-end">
@@ -44,6 +48,7 @@ const Top = () => {
             className="aspect-[1.76]"
             duration={1.6}
             delay={1}
+            isInView={isInView}
           />
           <Item
             img={top2}
@@ -52,6 +57,7 @@ const Top = () => {
             className="aspect-[2.694]"
             duration={1.6}
             delay={0.5}
+            isInView={isInView}
           />
           <Item
             img={top3}
@@ -59,6 +65,7 @@ const Top = () => {
             w={{ base: 130, md: 180, xl: 236 }}
             className="aspect-[1.76]"
             duration={1.6}
+            isInView={isInView}
           />
         </Flex>
       </Grid.Col>
@@ -73,6 +80,7 @@ const Top = () => {
             w={{ base: 86, md: 110, xl: 156 }}
             className="aspect-[1.164]"
             duration={1.6}
+            isInView={isInView}
           />
           <Item
             img={top5}
@@ -81,6 +89,7 @@ const Top = () => {
             className="aspect-[1.76]"
             duration={1.6}
             delay={0.5}
+            isInView={isInView}
           />
           <Item
             img={top6}
@@ -89,6 +98,7 @@ const Top = () => {
             className="aspect-[3.268]"
             duration={1.6}
             delay={1}
+            isInView={isInView}
           />
         </Flex>
       </Grid.Col>
@@ -96,7 +106,7 @@ const Top = () => {
   );
 };
 
-const Bottom = () => {
+const Bottom = ({ isInView }: { isInView: boolean }) => {
   return (
     <Flex gap={{ base: 8, sm: 10, lg: 12, xl: 14, "2xl": 16 }}>
       <Flex
@@ -112,6 +122,7 @@ const Bottom = () => {
           className="aspect-[1.463]"
           duration={1.5}
           delay={0.4}
+          isInView={isInView}
         />
         <Item
           img={bot2}
@@ -119,6 +130,7 @@ const Bottom = () => {
           w={{ base: 130, md: 180, xl: 236 }}
           className="aspect-[0.67]"
           duration={1.5}
+          isInView={isInView}
         />
       </Flex>
       <Box
@@ -139,6 +151,7 @@ const Bottom = () => {
           w={{ base: 130, md: 180, xl: 236 }}
           className="aspect-[0.67]"
           duration={1.5}
+          isInView={isInView}
         />
         <Item
           img={bot5}
@@ -147,6 +160,7 @@ const Bottom = () => {
           className="aspect-[1.463]"
           duration={1.5}
           delay={0.4}
+          isInView={isInView}
         />
       </Flex>
     </Flex>
@@ -158,16 +172,16 @@ const Item = ({
   x,
   duration = 1.8,
   delay = 0,
+  isInView,
   ...rootProps
 }: {
   img: StaticImageData;
   x: string | number;
   duration?: number;
+  isInView: boolean;
   delay?: number;
 } & BoxProps) => {
-  const [scope] = useAnimate();
   const [hasAnimated, setHasAnimated] = useState(false);
-  const isInView = useInView(scope);
 
   useEffect(() => {
     if (isInView && !hasAnimated) {
@@ -176,7 +190,7 @@ const Item = ({
   }, [isInView, hasAnimated]);
 
   return (
-    <div ref={scope}>
+    <div>
       <motion.div
         initial={{ x: x }}
         animate={hasAnimated ? { x: 0 } : { x: x }}

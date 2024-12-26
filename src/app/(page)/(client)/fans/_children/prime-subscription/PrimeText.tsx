@@ -1,3 +1,5 @@
+"use client";
+
 import { IUSPManager } from "@/app/api/_entities";
 import ElementAnimation from "@/components/animation/ElementAnimation";
 import TextAnimation from "@/components/animation/TextAnimation";
@@ -5,15 +7,20 @@ import SectionButton from "@/components/buttons/SectionButton";
 import SectionSubTitle from "@/components/Typo/SectionSubTitle";
 import SectionTitle from "@/components/Typo/SectionTitle";
 import { Box, Flex } from "@mantine/core";
+import { useAnimate, useInView } from "framer-motion";
 import React from "react";
 
 interface Props {
   usp: IUSPManager;
 }
 export function PrimeText({ usp }: Props) {
+  const [scope] = useAnimate();
+  const isInView = useInView(scope, { amount: 0.3 });
+
   return (
     <Box className="container">
-      <Flex
+      <Flex 
+        ref={scope}
         w={{ base: "100%", md: "50%" }}
         mx={"auto"}
         direction={"column"}
@@ -23,7 +30,8 @@ export function PrimeText({ usp }: Props) {
         <SectionTitle c={"#131416"} ta={"center"}>
           <TextAnimation
             text={usp.title}
-            rootProps={{ gap: { base: 6, md: 8, lg: 10, '2xl': 12 } }}
+            rootProps={{ gap: { base: 6, md: 8, lg: 10, "2xl": 12 } }}
+            isInView={isInView}
           />
         </SectionTitle>
 
@@ -34,6 +42,7 @@ export function PrimeText({ usp }: Props) {
             rootProps={{
               justify: "center",
             }}
+            isInView={isInView}
           />
         </SectionSubTitle>
 
@@ -43,7 +52,11 @@ export function PrimeText({ usp }: Props) {
           justify={{ base: "space-between", sm: "center" }}
           mt={{ base: 16 }}
         >
-          <ElementAnimation initDelay={1800} className="w-[48.2%] sm:w-[210px]">
+          <ElementAnimation
+            initDelay={1800}
+            isInView={isInView}
+            className="w-[48.2%] sm:w-[210px]"
+          >
             <SectionButton
               show={usp.isShowButton}
               title={usp.buttonLabel}
@@ -56,7 +69,11 @@ export function PrimeText({ usp }: Props) {
             />
           </ElementAnimation>
 
-          <ElementAnimation initDelay={2200} className="w-[48.2%] sm:w-[210px]">
+          <ElementAnimation
+            initDelay={2200}
+            isInView={isInView}
+            className="w-[48.2%] sm:w-[210px]"
+          >
             <SectionButton
               show={true}
               title={"Try on Beta"}

@@ -13,15 +13,21 @@ type Props = ButtonProps & {
   icon?: ReactNode;
 };
 export default function SectionButton(props: Props) {
-  const { show, title, href, icon, ...rest } = props;
+  const { show, title, href, icon, className, ...rest } = props;
 
-  if(!show){
+  if (!show) {
     return null;
   }
 
   if (href == "register") {
     return (
-      <RegisterButton fz={{ base: 16, md: 18 }} fw={500} px={24} h={40} {...rest}>
+      <RegisterButton
+        fz={{ base: 16, md: 18 }}
+        fw={500}
+        px={24}
+        h={40}
+        {...rest}
+      >
         {title}
       </RegisterButton>
     );
@@ -29,19 +35,25 @@ export default function SectionButton(props: Props) {
 
   return (
     <Button
-      {...props}
       bg={"#AC1991"}
       c={"white"}
       fw={500}
       h={40}
       px={32}
-      className={twMerge("rounded-lg")}
+      className={twMerge(
+        "rounded-lg",
+        !rest.bg ? "hover:bg-[#751363]" : "",
+        className
+      )}
       {...rest}
     >
-      {icon && (
-        icon
-      )}
-      <Link href={href ?? "/"} target={href?.includes('http') ? '_blank' : undefined}>{title}</Link>
+      {icon && icon}
+      <Link
+        href={href ?? "/"}
+        target={href?.includes("http") ? "_blank" : undefined}
+      >
+        {title}
+      </Link>
     </Button>
   );
 }

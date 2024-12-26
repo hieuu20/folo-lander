@@ -5,6 +5,7 @@ import TextAnimation from "@/components/animation/TextAnimation";
 import SectionButton from "@/components/buttons/SectionButton";
 import SectionTitle from "@/components/Typo/SectionTitle";
 import { Box, Flex, Title } from "@mantine/core";
+import { useAnimate, useInView } from "framer-motion";
 import Image from "next/image";
 import Slider from "react-slick";
 
@@ -49,20 +50,30 @@ interface Props {
 
 export function Platform(props: Props) {
   const { usps, title } = props;
+  const [scope] = useAnimate();
+  const isInView = useInView(scope, { amount: 0.5 });
 
   return (
     <Box w={"100%"}>
       <Box className="container">
         <Flex
+          ref={scope}
           direction={"column"}
           w={"100%"}
           justify={"center"}
           align={"center"}
           gap={{ base: 16, md: 20, lg: 24, xl: 32, "2xl": 40 }}
-          py={{ base: 40, md: 48, lg: 60, xl: 72, '2xl': 80 }}
+          py={{ base: 40, md: 48, lg: 60, xl: 72, "2xl": 80 }}
         >
           <SectionTitle c={"#131416"}>
-            <TextAnimation text={title} rootProps={{ gap: { base: 6, md: 8, lg: 10, '2xl': 12 }, justify: 'center' }}/>
+            <TextAnimation
+              text={title}
+              rootProps={{
+                gap: { base: 6, md: 8, lg: 10, "2xl": 12 },
+                justify: "center",
+              }}
+              isInView={isInView}
+            />
           </SectionTitle>
 
           <Box w={"100%"}>

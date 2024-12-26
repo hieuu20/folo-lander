@@ -4,14 +4,19 @@ import TextAnimation from "@/components/animation/TextAnimation";
 import { Flex, Title } from "@mantine/core";
 import React from "react";
 import ElementAnimation from "@/components/animation/ElementAnimation";
+import { useAnimate, useInView } from "framer-motion";
 
 interface Props {
   usp: IUSPManager;
 }
 
 export default function BannerText({ usp }: Props) {
+  const [scope] = useAnimate();
+  const isInView = useInView(scope, { amount: 0.5 });
+
   return (
     <Flex
+      ref={scope}
       direction={"column"}
       w={{ base: "100%", md: "50%" }}
       align={{ base: "center", md: "start" }}
@@ -27,13 +32,13 @@ export default function BannerText({ usp }: Props) {
         mb={{ base: 8 }}
         ta={{ base: "center", lg: "left" }}
       >
-        {/* {usp.title} */}
         <TextAnimation
           text={usp.title}
           rootProps={{
             gap: { base: 8, md: 10, lg: 12, xl: 14, "2xl": 16 },
             justify: { base: "center", md: "start" },
           }}
+          isInView={isInView}
         />
       </Title>
       <Title
@@ -47,10 +52,11 @@ export default function BannerText({ usp }: Props) {
       >
         <TextAnimation
           text={usp.subTitle}
-          initDelay={usp.title.length * 28}
+          initDelay={800}
           rootProps={{
             justify: { base: "center", md: "start" },
           }}
+          isInView={isInView}
         />
       </Title>
 
@@ -59,7 +65,11 @@ export default function BannerText({ usp }: Props) {
         gap={{ base: 0, sm: 16 }}
         justify={{ base: "space-between", sm: "center" }}
       >
-        <ElementAnimation initDelay={1200} className="w-[48.2%] sm:w-[210px]">
+        <ElementAnimation
+          initDelay={1500}
+          isInView={isInView}
+          className="w-[48.2%] sm:w-[210px]"
+        >
           <SectionButton
             show={usp.isShowButton}
             title={usp.buttonLabel}
@@ -72,7 +82,11 @@ export default function BannerText({ usp }: Props) {
           />
         </ElementAnimation>
 
-        <ElementAnimation initDelay={1500} className="w-[48.2%] sm:w-[210px]">
+        <ElementAnimation
+          initDelay={1800}
+          isInView={isInView}
+          className="w-[48.2%] sm:w-[210px]"
+        >
           <SectionButton
             show={true}
             title={"I’m a Creator"}

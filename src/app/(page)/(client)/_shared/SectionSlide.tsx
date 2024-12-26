@@ -12,6 +12,7 @@ import creatorIcon from "@public/icons/creator-icon.svg";
 import fanIcon from "@public/icons/fan-icon.svg";
 import TextAnimation from "@/components/animation/TextAnimation";
 import SectionTitle from "@/components/Typo/SectionTitle";
+import { useAnimate, useInView } from "framer-motion";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const PrevArrow = (props: any) => {
@@ -107,11 +108,14 @@ export default function SectionSlide(props: Props) {
     classer,
     isShowButton = true,
   } = props;
+  const [scope] = useAnimate();
+  const isInView = useInView(scope, { amount: 0.2 });
 
   return (
     <Box w={"100%"} {...rootProps} className={classer?.root}>
       <Box className="container">
         <Flex
+          ref={scope}
           direction={"column"}
           w={"100%"}
           justify={"center"}
@@ -128,6 +132,7 @@ export default function SectionSlide(props: Props) {
                 gap: { base: 6, md: 8, lg: 10, "2xl": 12 },
                 justify: "center",
               }}
+              isInView={isInView}
             />
           </SectionTitle>
 
@@ -143,10 +148,11 @@ export default function SectionSlide(props: Props) {
             >
               <TextAnimation
                 text={subTitle}
-                initDelay={800}
+                initDelay={700}
                 rootProps={{
                   justify: "center",
                 }}
+                isInView={isInView}
               />
             </Text>
           )}

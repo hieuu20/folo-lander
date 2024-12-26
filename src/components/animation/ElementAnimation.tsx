@@ -1,36 +1,42 @@
-'use client';
+"use client";
 
-import React, { PropsWithChildren, useEffect, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useState } from "react";
 import { HTMLMotionProps, motion } from "framer-motion";
 
 interface Props extends PropsWithChildren {
-    initDelay?: number;
-    animationProps?: HTMLMotionProps<"div">;
-    className?: string;
+  initDelay?: number;
+  animationProps?: HTMLMotionProps<"div">;
+  className?: string;
+  isInView: boolean;
 }
 
-export default function ElementAnimation({ children, initDelay = 0, animationProps, className }: Props) {
-    const [isVisible, setIsVisible] = useState(false);
+export default function ElementAnimation({
+  children,
+  initDelay = 0,
+  animationProps,
+  className,
+  isInView,
+}: Props) {
+  const [hasAnimated, setHasAnimated] = useState(false);
 
-    useEffect(() => {
-        setTimeout(() => setIsVisible(true), initDelay);
-    }, [initDelay]);
-
-    if (!isVisible) return <div className="invisible">{children}</div>;
-    return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 1 }}
-            transition={{
-                delay: initDelay/2000,
-                duration: 0.4,
-                ease: "easeIn",
-            }}
-            {...animationProps}
-            className={className}
-        >
-            {children}
-        </motion.div>
-    );
+  useEffect(() => {
+    if (isInView && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [isInView, hasAnimated]);
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={hasAnimated ? { opacity: 1 } : {}}
+      transition={{
+        delay: initDelay / 1000,
+        duration: 0.4,
+        ease: "easeIn",
+      }}
+      {...animationProps}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
 }

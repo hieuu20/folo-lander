@@ -19,6 +19,7 @@ import { twMerge } from "tailwind-merge";
 import { Box, Flex, Text, Title } from "@mantine/core";
 import SectionTitle from "@/components/Typo/SectionTitle";
 import TextAnimation from "@/components/animation/TextAnimation";
+import ElementAnimation from "@/components/animation/ElementAnimation";
 
 interface Props {
   usp: IUSPManager;
@@ -251,7 +252,8 @@ export function Community({ usp }: Props) {
                   gap: { base: 6, md: 8, lg: 10, "2xl": 12 },
                   justify: "center",
                 }}
-                initDelay={2000}
+                isInView={isInView}
+                initDelay={1000}
               />
             </SectionTitle>
 
@@ -262,7 +264,15 @@ export function Community({ usp }: Props) {
               lh={1.32}
               ta={"center"}
             >
-              Discover, experience, and interact with{" "}
+              <TextAnimation
+                text="Discover, experience, and interact with"
+                isInView={isInView}
+                initDelay={1400}
+                rootProps={{
+                  gap: { base: 8, md: 10, lg: 12, xl: 14, "2xl": 16 },
+                  justify: "center",
+                }}
+              />{" "}
               <Text
                 span={true}
                 fz={{ base: 40, md: 56, lg: 72, xl: 88, "2xl": 104 }}
@@ -271,23 +281,41 @@ export function Community({ usp }: Props) {
                 ta={"center"}
                 c={"#7A29CC"}
               >
-                Amazing Creators.
+                <TextAnimation
+                  text="Amazing Creators."
+                  isInView={isInView}
+                  initDelay={1900}
+                  rootProps={{
+                    gap: { base: 8, md: 10, lg: 12, xl: 14, "2xl": 16 },
+                    justify: "center",
+                  }}
+                />
               </Text>{" "}
-              Be part of the KNKY revolution!
+              <TextAnimation
+                text="Be part of the KNKY revolution!"
+                isInView={isInView}
+                initDelay={2300}
+                rootProps={{
+                  gap: { base: 8, md: 10, lg: 12, xl: 14, "2xl": 16 },
+                  justify: "center",
+                }}
+              />
             </Title>
             {usp.isShowButton && (
-              <SectionButton
-                w={{ base: 180, md: 210 }}
-                h={{ base: 40 }}
-                fz={{ base: 14, md: 16 }}
-                px={0}
-                mt={{ base: 8 }}
-                fw={600}
-                className="rounded-lg"
-                title={usp.buttonLabel}
-                href={usp.buttonLink}
-                show={true}
-              />
+              <ElementAnimation isInView={isInView} initDelay={2800}>
+                <SectionButton
+                  w={{ base: 180, md: 210 }}
+                  h={{ base: 40 }}
+                  fz={{ base: 14, md: 16 }}
+                  px={0}
+                  mt={{ base: 8 }}
+                  fw={600}
+                  className="rounded-lg"
+                  title={usp.buttonLabel}
+                  href={usp.buttonLink}
+                  show={true}
+                />
+              </ElementAnimation>
             )}
           </Flex>
         </Flex>

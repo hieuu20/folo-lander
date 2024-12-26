@@ -3,6 +3,7 @@
 import ElementAnimation from "@/components/animation/ElementAnimation";
 import { useBrowserWidth } from "@/hooks";
 import { Box, Flex, Grid, Text, Title } from "@mantine/core";
+import { useAnimate, useInView } from "framer-motion";
 import Image from "next/image";
 import React, { useMemo } from "react";
 import Slider from "react-slick";
@@ -91,13 +92,16 @@ export function DeepConnectionImage() {
 }
 
 const Pc = () => {
+  const [scope] = useAnimate();
+  const isInView = useInView(scope, { amount: 0.5 });
+
   return (
     <Box className="container">
-      <Grid gutter={{ base: 16, md: 24 }}>
+      <Grid ref={scope} gutter={{ base: 16, md: 24 }} >
         {data.map((o, index) => {
           return (
             <Grid.Col key={index} span={{ base: 12, sm: 6, lg: 4 }}>
-              <ElementAnimation className="w-full" initDelay={index * 200}>
+              <ElementAnimation className="w-full" initDelay={index * 200} isInView={isInView} >
                 <Item data={o} />
               </ElementAnimation>
             </Grid.Col>
@@ -166,23 +170,27 @@ const Mobile = () => {
         className="[&_.slick-slide]:px-2 xl:[&_.slick-slide]:px-3"
       >
         {data.slice(0, 5).map((o, i) => (
-          <Item key={i} data={o} />
-        ))}
-      </Slider>
-
-      <Slider
-        {...settings}
-        className="[&_.slick-slide]:px-2 xl:[&_.slick-slide]:px-3"
-      >
-        {data.slice(-4).map((o, i) => (
-          <Item key={i} data={o} />
+          <SlideItem key={i} data={[o, data.slice(-4)[i] ?? null]}/>
         ))}
       </Slider>
     </Flex>
   );
 };
 
-const Item = ({ data }: { data: Connection }) => {
+const SlideItem = ({ data }: { data: [Connection, Connection | null] }) => {
+  return (
+    <Flex w={"100%"} direction={"column"} gap={16}>
+      <Item data={data[0]} />
+      <Item data={data[1]} />
+    </Flex>
+  );
+};
+
+const Item = ({ data }: { data: Connection | null }) => {
+  if(!data) return (
+    <Box w={'100%'}/>
+  );
+
   return (
     <Flex
       w={"100%"}

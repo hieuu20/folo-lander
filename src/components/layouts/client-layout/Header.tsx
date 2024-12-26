@@ -43,7 +43,6 @@ export function Header() {
             show={true}
             w={{ base: 104, md: 140 }}
             h={{ base: 40 }}
-            bg={"#AC1991"}
             px={0}
             fz={{ base: 14, md: 16 }}
             fw={600}

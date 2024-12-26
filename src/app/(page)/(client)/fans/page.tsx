@@ -12,7 +12,6 @@ import { IFaq, IUSPManager } from "@/app/api/_entities";
 import { SubBanner } from "../_shared/SubBanner";
 import { Platform } from "../_shared/Platform";
 import { Faq } from "../_shared/Faq";
-// import { Test } from "./_children/Test";
 // import { SECTION_TYPE } from "@/utils";
 // import { CompareTableModel, SectionModel, USPManagerModel } from "@/app/api/_entities";
 // import { SECTION_TYPE } from "@/utils/enum";
@@ -128,8 +127,8 @@ export default async function Page() {
   return (
     <Box>
       <FanBanner usps={bannerUsps as IUSPManager[]} />
-      {/* <Test /> */}
       <SubBanner usps={notifyUsps as IUSPManager[]} />
+      {/* <Test /> */}
       <Introduction />
       <PrimeSubscription />
       <MatchMaker />

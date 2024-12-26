@@ -1,10 +1,14 @@
-import { Box, Flex, Text } from "@mantine/core";
+"use client";
+
+import { useEffect } from "react";
 import Image from "next/image";
 import React from "react";
 import imgTitle1 from "@public/match-maker/1/title.png";
 import imgTitle2 from "@public/match-maker/2/title.png";
 import imgTitle3 from "@public/match-maker/3/title.png";
 import imgTitle4 from "@public/match-maker/4/title.png";
+import { Box, Flex, Text } from "@mantine/core";
+import { twMerge } from "tailwind-merge";
 
 const data = [
   {
@@ -32,12 +36,42 @@ const data = [
     titleImg: imgTitle4,
     subTitle:
       "KNKY isn’t just for creators—it’s for you too! With MatchMaker, you can match, chat, and connect with like-minded people. Find your soulmate, a KNKY companion, or just some fun!",
-    img: "/match-maker/3/img.png",
+    img: "/match-maker/4/img.png",
     bg: "#1A022F",
   },
 ];
 
-export function MatchMaker() {
+export const MatchMaker = () => {
+  useEffect(() => {
+    const sections = document.querySelectorAll(".match-maker-item");
+
+    const handleScroll = () => {
+      const viewportHeight = window.innerHeight;
+      const topThreshold = viewportHeight * 1.6;
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+
+        if (rect.top <= topThreshold) {
+          ['sticky', 'top-[12%]', 'md:top-[16%]'].forEach((o) => {
+            section.classList.add(o);
+          });
+
+        } else {
+          ['sticky', 'top-[12%]', 'md:top-[16%]'].forEach((o) => {
+            section.classList.remove(o);
+          });
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <Flex
       id="MatchMaker"
@@ -52,9 +86,9 @@ export function MatchMaker() {
         return (
           <Flex
             key={index}
+            pos={'relative'}
             bg={o.bg}
             w={"100%"}
-            className="sm:rounded-[40px]"
             pr={{ base: 16, md: 20, lg: 22, xl: 28, "2xl": 32 }}
             pl={{ base: 16, md: 32, lg: 40, xl: 52, "2xl": 64 }}
             py={{ base: 40, "2xl": 48 }}
@@ -62,6 +96,10 @@ export function MatchMaker() {
             align={{ base: "center" }}
             justify={{ base: "space-between" }}
             gap={{ base: 24, sm: 0 }}
+            style={{
+              zIndex: index
+            }}
+            className={twMerge('match-maker-item rounded-3xl sm:rounded-[40px]')}
           >
             <Flex
               direction={"column"}
@@ -105,4 +143,4 @@ export function MatchMaker() {
       })}
     </Flex>
   );
-}
+};

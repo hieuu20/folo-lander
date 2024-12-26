@@ -93,7 +93,7 @@ export function DeepConnectionImage() {
 
 const Pc = () => {
   const [scope] = useAnimate();
-  const isInView = useInView(scope, { amount: 0.5 });
+  const isInView = useInView(scope, { amount: 0.4 });
 
   return (
     <Box className="container">

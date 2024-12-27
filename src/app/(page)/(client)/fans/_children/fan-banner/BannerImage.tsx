@@ -1,9 +1,8 @@
 "use client";
 
 import { Box, Flex } from "@mantine/core";
-import Image from "next/image";
 import React, { useRef } from 'react';
-import img from '@public/fan-banner/img.png';
+import { BannerUser } from "./BannerUser";
 // import lottie from 'lottie-web';
 // import animationData from '@public/fan-banner/fan-animation.json';
 
@@ -29,19 +28,21 @@ export default function BannerImage() {
       <Flex
         ref={container}
         pos={'relative'}
-        w={{ base: "84%" }}
+        // w={{ base: "84%" }}
+        w={{ base: "64%" }}
         direction={"column"}
         align={"center"}
         mx={"auto"}
         gap={4}
         className="aspect-[0.7656]"
       >
-        <Image
+        {/* <Image
           src={img}
           alt="fan banner img"
           fill
           className="object-cover"
-        />
+        /> */}
+        <BannerUser />
       </Flex>
     </Box>
   );

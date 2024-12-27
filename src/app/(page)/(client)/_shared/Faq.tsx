@@ -46,6 +46,7 @@ export function Faq({ title, description, faqs }: Props) {
             text={description}
             initDelay={1000}
             isInView={isInView}
+            rootProps={{ justify: 'center'}}
           />
         </SectionSubTitle>
       </Flex>

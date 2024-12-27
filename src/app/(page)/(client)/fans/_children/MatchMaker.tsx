@@ -29,7 +29,7 @@ const data = [
     titleImg: imgTitle3,
     subTitle:
       "KNKY isn’t just for creators—it’s for you too! With MatchMaker, you can match, chat, and connect with like-minded people. Find your soulmate, a KNKY companion, or just some fun!",
-    img: "/match-maker/3/img.png",
+    img: "/match-maker/3/img1.png",
     bg: "#280349",
   },
   {

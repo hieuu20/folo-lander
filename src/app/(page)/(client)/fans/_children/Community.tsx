@@ -171,7 +171,12 @@ export function Community({ usp }: Props) {
   }, [animate_9, communityImageBottom, communityImageTop, isInView, scope_9]);
 
   return (
-    <Box h={{ base: "116vh", md: "150vh" }} bg={"#10011E"} w={"100%"}>
+    <Box
+      h={{ base: "116vh", md: "150vh" }}
+      mih={{ base: 0, sm: 800, md: 1000, xl: 1200, "2xl": 1500 }}
+      bg={"#10011E"}
+      w={"100%"}
+    >
       <Box h={"100%"} className="max-md:w-full md:container">
         <Flex
           w={"100%"}
@@ -259,7 +264,7 @@ export function Community({ usp }: Props) {
 
             <Title
               order={2}
-              fz={{ base: 40, md: 56, lg: 72, xl: 88, "2xl": 104 }}
+              fz={{ base: 40, sm: 48, md: 56, lg: 72, xl: 88, "2xl": 104 }}
               fw={700}
               lh={1.32}
               ta={"center"}
@@ -269,13 +274,13 @@ export function Community({ usp }: Props) {
                 isInView={isInView}
                 initDelay={1400}
                 rootProps={{
-                  gap: { base: 8, md: 10, lg: 12, xl: 14, "2xl": 16 },
+                  gap: { base: 8, sm: 9, md: 10, lg: 12, xl: 14, "2xl": 16 },
                   justify: "center",
                 }}
               />{" "}
               <Text
                 span={true}
-                fz={{ base: 40, md: 56, lg: 72, xl: 88, "2xl": 104 }}
+                fz={{ base: 40, sm: 48, md: 56, lg: 72, xl: 88, "2xl": 104 }}
                 fw={700}
                 lh={1.375}
                 ta={"center"}
@@ -286,7 +291,7 @@ export function Community({ usp }: Props) {
                   isInView={isInView}
                   initDelay={1900}
                   rootProps={{
-                    gap: { base: 8, md: 10, lg: 12, xl: 14, "2xl": 16 },
+                    gap: { base: 8, sm: 9, md: 10, lg: 12, xl: 14, "2xl": 16 },
                     justify: "center",
                   }}
                 />
@@ -296,7 +301,7 @@ export function Community({ usp }: Props) {
                 isInView={isInView}
                 initDelay={2300}
                 rootProps={{
-                  gap: { base: 8, md: 10, lg: 12, xl: 14, "2xl": 16 },
+                  gap: { base: 8, sm: 9, md: 10, lg: 12, xl: 14, "2xl": 16 },
                   justify: "center",
                 }}
               />

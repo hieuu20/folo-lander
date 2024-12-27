@@ -7,6 +7,7 @@ import instagramIcon from "@public/icons/instagram.svg";
 import tiktokIcon from "@public/icons/tiktok.svg";
 import redditIcon from "@public/icons/reddit.svg";
 import blueSkyIcon from "@public/icons/bluesky.svg";
+import TelegramIcon from "@public/icons/telegram.svg";
 import { Box, Flex, Grid, Text } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
@@ -40,6 +41,10 @@ const socials = [
   {
     icon: blueSkyIcon,
     href: "https://www.bsky.com/@knkyco",
+  },
+  {
+    icon: TelegramIcon,
+    href: "https://t.me/knkyco",
   },
 ];
 
@@ -161,7 +166,7 @@ export function Footer() {
             <Flex
               direction={"column"}
               mb={6}
-              w={{ base: "100%", lg: "32%" }}
+              w={{ base: "100%", lg: "34%" }}
               gap={{ base: 18, lg: 20, xl: 22, "2xl": 24 }}
             >
               <Box
@@ -171,7 +176,7 @@ export function Footer() {
               >
                 <Image src={footerLogo} alt="footer logo" fill />
               </Box>
-              <Flex gap={16}>
+              <Flex gap={{ base: 14, "2xl": 16 }}>
                 {socials.map((s, index) => {
                   return (
                     <Link
@@ -193,7 +198,7 @@ export function Footer() {
             </Flex>
 
             <Grid
-              w={{ base: "100%", lg: "70%" }}
+              w={{ base: "100%", lg: "68%" }}
               gutter={16}
               mt={{ base: 24, lg: 0 }}
             >
@@ -250,7 +255,12 @@ export function Footer() {
           </Flex>
         </Flex>
 
-        <Grid w={{ base: "100%", md: 460 }} mt={32} gutter={{ base: 12, sm: 16 }} mx={'auto'}>
+        <Grid
+          w={{ base: "100%", md: 460 }}
+          mt={32}
+          gutter={{ base: 12, sm: 16 }}
+          mx={"auto"}
+        >
           {footerPays.map((o, index) => {
             return (
               <Grid.Col span={2.4} key={index}>

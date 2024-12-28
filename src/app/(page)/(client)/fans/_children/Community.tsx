@@ -173,7 +173,7 @@ export function Community({ usp }: Props) {
   return (
     <Box
       h={{ base: "116vh", md: "150vh" }}
-      mih={{ base: 0, sm: 800, md: 1000, xl: 1200, "2xl": 1460 }}
+      mih={{ base: 0, sm: 800, md: 980, xl: 1200, "2xl": 1320 }}
       bg={"#10011E"}
       w={"100%"}
     >
@@ -264,7 +264,7 @@ export function Community({ usp }: Props) {
 
             <Title
               order={2}
-              fz={{ base: 40, sm: 48, md: 56, lg: 64, xl: 72, "2xl": 88 }}
+              fz={{ base: 40, sm: 46, md: 54, lg: 60, xl: 66, "2xl": 80 }}
               fw={700}
               lh={1.32}
               ta={"center"}
@@ -280,7 +280,7 @@ export function Community({ usp }: Props) {
               />{" "}
               <Text
                 span={true}
-                fz={{ base: 40, sm: 48, md: 56, lg: 64, xl: 72, "2xl": 88 }}
+                fz={{ base: 40, sm: 46, md: 54, lg: 60, xl: 66, "2xl": 80 }}
                 fw={700}
                 lh={1.375}
                 ta={"center"}

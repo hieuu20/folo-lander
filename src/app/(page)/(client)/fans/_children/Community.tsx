@@ -264,7 +264,7 @@ export function Community({ usp }: Props) {
 
             <Title
               order={2}
-              fz={{ base: 40, sm: 46, md: 54, lg: 60, xl: 66, "2xl": 80 }}
+              fz={{ base: 40, sm: 48, md: 56, lg: 64, xl: 70, "2xl": 82 }}
               fw={700}
               lh={1.32}
               ta={"center"}
@@ -280,7 +280,7 @@ export function Community({ usp }: Props) {
               />{" "}
               <Text
                 span={true}
-                fz={{ base: 40, sm: 46, md: 54, lg: 60, xl: 66, "2xl": 80 }}
+                fz={{ base: 40, sm: 48, md: 56, lg: 64, xl: 70, "2xl": 82 }}
                 fw={700}
                 lh={1.375}
                 ta={"center"}

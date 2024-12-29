@@ -8,40 +8,45 @@ import {
   MatchMaker,
   PrimeSubscription,
 } from "./_children";
-import { IFaq, IUSPManager } from "@/app/api/_entities";
+import { FAQModel, IFaq, IUSPManager } from "@/app/api/_entities";
 import { SubBanner } from "../_shared/SubBanner";
 import { Platform } from "../_shared/Platform";
 import { Faq } from "../_shared/Faq";
+import { SECTION_TYPE } from "@/utils";
+import { connectDB } from "@/app/api/_db";
 // import { SECTION_TYPE } from "@/utils";
 // import { CompareTableModel, SectionModel, USPManagerModel } from "@/app/api/_entities";
 // import { SECTION_TYPE } from "@/utils/enum";
 
 export default async function Page() {
-  // const [sectionsResponse, uspsResponse, faqsResponse ] = await Promise.all([
-  //   SectionModel.find({ type: SECTION_TYPE.USER })
-  //     .sort({
-  //       priority: 1,
-  //     })
-  //     .lean(),
-  //   USPManagerModel.find({ type: SECTION_TYPE.USER })
-  //     .sort({
-  //       priority: 1,
-  //     })
-  //     .lean(),
-  //   FAQModel.find({ type: SECTION_TYPE.USER })
-  //     .sort({
-  //       priority: 1,
-  //     })
-  //     .lean(),
-  // ]);
+  await connectDB();
+  const [
+    // sectionsResponse,
+    // uspsResponse,
+    faqsResponse,
+  ] = await Promise.all([
+    // SectionModel.find({ type: SECTION_TYPE.USER })
+    //   .sort({
+    //     priority: 1,
+    //   })
+    //   .lean(),
+    // USPManagerModel.find({ type: SECTION_TYPE.USER })
+    //   .sort({
+    //     priority: 1,
+    //   })
+    //   .lean(),
+    FAQModel.find({ type: SECTION_TYPE.USER })
+      .sort({
+        priority: 1,
+      })
+      .lean(),
+  ]);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // const sections = JSON.parse(JSON.stringify(sectionsResponse));
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // const usps = JSON.parse(JSON.stringify(uspsResponse));
-  // const faqs = JSON.parse(JSON.stringify(faqsResponse)) as IFaq[];
+  const faqs = JSON.parse(JSON.stringify(faqsResponse)) as IFaq[];
 
-  // console.log({sections, usps});
+  // console.log({sections, usps, faqs});
 
   const bannerUsps = [
     {
@@ -95,34 +100,6 @@ export default async function Page() {
       buttonLink: "https://business.knky.co/",
     },
   ] as IUSPManager[];
-
-  const faqs = [
-    {
-      question: "How to create an account on KNKY?",
-      answer:
-        "Lorem Ipsum has been the industry's standard dummy text ever. /n When an unknown printer took a galley.",
-    },
-    {
-      question: "How to create an account on KNKY?",
-      answer:
-        "Lorem Ipsum has been the industry's standard dummy text ever. /n When an unknown printer took a galley.",
-    },
-    {
-      question: "How to create an account on KNKY?",
-      answer:
-        "Lorem Ipsum has been the industry's standard dummy text ever. /n When an unknown printer took a galley.",
-    },
-    {
-      question: "How to create an account on KNKY?",
-      answer:
-        "Lorem Ipsum has been the industry's standard dummy text ever. /n When an unknown printer took a galley.",
-    },
-    {
-      question: "How to create an account on KNKY?",
-      answer:
-        "Lorem Ipsum has been the industry's standard dummy text ever. /n When an unknown printer took a galley.",
-    },
-  ];
 
   return (
     <Box>

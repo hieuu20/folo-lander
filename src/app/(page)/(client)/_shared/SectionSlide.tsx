@@ -1,7 +1,7 @@
 "use client";
 
 import { IUSPManager } from "@/app/api/_entities";
-import { Box, BoxProps, Flex, FlexProps, Text, Title } from "@mantine/core";
+import { Box, BoxProps, Flex, FlexProps, Title } from "@mantine/core";
 import Image from "next/image";
 import React from "react";
 import Slider from "react-slick";
@@ -137,8 +137,8 @@ export default function SectionSlide(props: Props) {
           </SectionTitle>
 
           {subTitle && (
-            <Text
-              size={"h4"}
+            <Title
+              order={5}
               fz={{ base: 14, md: 16, lg: 18, xl: 20, "2xl": 24 }}
               lh={1.4}
               fw={500}
@@ -154,7 +154,7 @@ export default function SectionSlide(props: Props) {
                 }}
                 isInView={isInView}
               />
-            </Text>
+            </Title>
           )}
 
           <Box

@@ -138,6 +138,16 @@ export const MatchMaker = () => {
                 className="object-cover"
               />
             </Box>
+            {/* <video 
+              controls 
+              preload="auto"
+              playsInline
+              autoPlay
+              muted
+              className="w-full sm:w-[30%] aspect-[0.92]"
+            >
+              <source src="https://instagram.fdad1-4.fna.fbcdn.net/o1/v/t16/f2/m82/AQNbyk7J1Mgq5UNZEvL3ByKgcqdNdWFAYNdtPu_wT_lGUV1ZYKeD2HnyJUP-wLHUsUzY6R-k43MInUIx4UjG-EIU2oBLIfhELmImZjM.mp4?efg=eyJ2ZW5jb2RlX3RhZyI6InZ0c192b2RfdXJsZ2VuLmNsaXBzLnVua25vd24tQzMuNzIwLmRhc2hfYmFzZWxpbmVfMV92MSJ9&_nc_ht=instagram.fdad1-4.fna.fbcdn.net&_nc_cat=103&_nc_oc=AdhB_46kMU9yPBiuUbCjFc_89mQnNzOJV142If0TRi4yYfn6oCWnmfYhtWOGIzu9WS8&vs=701053705425309_3273571108&_nc_vs=HBksFQIYT2lnX3hwdl9yZWVsc19wZXJtYW5lbnRfcHJvZC8zMDQ1NTBGRUI2MzkzMURFMEMwNDI0NkI1NDk4RDZBMF92aWRlb19kYXNoaW5pdC5tcDQVAALIAQAVAhg6cGFzc3Rocm91Z2hfZXZlcnN0b3JlL0dJZ2lieGh2cl9uMWs1a0NBTUtPVjZ0aG5ScE5icV9FQUFBRhUCAsgBACgAGAAbAYgHdXNlX29pbAExFQAAJvSYm7DIg8A%2FFQIoAkMzLBdATB64UeuFHxgSZGFzaF9iYXNlbGluZV8xX3YxEQB1AAA%3D&ccb=9-4&oh=00_AYAPDZs_dXeErIuSqZnkzaxphf5xB0LgFP_4pgrr-0XSmQ&oe=677228E8&_nc_sid=1d576d" type="video/mp4" />
+            </video> */}
           </Flex>
         );
       })}

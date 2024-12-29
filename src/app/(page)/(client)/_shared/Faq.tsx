@@ -5,7 +5,7 @@ import ElementAnimation from "@/components/animation/ElementAnimation";
 import TextAnimation from "@/components/animation/TextAnimation";
 import SectionSubTitle from "@/components/Typo/SectionSubTitle";
 import SectionTitle from "@/components/Typo/SectionTitle";
-import { Accordion, Flex, Text, Title } from "@mantine/core";
+import { Accordion, Box, Flex, Title } from "@mantine/core";
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import { useAnimate, useInView } from "framer-motion";
 import React from "react";
@@ -84,13 +84,14 @@ export function Faq({ title, description, faqs }: Props) {
                     </Title>
                   </Accordion.Control>
                   <Accordion.Panel className="[&_.mantine-Accordion-content]:pt-0">
-                    <Text
+                    <Box
                       fz={{ base: 16, md: 18, xl: 20 }}
                       fw={500}
                       c={"#131416"}
-                    >
-                      {faq.answer}
-                    </Text>
+                      dangerouslySetInnerHTML={{
+                        __html: faq.answer
+                      }}
+                    />
                   </Accordion.Panel>
                 </Accordion.Item>
               </ElementAnimation>

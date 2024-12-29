@@ -4,7 +4,7 @@ import { IUSPManager } from "@/app/api/_entities";
 import ElementAnimation from "@/components/animation/ElementAnimation";
 import TextAnimation from "@/components/animation/TextAnimation";
 import SectionButton from "@/components/buttons/SectionButton";
-import { Box, Flex, Text, Title } from "@mantine/core";
+import { Box, Flex, Title } from "@mantine/core";
 import { useAnimate, useInView } from "framer-motion";
 import Image from "next/image";
 import React from "react";
@@ -80,7 +80,8 @@ const Content = ({ usp }: { usp: IUSPManager }) => {
           <TextAnimation isInView={isInView} text={usp.title} initDelay={600} />
         </Title>
 
-        <Text
+        <Title
+          order={5}
           c={"#FFFFFFB2"}
           fz={{ base: 16, md: 18, xl: 20, "2xl": 24 }}
           lh={1.4}
@@ -92,7 +93,7 @@ const Content = ({ usp }: { usp: IUSPManager }) => {
             initDelay={1200}
             rootProps={{ justify: { base: "center", md: "start" } }}
           />
-        </Text>
+        </Title>
 
         {usp.isShowButton && (
           <ElementAnimation isInView={isInView} initDelay={2000}>

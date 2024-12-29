@@ -25,7 +25,7 @@ export default function SectionContent(props: Props) {
           justify={"center"}
           align={"center"}
           gap={{ base: 24, sm: 40, md: 0 }}
-          py={{ base: 48, lg: 60, xl: 80 }}
+          py={{ base: 40, md: 48, lg: 60, xl: 72, '2xl': 80 }}
         >
           <Box w={{ base: "100%", md: "50%" }} className="order-2 md:order-1">
             <Flex

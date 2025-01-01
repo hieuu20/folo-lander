@@ -93,7 +93,7 @@ export default async function Page() {
       // img: "/fan-platform/2.png",
       isShowButton: true,
       buttonLabel: "Discover",
-      buttonLink: "/creators",
+      buttonLink: "/fans",
     },
     {
       title: "Grow your Agency",

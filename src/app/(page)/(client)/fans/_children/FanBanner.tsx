@@ -38,6 +38,7 @@ export function FanBanner({ usps }: Props) {
         />
       </Box>
       <Flex
+        id="Banner"
         direction={{ base: "column", md: "row" }}
         gap={{ base: 32, lg: 24 }}
         h={"100%"}

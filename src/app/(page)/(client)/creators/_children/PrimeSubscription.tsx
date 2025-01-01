@@ -23,7 +23,7 @@ export function PrimeSubscription() {
               "Unlock the fan experience with KNKY Prime for just $14.99! Discover other creators, explore new trends, find inspiration, or simply enjoy co-creators' content in stunning 4K resolution for endless excitement.",
             isShowButton: true,
             buttonLabel: "Buy Creator Prime",
-            buttonLink: "https://knky.co/fresh/",
+            buttonLink: "https://knky.co/platform-plans",
           } as IUSPManager
         }
       />

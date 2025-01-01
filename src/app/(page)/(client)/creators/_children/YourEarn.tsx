@@ -139,10 +139,12 @@ export const YourEarn = ({ usp, earningEst }: Props) => {
   if (!dataSlider?.[0]) return null;
   return (
     <Box
+      id="Earning"
       ref={scope}
       py={{ base: 40, md: 48, lg: 60, xl: 72, "2xl": 80 }}
       // bg={"radial-gradient(50% 50% at 50% 50%, rgba(110, 24, 191, 0.7) 0%, rgba(18, 2, 32, 0) 100%)"}
       bg={"#340B62"}
+      className="scroll-mt-[64px] md:scroll-mt-[72px]"
     >
       <Grid gutter={{ base: 16, md: 40, xl: 80 }} className="container">
         <Grid.Col span={{ base: 12, md: 6 }}>

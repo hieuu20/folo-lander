@@ -50,9 +50,9 @@ export default async function Page() {
 
   const bannerUsps = [
     {
-      title: "Social media made for adults.",
+      title: "Step into KNKY!",
       subTitle:
-        "Your ultimate destination to connect with creators, uncover unique stores, and meet like-minded individuals for truly unforgettable experiences. 😉",
+        "Your ultimate destination to connect with creators, uncover unique stores, and meet like-minded individuals for truly unforgettable experiences, only on KNKY. 😉",
       isShowButton: true,
       buttonLabel: "Try Beta now",
       buttonLink: "https://knky.co/fresh/",

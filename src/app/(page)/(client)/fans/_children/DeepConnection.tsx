@@ -10,6 +10,7 @@ interface Props {
 export function DeepConnection({ usp }: Props) {
   return (
     <Flex
+      id="Connections"
       direction={"column"}
       w={'100%'}
       py={{ base: 40, md: 48, lg: 60, xl: 72, '2xl': 80 }}

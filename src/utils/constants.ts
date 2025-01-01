@@ -68,8 +68,13 @@ export const headerItem = [
 
 export const fanHeaderItem = [
     {
+        title: 'Why KNKY?',
+        keyActive: 'why',
+        href: '#Banner',
+    },
+    {
         title: 'Features',
-        keyActive: 'Fans',
+        keyActive: 'Features',
         href: '#Features',
     },
     {
@@ -77,10 +82,15 @@ export const fanHeaderItem = [
         keyActive: 'Creators',
         href: '#Prime',
     },
+    // {
+    //     title: 'MatchMaker',
+    //     keyActive: 'Creators',
+    //     href: '#MatchMaker',
+    // },
     {
-        title: 'MatchMaker',
-        keyActive: 'Creators',
-        href: '#MatchMaker',
+        title: 'Connections',
+        keyActive: 'Connections',
+        href: '#Connections',
     },
     {
         title: 'FAQs',
@@ -92,23 +102,23 @@ export const fanHeaderItem = [
 export const creatorHeaderItem = [
     {
         title: 'Features',
-        keyActive: 'Fans',
-        href: 'https://lander.knky.co/fans',
+        keyActive: 'Features',
+        href: '#Features',
+    },
+    {
+        title: 'Earning Est',
+        keyActive: 'Earning',
+        href: '#Earning',
     },
     {
         title: 'Prime',
-        keyActive: 'Creators',
-        href: 'https://lander.knky.co/creators',
-    },
-    {
-        title: 'MatchMaker',
-        keyActive: 'Creators',
-        href: 'https://lander.knky.co/creators',
+        keyActive: 'Prime',
+        href: '#Prime',
     },
     {
         title: 'FAQs',
-        keyActive: 'Creators',
-        href: 'https://lander.knky.co/creators',
+        keyActive: 'FAQs',
+        href: '#FAQs',
     }
 ];
 

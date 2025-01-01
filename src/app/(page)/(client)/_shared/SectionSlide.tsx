@@ -125,7 +125,7 @@ export default function SectionSlide(props: Props) {
           className={twMerge("rounded-[40px]", classer?.content)}
           {...contentProps}
         >
-          <SectionTitle>
+          <SectionTitle px={{ base: 12, sm: 0 }}>
             <TextAnimation
               text={title}
               rootProps={{

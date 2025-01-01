@@ -29,7 +29,7 @@ export default function BannerImage() {
         ref={container}
         pos={'relative'}
         // w={{ base: "84%" }}
-        w={{ base: "64%" }}
+        w={{ base: "62%" }}
         direction={"column"}
         align={"center"}
         mx={"auto"}

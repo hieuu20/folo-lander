@@ -9,6 +9,8 @@ import SectionButton from "@/components/buttons/SectionButton";
 import Image from "next/image";
 import TextAnimation from "@/components/animation/TextAnimation";
 import { useAnimate, useInView } from "framer-motion";
+import ElementAnimation from "@/components/animation/ElementAnimation";
+// import { useBrowserWidth } from "@/hooks";
 
 interface Props {
   usp: IUSPManager;
@@ -17,6 +19,8 @@ interface Props {
 export function Community({ usp }: Props) {
   const [scope] = useAnimate();
   const isInView = useInView(scope, { amount: 0.3 });
+
+  // const { isMb } = useBrowserWidth();
 
   return (
     <Box ref={scope} w={"100%"} className="scroll-mt-16 md:scroll-mt-[72px] ">
@@ -37,7 +41,11 @@ export function Community({ usp }: Props) {
               align={{ base: "center", md: "start" }}
             >
               <SectionTitle ta={{ base: "center", md: "left" }}>
-                {usp.title}
+                <TextAnimation 
+                  text={usp.title} 
+                  rootProps={{ gap: { base: 6, md: 8, lg: 10, "2xl": 12 } }}
+                  isInView={isInView}
+                />
               </SectionTitle>
 
               <Title
@@ -49,7 +57,7 @@ export function Community({ usp }: Props) {
                 <TextAnimation
                   text="Join the KNKY community and reach new fans effortlessly."
                   isInView={isInView}
-                  initDelay={1400}
+                  initDelay={600}
                   rootProps={{
                     gap: { base: 8, sm: 9, md: 10, lg: 12, xl: 14, "2xl": 16 },
                     justify: { base: "center", sm: "start" },
@@ -57,20 +65,22 @@ export function Community({ usp }: Props) {
                   textColor={{ index: 5, color: "#7A29CC" }}
                 />
               </Title>
-
-              <SectionButton
-                show={usp.isShowButton}
-                title={usp.buttonLabel}
-                href={usp.buttonLink}
-                mt={{ base: 4, md: 8 }}
-              />
+                
+              <ElementAnimation isInView={isInView} initDelay={1200} >
+                <SectionButton
+                  show={usp.isShowButton}
+                  title={usp.buttonLabel}
+                  href={usp.buttonLink}
+                  mt={{ base: 4, md: 8 }}
+                />
+              </ElementAnimation>
             </Flex>
           </Box>
 
-          <Flex
-            pos={"relative"}
-            w={{ base: "100%", md: "50%" }}
-            className="aspect-[0.887] order-1 md:order-2 rounded-lg md:rounded-[40px] overflow-hidden"
+          <ElementAnimation 
+            isInView={isInView} 
+            initDelay={1400} 
+            className="relative w-full md:w-1/2 aspect-[0.887] order-1 md:order-2 rounded-lg md:rounded-[40px] overflow-hidden"
           >
             <Image
               src={usp.img}
@@ -78,7 +88,7 @@ export function Community({ usp }: Props) {
               fill
               className="object-cover"
             />
-          </Flex>
+          </ElementAnimation>
         </Flex>
       </Box>
     </Box>

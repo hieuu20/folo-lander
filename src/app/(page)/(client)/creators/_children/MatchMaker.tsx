@@ -14,7 +14,7 @@ const data = [
     titleImg: imgTitle1,
     subTitle:
       "It's like Tinder for creators! Fans can find and match with you based on kinks and interests, whether it's the GF experience or a niche. Match makes connecting fun, familiar, and easy! 😈",
-    img: "/match-maker/1/img.png",
+    img: "/creator/match-maker/1/img.png",
     bg: "#490089",
   },
   {
@@ -28,7 +28,7 @@ const data = [
     titleImg: imgTitle3,
     subTitle:
       "KNKY is built on two core values: quality connections and revenue. We offer seven ways to be discovered and matched, along with over twenty revenue streams, driving sales and earnings like no other platform. 🤑",
-    img: "/match-maker/2/img.png",
+    img: "/creator/match-maker/3/img.png",
     bg: "#280349",
   },
 ];

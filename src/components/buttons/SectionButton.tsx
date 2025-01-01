@@ -42,7 +42,7 @@ export default function SectionButton(props: Props) {
       px={32}
       className={twMerge(
         "rounded-lg",
-        !rest.bg ? "hover:bg-[#751363]" : "",
+        !rest.bg || rest.bg === "#AC1991" ? "hover:bg-[#751363]" : "hover:opacity-90",
         className
       )}
       {...rest}

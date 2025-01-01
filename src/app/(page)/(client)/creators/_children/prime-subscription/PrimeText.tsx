@@ -21,7 +21,7 @@ export function PrimeText({ usp }: Props) {
     <Box className="container">
       <Flex
         ref={scope}
-        w={{ base: "100%", md: "50%" }}
+        w={{ base: "100%", md: "60%" }}
         mx={"auto"}
         direction={"column"}
         align={"center"}
@@ -67,6 +67,7 @@ export function PrimeText({ usp }: Props) {
               w={{ base: "100%" }}
               h={{ base: 40 }}
               fz={{ base: 14, md: 16 }}
+              bg={"#7A29CC"}
               px={0}
               fw={600}
             />

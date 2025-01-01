@@ -77,7 +77,7 @@ const Content = ({ usp }: { usp: IUSPManager }) => {
           lh={1.4}
           fw={{ base: 500, md: 600 }}
         >
-          <TextAnimation isInView={isInView} text={usp.title} initDelay={600} />
+          <TextAnimation isInView={isInView} text={usp.title} initDelay={600} rootProps={{ justify: {base: 'center', md: 'start'}}} />
         </Title>
 
         <Title

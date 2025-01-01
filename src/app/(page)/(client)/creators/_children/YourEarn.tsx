@@ -49,21 +49,6 @@ interface Props {
   earningEst: IEarningEst;
 }
 
-const listUnits = [
-  {
-    key: 1,
-    value: "$",
-  },
-  {
-    key: 2,
-    value: "£",
-  },
-  {
-    key: 3,
-    value: "€",
-  },
-];
-
 export const YourEarn = ({ usp, earningEst }: Props) => {
   const [scope] = useAnimate();
   const isInView = useInView(scope, { amount: 0.6 });
@@ -158,9 +143,8 @@ export const YourEarn = ({ usp, earningEst }: Props) => {
       py={{ base: 40, md: 48, lg: 60, xl: 72, "2xl": 80 }}
       // bg={"radial-gradient(50% 50% at 50% 50%, rgba(110, 24, 191, 0.7) 0%, rgba(18, 2, 32, 0) 100%)"}
       bg={"#340B62"}
-      className="container"
     >
-      <Grid gutter={{ base: 16, md: 40, xl: 80 }}>
+      <Grid gutter={{ base: 16, md: 40, xl: 80 }} className="container">
         <Grid.Col span={{ base: 12, md: 6 }}>
           {isMb && <TitleEarn isInView={isInView} />}
           <Flex direction={"column"} w={"100%"} mt={{ base: 16, sm: 0 }}>
@@ -292,7 +276,6 @@ interface SlideItemProps {
 
 const SlideItem = ({
   v,
-  setUnit,
   unit,
   setFollower,
   setSubscribe,
@@ -317,23 +300,6 @@ const SlideItem = ({
         </h5>
 
         <div className="flex items-center">
-          {v?.key == 2 && (
-            <div className="mx-2 bg-[#EBEBEC] px-1 rounded-[2px] min-w-[56px]">
-              {listUnits?.map((v) => (
-                <span
-                  key={v?.key}
-                  onClick={() => setUnit(v?.value)}
-                  className={`px-[2px] mx-[1px] cursor-pointer rounded-[2px] ${
-                    v?.value == unit
-                      ? "bg-[#AC1991] text-[white]"
-                      : "bg-[white]"
-                  }`}
-                >
-                  {v?.value}
-                </span>
-              ))}
-            </div>
-          )}
           <Input
             size="small"
             bd={"1px solid #EBEBEC"}

@@ -3,9 +3,8 @@
 import React from "react";
 import { IUSPManager } from "@/app/api/_entities";
 
-import { Box, Flex, Text, Title } from "@mantine/core";
+import { Box, Flex, Title } from "@mantine/core";
 import SectionTitle from "@/components/Typo/SectionTitle";
-import SectionSubTitle from "@/components/Typo/SectionSubTitle";
 import SectionButton from "@/components/buttons/SectionButton";
 import Image from "next/image";
 import TextAnimation from "@/components/animation/TextAnimation";
@@ -41,63 +40,21 @@ export function Community({ usp }: Props) {
                 {usp.title}
               </SectionTitle>
 
-              <SectionSubTitle
-                mb={8}
-                ta={{ base: "center", md: "left" }}
-                className="whitespace-pre-line"
-              >
-                {usp.subTitle}
-              </SectionSubTitle>
-
               <Title
                 order={2}
-                fz={{ base: 40, sm: 48, md: 56, lg: 64, xl: 70, "2xl": 82 }}
+                fz={{ base: 40, sm: 44, md: 48, lg: 52, xl: 58, "2xl": 64 }}
                 fw={700}
                 lh={1.32}
-                ta={"center"}
               >
                 <TextAnimation
-                  text="Join the KNKY community and"
+                  text="Join the KNKY community and reach new fans effortlessly."
                   isInView={isInView}
                   initDelay={1400}
                   rootProps={{
                     gap: { base: 8, sm: 9, md: 10, lg: 12, xl: 14, "2xl": 16 },
-                    justify: "center",
+                    justify: { base: "center", sm: "start" },
                   }}
-                />{" "}
-                <Text
-                  span={true}
-                  fz={{ base: 40, sm: 48, md: 56, lg: 64, xl: 70, "2xl": 82 }}
-                  fw={700}
-                  lh={1.375}
-                  ta={"center"}
-                  c={"#7A29CC"}
-                >
-                  <TextAnimation
-                    text="reach."
-                    isInView={isInView}
-                    initDelay={1900}
-                    rootProps={{
-                      gap: {
-                        base: 8,
-                        sm: 9,
-                        md: 10,
-                        lg: 12,
-                        xl: 14,
-                        "2xl": 16,
-                      },
-                      justify: "center",
-                    }}
-                  />
-                </Text>{" "}
-                <TextAnimation
-                  text="new fans effortlessly."
-                  isInView={isInView}
-                  initDelay={2300}
-                  rootProps={{
-                    gap: { base: 8, sm: 9, md: 10, lg: 12, xl: 14, "2xl": 16 },
-                    justify: "center",
-                  }}
+                  textColor={{ index: 5, color: "#7A29CC" }}
                 />
               </Title>
 
@@ -105,6 +62,7 @@ export function Community({ usp }: Props) {
                 show={usp.isShowButton}
                 title={usp.buttonLabel}
                 href={usp.buttonLink}
+                mt={{ base: 4, md: 8 }}
               />
             </Flex>
           </Box>
@@ -112,7 +70,7 @@ export function Community({ usp }: Props) {
           <Flex
             pos={"relative"}
             w={{ base: "100%", md: "50%" }}
-            className="aspect-[1.165] order-1 md:order-2 rounded-lg md:rounded-[40px] overflow-hidden"
+            className="aspect-[0.887] order-1 md:order-2 rounded-lg md:rounded-[40px] overflow-hidden"
           >
             <Image
               src={usp.img}

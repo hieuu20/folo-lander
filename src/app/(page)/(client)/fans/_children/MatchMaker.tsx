@@ -17,6 +17,7 @@ const data = [
       "KNKY isn’t just for creators—it’s for you too! With MatchMaker, you can match, chat, and connect with like-minded people. Find your soulmate, a KNKY companion, or just some fun!",
     img: "/match-maker/1/img.png",
     bg: "#490089",
+    video: "/match-maker/1/video.mp4",
   },
   {
     titleImg: imgTitle2,
@@ -24,6 +25,7 @@ const data = [
       "KNKY isn’t just for creators—it’s for you too! With MatchMaker, you can match, chat, and connect with like-minded people. Find your soulmate, a KNKY companion, or just some fun!",
     img: "/match-maker/2/img.png",
     bg: "#3D0171",
+    video: "/match-maker/2/video.mp4",
   },
   {
     titleImg: imgTitle3,
@@ -31,6 +33,7 @@ const data = [
       "KNKY isn’t just for creators—it’s for you too! With MatchMaker, you can match, chat, and connect with like-minded people. Find your soulmate, a KNKY companion, or just some fun!",
     img: "/match-maker/3/img1.png",
     bg: "#280349",
+    video: "/match-maker/3/video.mp4",
   },
   {
     titleImg: imgTitle4,
@@ -38,6 +41,7 @@ const data = [
       "KNKY isn’t just for creators—it’s for you too! With MatchMaker, you can match, chat, and connect with like-minded people. Find your soulmate, a KNKY companion, or just some fun!",
     img: "/match-maker/4/img.png",
     bg: "#1A022F",
+    video: "/match-maker/4/video.mp4",
   },
 ];
 
@@ -53,12 +57,11 @@ export const MatchMaker = () => {
         const rect = section.getBoundingClientRect();
 
         if (rect.top <= topThreshold) {
-          ['sticky', 'top-[12%]', 'md:top-[16%]'].forEach((o) => {
+          ["sticky", "top-[12%]", "md:top-[16%]"].forEach((o) => {
             section.classList.add(o);
           });
-
         } else {
-          ['sticky', 'top-[12%]', 'md:top-[16%]'].forEach((o) => {
+          ["sticky", "top-[12%]", "md:top-[16%]"].forEach((o) => {
             section.classList.remove(o);
           });
         }
@@ -77,7 +80,8 @@ export const MatchMaker = () => {
       id="MatchMaker"
       w={"100%"}
       px={{ base: 0, sm: 16, md: 48, lg: 60, xl: 72, "2xl": 80 }}
-      py={{ base: 0, sm: 16, md: 48, lg: 60, xl: 72, "2xl": 80 }}
+      // py={{ base: 0, sm: 16, md: 48, lg: 60, xl: 72, "2xl": 80 }}
+      py={{ base: 40, md: 48, lg: 60, xl: 72, "2xl": 80 }}
       direction={"column"}
       gap={{ base: 40, md: 48, lg: 60, xl: 72, "2xl": 80 }}
       className="scroll-mt-[72px]"
@@ -86,7 +90,7 @@ export const MatchMaker = () => {
         return (
           <Flex
             key={index}
-            pos={'relative'}
+            pos={"relative"}
             bg={o.bg}
             w={"100%"}
             pr={{ base: 16, md: 20, lg: 22, xl: 28, "2xl": 32 }}
@@ -97,9 +101,11 @@ export const MatchMaker = () => {
             justify={{ base: "space-between" }}
             gap={{ base: 24, sm: 0 }}
             style={{
-              zIndex: index
+              zIndex: index,
             }}
-            className={twMerge('match-maker-item rounded-3xl sm:rounded-[40px]')}
+            className={twMerge(
+              "match-maker-item rounded-3xl sm:rounded-[40px]"
+            )}
           >
             <Flex
               direction={"column"}
@@ -126,7 +132,7 @@ export const MatchMaker = () => {
                 {o.subTitle}
               </Text>
             </Flex>
-            <Box
+            {/* <Box
               pos={"relative"}
               w={{ base: "100%", sm: "36%" }}
               className="aspect-[0.92]"
@@ -137,17 +143,17 @@ export const MatchMaker = () => {
                 fill
                 className="object-cover"
               />
-            </Box>
-            {/* <video 
-              controls 
+            </Box> */}
+            <video
               preload="auto"
               playsInline
               autoPlay
+              loop
               muted
-              className="w-full sm:w-[30%] aspect-[0.92]"
+              className="w-full sm:w-[32%] aspect-[0.92]"
             >
-              <source src="https://instagram.fdad1-4.fna.fbcdn.net/o1/v/t16/f2/m82/AQNbyk7J1Mgq5UNZEvL3ByKgcqdNdWFAYNdtPu_wT_lGUV1ZYKeD2HnyJUP-wLHUsUzY6R-k43MInUIx4UjG-EIU2oBLIfhELmImZjM.mp4?efg=eyJ2ZW5jb2RlX3RhZyI6InZ0c192b2RfdXJsZ2VuLmNsaXBzLnVua25vd24tQzMuNzIwLmRhc2hfYmFzZWxpbmVfMV92MSJ9&_nc_ht=instagram.fdad1-4.fna.fbcdn.net&_nc_cat=103&_nc_oc=AdhB_46kMU9yPBiuUbCjFc_89mQnNzOJV142If0TRi4yYfn6oCWnmfYhtWOGIzu9WS8&vs=701053705425309_3273571108&_nc_vs=HBksFQIYT2lnX3hwdl9yZWVsc19wZXJtYW5lbnRfcHJvZC8zMDQ1NTBGRUI2MzkzMURFMEMwNDI0NkI1NDk4RDZBMF92aWRlb19kYXNoaW5pdC5tcDQVAALIAQAVAhg6cGFzc3Rocm91Z2hfZXZlcnN0b3JlL0dJZ2lieGh2cl9uMWs1a0NBTUtPVjZ0aG5ScE5icV9FQUFBRhUCAsgBACgAGAAbAYgHdXNlX29pbAExFQAAJvSYm7DIg8A%2FFQIoAkMzLBdATB64UeuFHxgSZGFzaF9iYXNlbGluZV8xX3YxEQB1AAA%3D&ccb=9-4&oh=00_AYAPDZs_dXeErIuSqZnkzaxphf5xB0LgFP_4pgrr-0XSmQ&oe=677228E8&_nc_sid=1d576d" type="video/mp4" />
-            </video> */}
+              <source src={o.video} type="video/mp4" />
+            </video>
           </Flex>
         );
       })}

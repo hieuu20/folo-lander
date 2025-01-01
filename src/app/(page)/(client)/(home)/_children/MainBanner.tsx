@@ -11,7 +11,7 @@ export function MainBanner() {
     <Box
       w={"100%"}
       pos={"relative"}
-      className="aspect-[0.47] sm:aspect-[0.6] md:aspect-[1.92] overflow-hidden"
+      className="aspect-[0.5] sm:aspect-[0.6] md:aspect-[1.92] overflow-hidden"
     >
       <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0} bg={"black"}>
         <Image

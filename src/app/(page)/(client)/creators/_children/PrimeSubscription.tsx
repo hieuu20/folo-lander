@@ -18,12 +18,12 @@ export function PrimeSubscription() {
       <PrimeText
         usp={
           {
-            title: "Prime Subscription",
+            title: "Creator Prime Subscription",
             subTitle:
-              "Unlock KNKY Prime for just $14.99! Get access to every Creator and dive into a world of endless excitement. Whether you're new or experienced, your adventure starts here!",
+              "Unlock the fan experience with KNKY Prime for just $14.99! Discover other creators, explore new trends, find inspiration, or simply enjoy co-creators' content in stunning 4K resolution for endless excitement.",
             isShowButton: true,
-            buttonLabel: "Discover Prime",
-            buttonLink: "https://beta.knky.co/",
+            buttonLabel: "Buy Creator Prime",
+            buttonLink: "https://knky.co/fresh/",
           } as IUSPManager
         }
       />

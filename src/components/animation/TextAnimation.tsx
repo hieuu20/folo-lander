@@ -9,12 +9,14 @@ interface Props {
   rootProps?: FlexProps;
   initDelay?: number;
   isInView: boolean;
+  textColor?: { index: number; color: string };
 }
 export default function TextAnimation({
   text,
   rootProps = {},
   initDelay = 0,
   isInView,
+  textColor,
 }: Props) {
   let [delay] = useState(1);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -31,7 +33,16 @@ export default function TextAnimation({
     <Flex wrap={"wrap"} {...{ gap: 6, ...rootProps }} className="gap-y-0">
       {text.split(" ").map((o, index) => {
         return (
-          <motion.span key={index} className="flex flex-nowrap">
+          <motion.span
+            key={index}
+            className="flex flex-nowrap"
+            style={{
+              color:
+                !!textColor && textColor.index === index
+                  ? textColor.color
+                  : undefined,
+            }}
+          >
             {Array.from(o).map((x, i) => {
               delay += 1;
               return (

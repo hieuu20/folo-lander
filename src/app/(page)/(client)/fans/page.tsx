@@ -55,7 +55,7 @@ export default async function Page() {
         "Your ultimate destination to connect with creators, uncover unique stores, and meet like-minded individuals for truly unforgettable experiences. 😉",
       isShowButton: true,
       buttonLabel: "Try Beta now",
-      buttonLink: "https://beta.knky.co/",
+      buttonLink: "https://knky.co/fresh/",
     },
   ];
 
@@ -66,7 +66,7 @@ export default async function Page() {
         "Join KNKY’s beta and enjoy a month of free content from all creators. Claim your Prime badge, unlock exclusive features, and shape the platform with your feedback. Plus, earn 5% lifetime earnings from creator referrals. Don’t miss out—secure your perks now!",
       isShowButton: true,
       buttonLabel: "Join Beta now",
-      buttonLink: "https://beta.knky.co/",
+      buttonLink: "https://knky.co/fresh/",
       img: "/fan-notify/1.png",
     },
   ];
@@ -124,7 +124,7 @@ export default async function Page() {
           {
             isShowButton: true,
             buttonLabel: "Try Beta now",
-            buttonLink: "https://beta.knky.co/",
+            buttonLink: "https://knky.co/fresh/",
           } as IUSPManager
         }
       />

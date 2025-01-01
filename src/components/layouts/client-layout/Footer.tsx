@@ -54,7 +54,7 @@ const footerList = [
     children: [
       {
         title: "Community Guidelines",
-        href: "https://beta.knky.co/articles/community-guidelines",
+        href: "https://knky.co/fresh/articles/community-guidelines",
       },
       {
         title: "Help Centre",
@@ -66,7 +66,7 @@ const footerList = [
       },
       {
         title: "Terms of Service",
-        href: "https://beta.knky.co/articles/terms-of-service",
+        href: "https://knky.co/fresh/articles/terms-of-service",
       },
       {
         title: "Contact Us",
@@ -74,7 +74,7 @@ const footerList = [
       },
       {
         title: "Blog",
-        href: "https://beta.knky.co/fresh",
+        href: "https://knky.co/fresh/fresh",
       },
     ],
   },
@@ -87,19 +87,19 @@ const footerList = [
       },
       {
         title: "Premium Plans",
-        href: "https://beta.knky.co/platform-plans",
+        href: "https://knky.co/fresh/platform-plans",
       },
       {
         title: "Terms of Service",
-        href: "https://beta.knky.co/articles/terms-of-service",
+        href: "https://knky.co/fresh/articles/terms-of-service",
       },
       {
         title: "Fans & Purchasing Terms",
-        href: "https://beta.knky.co/articles/additional-terms-for-fans-buying-creator-content",
+        href: "https://knky.co/fresh/articles/additional-terms-for-fans-buying-creator-content",
       },
       {
         title: "Creator & Collaborator Terms",
-        href: "https://beta.knky.co/articles/additional-terms-for-creators-and-collaborators",
+        href: "https://knky.co/fresh/articles/additional-terms-for-creators-and-collaborators",
       },
     ],
   },
@@ -112,7 +112,7 @@ const footerList = [
       },
       {
         title: "Business Terms",
-        href: "https://beta.knky.co/articles/terms-of-service",
+        href: "https://knky.co/fresh/articles/terms-of-service",
       },
       {
         title: "Agencies Account",
@@ -120,7 +120,7 @@ const footerList = [
       },
       {
         title: "Agency Terms",
-        href: "https://beta.knky.co/articles/terms-of-service",
+        href: "https://knky.co/fresh/articles/terms-of-service",
       },
     ],
   },
@@ -129,27 +129,27 @@ const footerList = [
     children: [
       {
         title: "Content Moderation Policy",
-        href: "https://beta.knky.co/articles/content-moderation-and-protection-policy",
+        href: "https://knky.co/fresh/articles/content-moderation-and-protection-policy",
       },
       {
         title: "USC 2257",
-        href: "https://beta.knky.co/articles/usc-2257",
+        href: "https://knky.co/fresh/articles/usc-2257",
       },
       {
         title: "Privacy Policy",
-        href: "https://beta.knky.co/articles/privacy-policy",
+        href: "https://knky.co/fresh/articles/privacy-policy",
       },
       {
         title: "Cookie Policy",
-        href: "https://beta.knky.co/articles/cookie-policy",
+        href: "https://knky.co/fresh/articles/cookie-policy",
       },
       {
         title: "Complaint Policy",
-        href: "https://beta.knky.co/articles/complaint-policy",
+        href: "https://knky.co/fresh/articles/complaint-policy",
       },
       {
         title: "DMCA",
-        href: "https://beta.knky.co/articles/dmca-takedown-policy",
+        href: "https://knky.co/fresh/articles/dmca-takedown-policy",
       },
     ],
   },

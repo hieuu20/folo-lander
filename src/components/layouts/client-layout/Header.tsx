@@ -39,7 +39,7 @@ export function Header() {
         <Flex gap={{ base: 16, md: 24 }} align={"center"}>
           <SectionButton
             title="Join us now"
-            href="https://beta.knky.co/fresh"
+            href="https://knky.co/fresh/fresh"
             show={true}
             w={{ base: 104, md: 140 }}
             h={{ base: 40 }}

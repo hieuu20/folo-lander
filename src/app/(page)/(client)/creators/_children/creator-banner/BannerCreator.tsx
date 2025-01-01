@@ -1,14 +1,9 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
-import img from '@public/creator/community_creator/comunity_main.png';
+import img from "@public/creator/community_creator/comunity_main.png";
 
-
-interface Props {}
-
-export function BannerCreator(props: Props) {
-  const {} = props;
-
+export function BannerCreator() {
   return (
     <motion.div
       transition={{
@@ -38,11 +33,7 @@ export function BannerCreator(props: Props) {
         }}
         className="w-full z-10"
       >
-        <Image
-          className="w-full h-auto"
-          src={img}
-          alt=""
-        />
+        <Image className="w-full h-auto" src={img} alt="" />
       </motion.div>
 
       <motion.div

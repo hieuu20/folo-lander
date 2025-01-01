@@ -3,16 +3,25 @@ import React from "react";
 import {
   Community,
   CreatorBanner,
-  Introduction,
+  Dive,
+  Feature,
   MatchMaker,
   PrimeSubscription,
 } from "./_children";
-import { FAQModel, IFaq, IUSPManager } from "@/app/api/_entities";
+import {
+  EarningEstModel,
+  FAQModel,
+  IEarningEst,
+  IFaq,
+  IUSPManager,
+} from "@/app/api/_entities";
 import { SubBanner } from "../_shared/SubBanner";
 import { Platform } from "../_shared/Platform";
 import { Faq } from "../_shared/Faq";
 import { SECTION_TYPE } from "@/utils";
 import { connectDB } from "@/app/api/_db";
+import { YourEarn } from "./_children/YourEarn";
+import Verify from "./_children/Verify";
 // import { SECTION_TYPE } from "@/utils";
 // import { CompareTableModel, SectionModel, USPManagerModel } from "@/app/api/_entities";
 // import { SECTION_TYPE } from "@/utils/enum";
@@ -23,6 +32,7 @@ export default async function Page() {
     // sectionsResponse,
     // uspsResponse,
     faqsResponse,
+    earningEstResponse,
   ] = await Promise.all([
     // SectionModel.find({ type: SECTION_TYPE.USER })
     //   .sort({
@@ -39,11 +49,15 @@ export default async function Page() {
         priority: 1,
       })
       .lean(),
+    EarningEstModel.findOne({}),
   ]);
 
   // const sections = JSON.parse(JSON.stringify(sectionsResponse));
   // const usps = JSON.parse(JSON.stringify(uspsResponse));
   const faqs = JSON.parse(JSON.stringify(faqsResponse)) as IFaq[];
+  const earningEst = JSON.parse(
+    JSON.stringify(earningEstResponse)
+  ) as IEarningEst;
 
   // console.log({sections, usps, faqs});
 
@@ -54,7 +68,7 @@ export default async function Page() {
         "The game-changer social adult platform you’ve been begging for! Unmatched value and cutting-edge features tailored to you! 🚀",
       isShowButton: true,
       buttonLabel: "Try Beta now",
-      buttonLink: "https://beta.knky.co/",
+      buttonLink: "https://knky.co/fresh/",
     },
   ];
 
@@ -65,7 +79,7 @@ export default async function Page() {
         "Try our Beta and enjoy 30 days risk-free with zero platform fees, full Pro Creator access, and a blue check. Earn 5% for life on Creator referrals, unlock exclusive features, and get personalised support from your account manager, all while shaping the platform to suit you!",
       isShowButton: true,
       buttonLabel: "Join Beta now",
-      buttonLink: "https://beta.knky.co/",
+      buttonLink: "https://knky.co/fresh/",
       img: "/creator/creator-notify/1.png",
     },
   ];
@@ -106,18 +120,31 @@ export default async function Page() {
       <CreatorBanner usps={bannerUsps as IUSPManager[]} />
       <SubBanner usps={notifyUsps as IUSPManager[]} />
       {/* <Test /> */}
-      <Introduction />
-      <PrimeSubscription />
+      <Dive />
+      <Feature />
+      <YourEarn
+        usp={
+          {
+            isShowButton: true,
+            buttonLabel: "Join now",
+            buttonLink: "https://knky.co/fresh",
+          } as IUSPManager
+        }
+        earningEst={earningEst}
+      />
       <MatchMaker />
+      <PrimeSubscription />
+      <Verify />
       <Community
         usp={
           {
             title: "🌟 Our community",
-            subTitle: "Join the KNKY community and  reach new fans effortlessly.",
+            subTitle:
+              "Join the KNKY community and  reach new fans effortlessly.",
             img: "/creator/community/1.png",
             isShowButton: true,
             buttonLabel: "Join us today",
-            buttonLink: "https://beta.knky.co/",
+            buttonLink: "https://knky.co/fresh/",
           } as IUSPManager
         }
       />

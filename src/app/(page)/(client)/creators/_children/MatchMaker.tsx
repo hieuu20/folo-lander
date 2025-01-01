@@ -3,10 +3,9 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import React from "react";
-import imgTitle1 from "@public/match-maker/1/title.png";
-import imgTitle2 from "@public/match-maker/2/title.png";
-import imgTitle3 from "@public/match-maker/3/title.png";
-import imgTitle4 from "@public/match-maker/4/title.png";
+import imgTitle1 from "@public/creator/match-maker/1/title.png";
+import imgTitle2 from "@public/creator/match-maker/2/title.png";
+import imgTitle3 from "@public/creator/match-maker/3/title.png";
 import { Box, Flex, Text } from "@mantine/core";
 import { twMerge } from "tailwind-merge";
 
@@ -14,30 +13,23 @@ const data = [
   {
     titleImg: imgTitle1,
     subTitle:
-      "KNKY isn’t just for creators—it’s for you too! With MatchMaker, you can match, chat, and connect with like-minded people. Find your soulmate, a KNKY companion, or just some fun!",
+      "It's like Tinder for creators! Fans can find and match with you based on kinks and interests, whether it's the GF experience or a niche. Match makes connecting fun, familiar, and easy! 😈",
     img: "/match-maker/1/img.png",
     bg: "#490089",
   },
   {
     titleImg: imgTitle2,
     subTitle:
-      "KNKY isn’t just for creators—it’s for you too! With MatchMaker, you can match, chat, and connect with like-minded people. Find your soulmate, a KNKY companion, or just some fun!",
-    img: "/match-maker/2/img.png",
+      "Let fans enjoy the fun, whether you're online or offline, with our gamification features. It makes purchasing content and services easy and engaging 24/7, boosting your AVO. 🎮",
+    img: "/creator/match-maker/2/img.png",
     bg: "#3D0171",
   },
   {
     titleImg: imgTitle3,
     subTitle:
-      "KNKY isn’t just for creators—it’s for you too! With MatchMaker, you can match, chat, and connect with like-minded people. Find your soulmate, a KNKY companion, or just some fun!",
-    img: "/match-maker/3/img1.png",
+      "KNKY is built on two core values: quality connections and revenue. We offer seven ways to be discovered and matched, along with over twenty revenue streams, driving sales and earnings like no other platform. 🤑",
+    img: "/match-maker/2/img.png",
     bg: "#280349",
-  },
-  {
-    titleImg: imgTitle4,
-    subTitle:
-      "KNKY isn’t just for creators—it’s for you too! With MatchMaker, you can match, chat, and connect with like-minded people. Find your soulmate, a KNKY companion, or just some fun!",
-    img: "/match-maker/4/img.png",
-    bg: "#1A022F",
   },
 ];
 
@@ -77,7 +69,8 @@ export const MatchMaker = () => {
       id="MatchMaker"
       w={"100%"}
       px={{ base: 0, sm: 16, md: 48, lg: 60, xl: 72, "2xl": 80 }}
-      py={{ base: 0, sm: 16, md: 48, lg: 60, xl: 72, "2xl": 80 }}
+      // py={{ base: 0, sm: 16, md: 48, lg: 60, xl: 72, "2xl": 80 }}
+      py={{ base: 40, md: 48, lg: 60, xl: 72, "2xl": 80 }}
       direction={"column"}
       gap={{ base: 40, md: 48, lg: 60, xl: 72, "2xl": 80 }}
       className="scroll-mt-[72px]"

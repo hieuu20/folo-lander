@@ -19,7 +19,7 @@ export function PrimeText({ usp }: Props) {
 
   return (
     <Box className="container">
-      <Flex 
+      <Flex
         ref={scope}
         w={{ base: "100%", md: "50%" }}
         mx={"auto"}
@@ -30,7 +30,10 @@ export function PrimeText({ usp }: Props) {
         <SectionTitle c={"#131416"} ta={"center"}>
           <TextAnimation
             text={usp.title}
-            rootProps={{ gap: { base: 6, md: 8, lg: 10, "2xl": 12 } }}
+            rootProps={{
+              gap: { base: 6, md: 8, lg: 10, "2xl": 12 },
+              justify: { base: "center" },
+            }}
             isInView={isInView}
           />
         </SectionTitle>

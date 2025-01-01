@@ -23,7 +23,7 @@ export function PrimeSubscription() {
               "Unlock KNKY Prime for just $14.99! Get access to every Creator and dive into a world of endless excitement. Whether you're new or experienced, your adventure starts here!",
             isShowButton: true,
             buttonLabel: "Discover Prime",
-            buttonLink: "https://beta.knky.co/",
+            buttonLink: "https://knky.co/fresh/",
           } as IUSPManager
         }
       />

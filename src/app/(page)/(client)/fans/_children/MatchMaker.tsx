@@ -150,7 +150,7 @@ export const MatchMaker = () => {
               autoPlay
               loop
               muted
-              className="w-full sm:w-[32%] aspect-[0.92] rounded-2xl md:rounded-[40px]"
+              className="w-full sm:w-[32%] aspect-[0.92] rounded-3xl md:rounded-[40px]"
             >
               <source src={o.video} type="video/mp4" />
             </video> 

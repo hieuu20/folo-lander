@@ -132,7 +132,7 @@ export const MatchMaker = () => {
                 {o.subTitle}
               </Text>
             </Flex>
-            <Box
+            {/* <Box
               pos={"relative"}
               w={{ base: "100%", sm: "36%" }}
               className="aspect-[0.92]"
@@ -143,8 +143,8 @@ export const MatchMaker = () => {
                 fill
                 className="object-cover"
               />
-            </Box>
-            {/* <video
+            </Box> */}
+            <video
               preload="auto"
               playsInline
               autoPlay
@@ -153,7 +153,7 @@ export const MatchMaker = () => {
               className="w-full sm:w-[32%] aspect-[0.92] rounded-2xl md:rounded-[40px]"
             >
               <source src={o.video} type="video/mp4" />
-            </video> */}
+            </video> 
           </Flex>
         );
       })}

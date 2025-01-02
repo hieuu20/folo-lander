@@ -5,7 +5,8 @@ import Image from "next/image";
 import React from "react";
 import imgTitle1 from "@public/creator/match-maker/1/title.png";
 import imgTitle2 from "@public/creator/match-maker/2/title.png";
-import imgTitle3 from "@public/creator/match-maker/3/title.png";
+import imgTitle3 from "@public/match-maker/3/title.png";
+import imgTitle4 from "@public/creator/match-maker/3/title.png";
 import { Box, Flex, Text } from "@mantine/core";
 import { twMerge } from "tailwind-merge";
 
@@ -27,9 +28,16 @@ const data = [
   {
     titleImg: imgTitle3,
     subTitle:
+      "KNKY takes interactivity to the next level with ratings, roulette videos, live calls, custom requests, and the chance to connect with creators who share your passions. ❤️",
+    img: "/match-maker/3/img1.png",
+    bg: "#280349",
+  },
+  {
+    titleImg: imgTitle4,
+    subTitle:
       "KNKY is built on two core values: quality connections and revenue. We offer seven ways to be discovered and matched, along with over twenty revenue streams, driving sales and earnings like no other platform. 🤑",
     img: "/creator/match-maker/3/img.png",
-    bg: "#280349",
+    bg: "#1A022F",
   },
 ];
 

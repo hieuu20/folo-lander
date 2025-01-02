@@ -11,39 +11,45 @@ const usps: Partial<IUSPManager>[] = [
     img: "/introduction/1.png",
   },
   {
-    title: "🤩 MatchMaker",
+    title: "🤩 Match",
     subTitle:
-      "Simply select a few ‘kinks’ to find your favourite content with MatchTag or to connect with real like-minded people using MatchMaker. ",
+      "Select a few ‘kinks’ to discover your favourite content with MatchTag or find and date like-minded people through MatchMaker.",
     img: "/introduction/2.png",
   },
   {
-    title: "🍑 Private events",
+    title: "🍑 Watch Live & Private Events",
     subTitle:
-      "From captivating live streams and intimate one-to-ones to exhilarating pay-per-view shows, our creators are ready to blow your mind!",
+      "From captivating live streams and intimate one-to-ones to thrilling pay-per-view shows, our creators are here to amaze you!",
     img: "/introduction/3.png",
   },
   {
-    title: "💬 Chat with creators",
+    title: "💬 You got the Chat?",
     subTitle:
-      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown",
+      "Enjoy endless fun with chat; send and receive voice notes, images, videos, and access premium services all in one place.",
     img: "/introduction/4.png",
   },
   {
     title: "🥵 Creator’s Services",
     subTitle:
-      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown",
+      "Get direct access to video and audio calls, ratings, custom requests, and so much more to explore across the platform.",
     img: "/introduction/5.png",
   },
   {
-    title: "Play with Creators",
+    title: "Let the Games Begin",
     subTitle:
-      "Subscribe to any Creator’s free or premium channels and their collab profiles, mix & match your favourite content and creators.",
+      "Do you like to play? So do we. Spin the wheel or open mystery boxes to win unique content and exclusive experiences.",
     img: "/introduction/6.png",
   },
+  // {
+  //   title: "🎲 Roulette",
+  //   subTitle:
+  //     "Do you like to play? So do we. Spin the wheel or open mystery boxes to win unique content and exclusive experiences.",
+  //   img: "/introduction/6.png",
+  // },
   {
     title: "Fantasy",
     subTitle:
-      "Subscribe to any Creator’s free or premium channels and their collab profiles, mix & match your favourite content and creators.",
+      "Design your ultimate fantasy and let creators bring it to life by bidding on it. Choose one or many, it’s all in your control!",
     img: "/introduction/7.png",
   },
   {

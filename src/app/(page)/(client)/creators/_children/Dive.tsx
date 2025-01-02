@@ -14,10 +14,7 @@ export function Dive() {
   const isInView = useInView(scope, { amount: 0.5 });
 
   return (
-    <Box
-      w={'100%'}
-      bg={"#F5F5F6"}
-    >
+    <Box w={"100%"} bg={"#F5F5F6"}>
       <Flex
         ref={scope}
         direction={"column"}
@@ -30,7 +27,12 @@ export function Dive() {
           isInView={isInView}
           className="relative w-[86%] sm:w-[54%] md:w-[48.8%] aspect-[1.81]"
         >
-          <Image src={diveTitle} alt="dive title" fill className="object-cover" />
+          <Image
+            src={diveTitle}
+            alt="dive title"
+            fill
+            className="object-cover"
+          />
         </ElementAnimation>
         <Flex
           direction={"column"}
@@ -53,14 +55,29 @@ export function Dive() {
             </span> */}
             <TextAnimation
               isInView={isInView}
-              text="Dive into the world’s most innovative adult content platform, where creativity meets"
+              text="Dive into the world’s most innovative adult content platform, where creativity meets profitability."
               rootProps={{
                 justify: "center",
                 gap: { base: 7, sm: 8, md: 9, lg: 10, xl: 12, "2xl": 14 },
               }}
               initDelay={400}
+              textColor={{ index: 12, color: "#29A81E" }}
             />{" "}
-            <span className="text-[#29A81E] relative inline-block">
+            <Box
+              pos={"absolute"}
+              w={{ base: "50%", sm: "40%" }}
+              right={{ base: "15%", md: "4%", lg: "6%", xl: '4%', "2xl": "12%" }}
+              className="aspect-[12.54]"
+            >
+              <ElementAnimation
+                isInView={isInView}
+                initDelay={1400}
+                className="w-full h-full"
+              >
+                <Image src={vectorIcon} alt="vector icon" fill className="" />
+              </ElementAnimation>
+            </Box>
+            {/* <span className="text-[#29A81E] relative inline-block">
               <TextAnimation
                 isInView={isInView}
                 text="profitability"
@@ -76,8 +93,8 @@ export function Dive() {
               >
                 <Image src={vectorIcon} alt="vector icon" fill className="" />
               </ElementAnimation>
-            </span>
-            .
+              .
+            </span> */}
           </Title>
 
           <Title

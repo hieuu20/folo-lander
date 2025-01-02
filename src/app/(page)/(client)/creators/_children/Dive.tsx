@@ -62,39 +62,24 @@ export function Dive() {
               }}
               initDelay={400}
               textColor={{ index: 12, color: "#29A81E" }}
+              textIcon={{
+                index: 12,
+                icon: (
+                  <ElementAnimation
+                    isInView={isInView}
+                    initDelay={1400}
+                    className="absolute inline bottom-[-30%] right-[4%] w-full scale-[1.4] aspect-[12.54]"
+                  >
+                    <Image
+                      src={vectorIcon}
+                      alt="vector icon"
+                      fill
+                      className=""
+                    />
+                  </ElementAnimation>
+                ),
+              }}
             />{" "}
-            <Box
-              pos={"absolute"}
-              w={{ base: "50%", sm: "40%" }}
-              right={{ base: "15%", md: "4%", lg: "6%", xl: '4%', "2xl": "12%" }}
-              className="aspect-[12.54]"
-            >
-              <ElementAnimation
-                isInView={isInView}
-                initDelay={1400}
-                className="w-full h-full"
-              >
-                <Image src={vectorIcon} alt="vector icon" fill className="" />
-              </ElementAnimation>
-            </Box>
-            {/* <span className="text-[#29A81E] relative inline-block">
-              <TextAnimation
-                isInView={isInView}
-                text="profitability"
-                rootProps={{
-                  justify: "center",
-                }}
-                initDelay={800}
-              />
-              <ElementAnimation
-                isInView={isInView}
-                initDelay={1400}
-                className="absolute right-[4%] w-full scale-[1.4] aspect-[12.54]"
-              >
-                <Image src={vectorIcon} alt="vector icon" fill className="" />
-              </ElementAnimation>
-              .
-            </span> */}
           </Title>
 
           <Title

@@ -2,7 +2,7 @@
 
 import { Flex, FlexProps } from "@mantine/core";
 import { motion } from "framer-motion";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { ReactNode, useEffect, useMemo, useState } from "react";
 
 interface Props {
   text: string;
@@ -10,6 +10,7 @@ interface Props {
   initDelay?: number;
   isInView: boolean;
   textColor?: { index: number; color: string };
+  textIcon?: { index: number; icon: ReactNode };
 }
 export default function TextAnimation({
   text,
@@ -17,6 +18,7 @@ export default function TextAnimation({
   initDelay = 0,
   isInView,
   textColor,
+  textIcon
 }: Props) {
   let [delay] = useState(1);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -35,7 +37,7 @@ export default function TextAnimation({
         return (
           <motion.span
             key={index}
-            className="flex flex-nowrap"
+            className="flex flex-nowrap relative"
             style={{
               color:
                 !!textColor && textColor.index === index
@@ -61,6 +63,11 @@ export default function TextAnimation({
                 </motion.span>
               );
             })}
+            {
+              !!textIcon && textIcon.index === index && (
+                textIcon.icon
+              )
+            }
           </motion.span>
         );
       })}

@@ -74,7 +74,7 @@ export const MatchMaker = () => {
 
   return (
     <Flex
-      id="MatchMaker"
+      id="Features"
       w={"100%"}
       px={{ base: 0, sm: 16, md: 48, lg: 60, xl: 72, "2xl": 80 }}
       // py={{ base: 0, sm: 16, md: 48, lg: 60, xl: 72, "2xl": 80 }}

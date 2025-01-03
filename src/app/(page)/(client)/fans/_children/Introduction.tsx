@@ -74,7 +74,7 @@ const usps: Partial<IUSPManager>[] = [
 
 export function Introduction() {
   return (
-    <Box id="Features" py={{ base: 40, md: 48, lg: 60, xl: 72, "2xl": 80 }}>
+    <Box id="Introduction" py={{ base: 40, md: 48, lg: 60, xl: 72, "2xl": 80 }}>
       <SectionSlide
         title="What is KNKY?"
         subTitle="The first truly adult-only social, dating, and marketplace platform! Get what you want, when you want it. Register now (free, private, and secure) to be among the first to experience the KNKY revolution."

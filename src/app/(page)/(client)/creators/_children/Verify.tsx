@@ -34,7 +34,7 @@ export default function Verify() {
   const isInView = useInView(scope, { amount: 0.4 });
 
   return (
-    <Box py={{ base: 40, md: 48, lg: 60, xl: 72, "2xl": 80 }} bg={"#F5F5F6"}>
+    <Box id="ProCreator" py={{ base: 40, md: 48, lg: 60, xl: 72, "2xl": 80 }} bg={"#F5F5F6"} className="scroll-mt-[64px] md:scroll-mt-[72px]">
       <Grid ref={scope} gutter={{ base: 16, md: 24 }} className="container">
         {data.map((o, index) => {
           return (
@@ -61,7 +61,7 @@ const Item = ({ o, index }: { o: IUSPManager; index: number }) => {
       w={"100%"}
       // gap={{ base: 12, md: 16, lg: 24, xl: 32, "2xl": 40 }}
       bg={"white"}
-      className="rounded-2xl md:rounded-[40px]"
+      className="rounded-2xl md:rounded-[40px] overflow-hidden"
     >
       <Box pos={"relative"} w={"100%"} className="aspect-[2]">
         <Image src={o.img} alt={o.title} fill />

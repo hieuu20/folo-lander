@@ -70,7 +70,7 @@ export const fanHeaderItem = [
     {
         title: 'Why KNKY?',
         keyActive: 'why',
-        href: '#Banner',
+        href: '#Introduction',
     },
     {
         title: 'Features',
@@ -101,9 +101,9 @@ export const fanHeaderItem = [
 
 export const creatorHeaderItem = [
     {
-        title: 'Features',
-        keyActive: 'Features',
-        href: '#Features',
+        title: 'Why KNKY?',
+        keyActive: 'Why',
+        href: '#WhyIsKnky',
     },
     {
         title: 'Earning Est',
@@ -111,9 +111,14 @@ export const creatorHeaderItem = [
         href: '#Earning',
     },
     {
-        title: 'Prime',
-        keyActive: 'Prime',
-        href: '#Prime',
+        title: 'Features',
+        keyActive: 'Features',
+        href: '#Features',
+    },
+    {
+        title: 'ProCreator',
+        keyActive: 'ProCreator',
+        href: '#ProCreator',
     },
     {
         title: 'FAQs',

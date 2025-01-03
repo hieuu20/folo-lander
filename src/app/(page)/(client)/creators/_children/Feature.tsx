@@ -93,7 +93,7 @@ const usps: Partial<IUSPManager>[] = [
 export function Feature() {
   return (
     <Box
-      id="Features"
+      id="WhyIsKnky"
       py={{ base: 40, md: 48, lg: 60, xl: 72, "2xl": 80 }}
       bg={"#F5F5F6"}
     >

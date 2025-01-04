@@ -41,6 +41,41 @@ const data = [
   },
 ];
 
+// const data = [
+//   {
+//     titleImg: imgTitle1,
+//     subTitle:
+//       "With Match, discover creators who match your mood, connect, chat, and bond with like-minded people. Whether it's a soulmate, KNKY companion, or just some fun, it’s all here! 😈",
+//     img: "/creator/match-maker/1/img.png",
+//     bg: "#490089",
+//     video: "/creator/match-maker/1/video.mp4",
+//   },
+//   {
+//     titleImg: imgTitle2,
+//     subTitle:
+//       "Enjoy endless fun with features like Spin the Wheel, Mystery Boxes, and KNKY Roulette, making it exciting for both creators and fans to discover content. 🎮",
+//     img: "/creator/match-maker/2/img.png",
+//     bg: "#3D0171",
+//     video: "/creator/match-maker/2/video.mp4",
+//   },
+//   {
+//     titleImg: imgTitle3,
+//     subTitle:
+//       "KNKY takes interactivity to the next level with ratings, roulette videos, live calls, custom requests, and the chance to connect with creators who share your passions. ❤️",
+//     img: "/creator/match-maker/3/img1.png",
+//     bg: "#280349",
+//     video: "/creator/match-maker/3/video.mp4",
+//   },
+//   {
+//     titleImg: imgTitle4,
+//     subTitle:
+//       "Shop till you drop on KNKY, where creators offer everything from bespoke items to auctions. With well-known stores and personalized products, there's never a dull moment! 🛍",
+//     img: "/creator/match-maker/4/img.png",
+//     bg: "#1A022F",
+//     video: "/creator/match-maker/4/video.mp4",
+//   },
+// ];
+
 export const MatchMaker = () => {
   useEffect(() => {
     const sections = document.querySelectorAll(".match-maker-item");

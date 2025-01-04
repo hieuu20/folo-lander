@@ -73,14 +73,14 @@ export const fanHeaderItem = [
         href: '#Introduction',
     },
     {
-        title: 'Features',
-        keyActive: 'Features',
-        href: '#Features',
-    },
-    {
         title: 'Prime',
         keyActive: 'Creators',
         href: '#Prime',
+    },
+    {
+        title: 'Features',
+        keyActive: 'Features',
+        href: '#Features',
     },
     // {
     //     title: 'MatchMaker',

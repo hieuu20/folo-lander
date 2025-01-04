@@ -20,7 +20,7 @@ export function FanBanner({ usps }: Props) {
     <Box
       w={"100%"}
       pos={"relative"}
-      className="aspect-[0.3] sm:aspect-[0.44] md:aspect-[1.2] lg:aspect-[1.32]"
+      className="aspect-[0.3] sm:aspect-[0.44] md:aspect-[1.2] lg:aspect-[1.28] 2xl:aspect-[1.32]"
     >
       <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0}>
         <Image

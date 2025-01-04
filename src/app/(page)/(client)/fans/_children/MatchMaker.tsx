@@ -14,7 +14,7 @@ const data = [
   {
     titleImg: imgTitle1,
     subTitle:
-      "KNKY isn’t just for creators—it’s for you too! With MatchMaker, you can match, chat, and connect with like-minded people. Find your soulmate, a KNKY companion, or just some fun!",
+      "With Match, discover creators who match your mood, connect, chat, and bond with like-minded people. Whether it's a soulmate, KNKY companion, or just some fun, it’s all here! 😈",
     img: "/match-maker/1/img.png",
     bg: "#490089",
     video: "/match-maker/1/video.mp4",
@@ -22,7 +22,7 @@ const data = [
   {
     titleImg: imgTitle2,
     subTitle:
-      "KNKY isn’t just for creators—it’s for you too! With MatchMaker, you can match, chat, and connect with like-minded people. Find your soulmate, a KNKY companion, or just some fun!",
+      "Enjoy endless fun with features like Spin the Wheel, Mystery Boxes, and KNKY Roulette, making it exciting for both creators and fans to discover content. 🎮",
     img: "/match-maker/2/img.png",
     bg: "#3D0171",
     video: "/match-maker/2/video.mp4",
@@ -30,7 +30,7 @@ const data = [
   {
     titleImg: imgTitle3,
     subTitle:
-      "KNKY isn’t just for creators—it’s for you too! With MatchMaker, you can match, chat, and connect with like-minded people. Find your soulmate, a KNKY companion, or just some fun!",
+      "KNKY takes interactivity to the next level with ratings, roulette videos, live calls, custom requests, and the chance to connect with creators who share your passions. ❤️",
     img: "/match-maker/3/img1.png",
     bg: "#280349",
     video: "/match-maker/3/video.mp4",
@@ -38,7 +38,7 @@ const data = [
   {
     titleImg: imgTitle4,
     subTitle:
-      "KNKY isn’t just for creators—it’s for you too! With MatchMaker, you can match, chat, and connect with like-minded people. Find your soulmate, a KNKY companion, or just some fun!",
+      "Shop till you drop on KNKY, where creators offer everything from bespoke items to auctions. With well-known stores and personalized products, there's never a dull moment! 🛍",
     img: "/match-maker/4/img.png",
     bg: "#1A022F",
     video: "/match-maker/4/video.mp4",

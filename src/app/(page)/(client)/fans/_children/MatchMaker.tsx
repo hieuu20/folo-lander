@@ -17,7 +17,7 @@ const data = [
       "With Match, discover creators who match your mood, connect, chat, and bond with like-minded people. Whether it's a soulmate, KNKY companion, or just some fun, it’s all here! 😈",
     img: "/match-maker/1/img.png",
     bg: "#490089",
-    video: "/match-maker/1/video.mp4",
+    video: "/match-maker/1/video.webm",
   },
   {
     titleImg: imgTitle2,
@@ -25,7 +25,7 @@ const data = [
       "Enjoy endless fun with features like Spin the Wheel, Mystery Boxes, and KNKY Roulette, making it exciting for both creators and fans to discover content. 🎮",
     img: "/match-maker/2/img.png",
     bg: "#3D0171",
-    video: "/match-maker/2/video.mp4",
+    video: "/match-maker/2/video.webm",
   },
   {
     titleImg: imgTitle3,
@@ -33,7 +33,7 @@ const data = [
       "KNKY takes interactivity to the next level with ratings, roulette videos, live calls, custom requests, and the chance to connect with creators who share your passions. ❤️",
     img: "/match-maker/3/img1.png",
     bg: "#280349",
-    video: "/match-maker/3/video.mp4",
+    video: "/match-maker/3/video.webm",
   },
   {
     titleImg: imgTitle4,
@@ -41,7 +41,7 @@ const data = [
       "Shop till you drop on KNKY, where creators offer everything from bespoke items to auctions. With well-known stores and personalized products, there's never a dull moment! 🛍",
     img: "/match-maker/4/img.png",
     bg: "#1A022F",
-    video: "/match-maker/4/video.mp4",
+    video: "/match-maker/4/video.webm",
   },
 ];
 
@@ -132,28 +132,21 @@ export const MatchMaker = () => {
                 {o.subTitle}
               </Text>
             </Flex>
-            {/* <Box
-              pos={"relative"}
-              w={{ base: "100%", sm: "36%" }}
-              className="aspect-[0.92]"
+            <Box
+              w={{ base: "100%", sm: "32%" }}
+              className="aspect-[0.92] rounded-3xl md:rounded-[40px]"
             >
-              <Image
-                src={o.img}
-                alt="img match maker"
-                fill
-                className="object-cover"
-              />
-            </Box> */}
-            <video
-              preload="auto"
-              playsInline
-              autoPlay
-              loop
-              muted
-              className="w-full sm:w-[32%] aspect-[0.92] rounded-3xl md:rounded-[40px]"
-            >
-              <source src={o.video} type="video/mp4" />
-            </video> 
+              <video
+                preload="auto"
+                playsInline
+                autoPlay
+                loop
+                muted
+                className="w-full h-full"
+              >
+                <source src={o.video} type="video/mp4" />
+              </video>
+            </Box>
           </Flex>
         );
       })}

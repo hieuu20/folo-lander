@@ -117,7 +117,7 @@ const SlideItem = ({ usp }: { usp: IUSPManager }) => {
           lh={1.4}
           fw={400}
           mb={{ base: 4, lg: 8 }}
-          h={{ base: 104, md: 125 }}
+          h={{ base: 108, sm: 80, md: 112, lg: 250, xl: 150 ,'2xl': 125 }}
         >
           {usp.subTitle}
         </Title>

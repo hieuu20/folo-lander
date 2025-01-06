@@ -82,18 +82,18 @@ export default async function Page() {
       buttonLink: "/creators",
     },
     {
-      title: "Grow your Agency",
+      title: "MatchMaker",
       subTitle:
-        "Take your business to the next level with innovative tools designed for seamless management of employees and creators. Simplify operations and maximise productivity.",
+        "Find your perfect match, spark connections, and dive into conversations with like-minded people. Whether you're looking for a soulmate, a KNKY companion, or just a bit of fun, it’s all here! 😈",
       img: "/fan-platform/2.png",
       isShowButton: true,
       buttonLabel: "Discover",
       buttonLink: "https://agency.knky.co/",
     },
     {
-      title: "Business Account",
+      title: "Prime Subscription",
       subTitle:
-        "Maximise your business potential with KNKY. Sell physical and digital products, connect with fans, and collaborate with creators to grow your reach and revenue.",
+        "Get access to every Creator and dive into a world of endless excitement. Whether you're new or experienced, your adventure starts here!",
       img: "/fan-platform/3.png",
       isShowButton: true,
       buttonLabel: "Discover",

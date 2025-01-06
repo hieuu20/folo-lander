@@ -14,8 +14,6 @@ import Link from "next/link";
 import footerPay1 from "@public/footer/1.png";
 import footerPay2 from "@public/footer/2.png";
 import footerPay3 from "@public/footer/3.png";
-import footerPay4 from "@public/footer/4.png";
-import footerPay5 from "@public/footer/5.png";
 
 const socials = [
   {
@@ -155,7 +153,13 @@ const footerList = [
   },
 ];
 
-const footerPays = [footerPay1, footerPay2, footerPay3, footerPay4, footerPay5];
+const footerPays = [
+  footerPay1, 
+  footerPay2, 
+  footerPay3, 
+  // footerPay4, 
+  // footerPay5
+];
 
 export function Footer() {
   return (
@@ -260,6 +264,7 @@ export function Footer() {
           mt={32}
           gutter={{ base: 12, sm: 16 }}
           mx={"auto"}
+          justify="center"
         >
           {footerPays.map((o, index) => {
             return (

@@ -99,7 +99,7 @@ export default async function Page() {
       title: "Grow your Agency",
       subTitle:
         "Take your business to the next level with innovative tools designed for seamless management of employees and creators. Simplify operations and maximise productivity.",
-      img: "/fan-platform/2.png",
+      img: "/creator/platform/2.png",
       isShowButton: true,
       buttonLabel: "Discover",
       buttonLink: "https://agency.knky.co/",
@@ -108,7 +108,7 @@ export default async function Page() {
       title: "Business Account",
       subTitle:
         "Maximise your business potential with KNKY. Sell physical and digital products, connect with fans, and collaborate with creators to grow your reach and revenue.",
-      img: "/fan-platform/3.png",
+      img: "/creator/platform/3.png",
       isShowButton: true,
       buttonLabel: "Discover",
       buttonLink: "https://business.knky.co/",

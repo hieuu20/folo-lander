@@ -7,6 +7,7 @@ import SectionTitle from "@/components/Typo/SectionTitle";
 import { Box, Flex, Title } from "@mantine/core";
 import { useAnimate, useInView } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
 
 const settings = {
@@ -52,6 +53,20 @@ export function Platform(props: Props) {
   const { usps, title } = props;
   const [scope] = useAnimate();
   const isInView = useInView(scope, { amount: 0.5 });
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    const elements = document.querySelectorAll(".platform-subtitle");
+    if (elements.length > 0) {
+      const max = Array.from(elements).reduce((max, el) => {
+        const height = el.getBoundingClientRect().height;
+        return height > max ? height : max;
+      }, 0);
+      setHeight(max);
+    }
+  }, []);
+
+  console.log(height);
 
   return (
     <Box w={"100%"}>
@@ -82,7 +97,11 @@ export function Platform(props: Props) {
               className="[&_.slick-slide]:px-2 xl:[&_.slick-slide]:px-3"
             >
               {usps.map((usp, i) => (
-                <SlideItem key={i} usp={usp as IUSPManager} />
+                <SlideItem
+                  key={i}
+                  usp={usp as IUSPManager}
+                  subTitleHeight={height}
+                />
               ))}
             </Slider>
           </Box>
@@ -92,7 +111,13 @@ export function Platform(props: Props) {
   );
 }
 
-const SlideItem = ({ usp }: { usp: IUSPManager }) => {
+const SlideItem = ({
+  usp,
+  subTitleHeight,
+}: {
+  usp: IUSPManager;
+  subTitleHeight: number;
+}) => {
   return (
     <Flex
       w={"100%"}
@@ -110,17 +135,17 @@ const SlideItem = ({ usp }: { usp: IUSPManager }) => {
         <Title size={"h3"} fz={{ base: 20, lg: 22, xl: 24 }} lh={1.4} fw={700}>
           {usp.title}
         </Title>
-
-        <Title
-          size={"p"}
-          fz={{ base: 14, lg: 26, xl: 18, "2xl": 20 }}
-          lh={1.4}
-          fw={400}
-          mb={{ base: 4, lg: 8 }}
-          h={{ base: 108, sm: 80, md: 112, lg: 250, xl: 150 ,'2xl': 125 }}
-        >
-          {usp.subTitle}
-        </Title>
+        <Box h={subTitleHeight}>
+          <Title
+            size={"p"}
+            fz={{ base: 14, lg: 26, xl: 18, "2xl": 20 }}
+            lh={1.4}
+            fw={400}
+            className="platform-subtitle"
+          >
+            {usp.subTitle}
+          </Title>
+        </Box>
 
         <SectionButton
           show={usp.isShowButton}

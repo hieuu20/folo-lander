@@ -113,7 +113,7 @@ export const creatorHeaderItem = [
   {
     title: "Features",
     keyActive: "Features",
-    href: "#Features",
+    href: "#Connections",
   },
   {
     title: "ProCreator",

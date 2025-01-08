@@ -2,12 +2,14 @@ import { IUSPManager } from "@/app/api/_entities";
 import { Flex } from "@mantine/core";
 import React from "react";
 import { DeepConnectionImage, DeepConnectionText } from "./deep-connection";
+import { Connection } from "@/utils/constants";
 
 interface Props {
   usp: IUSPManager;
+  connections: Connection[];
 }
 
-export function DeepConnection({ usp }: Props) {
+export function DeepConnection({ usp, connections }: Props) {
   return (
     <Flex
       id="Connections"
@@ -18,7 +20,7 @@ export function DeepConnection({ usp }: Props) {
       className="scroll-mt-[64px] md:scroll-mt-[72px]"
     >
       <DeepConnectionText usp={usp} />
-      <DeepConnectionImage />
+      <DeepConnectionImage connections={connections} />
     </Flex>
   );
 }

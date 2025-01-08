@@ -18,7 +18,7 @@ import {
 import { SubBanner } from "../_shared/SubBanner";
 import { Platform } from "../_shared/Platform";
 import { Faq } from "../_shared/Faq";
-import { SECTION_TYPE } from "@/utils";
+import { creatorConnections, SECTION_TYPE } from "@/utils";
 import { connectDB } from "@/app/api/_db";
 import { YourEarn } from "./_children/YourEarn";
 import Verify from "./_children/Verify";
@@ -144,6 +144,7 @@ export default async function Page() {
             isShowButton: false,
           } as IUSPManager
         }
+        connections={creatorConnections}
       />
       <PrimeSubscription />
       <Verify />

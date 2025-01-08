@@ -12,7 +12,7 @@ import { FAQModel, IFaq, IUSPManager } from "@/app/api/_entities";
 import { SubBanner } from "../_shared/SubBanner";
 import { Platform } from "../_shared/Platform";
 import { Faq } from "../_shared/Faq";
-import { SECTION_TYPE } from "@/utils";
+import { fanConnections, SECTION_TYPE } from "@/utils";
 import { connectDB } from "@/app/api/_db";
 // import { SECTION_TYPE } from "@/utils";
 // import { CompareTableModel, SectionModel, USPManagerModel } from "@/app/api/_entities";
@@ -119,6 +119,7 @@ export default async function Page() {
             isShowButton: false,
           } as IUSPManager
         }
+        connections={fanConnections}
       />
       <Community
         usp={

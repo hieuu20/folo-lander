@@ -106,7 +106,7 @@ const footerList = [
     children: [
       {
         title: "Business Account",
-        href: "/",
+        href: "https://business.knky.co/",
       },
       {
         title: "Business Terms",

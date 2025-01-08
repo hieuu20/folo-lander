@@ -22,6 +22,7 @@ import { SECTION_TYPE } from "@/utils";
 import { connectDB } from "@/app/api/_db";
 import { YourEarn } from "./_children/YourEarn";
 import Verify from "./_children/Verify";
+import { DeepConnection } from "../fans/_children/DeepConnection";
 // import { SECTION_TYPE } from "@/utils";
 // import { CompareTableModel, SectionModel, USPManagerModel } from "@/app/api/_entities";
 // import { SECTION_TYPE } from "@/utils/enum";
@@ -69,7 +70,7 @@ export default async function Page() {
       isShowButton: true,
       buttonLabel: "Try Beta now",
       buttonLink: "https://knky.co/fresh/",
-      img: '/fan-banner/main.webm'
+      img: "/fan-banner/main.webm",
     },
   ];
 
@@ -115,7 +116,6 @@ export default async function Page() {
       buttonLink: "https://business.knky.co/",
     },
   ] as IUSPManager[];
-  
 
   return (
     <Box>
@@ -135,6 +135,16 @@ export default async function Page() {
         earningEst={earningEst}
       />
       <MatchMaker />
+      <DeepConnection
+        usp={
+          {
+            title: "Create Long-Lasting Connections",
+            subTitle:
+              "Chat, call, and create! KNKY gives you the tools to connect with your audience and offer exclusive free and premium services like no other.",
+            isShowButton: false,
+          } as IUSPManager
+        }
+      />
       <PrimeSubscription />
       <Verify />
       <Community

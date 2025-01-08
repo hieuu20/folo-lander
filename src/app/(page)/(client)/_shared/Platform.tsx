@@ -56,17 +56,20 @@ export function Platform(props: Props) {
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
-    const elements = document.querySelectorAll(".platform-subtitle");
-    if (elements.length > 0) {
-      const max = Array.from(elements).reduce((max, el) => {
-        const height = el.getBoundingClientRect().height;
-        return height > max ? height : max;
-      }, 0);
-      setHeight(max);
-    }
-  }, []);
+    const timeoutId = setTimeout(() => {
+      const elements = document.querySelectorAll(".platform-subtitle");
+      if (elements.length > 0) {
+        const max = Array.from(elements).reduce((max, el) => {
+          const height = el.getBoundingClientRect().height;
+          return height > max ? height : max;
+        }, 0);
 
-  console.log(height);
+        setHeight(max);
+      }
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
     <Box w={"100%"}>
@@ -135,7 +138,10 @@ const SlideItem = ({
         <Title size={"h3"} fz={{ base: 20, lg: 22, xl: 24 }} lh={1.4} fw={700}>
           {usp.title}
         </Title>
-        <Box h={subTitleHeight}>
+        <Box
+          h={subTitleHeight ? subTitleHeight : "auto"}
+          mb={{ base: 6, md: 8 }}
+        >
           <Title
             size={"p"}
             fz={{ base: 14, lg: 26, xl: 18, "2xl": 20 }}
@@ -147,12 +153,25 @@ const SlideItem = ({
           </Title>
         </Box>
 
-        <SectionButton
-          show={usp.isShowButton}
-          title={usp.buttonLabel}
-          href={usp.buttonLink}
-          w={210}
-        />
+        {usp.buttonLabel === "Coming soon" ? (
+          <SectionButton
+            show={usp.isShowButton}
+            title={usp.buttonLabel}
+            href={usp.buttonLink}
+            bg={"white"}
+            bd={"1px solid #808386"}
+            c={"#808386"}
+            disabled={true}
+            w={210}
+          />
+        ) : (
+          <SectionButton
+            show={usp.isShowButton}
+            title={usp.buttonLabel}
+            href={usp.buttonLink}
+            w={210}
+          />
+        )}
       </Flex>
     </Flex>
   );

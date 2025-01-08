@@ -1,48 +1,33 @@
-"use client";
-
 import { Box, Flex } from "@mantine/core";
-import React, { useRef } from 'react';
-import { BannerCreator } from "./BannerCreator";
-// import lottie from 'lottie-web';
-// import animationData from '@public/fan-banner/fan-animation.json';
+import React from "react";
 
+export function BannerImage() {
 
-export default function BannerImage() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const container = useRef<any>(null);
-
-  // useEffect(() => {
-  //   const animation = lottie.loadAnimation({
-  //     container: container.current,
-  //     renderer: 'svg', // canvas html
-  //     loop: true,
-  //     autoplay: true,
-  //     path: '/lottie/lips.json',
-  //     assetsPath: '/animation-image/',
-  //   });
-
-  //   return () => animation.destroy();
-  // }, []);
   return (
-    <Box w={{ base: "100%", md: "50%" }} className="order-1 md:order-2">
+    <Box
+      w={{ base: "100%", md: "50%" }}
+      mt={{ base: "5%", sm: "2%" }}
+      className="order-1 md:order-2"
+    >
       <Flex
-        ref={container}
-        pos={'relative'}
-        // w={{ base: "84%" }}
-        w={{ base: "62%" }}
+        pos={"relative"}
+        w={{ base: "56%" }}
         direction={"column"}
         align={"center"}
         mx={"auto"}
         gap={4}
         className="aspect-[0.7656]"
       >
-        {/* <Image
-          src={img}
-          alt="fan banner img"
-          fill
-          className="object-cover"
-        /> */}
-        <BannerCreator />
+        <video
+          preload="auto"
+          playsInline
+          autoPlay
+          loop
+          muted
+          className="w-full rounded-[36px] aspect-[0.524] scale-[2]"
+        >
+          <source src={"/creator/banner/main.webm"} type="video/mp4" />
+        </video>
       </Flex>
     </Box>
   );

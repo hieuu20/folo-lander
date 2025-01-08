@@ -162,6 +162,7 @@ const footerPays = [
 ];
 
 export function Footer() {
+  const currenYear = (new Date()).getFullYear();
   return (
     <footer>
       <Box className="container" py={{ base: 48, lg: 60, xl: 80 }}>
@@ -252,7 +253,7 @@ export function Footer() {
 
           <Flex w={"100%"} justify={"center"}>
             <Text ta={"center"} fz={14} c={"#6b7280"}>
-              © 2024 KNKY® | Social Commerce Ltd. Registered in England and
+              © {currenYear} KNKY® | Social Commerce Ltd. Registered in England and
               Wales | 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ,
               United Kingdom
             </Text>

@@ -34,26 +34,30 @@ export default function SectionButton(props: Props) {
   }
 
   return (
-    <Button
-      bg={"#AC1991"}
-      c={"white"}
-      fw={500}
-      h={40}
-      px={32}
-      className={twMerge(
-        "rounded-lg",
-        !rest.bg || rest.bg === "#AC1991" ? "hover:bg-[#751363]" : "hover:opacity-90",
-        className
-      )}
-      {...rest}
+    <Link
+      href={href ?? "/"}
+      target={href?.includes("http") ? "_blank" : undefined}
+      className={twMerge(rest.disabled ? "pointer-events-none" : "")}
     >
-      {icon && icon}
-      <Link
-        href={href ?? "/"}
-        target={href?.includes("http") ? "_blank" : undefined}
+      <Button
+        bg={"#AC1991"}
+        c={"white"}
+        fw={500}
+        h={40}
+        px={32}
+        className={twMerge(
+          "rounded-lg",
+          !rest.bg || rest.bg === "#AC1991"
+            ? "hover:bg-[#751363]"
+            : "hover:opacity-90",
+          className
+        )}
+        {...rest}
       >
+        {icon && icon}
+
         {title}
-      </Link>
-    </Button>
+      </Button>
+    </Link>
   );
 }

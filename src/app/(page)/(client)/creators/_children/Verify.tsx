@@ -14,7 +14,7 @@ const data = [
     title: "Verified",
     subTitle:
       "We prioritise a safe, secure, and spam-free platform with no bots or ads. All publishing accounts are verified and identifiable, ensuring peace of mind for you, your collaborators, and your fans. ️✅",
-    isShowButton: true,
+    isShowButton: false,
     buttonLabel: "Get Verified",
     buttonLink: "https://knky.co",
   },
@@ -23,7 +23,7 @@ const data = [
     title: "ProCreator",
     subTitle:
       "Unlock exclusive tools, priority features, spending metrics, and advanced insights with KNKY ProCreator. Elevate your content, boost your growth, and stay ahead of the curve. 🚀",
-    isShowButton: true,
+    isShowButton: false,
     buttonLabel: "Discover ProCreator",
     buttonLink: "https://knky.co",
   },

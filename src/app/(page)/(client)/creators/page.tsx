@@ -69,6 +69,7 @@ export default async function Page() {
       isShowButton: true,
       buttonLabel: "Try Beta now",
       buttonLink: "https://knky.co/fresh/",
+      img: '/fan-banner/main.webm'
     },
   ];
 
@@ -96,21 +97,21 @@ export default async function Page() {
       buttonLink: "/fans",
     },
     {
-      title: "Grow your Agency",
+      title: "Pro Creators",
       subTitle:
-        "Take your business to the next level with innovative tools designed for seamless management of employees and creators. Simplify operations and maximise productivity.",
+        "Unlock exclusive tools, priority features, spending metrics, and advanced insights with KNKY ProCreator. Elevate your content, boost your growth, and stay ahead of the curve. 🚀",
       img: "/creator/platform/2.png",
       isShowButton: true,
-      buttonLabel: "Discover",
+      buttonLabel: "Coming soon",
       buttonLink: "https://agency.knky.co/",
     },
     {
-      title: "Business Account",
+      title: "Prime Subscription",
       subTitle:
-        "Maximise your business potential with KNKY. Sell physical and digital products, connect with fans, and collaborate with creators to grow your reach and revenue.",
+        "Get access to every Creator and dive into a world of endless excitement. Whether you're new or experienced, your adventure starts here!",
       img: "/creator/platform/3.png",
       isShowButton: true,
-      buttonLabel: "Discover",
+      buttonLabel: "Coming soon",
       buttonLink: "https://business.knky.co/",
     },
   ] as IUSPManager[];

@@ -6,10 +6,7 @@ import { IUSPManager } from "@/app/api/_entities";
 import bgPc from "@public/fan-banner/bg-pc.png";
 import bgMb from "@public/fan-banner/bg-mb.png";
 import Image from "next/image";
-import BannerText from "./creator-banner/BannerText";
-import BannerImage from "./creator-banner/BannerImage";
-// import dynamic from 'next/dynamic';
-// const BannerImage = dynamic(() => import('./fan-banner/BannerImage'), { ssr: false });
+import { BannerImage, BannerText } from "./creator-banner";
 
 interface Props {
   usps: IUSPManager[];
@@ -20,7 +17,8 @@ export function CreatorBanner({ usps }: Props) {
     <Box
       w={"100%"}
       pos={"relative"}
-      className="aspect-[0.3] sm:aspect-[0.44] md:aspect-[1.2] lg:aspect-[1.28] 2xl:aspect-[1.32]"
+      mah={{ "2xl": 1500 }}
+      className="aspect-[0.3] sm:aspect-[0.46] md:aspect-[1.2] lg:aspect-[1.26] 2xl:aspect-[1.22]"
     >
       <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0}>
         <Image
@@ -38,12 +36,13 @@ export function CreatorBanner({ usps }: Props) {
         />
       </Box>
       <Flex
+        id="Banner"
         direction={{ base: "column", md: "row" }}
-        gap={{ base: 32, lg: 24 }}
+        gap={{ base: 48, sm: 56 }}
         h={"100%"}
-        pos={'relative'}
+        pos={"relative"}
         className="container"
-        pt={{ base: 72, md: 80, lg: 90, '2xl': 100 }}
+        pt={{ base: 72, md: 80, lg: 90, "2xl": 100 }}
       >
         <BannerText usp={usps[0]} />
         <BannerImage />

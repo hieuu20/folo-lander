@@ -10,7 +10,7 @@ interface Props {
   usp: IUSPManager;
 }
 
-export default function BannerText({ usp }: Props) {
+export function BannerText({ usp }: Props) {
   const [scope] = useAnimate();
   const isInView = useInView(scope, { amount: 0.5 });
 
@@ -21,7 +21,7 @@ export default function BannerText({ usp }: Props) {
       w={{ base: "100%", md: "50%" }}
       align={{ base: "center", md: "start" }}
       className="order-2 md:order-1"
-      pt={{ base: 0, md: "5%" }}
+      pt={{ base: 0, md: "10%", lg: '12%', xl: '10%', '2xl': '12%' }}
     >
       <Title
         order={1}

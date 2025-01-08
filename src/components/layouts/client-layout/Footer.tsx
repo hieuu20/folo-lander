@@ -38,7 +38,7 @@ const socials = [
   },
   {
     icon: blueSkyIcon,
-    href: "https://www.bsky.com/@knkyco",
+    href: "https://bsky.app/profile/knkyco.bsky.social",
   },
   {
     icon: TelegramIcon,

@@ -34,7 +34,7 @@ const socials = [
   },
   {
     icon: redditIcon,
-    href: "https://www.reddit.com/@knkyco",
+    href: "https://www.reddit.com/user/letsgetknky/",
   },
   {
     icon: blueSkyIcon,

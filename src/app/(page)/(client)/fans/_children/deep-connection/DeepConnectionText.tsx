@@ -30,7 +30,7 @@ export function DeepConnectionText({ usp }: Props) {
         <SectionTitle c={"#131416"} ta={"center"}>
           <TextAnimation
             text={usp.title}
-            rootProps={{ gap: { base: 6, md: 8, lg: 10, "2xl": 12 } }}
+            rootProps={{ gap: { base: 6, md: 8, lg: 10, "2xl": 12 }, justify: "center" }}
             isInView={isInView}
           />
         </SectionTitle>

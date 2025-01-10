@@ -2,7 +2,6 @@ import { Box } from "@mantine/core";
 import React from "react";
 import {
   Community,
-  CreatorBanner,
   Dive,
   Feature,
   MatchMaker,
@@ -23,6 +22,7 @@ import { connectDB } from "@/app/api/_db";
 import { YourEarn } from "./_children/YourEarn";
 import Verify from "./_children/Verify";
 import { DeepConnection } from "../fans/_children/DeepConnection";
+import { Banner, BannerInfo } from "../_shared/Banner";
 // import { SECTION_TYPE } from "@/utils";
 // import { CompareTableModel, SectionModel, USPManagerModel } from "@/app/api/_entities";
 // import { SECTION_TYPE } from "@/utils/enum";
@@ -62,17 +62,16 @@ export default async function Page() {
 
   // console.log({sections, usps, faqs});
 
-  const bannerUsps = [
-    {
-      title: "There’s nothing else like KNKY.",
-      subTitle:
-        "The game-changer social adult platform you’ve been begging for! Unmatched value and cutting-edge features tailored to you! 🚀",
-      isShowButton: true,
-      buttonLabel: "Try Beta now",
-      buttonLink: "https://knky.co/fresh/",
-      img: "/fan-banner/main.webm",
-    },
-  ];
+  const bannerUsp = {
+    title: "There’s nothing else like KNKY.",
+    subTitle:
+      "The game-changer social adult platform you’ve been begging for! Unmatched value and cutting-edge features tailored to you! 🚀",
+    isShowButton: true,
+    buttonLabel: "Try Beta now",
+    buttonLink: "https://knky.co/fresh/",
+    videoWebm: '/creator/banner/main.webm',
+    videoMp4: '/fan-banner/phone.mp4',
+  } as BannerInfo;
 
   const notifyUsps = [
     {
@@ -119,7 +118,8 @@ export default async function Page() {
 
   return (
     <Box>
-      <CreatorBanner usps={bannerUsps as IUSPManager[]} />
+      <Banner usp={bannerUsp} isCreator={true} />
+
       <SubBanner usps={notifyUsps as IUSPManager[]} />
       {/* <Test /> */}
       <Dive />

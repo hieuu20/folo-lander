@@ -15,6 +15,7 @@ const data = [
     img: "/match-maker/1/img.png",
     bg: "#490089",
     video: "/match-maker/1/video.webm",
+    videoMp4: "/match-maker/1/video.mp4",
   },
   {
     titleImg: imgTitle2,
@@ -23,6 +24,7 @@ const data = [
     img: "/match-maker/2/img.png",
     bg: "#3D0171",
     video: "/match-maker/2/video.webm",
+    videoMp4: "/match-maker/2/video.mp4",
   },
   {
     titleImg: imgTitle3,
@@ -31,6 +33,7 @@ const data = [
     img: "/match-maker/3/img1.png",
     bg: "#280349",
     video: "/match-maker/3/video.webm",
+    videoMp4: "/match-maker/3/video.mp4",
   },
   {
     titleImg: imgTitle4,
@@ -39,6 +42,7 @@ const data = [
     img: "/match-maker/4/img.png",
     bg: "#1A022F",
     video: "/match-maker/4/video.webm",
+    videoMp4: "/match-maker/4/video.mp4",
   },
 ];
 

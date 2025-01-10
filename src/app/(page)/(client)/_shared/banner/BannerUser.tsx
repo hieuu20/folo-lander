@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
+import img from '@public/fan-banner/image_animation/screen_user.png';
 
 export function BannerUser() {
   return (
@@ -33,11 +34,9 @@ export function BannerUser() {
         className="w-full z-10"
       >
         <Image
-          width={100}
-          height={100}
           className="w-full"
-          src="/fan-banner/image_animation/screen_user.webp"
-          alt=""
+          src={img}
+          alt="banner img"
         />
       </motion.div>
 

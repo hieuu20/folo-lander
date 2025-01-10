@@ -1,4 +1,3 @@
-export * from './CreatorBanner';
 export * from './Feature';
 export * from './PrimeSubscription';
 export * from './Community';

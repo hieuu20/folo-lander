@@ -4,6 +4,8 @@ import useDevice from "@/hooks/useDevice";
 import { Box, Flex } from "@mantine/core";
 import React from "react";
 import { BannerInfo } from "../Banner";
+import { BannerCreator } from "./BannerCreator";
+import { BannerUser } from "./BannerUser";
 // import Image from "next/image";
 // import phone from '@public/fan-banner/Phone.png';
 
@@ -12,7 +14,7 @@ interface Props {
   isCreator: boolean;
 }
 
-export function BannerImage({ usp }: Props) {
+export function BannerImage({ usp, isCreator }: Props) {
   const isIphone = useDevice();
   console.log({ isIphone });
 
@@ -50,12 +52,20 @@ export function BannerImage({ usp }: Props) {
   );
 }
 
-const RenderOnIphone = ({ usp, isCreator }: Props) => {
-  if(isCreator){
-    return (
-      <Ban
-    )
-  }
+const RenderOnIphone = ({ isCreator }: Props) => {
+  return (
+    <Flex
+      pos={"relative"}
+      w={{ base: "60%" }}
+      direction={"column"}
+      align={"center"}
+      mx={"auto"}
+      gap={4}
+      className="aspect-[0.7656]"
+    >
+      {isCreator ? <BannerCreator /> : <BannerUser />}
+    </Flex>
+  );
   // return (
   //   <Flex
   //     pos={"relative"}

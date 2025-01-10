@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
+import img from "@public/creator/community_creator/comunity_main.png";
 
 export function BannerCreator() {
   return (
@@ -32,13 +33,7 @@ export function BannerCreator() {
         }}
         className="w-full z-10"
       >
-        <Image
-          className="w-full"
-          width={100}
-          height={100}
-          src="/statics/image_animation/community_creator/comunity_main.webp"
-          alt=""
-        />
+        <Image className="w-full h-auto" src={img} alt="" />
       </motion.div>
 
       <motion.div
@@ -60,7 +55,7 @@ export function BannerCreator() {
           className="w-full"
           width={100}
           height={100}
-          src="/statics/image_animation/shadow_img.png"
+          src="/fan-banner/image_animation/shadow_img.png"
           alt=""
         />
       </motion.div>
@@ -79,7 +74,7 @@ export function BannerCreator() {
           className="w-full"
           width={100}
           height={100}
-          src="/statics/image_animation/community_creator/community_coin.png"
+          src="/creator/community_creator/community_coin.png"
           alt=""
         />
       </motion.div>
@@ -98,7 +93,7 @@ export function BannerCreator() {
           className="w-full"
           width={100}
           height={100}
-          src="/statics/image_animation/community_creator/community_bkn.png"
+          src="/creator/community_creator/community_bkn.png"
           alt=""
         />
       </motion.div>
@@ -116,7 +111,7 @@ export function BannerCreator() {
         <Image
           width={100}
           height={100}
-          src="/statics/image_animation/community_creator/community_coin.png"
+          src="/creator/community_creator/community_coin.png"
           alt=""
         />
       </motion.div>
@@ -135,7 +130,7 @@ export function BannerCreator() {
           className="w-full"
           width={100}
           height={100}
-          src="/statics/image_animation/community_creator/community_ticket.png"
+          src="/creator/community_creator/community_ticket.png"
           alt=""
         />
       </motion.div>
@@ -154,7 +149,7 @@ export function BannerCreator() {
           className="w-full"
           width={100}
           height={100}
-          src="/statics/image_animation/community_creator/community_kCoin.png"
+          src="/creator/community_creator/community_kCoin.png"
           alt=""
         />
       </motion.div>
@@ -173,7 +168,7 @@ export function BannerCreator() {
           className="w-full"
           width={100}
           height={100}
-          src="/statics/image_animation/community_creator/community_chart.png"
+          src="/creator/community_creator/community_chart.png"
           alt=""
         />
       </motion.div>

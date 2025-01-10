@@ -19,7 +19,7 @@ interface Props {
   isCreator?: boolean;
 }
 
-export function Banner({ usp, isCreator }: Props) {
+export function Banner({ usp, isCreator = false }: Props) {
   return (
     <Box
       w={"100%"}

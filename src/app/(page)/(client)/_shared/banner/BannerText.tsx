@@ -8,10 +8,10 @@ import { useAnimate, useInView } from "framer-motion";
 
 interface Props {
   usp: IUSPManager;
-  isCreator?: boolean;
+  isCreator: boolean;
 }
 
-export function BannerText({ usp, isCreator = false }: Props) {
+export function BannerText({ usp, isCreator }: Props) {
   const [scope] = useAnimate();
   const isInView = useInView(scope, { amount: 0.5 });
 

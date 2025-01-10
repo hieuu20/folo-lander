@@ -15,6 +15,7 @@ const data = [
     img: "/creator/match-maker/1/img.png",
     video: "/creator/match-maker/1/video.webm",
     bg: "#490089",
+    videoMp4: "/match-maker/1/video.mp4",
   },
   {
     titleImg: imgTitle2,
@@ -23,6 +24,7 @@ const data = [
     img: "/creator/match-maker/2/img.png",
     video: "/creator/match-maker/2/video.webm",
     bg: "#3D0171",
+    videoMp4: "/creator/match-maker/2/video.mp4",
   },
   {
     titleImg: imgTitle3,
@@ -31,6 +33,7 @@ const data = [
     img: "/creator/match-maker/3/img.png",
     video: "/creator/match-maker/3/video.webm",
     bg: "#280349",
+    videoMp4: "/match-maker/3/video.mp4",
   },
   {
     titleImg: imgTitle4,

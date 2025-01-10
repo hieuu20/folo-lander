@@ -5,6 +5,7 @@ import Image, { StaticImageData } from "next/image";
 import React from "react";
 import { Box, Flex, Text } from "@mantine/core";
 import { twMerge } from "tailwind-merge";
+import { VideoPlayer } from "./VideoPlayer";
 
 export interface MatchMakerItem {
   titleImg: StaticImageData;
@@ -106,7 +107,8 @@ export const MatchMakerComponent = ({ data }: { data: MatchMakerItem[] }) => {
                 w={{ base: "100%", sm: "32%" }}
                 className="aspect-[0.92] rounded-3xl md:rounded-[40px]"
               >
-                <video
+                <VideoPlayer src={o.video} />
+                {/* <video
                   preload="auto"
                   playsInline
                   autoPlay
@@ -114,8 +116,8 @@ export const MatchMakerComponent = ({ data }: { data: MatchMakerItem[] }) => {
                   muted
                   className="w-full h-full"
                 >
-                  <source src={o.video} type="video/mp4" />
-                </video>
+                  <source src={o.video} type="video/webm" />
+                </video> */}
               </Box>
             ) : (
               <Box

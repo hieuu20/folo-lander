@@ -34,30 +34,30 @@ export default function SectionButton(props: Props) {
   }
 
   return (
-    <Link
-      href={href ?? "/"}
-      target={href?.includes("http") ? "_blank" : undefined}
-      className={twMerge(rest.disabled ? "pointer-events-none" : "")}
+    <Button
+      bg={"#AC1991"}
+      c={"white"}
+      fw={500}
+      h={40}
+      px={32}
+      className={twMerge(
+        "rounded-lg [&_.mantine-Button-label]:w-full",
+        !rest.bg || rest.bg === "#AC1991"
+          ? "hover:bg-[#751363]"
+          : "hover:opacity-90",
+        className
+      )}
+      {...rest}
     >
-      <Button
-        bg={"#AC1991"}
-        c={"white"}
-        fw={500}
-        h={40}
-        px={32}
-        className={twMerge(
-          "rounded-lg",
-          !rest.bg || rest.bg === "#AC1991"
-            ? "hover:bg-[#751363]"
-            : "hover:opacity-90",
-          className
-        )}
-        {...rest}
+      <Link
+        href={href ?? "/"}
+        target={href?.includes("http") ? "_blank" : undefined}
+        className={twMerge('w-full h-full flex justify-center items-center',rest.disabled ? "pointer-events-none" : "")}
       >
         {icon && icon}
 
         {title}
-      </Button>
-    </Link>
+      </Link>
+    </Button>
   );
 }

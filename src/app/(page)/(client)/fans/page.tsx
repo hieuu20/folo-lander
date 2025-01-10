@@ -3,7 +3,6 @@ import React from "react";
 import {
   Community,
   DeepConnection,
-  FanBanner,
   Introduction,
   MatchMaker,
   PrimeSubscription,
@@ -14,6 +13,7 @@ import { Platform } from "../_shared/Platform";
 import { Faq } from "../_shared/Faq";
 import { fanConnections, SECTION_TYPE } from "@/utils";
 import { connectDB } from "@/app/api/_db";
+import { Banner, BannerInfo } from "../_shared/Banner";
 // import { SECTION_TYPE } from "@/utils";
 // import { CompareTableModel, SectionModel, USPManagerModel } from "@/app/api/_entities";
 // import { SECTION_TYPE } from "@/utils/enum";
@@ -48,17 +48,16 @@ export default async function Page() {
 
   // console.log({sections, usps, faqs});
 
-  const bannerUsps = [
-    {
-      title: "Step into KNKY!",
-      subTitle:
-        "Your ultimate destination to connect with creators, uncover unique stores, and meet like-minded individuals for truly unforgettable experiences, only on KNKY. 😉",
-      isShowButton: true,
-      buttonLabel: "Try Beta now",
-      buttonLink: "https://knky.co/fresh/",
-      img: '/fan-banner/main.webm'
-    },
-  ];
+  const bannerUsp = {
+    title: "Step into KNKY!",
+    subTitle:
+      "Your ultimate destination to connect with creators, uncover unique stores, and meet like-minded individuals for truly unforgettable experiences, only on KNKY. 😉",
+    isShowButton: true,
+    buttonLabel: "Try Beta now",
+    buttonLink: "https://knky.co/fresh/",
+    videoWebm: '/fan-banner/main.webm',
+    videoMp4: '/fan-banner/phone.mp4',
+  } as BannerInfo;
 
   const notifyUsps = [
     {
@@ -104,7 +103,7 @@ export default async function Page() {
 
   return (
     <Box>
-      <FanBanner usps={bannerUsps as IUSPManager[]} />
+      <Banner usp={bannerUsp} />
       <SubBanner usps={notifyUsps as IUSPManager[]} />
       {/* <Test /> */}
       <Introduction />

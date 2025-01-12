@@ -154,15 +154,15 @@ const footerList = [
 ];
 
 const footerPays = [
-  footerPay1, 
-  footerPay2, 
-  footerPay3, 
-  // footerPay4, 
+  footerPay1,
+  footerPay2,
+  footerPay3,
+  // footerPay4,
   // footerPay5
 ];
 
 export function Footer() {
-  const currenYear = (new Date()).getFullYear();
+  const currenYear = new Date().getFullYear();
   return (
     <footer>
       <Box className="container" py={{ base: 48, lg: 60, xl: 80 }}>
@@ -171,7 +171,7 @@ export function Footer() {
             <Flex
               direction={"column"}
               mb={6}
-              w={{ base: "100%", lg: "34%" }}
+              w={{ base: "100%", lg: "32%" }}
               gap={{ base: 18, lg: 20, xl: 22, "2xl": 24 }}
             >
               <Box
@@ -181,7 +181,12 @@ export function Footer() {
               >
                 <Image src={footerLogo} alt="footer logo" fill />
               </Box>
-              <Flex gap={{ base: 14, "2xl": 16 }}>
+              <Flex
+                w={"100%"}
+                wrap={"wrap"}
+                gap={{ base: 16 }}
+                pr={{ base: 0, lg: 32 }}
+              >
                 {socials.map((s, index) => {
                   return (
                     <Link
@@ -253,8 +258,8 @@ export function Footer() {
 
           <Flex w={"100%"} justify={"center"}>
             <Text ta={"center"} fz={14} c={"#6b7280"}>
-              © {currenYear} KNKY® | Social Commerce Ltd. Registered in England and
-              Wales | 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ,
+              © {currenYear} KNKY® | Social Commerce Ltd. Registered in England
+              and Wales | 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ,
               United Kingdom
             </Text>
           </Flex>

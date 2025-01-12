@@ -5,6 +5,7 @@ import Image, { StaticImageData } from "next/image";
 import React from "react";
 import { Box, Flex, Text } from "@mantine/core";
 import { twMerge } from "tailwind-merge";
+import useDevice from "@/hooks/useDevice";
 
 export interface MatchMakerItem {
   titleImg: StaticImageData;
@@ -16,6 +17,7 @@ export interface MatchMakerItem {
 }
 
 export const MatchMakerComponent = ({ data }: { data: MatchMakerItem[] }) => {
+  const isIphone = useDevice();
   useEffect(() => {
     const sections = document.querySelectorAll(".match-maker-item");
 
@@ -103,22 +105,33 @@ export const MatchMakerComponent = ({ data }: { data: MatchMakerItem[] }) => {
               </Text>
             </Flex>
             {o.video ? (
-              <Box
-                w={{ base: "100%", sm: "32%" }}
-                className="aspect-[0.92]"
-              >
+              <Box w={{ base: "100%", sm: "32%" }} className="aspect-[0.92]">
                 {/* <VideoPlayer src={o.video} /> */}
-                <video
-                  preload="auto"
-                  playsInline
-                  autoPlay
-                  loop
-                  muted
-                  className="w-full h-full rounded-3xl md:rounded-[40px]"
-                >
-                  <source src={o.video} type="video/webm" />
-                  <source src={o.videoMp4} type="video/mp4" />
-                </video>
+                {isIphone && (
+                  <video
+                    preload="auto"
+                    playsInline
+                    autoPlay
+                    loop
+                    muted
+                    className="w-full h-full rounded-3xl md:rounded-[40px]"
+                  >
+                    <source src={o.videoMp4} type="video/mp4" />
+                  </video>
+                )}
+
+                {!isIphone && (
+                  <video
+                    preload="auto"
+                    playsInline
+                    autoPlay
+                    loop
+                    muted
+                    className="w-full h-full rounded-3xl md:rounded-[40px]"
+                  >
+                    <source src={o.video} type="video/webm" />
+                  </video>
+                )}
               </Box>
             ) : (
               <Box

@@ -252,7 +252,7 @@ export function Community({ usp }: Props) {
           >
             <SectionTitle c={"white"} ta={"center"}>
               <TextAnimation
-                text={"🌟 Our Community"}
+                text={usp.title}
                 rootProps={{
                   gap: { base: 6, md: 8, lg: 10, "2xl": 12 },
                   justify: "center",

@@ -19,6 +19,7 @@ export interface IUSPManager {
   readonly isShowButton: boolean;
   readonly buttonLabel: string;
   readonly buttonLink: string;
+  readonly bg: string;
 }
 
 const uspManagerSchema: mongoose.Schema<IUSPManager> =
@@ -39,6 +40,7 @@ const uspManagerSchema: mongoose.Schema<IUSPManager> =
     isShowButton: Boolean,
     buttonLabel: String,
     buttonLink: String,
+    bg: String,
   });
 
 export const USPManagerModel: mongoose.Model<IUSPManager> =

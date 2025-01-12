@@ -46,11 +46,9 @@ const settings = {
 
 interface Props {
   usps: IUSPManager[];
-  title: string;
 }
 
-export function Platform(props: Props) {
-  const { usps, title } = props;
+export function Platform({ usps }: Props) {
   const [scope] = useAnimate();
   const isInView = useInView(scope, { amount: 0.5 });
   const [height, setHeight] = useState(0);
@@ -85,7 +83,7 @@ export function Platform(props: Props) {
         >
           <SectionTitle c={"#131416"}>
             <TextAnimation
-              text={title}
+              text={usps[0].title}
               rootProps={{
                 gap: { base: 6, md: 8, lg: 10, "2xl": 12 },
                 justify: "center",
@@ -99,7 +97,7 @@ export function Platform(props: Props) {
               {...settings}
               className="[&_.slick-slide]:px-2 xl:[&_.slick-slide]:px-3"
             >
-              {usps.map((usp, i) => (
+              {usps.slice(1).map((usp, i) => (
                 <SlideItem
                   key={i}
                   usp={usp as IUSPManager}

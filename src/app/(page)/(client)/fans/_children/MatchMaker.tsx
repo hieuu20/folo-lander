@@ -6,6 +6,7 @@ import imgTitle2 from "@public/match-maker/2/title.png";
 import imgTitle3 from "@public/match-maker/3/title.png";
 import imgTitle4 from "@public/match-maker/4/title.png";
 import { MatchMakerComponent } from "../../_shared/MatchMakerComponent";
+import { IUSPManager } from "@/app/api/_entities/uspManager";
 
 const data = [
   {
@@ -46,6 +47,19 @@ const data = [
   },
 ];
 
-export const MatchMaker = () => {
-  return <MatchMakerComponent data={data} />;
+interface Props {
+  usps: IUSPManager[];
+}
+
+export const MatchMaker = ({ usps }: Props) => {
+  // const data
+  // console.log({usps});
+  return (
+    <MatchMakerComponent
+      data={data.map((o, index) => ({
+        ...o,
+        subTitle: usps[index].subTitle,
+      }))}
+    />
+  );
 };

@@ -3,13 +3,17 @@
 import { Box, Flex, Title } from "@mantine/core";
 import Image from "next/image";
 import React from "react";
-import diveTitle from "@public/creator/dive/title.png";
 import vectorIcon from "@public/creator/dive/vector.svg";
 import ElementAnimation from "@/components/animation/ElementAnimation";
 import { useAnimate, useInView } from "framer-motion";
 import TextAnimation from "@/components/animation/TextAnimation";
+import { IUSPManager } from "@/app/api/_entities";
 
-export function Dive() {
+interface Props {
+  usps: IUSPManager[]
+}
+
+export function Dive({ usps }: Props) {
   const [scope] = useAnimate();
   const isInView = useInView(scope, { amount: 0.5 });
 
@@ -28,7 +32,7 @@ export function Dive() {
           className="relative w-[86%] sm:w-[54%] md:w-[48.8%] aspect-[1.81]"
         >
           <Image
-            src={diveTitle}
+            src={usps[0].img}
             alt="dive title"
             fill
             className="object-cover"
@@ -48,14 +52,9 @@ export function Dive() {
             px={{ base: 0, sm: 40, md: 50, lg: 60, xl: 70, "2xl": 80 }}
             ta={"center"}
           >
-            {/* Dive into the world’s most innovative adult content platform, where
-            creativity meets{" "}
-            <span className="text-[#29A81E] relative inline-block">
-              profitability
-            </span> */}
             <TextAnimation
               isInView={isInView}
-              text="Dive into the world’s most innovative adult content platform, where creativity meets profitability."
+              text={usps[0].title}
               rootProps={{
                 justify: "center",
                 gap: { base: 7, sm: 8, md: 9, lg: 10, xl: 12, "2xl": 14 },
@@ -63,7 +62,7 @@ export function Dive() {
               initDelay={400}
               textColor={{ index: 12, color: "#29A81E" }}
               textIcon={{
-                index: 12,
+                index: usps[0].title.split(' ').length - 1,
                 icon: (
                   <ElementAnimation
                     isInView={isInView}
@@ -93,7 +92,7 @@ export function Dive() {
           >
             <TextAnimation
               isInView={isInView}
-              text="Transparent fixed fees at 5%, with 95% creator pay-outs, less 15% processing fees*."
+              text={usps[0].subTitle}
               rootProps={{
                 justify: "center",
               }}

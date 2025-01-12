@@ -12,10 +12,10 @@ import React from "react";
 
 interface Props {
   title: string;
-  description: string;
+  subTitle: string;
   faqs: IFaq[];
 }
-export function Faq({ title, description, faqs }: Props) {
+export function Faq({ title, subTitle, faqs }: Props) {
   const [scope] = useAnimate();
   const isInView = useInView(scope, { amount: 0.3 });
 
@@ -43,7 +43,7 @@ export function Faq({ title, description, faqs }: Props) {
         </SectionTitle>
         <SectionSubTitle>
           <TextAnimation
-            text={description}
+            text={subTitle}
             initDelay={1000}
             isInView={isInView}
             rootProps={{ justify: 'center'}}

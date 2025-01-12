@@ -20,6 +20,7 @@ interface Props {
 }
 
 export function Banner({ usp, isCreator = false }: Props) {
+  console.log({ usp });
   return (
     <Box
       w={"100%"}

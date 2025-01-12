@@ -13,7 +13,7 @@ interface Props {
   textIcon?: { index: number; icon: ReactNode };
 }
 export default function TextAnimation({
-  text,
+  text='',
   rootProps = {},
   initDelay = 0,
   isInView,

@@ -1,8 +1,8 @@
 "use client";
 
+import { IUSPManager } from "@/app/api/_entities";
 import ElementAnimation from "@/components/animation/ElementAnimation";
 import { useBrowserWidth } from "@/hooks";
-import { Connection } from "@/utils/constants";
 import { Box, Flex, Grid, Text, Title } from "@mantine/core";
 import { useAnimate, useInView } from "framer-motion";
 import Image from "next/image";
@@ -10,7 +10,7 @@ import React, { useMemo } from "react";
 import Slider from "react-slick";
 
 interface Props {
-  connections: Connection[];
+  connections: IUSPManager[];
 }
 
 export function DeepConnectionImage({ connections }: Props) {
@@ -29,11 +29,15 @@ const Pc = ({ connections }: Props) => {
 
   return (
     <Box className="container">
-      <Grid ref={scope} gutter={{ base: 16, md: 24 }} >
+      <Grid ref={scope} gutter={{ base: 16, md: 24 }}>
         {connections.map((o, index) => {
           return (
             <Grid.Col key={index} span={{ base: 12, sm: 6, lg: 4 }}>
-              <ElementAnimation className="w-full" initDelay={index * 200} isInView={isInView} >
+              <ElementAnimation
+                className="w-full"
+                initDelay={index * 200}
+                isInView={isInView}
+              >
                 <Item data={o} />
               </ElementAnimation>
             </Grid.Col>
@@ -102,14 +106,14 @@ const Mobile = ({ connections }: Props) => {
         className="[&_.slick-slide]:px-2 xl:[&_.slick-slide]:px-3"
       >
         {connections.slice(0, 5).map((o, i) => (
-          <SlideItem key={i} data={[o, connections.slice(-4)[i] ?? null]}/>
+          <SlideItem key={i} data={[o, connections.slice(-4)[i] ?? null]} />
         ))}
       </Slider>
     </Flex>
   );
 };
 
-const SlideItem = ({ data }: { data: [Connection, Connection | null] }) => {
+const SlideItem = ({ data }: { data: [IUSPManager, IUSPManager | null] }) => {
   return (
     <Flex w={"100%"} direction={"column"} gap={16}>
       <Item data={data[0]} />
@@ -118,10 +122,8 @@ const SlideItem = ({ data }: { data: [Connection, Connection | null] }) => {
   );
 };
 
-const Item = ({ data }: { data: Connection | null }) => {
-  if(!data) return (
-    <Box w={'100%'}/>
-  );
+const Item = ({ data }: { data: IUSPManager | null }) => {
+  if (!data) return <Box w={"100%"} />;
 
   return (
     <Flex
@@ -157,7 +159,7 @@ const Item = ({ data }: { data: Connection | null }) => {
         lh={1.4}
         mih={{ base: 78, sm: 64, md: 70, xl: 100, "2xl": 100 }}
       >
-        {data.description}
+        {data.subTitle}
       </Text>
     </Flex>
   );

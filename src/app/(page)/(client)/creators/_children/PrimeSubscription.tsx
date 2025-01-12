@@ -3,7 +3,11 @@ import React from "react";
 import { PrimeImage, PrimeText } from "./prime-subscription";
 import { IUSPManager } from "@/app/api/_entities";
 
-export function PrimeSubscription() {
+interface Props {
+  usps: IUSPManager[];
+}
+
+export function PrimeSubscription({ usps }: Props) {
   return (
     <Flex
       id="Prime"
@@ -16,16 +20,7 @@ export function PrimeSubscription() {
     >
       <PrimeImage />
       <PrimeText
-        usp={
-          {
-            title: "Creator Prime Subscription",
-            subTitle:
-              "Unlock the fan experience with KNKY Prime for just $14.99! Discover other creators, explore new trends, find inspiration, or simply enjoy co-creators' content in stunning 4K resolution for endless excitement.",
-            isShowButton: true,
-            buttonLabel: "Buy Creator Prime",
-            buttonLink: "https://knky.co/platform-plans",
-          } as IUSPManager
-        }
+        usp={usps[0]}
       />
     </Flex>
   );

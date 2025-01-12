@@ -8,35 +8,19 @@ import { useAnimate, useInView } from "framer-motion";
 import Image from "next/image";
 import React from "react";
 
-const data = [
-  {
-    img: "/creator/verify/1.png",
-    title: "Verified",
-    subTitle:
-      "We prioritise a safe, secure, and spam-free platform with no bots or ads. All publishing accounts are verified and identifiable, ensuring peace of mind for you, your collaborators, and your fans. ️✅",
-    isShowButton: false,
-    buttonLabel: "Get Verified",
-    buttonLink: "https://knky.co",
-  },
-  {
-    img: "/creator/verify/2.png",
-    title: "ProCreator",
-    subTitle:
-      "Unlock exclusive tools, priority features, spending metrics, and advanced insights with KNKY ProCreator. Elevate your content, boost your growth, and stay ahead of the curve. 🚀",
-    isShowButton: false,
-    buttonLabel: "Discover ProCreator",
-    buttonLink: "https://knky.co",
-  },
-] as IUSPManager[];
+interface Props {
+  usps: IUSPManager[];
+}
 
-export default function Verify() {
+
+export default function Verify({ usps }: Props) {
   const [scope] = useAnimate();
   const isInView = useInView(scope, { amount: 0.4 });
 
   return (
     <Box id="ProCreator" py={{ base: 40, md: 48, lg: 60, xl: 72, "2xl": 80 }} bg={"#F5F5F6"} className="scroll-mt-[64px] md:scroll-mt-[72px]">
       <Grid ref={scope} gutter={{ base: 16, md: 24 }} className="container">
-        {data.map((o, index) => {
+        {usps.map((o, index) => {
           return (
             <Grid.Col key={index} span={{ base: 12, sm: 6 }}>
               <ElementAnimation

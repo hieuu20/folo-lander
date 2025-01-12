@@ -27,6 +27,8 @@ import Verify from "./_children/Verify";
 import { DeepConnection } from "../fans/_children/DeepConnection";
 import { Banner } from "../_shared/Banner";
 
+export const dynamic = "force-dynamic";
+
 export default async function Page() {
   await connectDB();
   const [sectionsResponse, uspsResponse, faqsResponse, earningEstResponse] =

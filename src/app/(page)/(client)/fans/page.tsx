@@ -21,9 +21,8 @@ import { Faq } from "../_shared/Faq";
 import { SECTION_TYPE } from "@/utils";
 import { connectDB } from "@/app/api/_db";
 import { Banner } from "../_shared/Banner";
-// import { SECTION_TYPE } from "@/utils";
-// import { CompareTableModel, SectionModel, USPManagerModel } from "@/app/api/_entities";
-// import { SECTION_TYPE } from "@/utils/enum";
+
+export const dynamic = "force-dynamic";
 
 export default async function Page() {
   await connectDB();

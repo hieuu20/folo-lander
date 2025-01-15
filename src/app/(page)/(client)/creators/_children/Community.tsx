@@ -55,7 +55,7 @@ export function Community({ usp }: Props) {
                 lh={1.32}
               >
                 <TextAnimation
-                  text="Join the KNKY community and reach new fans effortlessly."
+                  text={usp.subTitle}
                   isInView={isInView}
                   initDelay={600}
                   rootProps={{

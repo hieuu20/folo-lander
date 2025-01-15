@@ -18,6 +18,7 @@ export function MainBanner() {
           src={bgPc}
           alt="banner background"
           fill
+          priority
           className="object-cover hidden md:block"
         />
 
@@ -25,6 +26,7 @@ export function MainBanner() {
           src={bgMb}
           alt="banner background"
           fill
+          priority
           className="object-cover md:hidden"
         />
       </Box>

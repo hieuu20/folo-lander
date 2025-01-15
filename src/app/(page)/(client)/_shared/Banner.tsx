@@ -33,6 +33,7 @@ export function Banner({ usp, isCreator = false }: Props) {
           src={bgPc}
           alt="banner background"
           fill
+          priority
           className="object-cover hidden sm:block"
         />
 
@@ -40,6 +41,7 @@ export function Banner({ usp, isCreator = false }: Props) {
           src={bgMb}
           alt="banner background"
           fill
+          priority
           className="object-cover sm:hidden"
         />
       </Box>

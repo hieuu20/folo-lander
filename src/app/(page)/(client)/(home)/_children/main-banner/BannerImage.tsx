@@ -29,7 +29,7 @@ export default function BannerImage() {
         w={"90%"}
         className="aspect-[1.13]"
       >
-        <Image src={manImg} alt="man" fill className="object-cover" />
+        <Image src={manImg} alt="man" priority fill className="object-cover" />
       </Box>
       <motion.div
         animate={{
@@ -145,7 +145,7 @@ export default function BannerImage() {
         w={"68%"}
         className="aspect-square"
       >
-        <Image src={girlImg} alt="girl" fill className="object-cover" />
+        <Image src={girlImg} alt="girl" fill priority className="object-cover" />
       </Box>
     </Box>
   );

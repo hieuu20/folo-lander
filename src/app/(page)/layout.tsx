@@ -23,7 +23,7 @@ export const metadata: Metadata = {
       "Let's get KNKY! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
     images: [
       {
-        url: "https://lander.knky.co/images/main-page-thumb.png",
+        url: process.env.DOMAIN + '/images/thumb.png',
         width: 800,
         height: 500,
         alt: "Let's get KNKY! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",

@@ -3,7 +3,6 @@
 import { Button, ButtonProps } from "@mantine/core";
 import React, { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
-import RegisterButton from "./RegisterButton";
 import Link from "next/link";
 
 type Props = ButtonProps & {
@@ -17,20 +16,6 @@ export default function SectionButton(props: Props) {
 
   if (!show) {
     return null;
-  }
-
-  if (href == "register") {
-    return (
-      <RegisterButton
-        fz={{ base: 16, md: 18 }}
-        fw={500}
-        px={24}
-        h={40}
-        {...rest}
-      >
-        {title}
-      </RegisterButton>
-    );
   }
 
   return (

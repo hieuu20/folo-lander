@@ -8,6 +8,7 @@ import bgMb from "@public/fan-banner/bg-mb.png";
 import Image from "next/image";
 import { BannerText } from "./banner/BannerText";
 import { BannerImage } from "./banner/BannerImage";
+import useDevice from "@/hooks/useDevice";
 
 export interface BannerInfo extends IUSPManager {
     videoMp4: string;
@@ -21,11 +22,13 @@ interface Props {
 
 export function Banner({ usp, isCreator = false }: Props) {
   console.log({ usp });
+  const isIphone = useDevice();
+  
   return (
     <Box
       w={"100%"}
       pos={"relative"}
-      mah={{ "2xl": 1500 }}
+      mah={!isIphone ? { "2xl": 1500 } : {}}
       className="aspect-[0.3] sm:aspect-[0.46] md:aspect-[1.2] lg:aspect-[1.26] 2xl:aspect-[1.22]"
     >
       <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0}>

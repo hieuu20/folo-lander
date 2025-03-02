@@ -11,7 +11,7 @@ import { BannerImage } from "./banner/BannerImage";
 import useDevice from "@/hooks/useDevice";
 
 export interface BannerInfo extends IUSPManager {
-    videoMp4: string;
+    videoMp4?: string;
     videoWebm: string;
 }
 
@@ -21,7 +21,6 @@ interface Props {
 }
 
 export function Banner({ usp, isCreator = false }: Props) {
-  console.log({ usp });
   const isIphone = useDevice();
   
   return (

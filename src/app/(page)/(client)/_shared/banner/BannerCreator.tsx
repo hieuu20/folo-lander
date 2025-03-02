@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
-import img from "@public/creator/community_creator/comunity_main.png";
+import img from "@public/creator/community_creator/comunity_main.webp";
 
 export function BannerCreator() {
   return (

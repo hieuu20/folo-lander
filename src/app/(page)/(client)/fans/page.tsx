@@ -62,7 +62,6 @@ export default async function Page() {
                 usp={{
                   ...currentUsps[0],
                   videoWebm: "/fan-banner/main.webm",
-                  videoMp4: "/fan-banner/phone.mp4",
                 }}
               />
             );

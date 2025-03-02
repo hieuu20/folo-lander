@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
-import img from '@public/fan-banner/image_animation/screen_user.png';
+import img from '@public/fan-banner/image_animation/screen_user.webp';
 
 export function BannerUser() {
   return (

@@ -10,9 +10,10 @@ type Props = ButtonProps & {
   title?: string;
   href?: string;
   icon?: ReactNode;
+  id?: string
 };
 export default function SectionButton(props: Props) {
-  const { show, title, href, icon, className, ...rest } = props;
+  const { show, title, href, icon, className, id, ...rest } = props;
 
   if (!show) {
     return null;
@@ -20,6 +21,7 @@ export default function SectionButton(props: Props) {
 
   return (
     <Button
+      id={id}
       bg={"#AC1991"}
       c={"white"}
       fw={500}

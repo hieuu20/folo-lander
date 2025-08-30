@@ -39,6 +39,11 @@ export const setLocalStorage = (key: string, value: unknown) => {
   }
 };
 
+export const getRandomInt = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+
 export const convertNumberToMonth = (number: number) => {
   switch (number) {
     case 1:

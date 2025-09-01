@@ -36,11 +36,11 @@ const textList = [
 const textList2 = [
     {
         title: "Creator",
-        href: "/"
+        href: "https://knky.co?init=signUpCreator"
     },
     {
         title: "FAN",
-        href: "/fans"
+        href: "https://knky.co?init=signUpUser"
     },
 
 ];

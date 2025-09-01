@@ -348,6 +348,7 @@ const Phase2 = () => {
                 show={true}
                 w={{ base: 216 }}
                 h={{ base: 40 }}
+                href='https://knky.co/fresh'
                 title={"Join KNKY today →"}
                 fz={{ sm: 16 }}
                 fw={600}

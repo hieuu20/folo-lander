@@ -198,7 +198,7 @@ const Top = () => {
                         whileInView={{ y: 0, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{
-                            duration: 0.4,
+                            duration: 0.6,
                             ease: "easeIn"
                         }}
                         className="inline-block"
@@ -233,6 +233,8 @@ const Top = () => {
                                 )}
                             </Box>
 
+
+
                             <Text
                                 id={`growth-subtitle-${index + 1}`}
                                 pos={"absolute"}
@@ -244,7 +246,7 @@ const Top = () => {
                                 lh={1.2}
                                 fw={700}
                                 ta={"center"}
-                                className='uppercase z-10'
+                                className='uppercase z-10 [&_a]:underline'
                             >
                                 {index == 1 && (
                                     <span className='flex flex-col'>
@@ -259,7 +261,13 @@ const Top = () => {
                                     </span>
                                 )}
 
-                                {index !== 1 && o.subTitle}
+                                {index !== 1 && (
+                                    <span
+                                        dangerouslySetInnerHTML={{
+                                            __html: o.subTitle
+                                        }}
+                                    />
+                                )}
                             </Text>
                         </>
                     );

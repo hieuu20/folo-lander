@@ -16,7 +16,7 @@ import { getRandomInt } from '@/utils/helpers';
 const images = [
     "/version-3/banner/circle/1.webp",
     "/version-3/banner/circle/2.webp",
-    "/version-3/banner/circle/3.webp",
+    "/version-3/banner/circle/video/2.mp4",
     "/version-3/banner/circle/4.webp",
     "/version-3/banner/circle/5.webp",
     "/version-3/banner/circle/6.webp",
@@ -26,9 +26,9 @@ const images = [
     "/version-3/banner/circle/10.webp",
     "/version-3/banner/circle/11.webp",
     "/version-3/banner/circle/12.webp",
-    "/version-3/banner/circle/13.webp",
+    "/version-3/banner/circle/video/3.mp4",
     "/version-3/banner/circle/14.webp",
-    "/version-3/banner/circle/15.webp",
+    "/version-3/banner/circle/video/1.mp4",
     "/version-3/banner/circle/16.webp",
 ];
 
@@ -49,9 +49,22 @@ export function BannerBottom() {
             });
 
             tl.fromTo(
+                "#phone",
+                { scale: 2, y: "100%" },
+                { scale: 1, y: 0, duration: 0.4, ease: "easeIn" }
+            );
+
+            tl.fromTo(
                 "#image-circle1",
                 { scale: 0.58, opacity: 0.2, y: 0 },
-                { scale: 1, opacity: 1, y: 0, duration: 0.3, ease: "easeIn" }
+                { scale: 1, opacity: 1, y: 0, duration: 0.4, ease: "easeIn" },
+                "<"
+            );
+
+            tl.fromTo(
+                "#phone-text",
+                { y: 100, opacity: 0, x: "-50%" },
+                { y: 0, opacity: 1, x: "-50%", duration: 0.4, ease: "easeIn" },
             );
 
             tl.fromTo(
@@ -66,8 +79,16 @@ export function BannerBottom() {
                 { y: "-136%", opacity: 0, rotate: 95, duration: 2, ease: "none" },
             );
 
-            tl.to(
+            tl.fromTo(
+                "#circle-background",
+                { autoAlpha: 1 },
+                { autoAlpha: 0, duration: 0.5, ease: "none" },
+                "<"
+            );
+
+            tl.fromTo(
                 "#phone-text",
+                { autoAlpha: 1 },
                 { autoAlpha: 0, duration: 1, ease: "power2.inOut" },
                 "<"
             );
@@ -153,7 +174,7 @@ export function BannerBottom() {
     );
 
     return (
-        <Box pos={"relative"} mt={{ base: "-20%" }} h={10300} className='overflow-hidden'>
+        <Box pos={"relative"} mt={{ base: "-32%" }} h={10300} className='overflow-hidden'>
             <Flex direction={"column"} ref={main} pos={"relative"} align={"center"} className='container-version3'>
                 <motion.div
                     id="phone-bg"
@@ -191,53 +212,57 @@ const Phone = ({ isInView }: { isInView: boolean }) => {
             w={{ base: "70%", md: "27.1%" }}
             className='aspect-[0.65312441358]'
         >
-            <motion.div
-                className='absolute w-full h-full origin-top'
-                initial={{
-                    scale: 2,
-                    top: "30%"
-                }}
-                animate={isInView ? {
-                    scale: 1,
-                    top: "0%"
-                } : {}}
+            <Image src={phone} alt='phone' fill className='object-cover' />
+            <video
+                autoPlay={true}
+                playsInline
+                loop
+                preload="auto"
+                controls={true}
+                muted={true}
+                className={twMerge('absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[62.8%] h-[88%] object-cover rounded-[8%]')}
+            >
+                <source src={"/version-3/banner/phone-video.mp4"} type="video/mp4" />
+            </video>
+            <Flex
+                id="phone-text"
+                pos={"absolute"}
+                bottom={{ base: "-20%" }}
+                left={"50%"}
+                direction={"column"}
+                gap={{ base: 8, md: 10, xl: 12 }}
+                align={"center"}
+            >
+                <Text fz={{ base: 11, sm: 12, md: 14, lg: 16, xl: 18, "2xl": 20 }} lh={1.2} c={"#FFFFFFCC"} className='whitespace-nowrap'>
+                    Content for Public, Pay-to-View, Subscribers Only, Followers,…
+                </Text>
+
+                <Text fz={{ base: 20, sm: 22, md: 26, lg: 28, xl: 30, "2xl": 32 }} fw={500} lh={1.2} c={"white"} className='whitespace-nowrap'>
+                    KNKY adapts to you!
+                </Text>
+            </Flex>
+
+            {/* <motion.div
+                id="phone-text"
+                initial={{ y: 1000, opacity: 0 }}
+                // animate={isInView ? { y: 0, opacity: 1 } : {}}
+                // animate={{ y: 0, opacity: 1 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: false, amount: 0.8 }}
                 transition={{
                     duration: 0.6,
-                    ease: "easeIn",
-                    delay: 0.1
+                    ease: 'easeInOut',
                 }}
+                className='absolute flex flex-col items-center gap-2.5 2xl:gap-3 bottom-[-20%] left-1/2 -translate-x-1/2'
             >
-                <Image src={phone} alt='phone' fill className='object-cover' />
-                <video
-                    autoPlay={true}
-                    playsInline
-                    loop
-                    preload="auto"
-                    controls={true}
-                    muted={false}
-                    className={twMerge('absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[62.8%] h-[88%] object-cover rounded-[8%]')}
-                >
-                    <source src={"/version-3/banner/phone-video.mp4"} type="video/mp4" />
-                </video>
-                <Flex
-                    id="phone-text"
-                    pos={"absolute"}
-                    bottom={{ base: "-20%" }}
-                    left={"50%"}
-                    direction={"column"}
-                    gap={{ base: 8, md: 10, xl: 12 }}
-                    align={"center"}
-                    className='-translate-x-1/2'
-                >
-                    <Text fz={{ base: 11, sm: 12, md: 14, lg: 16, xl: 18, "2xl": 20 }} lh={1.2} c={"#FFFFFFCC"} className='whitespace-nowrap'>
-                        Content for Public, Pay-to-View, Subscribers Only, Followers,…
-                    </Text>
+                <Text fz={{ base: 11, sm: 12, md: 14, lg: 16, xl: 18, "2xl": 20 }} lh={1.2} c={"#FFFFFFCC"} className='whitespace-nowrap'>
+                    Content for Public, Pay-to-View, Subscribers Only, Followers,…
+                </Text>
 
-                    <Text fz={{ base: 20, sm: 22, md: 26, lg: 28, xl: 30, "2xl": 32 }} fw={500} lh={1.2} c={"white"} className='whitespace-nowrap'>
-                        KNKY adapts to you!
-                    </Text>
-                </Flex>
-            </motion.div>
+                <Text fz={{ base: 20, sm: 22, md: 26, lg: 28, xl: 30, "2xl": 32 }} fw={500} lh={1.2} c={"white"} className='whitespace-nowrap'>
+                    KNKY adapts to you!
+                </Text>
+            </motion.div> */}
         </Box>
     );
 };
@@ -275,34 +300,56 @@ const Circle = ({ isInView }: { isInView: boolean }) => {
                     const rotate = i * 22.5;
 
                     return (
-                        <Image
+                        <Box
+                            pos={"absolute"}
                             key={i}
-                            src={src}
-                            alt='circle image'
-                            width={100}
-                            height={100}
-                            className='absolute w-[8.86%] h-auto object-cover'
                             style={{
                                 left: "50%",
                                 top: "50%",
                                 transform: `translate(${x}px, ${y}px) translate(-50%, -50%) rotate(${rotate}deg)`,
                             }}
-                        />
+                            w={"8.86%"}
+                        >
+                            {src.includes("video") ? (
+                                <video
+                                    autoPlay={true}
+                                    playsInline
+                                    loop
+                                    preload="auto"
+                                    controls={false}
+                                    muted={true}
+                                    className={twMerge('w-full aspect-[0.54179566563] rounded-md object-cover')}
+                                >
+                                    <source src={src} type="video/mp4" />
+                                </video>
+                            ) : (
+                                <Image
+                                    key={i}
+                                    src={src}
+                                    alt='circle image'
+                                    width={100}
+                                    height={100}
+                                    className='w-full h-auto object-cover'
+                                />
+
+                            )}
+
+                        </Box>
                     );
                 })}
-                <Box
-                    pos={"absolute"}
-                    bottom={0}
-                    left={"50%"}
-                    w={"150%"}
-                    h={"100%"}
-                    style={{
-                        background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)"
-                    }}
-                    className='-translate-x-1/2'
-                />
             </motion.div>
-
+            <Box
+                id='circle-background'
+                pos={"absolute"}
+                bottom={0}
+                left={"50%"}
+                w={"150%"}
+                h={"100%"}
+                style={{
+                    background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)"
+                }}
+                className='-translate-x-1/2'
+            />
         </Box>
     );
 };
@@ -438,7 +485,7 @@ const Phase2 = () => {
                 pos={"absolute"}
                 bottom={0}
                 left={"50%"}
-                className='-translate-x-1/2'
+                className='-translate-x-1/2 z-10'
                 show={true}
                 w={{ base: 216 }}
                 h={{ base: 40 }}

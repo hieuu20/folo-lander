@@ -48,8 +48,8 @@ export function Growth() {
                         "<"
                     ).fromTo(
                         `#growth-subtitle-${index + 1}`,
-                        { y: "200%", autoAlpha: 0 },
-                        { y: 0, autoAlpha: 1, duration: 1, delay: 0.2 },
+                        { y: "200%", autoAlpha: 0, x: "-50%" },
+                        { y: 0, autoAlpha: 1, x: "-50%", duration: 1, delay: 0.2 },
                         "<+=0.1"
                     );
                 }
@@ -61,8 +61,8 @@ export function Growth() {
                         { y: "-100%", autoAlpha: 0, duration: 1 },
                     ).fromTo(
                         `#growth-subtitle-${index + 1}`,
-                        { y: 0, autoAlpha: 1 },
-                        { y: "-100%", autoAlpha: 0, duration: 1 },
+                        { y: 0, autoAlpha: 1, x: "-50%" },
+                        { y: 0, autoAlpha: 0, x: "-50%", duration: 1 },
                         "<"
                     );
                 } else {
@@ -108,29 +108,7 @@ export function Growth() {
                 { autoAlpha: 0, duration: 0 },
                 "<+=1.6"
             );
-
-            // tl.fromTo(
-            //     "#header-logo",
-            //     { opacity: 0, duration: 0 },
-            //     { opacity: 1, duration: 0 },
-            //     "<"
-            // );
-
-            // tl.fromTo(
-            //     "#header-logo-black",
-            //     { opacity: 0, rotate: 15, duration: 0 },
-            //     "<"
-            // );
-
-            // tl.to(
-            //     `#idols-slide`,
-            //     { zIndex: 11, duration: 0 },
-            //     "<+=1.36"
-            // );
         },
-        // {
-        //     scope: main,
-        // }
     );
 
     return (
@@ -209,20 +187,19 @@ const Top = () => {
                     top={"20%"}
                     pos={"absolute"}
                     order={2}
-                    lh={0.8}
+                    lh={1.2}
                     fz={{ base: 40, sm: 45, md: 52, lg: 56, xl: 60, "2xl": 64 }}
                     c={"#131416"}
                     fw={900}
                     ta={"center"}
-                    className='overflow-hidden'
                 >
                     <motion.span
-                        initial={{ y: "66%", rotateX: -70 }}
-                        whileInView={{ y: 0, rotateX: 0 }}
+                        initial={{ y: "120%", opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{
                             duration: 0.4,
-                            ease: "linear"
+                            ease: "easeIn"
                         }}
                         className="inline-block"
                     >
@@ -267,7 +244,7 @@ const Top = () => {
                                 lh={1.2}
                                 fw={700}
                                 ta={"center"}
-                                className='-translate-x-1/2 uppercase z-10'
+                                className='uppercase z-10'
                             >
                                 {index == 1 && (
                                     <span className='flex flex-col'>

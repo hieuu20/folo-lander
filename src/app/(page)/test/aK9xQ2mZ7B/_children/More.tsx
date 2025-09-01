@@ -2,8 +2,8 @@ import { Box, Flex, Text } from '@mantine/core';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useRef } from 'react';
-import img from "@public/version-3/more/img.webp";
 import { motion } from 'framer-motion';
+import goldIcon from "@public/version-3/more/gold-icon.svg";
 
 
 const textList = [
@@ -84,17 +84,21 @@ export function More() {
                                         >
                                             <Link href={o.href} target='_blank' className='relative group inline-flex items-center gap-2 '>
                                                 <motion.span
-                                                    initial={{ y: "65%", rotateX: -70 }}
-                                                    whileInView={{ y: 0, rotateX: 0 }}
+                                                    initial={{ y: "150%", opacity: 0 }}
+                                                    whileInView={{ y: 0, opacity: 1 }}
                                                     viewport={{ once: true }}
                                                     transition={{
                                                         duration: 0.4,
-                                                        ease: "linear"
+                                                        ease: "easeIn",
+                                                        delay: index * 0.1
                                                     }}
-                                                    className="relative "
+                                                    className="inline-block"
                                                 >
                                                     {o.title} →
                                                 </motion.span>
+                                                {index == 4 && (
+                                                    <Image src={goldIcon} alt='gold icon' className='w-3 md:w-4 lg:w-5 2xl:w-6 h-auto absolute top-[-24%] left-[78%]' />
+                                                )}
                                                 <span className="absolute z-10 left-0 -bottom-1 h-[2px] w-0 bg-black transition-all duration-300 group-hover:w-full"></span>
                                             </Link>
                                         </Text>
@@ -111,9 +115,20 @@ export function More() {
                                 duration: 1,
                                 ease: 'easeInOut',
                             }}
-                            className='relative w-1/2 md:w-1/5'
+                            className='relative w-1/2 md:w-1/5 aspect-[0.82783018867]'
                         >
-                            <Image src={img} alt='more img' className='w-full h-auto' />
+                            <video
+                                autoPlay={true}
+                                playsInline
+                                loop
+                                preload="auto"
+                                controls={false}
+                                muted={true}
+                                className="w-full h-full object-cover rounded-2xl"
+                            >
+                                <source src={"/version-3/more/video.mp4"} type="video/mp4" />
+                            </video>
+
                         </motion.div>
                     </Flex>
 
@@ -142,16 +157,17 @@ export function More() {
                                             c={"#131416"}
                                             className='uppercase'
                                         >
-                                            <Link href={o.href} target='_blank' className='relative group inline-flex items-center gap-2 '>
+                                            <Link href={o.href} target='_blank' className='relative group'>
                                                 <motion.span
-                                                    initial={{ y: "65%", rotateX: -70 }}
-                                                    whileInView={{ y: 0, rotateX: 0 }}
+                                                    initial={{ y: "150%", opacity: 0 }}
+                                                    whileInView={{ y: 0, opacity: 1 }}
                                                     viewport={{ once: true }}
                                                     transition={{
                                                         duration: 0.4,
-                                                        ease: "linear"
+                                                        ease: "easeIn",
+                                                        delay: index * 0.1
                                                     }}
-                                                    className="relative "
+                                                    className="inline-block"
                                                 >
                                                     {o.title} →
                                                 </motion.span>
@@ -180,13 +196,23 @@ export function More() {
                             className='uppercase'
                         >
                             <Link href={"https://help.knky.co/en/"} target='_blank' className='relative group inline-flex items-center gap-2 '>
-                                <span className="relative">
-                                    HELP CENTER →
-                                    <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-[#AC1991] transition-all duration-300 group-hover:w-full"></span>
-                                </span>
+                                <motion.span
+                                    initial={{ y: "150%", opacity: 0 }}
+                                    whileInView={{ y: 0, opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{
+                                        duration: 0.4,
+                                        ease: "easeIn"
+                                    }}
+                                    className="inline-block"
+                                >
+                                    <span className="relative">
+                                        HELP CENTER →
+                                        <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-[#AC1991] transition-all duration-300 group-hover:w-full"></span>
+                                    </span>
+                                </motion.span>
                             </Link>
                         </Text>
-
                     </Flex>
                 </Box>
             </Box>

@@ -22,7 +22,7 @@ export function BannerPc() {
                 trigger: '.box-c',
                 pin: true,
                 start: 'center center',
-                end: '+=500',
+                end: '+=700',
                 // markers: true,
                 scrub: true,
                 onLeave: () => gsap.to(".box-c", { autoAlpha: 0 }),

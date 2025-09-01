@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
-import logo from "@public/version-3/icons/logo.webp";
+import logo from "@public/version-3/header/logo.webp";
 import logoBlack from "@public/version-3/icons/logo-black.webp";
 import SectionButton from '@/components/buttons/SectionButton';
 
@@ -30,30 +30,30 @@ export function Header() {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 300);
 
-            
-            
-
             const sections = ["unlimited", "growth", "more"];
             let logoType: "white" | "black" = "white";
 
             for (const sec of sections) {
-                
-
                 const rect = document.getElementById(sec)?.getBoundingClientRect();
                 if (rect) {
-                    const inViewport = rect.top < 0 && rect.bottom > 0;
+                    const inViewport = rect.top < 1 && rect.bottom > 0;
 
-                    if(inViewport && sec == "growth"){
+                    if (sec == "growth") {
+                        console.log({ top: rect.top, bottom: rect.bottom });
+                    }
+
+                    if (inViewport && sec == "growth") {
+                        console.log("growth");
                         const growthTopElement = document.getElementById("growth-top");
                         if (growthTopElement) {
                             logoType = Number(growthTopElement.style.opacity) == 0 ? "white" : "black";
                         }
-                        break; 
+                        break;
                     }
-                    
+
                     if (inViewport) {
                         logoType = "black";
-                        break; 
+                        break;
                     }
                 }
             }
@@ -62,7 +62,7 @@ export function Header() {
             const lastSection = document.getElementById("more");
             if (lastSection) {
                 const rect = lastSection.getBoundingClientRect();
-                const inViewport = rect.bottom > 80;
+                const inViewport = rect.bottom > 300;
 
                 // console.log({ bottom: rect.bottom, inViewport });
 

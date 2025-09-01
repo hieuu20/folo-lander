@@ -3,7 +3,7 @@
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box } from "@mantine/core";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { BannerPc, Growth, More } from "./_children";
 import { Unlimited } from "./_children/Unlimited";
 import { useGSAP } from "@gsap/react";
@@ -15,14 +15,18 @@ import { BannerMobile } from "./_children/mobile/BannerMoblie";
 import { UnlimitedMobile } from "./_children/mobile/UnlimitedMobile";
 import { GrowthMobile } from "./_children/mobile/GrowthMobile";
 import { MoreMobile } from "./_children/mobile/MoreMobile";
+import { usePathname } from "next/navigation";
 
 
 export default function Home() {
   const { isMb } = useBrowserWidth();
   const main = useRef<any>();
+  const smoother = useRef<ScrollSmoother>();
+  const pathname = usePathname();
+
   useGSAP(
     () => {
-      ScrollSmoother.create({
+      smoother.current = ScrollSmoother.create({
         smooth: 1,
         effects: true,
       });
@@ -31,6 +35,10 @@ export default function Home() {
       scope: main,
     }
   );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <Box id="smooth-wrapper" ref={main}>

@@ -97,17 +97,16 @@ export function Unlimited() {
                         fz={{ base: 40, sm: 45, md: 52, lg: 56, xl: 60, "2xl": 64 }}
                         c={"#131416"}
                         fw={900}
-                        lh={0.8}
+                        lh={1.2}
                         ta={"center"}
-                        className='overflow-hidden'
                     >
                         <motion.span
-                            initial={{ y: "50%", rotateX: -40, scale: 0.8 }}
-                            whileInView={{ y: 0, rotateX: 0, scale: 1 }}
+                            initial={{ y: "150%", opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{
-                                duration: 0.5,
-                                ease: "linear"
+                                duration: 0.4,
+                                ease: "easeIn"
                             }}
                             className="inline-block"
                         >

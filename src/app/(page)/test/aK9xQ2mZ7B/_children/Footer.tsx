@@ -321,7 +321,14 @@ export function Footer() {
                         align={{ base: "center", md: "flex-end" }}
                         gap={{ base: 14 }}
                     >
-                        <Image src={xmaIcon} alt="xma icon" className="w-[114px] md:w-[118px] 2xl:w-[122px] h-auto" />
+                        <Link
+                            href={"https://www.xbiz.com/news/291189/2025-xma-europa-awards-nominees-announced"}
+                            target="_blank"
+                            rel="nofollow"
+                            className="w-[114px] md:w-[118px] 2xl:w-[122px]"
+                        >
+                            <Image src={xmaIcon} alt="xma icon" className="w-full h-auto" />
+                        </Link>
                         <Flex direction={"column"} gap={{ base: 4, md: 6, xl: 8 }}>
                             <Text
                                 fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }}

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Flex, Grid, Text, Title } from '@mantine/core';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -6,9 +7,6 @@ import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 import Slider from 'react-slick';
 
-// import img11 from "@public/version-3/growth/idols/11.webp";
-// import img12 from "@public/version-3/growth/idols/12.webp";
-// import img13 from "@public/version-3/growth/idols/13.webp";
 import clickIcon from "@public/version-3/growth/idols/click.svg";
 import clickActiveIcon from "@public/version-3/growth/idols/click-active.svg";
 
@@ -23,8 +21,7 @@ import { motion } from 'framer-motion';
 import { growthList, growtTexthList } from '@/utils/growth';
 
 
-
-export function Growth() {
+export function GrowthMobile() {
     const main = useRef(null);
     useGSAP(
         () => {
@@ -33,7 +30,7 @@ export function Growth() {
                     trigger: main.current,
                     pin: true,
                     start: 'top top',
-                    end: '+=4000',
+                    end: '+=2000',
                     markers: false,
                     scrub: true,
                 },
@@ -84,7 +81,7 @@ export function Growth() {
             tl.fromTo(
                 "#growth-overlay",
                 { scale: 1 },
-                { scale: 4, duration: 2 },
+                { scale: 8, duration: 1.5 },
                 "<"
             );
 
@@ -105,42 +102,23 @@ export function Growth() {
             tl.fromTo(
                 "#growth-top",
                 { autoAlpha: 1 },
-                { autoAlpha: 0, duration: 0 },
-                "<+=1.6"
+                { autoAlpha: 0, duration: 1 },
+                "<+=1.5"
             );
-
-            // tl.fromTo(
-            //     "#header-logo",
-            //     { opacity: 0, duration: 0 },
-            //     { opacity: 1, duration: 0 },
-            //     "<"
-            // );
-
-            // tl.fromTo(
-            //     "#header-logo-black",
-            //     { opacity: 0, rotate: 15, duration: 0 },
-            //     "<"
-            // );
-
-            // tl.to(
-            //     `#idols-slide`,
-            //     { zIndex: 11, duration: 0 },
-            //     "<+=1.36"
-            // );
         },
-        // {
-        //     scope: main,
-        // }
+        {
+            scope: main,
+        }
     );
 
     return (
-        <Box h={4855} className='overflow-hidden'>
+        <Box h={3200} className='overflow-hidden'>
             <Box
                 id='growth'
                 w={{ base: "100%" }}
                 pos={"relative"}
                 ref={main}
-                className='md:aspect-[1.77777777778]'
+                className='aspect-[0.46182266009]'
             >
                 <Top />
                 <Bottom />
@@ -154,9 +132,10 @@ const Top = () => {
     return (
         <Box
             pos={"relative"}
-            w={"100%"} h={"100%"}
+            w={"100%"}
+            h={"100%"}
             className='z-10'
-            id='growth-top'
+            id="growth-top"
         >
             <Box
                 id='growth-overlay-bg'
@@ -177,11 +156,11 @@ const Top = () => {
                     <mask id="capsuleMask">
                         <rect width="100%" height="100%" fill="white" />
                         <rect
-                            x="34%"
-                            y="35%"
-                            width="32.8%"
-                            height="28.6%"
-                            rx="80"
+                            x="8%"
+                            y="36%"
+                            width="83%"
+                            height="18%"
+                            rx="200"
                             fill="black"
                         />
                     </mask>
@@ -209,7 +188,7 @@ const Top = () => {
                     top={"20%"}
                     pos={"absolute"}
                     order={2}
-                    lh={0.8}
+                    lh={1.2}
                     fz={{ base: 40, sm: 45, md: 52, lg: 56, xl: 60, "2xl": 64 }}
                     c={"#131416"}
                     fw={900}
@@ -235,7 +214,7 @@ const Top = () => {
                         <>
                             <Box
                                 pos={"absolute"}
-                                top={{ base: index == growtTexthList.length - 1 ? "42.5%" : "41%" }}
+                                top={"40.5%"}
                                 left={"50%"}
                                 className='-translate-x-1/2 uppercase'
                             >
@@ -259,9 +238,9 @@ const Top = () => {
                             <Text
                                 id={`growth-subtitle-${index + 1}`}
                                 pos={"absolute"}
-                                w={{ base: index == 2 ? "34%" : "42%" }}
+                                w={{ base: "88%" }}
                                 left={"50%"}
-                                top={{ base: "71%" }}
+                                top={{ base: "60%" }}
                                 fz={{ base: 24, sm: 28, md: 30, lg: 32, xl: 36, "2xl": 40 }}
                                 c={"black"}
                                 lh={1.2}
@@ -287,8 +266,6 @@ const Top = () => {
                         </>
                     );
                 })}
-
-
             </Box>
         </Box>
     );
@@ -312,14 +289,14 @@ const settings = {
             breakpoint: 1240,
             settings: {
                 slidesToShow: 3,
-                slidesToScroll: 3,
+                slidesToScroll: 1,
             },
         },
         {
             breakpoint: 768,
             settings: {
                 slidesToShow: 2,
-                slidesToScroll: 2,
+                slidesToScroll: 1,
             },
         },
     ],
@@ -344,19 +321,18 @@ const Bottom = () => {
             id='idols-slide'
             pos={"absolute"}
             w={"100%"}
-            h={"100%"}
+            h={"fit-content"}
             top={0}
             left={0}
             bg={"#160328"}
             py={{ base: 80, md: 90, xl: 100, "2xl": 110 }}
-        // className='z-20'
-        // className='hidden'
         >
             <Image src={bg1} alt='bg1' className='w-[25.8%] h-auto absolute bottom-0 left-0' />
             <Image src={bg2} alt='bg-2' className='w-[25.8%] h-auto absolute top-0 right-0' />
             <Box className='container-version3'>
                 <Title
-                    w={{ base: "100%" }}
+                    w={{ base: "94%" }}
+                    mx={"auto"}
                     px={16}
                     order={2}
                     fz={{ base: 40, sm: 45, md: 52, lg: 56, xl: 60, "2xl": 64 }}
@@ -371,40 +347,46 @@ const Bottom = () => {
 
                 <Grid gutter={{ base: 20, "2xl": 24 }}>
                     <Grid.Col span={{ base: 12, md: 9, xl: 9.6 }}>
-                        <Slider {...settings} className="[&_.slick-slide]:px-2.5 2xl:[&_.slick-slide]:px-3 [&_.slick-list]:-mx-2.5 2xl:[&_.slick-list]:-mx-3">
-                            {growthList.map((o, i) => {
+                        <Flex direction={"column"} gap={{ base: 24 }}>
+                            {splitArray(growthList).map((x, index) => {
                                 return (
-                                    <Flex key={i} direction={"column"} w={"100%"} align={"center"} c={"white"}>
-                                        <Box pos={"relative"} mb={{ base: 12, sm: 16, md: 20, "2xl": 24 }} w={"100%"} className='idol-image aspect-[0.57712305026]'>
-                                            <Image src={o.img} alt={o.name} fill className='object-cover' />
-                                            <Link
-                                                target='_blank'
-                                                href={`https://knky.co/creator/${o.userName}`}
-                                                className='cursor-pointer absolute bottom-1 md:bottom-1.5 2xl:bottom-2 right-1 md:right-1.5 2xl:right-2 aspect-square w-5 sm:w-6 md:w-7 lg:w-8 xl:w-9 2xl:w-10 group'
-                                            >
-                                                <Image src={clickIcon} alt='click icon' fill className='object-cover group-hover:hidden' />
-                                                <Image src={clickActiveIcon} alt='click icon' fill className='object-cover hidden group-hover:block' />
-                                            </Link>
-                                        </Box>
+                                    <Slider key={index} {...settings} className="[&_.slick-slide]:px-2.5 2xl:[&_.slick-slide]:px-3 [&_.slick-list]:-mx-2.5 2xl:[&_.slick-list]:-mx-3">
+                                        {x.map((o, i) => {
+                                            return (
+                                                <Flex key={i} direction={"column"} w={"100%"} align={"center"} c={"white"}>
+                                                    <Box pos={"relative"} mb={{ base: 12, sm: 16, md: 20, "2xl": 24 }} w={"100%"} className='idol-image aspect-[0.57712305026]'>
+                                                        <Image src={o.img} alt={o.name} fill className='object-cover' />
+                                                        <Link
+                                                            target='_blank'
+                                                            href={`https://knky.co/creator/${o.userName}`}
+                                                            className='cursor-pointer absolute bottom-1 md:bottom-1.5 2xl:bottom-2 right-1 md:right-1.5 2xl:right-2 aspect-square w-5 sm:w-6 md:w-7 lg:w-8 xl:w-9 2xl:w-10 group'
+                                                        >
+                                                            <Image src={clickIcon} alt='click icon' fill className='object-cover group-hover:hidden' />
+                                                            <Image src={clickActiveIcon} alt='click icon' fill className='object-cover hidden group-hover:block' />
+                                                        </Link>
+                                                    </Box>
 
-                                        <Text
-                                            ta={"center"}
-                                            fz={{ base: 16, sm: 18, md: 23, lg: 25, xl: 28, "2xl": 32 }}
-                                            mb={{ base: 4, md: 6, xl: 8 }}
-                                            fw={700}
-                                            className='uppercase'
-                                            lh={1.2}
-                                        >
-                                            {o.name}
-                                        </Text>
+                                                    <Text
+                                                        ta={"center"}
+                                                        fz={{ base: 16, sm: 18, md: 23, lg: 25, xl: 28, "2xl": 32 }}
+                                                        mb={{ base: 4, md: 6, xl: 8 }}
+                                                        fw={700}
+                                                        className='uppercase'
+                                                        lh={1.2}
+                                                    >
+                                                        {o.name}
+                                                    </Text>
 
-                                        <Text lh={1.2} ta={"center"} fz={{ base: 10, sm: 12, md: 14, lg: 16, xl: 18, "2xl": 20 }} c={"#FFFFFFCC"} fw={500}>
-                                            @{o.userName}
-                                        </Text>
-                                    </Flex>
+                                                    <Text lh={1.2} ta={"center"} fz={{ base: 10, sm: 12, md: 14, lg: 16, xl: 18, "2xl": 20 }} c={"#FFFFFFCC"} fw={500}>
+                                                        @{o.userName}
+                                                    </Text>
+                                                </Flex>
+                                            );
+                                        })}
+                                    </Slider>
                                 );
                             })}
-                        </Slider>
+                        </Flex>
                     </Grid.Col>
 
                     <Grid.Col
@@ -449,3 +431,10 @@ const Bottom = () => {
         </Box>
     );
 };
+
+function splitArray(arr: any[]) {
+    const mid = Math.floor(arr.length / 2);
+    const first = arr.slice(0, mid);
+    const second = arr.slice(mid);
+    return [first, second];
+}

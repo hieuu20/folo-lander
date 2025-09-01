@@ -10,7 +10,6 @@ import {
   Select,
   SelectProps,
 } from "@mantine/core";
-import { dialCodes } from "@/utils";
 import { uniq } from "lodash";
 
 interface Props extends FieldProps {
@@ -74,7 +73,7 @@ export function PhoneNumberField(props: Props) {
         {...rootProps}
       >
         <Select
-          data={uniq(dialCodes.map((o) => o.phone))}
+          data={uniq([])}
           disabled={disabled}
           value={values[areaName]}
           classNames={{

@@ -6,7 +6,22 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import logo from "@public/version-3/icons/logo.webp";
+import logoBlack from "@public/version-3/icons/logo-black.webp";
 import SectionButton from '@/components/buttons/SectionButton';
+
+export const setHeaderLogoColor = (type: "white" | "black") => {
+    const headerWhite = document.getElementById("header-logo");
+    const headerBlack = document.getElementById("header-logo-black");
+    if (headerWhite && headerBlack) {
+        if (type == "white") {
+            headerWhite.style.opacity = "1";
+            headerBlack.style.opacity = "0";
+        } else {
+            headerWhite.style.opacity = "0";
+            headerBlack.style.opacity = "1";
+        }
+    }
+};
 
 export function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -14,6 +29,45 @@ export function Header() {
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 300);
+
+            
+            
+
+            const sections = ["unlimited", "growth", "more"];
+            let logoType: "white" | "black" = "white";
+
+            for (const sec of sections) {
+                
+
+                const rect = document.getElementById(sec)?.getBoundingClientRect();
+                if (rect) {
+                    const inViewport = rect.top < 0 && rect.bottom > 0;
+
+                    if(inViewport && sec == "growth"){
+                        const growthTopElement = document.getElementById("growth-top");
+                        if (growthTopElement) {
+                            logoType = Number(growthTopElement.style.opacity) == 0 ? "white" : "black";
+                        }
+                        break; 
+                    }
+                    
+                    if (inViewport) {
+                        logoType = "black";
+                        break; 
+                    }
+                }
+            }
+            setHeaderLogoColor(logoType);
+
+            const lastSection = document.getElementById("more");
+            if (lastSection) {
+                const rect = lastSection.getBoundingClientRect();
+                const inViewport = rect.bottom > 80;
+
+                // console.log({ bottom: rect.bottom, inViewport });
+
+                setIsScrolled(inViewport);
+            }
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -35,9 +89,10 @@ export function Header() {
             >
                 <Link
                     href={"/"}
-                    className="relative w-[140px] aspect-[4.5]"
+                    className="relative w-[145px] aspect-[4.5625]"
                 >
-                    <Image src={logo} alt="header logo" fill />
+                    <Image src={logo} alt="header logo" id='header-logo' fill className='object-cover opacity1 transition-all duration-150' />
+                    <Image src={logoBlack} alt="header logo black" id='header-logo-black' fill className='object-cover opacity0 transition-all duration-150' />
                 </Link>
                 <SectionButton
                     title="Join platform →"

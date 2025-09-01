@@ -99,3 +99,11 @@ h1, h2, h3, h4, h5, h6 {
     font-family: '__Inter_120f1d', '__Inter_Fallback_120f1d';
   } */
 }
+
+.opacity0{
+  opacity: 0;
+}
+
+.opacity1{
+  opacity: 1;
+}

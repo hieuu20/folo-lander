@@ -12,6 +12,8 @@ import { Box, Flex, Grid, Text } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
 
+import smallLogo from "@public/version-3/footer/logo.svg";
+
 import footerPay1 from "@public/version-3/footer/payments/1.png";
 import footerPay2 from "@public/version-3/footer/payments/2.png";
 import footerPay3 from "@public/version-3/footer/payments/3.png";
@@ -145,7 +147,7 @@ const footerPays = [
 export function Footer() {
     const currenYear = new Date().getFullYear();
     return (
-        <footer className="bg-[#160328]">
+        <footer className="bg-[#160328] overflow-hidden">
             <Box
                 className="container-version3"
                 pt={{ base: 48, md: 56, lg: 64, xl: 72, "2xl": 80 }}
@@ -265,7 +267,7 @@ export function Footer() {
                                                     href={child.href}
                                                     target="blank"
                                                     rel="nofollow"
-                                                    className="text-white text-base md:text-lg xl:text-xl font-medium leading-[1.4] hover:opacity-80"
+                                                    className="group relative w-fit text-white text-base md:text-lg xl:text-xl font-medium leading-[1.4]"
                                                     onClick={
                                                         child.href.includes("mailto")
                                                             ? () => {
@@ -275,6 +277,7 @@ export function Footer() {
                                                     }
                                                 >
                                                     {child.title}
+                                                    <span className="absolute z-10 left-0 -bottom-0.5 h-[1.5px] w-0 bg-[#ccc] transition-all duration-300 group-hover:w-full"></span>
                                                 </a>
                                             );
                                         })}
@@ -320,8 +323,33 @@ export function Footer() {
                     >
                         <Image src={xmaIcon} alt="xma icon" className="w-[114px] md:w-[118px] 2xl:w-[122px] h-auto" />
                         <Flex direction={"column"} gap={{ base: 4, md: 6, xl: 8 }}>
-                            <Text fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }} ta={"center"} fw={500} c={"#FFFFFF99"}>
-                                All rights reserved. © {currenYear} KNKY® and ♾️® logos are registered trademarks.
+                            <Text
+                                fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }}
+                                ta={"center"}
+                                fw={500}
+                                lh={1.4}
+                                c={"#FFFFFF99"}
+                                className="gap-1.5 hidden md:flex items-center"
+                            >
+                                All rights reserved. © {currenYear} KNKY® and
+                                <Image src={smallLogo} alt="smallLogo" className="h-4 md:h-5 lg:h-6 2xl:h-7 w-auto" />
+                                logos are registered trademarks.
+                            </Text>
+
+                            <Text
+                                fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }}
+                                ta={"center"}
+                                fw={500}
+                                lh={1.4}
+                                c={"#FFFFFF99"}
+                                className="flex flex-col items-center md:hidden"
+                            >
+                                All rights reserved. © {currenYear} KNKY® <br />
+                                <span className="flex gap-1 items-center">
+                                    and <Image src={smallLogo} alt="smallLogo" className="h-4 md:h-5 lg:h-6 2xl:h-7 w-auto" />
+                                    logos are registered trademarks.
+                                </span>
+
                             </Text>
 
                             <Text

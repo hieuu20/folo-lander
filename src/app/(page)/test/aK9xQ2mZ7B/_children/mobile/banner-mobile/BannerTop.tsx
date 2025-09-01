@@ -13,11 +13,12 @@ export const BannerTop = () => {
     return (
         <SimpleGrid
             pos={"relative"}
-            h={{ base: "fit-content", md: "100vh" }}
+            h={{ base: ""}}
+            w={"100%"}
             cols={{ base: 1, md: 2 }}
             spacing={0}
             verticalSpacing={0}
-            className='overflow-hidden z-10'
+            className='overflow-hidden z-10 aspect-[0.35953978907]'
         >
             <Animation disable={true}>
                 <Flex
@@ -128,7 +129,6 @@ const TitleMb = () => {
             </Box>
         </Flex>
     );
-
 };
 
 const Animation = ({

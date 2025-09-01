@@ -1,17 +1,22 @@
 import React from 'react';
-import { Unlimited } from '../Unlimited';
 import { Box, Flex, Text } from '@mantine/core';
 import Image from 'next/image';
 import Link from 'next/link';
+import { IUnlimited } from '@/utils/unlimited';
 
 interface Props {
-    unlimited: Unlimited;
-    onOpenPopup: (unlimited: Unlimited) => void;
+    unlimited: IUnlimited;
+    onOpenPopup: (unlimited: IUnlimited) => void;
 }
 export function UnlimitedItem({ unlimited, onOpenPopup }: Props) {
 
     return (
-        <Box id={`unlimited-item-${unlimited.id}`} p={{ base: 8, md: 10 }} w={"20%"} className='aspect-[1.53043478261] cursor-pointer'>
+        <Box
+            id={`unlimited-item-${unlimited.id}`}
+            p={{ base: 8, md: 10 }}
+            w={{ base: "50%", md: "20%" }}
+            className='aspect-[0.83] md:aspect-[1.53043478261] cursor-pointer'
+        >
             <Flex
                 key={unlimited.id}
                 direction={"column"}
@@ -21,7 +26,6 @@ export function UnlimitedItem({ unlimited, onOpenPopup }: Props) {
                 justify={"center"}
                 align={"center"}
                 bg={"white"}
-
             >
                 {!unlimited.title && (
                     <Text
@@ -33,7 +37,7 @@ export function UnlimitedItem({ unlimited, onOpenPopup }: Props) {
                         className='uppercase'
                     >
                         <Link target='_blank' href={"/fans"}>
-                            Discover fan <br/> features →
+                            Discover fan <br /> features →
                         </Link>
                     </Text>
                 )}

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useBrowserWidth, useDisclosure } from '@/hooks';
@@ -10,42 +11,68 @@ import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 
 import { groupBy } from 'lodash';
-import { UnlimitedItem } from './unlimited/UnlimitedItem';
 
 import arrowRight from "@public/version-3/unlimited/popup/arrow-right.svg";
 import arrowLeft from "@public/version-3/unlimited/popup/arrow-left.svg";
-import { motion } from 'framer-motion';
+import { motion, useAnimate, useInView } from 'framer-motion';
 import Link from 'next/link';
 import { IUnlimited, unlimitedList } from '@/utils/unlimited';
 
-export function Unlimited() {
+export function UnlimitedMobile() {
     const main = useRef(null);
     const [opened, { open, close }] = useDisclosure();
     const [unlimited, setUnlimited] = useState<IUnlimited>();
 
-    const { isMb } = useBrowserWidth();
+    const [scope] = useAnimate();
+    // const isInView = useInView(scope, { amount: 0.1 });
+
+    // const { isMb } = useBrowserWidth();
     useGSAP(
         () => {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: main.current,
-                    pin: true,
+                    // pin: true,
                     start: 'top top',
-                    end: '+=1000',
-                    markers: false,
+                    end: 'bottom-=200 bottom',
+                    markers: true,
                     scrub: true,
+                    onLeave: () => {
+                        console.log("ScrollTrigger leave");
+                    },
                 },
             });
 
             const grouped = Object.values(groupBy(unlimitedList, 'priority'));
 
+            // grouped.map(arr => {
+            //     arr.forEach((o, index) => {
+            //         const isLeft = index % 2 == 0;
+            //         const step = !isLeft ? index - 1 : index;
+
+            //         tl.to(
+            //             `#unlimited-item-${o.id}`,
+            //             { x: step * (isLeft ? -15 : 15), y: step * 20, rotate: index > 1 ? (isLeft ? 12 : -12) : 0, duration: 0 },
+            //             isLeft ? undefined : "<"
+            //         );
+            //     });
+            // });
+
             grouped.map(arr => {
-                arr.forEach((o) => {
-                    tl.fromTo(
+                arr.slice(2).forEach((o, index) => {
+                    const isLeft = index % 2 == 0;
+                    const step = !isLeft ? index - 1 : index;
+                    // tl.fromTo(
+                    //     `#unlimited-item-${o.id}`,
+                    //     { x: step * (isLeft ? -15 : 15), y: step * 20, rotate: index > 1 ? (isLeft ? 12 : -12) : 0 },
+                    //     { x: 0, y: 0, rotate: 0, duration: 0.1, ease: "power2.inOut" },
+                    //     isLeft ? undefined : "<"
+                    // );
+
+                    tl.to(
                         `#unlimited-item-${o.id}`,
-                        { x: o.x, y: o.y, rotate: o.rotate },
-                        { x: 0, y: 0, rotate: 0, duration: 0.1, ease: "power2.inOut" },
-                        "<"
+                        { x: 0, y: 0, rotate: 0, duration: 0.5, ease: "power2.inOut" },
+                        isLeft ? index == 0 ? undefined : "<+=0.1" : "<"
                     );
                 });
             });
@@ -77,12 +104,12 @@ export function Unlimited() {
     }, []);
 
     return (
-        <Box id='unlimited' h={1852} bg={"#F0F0FC"}>
+        <Box id='unlimited' bg={"#F0F0FC"} className='overflow-hidden'>
             <Box ref={main} className='container-version3 z-10' bg={"#F0F0FC"}>
                 <Box
                     pos={"relative"}
                     style={{
-                        backgroundImage: isMb ? "url('/version-3/unlimited/bg-mb.webp')" : "url('/version-3/unlimited/bg-pc.webp')",
+                        backgroundImage: "url('/version-3/unlimited/bg-mb.webp')",
                         backgroundColor: "#F0F0FC"
                     }}
                     py={{ base: 104, md: 110, xl: 115, "2xl": 120 }}
@@ -91,23 +118,22 @@ export function Unlimited() {
                     <Title
                         w={{ base: "100%" }}
                         px={16}
-                        top={"11%"}
+                        top={"4%"}
                         pos={"absolute"}
                         order={2}
                         fz={{ base: 40, sm: 45, md: 52, lg: 56, xl: 60, "2xl": 64 }}
                         c={"#131416"}
                         fw={900}
-                        lh={0.8}
+                        lh={1.2}
                         ta={"center"}
-                        className='overflow-hidden'
                     >
                         <motion.span
-                            initial={{ y: "50%", rotateX: -40, scale: 0.8 }}
-                            whileInView={{ y: 0, rotateX: 0, scale: 1 }}
+                            initial={{ y: "50%" }}
+                            whileInView={{ y: 0 }}
                             viewport={{ once: true }}
                             transition={{
                                 duration: 0.5,
-                                ease: "linear"
+                                ease: "easeIn"
                             }}
                             className="inline-block"
                         >
@@ -115,12 +141,87 @@ export function Unlimited() {
                         </motion.span>
                     </Title>
 
-                    <Flex wrap={"wrap"} w={"100%"} justify={"center"} pos={"absolute"} top={"25.4%"}>
-                        {unlimitedList.map((o) => {
-                            return <UnlimitedItem unlimited={o} key={o.id} onOpenPopup={onOpenPopup} />;
+                    <Flex
+                        ref={scope}
+                        wrap={"wrap"}
+                        w={"100%"}
+                        h={"fit-content"}
+                        mt={{ base: "37.2%" }}
+                    >
+                        {unlimitedList.map((unlimited, index) => {
+                            const isLeft = index % 2 == 0;
+                            const step = !isLeft ? index - 1 : index;
+
+                            return (
+                                <motion.div
+                                    key={unlimited.id}
+                                    id={`unlimited-item-${unlimited.id}`}
+                                    initial={{ x: step * (isLeft ? -25 : 25), y: step * 15, rotate: index > 1 ? (isLeft ? 12 : -12) : 0 }}
+                                    className='aspect-[0.83] md:aspect-[1.53043478261] cursor-pointer w-1/2 p-2 '
+                                >
+                                    <Flex
+                                        key={unlimited.id}
+                                        direction={"column"}
+                                        w={"100%"}
+                                        h={"100%"}
+                                        className='rounded-2xl group'
+                                        justify={"center"}
+                                        align={"center"}
+                                        bg={"white"}
+                                    >
+                                        {!unlimited.title && (
+                                            <Text
+                                                fz={{ base: 15, "2xl": 16 }}
+                                                fw={700}
+                                                c={"#9554D6"}
+                                                lh={1.2}
+                                                ta={"center"}
+                                                className='uppercase'
+                                            >
+                                                <Link target='_blank' href={"/fans"}>
+                                                    Discover fan <br /> features →
+                                                </Link>
+                                            </Text>
+                                        )}
+
+                                        {unlimited.title && (
+                                            <Flex
+                                                direction={"column"}
+                                                gap={0}
+                                                align={"center"}
+                                                onClick={() => onOpenPopup(unlimited)}
+                                            >
+                                                <Image src={unlimited.img} alt={unlimited.title} className='h-10 w-auto mb-3' />
+                                                <Text
+                                                    fz={{ base: 15, "2xl": 16 }}
+                                                    fw={600} lh={1.5}
+                                                    c={"#131416"}
+                                                    mb={4}
+                                                >
+                                                    {unlimited.title}
+                                                    <span
+                                                        className="inline-block opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-2"
+                                                    >
+                                                        →
+                                                    </span>
+                                                </Text>
+                                                <Text c={"#4D5053"} fz={{ base: 12, "2xl": 13 }} lh={1.2} w={{ base: "90%" }} ta={"center"}>
+                                                    {unlimited.description}
+                                                </Text>
+                                            </Flex>
+                                        )}
+
+                                        {unlimited.buttonTitle && unlimited.buttonLink && (
+                                            <Link href={unlimited.buttonLink} target='_blank' className='mt-2.5 2xl:mt-3 text-xs 2xl:text-[13px] text-[#AC1991] underline'>
+                                                {unlimited.buttonTitle}
+                                            </Link>
+                                        )}
+                                    </Flex>
+                                </motion.div>
+                            );
                         })}
-                        <Flex pos={"absolute"}></Flex>
                     </Flex>
+
                 </Box>
 
                 {unlimited && (

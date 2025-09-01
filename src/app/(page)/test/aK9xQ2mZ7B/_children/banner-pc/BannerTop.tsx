@@ -80,7 +80,7 @@ export const BannerTop = () => {
                                 Creators earn, fans experience. <br />
                                 One platform, endless possibilities.
                             </Text>
-                            <SectionButton
+                            {/* <SectionButton
                                 show={true}
                                 w={{ base: 207, md: 240, "2xl": 248 }}
                                 h={{ base: 40, md: 44, lg: 46, xl: 48 }}
@@ -89,7 +89,7 @@ export const BannerTop = () => {
                                 fw={600}
                                 bg={"transparent"}
                                 className='hidden md:block'
-                            />
+                            /> */}
                         </Flex>
                     </Flex>
                 </Animation>

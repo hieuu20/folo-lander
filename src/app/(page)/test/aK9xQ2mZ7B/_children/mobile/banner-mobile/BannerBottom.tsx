@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 // import Image from 'next/image';
 // import itemImg from "@public/banner/circle/img.png";
 import { motion, useInView } from 'framer-motion';
-import phone from "@public/version-3/banner/border-phone.png";
+import phone from "@public/version-3/banner/phone/phone-border.webp";
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 import { useGSAP } from '@gsap/react';

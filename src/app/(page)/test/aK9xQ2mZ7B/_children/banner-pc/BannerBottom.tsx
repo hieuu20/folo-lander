@@ -3,7 +3,7 @@
 import { Box, Flex, Text } from '@mantine/core';
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import phone from "@public/version-3/banner/border-phone.png";
+import phone from "@public/version-3/banner/phone/phone-border.webp";
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 import gsap from 'gsap/dist/gsap';
@@ -88,24 +88,6 @@ export function BannerBottom() {
                 { rotate: 60, scale: 1, y: 0, duration: 3, ease: "none" }
             );
 
-            const phoneImageEls = gsap.utils.toArray(".phone-image") as any[];
-
-            phoneImageEls.slice(1).forEach((el, index) => {
-                tl.fromTo(
-                    el,
-                    { y: "-100%" },
-                    { y: 0, duration: 0.5, ease: "none" },
-                    index == 0 ? "<" : "<+=1"
-                );
-
-                tl.fromTo(
-                    phoneImageEls[index],
-                    { filter: "blur(0px)", scale: 1 },
-                    { filter: "blur(20px)", scale: 0.85, duration: 0.5, ease: "power2.inOut" },
-                    "<"
-                );
-            });
-
             tl.fromTo(
                 "#image-circle1",
                 { y: 0, opacity: 1, rotate: 60 },
@@ -172,6 +154,24 @@ export function BannerBottom() {
                 );
             });
 
+            const phoneImageEls = gsap.utils.toArray(".phone-image") as any[];
+
+            // phoneImageEls.slice(1).forEach((el, index) => {
+            //     tl.fromTo(
+            //         el,
+            //         { y: "-100%" },
+            //         { y: 0, duration: 0.5, ease: "none" },
+            //         index == 0 ? "<" : "<+=1"
+            //     );
+
+            //     tl.fromTo(
+            //         phoneImageEls[index],
+            //         { filter: "blur(0px)", scale: 1 },
+            //         { filter: "blur(20px)", scale: 0.85, duration: 0.5, ease: "power2.inOut" },
+            //         "<"
+            //     );
+            // });
+
             texts.forEach((el: any, index) => {
                 tl.fromTo(
                     el,
@@ -179,6 +179,22 @@ export function BannerBottom() {
                     { x: "0%", y: 0, rotate: 0, autoAlpha: 1, duration: 1 },
                     index == 0 ? "<=+0.3" : "<"
                 );
+
+                tl.fromTo(
+                    phoneImageEls[index + 1],
+                    { y: "-100%" },
+                    { y: 0, duration: 0.7, ease: "none" },
+                    "<+=0.3"
+                );
+
+                tl.fromTo(
+                    phoneImageEls[index],
+                    { filter: "blur(0px)", scale: 1 },
+                    { filter: "blur(20px)", scale: 0.85, duration: 0.7, ease: "power2.inOut" },
+                    "<"
+                );
+
+
 
                 stars.forEach((o: any) => {
                     const x = getRandomInt(40, 300);
@@ -197,7 +213,10 @@ export function BannerBottom() {
                 });
 
                 if (index < texts.length - 1) {
-                    tl.fromTo(el, { x: 0, y: 0, autoAlpha: 1, rotate: 0 }, { x: "-100%", y: "80%", rotate: -70, autoAlpha: 0, duration: 1 });
+                    tl.fromTo(el,
+                        { x: 0, y: 0, autoAlpha: 1, rotate: 0 },
+                        { x: "-100%", y: "80%", rotate: -70, autoAlpha: 0, duration: 1 }
+                    );
                 }
             });
         },
@@ -243,7 +262,7 @@ const Phone = ({ isInView }: { isInView: boolean }) => {
             id="phone"
             pos={"relative"}
             w={{ base: "70%", md: "27.1%" }}
-            className='aspect-[0.65312441358]'
+            className='aspect-[0.65312441358] z-10'
         >
             <Image src={phone} alt='phone' fill className='object-cover' />
 
@@ -265,7 +284,6 @@ const Phone = ({ isInView }: { isInView: boolean }) => {
                         top={"50%"}
                         left={"50%"}
                         w={"62.8%"}
-                        h={"88%"}
                         className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl'
                     >
                         <Image

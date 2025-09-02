@@ -85,7 +85,7 @@ export function BannerBottom() {
             tl.fromTo(
                 "#image-circle1",
                 { rotate: 0, scale: 1, y: 0 },
-                { rotate: 60, scale: 1, y: 0, duration: 3, ease: "none" }
+                { rotate: 60, scale: 1, y: 0, duration: 2, ease: "none" }
             );
 
             tl.fromTo(
@@ -115,9 +115,11 @@ export function BannerBottom() {
 
             tl.fromTo(
                 "#phone",
-                { rotate: 0, x: 0, y: 0 },
+                { rotateX: 0, rotateY: 0, rotateZ: 0, x: 0, y: 0 },
                 {
-                    rotate: 9,
+                    rotateX: 12,
+                    rotateY: -12,
+                    rotateZ: 12,
                     duration: 2,
                     x: "-88%",
                     y: "12%",
@@ -154,23 +156,23 @@ export function BannerBottom() {
                 );
             });
 
+            stars.forEach((o: any) => {
+                const x = getRandomInt(40, 300);
+                const y = getRandomInt(40, 300);
+                tl.to(
+                    o,
+                    {
+                        x: `+=-${x}`,
+                        y: `+=${y}`,
+                        opacity: 1,
+                        duration: 1,
+                        ease: "power2.inOut",
+                    },
+                    "<"
+                );
+            });
+
             const phoneImageEls = gsap.utils.toArray(".phone-image") as any[];
-
-            // phoneImageEls.slice(1).forEach((el, index) => {
-            //     tl.fromTo(
-            //         el,
-            //         { y: "-100%" },
-            //         { y: 0, duration: 0.5, ease: "none" },
-            //         index == 0 ? "<" : "<+=1"
-            //     );
-
-            //     tl.fromTo(
-            //         phoneImageEls[index],
-            //         { filter: "blur(0px)", scale: 1 },
-            //         { filter: "blur(20px)", scale: 0.85, duration: 0.5, ease: "power2.inOut" },
-            //         "<"
-            //     );
-            // });
 
             texts.forEach((el: any, index) => {
                 tl.fromTo(
@@ -194,23 +196,18 @@ export function BannerBottom() {
                     "<"
                 );
 
+                tl.to(
+                    "#phone",
+                    {
+                        rotateX: "-=2",
+                        rotateY: "+=2",
+                        rotateZ: "-=2",
+                        duration: 0.7,
+                        ease: "power2.inOut",
+                    },
+                    // "<"
+                );
 
-
-                stars.forEach((o: any) => {
-                    const x = getRandomInt(40, 300);
-                    const y = getRandomInt(40, 300);
-                    tl.to(
-                        o,
-                        {
-                            x: `+=-${x}`,
-                            y: `+=${y}`,
-                            opacity: 1,
-                            duration: 1,
-                            ease: "power2.inOut",
-                        },
-                        "<"
-                    );
-                });
 
                 if (index < texts.length - 1) {
                     tl.fromTo(el,
@@ -273,7 +270,7 @@ const Phone = ({ isInView }: { isInView: boolean }) => {
                 w={"62.8%"}
                 h={"88%"}
                 bg={"black"}
-                className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl'
+                className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[32px]'
             />
 
             {phoneImages.map((o, index) => {
@@ -284,7 +281,7 @@ const Phone = ({ isInView }: { isInView: boolean }) => {
                         top={"50%"}
                         left={"50%"}
                         w={"62.8%"}
-                        className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl'
+                        className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[32px]'
                     >
                         <Image
                             key={index}

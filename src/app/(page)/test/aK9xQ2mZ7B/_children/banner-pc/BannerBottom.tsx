@@ -13,6 +13,12 @@ import SectionButton from '@/components/buttons/SectionButton';
 import starIcon from "@public/version-3/banner/phase2/star.svg";
 import { getRandomInt } from '@/utils/helpers';
 
+import phone1 from "@public/version-3/banner/phone/1.webp";
+import phone2 from "@public/version-3/banner/phone/2.webp";
+import phone3 from "@public/version-3/banner/phone/3.webp";
+import phone4 from "@public/version-3/banner/phone/4.webp";
+import phone5 from "@public/version-3/banner/phone/5.webp";
+
 const images = [
     "/version-3/banner/circle/1.webp",
     "/version-3/banner/circle/2.webp",
@@ -30,6 +36,14 @@ const images = [
     "/version-3/banner/circle/14.webp",
     "/version-3/banner/circle/video/1.mp4",
     "/version-3/banner/circle/16.webp",
+];
+
+const phoneImages = [
+    phone1,
+    phone2,
+    phone3,
+    phone4,
+    phone5
 ];
 
 export function BannerBottom() {
@@ -67,11 +81,30 @@ export function BannerBottom() {
                 { y: 0, opacity: 1, x: "-50%", duration: 0.4, ease: "easeIn" },
             );
 
+
             tl.fromTo(
                 "#image-circle1",
                 { rotate: 0, scale: 1, y: 0 },
-                { rotate: 60, scale: 1, y: 0, duration: 2, ease: "none", delay: 0.1 }
+                { rotate: 60, scale: 1, y: 0, duration: 3, ease: "none" }
             );
+
+            const phoneImageEls = gsap.utils.toArray(".phone-image") as any[];
+
+            phoneImageEls.slice(1).forEach((el, index) => {
+                tl.fromTo(
+                    el,
+                    { y: "-100%" },
+                    { y: 0, duration: 0.5, ease: "none" },
+                    index == 0 ? "<" : "<+=1"
+                );
+
+                tl.fromTo(
+                    phoneImageEls[index],
+                    { filter: "blur(0px)", scale: 1 },
+                    { filter: "blur(20px)", scale: 0.85, duration: 0.5, ease: "power2.inOut" },
+                    "<"
+                );
+            });
 
             tl.fromTo(
                 "#image-circle1",
@@ -213,17 +246,37 @@ const Phone = ({ isInView }: { isInView: boolean }) => {
             className='aspect-[0.65312441358]'
         >
             <Image src={phone} alt='phone' fill className='object-cover' />
-            <video
-                autoPlay={true}
-                playsInline
-                loop
-                preload="auto"
-                controls={true}
-                muted={true}
-                className={twMerge('absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[62.8%] h-[88%] object-cover rounded-[8%]')}
-            >
-                <source src={"/version-3/banner/phone-video.mp4"} type="video/mp4" />
-            </video>
+
+            <Box
+                pos={"absolute"}
+                top={"50%"}
+                left={"50%"}
+                w={"62.8%"}
+                h={"88%"}
+                bg={"black"}
+                className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl'
+            />
+
+            {phoneImages.map((o, index) => {
+                return (
+                    <Box
+                        key={index}
+                        pos={"absolute"}
+                        top={"50%"}
+                        left={"50%"}
+                        w={"62.8%"}
+                        h={"88%"}
+                        className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl'
+                    >
+                        <Image
+                            key={index}
+                            src={o}
+                            alt='phone image'
+                            className='relative phone-image object-cover will-change-transform transform-3d w-full h-auto '
+                        />
+                    </Box>
+                );
+            })}
             <Flex
                 id="phone-text"
                 pos={"absolute"}
@@ -241,28 +294,6 @@ const Phone = ({ isInView }: { isInView: boolean }) => {
                     KNKY adapts to you!
                 </Text>
             </Flex>
-
-            {/* <motion.div
-                id="phone-text"
-                initial={{ y: 1000, opacity: 0 }}
-                // animate={isInView ? { y: 0, opacity: 1 } : {}}
-                // animate={{ y: 0, opacity: 1 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: false, amount: 0.8 }}
-                transition={{
-                    duration: 0.6,
-                    ease: 'easeInOut',
-                }}
-                className='absolute flex flex-col items-center gap-2.5 2xl:gap-3 bottom-[-20%] left-1/2 -translate-x-1/2'
-            >
-                <Text fz={{ base: 11, sm: 12, md: 14, lg: 16, xl: 18, "2xl": 20 }} lh={1.2} c={"#FFFFFFCC"} className='whitespace-nowrap'>
-                    Content for Public, Pay-to-View, Subscribers Only, Followers,…
-                </Text>
-
-                <Text fz={{ base: 20, sm: 22, md: 26, lg: 28, xl: 30, "2xl": 32 }} fw={500} lh={1.2} c={"white"} className='whitespace-nowrap'>
-                    KNKY adapts to you!
-                </Text>
-            </motion.div> */}
         </Box>
     );
 };

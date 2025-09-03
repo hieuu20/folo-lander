@@ -157,7 +157,6 @@ export function BannerBottom() {
                 );
             });
 
-
             const phoneImageEls = gsap.utils.toArray(".phone-image") as any[];
 
             texts.forEach((el: any, index) => {

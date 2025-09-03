@@ -11,7 +11,12 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap/dist/gsap';
 import SectionButton from '@/components/buttons/SectionButton';
 import { CurveText } from '@/components/Typo';
+
 import phone1 from "@public/version-3/banner/phone/1.webp";
+import phone2 from "@public/version-3/banner/phone/2.webp";
+import phone3 from "@public/version-3/banner/phone/3.webp";
+import phone4 from "@public/version-3/banner/phone/4.webp";
+import phone5 from "@public/version-3/banner/phone/5.webp";
 
 const images = [
     "/version-3/banner/circle/1.webp",
@@ -30,6 +35,14 @@ const images = [
     "/version-3/banner/circle/14.webp",
     "/version-3/banner/circle/15.webp",
     "/version-3/banner/circle/16.webp",
+];
+
+const phoneImages = [
+    phone1,
+    phone2,
+    phone3,
+    phone4,
+    phone5
 ];
 
 export function BannerBottom() {
@@ -100,6 +113,7 @@ export function BannerBottom() {
             );
 
             const texts = gsap.utils.toArray(".text-item");
+            const phoneImageEls = gsap.utils.toArray(".phone-image") as any[];
 
             texts.forEach((el: any, index) => {
                 tl.fromTo(
@@ -107,6 +121,20 @@ export function BannerBottom() {
                     { x: "200%", y: "80%", rotate: 100, autoAlpha: 0 },
                     { x: "0%", y: 0, rotate: 0, autoAlpha: 1, duration: 1 },
                     index == 0 ? "<=+0.3" : "<"
+                );
+
+                tl.fromTo(
+                    phoneImageEls[index + 1],
+                    { y: "-100%" },
+                    { y: 0, duration: 0.7, ease: "none" },
+                    "<+=0.2"
+                );
+
+                tl.fromTo(
+                    phoneImageEls[index],
+                    { filter: "blur(0px)", scale: 1 },
+                    { filter: "blur(20px)", scale: 0.85, duration: 0.7, ease: "power2.inOut" },
+                    "<"
                 );
 
                 if (index < texts.length - 1) {
@@ -170,20 +198,25 @@ const Phone = ({ }: { isInView: boolean }) => {
                 bg={"black"}
                 className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[6%]'
             />
+            {phoneImages.map((o, index) => {
+                return (
+                    <Box
+                        key={index}
+                        pos={"absolute"}
+                        top={"50%"}
+                        left={"50%"}
+                        w={"62.8%"}
+                        className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[6%]'
+                    >
+                        <Image
+                            src={o}
+                            alt='phone image'
+                            className='relative phone-image object-cover will-change-transform transform-3d w-full h-auto '
+                        />
+                    </Box>
+                );
+            })}
 
-            <Box
-                pos={"absolute"}
-                top={"50%"}
-                left={"50%"}
-                w={"62.8%"}
-                className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[6%]'
-            >
-                <Image
-                    src={phone1}
-                    alt='phone image'
-                    className='relative phone-image object-cover will-change-transform transform-3d w-full h-auto '
-                />
-            </Box>
             <Flex
                 id="phone-text"
                 pos={"absolute"}

@@ -334,8 +334,6 @@ const Bottom = () => {
             left={0}
             bg={"#160328"}
             py={{ base: 80, md: 90, xl: 100, "2xl": 110 }}
-        // className='z-20'
-        // className='hidden'
         >
             <Image src={bg1} alt='bg1' className='w-[25.8%] h-auto absolute bottom-0 left-0' />
             <Image src={bg2} alt='bg-2' className='w-[25.8%] h-auto absolute top-0 right-0' />

@@ -59,6 +59,7 @@ export function BannerBottom() {
                     start: 'center+=100 center',
                     end: '+=9500',
                     scrub: true,
+                    markers: false,
                 },
             });
 
@@ -156,21 +157,6 @@ export function BannerBottom() {
                 );
             });
 
-            stars.forEach((o: any) => {
-                const x = getRandomInt(40, 300);
-                const y = getRandomInt(40, 300);
-                tl.to(
-                    o,
-                    {
-                        x: `+=-${x}`,
-                        y: `+=${y}`,
-                        opacity: 1,
-                        duration: 1,
-                        ease: "power2.inOut",
-                    },
-                    "<"
-                );
-            });
 
             const phoneImageEls = gsap.utils.toArray(".phone-image") as any[];
 
@@ -181,6 +167,22 @@ export function BannerBottom() {
                     { x: "0%", y: 0, rotate: 0, autoAlpha: 1, duration: 1 },
                     index == 0 ? "<=+0.3" : "<"
                 );
+
+                stars.forEach((o: any) => {
+                    const x = getRandomInt(40, 300);
+                    const y = getRandomInt(40, 300);
+                    tl.to(
+                        o,
+                        {
+                            x: `+=-${x}`,
+                            y: `+=${y}`,
+                            opacity: 1,
+                            duration: 1,
+                            ease: "power2.inOut",
+                        },
+                        "<"
+                    );
+                });
 
                 tl.fromTo(
                     phoneImageEls[index + 1],
@@ -202,12 +204,11 @@ export function BannerBottom() {
                         rotateX: "-=2",
                         rotateY: "+=2",
                         rotateZ: "-=2",
-                        duration: 0.7,
-                        ease: "power2.inOut",
+                        duration: 0.4,
+                        ease: "power1.in",
                     },
                     // "<"
                 );
-
 
                 if (index < texts.length - 1) {
                     tl.fromTo(el,
@@ -292,6 +293,7 @@ const Phone = ({ isInView }: { isInView: boolean }) => {
                     </Box>
                 );
             })}
+            
             <Flex
                 id="phone-text"
                 pos={"absolute"}

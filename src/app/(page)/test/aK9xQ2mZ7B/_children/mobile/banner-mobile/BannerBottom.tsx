@@ -7,11 +7,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import phone from "@public/version-3/banner/phone/phone-border.webp";
 import Image from 'next/image';
-import { twMerge } from 'tailwind-merge';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap/dist/gsap';
 import SectionButton from '@/components/buttons/SectionButton';
 import { CurveText } from '@/components/Typo';
+import phone1 from "@public/version-3/banner/phone/1.webp";
 
 const images = [
     "/version-3/banner/circle/1.webp",
@@ -42,22 +42,25 @@ export function BannerBottom() {
                 scrollTrigger: {
                     trigger: main.current,
                     pin: true,
-                    start: 'center+=64 center',
+                    start: 'center+=114 center',
                     end: '+=4500',
+                    pinSpacing: false,
+                    anticipatePin: 1,
                     scrub: true,
+                    markers: false
                 },
             });
 
             tl.fromTo(
                 "#phone",
-                { scale: 2, top: "30%" },
-                { scale: 1, top: 0, duration: 0.4, ease: "none" }
+                { scale: 2, y: "60%" },
+                { scale: 1, y: 0, duration: 0.4, ease: "power2.in" }
             );
 
             tl.fromTo(
                 "#image-circle1",
                 { scale: 0.58, opacity: 0.2, y: 0 },
-                { scale: 1, opacity: 1, y: 0, duration: 0.3, ease: "easeIn" },
+                { scale: 1, opacity: 1, y: 0, duration: 0.3, ease: "power2.in" },
                 "<"
             );
 
@@ -117,7 +120,7 @@ export function BannerBottom() {
     );
 
     return (
-        <Box pos={"relative"} mt={{ base: "-26%" }} h={5300} className='overflow-hidden'>
+        <Box pos={"relative"} h={5200} className='overflow-hidden'>
             <Flex direction={"column"} ref={main} pos={"relative"} align={"center"} className='container-version3'>
                 <motion.div
                     id="phone-bg"
@@ -157,17 +160,30 @@ const Phone = ({ }: { isInView: boolean }) => {
         >
 
             <Image src={phone} alt='phone' fill className='object-cover' />
-            <video
-                autoPlay={true}
-                playsInline
-                loop
-                preload="auto"
-                controls={true}
-                muted={false}
-                className={twMerge('absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[62.8%] h-[88%] object-cover rounded-[8%]')}
+
+            <Box
+                pos={"absolute"}
+                top={"50%"}
+                left={"50%"}
+                w={"62.8%"}
+                h={"88%"}
+                bg={"black"}
+                className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[6%]'
+            />
+
+            <Box
+                pos={"absolute"}
+                top={"50%"}
+                left={"50%"}
+                w={"62.8%"}
+                className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[6%]'
             >
-                <source src={"/version-3/banner/phone-video.mp4"} type="video/mp4" />
-            </video>
+                <Image
+                    src={phone1}
+                    alt='phone image'
+                    className='relative phone-image object-cover will-change-transform transform-3d w-full h-auto '
+                />
+            </Box>
             <Flex
                 id="phone-text"
                 pos={"absolute"}
@@ -238,19 +254,19 @@ const Circle = () => {
                         />
                     );
                 })}
-                <Box
-                    pos={"absolute"}
-                    bottom={0}
-                    left={"50%"}
-                    w={"150%"}
-                    h={"100%"}
-                    style={{
-                        background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)"
-                    }}
-                    className='-translate-x-1/2'
-                />
-            </motion.div>
 
+            </motion.div>
+            <Box
+                pos={"absolute"}
+                bottom={0}
+                left={"50%"}
+                w={"150%"}
+                h={"100%"}
+                style={{
+                    background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)"
+                }}
+                className='-translate-x-1/2'
+            />
         </Box>
     );
 };
@@ -342,7 +358,7 @@ const Phase2 = () => {
             <SectionButton
                 id="banner-button"
                 pos={"absolute"}
-                bottom={"0%"}
+                bottom={"2%"}
                 left={"50%"}
                 className='-translate-x-1/2'
                 show={true}

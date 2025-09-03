@@ -45,8 +45,8 @@ export function GrowthMobile() {
                         "<"
                     ).fromTo(
                         `#growth-subtitle-${index + 1}`,
-                        { y: "200%", autoAlpha: 0 },
-                        { y: 0, autoAlpha: 1, duration: 1, delay: 0.2 },
+                        { y: "100%", autoAlpha: 0, x: "-50%" },
+                        { y: 0, autoAlpha: 1, x: "-50%", duration: 1, delay: 0.2 },
                         "<+=0.1"
                     );
                 }
@@ -58,8 +58,8 @@ export function GrowthMobile() {
                         { y: "-100%", autoAlpha: 0, duration: 1 },
                     ).fromTo(
                         `#growth-subtitle-${index + 1}`,
-                        { y: 0, autoAlpha: 1 },
-                        { y: "-100%", autoAlpha: 0, duration: 1 },
+                        { y: 0, autoAlpha: 1, x: "-50%" },
+                        { y: 0, autoAlpha: 0, x: "-50%", duration: 1 },
                         "<"
                     );
                 } else {
@@ -81,7 +81,7 @@ export function GrowthMobile() {
             tl.fromTo(
                 "#growth-overlay",
                 { scale: 1 },
-                { scale: 8, duration: 1.5 },
+                { scale: 10, duration: 1, ease: "power2.in" },
                 "<"
             );
 
@@ -102,8 +102,8 @@ export function GrowthMobile() {
             tl.fromTo(
                 "#growth-top",
                 { autoAlpha: 1 },
-                { autoAlpha: 0, duration: 1 },
-                "<+=1.5"
+                { autoAlpha: 0, duration: 0 },
+                "<+=1"
             );
         },
         {
@@ -193,15 +193,14 @@ const Top = () => {
                     c={"#131416"}
                     fw={900}
                     ta={"center"}
-                    className='overflow-hidden'
                 >
                     <motion.span
-                        initial={{ y: "66%", rotateX: -70 }}
-                        whileInView={{ y: 0, rotateX: 0 }}
-                        viewport={{ once: true }}
+                        initial={{ y: "120%", opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        viewport={{ once: true, amount: 0.4 }}
                         transition={{
-                            duration: 0.4,
-                            ease: "linear"
+                            duration: 0.6,
+                            ease: "easeIn"
                         }}
                         className="inline-block"
                     >
@@ -246,7 +245,7 @@ const Top = () => {
                                 lh={1.2}
                                 fw={700}
                                 ta={"center"}
-                                className='-translate-x-1/2 uppercase z-10'
+                                className='uppercase z-10 [&_a]:underline'
                             >
                                 {index == 1 && (
                                     <span className='flex flex-col'>
@@ -261,7 +260,9 @@ const Top = () => {
                                     </span>
                                 )}
 
-                                {index !== 1 && o.subTitle}
+                                {index !== 1 && (
+                                    <span dangerouslySetInnerHTML={{ __html: o.subTitle }} />
+                                )}
                             </Text>
                         </>
                     );

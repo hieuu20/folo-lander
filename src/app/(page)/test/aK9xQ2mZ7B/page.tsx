@@ -20,9 +20,62 @@ import { usePathname } from "next/navigation";
 
 export default function Home() {
   const { isMb } = useBrowserWidth();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return (
+    <>
+      {!isMb && <Desktop />}
+      {isMb && <Mobile />}
+    </>
+  );
+}
+
+const Mobile = () => {
   const main = useRef<any>();
   const smoother = useRef<ScrollSmoother>();
-  const pathname = usePathname();
+
+  useGSAP(
+    () => {
+      // smoother.current = ScrollSmoother.create({
+      //   smooth: 0,
+      //   effects: true,
+      //   smoothTouch: 0.5,
+      //   ignoreMobileResize: true,
+      //   normalizeScroll: true
+      // });
+    },
+    {
+      scope: main,
+    }
+  );
+
+  return (
+    <Box id="smooth-wrapper" ref={main}>
+      <Box
+        id="smooth-content"
+        className='bg-contain bg-repeat'
+        style={{
+          backgroundImage: "url('/version-3/banner/bg-mb.webp')",
+          backgroundColor: "#0A0014"
+        }}
+      >
+        <BannerMobile />
+        <UnlimitedMobile />
+        <GrowthMobile />
+        <MoreMobile />
+        <Footer />
+      </Box>
+    </Box>
+  );
+};
+
+const Desktop = () => {
+  const main = useRef<any>();
+  const smoother = useRef<ScrollSmoother>();
 
   useGSAP(
     () => {
@@ -35,61 +88,22 @@ export default function Home() {
       scope: main,
     }
   );
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
   return (
     <Box id="smooth-wrapper" ref={main}>
       <Box
         id="smooth-content"
         className='bg-contain bg-repeat'
         style={{
-          backgroundImage: isMb ? "url('/version-3/banner/bg-mb.webp')" : "url('/version-3/banner/bg-pc.webp')",
+          backgroundImage: "url('/version-3/banner/bg-pc.webp')",
           backgroundColor: "#0A0014"
         }}
       >
-        {!isMb && <Desktop />}
-        {isMb && <Mobile />}
-        {/* <BannerPc />
+        <BannerPc />
         <Unlimited />
         <Growth />
         <More />
-        <Footer /> */}
+        <Footer />
       </Box>
     </Box>
-  );
-}
-
-const Mobile = () => {
-  return (
-    <Box
-      id="smooth-content"
-      className='bg-contain bg-repeat'
-      style={{
-        backgroundImage: "url('/version-3/banner/bg-mb.webp')",
-        backgroundColor: "#0A0014"
-      }}
-    >
-      <BannerMobile />
-      {/* <Box h={1000} /> */}
-      <UnlimitedMobile />
-      <GrowthMobile />
-      <MoreMobile />
-      <Footer />
-    </Box>
-  );
-};
-
-const Desktop = () => {
-  return (
-    <>
-      <BannerPc />
-      <Unlimited />
-      <Growth />
-      <More />
-      <Footer />
-    </>
   );
 };

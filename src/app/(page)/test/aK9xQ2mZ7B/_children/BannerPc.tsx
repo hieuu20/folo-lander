@@ -23,7 +23,7 @@ export function BannerPc() {
                 pin: true,
                 start: 'center center',
                 end: '+=700',
-                // markers: true,
+                // markers: false,
                 scrub: true,
                 onLeave: () => gsap.to(".box-c", { autoAlpha: 0 }),
                 onEnterBack: () => gsap.to(".box-c", { autoAlpha: 1 })

@@ -8,33 +8,10 @@ import logo from "@public/version-3/banner/logo.png";
 import { motion } from 'framer-motion';
 import { BannerTop } from './banner-mobile/BannerTop';
 import { BannerBottom } from './banner-mobile/BannerBottom';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap/dist/gsap';
-
 
 export function BannerMobile() {
     const main = useRef<any>();
 
-    useGSAP(
-        () => {
-            ScrollTrigger.create({
-                trigger: '.box-c',
-                pin: true,
-                start: 'top center',
-                end: '+=400',
-                markers: true,
-                scrub: true,
-                onLeave: () => {
-                    gsap.to(".box-c", { autoAlpha: 0 });
-                },
-                onEnterBack: () => gsap.to(".box-c", { autoAlpha: 1 })
-            });
-        },
-        {
-            scope: main,
-        }
-    );
     return (
         <Box ref={main}>
             <BannerTop />

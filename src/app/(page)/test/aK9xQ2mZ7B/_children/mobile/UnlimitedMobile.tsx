@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { useBrowserWidth, useDisclosure } from '@/hooks';
+import { useDisclosure } from '@/hooks';
 import { Box, Button, Flex, Modal, Text, Title } from '@mantine/core';
 import React, { useCallback, useRef, useState } from 'react';
 
@@ -24,18 +24,15 @@ export function UnlimitedMobile() {
     const [unlimited, setUnlimited] = useState<IUnlimited>();
 
     const [scope] = useAnimate();
-    // const isInView = useInView(scope, { amount: 0.1 });
 
-    // const { isMb } = useBrowserWidth();
     useGSAP(
         () => {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: main.current,
-                    // pin: true,
                     start: 'top top',
                     end: 'bottom-=200 bottom',
-                    markers: true,
+                    markers: false,
                     scrub: true,
                     onLeave: () => {
                         console.log("ScrollTrigger leave");
@@ -45,30 +42,9 @@ export function UnlimitedMobile() {
 
             const grouped = Object.values(groupBy(unlimitedList, 'priority'));
 
-            // grouped.map(arr => {
-            //     arr.forEach((o, index) => {
-            //         const isLeft = index % 2 == 0;
-            //         const step = !isLeft ? index - 1 : index;
-
-            //         tl.to(
-            //             `#unlimited-item-${o.id}`,
-            //             { x: step * (isLeft ? -15 : 15), y: step * 20, rotate: index > 1 ? (isLeft ? 12 : -12) : 0, duration: 0 },
-            //             isLeft ? undefined : "<"
-            //         );
-            //     });
-            // });
-
             grouped.map(arr => {
                 arr.slice(2).forEach((o, index) => {
                     const isLeft = index % 2 == 0;
-                    const step = !isLeft ? index - 1 : index;
-                    // tl.fromTo(
-                    //     `#unlimited-item-${o.id}`,
-                    //     { x: step * (isLeft ? -15 : 15), y: step * 20, rotate: index > 1 ? (isLeft ? 12 : -12) : 0 },
-                    //     { x: 0, y: 0, rotate: 0, duration: 0.1, ease: "power2.inOut" },
-                    //     isLeft ? undefined : "<"
-                    // );
-
                     tl.to(
                         `#unlimited-item-${o.id}`,
                         { x: 0, y: 0, rotate: 0, duration: 0.5, ease: "power2.inOut" },
@@ -112,7 +88,8 @@ export function UnlimitedMobile() {
                         backgroundImage: "url('/version-3/unlimited/bg-mb.webp')",
                         backgroundColor: "#F0F0FC"
                     }}
-                    py={{ base: 104, md: 110, xl: 115, "2xl": 120 }}
+                    py={{ base: "20%", md: 110, xl: 115, "2xl": 120 }}
+
                     className='bg-contain w-full aspect-[1.63148148148]'
                 >
                     <Title
@@ -128,12 +105,12 @@ export function UnlimitedMobile() {
                         ta={"center"}
                     >
                         <motion.span
-                            initial={{ y: "50%" }}
-                            whileInView={{ y: 0 }}
-                            viewport={{ once: true }}
+                            initial={{ y: "100%", opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            viewport={{ once: true, amount: 0.4 }}
                             transition={{
                                 duration: 0.5,
-                                ease: "easeIn"
+                                ease: "easeInOut"
                             }}
                             className="inline-block"
                         >
@@ -146,13 +123,14 @@ export function UnlimitedMobile() {
                         wrap={"wrap"}
                         w={"100%"}
                         h={"fit-content"}
-                        mt={{ base: "37.2%" }}
+                        justify={"center"}
+                        mt={{ base: "45.5%" }}
                     >
                         {unlimitedList.map((unlimited, index) => {
                             const isLeft = index % 2 == 0;
                             const step = !isLeft ? index - 1 : index;
 
-                            return (
+                            return unlimited.title ? (
                                 <motion.div
                                     key={unlimited.id}
                                     id={`unlimited-item-${unlimited.id}`}
@@ -169,47 +147,31 @@ export function UnlimitedMobile() {
                                         align={"center"}
                                         bg={"white"}
                                     >
-                                        {!unlimited.title && (
+
+                                        <Flex
+                                            direction={"column"}
+                                            gap={0}
+                                            align={"center"}
+                                            onClick={() => onOpenPopup(unlimited)}
+                                        >
+                                            <Image src={unlimited.img} alt={unlimited.title} className='h-10 w-auto mb-3' />
                                             <Text
                                                 fz={{ base: 15, "2xl": 16 }}
-                                                fw={700}
-                                                c={"#9554D6"}
-                                                lh={1.2}
-                                                ta={"center"}
-                                                className='uppercase'
+                                                fw={600} lh={1.5}
+                                                c={"#131416"}
+                                                mb={4}
                                             >
-                                                <Link target='_blank' href={"/fans"}>
-                                                    Discover fan <br /> features →
-                                                </Link>
-                                            </Text>
-                                        )}
-
-                                        {unlimited.title && (
-                                            <Flex
-                                                direction={"column"}
-                                                gap={0}
-                                                align={"center"}
-                                                onClick={() => onOpenPopup(unlimited)}
-                                            >
-                                                <Image src={unlimited.img} alt={unlimited.title} className='h-10 w-auto mb-3' />
-                                                <Text
-                                                    fz={{ base: 15, "2xl": 16 }}
-                                                    fw={600} lh={1.5}
-                                                    c={"#131416"}
-                                                    mb={4}
+                                                {unlimited.title}
+                                                <span
+                                                    className="inline-block opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-2"
                                                 >
-                                                    {unlimited.title}
-                                                    <span
-                                                        className="inline-block opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-2"
-                                                    >
-                                                        →
-                                                    </span>
-                                                </Text>
-                                                <Text c={"#4D5053"} fz={{ base: 12, "2xl": 13 }} lh={1.2} w={{ base: "90%" }} ta={"center"}>
-                                                    {unlimited.description}
-                                                </Text>
-                                            </Flex>
-                                        )}
+                                                    →
+                                                </span>
+                                            </Text>
+                                            <Text c={"#4D5053"} fz={{ base: 12, "2xl": 13 }} lh={1.2} w={{ base: "90%" }} ta={"center"}>
+                                                {unlimited.description}
+                                            </Text>
+                                        </Flex>
 
                                         {unlimited.buttonTitle && unlimited.buttonLink && (
                                             <Link href={unlimited.buttonLink} target='_blank' className='mt-2.5 2xl:mt-3 text-xs 2xl:text-[13px] text-[#AC1991] underline'>
@@ -218,6 +180,20 @@ export function UnlimitedMobile() {
                                         )}
                                     </Flex>
                                 </motion.div>
+                            ) : (
+                                <Text
+                                    fz={{ base: 16 }}
+                                    fw={700}
+                                    c={"#9554D6"}
+                                    lh={1.2}
+                                    ta={"center"}
+                                    className='uppercase'
+                                    mt={{ base: 40 }}
+                                >
+                                    <Link target='_blank' href={"/fans"}>
+                                        Discover fan <br /> features →
+                                    </Link>
+                                </Text>
                             );
                         })}
                     </Flex>

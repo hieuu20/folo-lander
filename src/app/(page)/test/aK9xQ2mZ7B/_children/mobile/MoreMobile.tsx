@@ -87,14 +87,15 @@ export function MoreMobile() {
                                         >
                                             <Link href={o.href} target='_blank' className='relative group inline-flex items-center gap-2 '>
                                                 <motion.span
-                                                    initial={{ y: "65%", rotateX: -70 }}
-                                                    whileInView={{ y: 0, rotateX: 0 }}
+                                                    initial={{ y: "150%", opacity: 0 }}
+                                                    whileInView={{ y: 0, opacity: 1 }}
                                                     viewport={{ once: true }}
                                                     transition={{
                                                         duration: 0.4,
-                                                        ease: "linear"
+                                                        ease: "easeIn",
+                                                        delay: index * 0.1
                                                     }}
-                                                    className="relative "
+                                                    className="inline-block"
                                                 >
                                                     {o.title} →
                                                 </motion.span>
@@ -131,14 +132,15 @@ export function MoreMobile() {
                                         >
                                             <Link href={o.href} target='_blank' className='relative group inline-flex items-center gap-2 '>
                                                 <motion.span
-                                                    initial={{ y: "65%", rotateX: -70 }}
-                                                    whileInView={{ y: 0, rotateX: 0 }}
+                                                    initial={{ y: "150%", opacity: 0 }}
+                                                    whileInView={{ y: 0, opacity: 1 }}
                                                     viewport={{ once: true }}
                                                     transition={{
                                                         duration: 0.4,
-                                                        ease: "linear"
+                                                        ease: "easeIn",
+                                                        delay: index * 0.1
                                                     }}
-                                                    className="relative "
+                                                    className="inline-block"
                                                 >
                                                     {o.title} →
                                                 </motion.span>

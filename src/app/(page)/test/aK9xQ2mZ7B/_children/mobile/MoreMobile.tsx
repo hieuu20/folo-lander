@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React, { useRef } from 'react';
 import img from "@public/version-3/more/img.webp";
 import { motion } from 'framer-motion';
-
+import goldIcon from "@public/version-3/more/gold-icon.svg";
 
 const textList = [
     {
@@ -98,6 +98,9 @@ export function MoreMobile() {
                                                     className="inline-block"
                                                 >
                                                     {o.title} →
+                                                    {index == 4 && (
+                                                        <Image src={goldIcon} alt='gold icon' className='w-3 md:w-4 lg:w-5 2xl:w-6 h-auto absolute top-[-24%] left-[78%]' />
+                                                    )}
                                                 </motion.span>
                                                 <span className="absolute z-10 left-0 -bottom-1 h-[2px] w-0 bg-black transition-all duration-300 group-hover:w-full"></span>
                                             </Link>

@@ -126,19 +126,19 @@ export function BannerBottom() {
                 tl.fromTo(
                     phoneImageEls[index + 1],
                     { y: "-100%" },
-                    { y: 0, duration: 0.7, ease: "none" },
+                    { y: 0, duration: 1, ease: "none" },
                     "<+=0.2"
                 );
 
                 tl.fromTo(
                     phoneImageEls[index],
                     { filter: "blur(0px)", scale: 1 },
-                    { filter: "blur(20px)", scale: 0.85, duration: 0.7, ease: "power2.inOut" },
+                    { filter: "blur(20px)", scale: 0.85, duration: 0.8, ease: "power2.inOut" },
                     "<"
                 );
 
                 if (index < texts.length - 1) {
-                    tl.fromTo(el, { x: 0, y: 0, autoAlpha: 1, rotate: 0 }, { x: "-200%", y: "80%", rotate: -100, autoAlpha: 0, duration: 1 });
+                    tl.fromTo(el, { x: 0, y: 0, autoAlpha: 1, rotate: 0 }, { x: "-200%", y: "80%", rotate: -100, autoAlpha: 0, duration: 1, delay: 0.5 });
                 }
             });
         },

@@ -14,7 +14,7 @@ import { groupBy } from 'lodash';
 
 import arrowRight from "@public/version-3/unlimited/popup/arrow-right.svg";
 import arrowLeft from "@public/version-3/unlimited/popup/arrow-left.svg";
-import { motion, useAnimate, useInView } from 'framer-motion';
+import { motion, useAnimate } from 'framer-motion';
 import Link from 'next/link';
 import { IUnlimited, unlimitedList } from '@/utils/unlimited';
 
@@ -45,8 +45,10 @@ export function UnlimitedMobile() {
             grouped.map(arr => {
                 arr.slice(2).forEach((o, index) => {
                     const isLeft = index % 2 == 0;
-                    tl.to(
+                    const step = !isLeft ? index : index + 1;
+                    tl.fromTo(
                         `#unlimited-item-${o.id}`,
+                        { x: step * (isLeft ? -25 : 25), y: step * 15, rotate: (isLeft ? 12 : -12), },
                         { x: 0, y: 0, rotate: 0, duration: 0.5, ease: "power2.inOut" },
                         isLeft ? index == 0 ? undefined : "<+=0.1" : "<"
                     );
@@ -131,10 +133,9 @@ export function UnlimitedMobile() {
                             const step = !isLeft ? index - 1 : index;
 
                             return unlimited.title ? (
-                                <motion.div
+                                <Box
                                     key={unlimited.id}
                                     id={`unlimited-item-${unlimited.id}`}
-                                    initial={{ x: step * (isLeft ? -25 : 25), y: step * 15, rotate: index > 1 ? (isLeft ? 12 : -12) : 0 }}
                                     className='aspect-[0.83] md:aspect-[1.53043478261] cursor-pointer w-1/2 p-2 '
                                 >
                                     <Flex
@@ -147,7 +148,6 @@ export function UnlimitedMobile() {
                                         align={"center"}
                                         bg={"white"}
                                     >
-
                                         <Flex
                                             direction={"column"}
                                             gap={0}
@@ -179,7 +179,7 @@ export function UnlimitedMobile() {
                                             </Link>
                                         )}
                                     </Flex>
-                                </motion.div>
+                                </Box>
                             ) : (
                                 <Text
                                     fz={{ base: 16 }}
@@ -197,14 +197,11 @@ export function UnlimitedMobile() {
                             );
                         })}
                     </Flex>
-
                 </Box>
-
                 {unlimited && (
                     <Modal
                         opened={opened}
                         onClose={close}
-                        // w={{ base: "100%", md: 411 }}
                         size={411}
                         centered={true}
                         classNames={{

@@ -117,7 +117,7 @@ export const BannerTop = () => {
 
             <Animation position='right'>
                 <motion.div
-                    initial={{ y: "24%", opacity: 0 }}
+                    initial={{ y: "20%", opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{

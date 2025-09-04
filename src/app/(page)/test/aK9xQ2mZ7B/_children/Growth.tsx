@@ -112,7 +112,7 @@ export function Growth() {
     );
 
     return (
-        <Box h={4855} className='overflow-hidden'>
+        <Box h={5000} className='overflow-hidden'>
             <Box
                 id='growth'
                 w={{ base: "100%" }}

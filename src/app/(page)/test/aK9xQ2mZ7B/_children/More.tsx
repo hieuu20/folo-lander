@@ -49,7 +49,10 @@ export function More() {
     const main = useRef(null);
 
     return (
-        <Box id='more' w={"100%"} bg={"#F0F0FC"} className='aspect-[1.77777777778]'>
+        <Box
+            id='more' w={"100%"} bg={"#F0F0FC"} h={"screen"}
+        // className='aspect-[1.77777777778]'
+        >
             <Box ref={main} className='container-version3' h={"100%"}>
                 <Box
                     pos={"relative"}
@@ -95,10 +98,10 @@ export function More() {
                                                     className="inline-block"
                                                 >
                                                     {o.title} →
+                                                    {index == 4 && (
+                                                        <Image src={goldIcon} alt='gold icon' className='w-3 md:w-4 lg:w-5 2xl:w-6 h-auto absolute top-[-24%] left-[78%]' />
+                                                    )}
                                                 </motion.span>
-                                                {index == 4 && (
-                                                    <Image src={goldIcon} alt='gold icon' className='w-3 md:w-4 lg:w-5 2xl:w-6 h-auto absolute top-[-24%] left-[78%]' />
-                                                )}
                                                 <span className="absolute z-10 left-0 -bottom-1 h-[2px] w-0 bg-black transition-all duration-300 group-hover:w-full"></span>
                                             </Link>
                                         </Text>

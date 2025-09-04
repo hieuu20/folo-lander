@@ -57,7 +57,7 @@ export function BannerBottom() {
                     trigger: main.current,
                     pin: true,
                     start: 'center+=100 center',
-                    end: '+=9500',
+                    end: '+=9700',
                     scrub: true,
                     markers: false,
                 },
@@ -118,9 +118,9 @@ export function BannerBottom() {
                 "#phone",
                 { rotateX: 0, rotateY: 0, rotateZ: 0, x: 0, y: 0 },
                 {
-                    rotateX: 12,
-                    rotateY: -12,
-                    rotateZ: 12,
+                    rotateX: 8,
+                    rotateY: -8,
+                    rotateZ: 8,
                     duration: 2,
                     x: "-88%",
                     y: "12%",
@@ -131,11 +131,12 @@ export function BannerBottom() {
 
             tl.fromTo(
                 "#banner-button",
-                { autoAlpha: 0, y: "30%" },
+                { autoAlpha: 0, y: 600 },
                 {
                     autoAlpha: 1,
                     y: 0,
-                    duration: 1,
+                    x: "-49.99%",
+                    duration: 0.8,
                     ease: "power2.inOut",
                 },
                 "<=+0.5"
@@ -186,33 +187,21 @@ export function BannerBottom() {
                 tl.fromTo(
                     phoneImageEls[index + 1],
                     { y: "-100%" },
-                    { y: 0, duration: 0.7, ease: "none" },
-                    "<+=0.3"
+                    { y: 0, duration: 1, ease: "none" },
+                    "<"
                 );
 
                 tl.fromTo(
                     phoneImageEls[index],
                     { filter: "blur(0px)", scale: 1 },
-                    { filter: "blur(20px)", scale: 0.85, duration: 0.7, ease: "power2.inOut" },
+                    { filter: "blur(20px)", scale: 0.85, duration: 0.8, ease: "power2.inOut" },
                     "<"
-                );
-
-                tl.to(
-                    "#phone",
-                    {
-                        rotateX: "-=2",
-                        rotateY: "+=2",
-                        rotateZ: "-=2",
-                        duration: 0.4,
-                        ease: "power1.in",
-                    },
-                    // "<"
                 );
 
                 if (index < texts.length - 1) {
                     tl.fromTo(el,
                         { x: 0, y: 0, autoAlpha: 1, rotate: 0 },
-                        { x: "-100%", y: "80%", rotate: -70, autoAlpha: 0, duration: 1 }
+                        { x: "-100%", y: "80%", rotate: -70, autoAlpha: 0, duration: 1, delay: 0.1 }
                     );
                 }
             });
@@ -223,7 +212,7 @@ export function BannerBottom() {
     );
 
     return (
-        <Box pos={"relative"} mt={{ base: "-32%" }} h={10300} className='overflow-hidden'>
+        <Box pos={"relative"} mt={{ base: "-32%" }} h={10650} className='overflow-hidden'>
             <Flex direction={"column"} ref={main} pos={"relative"} align={"center"} className='container-version3'>
                 <motion.div
                     id="phone-bg"
@@ -532,7 +521,7 @@ const Phase2 = () => {
                 pos={"absolute"}
                 bottom={0}
                 left={"50%"}
-                className='-translate-x-1/2 z-10'
+                className='z-10'
                 show={true}
                 w={{ base: 216 }}
                 h={{ base: 40 }}
@@ -540,9 +529,6 @@ const Phase2 = () => {
                 title={"Join KNKY today →"}
                 fz={{ sm: 16 }}
                 fw={600}
-                style={{
-                    opacity: 0
-                }}
             />
         </Flex>
     );

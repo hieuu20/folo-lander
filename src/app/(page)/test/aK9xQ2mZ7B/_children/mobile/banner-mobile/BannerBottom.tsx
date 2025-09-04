@@ -126,8 +126,8 @@ export function BannerBottom() {
                 tl.fromTo(
                     phoneImageEls[index + 1],
                     { y: "-100%" },
-                    { y: 0, duration: 1, ease: "none" },
-                    "<+=0.2"
+                    { y: 0, duration: 0.9, ease: "none" },
+                    "<+=0.1"
                 );
 
                 tl.fromTo(

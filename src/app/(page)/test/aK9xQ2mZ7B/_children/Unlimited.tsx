@@ -77,7 +77,7 @@ export function Unlimited() {
     }, []);
 
     return (
-        <Box id='unlimited' h={1852} bg={"#F0F0FC"}>
+        <Box id='unlimited' h={2000} bg={"#F0F0FC"}>
             <Box ref={main} className='container-version3 z-10' bg={"#F0F0FC"}>
                 <Box
                     pos={"relative"}

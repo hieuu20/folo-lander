@@ -200,7 +200,7 @@ export function Footer() {
                                 fz={{ base: 40, sm: 45, md: 52, lg: 56, xl: 60, "2xl": 64 }}
                                 c={"white"}
                                 fw={900}
-                                lh={0.8}
+                                lh={0.9}
                                 className='overflow-hidden'
                             >
                                 <motion.span
@@ -319,15 +319,26 @@ export function Footer() {
                         direction={{ base: "column", md: "row" }}
                         justify={{ base: "center", md: "space-between" }}
                         align={{ base: "center", md: "flex-end" }}
-                        gap={{ base: 14 }}
+                        gap={{ base: 48 }}
                     >
                         <Link
-                            href={"https://www.xbiz.com/news/291189/2025-xma-europa-awards-nominees-announced"}
+                            href={"https://www.xbiz.com/news/292013/2025-euro-xma-winners-announced"}
                             target="_blank"
                             rel="nofollow"
-                            className="w-[114px] md:w-[118px] 2xl:w-[122px]"
+                            className="flex flex-col items-center gap-2 md:gap-2 "
                         >
-                            <Image src={xmaIcon} alt="xma icon" className="w-full h-auto" />
+                            <Box>
+                                <Image src={xmaIcon} alt="xma icon" className="w-[297px] sm:w-[320px] md:w-[196px] h-auto" />
+                            </Box>
+                            <Text
+                                fz={{ base: 24, md: 20 }}
+                                lh={1.4}
+                                fw={600}
+                                c={"white"}
+                                lts={-0.24}
+                            >
+                                XMA EU 🇪🇺 2025 WINNER →
+                            </Text>
                         </Link>
                         <Flex direction={"column"} gap={{ base: 4, md: 6, xl: 8 }}>
                             <Text

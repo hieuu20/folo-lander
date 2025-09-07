@@ -334,20 +334,21 @@ const Bottom = () => {
                 </Title>
 
                 <Grid id='slide-container' gutter={{ base: 20, "2xl": 24 }}>
-                    <Grid.Col id='slide-list' span={{ base: 12, md: 9, xl: 9.6 }} >
+                    <Grid.Col id='slide-list' span={{ base: 12, md: 9, xl: 9.6 }} className='overflow-hidden'>
                         <Marquee
                             direction="left"
                             pauseOnHover={true}
                             pauseOnClick={true}
                             speed={50} delay={5}
-                            className="w-full h-full"
+                            className="w-full h-full overflow-hidden"
                         >
                             <Flex
                                 align={"center"}
+                                className='overflow-hidden'
                             >
                                 {growthList.map((o, i) => {
                                     return (
-                                        <Box key={i} w={{ base: width / 4, xl: width / 5 }} px={{ base: 10 }}>
+                                        <Box key={i} w={{ base: width / 4, xl: width / 5 }} px={{ base: 10, "2xl": 12 }}>
                                             <Flex key={i} direction={"column"} w={"100%"} align={"center"} c={"white"}>
                                                 <Box pos={"relative"} mb={{ base: 12, sm: 16, md: 20, "2xl": 24 }} w={"100%"} className='idol-image aspect-[0.57712305026]'>
                                                     <Image src={o.img} alt={o.name} fill className='object-cover' />

@@ -28,8 +28,6 @@ export function Header() {
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 300);
-
             const sections = ["unlimited", "growth", "more"];
             let logoType: "white" | "black" = "white";
 
@@ -66,7 +64,7 @@ export function Header() {
 
                 // console.log({ bottom: rect.bottom, inViewport });
 
-                setIsScrolled(inViewport);
+                setIsScrolled(inViewport && window.scrollY > 300 ? true : false);
             }
         };
 
@@ -95,7 +93,7 @@ export function Header() {
                     <Image src={logoBlack} alt="header logo black" id='header-logo-black' fill className='object-cover opacity0 transition-all duration-150' />
                 </Link>
                 <SectionButton
-                    title="Join platform →"
+                    title="Join KNKY →"
                     href="https://knky.co/fresh"
                     show={true}
                     w={{ base: 120 }}

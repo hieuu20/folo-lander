@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap/dist/gsap';
 import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
-import Slider from 'react-slick';
 
 // import img11 from "@public/version-3/growth/idols/11.webp";
 // import img12 from "@public/version-3/growth/idols/12.webp";
@@ -21,8 +20,7 @@ import SectionButton from '@/components/buttons/SectionButton';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { growthList, growtTexthList } from '@/utils/growth';
-
-
+import Marquee from 'react-fast-marquee';
 
 export function Growth() {
     const main = useRef(null);
@@ -279,39 +277,10 @@ const Top = () => {
     );
 };
 
-const settings = {
-    dots: false,
-    arrows: false,
-    infinite: true,
-    speed: 4000,
-    autoplaySpeed: 0,
-    cssEase: "linear",
-    pauseOnHover: true,
-    autoplay: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    draggable: true,
-    responsive: [
-        {
-            breakpoint: 1240,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-            },
-        },
-        {
-            breakpoint: 768,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-            },
-        },
-    ],
-};
 
 const Bottom = () => {
     const [height, setHeight] = useState(0);
+    const [width, setWidth] = useState(2000);
 
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -323,6 +292,18 @@ const Bottom = () => {
 
         return () => clearTimeout(timeout);
     }, []);
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            const containerElement = document.getElementById("slide-container")?.getBoundingClientRect();
+            if (containerElement?.width) {
+                setWidth(containerElement?.width);
+            }
+        }, 500);
+
+        return () => clearTimeout(timeout);
+    }, []);
+
 
     return (
         <Box
@@ -352,42 +333,54 @@ const Bottom = () => {
                     WHO’S ALREADY IN
                 </Title>
 
-                <Grid gutter={{ base: 20, "2xl": 24 }}>
-                    <Grid.Col span={{ base: 12, md: 9, xl: 9.6 }}>
-                        <Slider {...settings} className="[&_.slick-slide]:px-2.5 2xl:[&_.slick-slide]:px-3 [&_.slick-list]:-mx-2.5 2xl:[&_.slick-list]:-mx-3">
-                            {growthList.map((o, i) => {
-                                return (
-                                    <Flex key={i} direction={"column"} w={"100%"} align={"center"} c={"white"}>
-                                        <Box pos={"relative"} mb={{ base: 12, sm: 16, md: 20, "2xl": 24 }} w={"100%"} className='idol-image aspect-[0.57712305026]'>
-                                            <Image src={o.img} alt={o.name} fill className='object-cover' />
-                                            <Link
-                                                target='_blank'
-                                                href={`https://knky.co/creator/${o.userName}`}
-                                                className='cursor-pointer absolute bottom-1 md:bottom-1.5 2xl:bottom-2 right-1 md:right-1.5 2xl:right-2 aspect-square w-5 sm:w-6 md:w-7 lg:w-8 xl:w-9 2xl:w-10 group'
-                                            >
-                                                <Image src={clickIcon} alt='click icon' fill className='object-cover group-hover:hidden' />
-                                                <Image src={clickActiveIcon} alt='click icon' fill className='object-cover hidden group-hover:block' />
-                                            </Link>
+                <Grid id='slide-container' gutter={{ base: 20, "2xl": 24 }}>
+                    <Grid.Col id='slide-list' span={{ base: 12, md: 9, xl: 9.6 }} >
+                        <Marquee
+                            direction="left"
+                            pauseOnHover={true}
+                            pauseOnClick={true}
+                            speed={50} delay={5}
+                            className="w-full h-full"
+                        >
+                            <Flex
+                                align={"center"}
+                            >
+                                {growthList.map((o, i) => {
+                                    return (
+                                        <Box key={i} w={{ base: width / 4, xl: width / 5 }} px={{ base: 10 }}>
+                                            <Flex key={i} direction={"column"} w={"100%"} align={"center"} c={"white"}>
+                                                <Box pos={"relative"} mb={{ base: 12, sm: 16, md: 20, "2xl": 24 }} w={"100%"} className='idol-image aspect-[0.57712305026]'>
+                                                    <Image src={o.img} alt={o.name} fill className='object-cover' />
+                                                    <Link
+                                                        target='_blank'
+                                                        href={`https://knky.co/creator/${o.userName}`}
+                                                        className='cursor-pointer absolute bottom-1 md:bottom-1.5 2xl:bottom-2 right-1 md:right-1.5 2xl:right-2 aspect-square w-5 sm:w-6 md:w-7 lg:w-8 xl:w-9 2xl:w-10 group'
+                                                    >
+                                                        <Image src={clickIcon} alt='click icon' fill className='object-cover group-hover:hidden' />
+                                                        <Image src={clickActiveIcon} alt='click icon' fill className='object-cover hidden group-hover:block' />
+                                                    </Link>
+                                                </Box>
+
+                                                <Text
+                                                    ta={"center"}
+                                                    fz={{ base: 16, sm: 18, md: 23, lg: 25, xl: 28, "2xl": 32 }}
+                                                    mb={{ base: 4, md: 6, xl: 8 }}
+                                                    fw={700}
+                                                    className='uppercase'
+                                                    lh={1.2}
+                                                >
+                                                    {o.name}
+                                                </Text>
+
+                                                <Text lh={1.2} ta={"center"} fz={{ base: 10, sm: 12, md: 14, lg: 16, xl: 18, "2xl": 20 }} c={"#FFFFFFCC"} fw={500}>
+                                                    @{o.userName}
+                                                </Text>
+                                            </Flex>
                                         </Box>
-
-                                        <Text
-                                            ta={"center"}
-                                            fz={{ base: 16, sm: 18, md: 23, lg: 25, xl: 28, "2xl": 32 }}
-                                            mb={{ base: 4, md: 6, xl: 8 }}
-                                            fw={700}
-                                            className='uppercase'
-                                            lh={1.2}
-                                        >
-                                            {o.name}
-                                        </Text>
-
-                                        <Text lh={1.2} ta={"center"} fz={{ base: 10, sm: 12, md: 14, lg: 16, xl: 18, "2xl": 20 }} c={"#FFFFFFCC"} fw={500}>
-                                            @{o.userName}
-                                        </Text>
-                                    </Flex>
-                                );
-                            })}
-                        </Slider>
+                                    );
+                                })}
+                            </Flex>
+                        </Marquee>
                     </Grid.Col>
 
                     <Grid.Col

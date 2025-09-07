@@ -200,7 +200,7 @@ export function Footer() {
                                 fz={{ base: 40, sm: 45, md: 52, lg: 56, xl: 60, "2xl": 64 }}
                                 c={"white"}
                                 fw={900}
-                                lh={0.9}
+                                lh={1}
                                 className='overflow-hidden'
                             >
                                 <motion.span
@@ -221,7 +221,7 @@ export function Footer() {
                                 fz={{ base: 40, sm: 45, md: 52, lg: 56, xl: 60, "2xl": 64 }}
                                 c={"white"}
                                 fw={900}
-                                lh={0.8}
+                                lh={1}
                                 className='overflow-hidden'
                             >
                                 <motion.span
@@ -252,35 +252,40 @@ export function Footer() {
                                     span={{ base: 12, lg: 4 }}
                                 >
                                     <Flex
+                                        justify={{ base: "unset", md: index == 0 ? "unset" : (index == 1 ? "center" : "flex-end") }}
                                         w={"100%"}
-                                        direction={"column"}
-                                        gap={{ base: 4, md: 6, xl: 8 }}
                                     >
-                                        <Text c={"#FFFFFF99"} fz={{ base: 13, md: 14, lg: 15, xl: 16 }} lh={1.5}>
-                                            {f.title}
-                                        </Text>
+                                        <Flex
+                                            w={"fit-content"}
+                                            direction={"column"}
+                                            gap={{ base: 4, md: 6, xl: 8 }}
+                                        >
+                                            <Text c={"#FFFFFF99"} fz={{ base: 13, md: 14, lg: 15, xl: 16 }} lh={1.5}>
+                                                {f.title}
+                                            </Text>
 
-                                        {f.children.map((child, index) => {
-                                            return (
-                                                <a
-                                                    key={index}
-                                                    href={child.href}
-                                                    target="blank"
-                                                    rel="nofollow"
-                                                    className="group relative w-fit text-white text-base md:text-lg xl:text-xl font-medium leading-[1.4]"
-                                                    onClick={
-                                                        child.href.includes("mailto")
-                                                            ? () => {
-                                                                window.location.href = child.href;
-                                                            }
-                                                            : undefined
-                                                    }
-                                                >
-                                                    {child.title}
-                                                    <span className="absolute z-10 left-0 -bottom-0.5 h-[1.5px] w-0 bg-[#ccc] transition-all duration-300 group-hover:w-full"></span>
-                                                </a>
-                                            );
-                                        })}
+                                            {f.children.map((child, index) => {
+                                                return (
+                                                    <a
+                                                        key={index}
+                                                        href={child.href}
+                                                        target="blank"
+                                                        rel="nofollow"
+                                                        className="group relative w-fit text-white text-base md:text-lg xl:text-xl font-medium leading-[1.4]"
+                                                        onClick={
+                                                            child.href.includes("mailto")
+                                                                ? () => {
+                                                                    window.location.href = child.href;
+                                                                }
+                                                                : undefined
+                                                        }
+                                                    >
+                                                        {child.title}
+                                                        <span className="absolute z-10 left-0 -bottom-0.5 h-[1.5px] w-0 bg-[#ccc] transition-all duration-300 group-hover:w-full"></span>
+                                                    </a>
+                                                );
+                                            })}
+                                        </Flex>
                                     </Flex>
                                 </Grid.Col>
                             );

@@ -164,7 +164,7 @@ export const unlimitedList: IUnlimited[] = [
     id: 7,
     img: img7,
     title: "Play",
-    description: "Keep fans engaged with unique services.",
+    description: "Keep fans engaged with unique features.",
 
     popupTitle: "Play",
     popupDescription:
@@ -227,7 +227,7 @@ export const unlimitedList: IUnlimited[] = [
 
     popupTitle: "Prime",
     popupDescription:
-      "Helps fans discover creators, explore new trends, and enjoy content in stunning 4K without time wasted.",
+      "Helps fans find you, create exclusive offers, explore the latest trends, stay engaged, and enjoy content in crystal-clear 4K.",
     popupButtonTitle: "Go Prime →",
     popupButtonLink: "http://knky.co/",
     popupImg: popupImg10,

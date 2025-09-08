@@ -112,7 +112,7 @@ export function Growth({ idols }: Props) {
     );
 
     return (
-        <Box h={5000} className='overflow-hidden'>
+        <Box h={4856} className='overflow-hidden'>
             <Box
                 id='growth'
                 w={{ base: "100%" }}

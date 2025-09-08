@@ -73,7 +73,7 @@ export default function News({ news }: Props) {
         <Box
             id='idols-slide'
             w={"100%"}
-            h={"100vh"}
+            h={"fit-content"}
             top={0}
             left={0}
             bg={"#160328"}

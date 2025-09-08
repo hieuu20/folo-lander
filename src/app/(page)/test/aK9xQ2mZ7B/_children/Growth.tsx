@@ -16,7 +16,7 @@ import bg2 from "@public/version-3/growth/bg2.webp";
 import SectionButton from '@/components/buttons/SectionButton';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { growthList, growtTexthList } from '@/utils/growth';
+import { growtTexthList } from '@/utils/growth';
 import Marquee from 'react-fast-marquee';
 import { ICreatorIdol } from '@/app/api/_entities/creatorIdol';
 
@@ -232,8 +232,6 @@ const Top = () => {
                                     </Text>
                                 )}
                             </Box>
-
-
 
                             <Text
                                 id={`growth-subtitle-${index + 1}`}

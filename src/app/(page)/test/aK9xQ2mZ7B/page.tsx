@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 import Container from "./_children/Container";
 import { connectDB } from "@/app/api/_db";

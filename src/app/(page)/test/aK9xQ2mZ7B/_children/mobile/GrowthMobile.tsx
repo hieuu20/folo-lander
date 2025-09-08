@@ -17,7 +17,7 @@ import bg2 from "@public/version-3/growth/bg2.webp";
 import SectionButton from '@/components/buttons/SectionButton';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { growthList, growtTexthList } from '@/utils/growth';
+import { growtTexthList } from '@/utils/growth';
 
 import Marquee from "react-fast-marquee";
 import { useBrowserWidth } from '@/hooks';
@@ -126,7 +126,7 @@ export function GrowthMobile({ idols }: Props) {
                 className='aspect-[0.46182266009]'
             >
                 <Top />
-                <Bottom />
+                <Bottom idols={idols} />
             </Box>
         </Box>
     );
@@ -277,7 +277,7 @@ const Top = () => {
     );
 };
 
-const Bottom = () => {
+const Bottom = ({ idols }: Props) => {
     const [height, setHeight] = useState(0);
     const { width } = useBrowserWidth();
 
@@ -326,7 +326,7 @@ const Bottom = () => {
                             <Flex
                                 align={"center"}
                             >
-                                {growthList.map((o, i) => {
+                                {idols.map((o, i) => {
                                     return (
                                         <Box key={i} w={width / 2} px={{ base: 10 }}>
                                             <Flex key={i} direction={"column"} w={"100%"} align={"center"} c={"white"}>
@@ -412,10 +412,3 @@ const Bottom = () => {
         </Box>
     );
 };
-
-function splitArray(arr: any[]) {
-    const mid = Math.floor(arr.length / 2);
-    const first = arr.slice(0, mid);
-    const second = arr.slice(mid);
-    return [first, second];
-}

@@ -1,5 +1,5 @@
 import { Box, Flex, SimpleGrid, Text } from '@mantine/core';
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useRef } from 'react';
 import logo from "@public/version-3/icons/logo.webp";
 import Image from 'next/image';
 import youImg from "@public/version-3/banner/you.webp";
@@ -13,18 +13,18 @@ export const BannerTop = () => {
     const [scope] = useAnimate();
     const isInView = useInView(scope);
 
-    const [height, setHeight] = useState<number>(0);
+    // const [height, setHeight] = useState<number>(0);
 
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            const bannerElement = document.getElementById(".banner-top")?.getBoundingClientRect();
-            if (bannerElement?.height) {
-                setHeight(bannerElement?.height);
-            }
-        }, 1000);
+    // useEffect(() => {
+    //     const timeout = setTimeout(() => {
+    //         const bannerElement = document.getElementById(".banner-top")?.getBoundingClientRect();
+    //         if (bannerElement?.height) {
+    //             setHeight(bannerElement?.height);
+    //         }
+    //     }, 1000);
 
-        return () => clearTimeout(timeout);
-    }, []);
+    //     return () => clearTimeout(timeout);
+    // }, []);
 
 
     return (

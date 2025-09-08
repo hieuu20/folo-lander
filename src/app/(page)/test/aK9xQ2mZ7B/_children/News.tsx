@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useEffect, useRef, useState } from 'react';
 
 import bg1 from "@public/version-3/growth/bg1.webp";
 import bg2 from "@public/version-3/growth/bg2.webp";
-import { Box, Flex, Grid, Text, Title } from '@mantine/core';
+import { Box, Flex, Text, Title } from '@mantine/core';
 import Image from 'next/image';
 import { INews } from '@/app/api/_entities';
 import Slider from 'react-slick';
@@ -49,7 +50,7 @@ const settings = {
 export default function News({ news }: Props) {
     const [height, setHeight] = useState(0);
 
-    const sliderRef = useRef<any>()
+    const sliderRef = useRef<any>();
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -123,7 +124,7 @@ export default function News({ news }: Props) {
                                     )}
                                 </Flex>
                             </Flex>
-                        )
+                        );
                     })}
                 </Slider>
 
@@ -133,5 +134,5 @@ export default function News({ news }: Props) {
                 </Flex>
             </Box>
         </Box>
-    )
+    );
 }

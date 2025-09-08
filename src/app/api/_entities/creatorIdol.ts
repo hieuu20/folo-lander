@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 export interface ICreatorIdol {
     _id: string
@@ -16,8 +16,8 @@ const creatorIdolSchema: mongoose.Schema<ICreatorIdol> =
         userName: String,
         priority: Number,
         isShow: Boolean,
-    })
+    });
 
 export const CreatorIdolModel: mongoose.Model<ICreatorIdol> =
     mongoose.models.CreatorIdol ||
-    mongoose.model('CreatorIdol', creatorIdolSchema)
+    mongoose.model('CreatorIdol', creatorIdolSchema);

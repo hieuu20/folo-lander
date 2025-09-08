@@ -33,6 +33,21 @@ export const getLocalStorage = <T>(key: string): T | undefined | null => {
   return;
 };
 
+export function formatTime(date: string) {
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  const d = new Date(date);
+
+  const hours = String(d.getHours()).padStart(2, "0");
+  const minutes = String(d.getMinutes()).padStart(2, "0");
+  const month = months[d.getMonth()];
+  const day = String(d.getDate()).padStart(2, "0");
+  const year = d.getFullYear();
+
+  return `${hours}:${minutes} ${month} ${day},${year}`;
+}
+
 export const setLocalStorage = (key: string, value: unknown) => {
   if (typeof window !== "undefined") {
     localStorage.setItem(key, JSON.stringify(value));

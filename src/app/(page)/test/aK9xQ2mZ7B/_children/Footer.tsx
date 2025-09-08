@@ -19,6 +19,7 @@ import footerPay2 from "@public/version-3/footer/payments/2.png";
 import footerPay3 from "@public/version-3/footer/payments/3.png";
 import footerPay4 from "@public/version-3/footer/payments/4.png";
 import footerPay5 from "@public/version-3/footer/payments/5.png";
+import footerPay6 from "@public/version-3/footer/payments/6.png";
 
 import xmaIcon from "@public/version-3/footer/xma.webp";
 import { motion } from "framer-motion";
@@ -141,7 +142,8 @@ const footerPays = [
     footerPay2,
     footerPay3,
     footerPay4,
-    footerPay5
+    footerPay5,
+    footerPay6
 ];
 
 export function Footer() {

@@ -1,5 +1,5 @@
 import { Box, Flex, SimpleGrid, Text } from '@mantine/core';
-import React, { ReactNode, useRef } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import logo from "@public/version-3/icons/logo.webp";
 import Image from 'next/image';
 import youImg from "@public/version-3/banner/you.webp";
@@ -13,123 +13,147 @@ export const BannerTop = () => {
     const [scope] = useAnimate();
     const isInView = useInView(scope);
 
+    const [height, setHeight] = useState<number>(0);
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            const bannerElement = document.getElementById(".banner-top")?.getBoundingClientRect();
+            if (bannerElement?.height) {
+                setHeight(bannerElement?.height);
+            }
+        }, 1000);
+
+        return () => clearTimeout(timeout);
+    }, []);
+
+
     return (
-        <div>
-            <SimpleGrid
-                ref={scope}
-                pos={"relative"}
-                h={{ base: "fit-content", md: "100vh" }}
-                cols={{ base: 1, md: 2 }}
-                spacing={0}
-                verticalSpacing={0}
-                className='overflow-hidden z-10'
-            >
-                <Animation>
-                    <Flex
-                        direction={{ base: "column" }}
-                        bg={"#160328"}
-                        h={{ base: "auto", md: "100%" }}
-                        align={"center"}
-                        justify={"center"}
-                        className='container-version3 overflow-hidden aspect-[0.59] md:aspect-auto'
-                        pt={{ base: 12, md: 24 }}
-                    >
-                        <Box
-                            pos={"absolute"}
-                            top={0}
-                            left={0}
-                            w={"160%"}
-                            className='aspect-[4.44039735099] -translate-y-1/2 -translate-x-1/2'
-                            style={{
-                                background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.3) 0%, rgba(18, 2, 32, 0) 100%)"
-                            }}
-                        />
-
-                        <Logo isInView={isInView} />
-
-                        <TitlePc isInView={isInView} />
-
-                        <Flex
-                            direction={"column"}
-                            gap={{ base: 16 }}
-                            mb={{ base: 40, md: 60, lg: 80, xl: 90, "2xl": 128 }}
-                        >
-                            <motion.div
-                                initial={{ y: "100%", opacity: 0 }}
-                                animate={isInView ? { y: 0, opacity: 1 } : {}}
-                                transition={{
-                                    duration: 0.6,
-                                    ease: 'easeInOut',
-                                    delay: 0.6
-                                }}
-                            >
-                                <SectionButton
-                                    href='https://knky.co'
-                                    show={true}
-                                    w={{ base: 207, md: 240, "2xl": 248 }}
-                                    h={{ base: 40, md: 44, lg: 46, xl: 48 }}
-                                    title={"Create Now →"}
-                                    fz={{ sm: 16 }}
-                                    fw={600}
-                                />
-                            </motion.div>
-
-                            <motion.div
-                                initial={{ y: "100%", opacity: 0 }}
-                                animate={isInView ? { y: 0, opacity: 1 } : {}}
-                                transition={{
-                                    duration: 0.6,
-                                    ease: 'easeInOut',
-                                    delay: 0.9
-                                }}
-                            >
-                                <SectionButton
-                                    show={true}
-                                    w={{ base: 207, md: 240, "2xl": 248 }}
-                                    h={{ base: 40, md: 44, lg: 46, xl: 48 }}
-                                    title={"I’m a Fan →"}
-                                    href='/fans'
-                                    fz={{ sm: 16 }}
-                                    fw={600}
-                                    bg={"transparent"}
-                                />
-                            </motion.div>
-                        </Flex>
-
-                        <Flex direction={"column"} gap={{ base: 16, "2xl": 20 }}>
-                            <motion.div
-                                initial={{ y: "30%", opacity: 0 }}
-                                animate={isInView ? { y: 0, opacity: 1 } : {}}
-                                transition={{
-                                    duration: 0.6,
-                                    ease: 'easeInOut',
-                                    delay: 1.2
-                                }}
-                            >
-                                <Text fz={{ base: 13, sm: 14, md: 16, lg: 17, xl: 18, "2xl": 20 }} c={"#FFFFFFCC"} ta={"center"}>
-                                    Creators earn, fans experience. <br />
-                                    One platform, endless possibilities.
-                                </Text>
-                            </motion.div>
-                        </Flex>
-                    </Flex>
-                </Animation>
-
-                <Animation position='right'>
-                    <motion.div
-                        initial={{ y: "24%", opacity: 0 }}
-                        animate={isInView ? { y: 0, opacity: 1 } : {}}
-                        transition={{
-                            duration: 1,
-                            ease: 'easeInOut',
+        <SimpleGrid
+            ref={scope}
+            pos={"relative"}
+            h={{ base: "fit-content", md: "100vh" }}
+            cols={{ base: 1, md: 2 }}
+            spacing={0}
+            verticalSpacing={0}
+            className='overflow-hidden z-10'
+        >
+            <Animation>
+                <Flex
+                    id='banner-top'
+                    direction={{ base: "column" }}
+                    bg={"#160328"}
+                    h={{ base: "auto", md: "100vh" }}
+                    align={"center"}
+                    justify={"center"}
+                    className='container-version3 overflow-hidden'
+                >
+                    <Box
+                        pos={"absolute"}
+                        top={0}
+                        left={0}
+                        w={"160%"}
+                        className='aspect-[4.44039735099] -translate-y-1/2 -translate-x-1/2'
+                        style={{
+                            background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.3) 0%, rgba(18, 2, 32, 0) 100%)"
                         }}
-                        className='w-full h-full'
+                    />
+
+                    <Logo isInView={isInView} />
+
+                    <TitlePc isInView={isInView} />
+
+                    <Flex
+                        direction={"column"}
+                        gap={{ base: 16 }}
+                        // mb={{ base: 40, md: 60, lg: 80, xl: 90, "2xl": 128 }}
+                        mb={{ base: "12vh" }}
                     >
-                        <Image src={bannerImg} alt='bannerImg' className='w-full h-full object-cover' />
-                    </motion.div>
-                </Animation>
-            </SimpleGrid>
-        </div>
+                        <motion.div
+                            initial={{ y: "100%", opacity: 0 }}
+                            animate={isInView ? { y: 0, opacity: 1 } : {}}
+                            transition={{
+                                duration: 0.6,
+                                ease: 'easeInOut',
+                                delay: 0.6
+                            }}
+                        >
+                            <SectionButton
+                                href='https://knky.co'
+                                show={true}
+                                w={{ base: 207, md: 240, "2xl": 248 }}
+                                h={{ base: 40, md: 44, lg: 46, xl: 48 }}
+                                title={"Create Now →"}
+                                fz={{ sm: 16 }}
+                                fw={600}
+                            />
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ y: "100%", opacity: 0 }}
+                            animate={isInView ? { y: 0, opacity: 1 } : {}}
+                            transition={{
+                                duration: 0.6,
+                                ease: 'easeInOut',
+                                delay: 0.9
+                            }}
+                        >
+                            <SectionButton
+                                show={true}
+                                w={{ base: 207, md: 240, "2xl": 248 }}
+                                h={{ base: 40, md: 44, lg: 46, xl: 48 }}
+                                title={"I’m a Fan →"}
+                                href='/fans'
+                                fz={{ sm: 16 }}
+                                fw={600}
+                                bg={"transparent"}
+                            />
+                        </motion.div>
+                    </Flex>
+
+                    <Flex direction={"column"} gap={{ base: 16, "2xl": 20 }}>
+                        <motion.div
+                            initial={{ y: "30%", opacity: 0 }}
+                            animate={isInView ? { y: 0, opacity: 1 } : {}}
+                            transition={{
+                                duration: 0.6,
+                                ease: 'easeInOut',
+                                delay: 1.2
+                            }}
+                        >
+                            <Text
+                                // fz={{ base: 13, sm: 14, md: 16, lg: 17, xl: 18, "2xl": 20 }} 
+                                fz={{ base: "clamp(13px, 2vh, 20px)" }}
+                                lh={1.2}
+                                c={"#FFFFFFCC"} ta={"center"}
+                            >
+                                Creators earn, fans experience. <br />
+                                One platform, endless possibilities.
+
+                                <br />
+                                <br />
+                                Join the award winning social marketplace! 🏆
+                            </Text>
+                        </motion.div>
+                    </Flex>
+                </Flex>
+            </Animation>
+
+            <Animation position='right'>
+                <motion.div
+                    initial={{ y: "24%", opacity: 0 }}
+                    animate={isInView ? { y: 0, opacity: 1 } : {}}
+                    transition={{
+                        duration: 1,
+                        ease: 'easeInOut',
+                    }}
+                    className='w-full h-full overflow-hidden'
+                >
+                    <Box pos={"relative"} w={"100%"} h={"100%"}>
+                        <Image src={bannerImg} alt='bannerImg' fill className='object-cover' />
+                    </Box>
+                </motion.div>
+            </Animation>
+        </SimpleGrid>
     );
 };
 
@@ -137,9 +161,11 @@ const Logo = ({ isInView }: { isInView: boolean }) => {
     return (
         <Box
             pos={"relative"}
-            w={{ base: 125, sm: 150, md: 210, lg: 240, xl: 273 }}
+            // w={{ base: 125, sm: 150, md: 210, lg: 240, xl: 273 }}
+            h={{ base: "4.8%" }}
             className='aspect-[5.25]'
-            mb={{ base: 30, md: 36, xl: 42, "2xl": 48 }}
+            // mb={{ base: 30, md: 36, xl: 42, "2xl": 48 }}
+            mb={{ base: "4.44%" }}
         >
             <motion.div
                 initial={{ opacity: 0, y: "50%" }}
@@ -166,11 +192,13 @@ const TitlePc = ({ isInView }: { isInView: boolean }) => {
         >
             <Flex
                 direction={"column"}
-                fz={{ base: 50, sm: 54, md: 60, lg: 64, xl: 67, "2xl": 71 }}
+                // fz={{ base: 50, sm: 54, md: 60, lg: 64, xl: 67, "2xl": 71 }}
+                fz={{ base: "clamp(50px, 6.66vh, 71px)" }}
                 c={"white"}
                 fw={900}
                 justify={"center"}
-                mb={{ base: 50, md: 64, xl: 70, "2xl": 78 }}
+                // mb={{ base: 50, md: 64, xl: 70, "2xl": 78 }}
+                mb={{ base: "8vh" }}
                 className='hidden md:flex'
             >
                 PREMIUM STARTS
@@ -183,7 +211,8 @@ const TitlePc = ({ isInView }: { isInView: boolean }) => {
                     WITH
                     <Box
                         pos={"relative"}
-                        w={{ base: 170, sm: 190, md: 210, lg: 224, xl: 245, '2xl': 252 }}
+                        // w={{ base: 170, sm: 190, md: 210, lg: 224, xl: 245, '2xl': 252 }}
+                        h={{ base: "13.42vh" }}
                         className='aspect-[1.73793103448]'
                         mt={{ base: "-5%" }}
                     >

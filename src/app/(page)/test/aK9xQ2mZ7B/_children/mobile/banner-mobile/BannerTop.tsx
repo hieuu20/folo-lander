@@ -21,7 +21,7 @@ export const BannerTop = () => {
             cols={{ base: 1, md: 2 }}
             spacing={0}
             verticalSpacing={0}
-            className='overflow-hidden z-10 aspect-[0.35953978907]'
+            className='overflow-hidden z-10'
         >
             <Animation disable={true}>
                 <Flex
@@ -32,8 +32,8 @@ export const BannerTop = () => {
                     h={{ base: "auto", md: "100%" }}
                     align={"center"}
                     justify={"center"}
-                    className='container overflow-hidden aspect-[0.59] md:aspect-auto'
-                    pt={{ base: 12, md: 24 }}
+                    className='container overflow-hidden md:aspect-auto'
+                    py={{ base: 60 }}
                 >
                     <Box
                         pos={"absolute"}
@@ -109,6 +109,10 @@ export const BannerTop = () => {
                             <Text fz={{ base: 13, sm: 14, md: 16, lg: 17, xl: 18, "2xl": 20 }} c={"#FFFFFFCC"} lh={1.2} ta={"center"}>
                                 Creators earn, fans experience. <br />
                                 One platform, endless possibilities.
+
+                                <br />
+                                <br />
+                                Join the award winning social marketplace! 🏆
                             </Text>
                         </motion.div>
                     </Flex>
@@ -124,7 +128,7 @@ export const BannerTop = () => {
                         duration: 1,
                         ease: 'easeInOut',
                     }}
-                    className='w-full h-full'
+                    className='w-full h-fit'
                 >
                     <Image src={bannerImg} alt='bannerImg' className='w-full h-auto object-cover' />
                 </motion.div>

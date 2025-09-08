@@ -21,9 +21,12 @@ import { growthList, growtTexthList } from '@/utils/growth';
 
 import Marquee from "react-fast-marquee";
 import { useBrowserWidth } from '@/hooks';
+import { ICreatorIdol } from '@/app/api/_entities/creatorIdol';
 
-
-export function GrowthMobile() {
+interface Props {
+    idols: ICreatorIdol[];
+}
+export function GrowthMobile({ idols }: Props) {
     const main = useRef(null);
     useGSAP(
         () => {
@@ -317,60 +320,54 @@ const Bottom = () => {
                     WHO’S ALREADY IN
                 </Title>
 
-                <Grid gutter={{ base: 20, "2xl": 24 }}>
+                <Grid gutter={{ base: 24 }}>
                     <Grid.Col span={{ base: 12, md: 9, xl: 9.6 }}>
-                        <Flex direction={"column"} gap={{ base: 24 }}>
-                            {splitArray(growthList).map((x, index) => {
-                                return (
-                                    <Marquee key={index} direction="left" pauseOnHover={false} pauseOnClick={false} speed={50} delay={5} className="w-full h-full">
-                                        <Flex
-                                            align={"center"}
-                                        >
-                                            {x.map((o, i) => {
-                                                return (
-                                                    <Box key={index} w={width / 2} px={{ base: 10 }}>
-                                                        <Flex key={i} direction={"column"} w={"100%"} align={"center"} c={"white"}>
-                                                            <Box
-                                                                pos={"relative"}
-                                                                mb={{ base: 12, sm: 16, md: 20, "2xl": 24 }}
-                                                                w={"100%"}
-                                                                className='idol-image aspect-[0.57712305026]'
-                                                                onClick={() => window.open(`https://knky.co/creator/${o.userName}`, "_blank")}
-                                                            >
-                                                                <Image src={o.img} alt={o.name} fill className='object-cover' />
-                                                                <Link
-                                                                    target='_blank'
-                                                                    href={`https://knky.co/creator/${o.userName}`}
-                                                                    className='cursor-pointer absolute bottom-1 md:bottom-1.5 2xl:bottom-2 right-1 md:right-1.5 2xl:right-2 aspect-square w-5 sm:w-6 md:w-7 lg:w-8 xl:w-9 2xl:w-10 group'
-                                                                >
-                                                                    <Image src={clickIcon} alt='click icon' fill className='object-cover group-hover:hidden' />
-                                                                    <Image src={clickActiveIcon} alt='click icon' fill className='object-cover hidden group-hover:block' />
-                                                                </Link>
-                                                            </Box>
+                        <Marquee direction="left" pauseOnHover={false} pauseOnClick={false} speed={50} delay={5} className="w-full h-full">
+                            <Flex
+                                align={"center"}
+                            >
+                                {growthList.map((o, i) => {
+                                    return (
+                                        <Box key={i} w={width / 2} px={{ base: 10 }}>
+                                            <Flex key={i} direction={"column"} w={"100%"} align={"center"} c={"white"}>
+                                                <Box
+                                                    pos={"relative"}
+                                                    mb={{ base: 12, sm: 16, md: 20, "2xl": 24 }}
+                                                    w={"100%"}
+                                                    className='idol-image aspect-[0.57712305026]'
+                                                    onClick={() => window.open(`https://knky.co/creator/${o.userName}`, "_blank")}
+                                                >
+                                                    <Image src={o.img} alt={o.name} fill className='object-cover' />
+                                                    <Link
+                                                        target='_blank'
+                                                        href={`https://knky.co/creator/${o.userName}`}
+                                                        className='cursor-pointer absolute bottom-1 md:bottom-1.5 2xl:bottom-2 right-1 md:right-1.5 2xl:right-2 aspect-square w-5 sm:w-6 md:w-7 lg:w-8 xl:w-9 2xl:w-10 group'
+                                                    >
+                                                        <Image src={clickIcon} alt='click icon' fill className='object-cover group-hover:hidden' />
+                                                        <Image src={clickActiveIcon} alt='click icon' fill className='object-cover hidden group-hover:block' />
+                                                    </Link>
+                                                </Box>
 
-                                                            <Text
-                                                                ta={"center"}
-                                                                fz={{ base: 16, sm: 18, md: 23, lg: 25, xl: 28, "2xl": 32 }}
-                                                                mb={{ base: 4, md: 6, xl: 8 }}
-                                                                fw={700}
-                                                                className='uppercase'
-                                                                lh={1.4}
-                                                            >
-                                                                {o.name}
-                                                            </Text>
+                                                <Text
+                                                    ta={"center"}
+                                                    fz={{ base: 16, sm: 18, md: 23, lg: 25, xl: 28, "2xl": 32 }}
+                                                    mb={{ base: 4, md: 6, xl: 8 }}
+                                                    fw={700}
+                                                    className='uppercase'
+                                                    lh={1.4}
+                                                >
+                                                    {o.name}
+                                                </Text>
 
-                                                            <Text lh={1.4} ta={"center"} fz={{ base: 10, sm: 12, md: 14, lg: 16, xl: 18, "2xl": 20 }} c={"#FFFFFFCC"} fw={500}>
-                                                                @{o.userName}
-                                                            </Text>
-                                                        </Flex>
-                                                    </Box>
-                                                );
-                                            })}
-                                        </Flex>
-                                    </Marquee>
-                                );
-                            })}
-                        </Flex>
+                                                <Text lh={1.4} ta={"center"} fz={{ base: 10, sm: 12, md: 14, lg: 16, xl: 18, "2xl": 20 }} c={"#FFFFFFCC"} fw={500}>
+                                                    @{o.userName}
+                                                </Text>
+                                            </Flex>
+                                        </Box>
+                                    );
+                                })}
+                            </Flex>
+                        </Marquee>
                     </Grid.Col>
 
                     <Grid.Col

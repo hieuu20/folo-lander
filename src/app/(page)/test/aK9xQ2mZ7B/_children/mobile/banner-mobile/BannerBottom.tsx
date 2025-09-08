@@ -148,7 +148,7 @@ export function BannerBottom() {
     );
 
     return (
-        <Box pos={"relative"} h={5200} className='overflow-hidden'>
+        <Box pos={"relative"} h={5300} className='overflow-hidden'>
             <Flex direction={"column"} ref={main} pos={"relative"} align={"center"} className='container-version3'>
                 <motion.div
                     id="phone-bg"

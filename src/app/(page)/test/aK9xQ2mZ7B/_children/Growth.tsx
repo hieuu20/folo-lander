@@ -5,9 +5,6 @@ import gsap from 'gsap/dist/gsap';
 import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 
-// import img11 from "@public/version-3/growth/idols/11.webp";
-// import img12 from "@public/version-3/growth/idols/12.webp";
-// import img13 from "@public/version-3/growth/idols/13.webp";
 import clickIcon from "@public/version-3/growth/idols/click.svg";
 import clickActiveIcon from "@public/version-3/growth/idols/click-active.svg";
 
@@ -21,8 +18,13 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { growthList, growtTexthList } from '@/utils/growth';
 import Marquee from 'react-fast-marquee';
+import { ICreatorIdol } from '@/app/api/_entities/creatorIdol';
 
-export function Growth() {
+interface Props {
+    idols: ICreatorIdol[];
+}
+
+export function Growth({ idols }: Props) {
     const main = useRef(null);
     useGSAP(
         () => {
@@ -119,7 +121,7 @@ export function Growth() {
                 className='md:aspect-[1.77777777778]'
             >
                 <Top />
-                <Bottom />
+                <Bottom idols={idols} />
             </Box>
         </Box>
     );
@@ -278,7 +280,7 @@ const Top = () => {
 };
 
 
-const Bottom = () => {
+const Bottom = ({ idols }: Props) => {
     const [height, setHeight] = useState(0);
     const [width, setWidth] = useState(2000);
 
@@ -346,7 +348,7 @@ const Bottom = () => {
                                 align={"center"}
                                 className='overflow-hidden'
                             >
-                                {growthList.map((o, i) => {
+                                {idols.map((o, i) => {
                                     return (
                                         <Box key={i} w={{ base: width / 4, xl: width / 5 }} px={{ base: 10, "2xl": 12 }}>
                                             <Flex key={i} direction={"column"} w={"100%"} align={"center"} c={"white"}>

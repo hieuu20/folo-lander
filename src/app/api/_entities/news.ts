@@ -6,6 +6,10 @@ export interface INews {
   title: string;
   thumb: string;
   priority: number;
+  createdAt: Date
+  hasLink: boolean
+  buttonLink: string
+  buttonLabel: string
 }
 
 const newsSchema: mongoose.Schema<INews> = new mongoose.Schema<INews>({
@@ -14,6 +18,10 @@ const newsSchema: mongoose.Schema<INews> = new mongoose.Schema<INews>({
   title: String,
   thumb: String,
   priority: Number,
+  createdAt: Date,
+  hasLink: Boolean,
+  buttonLink: String,
+  buttonLabel: String,
 });
 
 export const NewsModel: mongoose.Model<INews> =

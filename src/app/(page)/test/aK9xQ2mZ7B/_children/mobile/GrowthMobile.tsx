@@ -86,7 +86,7 @@ export function GrowthMobile({ idols }: Props) {
             tl.fromTo(
                 "#growth-overlay",
                 { scale: 1 },
-                { scale: 10, duration: 1, ease: "power2.in" },
+                { scale: 9, duration: 0.6, ease: "power2.in" },
                 "<"
             );
 
@@ -117,7 +117,7 @@ export function GrowthMobile({ idols }: Props) {
     );
 
     return (
-        <Box h={2840} className='overflow-hidden'>
+        <Box h={2800} className='overflow-hidden'>
             <Box
                 id='growth'
                 w={{ base: "100%" }}
@@ -153,7 +153,7 @@ const Top = () => {
             />
             <svg
                 id='growth-overlay'
-                className="relative w-full h-full"
+                className="relative w-full h-full origin-center"
                 viewBox="0 0 1000 600"
                 preserveAspectRatio="none"
             >
@@ -322,7 +322,7 @@ const Bottom = ({ idols }: Props) => {
 
                 <Grid gutter={{ base: 24 }}>
                     <Grid.Col span={{ base: 12, md: 9, xl: 9.6 }}>
-                        <Marquee direction="left" pauseOnHover={false} pauseOnClick={false} speed={50} delay={5} className="w-full h-full">
+                        <Marquee direction="left" pauseOnHover={false} pauseOnClick={true} speed={50} delay={5} className="w-full h-full">
                             <Flex
                                 align={"center"}
                             >

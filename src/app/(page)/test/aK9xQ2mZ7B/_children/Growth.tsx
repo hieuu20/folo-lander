@@ -112,13 +112,17 @@ export function Growth({ idols }: Props) {
     );
 
     return (
-        <Box h={4856} className='overflow-hidden'>
+        <Box
+            h={{ xl: 4856, "2xl": 4950 }}
+            className='overflow-hidden'
+        >
             <Box
                 id='growth'
                 w={{ base: "100%" }}
+                h={{ base: "100vh" }}
                 pos={"relative"}
                 ref={main}
-                className='md:aspect-[1.77777777778]'
+                // className='md:aspect-[1.77777777778]'
             >
                 <Top />
                 <Bottom idols={idols} />
@@ -155,10 +159,10 @@ const Top = () => {
                     <mask id="capsuleMask">
                         <rect width="100%" height="100%" fill="white" />
                         <rect
-                            x="34%"
-                            y="35%"
+                            x="33.6%"
+                            y="35.5%"
                             width="32.8%"
-                            height="28.6%"
+                            height="29%"
                             rx="80"
                             fill="black"
                         />
@@ -212,9 +216,10 @@ const Top = () => {
                         <>
                             <Box
                                 pos={"absolute"}
-                                top={{ base: index == growtTexthList.length - 1 ? "42.5%" : "41%" }}
+                                // top={{ base: index == growtTexthList.length - 1 ? "42.5%" : "41%" }}
+                                top={{ base: "50%" }}
                                 left={"50%"}
-                                className='-translate-x-1/2 uppercase'
+                                className='-translate-x-1/2 -translate-y-1/2 uppercase'
                             >
                                 {index == growtTexthList.length - 1 && (
                                     <Image id={`growth-title-${index + 1}`} src={logo} alt='logo' className='w-[120px] sm:w-[140px] md:w-[160px] lg:w-[180px] xl:w-[200px] 2xl:w-[220px] h-auto' />
@@ -338,7 +343,7 @@ const Bottom = ({ idols }: Props) => {
                         <Marquee
                             direction="left"
                             pauseOnHover={true}
-                            pauseOnClick={true}
+                            pauseOnClick={false}
                             speed={50} delay={5}
                             className="w-full h-full overflow-hidden"
                         >

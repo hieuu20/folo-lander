@@ -39,9 +39,11 @@ const settings = {
         {
             breakpoint: 768,
             settings: {
-                infinite: false,
+                // infinite: true,
                 slidesToShow: 1.2,
                 slidesToScroll: 1,
+                // centerMode: true,
+                // centerPadding: "15%",
             },
         },
     ],
@@ -71,7 +73,7 @@ export default function News({ news }: Props) {
 
     return (
         <Box
-            id='idols-slide'
+            id='News'
             w={"100%"}
             h={"fit-content"}
             top={0}
@@ -96,26 +98,36 @@ export default function News({ news }: Props) {
                     NEWS
                 </Title>
 
-                <Slider ref={sliderRef} {...settings} className="[&_.slick-slide]:px-2.5 2xl:[&_.slick-slide]:px-3 [&_.slick-list]:-mx-2.5 2xl:[&_.slick-list]:-mx-3">
+                <Slider
+                    ref={sliderRef}
+                    {...settings}
+                    className="[&_.slick-slide]:px-2.5 2xl:[&_.slick-slide]:px-3 [&_.slick-list]:-mx-2.5 2xl:[&_.slick-list]:-mx-3"
+                >
                     {news.map((o, index) => {
                         return (
                             <Flex
-                                key={index} direction={"column"} className='rounded-2xl overflow-hidden' bd={"1px solid #5600A8"}
+                                key={index} direction={"column"}
+                                className='rounded-2xl overflow-hidden translate-x-[20%] sm:translate-x-0'
+                                bd={"1px solid #5600A8"}
                             >
-                                <Image src={o.thumb} alt={o.title} width={200} height={200} className='w-full h-auto object-cover' />
+                                <Link href={`/news/${o.slug}`} target='_blank'>
+                                    <Image src={o.thumb} alt={o.title} width={200} height={200} className='w-full h-auto object-cover' />
+                                </Link>
 
                                 <Flex direction={"column"} p={{ base: 16, md: 20, xl: 24 }} gap={{ base: 16 }}>
-                                    <Text fz={{ base: 16 }} c={"#FFFFFFCC"} lh={1.2}>
-                                        {formatTime(o.createdAt as any)}
-                                    </Text>
+                                    <Link href={`/news/${o.slug}`} target='_blank'>
+                                        <Text fz={{ base: 16 }} c={"#FFFFFFCC"} lh={1.2}>
+                                            {formatTime(o.createdAt as any)}
+                                        </Text>
+                                    </Link>
 
                                     <Box h={height}>
-                                        <Text fz={{ base: 20, md: 22, xl: 24 }} c={"white"} lh={1.2} fw={600} className='news-title'>
-                                            {o.title}
-                                        </Text>
+                                        <Link href={`/news/${o.slug}`} target='_blank'>
+                                            <Text fz={{ base: 20, md: 22, xl: 24 }} c={"white"} lh={1.2} fw={600} className='news-title'>
+                                                {o.title}
+                                            </Text>
+                                        </Link>
                                     </Box>
-
-
 
                                     {o.hasLink && (
                                         <Link href={o.buttonLink} target='_blank' className='text-[#C98FFF] font-semibold py-2 md:mt-2'>

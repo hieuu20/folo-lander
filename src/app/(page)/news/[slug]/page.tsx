@@ -20,15 +20,15 @@ export default async function NewsDetailPage({
 
   return (
     <div className="container-version3">
-      <div className="w-full sm:w-4/5 lg:w-2/3 mx-auto text-black dark:text-white">
+      <div className="w-full sm:w-4/5 lg:w-2/3 mx-auto">
         <Link href={"/#News"} className="block mt-6 text-lg md:text-xl xl:text-2xl font-semibold text-[#1A1A1A]">
           ← Back to home
         </Link>
         <div className="flex flex-col justify-center mt-4 mb-3 lg:mt-6 lg:mb-4">
-          <h1 className="text-[24px] md:text-[28px] xl:text-[32px] font-bold">{news.title}</h1>
+          <h1 className="text-[24px] md:text-[28px] xl:text-[32px] font-bold text-black">{news.title}</h1>
         </div>
         <div
-          className="text-justify mb-10 [&_a]:underline [&_a]:underline-offset-2 [&_img]:mx-auto"
+          className="text-justify mb-10 [&_a]:underline [&_a]:underline-offset-2 [&_img]:mx-auto text-[#1A1A1A]"
           dangerouslySetInnerHTML={{
             __html: news.content || "",
           }}

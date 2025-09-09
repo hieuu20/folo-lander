@@ -319,7 +319,7 @@ const Bottom = ({ idols }: Props) => {
             top={0}
             left={0}
             bg={"#160328"}
-            py={{ base: 80, md: 90, xl: 100, "2xl": 110 }}
+            py={{ base: 80, md: 90, xl: 100 }}
         >
             <Image src={bg1} alt='bg1' className='w-[25.8%] h-auto absolute bottom-0 left-0' />
             <Image src={bg2} alt='bg-2' className='w-[25.8%] h-auto absolute top-0 right-0' />
@@ -333,7 +333,7 @@ const Bottom = ({ idols }: Props) => {
                     fw={900}
                     lh={1.2}
                     ta={"center"}
-                    mb={{ base: 40, sm: 45, md: 50, lg: 58, xl: 68, "2xl": 78 }}
+                    mb={{ base: 40, sm: 45, md: 50, lg: 58, xl: 68, "2xl": 74 }}
                 >
                     WHO’S ALREADY IN
                 </Title>

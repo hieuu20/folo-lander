@@ -12,42 +12,11 @@ import Link from 'next/link';
 
 import right from "@public/version-3/news/arrow-right.svg";
 import left from "@public/version-3/news/arrow-left.svg";
+import { twMerge } from 'tailwind-merge';
 
 interface Props {
     news: INews[];
 }
-
-const settings = {
-    dots: false,
-    arrows: false,
-    infinite: true,
-    speed: 500,
-    pauseOnHover: true,
-    autoplay: true,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
-    draggable: true,
-    responsive: [
-        {
-            breakpoint: 1240,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-            },
-        },
-        {
-            breakpoint: 768,
-            settings: {
-                // infinite: true,
-                slidesToShow: 1.2,
-                slidesToScroll: 1,
-                // centerMode: true,
-                // centerPadding: "15%",
-            },
-        },
-    ],
-};
 
 export default function News({ news }: Props) {
     const [height, setHeight] = useState(0);
@@ -69,6 +38,41 @@ export default function News({ news }: Props) {
 
         return () => clearTimeout(timeoutId);
     }, []);
+
+    const isPlay = news.length > 4;
+
+    const settings = {
+        dots: false,
+        arrows: false,
+        infinite: isPlay,
+        speed: 500,
+        pauseOnHover: true,
+        autoplay: isPlay,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        initialSlide: 0,
+        draggable: true,
+        responsive: [
+            {
+                breakpoint: 1240,
+                autoplay: true,
+                infinite: true,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                },
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    autoplay: true,
+                    infinite: true,
+                    slidesToShow: 1.2,
+                    slidesToScroll: 1,
+                },
+            },
+        ],
+    };
 
 
     return (
@@ -129,18 +133,16 @@ export default function News({ news }: Props) {
                                         </Link>
                                     </Box>
 
-                                    {o.hasLink && (
-                                        <Link href={o.buttonLink} target='_blank' className='text-[#C98FFF] font-semibold py-2 md:mt-2'>
-                                            {o.buttonLabel}
-                                        </Link>
-                                    )}
+                                    <Link href={o.buttonLink} target='_blank' className={twMerge(`text-[#C98FFF] font-semibold py-2 md:mt-2`, !o.hasLink ? "invisible" : "")}>
+                                        {o.buttonLabel}
+                                    </Link>
                                 </Flex>
                             </Flex>
                         );
                     })}
                 </Slider>
 
-                <Flex gap={24} w={"100%"} justify={"center"} mt={{ base: 24, md: 32, xl: 48 }}>
+                <Flex gap={24} w={"100%"} justify={"center"} mt={{ base: 24, md: 32, xl: 48 }} className={twMerge(!isPlay ? "lg:invisible" : "")}>
                     <Image src={left} alt='left arrow' className='w-8 md:w-10 h-auto cursor-pointer' onClick={() => sliderRef.current.slickPrev()} />
                     <Image src={right} alt='left arrow' className='w-8 md:w-10 h-auto cursor-pointer' onClick={() => sliderRef.current.slickNext()} />
                 </Flex>

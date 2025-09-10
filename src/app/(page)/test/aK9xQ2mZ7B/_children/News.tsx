@@ -15,6 +15,7 @@ import left from "@public/version-3/news/arrow-left.svg";
 import { twMerge } from 'tailwind-merge';
 
 import newsLogo from "@public/version-3/news/logo.png";
+import { motion, useAnimate, useInView } from 'framer-motion';
 
 interface Props {
     news: INews[];
@@ -22,6 +23,8 @@ interface Props {
 
 export default function News({ news }: Props) {
     const [height, setHeight] = useState(0);
+    const [scope] = useAnimate();
+    const isInView = useInView(scope, { amount: 0.2, once: true });
 
     const sliderRef = useRef<any>();
 
@@ -101,49 +104,73 @@ export default function News({ news }: Props) {
                     ta={"center"}
                     mb={{ base: 40, sm: 45, md: 48, lg: 52, xl: 56, "2xl": 60 }}
                 >
-                    NEWS
+                    <motion.span
+                        initial={{ y: "150%", opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{
+                            duration: 0.6,
+                            ease: "easeIn"
+                        }}
+                        className="inline-block"
+                    >
+                        NEWS
+                    </motion.span>
                 </Title>
 
-                <Slider
-                    ref={sliderRef}
-                    {...settings}
-                    className="[&_.slick-slide]:px-2.5 2xl:[&_.slick-slide]:px-3 [&_.slick-list]:-mx-2.5 2xl:[&_.slick-list]:-mx-3"
-                >
-                    {news.map((o, index) => {
-                        return (
-                            <Flex
-                                key={index} direction={"column"}
-                                className='rounded-2xl overflow-hidden translate-x-[20%] sm:translate-x-0'
-                                bd={"1px solid #5600A8"}
-                            >
-                                <Box pos={"relative"} w={"100%"} h={"fit-content"}>
-                                    <Image src={o.thumb} alt={o.title} width={200} height={200} className='w-full h-auto object-cover' />
-                                    <Image src={newsLogo} alt='newsLogo' className='absolute bottom-0 left-0 w-[108px] h-auto object-cover' />
-                                </Box>
-
-                                <Flex direction={"column"} p={{ base: 16, md: 20, xl: 24 }} gap={{ base: 16 }}>
-                                    <Text fz={{ base: 16 }} c={"#FFFFFFCC"} lh={1.2}>
-                                        {formatTime(o.createdAt as any)}
-                                    </Text>
-
-                                    <Box h={height}>
-                                        <Text fz={{ base: 20, md: 22, xl: 24 }} c={"white"} lh={1.2} fw={600} className='news-title'>
-                                            {o.title}
-                                        </Text>
-                                    </Box>
-
-                                    <Link
-                                        href={o.hasLink ? o.buttonLink : `/news/${o.slug}`}
-                                        target={'_blank'}
-                                        className="text-[#C98FFF] font-semibold py-2 md:mt-2"
+                <Box ref={scope}>
+                    <Slider
+                        ref={sliderRef}
+                        {...settings}
+                        className="[&_.slick-slide]:px-2.5 2xl:[&_.slick-slide]:px-3 [&_.slick-list]:-mx-2.5 2xl:[&_.slick-list]:-mx-3"
+                    >
+                        {news.map((o, index) => {
+                            return (
+                                <motion.div
+                                    key={index}
+                                    initial={{ y: "25%", opacity: 0 }}
+                                    animate={isInView ? { y: 0, opacity: 1 } : {}}
+                                    transition={{
+                                        duration: 1,
+                                        ease: 'easeInOut',
+                                        delay: index * 0.2
+                                    }}
+                                >
+                                    <Flex
+                                        direction={"column"}
+                                        className='rounded-2xl overflow-hidden translate-x-[20%] sm:translate-x-0'
+                                        bd={"1px solid #5600A8"}
                                     >
-                                        {o.hasLink ? o.buttonLabel : "Read article →"}
-                                    </Link>
-                                </Flex>
-                            </Flex>
-                        );
-                    })}
-                </Slider>
+                                        <Box pos={"relative"} w={"100%"} h={"fit-content"}>
+                                            <Image src={o.thumb} alt={o.title} width={200} height={200} className='w-full h-auto object-cover' />
+                                            <Image src={newsLogo} alt='newsLogo' className='absolute bottom-0 left-0 w-[108px] h-auto object-cover' />
+                                        </Box>
+
+                                        <Flex direction={"column"} p={{ base: 16, md: 20, xl: 24 }} gap={{ base: 16 }}>
+                                            <Text fz={{ base: 16 }} c={"#FFFFFFCC"} lh={1.2}>
+                                                {formatTime(o.createdAt as any)}
+                                            </Text>
+
+                                            <Box h={height}>
+                                                <Text fz={{ base: 20, md: 22, xl: 24 }} c={"white"} lh={1.2} fw={600} className='news-title'>
+                                                    {o.title}
+                                                </Text>
+                                            </Box>
+
+                                            <Link
+                                                href={o.hasLink ? o.buttonLink : `/news/${o.slug}`}
+                                                target={'_blank'}
+                                                className="text-[#C98FFF] font-semibold py-2 md:mt-2"
+                                            >
+                                                {o.hasLink ? o.buttonLabel : "Read article →"}
+                                            </Link>
+                                        </Flex>
+                                    </Flex>
+                                </motion.div>
+                            );
+                        })}
+                    </Slider>
+                </Box>
 
                 <Flex gap={24} w={"100%"} justify={"center"} mt={{ base: 24, md: 32, xl: 48 }} className={twMerge(!isPlay ? "lg:invisible" : "")}>
                     <Image src={left} alt='left arrow' className='w-8 md:w-10 h-auto cursor-pointer' onClick={() => sliderRef.current.slickPrev()} />

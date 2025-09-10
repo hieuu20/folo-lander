@@ -36,10 +36,6 @@ export function Header() {
                 if (rect) {
                     const inViewport = rect.top < 1 && rect.bottom > 0;
 
-                    if (sec == "growth") {
-                        console.log({ top: rect.top, bottom: rect.bottom });
-                    }
-
                     if (inViewport && sec == "growth") {
                         console.log("growth");
                         const growthTopElement = document.getElementById("growth-top");

@@ -117,7 +117,7 @@ export function GrowthMobile({ idols }: Props) {
     );
 
     return (
-        <Box h={2800} className='overflow-hidden'>
+        <Box h={2765} className='overflow-hidden h-[2765px]'>
             <Box
                 id='growth'
                 w={{ base: "100%" }}

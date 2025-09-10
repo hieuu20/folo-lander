@@ -14,6 +14,8 @@ import right from "@public/version-3/news/arrow-right.svg";
 import left from "@public/version-3/news/arrow-left.svg";
 import { twMerge } from 'tailwind-merge';
 
+import newsLogo from "@public/version-3/news/logo.png";
+
 interface Props {
     news: INews[];
 }
@@ -114,27 +116,28 @@ export default function News({ news }: Props) {
                                 className='rounded-2xl overflow-hidden translate-x-[20%] sm:translate-x-0'
                                 bd={"1px solid #5600A8"}
                             >
-                                <Link href={`/news/${o.slug}`} target='_blank'>
+                                <Box pos={"relative"} w={"100%"} h={"fit-content"}>
                                     <Image src={o.thumb} alt={o.title} width={200} height={200} className='w-full h-auto object-cover' />
-                                </Link>
+                                    <Image src={newsLogo} alt='newsLogo' className='absolute bottom-0 left-0 w-[108px] h-auto object-cover' />
+                                </Box>
 
                                 <Flex direction={"column"} p={{ base: 16, md: 20, xl: 24 }} gap={{ base: 16 }}>
-                                    <Link href={`/news/${o.slug}`} target='_blank'>
-                                        <Text fz={{ base: 16 }} c={"#FFFFFFCC"} lh={1.2}>
-                                            {formatTime(o.createdAt as any)}
-                                        </Text>
-                                    </Link>
+                                    <Text fz={{ base: 16 }} c={"#FFFFFFCC"} lh={1.2}>
+                                        {formatTime(o.createdAt as any)}
+                                    </Text>
 
                                     <Box h={height}>
-                                        <Link href={`/news/${o.slug}`} target='_blank'>
-                                            <Text fz={{ base: 20, md: 22, xl: 24 }} c={"white"} lh={1.2} fw={600} className='news-title'>
-                                                {o.title}
-                                            </Text>
-                                        </Link>
+                                        <Text fz={{ base: 20, md: 22, xl: 24 }} c={"white"} lh={1.2} fw={600} className='news-title'>
+                                            {o.title}
+                                        </Text>
                                     </Box>
 
-                                    <Link href={o.buttonLink} target='_blank' className={twMerge(`text-[#C98FFF] font-semibold py-2 md:mt-2`, !o.hasLink ? "invisible" : "")}>
-                                        {o.buttonLabel}
+                                    <Link
+                                        href={o.hasLink ? o.buttonLink : `/news/${o.slug}`}
+                                        target={'_blank'}
+                                        className="text-[#C98FFF] font-semibold py-2 md:mt-2"
+                                    >
+                                        {o.hasLink ? o.buttonLabel : "Read article →"}
                                     </Link>
                                 </Flex>
                             </Flex>

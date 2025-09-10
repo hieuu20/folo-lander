@@ -360,7 +360,7 @@ const Bottom = ({ idols }: Props) => {
                                     return (
                                         <Box key={i} w={{ base: width / 4, xl: width / 5 }} px={{ base: 10, "2xl": 12 }}>
                                             <Flex key={i} direction={"column"} w={"100%"} align={"center"} c={"white"}>
-                                                <Box pos={"relative"} mb={{ base: 12, sm: 16, md: 20, "2xl": 24 }} w={"100%"} className='idol-image aspect-[0.57712305026]'>
+                                                <Box pos={"relative"} mb={{ base: 12, sm: 16, md: 20, "2xl": 24 }} w={"100%"} className='idol-image aspect-[0.65294117647] rounded-2xl overflow-hidden'>
                                                     <Image src={o.img} alt={o.name} fill className='object-cover' />
                                                     <Link
                                                         target='_blank'

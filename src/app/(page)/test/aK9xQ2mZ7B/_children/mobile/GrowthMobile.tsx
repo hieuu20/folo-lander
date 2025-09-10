@@ -334,7 +334,7 @@ const Bottom = ({ idols }: Props) => {
                                                     pos={"relative"}
                                                     mb={{ base: 12, sm: 16, md: 20, "2xl": 24 }}
                                                     w={"100%"}
-                                                    className='idol-image aspect-[0.57712305026]'
+                                                    className='idol-image aspect-[0.65294117647] rounded-2xl overflow-hidden'
                                                     onClick={() => window.open(`https://knky.co/creator/${o.userName}`, "_blank")}
                                                 >
                                                     <Image src={o.img} alt={o.name} fill className='object-cover' />

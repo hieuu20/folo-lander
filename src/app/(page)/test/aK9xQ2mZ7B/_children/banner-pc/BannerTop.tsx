@@ -102,7 +102,7 @@ export const BannerTop = () => {
                                 w={{ base: 207, md: 240, "2xl": 248 }}
                                 h={{ base: 40, md: 44, lg: 46, xl: 48 }}
                                 title={"I’m a Fan →"}
-                                href='/fans'
+                                href='https://knky.co?init=signUpUser'
                                 fz={{ sm: 16 }}
                                 fw={600}
                                 bg={"transparent"}

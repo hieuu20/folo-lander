@@ -198,7 +198,11 @@ export function More() {
                             c={"#AC1991"}
                             className='uppercase'
                         >
-                            <Link href={"https://help.knky.co/en/"} target='_blank' className='relative group inline-flex items-center gap-2 '>
+                            <Link 
+                                href={"https://help.knky.co/en/"} 
+                                target='_blank' 
+                                className='relative group inline-flex items-center gap-2'
+                            >
                                 <motion.span
                                     initial={{ y: "150%", opacity: 0 }}
                                     whileInView={{ y: 0, opacity: 1 }}

@@ -141,8 +141,8 @@ const footerPays = [
     footerPay1,
     footerPay2,
     footerPay3,
-    footerPay4,
-    footerPay5,
+    // footerPay4,
+    // footerPay5,
     footerPay6
 ];
 

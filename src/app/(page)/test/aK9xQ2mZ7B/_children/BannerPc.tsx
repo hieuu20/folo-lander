@@ -42,7 +42,7 @@ export function BannerPc() {
                 w={{ base: 232, md: "17.2%" }}
                 className='aspect-[1.665]'
                 mx={"auto"}
-                mt={200}
+                mt={250}
             >
                 <motion.div
                     initial={{ opacity: 0 }}

@@ -9,23 +9,18 @@ import SectionButton from '@/components/buttons/SectionButton';
 import { motion, useAnimate, useInView, useScroll, useTransform } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 
+import downIcon from "@public/version-3/banner/down.svg";
+
 export const BannerTop = () => {
     const [scope] = useAnimate();
     const isInView = useInView(scope);
 
-    // const [height, setHeight] = useState<number>(0);
+    const { scrollYProgress } = useScroll({
+        target: scope,
+        offset: ['start 0', 'start -0.8'],
+    });
 
-    // useEffect(() => {
-    //     const timeout = setTimeout(() => {
-    //         const bannerElement = document.getElementById(".banner-top")?.getBoundingClientRect();
-    //         if (bannerElement?.height) {
-    //             setHeight(bannerElement?.height);
-    //         }
-    //     }, 1000);
-
-    //     return () => clearTimeout(timeout);
-    // }, []);
-
+    const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
     return (
         <SimpleGrid
@@ -153,6 +148,36 @@ export const BannerTop = () => {
                     </Box>
                 </motion.div>
             </Animation>
+
+            <motion.div
+                initial={{ x: "-50%", opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                    duration: 0.6,
+                    ease: "easeInOut",
+                    delay: 1.2
+                }}
+                className='absolute bottom-10 left-1/2'
+            >
+                <motion.div
+                    initial={{ y: 0 }}
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{
+                        duration: 2,
+                        ease: "linear",
+                        repeat: Infinity,
+                    }}
+                    style={{
+                        opacity: opacity
+                    }}
+                    className='p-3 gap-1 bg-white rounded-[100px] flex items-center'
+                >
+                    <Image src={downIcon} alt='down icon' width={24} height={24} />
+                    <span className='text-lg font-semibold'>
+                        Scroll down
+                    </span>
+                </motion.div>
+            </motion.div>
         </SimpleGrid>
     );
 };

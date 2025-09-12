@@ -17,8 +17,8 @@ import smallLogo from "@public/version-3/footer/logo.svg";
 import footerPay1 from "@public/version-3/footer/payments/1.png";
 import footerPay2 from "@public/version-3/footer/payments/2.png";
 import footerPay3 from "@public/version-3/footer/payments/3.png";
-import footerPay4 from "@public/version-3/footer/payments/4.png";
-import footerPay5 from "@public/version-3/footer/payments/5.png";
+// import footerPay4 from "@public/version-3/footer/payments/4.png";
+// import footerPay5 from "@public/version-3/footer/payments/5.png";
 import footerPay6 from "@public/version-3/footer/payments/6.png";
 
 import xmaIcon from "@public/version-3/footer/xma.webp";

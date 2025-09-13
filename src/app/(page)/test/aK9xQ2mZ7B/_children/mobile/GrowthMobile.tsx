@@ -35,7 +35,7 @@ export function GrowthMobile({ idols }: Props) {
                     trigger: main.current,
                     pin: true,
                     start: 'top top',
-                    end: '+=2000',
+                    end: '+=5000',
                     markers: false,
                     scrub: true,
                 },
@@ -86,7 +86,7 @@ export function GrowthMobile({ idols }: Props) {
             tl.fromTo(
                 "#growth-overlay",
                 { scale: 1 },
-                { scale: 9, duration: 0.6, ease: "power2.in" },
+                { scale: 9, duration: 0.8, ease: "power2.in" },
                 "<"
             );
 
@@ -117,7 +117,7 @@ export function GrowthMobile({ idols }: Props) {
     );
 
     return (
-        <Box h={2765} className='overflow-hidden h-[2765px]'>
+        <Box h={5765} className='overflow-hidden'>
             <Box
                 id='growth'
                 w={{ base: "100%" }}

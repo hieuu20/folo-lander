@@ -49,7 +49,7 @@ export function UnlimitedMobile() {
                     tl.fromTo(
                         `#unlimited-item-${o.id}`,
                         { x: step * (isLeft ? -25 : 25), y: step * 15, rotate: (isLeft ? 12 : -12), },
-                        { x: 0, y: 0, rotate: 0, duration: 0.5, ease: "power2.inOut" },
+                        { x: 0, y: 0, rotate: 0, duration: 1, ease: "power2.inOut" },
                         isLeft ? index == 0 ? undefined : "<+=0.1" : "<"
                     );
                 });

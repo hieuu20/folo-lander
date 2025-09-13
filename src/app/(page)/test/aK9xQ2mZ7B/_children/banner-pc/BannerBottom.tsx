@@ -281,7 +281,6 @@ const Phone = ({ isInView }: { isInView: boolean }) => {
                     </Box>
                 );
             })}
-            
             <Flex
                 id="phone-text"
                 pos={"absolute"}

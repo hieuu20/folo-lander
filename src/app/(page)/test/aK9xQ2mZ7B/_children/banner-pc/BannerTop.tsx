@@ -17,7 +17,7 @@ export const BannerTop = () => {
 
     const { scrollYProgress } = useScroll({
         target: scope,
-        offset: ['start 0', 'start -0.8'],
+        offset: ['start 0', 'start -0.6'],
     });
 
     const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
@@ -164,7 +164,7 @@ export const BannerTop = () => {
                     animate={{ y: [0, 10, 0] }}
                     transition={{
                         duration: 2,
-                        ease: "linear",
+                        ease: "easeInOut",
                         repeat: Infinity,
                     }}
                     style={{

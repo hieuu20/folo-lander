@@ -56,7 +56,7 @@ export function BannerBottom() {
                     trigger: main.current,
                     pin: true,
                     start: 'center+=114 center',
-                    end: '+=4500',
+                    end: '+=9000',
                     pinSpacing: false,
                     anticipatePin: 1,
                     scrub: true,
@@ -67,13 +67,13 @@ export function BannerBottom() {
             tl.fromTo(
                 "#phone",
                 { scale: 2, y: "60%" },
-                { scale: 1, y: 0, duration: 0.4, ease: "power2.in" }
+                { scale: 1, y: 0, duration: 0.5, ease: "power2.in" }
             );
 
             tl.fromTo(
                 "#image-circle1",
                 { scale: 0.58, opacity: 0.2, y: 0 },
-                { scale: 1, opacity: 1, y: 0, duration: 0.3, ease: "power2.in" },
+                { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: "power2.in" },
                 "<"
             );
 
@@ -102,9 +102,10 @@ export function BannerBottom() {
 
             tl.fromTo(
                 "#banner-button",
-                { autoAlpha: 0, y: "30%" },
+                { autoAlpha: 0, y: 100, x: "-50%" },
                 {
                     autoAlpha: 1,
+                    x: "-50%",
                     y: 0,
                     duration: 1,
                     ease: "power2.inOut",
@@ -118,27 +119,27 @@ export function BannerBottom() {
             texts.forEach((el: any, index) => {
                 tl.fromTo(
                     el,
-                    { x: "200%", y: "80%", rotate: 100, autoAlpha: 0 },
-                    { x: "0%", y: 0, rotate: 0, autoAlpha: 1, duration: 1 },
+                    { x: "180%", y: "80%", rotate: 100, autoAlpha: 0 },
+                    { x: 0, y: 0, rotate: 0, autoAlpha: 1, duration: 1.5, delay: 0.5 },
                     index == 0 ? "<=+0.3" : "<"
                 );
 
                 tl.fromTo(
                     phoneImageEls[index + 1],
                     { y: "-100%" },
-                    { y: 0, duration: 0.9, ease: "none" },
-                    "<+=0.1"
+                    { y: 0, duration: 1.4, ease: "none" },
+                    "<"
                 );
 
                 tl.fromTo(
                     phoneImageEls[index],
                     { filter: "blur(0px)", scale: 1 },
-                    { filter: "blur(20px)", scale: 0.85, duration: 0.8, ease: "power2.inOut" },
+                    { filter: "blur(20px)", scale: 0.85, duration: 1.4, ease: "power2.inOut" },
                     "<"
                 );
 
                 if (index < texts.length - 1) {
-                    tl.fromTo(el, { x: 0, y: 0, autoAlpha: 1, rotate: 0 }, { x: "-200%", y: "80%", rotate: -100, autoAlpha: 0, duration: 1, delay: 0.5 });
+                    tl.fromTo(el, { x: 0, y: 0, autoAlpha: 1, rotate: 0 }, { x: "-180%", y: "80%", rotate: -100, autoAlpha: 0, duration: 1.5, delay: 0.5 });
                 }
             });
         },
@@ -148,7 +149,7 @@ export function BannerBottom() {
     );
 
     return (
-        <Box pos={"relative"} h={5300} className='overflow-hidden'>
+        <Box pos={"relative"} h={9800} className='overflow-hidden'>
             <Flex direction={"column"} ref={main} pos={"relative"} align={"center"} className='container-version3'>
                 <motion.div
                     id="phone-bg"
@@ -393,7 +394,7 @@ const Phase2 = () => {
                 pos={"absolute"}
                 bottom={"2%"}
                 left={"50%"}
-                className='-translate-x-1/2'
+                className=''
                 show={true}
                 w={{ base: 216 }}
                 h={{ base: 40 }}

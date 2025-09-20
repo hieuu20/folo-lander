@@ -19,12 +19,15 @@ import { motion } from 'framer-motion';
 import { growtTexthList } from '@/utils/growth';
 import Marquee from 'react-fast-marquee';
 import { ICreatorIdol } from '@/app/api/_entities/creatorIdol';
+import { INews } from '@/app/api/_entities';
+import News from './News';
 
 interface Props {
     idols: ICreatorIdol[];
+    news: INews[];
 }
 
-export function Growth({ idols }: Props) {
+export function Growth({ news }: Props) {
     const main = useRef(null);
     useGSAP(
         () => {
@@ -71,8 +74,8 @@ export function Growth({ idols }: Props) {
                 } else {
                     tl.fromTo(
                         `#growth-subtitle-${index + 1}`,
-                        { y: 0, autoAlpha: 1 },
-                        { y: 0, autoAlpha: 0, duration: 0.5 },
+                        { y: 0, autoAlpha: 1, x: "-50%" },
+                        { y: 0, autoAlpha: 0, x: "-50%", duration: 0.5 },
                     );
                 }
             });
@@ -128,7 +131,8 @@ export function Growth({ idols }: Props) {
             // className='md:aspect-[1.77777777778]'
             >
                 <Top />
-                <Bottom idols={idols} />
+                {/* <Bottom idols={idols} /> */}
+                <News news={news} />
             </Box>
         </Box>
     );
@@ -286,7 +290,7 @@ const Top = () => {
 };
 
 
-const Bottom = ({ idols }: Props) => {
+export const Bottom = ({ idols }: Props) => {
     const [height, setHeight] = useState(0);
     const [width, setWidth] = useState(2000);
 

@@ -107,11 +107,10 @@ const Desktop = ({ idols, news }: Props) => {
                     backgroundColor: "#0A0014"
                 }}
             >
-                <BannerPc />
+                <BannerPc idols={idols} />
                 <Unlimited />
-                <Growth idols={idols} />
                 <More />
-                <News news={news} />
+                <Growth idols={idols} news={news} />
                 <Footer />
             </Box>
         </Box>

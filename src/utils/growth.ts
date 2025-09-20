@@ -86,7 +86,7 @@ export const growtTexthList = [
     subTitle: "FRESH CONTENT daily on <a href='https://knky.co/fresh' target='_blank'>KNKY.co</a>",
   },
   {
-    title: "+$5k",
+    title: "$1,594",
     subTitle: "",
   },
   {

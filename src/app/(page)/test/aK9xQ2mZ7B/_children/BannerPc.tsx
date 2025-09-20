@@ -12,52 +12,20 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { BannerMidle } from './banner-pc/BannerMidle';
+import { ICreatorIdol } from '@/app/api/_entities/creatorIdol';
 
-export function BannerPc() {
+interface Props {
+    idols: ICreatorIdol[];
+}
+
+export function BannerPc({ idols }: Props) {
     const main = useRef<any>();
-
-    useGSAP(
-        () => {
-            ScrollTrigger.create({
-                trigger: '.box-c',
-                pin: true,
-                start: 'center center',
-                end: '+=700',
-                // markers: false,
-                scrub: true,
-                onLeave: () => gsap.to(".box-c", { autoAlpha: 0 }),
-                onEnterBack: () => gsap.to(".box-c", { autoAlpha: 1 })
-            });
-        },
-        {
-            scope: main,
-        }
-    );
 
     return (
         <Box ref={main}>
             <BannerTop />
-
-            <Box
-                w={{ base: 232, md: "17.2%" }}
-                className='aspect-[1.665]'
-                mx={"auto"}
-                mt={250}
-            >
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ amount: 0.3 }}
-                    transition={{
-                        duration: 0.8,
-                        ease: 'easeInOut',
-                    }}
-                    className='relative w-full h-full box-c will-change-transform'
-                >
-                    <Image src={logo} alt='logo' fill />
-                </motion.div>
-            </Box>
-            <BannerBottom />
+            <BannerMidle idols={idols} />
         </Box>
     );
 }

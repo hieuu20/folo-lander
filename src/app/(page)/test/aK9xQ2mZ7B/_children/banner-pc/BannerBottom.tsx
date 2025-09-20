@@ -18,6 +18,7 @@ import phone2 from "@public/version-3/banner/phone/2.webp";
 import phone3 from "@public/version-3/banner/phone/3.webp";
 import phone4 from "@public/version-3/banner/phone/4.webp";
 import phone5 from "@public/version-3/banner/phone/5.webp";
+import { stars } from '@/utils/stars';
 
 const images = [
     "/version-3/banner/circle/1.webp",
@@ -234,8 +235,8 @@ export function BannerBottom() {
                         background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.3) 0%, rgba(18, 2, 32, 0) 100%)"
                     }}
                 />
-                <Circle isInView={isInView} />
-                <Phase2 />
+                <Circle />
+                <Phase3 />
                 <Phone isInView={isInView} />
             </Flex>
         </Box>
@@ -302,7 +303,7 @@ const Phone = ({ isInView }: { isInView: boolean }) => {
     );
 };
 
-const Circle = ({ isInView }: { isInView: boolean }) => {
+export const Circle = () => {
     const [containerWidth, setContainerWidth] = useState(0);
 
     useEffect(() => {
@@ -373,56 +374,12 @@ const Circle = ({ isInView }: { isInView: boolean }) => {
                     );
                 })}
             </motion.div>
-            <Box
-                id='circle-background'
-                pos={"absolute"}
-                bottom={0}
-                left={"50%"}
-                w={"150%"}
-                h={"100%"}
-                style={{
-                    background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)"
-                }}
-                className='-translate-x-1/2'
-            />
         </Box>
     );
 };
 
-const stars = [
-    {
-        width: 32,
-        top: 50,
-        left: 8,
-        rotate: 142
-    },
-    {
-        width: 28,
-        top: 10,
-        left: 50,
-        rotate: 128
-    },
-    {
-        width: 16,
-        top: 32,
-        left: 88,
-        rotate: 333
-    },
-    {
-        width: 21,
-        top: 14,
-        left: 23,
-        rotate: 208
-    },
-    {
-        width: 30,
-        top: 100,
-        left: 23,
-        rotate: 208
-    }
-];
 
-const Phase2 = () => {
+export const Phase3 = () => {
     const list = [
         {
             text1: "MUTIPLE-LEVEL",

@@ -24,7 +24,7 @@ export const setHeaderLogoColor = (type: "white" | "black") => {
 };
 
 export function Header() {
-    const [isScrolled, setIsScrolled] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(true);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -60,7 +60,7 @@ export function Header() {
 
                 // console.log({ bottom: rect.bottom, inViewport });
 
-                setIsScrolled(inViewport && window.scrollY > 300 ? true : false);
+                setIsScrolled(inViewport ? true : false);
             }
         };
 

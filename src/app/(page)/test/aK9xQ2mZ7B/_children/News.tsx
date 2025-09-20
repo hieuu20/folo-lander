@@ -84,7 +84,8 @@ export default function News({ news }: Props) {
         <Box
             id='News'
             w={"100%"}
-            h={"fit-content"}
+            pos={"absolute"}
+            h={"100%"}
             top={0}
             left={0}
             bg={"#160328"}

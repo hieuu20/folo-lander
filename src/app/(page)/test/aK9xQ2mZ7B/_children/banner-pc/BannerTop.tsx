@@ -1,4 +1,6 @@
-import { Box, Flex, SimpleGrid, Text } from '@mantine/core';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Box, Flex, Input, SimpleGrid, Text } from '@mantine/core';
 import React, { ReactNode, useRef } from 'react';
 import logo from "@public/version-3/icons/logo.webp";
 import Image from 'next/image';
@@ -8,8 +10,10 @@ import bannerImg from "@public/version-3/banner/img.webp";
 import SectionButton from '@/components/buttons/SectionButton';
 import { motion, useAnimate, useInView, useScroll, useTransform } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
+import phoneImge from "@public/version-3/banner/phone/phone-border.webp";
 
 import downIcon from "@public/version-3/banner/down.svg";
+import Link from 'next/link';
 
 export const BannerTop = () => {
     const [scope] = useAnimate();
@@ -17,52 +21,64 @@ export const BannerTop = () => {
 
     const { scrollYProgress } = useScroll({
         target: scope,
-        offset: ['start 0', 'start -0.6'],
+        offset: ['start 0', 'start -0.3'],
     });
 
     const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
     return (
-        <SimpleGrid
-            ref={scope}
-            pos={"relative"}
-            h={{ base: "fit-content", md: "100vh" }}
-            cols={{ base: 1, md: 2 }}
-            spacing={0}
-            verticalSpacing={0}
-            className='overflow-hidden z-10'
-        >
-            <Animation>
-                <Flex
-                    id='banner-top'
-                    direction={{ base: "column" }}
-                    bg={"#160328"}
-                    h={{ base: "auto", md: "100vh" }}
-                    align={"center"}
-                    justify={"center"}
-                    className='container-version3 overflow-hidden'
-                >
-                    <Box
-                        pos={"absolute"}
-                        top={0}
-                        left={0}
-                        w={"160%"}
-                        className='aspect-[4.44039735099] -translate-y-1/2 -translate-x-1/2'
-                        style={{
-                            background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.3) 0%, rgba(18, 2, 32, 0) 100%)"
-                        }}
-                    />
-
-                    <Logo isInView={isInView} />
-
-                    <TitlePc isInView={isInView} />
-
+        <Box bg={"#0A0014"} h={"100vh"} className='overflow-hidden'>
+            <Box className='container-version3' h={"100%"}>
+                <Flex ref={scope} pos={"relative"} justify={"space-between"} h={"100%"} align={{ base: "center" }}>
                     <Flex
                         direction={"column"}
-                        gap={{ base: 16 }}
-                        // mb={{ base: 40, md: 60, lg: 80, xl: 90, "2xl": 128 }}
-                        mb={{ base: "12vh" }}
+                        gap={{ base: 24, sm: 28, md: 32, lg: 36, xl: 38, '2xl': 40 }}
+                        w={{ base: "100%", md: "40%" }}
+                        pb={{ base: 40 }}
                     >
+                        <Flex
+                            direction={"column"}
+                            gap={{ base: 8, sm: 12, md: 16, lg: 20, xl: 22, '2xl': 24 }}
+                        >
+                            <motion.div
+                                initial={{ y: "30%", opacity: 0 }}
+                                animate={isInView ? { y: 0, opacity: 1 } : {}}
+                                transition={{
+                                    duration: 0.6,
+                                    ease: 'easeInOut',
+                                    delay: 0.1
+                                }}
+                            >
+                                <Text
+                                    fz={{ base: 28, sm: 36, md: 50, lg: 56, xl: 64, "2xl": 71 }}
+                                    fw={700}
+                                    c={"white"}
+                                    lh={1.2}
+                                >
+                                    Premium Starts With You 👑
+                                </Text>
+                            </motion.div>
+
+                            <motion.div
+                                initial={{ y: "30%", opacity: 0 }}
+                                animate={isInView ? { y: 0, opacity: 1 } : {}}
+                                transition={{
+                                    duration: 0.6,
+                                    ease: 'easeInOut',
+                                    delay: 0.3
+                                }}
+                            >
+                                <Text
+                                    fz={{ base: 14, sm: 16, md: 20, lg: 24, xl: 28, "2xl": 32 }}
+                                    c={"#FFFFFFCC"}
+                                    lh={1.2}
+                                >
+                                    Creators earn, fans experience. <br/>
+                                    Join the award winning social marketplace! 🏆
+                                </Text>
+                            </motion.div>
+                        </Flex>
+
                         <motion.div
                             initial={{ y: "100%", opacity: 0 }}
                             animate={isInView ? { y: 0, opacity: 1 } : {}}
@@ -72,15 +88,40 @@ export const BannerTop = () => {
                                 delay: 0.6
                             }}
                         >
-                            <SectionButton
-                                href='https://knky.co'
-                                show={true}
-                                w={{ base: 207, md: 240, "2xl": 248 }}
-                                h={{ base: 40, md: 44, lg: 46, xl: 48 }}
-                                title={"Create Now →"}
-                                fz={{ sm: 16 }}
-                                fw={600}
-                            />
+                            <Flex
+                                justify={"space-between"}
+                                bg={"#1E1427"}
+                                bd={"1px solid #FFFFFF14"}
+                                p={{ base: 8 }}
+                                className='rounded-3xl'
+                                h={{ base: 48, sm: 52, md: 56, lg: 58, xl: 60, "2xl": 64 }}
+                                w={{ base: 293, sm: 320, md: 360, lg: 390, xl: 410, "2xl": 438 }}
+                                align={"center"}
+                            >
+                                <Input
+                                    bg={"transparent"}
+                                    fz={{ base: 16, md: 18, "2xl": 20 }}
+                                    fw={500}
+                                    placeholder='Your username'
+                                    classNames={{
+                                        input: "placeholder-[#FFFFFF59] bg-transparent pl-1 md:pl-2",
+                                        wrapper: "bg-transparent"
+                                    }}
+                                    c={"white"}
+                                // className='placeholder-[#FFFFFF59]'
+                                />
+
+                                <SectionButton
+                                    show={true}
+                                    title='Create Now →'
+                                    className='rounded-2xl'
+                                    fz={{ base: 14, md: 15, "2xl": 16 }}
+                                    fw={600}
+                                    w={{ base: 104, md: 120, xl: 124 }}
+                                    h={"100%"}
+                                    px={0}
+                                />
+                            </Flex>
                         </motion.div>
 
                         <motion.div
@@ -92,196 +133,87 @@ export const BannerTop = () => {
                                 delay: 0.9
                             }}
                         >
-                            <SectionButton
-                                show={true}
-                                w={{ base: 207, md: 240, "2xl": 248 }}
-                                h={{ base: 40, md: 44, lg: 46, xl: 48 }}
-                                title={"I’m a Fan →"}
-                                href='https://knky.co?init=signUpUser'
-                                fz={{ sm: 16 }}
-                                fw={600}
-                                bg={"transparent"}
-                            />
-                        </motion.div>
-                    </Flex>
-
-                    <Flex direction={"column"} gap={{ base: 16, "2xl": 20 }}>
-                        <motion.div
-                            initial={{ y: "30%", opacity: 0 }}
-                            animate={isInView ? { y: 0, opacity: 1 } : {}}
-                            transition={{
-                                duration: 0.6,
-                                ease: 'easeInOut',
-                                delay: 1.2
-                            }}
-                        >
-                            <Text
-                                // fz={{ base: 13, sm: 14, md: 16, lg: 17, xl: 18, "2xl": 20 }} 
-                                fz={{ base: "clamp(13px, 2vh, 20px)" }}
-                                lh={1.2}
-                                c={"#FFFFFFCC"} ta={"center"}
+                            <Link
+                                href={"https://knky.co/fresh?init=signUpUser"}
+                                className='text-[#FFFFFFCC] font-medium text-base md:text-lg 2xl:text-xl hover:text-blue-400'
                             >
-                                Creators earn, fans experience. <br />
-                                One platform, endless possibilities.
-
-                                <br />
-                                <br />
-                                Join the award winning social marketplace! 🏆
-                            </Text>
+                                I&apos;m a fan →
+                            </Link>
                         </motion.div>
                     </Flex>
+
+                    <motion.div
+                        initial={{ y: "20%", opacity: 0 }}
+                        animate={isInView ? { y: 0, opacity: 1 } : {}}
+                        transition={{
+                            duration: 0.6,
+                            ease: 'easeInOut',
+                            delay: 0.9
+                        }}
+                        className='h-[85%] flex-1 flex justify-center'
+                    >
+                        {/* <Image src={phoneImge} alt='phone Imge' className='h-[85%] w-auto object-cover' /> */}
+                        <video
+                            preload="auto"
+                            playsInline
+                            autoPlay
+                            loop
+                            muted
+                            className="h-full w-auto"
+                        >
+                            <source src={"/version-3/banner/video.mp4"} type="video/mp4" />
+                        </video>
+                    </motion.div>
+                    <ScrollButton opacity={opacity} />
                 </Flex>
-            </Animation>
-
-            <Animation position='right'>
-                <motion.div
-                    initial={{ y: "24%", opacity: 0 }}
-                    animate={isInView ? { y: 0, opacity: 1 } : {}}
-                    transition={{
-                        duration: 1,
-                        ease: 'easeInOut',
-                    }}
-                    className='w-full h-full overflow-hidden'
-                >
-                    <Box pos={"relative"} w={"100%"} h={"100%"}>
-                        <Image src={bannerImg} alt='bannerImg' fill className='object-cover' />
-                    </Box>
-                </motion.div>
-            </Animation>
-
-            <motion.div
-                initial={{ x: "-50%", opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                    duration: 0.6,
-                    ease: "easeInOut",
-                    delay: 1.2
-                }}
-                className='absolute bottom-10 left-1/2'
-            >
-                <motion.div
-                    initial={{ y: 0 }}
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{
-                        duration: 2,
-                        ease: "easeInOut",
-                        repeat: Infinity,
-                    }}
-                    style={{
-                        opacity: opacity
-                    }}
-                    className='p-3 gap-1 bg-white rounded-[100px] flex items-center'
-                >
-                    <Image src={downIcon} alt='down icon' width={24} height={24} />
-                    <span className='text-lg font-semibold'>
-                        Scroll down
-                    </span>
-                </motion.div>
-            </motion.div>
-        </SimpleGrid>
-    );
-};
-
-const Logo = ({ isInView }: { isInView: boolean }) => {
-    return (
-        <Box
-            pos={"relative"}
-            // w={{ base: 125, sm: 150, md: 210, lg: 240, xl: 273 }}
-            h={{ base: "4.8%" }}
-            className='aspect-[5.25]'
-            // mb={{ base: 30, md: 36, xl: 42, "2xl": 48 }}
-            mb={{ base: "4.44%" }}
-        >
-            <motion.div
-                initial={{ opacity: 0, y: "50%" }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6 }}
-                className="absolute w-full h-full"
-            >
-                <Image src={logo} alt='logo' fill className='object-cover' />
-            </motion.div>
+            </Box>
         </Box>
     );
 };
 
-const TitlePc = ({ isInView }: { isInView: boolean }) => {
+
+const ScrollButton = ({ opacity }: { opacity: any }) => {
     return (
         <motion.div
-            initial={{ y: "30%", opacity: 0 }}
-            animate={isInView ? { y: 0, opacity: 1 } : {}}
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{
                 duration: 0.6,
-                ease: 'easeInOut',
-                delay: 0.3
+                ease: "easeInOut",
+                delay: 1.2
             }}
+            className='absolute bottom-10 left-0'
         >
-            <Flex
-                direction={"column"}
-                // fz={{ base: 50, sm: 54, md: 60, lg: 64, xl: 67, "2xl": 71 }}
-                fz={{ base: "clamp(50px, 6.66vh, 71px)" }}
-                c={"white"}
-                fw={900}
-                justify={"center"}
-                // mb={{ base: 50, md: 64, xl: 70, "2xl": 78 }}
-                mb={{ base: "8vh" }}
-                className='hidden md:flex'
+            <motion.div
+                initial={{ y: 0 }}
+                animate={{ y: [0, 10, 0] }}
+                transition={{
+                    duration: 2,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                }}
+                style={{
+                    opacity: opacity
+                }}
+                className='bg-[#291739] rounded-[100px] p-3'
             >
-                PREMIUM STARTS
-                <Flex
-                    gap={{ base: 10, lg: 12, xl: 14 }}
-                    align={"start"}
-                    w={"100%"}
-                    justify={"center"}
-                >
-                    WITH
-                    <Box
-                        pos={"relative"}
-                        // w={{ base: 170, sm: 190, md: 210, lg: 224, xl: 245, '2xl': 252 }}
-                        h={{ base: "13.42vh" }}
-                        className='aspect-[1.73793103448]'
-                        mt={{ base: "-5%" }}
+                <Flex gap={4} align={"center"} className='overflow-hidden'>
+                    <motion.div
+                        initial={{ y: -26 }}
+                        animate={{ y: 26 }}
+                        transition={{
+                            duration: 2,
+                            ease: "linear",
+                            repeat: Infinity
+                        }}
                     >
-                        <Image src={youImg} alt='you img' fill className='z-10' />
-                        <Image src={vector} alt='vector' className='w-[250%] max-w-[250%] h-auto absolute bottom-[-31%] left-[-42%]' />
-                    </Box>
+                        <Image src={downIcon} alt='down icon' width={24} height={24} />
+                    </motion.div>
+                    <span className='text-lg font-semibold text-white'>
+                        Scroll for more
+                    </span>
                 </Flex>
-            </Flex>
-        </motion.div>
-    );
-};
-
-const Animation = ({
-    children,
-    className = '',
-    position = "left",
-    disable = false
-}: {
-    children?: ReactNode;
-    className?: string;
-    position?: "left" | "right",
-    disable?: boolean
-}) => {
-    const container = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: container,
-        offset: ['start 0', 'start -1'],
-    });
-
-    const rotate = useTransform(scrollYProgress, [0, 1], [0, position == "left" ? -45 : 45]);
-    const x = useTransform(scrollYProgress, [0, 1], ["0", position == "left" ? "-120%" : "120%"]);
-    const y = useTransform(scrollYProgress, [0, 1], ["0", "-100%"]);
-
-    return (
-        <motion.div
-            className={twMerge(className)}
-            ref={container}
-            style={!disable ? {
-                rotate,
-                x,
-                y
-            } : {}}
-        >
-            {children}
+            </motion.div>
         </motion.div>
     );
 };

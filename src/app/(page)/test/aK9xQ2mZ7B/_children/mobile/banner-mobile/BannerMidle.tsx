@@ -22,49 +22,13 @@ import phone2 from "@public/version-3/banner/phone/2.webp";
 import phone3 from "@public/version-3/banner/phone/3.webp";
 import phone4 from "@public/version-3/banner/phone/4.webp";
 import phone5 from "@public/version-3/banner/phone/5.webp";
+
+import phone from "@public/version-3/banner/phone/phone-border.webp";
+
 import { Circle, Phase3 } from './BannerBottom';
-import { stars } from '@/utils/stars';
 
 interface Props {
     idols: ICreatorIdol[];
-}
-
-function sumBeforeIndex(arr: number[], index: number) {
-    return arr.slice(0, index).reduce((sum, val) => sum + val, 0);
-}
-
-function animateStars(tl: gsap.core.Timeline, starElements: any[], stepIndex: number) {
-    if (stepIndex === 0) {
-        starElements.forEach((star) => {
-            tl.fromTo(
-                star,
-                { opacity: 0 },
-                {
-                    opacity: 1,
-                    duration: 1,
-                    ease: "power2.inOut",
-                },
-                "<"
-            );
-        });
-    } else {
-        starElements.forEach((star, index) => {
-            const xFrom = sumBeforeIndex(stars[index].x, stepIndex);
-            const yFrom = sumBeforeIndex(stars[index].y, stepIndex);
-
-            tl.fromTo(
-                star,
-                { x: xFrom, y: yFrom },
-                {
-                    x: xFrom + stars[index].x[stepIndex],
-                    y: yFrom + stars[index].y[stepIndex],
-                    duration: 1,
-                    ease: "power2.inOut",
-                },
-                "<"
-            );
-        });
-    }
 }
 
 
@@ -77,14 +41,13 @@ export function BannerMidle({ idols }: Props) {
                     trigger: main.current,
                     pin: true,
                     start: 'top top',
-                    end: '+=15000',
+                    end: '+=15100',
                     scrub: true,
                     markers: false,
                 },
             });
 
             const phoneImageEls = gsap.utils.toArray(".phone-image") as any[];
-            const slideList = gsap.utils.toArray(".banner-slide-item") as Element[];
 
             tl.fromTo(
                 "#banner-logo",
@@ -94,28 +57,22 @@ export function BannerMidle({ idols }: Props) {
 
             tl.fromTo(
                 "#text-1",
-                { x: "100%", y: 0 },
+                { y: "120%", x: 0 },
                 { x: 0, y: 0, duration: 1 },
                 "<"
             );
 
             tl.fromTo(
                 "#text-2",
-                { x: "-100%", y: 0 },
+                { y: "-120%", x: 0 },
                 { x: 0, y: 0, duration: 1 },
                 "<"
             );
 
-            tl.fromTo(
-                "#banner-logo-img",
-                { scale: 1 },
-                { scale: 0.22692307692, duration: 1 },
-            );
-
             tl.to(
                 "#banner-logo",
-                { top: "10%", duration: 1 },
-                "<"
+                { top: "20%", duration: 1 },
+                // "<"
             );
 
             tl.fromTo(
@@ -175,9 +132,11 @@ export function BannerMidle({ idols }: Props) {
                 { top: "40vh", duration: 1 },
             );
 
-
-
-
+            tl.to(
+                "#phone",
+                { scale: 1.1, y: "-10%", duration: 1 },
+                "<"
+            );
 
 
 
@@ -197,7 +156,7 @@ export function BannerMidle({ idols }: Props) {
             tl.fromTo(
                 "#phone-text",
                 { y: 100, opacity: 0, x: "-50%" },
-                { y: 0, opacity: 1, x: "-50%", duration: 0.5, ease: "easeIn" },
+                { y: 0, opacity: 1, x: "-50%", duration: 0.8, ease: "easeIn" },
             );
 
 
@@ -214,13 +173,6 @@ export function BannerMidle({ idols }: Props) {
             );
 
             tl.fromTo(
-                "#circle-background",
-                { autoAlpha: 1 },
-                { autoAlpha: 0, duration: 0.5, ease: "none" },
-                "<"
-            );
-
-            tl.fromTo(
                 "#phone-text",
                 { autoAlpha: 1 },
                 { autoAlpha: 0, duration: 1, ease: "power2.inOut" },
@@ -228,65 +180,44 @@ export function BannerMidle({ idols }: Props) {
             );
 
             tl.fromTo(
-                "#phone",
-                { rotateX: 0, rotateY: 0, rotateZ: 0, x: 0, y: 0 },
-                {
-                    rotateX: 8,
-                    rotateY: -8,
-                    rotateZ: 8,
-                    duration: 2,
-                    x: "-88%",
-                    y: "12%",
-                    ease: "power2.inOut",
-                },
-                "<"
-            );
-
-            tl.fromTo(
                 "#banner-button",
-                { autoAlpha: 0, y: 600 },
+                { autoAlpha: 0, y: 100, x: "-50%" },
                 {
                     autoAlpha: 1,
+                    x: "-50%",
                     y: 0,
-                    x: "-49.99%",
-                    duration: 0.8,
+                    duration: 1,
                     ease: "power2.inOut",
                 },
-                "<=+0.5"
+                "<=+1"
             );
 
             const texts = gsap.utils.toArray(".text-item");
-            const stars = gsap.utils.toArray(".star-icon");
 
             texts.forEach((el: any, index) => {
                 tl.fromTo(
                     el,
-                    { x: "100%", y: "80%", rotate: 60, autoAlpha: 0 },
-                    { x: "0%", y: 0, rotate: 0, autoAlpha: 1, duration: 1 },
+                    { x: "180%", y: "80%", rotate: 100, autoAlpha: 0 },
+                    { x: 0, y: 0, rotate: 0, autoAlpha: 1, duration: 2, delay: 0.5, ease: "none" },
                     index == 0 ? "<=+0.3" : "<"
                 );
 
                 tl.fromTo(
                     phoneImageEls[index + 1],
                     { y: "-100%" },
-                    { y: 0, duration: 1, ease: "none" },
+                    { y: 0, duration: 1.9, ease: "none" },
                     "<"
                 );
 
                 tl.fromTo(
                     phoneImageEls[index],
                     { filter: "blur(0px)", scale: 1 },
-                    { filter: "blur(20px)", scale: 0.85, duration: 0.8, ease: "power2.inOut" },
+                    { filter: "blur(20px)", scale: 0.85, duration: 1.9, ease: "none" },
                     "<"
                 );
 
-                animateStars(tl, stars, index);
-
                 if (index < texts.length - 1) {
-                    tl.fromTo(el,
-                        { x: 0, y: 0, autoAlpha: 1, rotate: 0 },
-                        { x: "-100%", y: "80%", rotate: -70, autoAlpha: 0, duration: 1, delay: 0.1 }
-                    );
+                    tl.fromTo(el, { x: 0, y: 0, autoAlpha: 1, rotate: 0 }, { x: "-180%", y: "80%", rotate: -100, autoAlpha: 0, duration: 2, delay: 0.5, ease: "none" });
                 }
             });
         },
@@ -305,15 +236,17 @@ export function BannerMidle({ idols }: Props) {
                 pos={"relative"}
                 justify={"center"}
                 align={"center"}
-                h={"100vh"}
                 w={"100%"}
+                className='overflow-hidden aspect-[0.46205357142]'
+            // aspect-[0.46205357142]
+
             >
                 <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0} className='overflow-hidden'>
                     <Box
                         pos={"absolute"}
                         top={0}
                         left={"50%"}
-                        w={"120%"}
+                        w={"500%"}
                         className='aspect-[6.68049792531] -translate-y-1/2 -translate-x-1/2'
                         style={{
                             background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.4) 0%, rgba(18, 2, 32, 0) 100%)"
@@ -321,47 +254,46 @@ export function BannerMidle({ idols }: Props) {
                     />
                 </Box>
 
-                <Box
+                <Flex
+                    id='banner-logo'
+                    direction={"column"}
                     pos={"absolute"}
                     top={"50%"}
                     left={"50%"}
-                    id='banner-logo'
+                    w={"100%"}
                     c={"white"}
-                    // h={{ base: 440, xl: 470, "2xl": 520 }}
-                    h={{ base: "48.1481481481vh" }}
-                // className='aspect-[1.66923076923]'
+                    align={"center"}
                 >
-                    <Image src={logo} alt='logo' id='banner-logo-img' className='h-full w-auto object-cover' />
                     <Text
                         id='text-1-wrap'
-                        pos={"absolute"}
-                        top={"50%"}
-                        left={0}
-                        // fz={{ base: 40, sm: 46, md: 52, lg: 56, xl: 60, "2xl": 64 }}
-                        fz={{ base: "clamp(40px, 6.2vh, 64px)" }}
+                        fz={{ base: 40, sm: 46, md: 52, lg: 56, xl: 60, "2xl": 64 }}
                         fw={900}
-                        className='-translate-y-1/2 overflow-hidden whitespace-nowrap'
+                        pb={{ base: 8, sm: 12, md: 16 }}
+                        className='overflow-hidden whitespace-nowrap'
+                        lh={1.2}
                     >
                         <span id='text-1' className='block'>
                             WHO’S IN
                         </span>
                     </Text>
 
+                    <Image src={logo} alt='logo' id='banner-logo-img' className='h-[56px] sm:h-[64px] md:h-[80px] w-auto object-cover' />
+
                     <Text
                         id='text-2-wrap'
-                        pos={"absolute"}
-                        top={"50%"}
-                        // fz={{ base: 40, sm: 46, md: 52, lg: 56, xl: 60, "2xl": 64 }}
-                        fz={{ base: "clamp(40px, 5.92592592593vh, 64px)" }}
+                        fz={{ base: 40, sm: 46, md: 52, lg: 56, xl: 60, "2xl": 64 }}
+                        // fz={{ base: "clamp(40px, 5.92592592593vh, 64px)" }}
                         fw={900}
-                        right={0}
-                        className='-translate-y-1/2 overflow-hidden whitespace-nowrap'
+                        pt={{ base: 8, sm: 12, md: 16 }}
+                        lh={1.2}
+                        className='overflow-hidden whitespace-nowrap'
                     >
                         <span id='text-2' className='block'>
                             ALREADY
                         </span>
                     </Text>
-                </Box>
+                </Flex>
+
                 <Phase2 idols={idols} />
             </Flex>
         </Box>
@@ -370,10 +302,10 @@ export function BannerMidle({ idols }: Props) {
 
 const Phase2 = ({ idols }: Props) => {
     const [scope] = useAnimate();
-    const isInView = useInView(scope, { once: false, amount: 0.99 });
+    const isInView = useInView(scope, { once: false, amount: 0.7 });
 
     const swiperRef = useRef<any>(null);
-    const [centerRealIndex, setCenterRealIndex] = useState(4);
+    const [centerRealIndex, setCenterRealIndex] = useState(1);
 
     useEffect(() => {
         swiperRef?.current?.swiper?.autoplay?.stop();
@@ -408,7 +340,7 @@ const Phase2 = ({ idols }: Props) => {
         swiperRef?.current?.swiper?.autoplay?.start();
     };
 
-    const list = [...idols, ...idols, ...idols, ...idols,];
+    const list = [...idols, ...idols];
 
     return (
         <Flex
@@ -421,6 +353,7 @@ const Phase2 = ({ idols }: Props) => {
             left={0}
             align={"center"}
             justify={"center"}
+
         >
             <Phone1 centerIdol={list[centerRealIndex]} />
             <Phone2 isInView={isInView} />
@@ -431,7 +364,7 @@ const Phase2 = ({ idols }: Props) => {
                 pos={"absolute"}
                 w={"100%"}
                 left={0}
-                top={"56vh"}
+                top={"64vh"}
                 className='-translate-y-1/2'
             >
                 <Swiper
@@ -448,7 +381,7 @@ const Phase2 = ({ idols }: Props) => {
                         Autoplay,
                     ]}
                     onSlideChange={(swiper) => {
-                        setCenterRealIndex(prev => prev >= list.length - 3 ? 4 : centerRealIndex + 1);
+                        setCenterRealIndex(prev => prev >= list.length - 2 ? 1 : centerRealIndex + 1);
                     }}
                     className="mySwiper [&_.swiper-wrapper]:items-center overflow-visible"
                 >
@@ -457,9 +390,9 @@ const Phase2 = ({ idols }: Props) => {
                             <SwiperSlide
                                 key={index}
                                 className={twMerge(
-                                    ' translate-x-[-10.74vw] transition-all will-change-transform duration-300 ease-linear',
-                                    centerRealIndex == index ? "w-[17.427604166vw]" : "w-[12.999479166vw]",
-                                    centerRealIndex == index ? "px-[1.32005208333vw]" : "px-[0.43567708333vw]"
+                                    ' translate-x-[-8vw] transition-all will-change-transform duration-400 ease-linear',
+                                    centerRealIndex == index ? "w-[43.5466666667vw]" : "w-[36vw]",
+                                    centerRealIndex == index ? "px-[2.1vw]" : "px-[1.8vw]"
                                 )}
                             >
                                 <IdolItem idol={o} isInView={isInView} index={index} centerRealIndex={centerRealIndex} />
@@ -489,20 +422,22 @@ const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {
             direction={"column"}
             align={"center"}
             justify={"center"}
-            top={"56vh"}
+            top={"64vh"}
             left={"50%"}
-            className='container-version3 -translate-y-1/2 -translate-x-1/2'
+            className='container-version3 will-change-transform -translate-y-1/2 -translate-x-1/2'
         >
             <Circle />
             <Phase3 />
+
             <Box
-                id='phone'
-                w={"23.802083333vw"}
+                id="phone"
                 pos={"relative"}
-                className=' aspect-[0.65312441358] z-10'
+                w={"62.3306666667vw"}
+                className='aspect-[0.65383647095] origin-top will-change-transform'
             >
 
-                <Image src={phoneBorder} alt='phoneBorder' fill className='object-cover' />
+                <Image src={phone} alt='phone' fill className='object-cover' />
+
                 <Box
                     pos={"absolute"}
                     top={"50%"}
@@ -510,59 +445,46 @@ const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {
                     w={"62.8%"}
                     h={"88%"}
                     bg={"black"}
-                    className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[32px]'
+                    className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[6%]'
                 />
+                {phoneImages.map((o, index) => {
+                    return (
+                        <Box
+                            key={index}
+                            pos={"absolute"}
+                            top={"50%"}
+                            left={"50%"}
+                            w={"62.8%"}
+                            className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[6%] will-change-transform'
+                        >
+                            <Image
+                                src={o}
+                                alt='phone image'
+                                className='relative phone-image object-cover will-change-transform transform-3d w-full h-auto '
+                            />
+                        </Box>
+                    );
+                })}
 
-                <Box
-                    id='center-idol-fake'
-                    pos={"absolute"}
-                    w={'17.427604166vw'}
-                    px={'1.32005208333vw'}
-                    top={"50%"}
-                    left={"50%"}
-                    className='overflow-hidden'
-                >
-                    <IdolItem idol={centerIdol} centerRealIndex={1} index={1} isInView={true} />
-                </Box>
-                {
-                    phoneImages.map((o, index) => {
-                        return (
-                            <Box
-                                key={index}
-                                pos={"absolute"}
-                                top={"50%"}
-                                left={"50%"}
-                                w={"62.8%"}
-                                className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[32px]'
-                            >
-                                <Image
-                                    key={index}
-                                    src={o}
-                                    alt='phone image'
-                                    className='relative phone-image object-cover will-change-transform transform-3d w-full h-auto '
-                                />
-                            </Box>
-                        );
-                    })
-                }
                 <Flex
                     id="phone-text"
                     pos={"absolute"}
-                    bottom={{ base: "-15%" }}
+                    bottom={{ base: "-20%" }}
                     left={"50%"}
                     direction={"column"}
                     gap={{ base: 8, md: 10, xl: 12 }}
                     align={"center"}
+                    className='will-change-transform'
                 >
-                    <Text fz={{ base: 11, sm: 12, md: 14, lg: 16, xl: 18, "2xl": 20 }} lh={1.2} c={"#FFFFFFCC"} className='whitespace-nowrap'>
+                    <Text fz={{ base: 14, sm: 16, md: 18, "2xl": 20 }} lh={1.4} lts={-0.5} c={"#FFFFFFCC"} className='whitespace-nowrap'>
                         Your content. Your rules. Public, private, or premium.
                     </Text>
 
-                    <Text fz={{ base: 20, sm: 22, md: 26, lg: 28, xl: 30, "2xl": 32 }} fw={500} lh={1.2} c={"white"} className='whitespace-nowrap'>
+                    <Text fz={{ base: 20, sm: 22, md: 26, lg: 28, xl: 30, "2xl": 32 }} fw={500} lh={1.4} c={"white"} className='whitespace-nowrap'>
                         KNKY adapts to you!
                     </Text>
                 </Flex>
-            </Box >
+            </Box>
         </Flex>
     );
 };
@@ -573,10 +495,10 @@ const Phone2 = ({ isInView }: { isInView: boolean }) => {
         <Box
             id='phone-2'
             pos={"absolute"}
-            w={"23.802083333%"}
+            w={"62.3306666667vw"}
             left={"50%"}
-            top={"56vh"}
-            className='-translate-y-1/2 -translate-x-1/2 aspect-[0.65312441358]'
+            top={"64vh"}
+            className='-translate-y-1/2 -translate-x-1/2 aspect-[0.65383647095]'
         >
             <motion.div
                 initial={{ y: 300 }}
@@ -629,7 +551,7 @@ const IdolItem = ({ idol, centerRealIndex, index, isInView }: { idol: ICreatorId
                         pos={"relative"}
                         w={"100%"}
                         className={twMerge(
-                            'idol-image overflow-hidden rounded-[33px] w-full h-full',
+                            'idol-image overflow-hidden rounded-[18px] w-full h-full',
                         )}
                     >
                         <Image src={idol.img} alt={idol.name} fill className='object-cover' />

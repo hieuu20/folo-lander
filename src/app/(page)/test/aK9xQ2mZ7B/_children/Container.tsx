@@ -71,11 +71,11 @@ const Mobile = ({ idols, news }: Props) => {
                     backgroundColor: "#0A0014"
                 }}
             >
-                <BannerMobile />
+                <BannerMobile idols={idols} />
                 <UnlimitedMobile />
-                <GrowthMobile idols={idols} />
                 <MoreMobile />
-                <News news={news} />
+                <GrowthMobile news={news} />
+                {/* <News news={news} /> */}
                 <Footer />
             </Box>
         </Box>

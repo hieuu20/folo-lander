@@ -1,17 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Box, Flex, Input, SimpleGrid, Text } from '@mantine/core';
-import React, { ReactNode, useRef } from 'react';
-import logo from "@public/version-3/icons/logo.webp";
+import { Box, Flex, Input, Text } from '@mantine/core';
+import React from 'react';
 import Image from 'next/image';
-import youImg from "@public/version-3/banner/you.webp";
-import vector from "@public/version-3/banner/vector.svg";
-import bannerImg from "@public/version-3/banner/img.webp";
 import SectionButton from '@/components/buttons/SectionButton';
 import { motion, useAnimate, useInView, useScroll, useTransform } from 'framer-motion';
-import { twMerge } from 'tailwind-merge';
-import phoneImge from "@public/version-3/banner/phone/phone-border.webp";
-
 import downIcon from "@public/version-3/banner/down.svg";
 import Link from 'next/link';
 

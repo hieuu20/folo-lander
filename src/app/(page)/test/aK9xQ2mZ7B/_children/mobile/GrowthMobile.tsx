@@ -1,32 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Flex, Grid, Text, Title } from '@mantine/core';
-import React, { useEffect, useRef, useState } from 'react';
+import { Box, Text, Title } from '@mantine/core';
+import React, { useRef } from 'react';
 
 import gsap from 'gsap/dist/gsap';
 import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 
-import clickIcon from "@public/version-3/growth/idols/click.svg";
-import clickActiveIcon from "@public/version-3/growth/idols/click-active.svg";
 
 import logo from "@public/version-3/growth/logo.svg";
 
-import bg1 from "@public/version-3/growth/bg1.webp";
-import bg2 from "@public/version-3/growth/bg2.webp";
-
-import SectionButton from '@/components/buttons/SectionButton';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { growtTexthList } from '@/utils/growth';
 
-import Marquee from "react-fast-marquee";
-import { useBrowserWidth } from '@/hooks';
-import { ICreatorIdol } from '@/app/api/_entities/creatorIdol';
+import { INews } from '@/app/api/_entities';
+import News from '../News';
 
 interface Props {
-    idols: ICreatorIdol[];
+    news: INews[];
 }
-export function GrowthMobile({ idols }: Props) {
+export function GrowthMobile({ news }: Props) {
     const main = useRef(null);
     useGSAP(
         () => {
@@ -86,7 +78,7 @@ export function GrowthMobile({ idols }: Props) {
             tl.fromTo(
                 "#growth-overlay",
                 { scale: 1 },
-                { scale: 9, duration: 0.8, ease: "power2.in" },
+                { scale: 8, duration: 1, ease: "power2.in" },
                 "<"
             );
 
@@ -126,7 +118,7 @@ export function GrowthMobile({ idols }: Props) {
                 className='aspect-[0.46182266009]'
             >
                 <Top />
-                <Bottom idols={idols} />
+                <News news={news} />
             </Box>
         </Box>
     );
@@ -277,138 +269,138 @@ const Top = () => {
     );
 };
 
-const Bottom = ({ idols }: Props) => {
-    const [height, setHeight] = useState(0);
-    const { width } = useBrowserWidth();
+// export const Bottom = ({ idols }: any) => {
+//     const [height, setHeight] = useState(0);
+//     const { width } = useBrowserWidth();
 
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            const imgElement = document.querySelector(".idol-image")?.getBoundingClientRect();
-            if (imgElement?.height) {
-                setHeight(imgElement?.height);
-            }
-        }, 1000);
+//     useEffect(() => {
+//         const timeout = setTimeout(() => {
+//             const imgElement = document.querySelector(".idol-image")?.getBoundingClientRect();
+//             if (imgElement?.height) {
+//                 setHeight(imgElement?.height);
+//             }
+//         }, 1000);
 
-        return () => clearTimeout(timeout);
-    }, []);
+//         return () => clearTimeout(timeout);
+//     }, []);
 
-    return (
-        <Box
-            id='idols-slide'
-            pos={"absolute"}
-            w={"100%"}
-            h={"fit-content"}
-            top={0}
-            left={0}
-            bg={"#160328"}
-            py={{ base: 80, md: 90, xl: 100, "2xl": 110 }}
-        >
-            <Image src={bg1} alt='bg1' className='w-[25.8%] h-auto absolute bottom-0 left-0' />
-            <Image src={bg2} alt='bg-2' className='w-[25.8%] h-auto absolute top-0 right-0' />
-            <Box className='container-version3'>
-                <Title
-                    w={{ base: "100%" }}
-                    mx={"auto"}
-                    order={2}
-                    fz={{ base: 38, sm: 45, md: 52, lg: 56, xl: 60, "2xl": 64 }}
-                    c={"white"}
-                    fw={900}
-                    lh={1.2}
-                    ta={"center"}
-                    mb={{ base: 40, sm: 45, md: 50, lg: 58, xl: 68, "2xl": 78 }}
-                >
-                    WHO’S ALREADY IN
-                </Title>
+//     return (
+//         <Box
+//             id='idols-slide'
+//             pos={"absolute"}
+//             w={"100%"}
+//             h={"fit-content"}
+//             top={0}
+//             left={0}
+//             bg={"#160328"}
+//             py={{ base: 80, md: 90, xl: 100, "2xl": 110 }}
+//         >
+//             <Image src={bg1} alt='bg1' className='w-[25.8%] h-auto absolute bottom-0 left-0' />
+//             <Image src={bg2} alt='bg-2' className='w-[25.8%] h-auto absolute top-0 right-0' />
+//             <Box className='container-version3'>
+//                 <Title
+//                     w={{ base: "100%" }}
+//                     mx={"auto"}
+//                     order={2}
+//                     fz={{ base: 38, sm: 45, md: 52, lg: 56, xl: 60, "2xl": 64 }}
+//                     c={"white"}
+//                     fw={900}
+//                     lh={1.2}
+//                     ta={"center"}
+//                     mb={{ base: 40, sm: 45, md: 50, lg: 58, xl: 68, "2xl": 78 }}
+//                 >
+//                     WHO’S ALREADY IN
+//                 </Title>
 
-                <Grid gutter={{ base: 24 }}>
-                    <Grid.Col span={{ base: 12, md: 9, xl: 9.6 }}>
-                        <Marquee direction="left" pauseOnHover={false} pauseOnClick={true} speed={50} delay={5} className="w-full h-full">
-                            <Flex
-                                align={"center"}
-                            >
-                                {idols.map((o, i) => {
-                                    return (
-                                        <Box key={i} w={width / 2} px={{ base: 10 }}>
-                                            <Flex key={i} direction={"column"} w={"100%"} align={"center"} c={"white"}>
-                                                <Box
-                                                    pos={"relative"}
-                                                    mb={{ base: 12, sm: 16, md: 20, "2xl": 24 }}
-                                                    w={"100%"}
-                                                    className='idol-image aspect-[0.65294117647] rounded-2xl overflow-hidden'
-                                                    onClick={() => window.open(`https://knky.co/creator/${o.userName}`, "_blank")}
-                                                >
-                                                    <Image src={o.img} alt={o.name} fill className='object-cover' />
-                                                    <Link
-                                                        target='_blank'
-                                                        href={`https://knky.co/creator/${o.userName}`}
-                                                        className='cursor-pointer absolute bottom-1 md:bottom-1.5 2xl:bottom-2 right-1 md:right-1.5 2xl:right-2 aspect-square w-5 sm:w-6 md:w-7 lg:w-8 xl:w-9 2xl:w-10 group'
-                                                    >
-                                                        <Image src={clickIcon} alt='click icon' fill className='object-cover group-hover:hidden' />
-                                                        <Image src={clickActiveIcon} alt='click icon' fill className='object-cover hidden group-hover:block' />
-                                                    </Link>
-                                                </Box>
+//                 <Grid gutter={{ base: 24 }}>
+//                     <Grid.Col span={{ base: 12, md: 9, xl: 9.6 }}>
+//                         <Marquee direction="left" pauseOnHover={false} pauseOnClick={true} speed={50} delay={5} className="w-full h-full">
+//                             <Flex
+//                                 align={"center"}
+//                             >
+//                                 {idols.map((o, i) => {
+//                                     return (
+//                                         <Box key={i} w={width / 2} px={{ base: 10 }}>
+//                                             <Flex key={i} direction={"column"} w={"100%"} align={"center"} c={"white"}>
+//                                                 <Box
+//                                                     pos={"relative"}
+//                                                     mb={{ base: 12, sm: 16, md: 20, "2xl": 24 }}
+//                                                     w={"100%"}
+//                                                     className='idol-image aspect-[0.65294117647] rounded-2xl overflow-hidden'
+//                                                     onClick={() => window.open(`https://knky.co/creator/${o.userName}`, "_blank")}
+//                                                 >
+//                                                     <Image src={o.img} alt={o.name} fill className='object-cover' />
+//                                                     <Link
+//                                                         target='_blank'
+//                                                         href={`https://knky.co/creator/${o.userName}`}
+//                                                         className='cursor-pointer absolute bottom-1 md:bottom-1.5 2xl:bottom-2 right-1 md:right-1.5 2xl:right-2 aspect-square w-5 sm:w-6 md:w-7 lg:w-8 xl:w-9 2xl:w-10 group'
+//                                                     >
+//                                                         <Image src={clickIcon} alt='click icon' fill className='object-cover group-hover:hidden' />
+//                                                         <Image src={clickActiveIcon} alt='click icon' fill className='object-cover hidden group-hover:block' />
+//                                                     </Link>
+//                                                 </Box>
 
-                                                <Text
-                                                    ta={"center"}
-                                                    fz={{ base: 16, sm: 18, md: 23, lg: 25, xl: 28, "2xl": 32 }}
-                                                    mb={{ base: 4, md: 6, xl: 8 }}
-                                                    fw={700}
-                                                    className='uppercase'
-                                                    lh={1.4}
-                                                >
-                                                    {o.name}
-                                                </Text>
+//                                                 <Text
+//                                                     ta={"center"}
+//                                                     fz={{ base: 16, sm: 18, md: 23, lg: 25, xl: 28, "2xl": 32 }}
+//                                                     mb={{ base: 4, md: 6, xl: 8 }}
+//                                                     fw={700}
+//                                                     className='uppercase'
+//                                                     lh={1.4}
+//                                                 >
+//                                                     {o.name}
+//                                                 </Text>
 
-                                                <Text lh={1.4} ta={"center"} fz={{ base: 10, sm: 12, md: 14, lg: 16, xl: 18, "2xl": 20 }} c={"#FFFFFFCC"} fw={500}>
-                                                    @{o.userName}
-                                                </Text>
-                                            </Flex>
-                                        </Box>
-                                    );
-                                })}
-                            </Flex>
-                        </Marquee>
-                    </Grid.Col>
+//                                                 <Text lh={1.4} ta={"center"} fz={{ base: 10, sm: 12, md: 14, lg: 16, xl: 18, "2xl": 20 }} c={"#FFFFFFCC"} fw={500}>
+//                                                     @{o.userName}
+//                                                 </Text>
+//                                             </Flex>
+//                                         </Box>
+//                                     );
+//                                 })}
+//                             </Flex>
+//                         </Marquee>
+//                     </Grid.Col>
 
-                    <Grid.Col
-                        span={{ base: 12, md: 3, xl: 2.4 }}
-                    >
-                        <Flex
-                            h={{ base: "fit-content", md: height }}
-                            w={{ base: "100%" }}
-                            direction={"column"}
-                            p={{ base: 16, md: 20, xl: 24 }}
-                            justify={"space-between"}
-                            c={"white"}
-                            gap={{ base: 16 }}
-                            style={{
-                                background: "linear-gradient(341.28deg, #3A0053 23.13%, #7D1CA6 91.02%), linear-gradient(122.2deg, #4E1980 3.29%, #290948 76.62%)"
-                            }}
-                            className='rounded-2xl'
-                        >
-                            <Text lh={1.2} fz={{ base: 32, sm: 35, md: 38, lg: 42, xl: 44, "2xl": 48 }} fw={900}>
-                                YOUR SPOT
-                            </Text>
+//                     <Grid.Col
+//                         span={{ base: 12, md: 3, xl: 2.4 }}
+//                     >
+//                         <Flex
+//                             h={{ base: "fit-content", md: height }}
+//                             w={{ base: "100%" }}
+//                             direction={"column"}
+//                             p={{ base: 16, md: 20, xl: 24 }}
+//                             justify={"space-between"}
+//                             c={"white"}
+//                             gap={{ base: 16 }}
+//                             style={{
+//                                 background: "linear-gradient(341.28deg, #3A0053 23.13%, #7D1CA6 91.02%), linear-gradient(122.2deg, #4E1980 3.29%, #290948 76.62%)"
+//                             }}
+//                             className='rounded-2xl'
+//                         >
+//                             <Text lh={1.2} fz={{ base: 32, sm: 35, md: 38, lg: 42, xl: 44, "2xl": 48 }} fw={900}>
+//                                 YOUR SPOT
+//                             </Text>
 
-                            <Text lh={1.2} fz={{ base: 18, sm: 22, md: 26, lg: 29, xl: 32, "2xl": 38 }} fw={700}>
-                                READY TO SHOW WHAT YOU CREATE 👇
-                            </Text>
+//                             <Text lh={1.2} fz={{ base: 18, sm: 22, md: 26, lg: 29, xl: 32, "2xl": 38 }} fw={700}>
+//                                 READY TO SHOW WHAT YOU CREATE 👇
+//                             </Text>
 
-                            <SectionButton
-                                show={true}
-                                title='Join us Today →'
-                                w={{ base: 123, sm: 132, md: 140, lg: 148, xl: 156, "2xl": 161 }}
-                                h={{ base: 32, sm: 36, md: 40, lg: 42, xl: 44, "2xl": 48 }}
-                                fz={{ base: 14, md: 16 }}
-                                c={"white"}
-                                fw={600}
-                                px={0}
-                                href='https://knky.co'
-                            />
-                        </Flex>
-                    </Grid.Col>
-                </Grid>
-            </Box>
-        </Box>
-    );
-};
+//                             <SectionButton
+//                                 show={true}
+//                                 title='Join us Today →'
+//                                 w={{ base: 123, sm: 132, md: 140, lg: 148, xl: 156, "2xl": 161 }}
+//                                 h={{ base: 32, sm: 36, md: 40, lg: 42, xl: 44, "2xl": 48 }}
+//                                 fz={{ base: 14, md: 16 }}
+//                                 c={"white"}
+//                                 fw={600}
+//                                 px={0}
+//                                 href='https://knky.co'
+//                             />
+//                         </Flex>
+//                     </Grid.Col>
+//                 </Grid>
+//             </Box>
+//         </Box>
+//     );
+// };

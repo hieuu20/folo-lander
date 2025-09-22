@@ -147,7 +147,12 @@ export default function News({ news }: Props) {
                                             <Image src={newsLogo} alt='newsLogo' className='absolute bottom-0 left-0 w-[108px] h-auto object-cover' />
                                         </Box>
 
-                                        <Flex direction={"column"} p={{ base: 16, md: 20, xl: 24 }} gap={{ base: 16 }}>
+                                        <Flex 
+                                            direction={"column"} 
+                                            p={{ base: 16, md: 20, xl: 24 }} 
+                                            gap={{ base: 16 }}
+                                            bg={"#160328"}
+                                        >
                                             <Text fz={{ base: 16 }} c={"#FFFFFFCC"} lh={1.2}>
                                                 {formatTime(o.createdAt as any)}
                                             </Text>

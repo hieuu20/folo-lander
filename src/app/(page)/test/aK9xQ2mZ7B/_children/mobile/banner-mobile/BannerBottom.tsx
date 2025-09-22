@@ -172,7 +172,7 @@ export function BannerBottom() {
                     }}
                 />
                 <Circle />
-                <Phase2 />
+                {/* <Phase2 /> */}
                 <Phone isInView={isInView} />
             </Flex>
         </Box>
@@ -240,7 +240,7 @@ const Phone = ({ }: { isInView: boolean }) => {
     );
 };
 
-const Circle = () => {
+export const Circle = () => {
     const [containerWidth, setContainerWidth] = useState(0);
 
     useEffect(() => {
@@ -290,22 +290,11 @@ const Circle = () => {
                 })}
 
             </motion.div>
-            <Box
-                pos={"absolute"}
-                bottom={0}
-                left={"50%"}
-                w={"150%"}
-                h={"100%"}
-                style={{
-                    background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)"
-                }}
-                className='-translate-x-1/2'
-            />
         </Box>
     );
 };
 
-const Phase2 = () => {
+export const Phase3 = () => {
     const list = [
         {
             text1: "MUTIPLE-LEVEL",

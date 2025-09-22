@@ -122,14 +122,21 @@ export function BannerMidle({ idols }: Props) {
 
             tl.fromTo(
                 '#center-idol-fake',
-                { x: "-50%", y: "-50%", filter: "blur(0px)", scale: 1, autoAlpha: 1 },
-                { filter: "blur(20px)", scale: 0.8, autoAlpha: 0, duration: 0.8, ease: "power2.inOut" },
+                { x: "-50%", y: "-50%", filter: "blur(0px)", scale: 1 },
+                { filter: "blur(20px)", scale: 0.8, duration: 1, ease: "power2.inOut" },
                 "<"
+            );
+
+            tl.fromTo(
+                '#center-idol-fake',
+                { autoAlpha: 1 },
+                { autoAlpha: 0, duration: 0, ease: "none" },
             );
 
             tl.to(
                 "#phone-1-section",
                 { top: "40vh", duration: 1 },
+                "<"
             );
 
             tl.to(
@@ -158,7 +165,6 @@ export function BannerMidle({ idols }: Props) {
                 { y: 100, opacity: 0, x: "-50%" },
                 { y: 0, opacity: 1, x: "-50%", duration: 0.8, ease: "easeIn" },
             );
-
 
             tl.fromTo(
                 "#image-circle1",
@@ -432,7 +438,7 @@ const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {
             <Box
                 id="phone"
                 pos={"relative"}
-                w={"62.3306666667vw"}
+                w={"63.3306666667vw"}
                 className='aspect-[0.65383647095] origin-top will-change-transform'
             >
 
@@ -447,6 +453,19 @@ const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {
                     bg={"black"}
                     className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[6%]'
                 />
+
+                <Box
+                    id='center-idol-fake'
+                    pos={"absolute"}
+                    w={'43.5466666667vw'}
+                    px={'2.1vw'}
+                    top={"50%"}
+                    left={"50%"}
+                    className='overflow-hidden'
+                >
+                    <IdolItem idol={centerIdol} centerRealIndex={1} index={1} isInView={true} />
+                </Box>
+
                 {phoneImages.map((o, index) => {
                     return (
                         <Box
@@ -498,7 +517,7 @@ const Phone2 = ({ isInView }: { isInView: boolean }) => {
             w={"62.3306666667vw"}
             left={"50%"}
             top={"64vh"}
-            className='-translate-y-1/2 -translate-x-1/2 aspect-[0.65383647095]'
+            className='-translate-y-1/2 -translate-x-1/2 aspect-[0.65383647095] will-change-transform'
         >
             <motion.div
                 initial={{ y: 300 }}

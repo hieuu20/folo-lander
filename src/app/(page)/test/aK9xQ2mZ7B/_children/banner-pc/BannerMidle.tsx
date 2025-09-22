@@ -165,19 +165,22 @@ export function BannerMidle({ idols }: Props) {
 
             tl.fromTo(
                 '#center-idol-fake',
-                { x: "-50%", y: "-50%", filter: "blur(0px)", scale: 1, autoAlpha: 1 },
-                { filter: "blur(20px)", scale: 0.8, autoAlpha: 0, duration: 0.8, ease: "power2.inOut" },
+                { x: "-50%", y: "-50%", filter: "blur(0px)", scale: 1 },
+                { filter: "blur(20px)", scale: 0.8, duration: 1, ease: "power2.inOut" },
                 "<"
+            );
+
+            tl.fromTo(
+                '#center-idol-fake',
+                { autoAlpha: 1 },
+                { autoAlpha: 0, duration: 0, ease: "none" },
             );
 
             tl.to(
                 "#phone-1-section",
                 { top: "40vh", duration: 1 },
+                "<"
             );
-
-
-
-
 
 
 

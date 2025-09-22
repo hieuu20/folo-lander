@@ -27,7 +27,7 @@ export function GrowthMobile({ news }: Props) {
                     trigger: main.current,
                     pin: true,
                     start: 'top top',
-                    end: '+=5000',
+                    end: '+=5500',
                     markers: false,
                     scrub: true,
                 },
@@ -84,8 +84,8 @@ export function GrowthMobile({ news }: Props) {
 
             tl.fromTo(
                 "#growth-overlay-bg",
-                { opacity: 1 },
-                { opacity: 0, duration: 1 },
+                { autoAlpha: 1 },
+                { autoAlpha: 0, duration: 1 },
                 "<"
             );
 
@@ -102,6 +102,12 @@ export function GrowthMobile({ news }: Props) {
                 { autoAlpha: 0, duration: 0 },
                 "<+=1"
             );
+
+            tl.fromTo(
+                "#News",
+                { x: 0, y: 0 },
+                { x: 0, y: 0, duration: 1 },
+            );
         },
         {
             scope: main,
@@ -109,13 +115,13 @@ export function GrowthMobile({ news }: Props) {
     );
 
     return (
-        <Box h={5765} className='overflow-hidden'>
+        <Box h={6265} className='overflow-hidden'>
             <Box
                 id='growth'
                 w={{ base: "100%" }}
                 pos={"relative"}
                 ref={main}
-                className='aspect-[0.46182266009]'
+                className='aspect-[0.46205357142]'
             >
                 <Top />
                 <News news={news} />

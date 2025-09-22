@@ -4,27 +4,17 @@ import { Box, Flex, Input, Text } from '@mantine/core';
 import React from 'react';
 import Image from 'next/image';
 import SectionButton from '@/components/buttons/SectionButton';
-import { motion, useAnimate, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import downIcon from "@public/version-3/banner/down.svg";
 import Link from 'next/link';
 
 export const BannerTop = () => {
-    const [scope] = useAnimate();
-    const isInView = useInView(scope);
-
-    const { scrollYProgress } = useScroll({
-        target: scope,
-        offset: ['start -0.8', 'start -1.3'],
-    });
-
-    const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
     return (
         <Box bg={"#0A0014"} h={"fit-content"} className='overflow-hidden'>
             <Box className='container-version3' h={"100%"}>
                 <Flex
-                    ref={scope}
                     direction={"column"}
                     pos={"relative"}
                     justify={"space-between"}
@@ -42,7 +32,7 @@ export const BannerTop = () => {
                             ease: 'easeInOut',
                             delay: 0
                         }}
-                        className='w-[72%] flex justify-center'
+                        className='w-[72%] aspect-[0.65384236453] flex justify-center'
                     >
                         <video
                             preload="auto"
@@ -50,7 +40,7 @@ export const BannerTop = () => {
                             autoPlay
                             loop
                             muted
-                            className="w-full h-auto"
+                            className="w-full h-full"
                         >
                             <source src={"/version-3/banner/video.mp4"} type="video/mp4" />
                         </video>
@@ -70,7 +60,6 @@ export const BannerTop = () => {
                         >
                             <motion.div
                                 initial={{ y: "30%", opacity: 0 }}
-                                // animate={isInView ? { y: 0, opacity: 1 } : {}}
                                 whileInView={{ y: 0, opacity: 1 }}
                                 viewport={{ once: true }}
                                 transition={{
@@ -116,7 +105,6 @@ export const BannerTop = () => {
 
                         <motion.div
                             initial={{ y: "100%", opacity: 0 }}
-                            // animate={isInView ? { y: 0, opacity: 1 } : {}}
                             whileInView={{ y: 0, opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{
@@ -163,7 +151,6 @@ export const BannerTop = () => {
 
                         <motion.div
                             initial={{ y: "100%", opacity: 0 }}
-                            // animate={isInView ? { y: 0, opacity: 1 } : {}}
                             whileInView={{ y: 0, opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{
@@ -180,7 +167,7 @@ export const BannerTop = () => {
                             </Link>
                         </motion.div>
 
-                        <ScrollButton opacity={opacity} />
+                        {/* <ScrollButton opacity={opacity} /> */}
                     </Flex>
                 </Flex>
             </Box>

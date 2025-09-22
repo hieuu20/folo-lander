@@ -35,11 +35,13 @@ export const BannerTop = () => {
                         className='w-[72%] aspect-[0.65384236453] flex justify-center'
                     >
                         <video
-                            preload="auto"
+                            preload="metadata"
                             playsInline
                             autoPlay
                             loop
                             muted
+                            disablePictureInPicture={true}
+                            disableRemotePlayback={true}
                             className="w-full h-full"
                         >
                             <source src={"/version-3/banner/video.mp4"} type="video/mp4" />

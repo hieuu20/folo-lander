@@ -27,7 +27,7 @@ export function GrowthMobile({ news }: Props) {
                     trigger: main.current,
                     pin: true,
                     start: 'top top',
-                    end: '+=5500',
+                    end: '+=4500',
                     markers: false,
                     scrub: true,
                 },
@@ -106,7 +106,7 @@ export function GrowthMobile({ news }: Props) {
             tl.fromTo(
                 "#News",
                 { x: 0, y: 0 },
-                { x: 0, y: 0, duration: 1 },
+                { x: 0, y: 0, duration: 0.5 },
             );
         },
         {
@@ -115,7 +115,7 @@ export function GrowthMobile({ news }: Props) {
     );
 
     return (
-        <Box h={6265} className='overflow-hidden'>
+        <Box h={5265} className='overflow-hidden'>
             <Box
                 id='growth'
                 w={{ base: "100%" }}

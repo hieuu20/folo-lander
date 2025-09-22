@@ -85,7 +85,7 @@ export function BannerMidle({ idols }: Props) {
             tl.fromTo(
                 "#mySwiper",
                 { y: 0, },
-                { y: 0, duration: 2 },
+                { y: 0, duration: 0.5 },
             );
 
             tl.fromTo(
@@ -244,8 +244,6 @@ export function BannerMidle({ idols }: Props) {
                 align={"center"}
                 w={"100%"}
                 className='overflow-hidden aspect-[0.46205357142]'
-            // aspect-[0.46205357142]
-
             >
                 <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0} className='overflow-hidden'>
                     <Box

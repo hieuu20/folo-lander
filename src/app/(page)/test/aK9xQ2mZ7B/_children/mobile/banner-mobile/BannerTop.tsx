@@ -129,6 +129,7 @@ export const BannerTop = () => {
                                     fz={{ base: 16, md: 18, "2xl": 20 }}
                                     fw={500}
                                     placeholder='Your username'
+                                    autoFocus={false}
                                     classNames={{
                                         input: "placeholder-[#FFFFFF59] bg-transparent pl-1 md:pl-2",
                                         wrapper: "bg-transparent"

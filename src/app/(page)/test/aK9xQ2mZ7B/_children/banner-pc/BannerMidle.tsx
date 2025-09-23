@@ -423,8 +423,6 @@ const Phase2 = ({ idols }: Props) => {
             <Phone2 isInView={isInView} />
 
             <Box
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
                 pos={"absolute"}
                 w={"100%"}
                 left={0}
@@ -436,7 +434,7 @@ const Phase2 = ({ idols }: Props) => {
                     ref={swiperRef}
                     slidesPerView={"auto"}
                     autoplay={{
-                        delay: 800,
+                        delay: 1200,
                     }}
                     fadeEffect={{ crossFade: true }}
                     spaceBetween={0}
@@ -459,6 +457,8 @@ const Phase2 = ({ idols }: Props) => {
                                     centerRealIndex == index ? "w-[17.4193548387vw]" : "w-[12.9032258065vw]",
                                     centerRealIndex == index ? "px-[1.32005208333vw]" : "px-[0.43567708333vw]"
                                 )}
+                                onMouseEnter={centerRealIndex == index ? handleMouseEnter : undefined}
+                                onMouseLeave={centerRealIndex == index ? handleMouseLeave : undefined}
                             >
                                 <IdolItem idol={o} isInView={isInView} index={index} centerRealIndex={centerRealIndex} />
                             </SwiperSlide>

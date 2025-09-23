@@ -347,7 +347,9 @@ export function Footer() {
                                 c={"white"}
                                 lts={-0.24}
                             >
-                                XMA EU 🇪🇺 2025 WINNER →
+                                <Flex gap={4} align={"center"}>
+                                    XMA EU <Image src={flag2} alt="flag 2" className="h-7 md:h-6 w-auto inline" /> 2025 WINNER →
+                                </Flex>
                             </Text>
                         </Link>
                         <Flex direction={"column"} gap={{ base: 4, md: 6, xl: 8 }}>
@@ -389,13 +391,12 @@ export function Footer() {
                                 fw={400}
                             >
                                 <Flex gap={2} align={"center"} justify={{ base: "center", md: "flex-end" }}>
-                                    Social Commerce UK Ltd <Image src={flag1} alt="flag 1" className="h-3 md:h-[14px] xl:h-4 w-auto inline" />
+                                    Social Commerce UK Ltd <Image src={flag1} alt="flag 1" className="h-3 md:h-[14px] lg:h-[15px] 2xl:h-4 w-auto inline" />
                                     | 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ.UK
                                 </Flex>
 
                                 <Flex gap={2} align={"center"} justify={{ base: "center", md: "flex-end" }}>
-                                    Social Commerce EU Ltd  <Image src={flag2} alt="flag 2" className="h-3 md:h-[14px] xl:h-4 w-auto inline" /> 4th Floor, Agios Nikolaos, Kamares , 6037 Larnaca. Cyprus
-
+                                    Social Commerce EU Ltd  <Image src={flag2} alt="flag 2" className="h-3 md:h-[14px] lg:h-[15px] 2xl:h-4 w-auto inline" /> 4th Floor, Agios Nikolaos, Kamares , 6037 Larnaca. Cyprus
                                 </Flex>
                             </Text>
                         </Flex>

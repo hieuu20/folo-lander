@@ -369,8 +369,6 @@ const Phase2 = ({ idols }: Props) => {
             <Phone2 isInView={isInView} />
 
             <Box
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
                 pos={"absolute"}
                 w={"100%"}
                 left={0}

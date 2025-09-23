@@ -21,6 +21,9 @@ import footerPay3 from "@public/version-3/footer/payments/3.png";
 // import footerPay5 from "@public/version-3/footer/payments/5.png";
 import footerPay6 from "@public/version-3/footer/payments/6.png";
 
+import flag1 from "@public/footer/flag-1.png";
+import flag2 from "@public/footer/flag-2.png";
+
 import xmaIcon from "@public/version-3/footer/xma.webp";
 import { motion } from "framer-motion";
 
@@ -385,8 +388,15 @@ export function Footer() {
                                 lts={-0.1}
                                 fw={400}
                             >
-                                Social Commerce UK Ltd 🇬🇧 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ. UK <br />
-                                Social Commerce EU Ltd  🇪🇺 4th Floor, Agios Nikolaos, Kamares , 6037 Larnaca. Cyprus
+                                <Flex gap={2} align={"center"} justify={{ base: "center", md: "flex-end" }}>
+                                    Social Commerce UK Ltd <Image src={flag1} alt="flag 1" className="h-3 md:h-[14px] xl:h-4 w-auto inline" />
+                                    | 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ.UK
+                                </Flex>
+
+                                <Flex gap={2} align={"center"} justify={{ base: "center", md: "flex-end" }}>
+                                    Social Commerce EU Ltd  <Image src={flag2} alt="flag 2" className="h-3 md:h-[14px] xl:h-4 w-auto inline" /> 4th Floor, Agios Nikolaos, Kamares , 6037 Larnaca. Cyprus
+
+                                </Flex>
                             </Text>
                         </Flex>
                     </Flex>

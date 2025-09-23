@@ -332,14 +332,13 @@ export function BannerMidle({ idols }: Props) {
                     c={"white"}
                     // h={{ base: 440, xl: 470, "2xl": 520 }}
                     h={{ base: "48.1481481481vh" }}
-                // className='aspect-[1.66923076923]'
                 >
                     <Image src={logo} alt='logo' id='banner-logo-img' className='h-full w-auto object-cover' />
                     <Text
                         id='text-1-wrap'
                         pos={"absolute"}
                         top={"50%"}
-                        left={0}
+                        left={"-0.6vh"}
                         // fz={{ base: 40, sm: 46, md: 52, lg: 56, xl: 60, "2xl": 64 }}
                         fz={{ base: "clamp(40px, 6.2vh, 64px)" }}
                         fw={900}
@@ -357,7 +356,7 @@ export function BannerMidle({ idols }: Props) {
                         // fz={{ base: 40, sm: 46, md: 52, lg: 56, xl: 60, "2xl": 64 }}
                         fz={{ base: "clamp(40px, 5.92592592593vh, 64px)" }}
                         fw={900}
-                        right={0}
+                        left={"51vh"}
                         className='-translate-y-1/2 overflow-hidden whitespace-nowrap'
                     >
                         <span id='text-2' className='block'>
@@ -460,8 +459,9 @@ const Phase2 = ({ idols }: Props) => {
                             <SwiperSlide
                                 key={index}
                                 className={twMerge(
-                                    ' translate-x-[-10.74vw] transition-all will-change-transform duration-300 ease-linear',
-                                    centerRealIndex == index ? "w-[17.427604166vw]" : "w-[12.999479166vw]",
+                                    "-translate-x-[10.3225806452vw]",
+                                    'transition-all will-change-transform duration-300 ease-linear',
+                                    centerRealIndex == index ? "w-[17.4193548387vw]" : "w-[12.9032258065vw]",
                                     centerRealIndex == index ? "px-[1.32005208333vw]" : "px-[0.43567708333vw]"
                                 )}
                             >
@@ -493,7 +493,7 @@ const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {
             align={"center"}
             justify={"center"}
             top={"56vh"}
-            left={"50%"}
+            left={"50vw"}
             className='container-version3 -translate-y-1/2 -translate-x-1/2'
         >
             <Circle />
@@ -576,8 +576,8 @@ const Phone2 = ({ isInView }: { isInView: boolean }) => {
         <Box
             id='phone-2'
             pos={"absolute"}
-            w={"23.802083333%"}
-            left={"50%"}
+            w={"23.802083333vw"}
+            left={"50vw"}
             top={"56vh"}
             className='-translate-y-1/2 -translate-x-1/2 aspect-[0.65312441358]'
         >

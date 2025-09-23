@@ -84,7 +84,6 @@ export function BannerMidle({ idols }: Props) {
             });
 
             const phoneImageEls = gsap.utils.toArray(".phone-image") as any[];
-            const slideList = gsap.utils.toArray(".banner-slide-item") as Element[];
 
             tl.fromTo(
                 "#banner-logo",
@@ -181,9 +180,6 @@ export function BannerMidle({ idols }: Props) {
                 { top: "40vh", duration: 1 },
                 "<"
             );
-
-
-
 
 
 
@@ -330,7 +326,6 @@ export function BannerMidle({ idols }: Props) {
                     left={"50%"}
                     id='banner-logo'
                     c={"white"}
-                    // h={{ base: 440, xl: 470, "2xl": 520 }}
                     h={{ base: "48.1481481481vh" }}
                 >
                     <Image src={logo} alt='logo' id='banner-logo-img' className='h-full w-auto object-cover' />

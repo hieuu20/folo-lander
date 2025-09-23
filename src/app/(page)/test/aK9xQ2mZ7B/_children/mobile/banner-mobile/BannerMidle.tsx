@@ -41,7 +41,7 @@ export function BannerMidle({ idols }: Props) {
                     trigger: main.current,
                     pin: true,
                     start: 'top top',
-                    end: '+=15100',
+                    end: '+=14100',
                     scrub: true,
                     markers: false,
                 },
@@ -204,7 +204,7 @@ export function BannerMidle({ idols }: Props) {
                 tl.fromTo(
                     el,
                     { x: "180%", y: "80%", rotate: 100, autoAlpha: 0 },
-                    { x: 0, y: 0, rotate: 0, autoAlpha: 1, duration: 2, delay: 0.5, ease: "none" },
+                    { x: 0, y: 0, rotate: 0, autoAlpha: 1, duration: 2, ease: "none" },
                     index == 0 ? "<=+0.3" : "<"
                 );
 
@@ -222,8 +222,14 @@ export function BannerMidle({ idols }: Props) {
                     "<"
                 );
 
+                tl.fromTo(
+                    el,
+                    { x: 0, y: 0 },
+                    { x: 0, y: 0, duration: 0.5, ease: "none" },
+                );
+
                 if (index < texts.length - 1) {
-                    tl.fromTo(el, { x: 0, y: 0, autoAlpha: 1, rotate: 0 }, { x: "-180%", y: "80%", rotate: -100, autoAlpha: 0, duration: 2, delay: 0.5, ease: "none" });
+                    tl.fromTo(el, { x: 0, y: 0, autoAlpha: 1, rotate: 0 }, { x: "-180%", y: "80%", rotate: -100, autoAlpha: 0, duration: 2, delay: 0, ease: "none" });
                 }
             });
         },
@@ -235,7 +241,7 @@ export function BannerMidle({ idols }: Props) {
     return (
         <Box
             w={"100%"}
-            h={15950}
+            h={14950}
         >
             <Flex
                 ref={main}

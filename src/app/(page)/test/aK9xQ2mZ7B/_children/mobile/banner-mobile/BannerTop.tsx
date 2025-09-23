@@ -20,8 +20,7 @@ export const BannerTop = () => {
                     justify={"space-between"}
                     h={"100%"}
                     align={{ base: "center" }}
-                    pt={{ base: 80 }}
-                    gap={{ base: 24 }}
+                    pt={{ base: 56 }}
                 >
                     <motion.div
                         initial={{ y: "20%", opacity: 0 }}
@@ -69,7 +68,7 @@ export const BannerTop = () => {
                                     ease: 'easeInOut',
                                     delay: 0.1
                                 }}
-                                className='w-[80%]'
+                                className='w-[70%]'
                             >
                                 <Text
                                     fz={{ base: 28, sm: 36, md: 50, lg: 56, xl: 64, "2xl": 71 }}

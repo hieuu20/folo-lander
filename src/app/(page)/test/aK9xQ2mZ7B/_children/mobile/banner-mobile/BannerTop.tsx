@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Flex, Input, Text } from '@mantine/core';
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import SectionButton from '@/components/buttons/SectionButton';
 import { motion } from 'framer-motion';
@@ -10,6 +10,7 @@ import downIcon from "@public/version-3/banner/down.svg";
 import Link from 'next/link';
 
 export const BannerTop = () => {
+    const [userName, setUserName] = useState('');
 
     return (
         <Box bg={"#0A0014"} h={"fit-content"} className='overflow-hidden'>
@@ -130,6 +131,8 @@ export const BannerTop = () => {
                                     fw={500}
                                     placeholder='Your username'
                                     autoFocus={false}
+                                    value={userName}
+                                    onChange={(e) => setUserName(e.target.value)}
                                     classNames={{
                                         input: "placeholder-[#FFFFFF59] bg-transparent pl-1 md:pl-2",
                                         wrapper: "bg-transparent"
@@ -147,6 +150,7 @@ export const BannerTop = () => {
                                     h={"100%"}
                                     lts={-0.5}
                                     px={0}
+                                    href={`https://knky.co/fresh?init=signUpUser?userName=${userName}`}
                                 />
                             </Flex>
                         </motion.div>
@@ -163,6 +167,7 @@ export const BannerTop = () => {
                         >
                             <Link
                                 href={"https://knky.co/fresh?init=signUpUser"}
+                                target='_blank'
                                 className='text-[#FFFFFFCC] font-medium text-base md:text-lg 2xl:text-xl hover:text-blue-400'
                             >
                                 I&apos;m a fan →

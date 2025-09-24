@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Flex, Input, Text } from '@mantine/core';
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import SectionButton from '@/components/buttons/SectionButton';
 import { motion, useAnimate, useInView, useScroll, useTransform } from 'framer-motion';
@@ -11,6 +11,8 @@ import Link from 'next/link';
 export const BannerTop = () => {
     const [scope] = useAnimate();
     const isInView = useInView(scope);
+
+    const [userName, setUserName] = useState('');
 
     const { scrollYProgress } = useScroll({
         target: scope,
@@ -107,6 +109,8 @@ export const BannerTop = () => {
                                             input: "placeholder-[#FFFFFF59] bg-transparent pl-1 md:pl-2",
                                             wrapper: "bg-transparent"
                                         }}
+                                        value={userName}
+                                        onChange={(e) => setUserName(e.target.value)}
                                         c={"white"}
                                     // className='placeholder-[#FFFFFF59]'
                                     />
@@ -120,6 +124,7 @@ export const BannerTop = () => {
                                         w={{ base: 104, md: 120, xl: 124 }}
                                         h={"100%"}
                                         px={0}
+                                        href={`https://knky.co/fresh?init=signUpUser?userName=${userName}`}
                                     />
                                 </Flex>
                             </motion.div>
@@ -135,6 +140,7 @@ export const BannerTop = () => {
                             >
                                 <Link
                                     href={"https://knky.co/fresh?init=signUpUser"}
+                                    target='_blank'
                                     className='text-[#FFFFFFCC] font-medium text-base md:text-lg 2xl:text-xl hover:text-blue-400'
                                 >
                                     I&apos;m a fan →

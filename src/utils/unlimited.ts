@@ -200,7 +200,7 @@ export const unlimitedList: IUnlimited[] = [
     id: 9,
     img: img9,
     title: "MatchMaker",
-    description: "Match with Creators and like minded people.",
+    description: "Match with Fans and like minded people.",
     buttonTitle: "How it works →",
     buttonLink: "https://match.knky.co/",
 

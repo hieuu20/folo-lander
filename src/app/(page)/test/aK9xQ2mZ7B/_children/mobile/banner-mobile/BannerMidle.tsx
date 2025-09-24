@@ -85,7 +85,7 @@ export function BannerMidle({ idols }: Props) {
             tl.fromTo(
                 "#mySwiper",
                 { y: 0, },
-                { y: 0, duration: 0.5 },
+                { y: 0, duration: 1 },
             );
 
             tl.fromTo(
@@ -144,7 +144,6 @@ export function BannerMidle({ idols }: Props) {
                 { scale: 1.1, y: "-10%", duration: 1 },
                 "<"
             );
-
 
 
 
@@ -315,40 +314,46 @@ const Phase2 = ({ idols }: Props) => {
     const isInView = useInView(scope, { once: false, amount: 0.7 });
 
     const swiperRef = useRef<any>(null);
-    const [centerRealIndex, setCenterRealIndex] = useState(1);
+    const [centerRealIndex, setCenterRealIndex] = useState(3);
+
+    const isAutoplaying = useRef(false);
 
     useEffect(() => {
         swiperRef?.current?.swiper?.autoplay?.stop();
+
         const handleScroll = () => {
             const phase2El = document.getElementById("phase-2");
-            if (phase2El) {
-                if (Number(phase2El.style.opacity) == 2) {
-                    swiperRef?.current?.swiper?.autoplay?.start();
-                } else {
-                    swiperRef?.current?.swiper?.autoplay?.stop();
-                }
-            }
-
             const swiperEl = document.getElementById("mySwiper");
-            if (swiperEl) {
-                if (Number(swiperEl.style.opacity) != 1) {
-                    swiperRef?.current?.swiper?.autoplay?.stop();
-                }
+
+            if (!phase2El || !swiperEl) return;
+
+            const shouldPlay = Number(phase2El.style.opacity) == 2 && Number(swiperEl.style.opacity) == 1;
+            const swiper = swiperRef?.current?.swiper;
+
+            if (shouldPlay && !isAutoplaying.current) {
+                swiper?.autoplay?.start();
+                isAutoplaying.current = true;
+            } else if (!shouldPlay && isAutoplaying.current) {
+                swiper?.autoplay?.stop();
+                isAutoplaying.current = false;
             }
         };
 
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+        let ticking = false;
+        const throttledScroll = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    handleScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
 
+        window.addEventListener("scroll", throttledScroll);
+        return () => window.removeEventListener("scroll", throttledScroll);
+    }, [swiperRef]);
 
-    const handleMouseEnter = () => {
-        swiperRef?.current?.swiper?.autoplay?.stop();
-    };
-
-    const handleMouseLeave = () => {
-        swiperRef?.current?.swiper?.autoplay?.start();
-    };
 
     const list = [...idols, ...idols];
 
@@ -363,7 +368,6 @@ const Phase2 = ({ idols }: Props) => {
             left={0}
             align={"center"}
             justify={"center"}
-
         >
             <Phone1 centerIdol={list[centerRealIndex]} />
             <Phone2 isInView={isInView} />
@@ -380,7 +384,7 @@ const Phase2 = ({ idols }: Props) => {
                     ref={swiperRef}
                     slidesPerView={"auto"}
                     autoplay={{
-                        delay: 800,
+                        delay: 900,
                     }}
                     fadeEffect={{ crossFade: true }}
                     spaceBetween={0}
@@ -388,6 +392,7 @@ const Phase2 = ({ idols }: Props) => {
                     modules={[
                         Autoplay,
                     ]}
+                    initialSlide={3}
                     onSlideChange={(swiper) => {
                         setCenterRealIndex(prev => prev >= list.length - 2 ? 1 : centerRealIndex + 1);
                     }}
@@ -398,7 +403,8 @@ const Phase2 = ({ idols }: Props) => {
                             <SwiperSlide
                                 key={index}
                                 className={twMerge(
-                                    ' translate-x-[-8vw] transition-all will-change-transform duration-400 ease-linear',
+                                    "translate-x-[-8vw]",
+                                    'transition-all will-change-transform duration-400 ease-in-out',
                                     centerRealIndex == index ? "w-[43.5466666667vw]" : "w-[36vw]",
                                     centerRealIndex == index ? "px-[2.1vw]" : "px-[1.8vw]"
                                 )}

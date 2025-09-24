@@ -85,7 +85,7 @@ export function BannerMidle({ idols }: Props) {
             tl.fromTo(
                 "#mySwiper",
                 { y: 0, },
-                { y: 0, duration: 1 },
+                { y: 0, duration: 1.2 },
             );
 
             tl.fromTo(
@@ -320,6 +320,7 @@ const Phase2 = ({ idols }: Props) => {
 
     useEffect(() => {
         swiperRef?.current?.swiper?.autoplay?.stop();
+        let timeoutId: NodeJS.Timeout;
 
         const handleScroll = () => {
             const phase2El = document.getElementById("phase-2");
@@ -331,8 +332,10 @@ const Phase2 = ({ idols }: Props) => {
             const swiper = swiperRef?.current?.swiper;
 
             if (shouldPlay && !isAutoplaying.current) {
-                swiper?.autoplay?.start();
-                isAutoplaying.current = true;
+                timeoutId = setTimeout(() => {
+                    swiper?.autoplay?.start();
+                    isAutoplaying.current = true;
+                }, 1000);
             } else if (!shouldPlay && isAutoplaying.current) {
                 swiper?.autoplay?.stop();
                 isAutoplaying.current = false;
@@ -351,7 +354,10 @@ const Phase2 = ({ idols }: Props) => {
         };
 
         window.addEventListener("scroll", throttledScroll);
-        return () => window.removeEventListener("scroll", throttledScroll);
+        return () => {
+            window.removeEventListener("scroll", throttledScroll);
+            clearTimeout(timeoutId);
+        };
     }, [swiperRef]);
 
 

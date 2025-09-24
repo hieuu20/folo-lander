@@ -372,29 +372,49 @@ const Phase2 = ({ idols }: Props) => {
     const swiperRef = useRef<any>(null);
     const [centerRealIndex, setCenterRealIndex] = useState(4);
 
+    const isAutoplaying = useRef(false);
+
     useEffect(() => {
         swiperRef?.current?.swiper?.autoplay?.stop();
+        let timeoutId: NodeJS.Timeout;
+
         const handleScroll = () => {
             const phase2El = document.getElementById("phase-2");
-            if (phase2El) {
-                if (Number(phase2El.style.opacity) == 2) {
-                    swiperRef?.current?.swiper?.autoplay?.start();
-                } else {
-                    swiperRef?.current?.swiper?.autoplay?.stop();
-                }
-            }
-
             const swiperEl = document.getElementById("mySwiper");
-            if (swiperEl) {
-                if (Number(swiperEl.style.opacity) != 1) {
-                    swiperRef?.current?.swiper?.autoplay?.stop();
-                }
+
+            if (!phase2El || !swiperEl) return;
+
+            const shouldPlay = Number(phase2El.style.opacity) == 2 && Number(swiperEl.style.opacity) == 1;
+            const swiper = swiperRef?.current?.swiper;
+
+            if (shouldPlay && !isAutoplaying.current) {
+                timeoutId = setTimeout(() => {
+                    swiper?.autoplay?.start();
+                    isAutoplaying.current = true;
+                }, 500);
+            } else if (!shouldPlay && isAutoplaying.current) {
+                swiper?.autoplay?.stop();
+                isAutoplaying.current = false;
             }
         };
 
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+        let ticking = false;
+        const throttledScroll = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    handleScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+
+        window.addEventListener("scroll", throttledScroll);
+        return () => {
+            window.removeEventListener("scroll", throttledScroll);
+            clearTimeout(timeoutId);
+        };
+    }, [swiperRef]);
 
 
     const handleMouseEnter = () => {
@@ -749,41 +769,3 @@ const AnimationWraper = ({ children, hasAnimation = false, y = 0, isInView = fal
 
 
 
-// const isAutoplaying = useRef(false); // lưu trạng thái autoplay hiện tại
-
-// useEffect(() => {
-//     swiperRef?.current?.swiper?.autoplay?.stop();
-
-//     const handleScroll = () => {
-//         const phase2El = document.getElementById("phase-2");
-//         const swiperEl = document.getElementById("mySwiper");
-
-//         if (!phase2El || !swiperEl) return;
-
-//         const shouldPlay = Number(phase2El.style.opacity) == 2 && Number(swiperEl.style.opacity) == 1;
-//         const swiper = swiperRef?.current?.swiper;
-
-//         if (shouldPlay && !isAutoplaying.current) {
-//             swiper?.autoplay?.start();
-//             isAutoplaying.current = true;
-//         } else if (!shouldPlay && isAutoplaying.current) {
-//             swiper?.autoplay?.stop();
-//             isAutoplaying.current = false;
-//         }
-//     };
-
-//     // Thêm throttle để tránh spam
-//     let ticking = false;
-//     const throttledScroll = () => {
-//         if (!ticking) {
-//             window.requestAnimationFrame(() => {
-//                 handleScroll();
-//                 ticking = false;
-//             });
-//             ticking = true;
-//         }
-//     };
-
-//     window.addEventListener("scroll", throttledScroll);
-//     return () => window.removeEventListener("scroll", throttledScroll);
-// }, [swiperRef]);

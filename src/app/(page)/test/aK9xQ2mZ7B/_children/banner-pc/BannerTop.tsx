@@ -124,7 +124,11 @@ export const BannerTop = () => {
                                         w={{ base: 104, md: 120, xl: 124 }}
                                         h={"100%"}
                                         px={0}
-                                        href={`https://knky.co/fresh?init=signUpUser?userName=${userName}`}
+                                        // href={`https://knky.co?init=signUpCreator?username=${userName}`}
+                                        onClick={() => {
+                                            window.open(`https://knky.co?init=signUpCreator?username=${userName}`, "_blank");
+                                            setUserName('');
+                                        }}
                                     />
                                 </Flex>
                             </motion.div>

@@ -10,10 +10,11 @@ type Props = ButtonProps & {
   title?: string;
   href?: string;
   icon?: ReactNode;
-  id?: string
+  id?: string;
+  onClick?: () => void
 };
 export default function SectionButton(props: Props) {
-  const { show, title, href, icon, className, id, ...rest } = props;
+  const { show, title, href, icon, className, id, onClick, ...rest } = props;
 
   if (!show) {
     return null;
@@ -27,6 +28,7 @@ export default function SectionButton(props: Props) {
       fw={500}
       h={40}
       px={32}
+      onClick={onClick}
       className={twMerge(
         "rounded-lg [&_.mantine-Button-label]:w-full",
         !rest.bg || rest.bg === "#AC1991"
@@ -39,7 +41,7 @@ export default function SectionButton(props: Props) {
       <Link
         href={href ?? "/"}
         target={href?.includes("http") ? "_blank" : undefined}
-        className={twMerge('w-full h-full flex justify-center items-center',rest.disabled ? "pointer-events-none" : "")}
+        className={twMerge('w-full h-full flex justify-center items-center', rest.disabled || !href ? "pointer-events-none" : "")}
       >
         {icon && icon}
 

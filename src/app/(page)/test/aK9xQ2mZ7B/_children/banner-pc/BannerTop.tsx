@@ -126,7 +126,7 @@ export const BannerTop = () => {
                                         px={0}
                                         // href={`https://knky.co?init=signUpCreator?username=${userName}`}
                                         onClick={() => {
-                                            window.open(`https://knky.co?init=signUpCreator?username=${userName}`, "_blank");
+                                            window.open(`https://knky.co?init=signUpCreator&username=${userName}`, "_blank");
                                             setUserName('');
                                         }}
                                     />

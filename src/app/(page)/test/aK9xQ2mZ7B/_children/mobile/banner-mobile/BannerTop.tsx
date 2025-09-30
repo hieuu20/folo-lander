@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Flex, Input, Text } from '@mantine/core';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import SectionButton from '@/components/buttons/SectionButton';
 import { motion } from 'framer-motion';
@@ -11,7 +11,17 @@ import Link from 'next/link';
 
 export const BannerTop = () => {
     const [userName, setUserName] = useState('');
+    const videoRef = useRef<HTMLVideoElement | null>(null);
 
+    useEffect(() => {
+        if (!videoRef.current) return;
+
+        if (videoRef.current.paused) {
+            videoRef.current.play();
+        }
+    }, []);
+
+    
     return (
         <Box bg={"#0A0014"} h={"fit-content"} className='overflow-hidden'>
             <Box className='container-version3' h={"100%"}>
@@ -35,11 +45,12 @@ export const BannerTop = () => {
                         className='w-[72%] aspect-[0.65384236453] flex justify-center'
                     >
                         <video
+                            ref={videoRef}
                             preload="metadata"
                             playsInline
                             autoPlay
                             loop
-                            muted
+                            muted={true}
                             disablePictureInPicture={true}
                             disableRemotePlayback={true}
                             className="w-full h-full"
@@ -155,7 +166,6 @@ export const BannerTop = () => {
                                         window.open(`https://knky.co?init=signUpCreator&username=${userName}`, "_blank");
                                         setUserName('');
                                     }}
-                                    // onClick={() => setUserName('')}
                                 />
                             </Flex>
                         </motion.div>

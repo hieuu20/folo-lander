@@ -9,7 +9,17 @@ export function TimeToShine() {
     return (
         <>
             <Box w={"100%"} h={"110vh"} bg={"#0A0014"}>
-                <Flex pos={"relative"} className='container-version3' align={"center"} justify={"center"} h={"100%"} >
+                <Flex pos={"relative"} className='container-version3 overflow-hidden' align={"center"} justify={"center"} h={"100%"} >
+                    <Box
+                        pos={"absolute"}
+                        top={0}
+                        left={"50%"}
+                        w={"120%"}
+                        className='aspect-[6.68049792531] -translate-y-1/2 -translate-x-1/2'
+                        style={{
+                            background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.4) 0%, rgba(18, 2, 32, 0) 100%)"
+                        }}
+                    />
                     <ImageCircle />
                     <ImageCircle type='left' />
 

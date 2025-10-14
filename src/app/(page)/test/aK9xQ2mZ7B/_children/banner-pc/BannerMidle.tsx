@@ -134,14 +134,14 @@ export function BannerMidle({ idols }: Props) {
             tl.fromTo(
                 "#text-1-wrap",
                 { left: "-0.6vh" },
-                { left: "9.6vh", duration: 1 },
+                { left: "9vh", duration: 1 },
                 "<"
             );
 
             tl.fromTo(
                 "#text-2-wrap",
                 { left: "51vh" },
-                { left: '41vh', duration: 1 },
+                { left: '41.5vh', duration: 1 },
                 "<"
             );
 

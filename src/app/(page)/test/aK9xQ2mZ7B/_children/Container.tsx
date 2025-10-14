@@ -21,6 +21,7 @@ import { More } from "./More";
 import { ICreatorIdol } from "@/app/api/_entities/creatorIdol";
 import { INews } from "@/app/api/_entities";
 import News from "./News";
+import { TimeToShine } from "./TimeToShine";
 
 interface Props {
     idols: ICreatorIdol[],
@@ -74,7 +75,15 @@ const Mobile = ({ idols, news }: Props) => {
                 <BannerMobile idols={idols} />
                 <UnlimitedMobile />
                 <MoreMobile />
-                <GrowthMobile news={news} />
+                {/* <GrowthMobile news={news} /> */}
+                <Box
+                    id='News'
+                    w={{ base: "100%" }}
+                    pos={"relative"}
+                    className='aspect-[0.48205357142]'
+                >
+                    <News news={news} />
+                </Box>
                 {/* <News news={news} /> */}
                 <Footer />
             </Box>
@@ -110,7 +119,16 @@ const Desktop = ({ idols, news }: Props) => {
                 <BannerPc idols={idols} />
                 <Unlimited />
                 <More />
-                <Growth idols={idols} news={news} />
+                {/* <Growth idols={idols} news={news} /> */}
+                <Box
+                    id='News'
+                    w={{ base: "100%" }}
+                    h={{ base: "110vh" }}
+                    pos={"relative"}
+                >
+                    <News news={news} />
+                </Box>
+                <TimeToShine />
                 <Footer />
             </Box>
         </Box>

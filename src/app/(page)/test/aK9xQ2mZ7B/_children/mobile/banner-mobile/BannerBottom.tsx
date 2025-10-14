@@ -42,7 +42,7 @@ const phoneImages = [
     phone2,
     phone3,
     phone4,
-    phone5
+    phone5,
 ];
 
 export function BannerBottom() {
@@ -319,6 +319,24 @@ export const Phase3 = () => {
         {
             text1: "SELL DIGITAL",
             text2: "SELL PHYSICAL",
+            text3: "Offer digital goods, clips, and premium services.",
+            text4: "Expand into merch and physical sales with ease."
+        },
+        {
+            text1: "1-TO-1 AUDIO",
+            text2: "7 VIDEO CALL",
+            text3: "Offer digital goods, clips, and premium services",
+            text4: "Expand into merch and physical sales with ease."
+        },
+        {
+            text1: "COLLABS",
+            text2: "WITH OTHERS",
+            text3: "Offer digital goods, clips, and premium services.",
+            text4: "Expand into merch and physical sales with ease."
+        },
+        {
+            text1: "EXPLORE",
+            text2: "TRENDING",
             text3: "Offer digital goods, clips, and premium services.",
             text4: "Expand into merch and physical sales with ease."
         }

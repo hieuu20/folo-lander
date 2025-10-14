@@ -3,7 +3,10 @@
 
 import { Box, Flex, Text } from '@mantine/core';
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
+
 import logo from "@public/version-3/banner/logo.webp";
+import logoWhite from "@public/version-3/banner/logo-white.webp";
+
 import Image from 'next/image';
 import gsap from 'gsap/dist/gsap';
 import { useGSAP } from '@gsap/react';
@@ -22,6 +25,10 @@ import phone2 from "@public/version-3/banner/phone/2.webp";
 import phone3 from "@public/version-3/banner/phone/3.webp";
 import phone4 from "@public/version-3/banner/phone/4.webp";
 import phone5 from "@public/version-3/banner/phone/5.webp";
+import phone6 from "@public/version-3/banner/phone/6.webp";
+import phone7 from "@public/version-3/banner/phone/7.webp";
+import phone8 from "@public/version-3/banner/phone/8.webp";
+
 import { Circle, Phase3 } from './BannerBottom';
 import { stars } from '@/utils/stars';
 
@@ -77,7 +84,7 @@ export function BannerMidle({ idols }: Props) {
                     trigger: main.current,
                     pin: true,
                     start: 'top top',
-                    end: '+=15000',
+                    end: '+=19000',
                     scrub: true,
                     markers: false,
                 },
@@ -92,10 +99,23 @@ export function BannerMidle({ idols }: Props) {
             );
 
             tl.fromTo(
+                "#banner-logo-img",
+                { autoAlpha: 0 },
+                { autoAlpha: 1, duration: 1 },
+                "<"
+            );
+
+            tl.fromTo(
+                "#banner-white-logo-img",
+                { autoAlpha: 1 },
+                { autoAlpha: 0, duration: 1 },
+                "<"
+            );
+
+            tl.fromTo(
                 "#text-1",
                 { x: "100%", y: 0 },
                 { x: 0, y: 0, duration: 1 },
-                "<"
             );
 
             tl.fromTo(
@@ -108,7 +128,21 @@ export function BannerMidle({ idols }: Props) {
             tl.fromTo(
                 "#banner-logo-img",
                 { scale: 1 },
-                { scale: 0.22692307692, duration: 1 },
+                { scale: 0, duration: 1 },
+            );
+
+            tl.fromTo(
+                "#text-1-wrap",
+                { left: "-0.6vh" },
+                { left: "9.6vh", duration: 1 },
+                "<"
+            );
+
+            tl.fromTo(
+                "#text-2-wrap",
+                { left: "51vh" },
+                { left: '41vh', duration: 1 },
+                "<"
             );
 
             tl.to(
@@ -297,7 +331,7 @@ export function BannerMidle({ idols }: Props) {
     return (
         <Box
             w={"100%"}
-            h={15950}
+            h={19950}
         >
             <Flex
                 ref={main}
@@ -329,6 +363,8 @@ export function BannerMidle({ idols }: Props) {
                     h={{ base: "48.1481481481vh" }}
                 >
                     <Image src={logo} alt='logo' id='banner-logo-img' className='h-full w-auto object-cover' />
+                    <Image src={logoWhite} alt='logo' id='banner-white-logo-img' className='absolute top-0 left-0 h-full w-auto object-cover z-10' />
+
                     <Text
                         id='text-1-wrap'
                         pos={"absolute"}
@@ -496,7 +532,10 @@ const phoneImages = [
     phone2,
     phone3,
     phone4,
-    phone5
+    phone5,
+    phone6,
+    phone7,
+    phone8,
 ];
 
 const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {

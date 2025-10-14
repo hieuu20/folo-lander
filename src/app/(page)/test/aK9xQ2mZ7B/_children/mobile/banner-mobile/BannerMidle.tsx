@@ -16,12 +16,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from 'swiper/modules';
 import phoneBorder from "@public/version-3/banner/phone/phone-border.webp";
 import { motion, useAnimate, useInView } from 'framer-motion';
+import logoWhite from "@public/version-3/banner/logo-white.webp";
 
 import phone1 from "@public/version-3/banner/phone/1.webp";
 import phone2 from "@public/version-3/banner/phone/2.webp";
 import phone3 from "@public/version-3/banner/phone/3.webp";
 import phone4 from "@public/version-3/banner/phone/4.webp";
 import phone5 from "@public/version-3/banner/phone/5.webp";
+import phone6 from "@public/version-3/banner/phone/6.webp";
+import phone7 from "@public/version-3/banner/phone/7.webp";
+import phone8 from "@public/version-3/banner/phone/8.webp";
 
 import phone from "@public/version-3/banner/phone/phone-border.webp";
 
@@ -41,7 +45,7 @@ export function BannerMidle({ idols }: Props) {
                     trigger: main.current,
                     pin: true,
                     start: 'top top',
-                    end: '+=14100',
+                    end: '+=18100',
                     scrub: true,
                     markers: false,
                 },
@@ -56,10 +60,23 @@ export function BannerMidle({ idols }: Props) {
             );
 
             tl.fromTo(
+                "#banner-logo-img",
+                { autoAlpha: 0 },
+                { autoAlpha: 1, duration: 1 },
+                "<"
+            );
+
+            tl.fromTo(
+                "#banner-white-logo-img",
+                { autoAlpha: 1 },
+                { autoAlpha: 0, duration: 1 },
+                "<"
+            );
+
+            tl.fromTo(
                 "#text-1",
                 { y: "120%", x: 0 },
                 { x: 0, y: 0, duration: 1 },
-                "<"
             );
 
             tl.fromTo(
@@ -69,10 +86,30 @@ export function BannerMidle({ idols }: Props) {
                 "<"
             );
 
+            tl.fromTo(
+                "#banner-logo-img-wrap",
+                { scale: 1 },
+                { scale: 0, duration: 1 },
+            );
+
+            tl.fromTo(
+                "#text-1-wrap",
+                { y: 0 },
+                { y: 28, duration: 1 },
+                "<"
+            );
+
+            tl.fromTo(
+                "#text-2-wrap",
+                { y: 0 },
+                { y: -28, duration: 1 },
+                "<"
+            );
+
             tl.to(
                 "#banner-logo",
                 { top: "20%", duration: 1 },
-                // "<"
+                "<"
             );
 
             tl.fromTo(
@@ -240,7 +277,7 @@ export function BannerMidle({ idols }: Props) {
     return (
         <Box
             w={"100%"}
-            h={14950}
+            h={18950}
         >
             <Flex
                 ref={main}
@@ -286,12 +323,15 @@ export function BannerMidle({ idols }: Props) {
                         </span>
                     </Text>
 
-                    <Image src={logo} alt='logo' id='banner-logo-img' className='h-[56px] sm:h-[64px] md:h-[80px] w-auto object-cover' />
+                    <Box id='banner-logo-img-wrap' pos={"relative"} h={{base: 56, sm: 64, md: 80}} className='aspect-[1.66923076923]'>
+                        <Image src={logo} alt='logo' id='banner-logo-img' fill className='object-cover' />
+                        <Image src={logoWhite} alt='logo' id='banner-white-logo-img' className='object-cover z-10' />
+                    </Box>
+
 
                     <Text
                         id='text-2-wrap'
                         fz={{ base: 40, sm: 46, md: 52, lg: 56, xl: 60, "2xl": 64 }}
-                        // fz={{ base: "clamp(40px, 5.92592592593vh, 64px)" }}
                         fw={900}
                         pt={{ base: 8, sm: 12, md: 16 }}
                         lh={1.2}
@@ -431,7 +471,10 @@ const phoneImages = [
     phone2,
     phone3,
     phone4,
-    phone5
+    phone5,
+    phone6,
+    phone7,
+    phone8,
 ];
 
 const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {

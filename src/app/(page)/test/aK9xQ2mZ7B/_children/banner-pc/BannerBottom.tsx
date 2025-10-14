@@ -18,6 +18,10 @@ import phone2 from "@public/version-3/banner/phone/2.webp";
 import phone3 from "@public/version-3/banner/phone/3.webp";
 import phone4 from "@public/version-3/banner/phone/4.webp";
 import phone5 from "@public/version-3/banner/phone/5.webp";
+import phone6 from "@public/version-3/banner/phone/5.webp";
+import phone7 from "@public/version-3/banner/phone/5.webp";
+import phone8 from "@public/version-3/banner/phone/5.webp";
+
 import { stars } from '@/utils/stars';
 
 const images = [
@@ -44,7 +48,10 @@ const phoneImages = [
     phone2,
     phone3,
     phone4,
-    phone5
+    phone5,
+    phone6,
+    phone7,
+    phone8,
 ];
 
 export function BannerBottom() {
@@ -402,6 +409,24 @@ export const Phase3 = () => {
         {
             text1: "SELL DIGITAL",
             text2: "SELL PHYSICAL",
+            text3: "Offer digital goods, clips, and premium services.",
+            text4: "Expand into merch and physical sales with ease."
+        },
+        {
+            text1: "1-TO-1 AUDIO",
+            text2: "7 VIDEO CALL",
+            text3: "Offer digital goods, clips, and premium services",
+            text4: "Expand into merch and physical sales with ease."
+        },
+        {
+            text1: "COLLABS",
+            text2: "WITH OTHERS",
+            text3: "Offer digital goods, clips, and premium services.",
+            text4: "Expand into merch and physical sales with ease."
+        },
+        {
+            text1: "EXPLORE",
+            text2: "TRENDING",
             text3: "Offer digital goods, clips, and premium services.",
             text4: "Expand into merch and physical sales with ease."
         }

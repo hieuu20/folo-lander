@@ -53,7 +53,7 @@ export function Header() {
             }
             setHeaderLogoColor(logoType);
 
-            const lastSection = document.getElementById("News");
+            const lastSection = document.getElementById("Running");
             if (lastSection) {
                 const rect = lastSection.getBoundingClientRect();
                 const inViewport = rect.bottom > 300;

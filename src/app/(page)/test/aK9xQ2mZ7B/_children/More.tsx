@@ -57,7 +57,7 @@ export function More() {
                 <Box
                     pos={"relative"}
                     style={{
-                        backgroundImage: "url('/version-3/more/bg-pc.webp')",
+                        backgroundImage: "url('/version-3/unlimited/bg-pc.webp')",
                         backgroundColor: "#F0F0FC"
                     }}
                     py={{ base: 104, md: 70, lg: 80, xl: 90, "2xl": 100 }}

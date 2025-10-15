@@ -22,6 +22,7 @@ import { ICreatorIdol } from "@/app/api/_entities/creatorIdol";
 import { INews } from "@/app/api/_entities";
 import News from "./News";
 import { TimeToShine } from "./TimeToShine";
+import { TimeToShineMobile } from "./mobile/TimeToShineMobile";
 
 interface Props {
     idols: ICreatorIdol[],
@@ -66,9 +67,9 @@ const Mobile = ({ idols, news }: Props) => {
         <Box id="smooth-wrapper" ref={main}>
             <Box
                 id="smooth-content"
-                className='bg-contain bg-repeat'
+                className=''
                 style={{
-                    backgroundImage: "url('/version-3/banner/bg-mb.webp')",
+                    // backgroundImage: "url('/version-3/banner/bg-mb.webp')",
                     backgroundColor: "#0A0014"
                 }}
             >
@@ -85,6 +86,7 @@ const Mobile = ({ idols, news }: Props) => {
                     <News news={news} />
                 </Box>
                 {/* <News news={news} /> */}
+                <TimeToShineMobile />
                 <Footer />
             </Box>
         </Box>
@@ -110,9 +112,9 @@ const Desktop = ({ idols, news }: Props) => {
         <Box id="smooth-wrapper" ref={main}>
             <Box
                 id="smooth-content"
-                className='bg-contain bg-repeat'
+                className=''
                 style={{
-                    backgroundImage: "url('/version-3/banner/bg-pc.webp')",
+                    // backgroundImage: "url('/version-3/banner/bg-pc.webp')",
                     backgroundColor: "#0A0014"
                 }}
             >

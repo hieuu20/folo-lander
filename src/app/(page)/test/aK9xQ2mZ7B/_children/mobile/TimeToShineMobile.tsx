@@ -1,14 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import { useBrowserWidth } from '@/hooks';
 import { Box, Flex, Text } from '@mantine/core';
 import { motion, useAnimationFrame, useMotionValue, useTransform } from 'framer-motion';
 import Image from 'next/image';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-export function TimeToShine() {
+export function TimeToShineMobile() {
     return (
         <>
-            <Box id='Running' pos={"relative"} w={"100%"} h={"110vh"} bg={"#160328"} className='overflow-hidden'>
+            <Box id='Running' pos={"relative"} w={"100%"} bg={"#160328"} className='overflow-hidden aspect-[0.46284829721]'>
                 <Box
                     pos={"absolute"}
                     bottom={0}
@@ -31,10 +32,11 @@ export function TimeToShine() {
                         align={"center"}
                         className="-translate-x-1/2 -translate-y-1/2"
                         gap={{ base: 12, md: 16, xl: 24 }}
+                        w={"100%"}
                     >
                         <Text
                             px={16}
-                            fz={{ base: 40, sm: 45, md: 52, lg: 56, xl: 60, "2xl": 64 }}
+                            fz={{ base: 24, sm: 28, md: 52, lg: 56, xl: 60, "2xl": 64 }}
                             c={"white"}
                             fw={900}
                             lh={1}
@@ -55,7 +57,7 @@ export function TimeToShine() {
                         </Text>
                         <Text
                             px={16}
-                            fz={{ base: 40, sm: 45, md: 52, lg: 56, xl: 60, "2xl": 64 }}
+                            fz={{ base: 24, sm: 28, md: 52, lg: 56, xl: 60, "2xl": 64 }}
                             c={"white"}
                             fw={900}
                             lh={1}
@@ -90,13 +92,14 @@ const images = Array.from({ length: 38 }, (_, i) => {
 });
 
 const ImageCircle = ({ type = 'right' }: { type?: "left" | "right" }) => {
-    const [windowHeight, setWindowHeight] = useState(0);
+    const { width: browserWidth } = useBrowserWidth();
 
     const rotation = useMotionValue(0);
 
-    const height = windowHeight * 0.82;
 
-    const width = height * 0.91265560166;
+    const width = browserWidth * 0.54;
+    // const height = width / 0.91265560166;
+
     const radius = 0.45428571428 * width;
 
     useAnimationFrame((t) => {
@@ -113,17 +116,12 @@ const ImageCircle = ({ type = 'right' }: { type?: "left" | "right" }) => {
         return false;
     }, [type]);
 
-    useEffect(() => {
-        const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-        setWindowHeight(height);
-    }, []);
-
     return (
         <Box
             pos={"relative"} w={width}
             className={twMerge(
                 "aspect-[0.91265560166] -translate-y-[4%]",
-                type == "right" ? "translate-x-[16%]" : "-translate-x-[16%]"
+                type == "right" ? "translate-x-[10%]" : "-translate-x-[20%]"
             )}
         >
             {images.map((src, i) => {

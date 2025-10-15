@@ -95,14 +95,14 @@ export function BannerMidle({ idols }: Props) {
             tl.fromTo(
                 "#text-1-wrap",
                 { y: 0 },
-                { y: 28, duration: 1 },
+                { y: 52, duration: 1 },
                 "<"
             );
 
             tl.fromTo(
                 "#text-2-wrap",
                 { y: 0 },
-                { y: -28, duration: 1 },
+                { y: -52, duration: 1 },
                 "<"
             );
 
@@ -323,7 +323,7 @@ export function BannerMidle({ idols }: Props) {
                         </span>
                     </Text>
 
-                    <Box id='banner-logo-img-wrap' pos={"relative"} h={{base: 56, sm: 64, md: 80}} className='aspect-[1.66923076923]'>
+                    <Box id='banner-logo-img-wrap' pos={"relative"} h={{ base: 100, sm: 120 }} className='aspect-[1.66923076923]'>
                         <Image src={logo} alt='logo' id='banner-logo-img' fill className='object-cover' />
                         <Image src={logoWhite} alt='logo' id='banner-white-logo-img' className='object-cover z-10' />
                     </Box>

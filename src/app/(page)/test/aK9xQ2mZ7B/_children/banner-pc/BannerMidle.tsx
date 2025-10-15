@@ -199,7 +199,7 @@ export function BannerMidle({ idols }: Props) {
             tl.fromTo(
                 '#center-idol-fake',
                 { x: "-50%", y: "-50%", filter: "blur(0px)", scale: 1 },
-                { filter: "blur(20px)", scale: 0.8, duration: 1, ease: "power2.inOut" },
+                { x: "-50%", y: "-50%", filter: "blur(20px)", scale: 0.8, duration: 1, ease: "power2.inOut" },
                 "<"
             );
 

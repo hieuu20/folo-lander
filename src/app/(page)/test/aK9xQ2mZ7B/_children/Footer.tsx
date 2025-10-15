@@ -25,7 +25,8 @@ import flag1 from "@public/footer/flag-1.png";
 import flag2 from "@public/footer/flag-2.png";
 
 import xmaIcon from "@public/version-3/footer/xma.webp";
-import chartImg from "@public/version-3/footer/chart.svg";
+// import chartImg from "@public/version-3/footer/chart.svg";
+import chartImg from "@public/version-3/footer/chart-disable.svg";
 
 const socials = [
     {
@@ -288,12 +289,13 @@ export function Footer() {
                                 <Text fz={{ base: 11 }} fw={400} c={"#FFFFFFCC"}>
                                     $KNKY Cash Value
                                 </Text>
-                                <Text fz={16} fw={600}>
-                                    0.000156 USD
+                                <Text fz={16} fw={600} c={"#F1AD00"}>
+                                    {/* 0.000156 USD */}
+                                    Coming soon
                                 </Text>
 
                                 <Text fz={10} c={"#D0D0D0"} lh={1.2}>
-                                    <span className='text-[#00AB44]'>+2.24%</span>{" "} in the last 24h
+                                    <span className='text-[#00AB44]'>0%</span>{" "} in the last 24h
                                 </Text>
                             </Flex>
                             <Image src={chartImg} alt='chart img' className='w-[88px] md:w-[76px] h-auto' />
@@ -353,12 +355,13 @@ export function Footer() {
                                         <Text fz={{ base: 11 }} fw={400} c={"#FFFFFFCC"}>
                                             $KNKY Cash Value
                                         </Text>
-                                        <Text fz={16} fw={600}>
-                                            0.000156 USD
+                                        <Text fz={16} fw={600} c={"#F1AD00"}>
+                                            {/* 0.000156 USD */}
+                                            Coming soon
                                         </Text>
 
                                         <Text fz={10} c={"#D0D0D0"} lh={1.2}>
-                                            <span className='text-[#00AB44]'>+2.24%</span>{" "} in the last 24h
+                                            <span className='text-[#00AB44]'>0%</span>{" "} in the last 24h
                                         </Text>
                                     </Flex>
                                     <Image src={chartImg} alt='chart img' className='w-[88px] md:w-[76px] h-auto' />

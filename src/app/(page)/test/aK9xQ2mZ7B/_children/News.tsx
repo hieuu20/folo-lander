@@ -166,7 +166,7 @@ export default function News({ news }: Props) {
                                             <Link
                                                 href={o.hasLink ? o.buttonLink : `/news/${o.slug}`}
                                                 target={'_blank'}
-                                                className="text-[#C98FFF] font-semibold py-2 md:mt-2"
+                                                className="text-[#C98FFF] font-semibold py-2 md:mt-2 hover:opacity-70"
                                             >
                                                 {o.hasLink ? o.buttonLabel : "Read article →"}
                                             </Link>

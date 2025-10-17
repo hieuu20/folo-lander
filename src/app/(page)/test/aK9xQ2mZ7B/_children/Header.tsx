@@ -5,8 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
-import logo from "@public/version-3/header/logo.webp";
-import logoBlack from "@public/version-3/icons/logo-black.webp";
+import logo from "@public/version-3/header/logo-white.webp";
+import logoBlack from "@public/version-3/header/logo-black.webp";
 import SectionButton from '@/components/buttons/SectionButton';
 
 export const setHeaderLogoColor = (type: "white" | "black") => {
@@ -83,7 +83,7 @@ export function Header() {
             >
                 <Link
                     href={"/"}
-                    className="relative w-[145px] aspect-[4.5625]"
+                    className="relative w-[40px] md:w-[50px] aspect-[1.55279503106]"
                 >
                     <Image src={logo} alt="header logo" id='header-logo' fill className='object-cover opacity1 transition-all duration-150' />
                     <Image src={logoBlack} alt="header logo black" id='header-logo-black' fill className='object-cover opacity0 transition-all duration-150' />

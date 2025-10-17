@@ -15,7 +15,7 @@ export function TimeToShineMobile() {
                     bottom={0}
                     left={"50%"}
                     w={"120%"}
-                    className='aspect-[6.68049792531] translate-y-2/3 -translate-x-1/2 overflow-hidden z-10'
+                    className='aspect-square translate-y-2/3 -translate-x-1/2 overflow-hidden z-10'
                     style={{
                         background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.4) 0%, rgba(18, 2, 32, 0) 100%)"
                     }}
@@ -36,11 +36,14 @@ export function TimeToShineMobile() {
                     >
                         <Text
                             px={16}
-                            fz={{ base: 24, sm: 28, md: 52, lg: 56, xl: 60, "2xl": 64 }}
+                            fz={{ base: 40, sm: 44, md: 52, lg: 56, xl: 60, "2xl": 64 }}
                             c={"white"}
                             fw={900}
                             lh={1}
                             className='overflow-hidden'
+                            style={{
+                                textShadow: "0px 4px 20px #000000CC, 0px 8px 20px rgba(0, 0, 0, 0.3)",
+                            }}
                         >
                             <motion.span
                                 initial={{ y: "65%", rotateX: -70 }}
@@ -57,11 +60,14 @@ export function TimeToShineMobile() {
                         </Text>
                         <Text
                             px={16}
-                            fz={{ base: 24, sm: 28, md: 52, lg: 56, xl: 60, "2xl": 64 }}
+                            fz={{ base: 40, sm: 44, md: 52, lg: 56, xl: 60, "2xl": 64 }}
                             c={"white"}
                             fw={900}
                             lh={1}
                             className='overflow-hidden'
+                            style={{
+                                textShadow: "0px 4px 20px #000000CC, 0px 8px 20px rgba(0, 0, 0, 0.3)",
+                            }}
                         >
                             <motion.span
                                 initial={{ y: "65%", rotateX: -70 }}
@@ -97,7 +103,7 @@ const ImageCircle = ({ type = 'right' }: { type?: "left" | "right" }) => {
     const rotation = useMotionValue(0);
 
 
-    const width = browserWidth * 0.54;
+    const width = browserWidth * 1;
     // const height = width / 0.91265560166;
 
     const radius = 0.45428571428 * width;
@@ -121,7 +127,7 @@ const ImageCircle = ({ type = 'right' }: { type?: "left" | "right" }) => {
             pos={"relative"} w={width}
             className={twMerge(
                 "aspect-[0.91265560166] -translate-y-[4%]",
-                type == "right" ? "translate-x-[10%]" : "-translate-x-[20%]"
+                type == "right" ? "translate-x-[-26%]" : "translate-x-[26%]"
             )}
         >
             {images.map((src, i) => {
@@ -149,11 +155,16 @@ const ImageCircle = ({ type = 'right' }: { type?: "left" | "right" }) => {
                                 const isScale = getIsScale(x);
 
                                 if (isScale) {
-                                    return type == "right" ? 0.5 + 0.5 * (1 - x) : 0.5 + 0.5 * (1 + x);
+                                    return type == "right" ? 0.5 + 0.6 * (1 - x) : 0.5 + 0.6 * (1 + x);
                                 }
                                 return 1;
                             }),
                         }}
+                        transition={{
+                            duration: 0.3,
+                            ease: "linear"
+                        }}
+                        className='rounded-lg overflow-hidden'
                     >
                         <Image
                             src={src}
@@ -162,6 +173,15 @@ const ImageCircle = ({ type = 'right' }: { type?: "left" | "right" }) => {
                             height={50}
                             className="object-cover aspect-[0.63459983831]"
                             style={{ width: size }}
+                        />
+                        <Box
+                            bg={"#37015D"}
+                            pos={"absolute"}
+                            top={0}
+                            left={0}
+                            w={"100%"}
+                            h={"100%"}
+                            className='opacity-60'
                         />
                     </motion.div>
                 );

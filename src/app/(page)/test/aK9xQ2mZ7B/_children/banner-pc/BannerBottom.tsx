@@ -23,6 +23,7 @@ import phone7 from "@public/version-3/banner/phone/5.webp";
 import phone8 from "@public/version-3/banner/phone/5.webp";
 
 import { stars } from '@/utils/stars';
+import { bannerTexts } from '@/utils/bannerText';
 
 const images = [
     "/version-3/banner/circle/1.webp",
@@ -387,50 +388,7 @@ export const Circle = () => {
 
 
 export const Phase3 = () => {
-    const list = [
-        {
-            text1: "MUTIPLE-LEVEL",
-            text2: "SUBSCRIPTIONS",
-            text3: "Industry-first subscriptions with channels, collabs, and tailored niches",
-            text4: "Upsells that drive real growth."
-        },
-        {
-            text1: "PRIVATE",
-            text2: "MESSAGING",
-            text3: "One to one messaging reimagined with calls, media and advanced analytics.",
-            text4: "Smarter chats. Stronger connections."
-        },
-        {
-            text1: "LIVE",
-            text2: "& EVENTS",
-            text3: "Host ticketed lives, pay-per-view streams, or one-to-one sessions.",
-            text4: "Connect with fans like never before."
-        },
-        {
-            text1: "SELL DIGITAL",
-            text2: "SELL PHYSICAL",
-            text3: "Offer digital goods, clips, and premium services.",
-            text4: "Expand into merch and physical sales with ease."
-        },
-        {
-            text1: "1-TO-1 AUDIO",
-            text2: "7 VIDEO CALL",
-            text3: "Offer digital goods, clips, and premium services",
-            text4: "Expand into merch and physical sales with ease."
-        },
-        {
-            text1: "COLLABS",
-            text2: "WITH OTHERS",
-            text3: "Offer digital goods, clips, and premium services.",
-            text4: "Expand into merch and physical sales with ease."
-        },
-        {
-            text1: "EXPLORE",
-            text2: "TRENDING",
-            text3: "Offer digital goods, clips, and premium services.",
-            text4: "Expand into merch and physical sales with ease."
-        }
-    ];
+
     return (
         <Flex
             pos={"absolute"}
@@ -457,7 +415,7 @@ export const Phase3 = () => {
                     />
                 );
             })}
-            {list.map((o, index) => {
+            {bannerTexts.map((o, index) => {
                 return (
                     <Flex
                         key={index}
@@ -482,7 +440,17 @@ export const Phase3 = () => {
                         >
                             <CurveText text={o.text1} className='text-[70px] font-black' rootClassName='absolute top-[0%] left-[50%] -translate-x-1/2' />
                             <CurveText text={o.text2} className='text-[70px] font-black' rootClassName='absolute top-[16%] left-[50%] -translate-x-1/2' />
-                            <CurveText
+                            {o.desktop.map((x, i) => {
+                                return (
+                                    <CurveText
+                                        key={i}
+                                        text={x}
+                                        className='text-[18px] font-medium'
+                                        rootClassName={`absolute top-[${24 + i * 5}%] left-[50%] -translate-x-1/2`}
+                                    />
+                                )
+                            })}
+                            {/* <CurveText
                                 text={o.text3}
                                 className='text-[18px] font-medium'
                                 rootClassName='absolute top-[24%] left-[50%] -translate-x-1/2'
@@ -491,7 +459,7 @@ export const Phase3 = () => {
                                 text={o.text4}
                                 className='text-[18px] font-medium'
                                 rootClassName='absolute top-[29%] left-[50%] -translate-x-1/2'
-                            />
+                            /> */}
                         </Flex>
                     </Flex>
                 );

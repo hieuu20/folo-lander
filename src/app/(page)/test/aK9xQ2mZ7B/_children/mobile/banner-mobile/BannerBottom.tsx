@@ -17,6 +17,7 @@ import phone2 from "@public/version-3/banner/phone/2.webp";
 import phone3 from "@public/version-3/banner/phone/3.webp";
 import phone4 from "@public/version-3/banner/phone/4.webp";
 import phone5 from "@public/version-3/banner/phone/5.webp";
+import { bannerTexts } from '@/utils/bannerText';
 
 const images = [
     "/version-3/banner/circle/1.webp",
@@ -295,52 +296,7 @@ export const Circle = () => {
 };
 
 export const Phase3 = () => {
-    const list = [
-        {
-            text1: "MUTIPLE-LEVEL",
-            text2: "SUBSCRIPTIONS",
-            text3: "Industry-first subscriptions with channels, collabs,",
-            text4: "and tailored niches. Upsells that drive real growth."
-        },
-        {
-            text1: "PRIVATE",
-            text2: "MESSAGING",
-            text3: "One to one messaging reimagined with calls,",
-            text4: "media and advanced analytics.",
-            text5: "Smarter chats. Stronger connections.",
-        },
-        {
-            text1: "LIVE",
-            text2: "& EVENTS",
-            text3: "Host ticketed lives, pay-per-view streams,",
-            text4: "or one-to-one sessions.",
-            text5: "Connect with fans like never before."
-        },
-        {
-            text1: "SELL DIGITAL",
-            text2: "SELL PHYSICAL",
-            text3: "Offer digital goods, clips, and premium services.",
-            text4: "Expand into merch and physical sales with ease."
-        },
-        {
-            text1: "1-TO-1 AUDIO",
-            text2: "7 VIDEO CALL",
-            text3: "Offer digital goods, clips, and premium services",
-            text4: "Expand into merch and physical sales with ease."
-        },
-        {
-            text1: "COLLABS",
-            text2: "WITH OTHERS",
-            text3: "Offer digital goods, clips, and premium services.",
-            text4: "Expand into merch and physical sales with ease."
-        },
-        {
-            text1: "EXPLORE",
-            text2: "TRENDING",
-            text3: "Offer digital goods, clips, and premium services.",
-            text4: "Expand into merch and physical sales with ease."
-        }
-    ];
+
     return (
         <Flex
             pos={"absolute"}
@@ -349,7 +305,7 @@ export const Phase3 = () => {
             right={0}
             top={"62%"}
         >
-            {list.map((o, index) => {
+            {bannerTexts.map((o, index) => {
                 return (
                     <Flex
                         key={index}
@@ -374,7 +330,17 @@ export const Phase3 = () => {
                         >
                             <CurveText text={o.text1} className='text-[32px] font-black' rootClassName='absolute top-[0%] left-[50%] -translate-x-1/2' />
                             <CurveText text={o.text2} className='text-[32px] font-black' rootClassName='absolute top-[9%] left-[50%] -translate-x-1/2' />
-                            <CurveText
+                            {o.mobile.map((x, i) => {
+                                return (
+                                    <CurveText
+                                        key={i}
+                                        text={x}
+                                        className='text-[13px] font-medium'
+                                        rootClassName={`absolute top-[${17 + i * 4}%] left-[50%] -translate-x-1/2`}
+                                    />
+                                )
+                            })}
+                            {/* <CurveText
                                 text={o.text3}
                                 className='text-[13px] font-medium'
                                 rootClassName='absolute top-[17%] left-[50%] -translate-x-1/2'
@@ -390,7 +356,7 @@ export const Phase3 = () => {
                                     className='text-[13px] font-medium'
                                     rootClassName='absolute top-[25%] left-[50%] -translate-x-1/2'
                                 />
-                            )}
+                            )} */}
                         </Flex>
                     </Flex>
                 );

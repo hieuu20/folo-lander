@@ -31,7 +31,7 @@ export function UnlimitedMobile() {
                 scrollTrigger: {
                     trigger: main.current,
                     start: 'top top',
-                    end: 'bottom-=200 bottom',
+                    end: 'bottom-=300 bottom',
                     markers: false,
                     scrub: true,
                     onLeave: () => {

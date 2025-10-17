@@ -27,6 +27,7 @@ import flag2 from "@public/footer/flag-2.png";
 import xmaIcon from "@public/version-3/footer/xma.webp";
 // import chartImg from "@public/version-3/footer/chart.svg";
 import chartImg from "@public/version-3/footer/chart-disable.svg";
+import SectionButton from "@/components/buttons/SectionButton";
 
 const socials = [
     {
@@ -298,7 +299,17 @@ export function Footer() {
                                     <span className='text-[#00AB44]'>0%</span>{" "} in the last 24h
                                 </Text>
                             </Flex>
-                            <Image src={chartImg} alt='chart img' className='w-[88px] md:w-[76px] h-auto' />
+                            {/* <Image src={chartImg} alt='chart img' className='w-[88px] md:w-[76px] h-auto' /> */}
+                            <SectionButton
+                                title="Join $KNKY →"
+                                href="https://knky.cash"
+                                show={true}
+                                w={{ base: 114 }}
+                                h={{ base: 34 }}
+                                px={0}
+                                fz={{ base: 14 }}
+                                fw={600}
+                            />
                         </Flex>
                     </Flex>
 
@@ -364,7 +375,17 @@ export function Footer() {
                                             <span className='text-[#00AB44]'>0%</span>{" "} in the last 24h
                                         </Text>
                                     </Flex>
-                                    <Image src={chartImg} alt='chart img' className='w-[88px] md:w-[76px] h-auto' />
+                                    {/* <Image src={chartImg} alt='chart img' className='w-[88px] md:w-[76px] h-auto' /> */}
+                                    <SectionButton
+                                        title="Join $KNKY →"
+                                        href="https://knky.cash"
+                                        show={true}
+                                        w={{ base: 114 }}
+                                        h={{ base: 34 }}
+                                        px={0}
+                                        fz={{ base: 14 }}
+                                        fw={600}
+                                    />
                                 </Flex>
                             </Flex>
 
@@ -418,18 +439,6 @@ export function Footer() {
                             </Flex>
                         </Flex>
                     </Flex>
-
-
-
-                    {/* <Flex
-                        direction={{ base: "column", md: "row" }}
-                        justify={{ base: "center", md: "space-between" }}
-                        align={{ base: "center", md: "flex-end" }}
-                        gap={{ base: 48 }}
-                    >
-
-                        
-                    </Flex> */}
                 </Box>
             </Box>
         </footer>

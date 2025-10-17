@@ -50,19 +50,21 @@ export function More() {
 
     return (
         <Box
-            id='more' w={"100%"} bg={"#F0F0FC"} h={"screen"}
+            id='more' w={"100%"} bg={"#F0F0FC"} h={"100vh"}
         // className='aspect-[1.77777777778]'
         >
             <Box ref={main} className='container-version3' h={"100%"}>
-                <Box
+                <Flex
                     pos={"relative"}
+                    direction={"column"}
+                    justify={"space-between"}
                     style={{
                         backgroundImage: "url('/version-3/unlimited/bg-pc.webp')",
                         backgroundColor: "#F0F0FC"
                     }}
-                    py={{ base: 104, md: 70, lg: 80, xl: 90, "2xl": 100 }}
+                    py={{ base: 40, md: 48, lg: 60, xl: 72, "2xl": 80 }}
                     h={"100%"}
-                    className='bg-contain bg-repeat w-full aspect-[1.63148148148]'
+                    className='bg-cover'
                 >
                     <Flex justify={"space-between"}>
                         <Flex gap={{ base: 32, "2xl": 48 }}>
@@ -112,7 +114,7 @@ export function More() {
 
                         <motion.div
                             initial={{ y: "30%", opacity: 0 }}
-                            whileInView={{ y: 0, opacity: 1 }}
+                            whileInView={{ y: "5%", opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{
                                 duration: 1,
@@ -137,10 +139,8 @@ export function More() {
 
                     <Flex
                         w={"100%"}
-                        justify={"center"}
-                        mt={{ base: 80, md: 90, lg: 100, xl: 110, "2xl": 120 }}
                     >
-                        <Flex gap={{ base: 32, "2xl": 48 }}>
+                        <Flex gap={{ base: 42, "2xl": 60 }}>
                             <Text
                                 fz={{ base: 14, sm: 16, md: 18, lg: 20, xl: 22, "2xl": 24 }}
                                 fw={{ base: 500, md: 600 }}
@@ -183,7 +183,7 @@ export function More() {
                         </Flex>
                     </Flex>
 
-                    <Flex pos={"absolute"} bottom={{ base: 80 }} right={{ base: 0 }} direction={"column"} gap={{ base: 4 }}>
+                    <Flex align={"flex-end"} direction={"column"} gap={{ base: 4 }}>
                         <Text
                             fz={{ base: 13, md: 14, lg: 15, "2xl": 16 }}
                             c={"#4D5053"}
@@ -221,7 +221,7 @@ export function More() {
                             </Link>
                         </Text>
                     </Flex>
-                </Box>
+                </Flex>
             </Box>
         </Box>
     );

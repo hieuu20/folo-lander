@@ -49,7 +49,7 @@ export function MoreMobile() {
     const main = useRef(null);
 
     return (
-        <Box id='more' w={"100%"} bg={"#F0F0FC"} className='aspect-[0.46182266009]'>
+        <Box id='more' w={"100%"} bg={"#F0F0FC"} className='aspect-[0.46875]'>
             <Box ref={main} className='container-version3' h={"100%"}>
                 <Flex
                     pos={"relative"}
@@ -59,7 +59,7 @@ export function MoreMobile() {
                     }}
                     py={{ base: 104, md: 70, lg: 80, xl: 90, "2xl": 100 }}
                     h={"100%"}
-                    className='bg-cover bg-repeat w-full aspect-[1.63148148148]'
+                    className='bg-cover bg-repeat w-full h-full'
                 >
                     <Flex direction={"column"} justify={"space-between"} w={"50%"}>
                         <Flex

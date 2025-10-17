@@ -45,7 +45,7 @@ export function BannerMidle({ idols }: Props) {
                     trigger: main.current,
                     pin: true,
                     start: 'top top',
-                    end: '+=18100',
+                    end: '+=17100',
                     scrub: true,
                     markers: false,
                 },
@@ -277,7 +277,7 @@ export function BannerMidle({ idols }: Props) {
     return (
         <Box
             w={"100%"}
-            h={18950}
+            h={17950}
         >
             <Flex
                 ref={main}

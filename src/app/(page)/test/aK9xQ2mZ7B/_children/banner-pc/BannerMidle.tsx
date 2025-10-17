@@ -290,7 +290,7 @@ export function BannerMidle({ idols }: Props) {
 
             tl.to(
                 "#phone-1-bg",
-                { width: "150%", height: "100%", duration: 1 },
+                { width: "170%", height: "120%", duration: 1 },
                 "<"
             );
 
@@ -612,11 +612,11 @@ const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {
         y.set(offsetY);
     };
 
-    // const handleMouseLeave = () => {
-    //     console.log("leave");
-    //     // x.set(0);
-    //     // y.set(0);
-    // };
+    const handleMouseLeave = () => {
+        console.log("leave");
+        x.set(0);
+        y.set(0);
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -655,6 +655,7 @@ const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {
                 id='phone-wrap'
                 ref={ref}
                 onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
                 style={{
                     perspective: 1000,
                 }}

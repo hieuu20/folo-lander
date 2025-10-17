@@ -155,7 +155,7 @@ const ImageCircle = ({ type = 'right' }: { type?: "left" | "right" }) => {
                                 const isScale = getIsScale(x);
 
                                 if (isScale) {
-                                    return type == "right" ? 0.5 + 0.6 * (1 - x) : 0.5 + 0.6 * (1 + x);
+                                    return type == "right" ? 0.52 + 0.6 * (1 - x) : 0.52 + 0.6 * (1 + x);
                                 }
                                 return 1;
                             }),

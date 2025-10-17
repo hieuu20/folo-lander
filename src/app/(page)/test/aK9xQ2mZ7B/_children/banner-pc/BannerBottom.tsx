@@ -448,7 +448,7 @@ export const Phase3 = () => {
                                         className='text-[18px] font-medium'
                                         rootClassName={`absolute top-[${24 + i * 5}%] left-[50%] -translate-x-1/2`}
                                     />
-                                )
+                                );
                             })}
                             {/* <CurveText
                                 text={o.text3}

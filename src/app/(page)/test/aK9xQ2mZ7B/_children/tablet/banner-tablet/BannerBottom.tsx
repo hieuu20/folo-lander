@@ -1,28 +1,29 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Flex, Text } from '@mantine/core';
 import React, { useEffect, useRef, useState } from 'react';
-// import logo from "@public/banner/logo.png";
-// import Image from 'next/image';
-// import itemImg from "@public/banner/circle/img.png";
 import { motion, useInView } from 'framer-motion';
 import phone from "@public/version-3/banner/phone/phone-border.webp";
 import Image from 'next/image';
-import { useGSAP } from '@gsap/react';
+import { twMerge } from 'tailwind-merge';
 import gsap from 'gsap/dist/gsap';
-import SectionButton from '@/components/buttons/SectionButton';
+import { useGSAP } from '@gsap/react';
 import { CurveText } from '@/components/Typo';
+import SectionButton from '@/components/buttons/SectionButton';
+import starIcon from "@public/version-3/banner/phase2/star.svg";
+import { getRandomInt } from '@/utils/helpers';
 
 import phone1 from "@public/version-3/banner/phone/1.webp";
 import phone2 from "@public/version-3/banner/phone/2.webp";
 import phone3 from "@public/version-3/banner/phone/3.webp";
 import phone4 from "@public/version-3/banner/phone/4.webp";
 import phone5 from "@public/version-3/banner/phone/5.webp";
-import { bannerTexts } from '@/utils/bannerText';
+import { stars } from '@/utils/stars';
 
 const images = [
     "/version-3/banner/circle/1.webp",
     "/version-3/banner/circle/2.webp",
-    "/version-3/banner/circle/3.webp",
+    "/version-3/banner/circle/video/2.mp4",
     "/version-3/banner/circle/4.webp",
     "/version-3/banner/circle/5.webp",
     "/version-3/banner/circle/6.webp",
@@ -32,9 +33,9 @@ const images = [
     "/version-3/banner/circle/10.webp",
     "/version-3/banner/circle/11.webp",
     "/version-3/banner/circle/12.webp",
-    "/version-3/banner/circle/13.webp",
+    "/version-3/banner/circle/video/3.mp4",
     "/version-3/banner/circle/14.webp",
-    "/version-3/banner/circle/15.webp",
+    "/version-3/banner/circle/video/1.mp4",
     "/version-3/banner/circle/16.webp",
 ];
 
@@ -43,7 +44,7 @@ const phoneImages = [
     phone2,
     phone3,
     phone4,
-    phone5,
+    phone5
 ];
 
 export function BannerBottom() {
@@ -56,32 +57,37 @@ export function BannerBottom() {
                 scrollTrigger: {
                     trigger: main.current,
                     pin: true,
-                    start: 'center+=114 center',
-                    end: '+=9000',
-                    pinSpacing: false,
-                    anticipatePin: 1,
+                    start: 'center+=100 center',
+                    end: '+=9700',
                     scrub: true,
-                    markers: false
+                    markers: false,
                 },
             });
 
             tl.fromTo(
                 "#phone",
-                { scale: 2, y: "60%" },
-                { scale: 1, y: 0, duration: 0.5, ease: "power2.in" }
+                { scale: 2, y: "100%" },
+                { scale: 1, y: 0, duration: 0.4, ease: "easeIn" }
             );
 
             tl.fromTo(
                 "#image-circle1",
                 { scale: 0.58, opacity: 0.2, y: 0 },
-                { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: "power2.in" },
+                { scale: 1, opacity: 1, y: 0, duration: 0.4, ease: "easeIn" },
                 "<"
             );
 
             tl.fromTo(
+                "#phone-text",
+                { y: 100, opacity: 0, x: "-50%" },
+                { y: 0, opacity: 1, x: "-50%", duration: 0.4, ease: "easeIn" },
+            );
+
+
+            tl.fromTo(
                 "#image-circle1",
                 { rotate: 0, scale: 1, y: 0 },
-                { rotate: 60, scale: 1, y: 0, duration: 2, ease: "none", delay: 0.1 }
+                { rotate: 60, scale: 1, y: 0, duration: 2, ease: "none" }
             );
 
             tl.fromTo(
@@ -90,8 +96,16 @@ export function BannerBottom() {
                 { y: "-136%", opacity: 0, rotate: 95, duration: 2, ease: "none" },
             );
 
-            tl.to(
+            tl.fromTo(
+                "#circle-background",
+                { autoAlpha: 1 },
+                { autoAlpha: 0, duration: 0.5, ease: "none" },
+                "<"
+            );
+
+            tl.fromTo(
                 "#phone-text",
+                { autoAlpha: 1 },
                 { autoAlpha: 0, duration: 1, ease: "power2.inOut" },
                 "<"
             );
@@ -102,45 +116,94 @@ export function BannerBottom() {
             );
 
             tl.fromTo(
-                "#banner-button",
-                { autoAlpha: 0, y: 100, x: "-50%" },
+                "#phone",
+                { rotateX: 0, rotateY: 0, rotateZ: 0, x: 0, y: 0 },
                 {
-                    autoAlpha: 1,
-                    x: "-50%",
-                    y: 0,
-                    duration: 1,
+                    rotateX: 8,
+                    rotateY: -8,
+                    rotateZ: 8,
+                    duration: 2,
+                    x: "-88%",
+                    y: "12%",
                     ease: "power2.inOut",
                 },
-                "<=+1"
+                "<"
+            );
+
+            tl.fromTo(
+                "#banner-button",
+                { autoAlpha: 0, y: 600 },
+                {
+                    autoAlpha: 1,
+                    y: 0,
+                    x: "-49.99%",
+                    duration: 0.8,
+                    ease: "power2.inOut",
+                },
+                "<=+0.5"
             );
 
             const texts = gsap.utils.toArray(".text-item");
+            const stars = gsap.utils.toArray(".star-icon");
+
+            stars.forEach((o: any, index) => {
+                tl.fromTo(
+                    o,
+                    { opacity: 0 },
+                    {
+                        opacity: 0.8,
+                        duration: 1,
+                        ease: "power2.inOut",
+                    },
+                    "<"
+                );
+            });
+
             const phoneImageEls = gsap.utils.toArray(".phone-image") as any[];
 
             texts.forEach((el: any, index) => {
                 tl.fromTo(
                     el,
-                    { x: "180%", y: "80%", rotate: 100, autoAlpha: 0 },
-                    { x: 0, y: 0, rotate: 0, autoAlpha: 1, duration: 1.5, delay: 0.5 },
+                    { x: "100%", y: "80%", rotate: 60, autoAlpha: 0 },
+                    { x: "0%", y: 0, rotate: 0, autoAlpha: 1, duration: 1 },
                     index == 0 ? "<=+0.3" : "<"
                 );
+
+                stars.forEach((o: any) => {
+                    const x = getRandomInt(40, 300);
+                    const y = getRandomInt(40, 300);
+                    tl.to(
+                        o,
+                        {
+                            x: `+=-${x}`,
+                            y: `+=${y}`,
+                            opacity: 1,
+                            duration: 1,
+                            ease: "power2.inOut",
+                        },
+                        "<"
+                    );
+                });
 
                 tl.fromTo(
                     phoneImageEls[index + 1],
                     { y: "-100%" },
-                    { y: 0, duration: 1.4, ease: "none" },
+                    { y: 0, duration: 1, ease: "none" },
                     "<"
                 );
 
                 tl.fromTo(
                     phoneImageEls[index],
                     { filter: "blur(0px)", scale: 1 },
-                    { filter: "blur(20px)", scale: 0.85, duration: 1.4, ease: "power2.inOut" },
+                    { filter: "blur(20px)", scale: 0.85, duration: 0.8, ease: "power2.inOut" },
                     "<"
                 );
 
                 if (index < texts.length - 1) {
-                    tl.fromTo(el, { x: 0, y: 0, autoAlpha: 1, rotate: 0 }, { x: "-180%", y: "80%", rotate: -100, autoAlpha: 0, duration: 1.5, delay: 0.5 });
+                    tl.fromTo(el,
+                        { x: 0, y: 0, autoAlpha: 1, rotate: 0 },
+                        { x: "-100%", y: "80%", rotate: -70, autoAlpha: 0, duration: 1, delay: 0.1 }
+                    );
                 }
             });
         },
@@ -150,7 +213,7 @@ export function BannerBottom() {
     );
 
     return (
-        <Box pos={"relative"} h={9800} className='overflow-hidden'>
+        <Box pos={"relative"} mt={{ base: "-32%" }} h={10650} className='overflow-hidden'>
             <Flex direction={"column"} ref={main} pos={"relative"} align={"center"} className='container-version3'>
                 <motion.div
                     id="phone-bg"
@@ -173,22 +236,21 @@ export function BannerBottom() {
                     }}
                 />
                 <Circle />
-                {/* <Phase2 /> */}
+                <Phase3 />
                 <Phone isInView={isInView} />
             </Flex>
         </Box>
     );
 }
 
-const Phone = ({ }: { isInView: boolean }) => {
+const Phone = ({ isInView }: { isInView: boolean }) => {
     return (
         <Box
             id="phone"
             pos={"relative"}
             w={{ base: "70%", md: "27.1%" }}
-            className='aspect-[0.65312441358] origin-top'
+            className='aspect-[0.65312441358] z-10'
         >
-
             <Image src={phone} alt='phone' fill className='object-cover' />
 
             <Box
@@ -198,8 +260,9 @@ const Phone = ({ }: { isInView: boolean }) => {
                 w={"62.8%"}
                 h={"88%"}
                 bg={"black"}
-                className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[6%]'
+                className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[32px]'
             />
+
             {phoneImages.map((o, index) => {
                 return (
                     <Box
@@ -208,9 +271,10 @@ const Phone = ({ }: { isInView: boolean }) => {
                         top={"50%"}
                         left={"50%"}
                         w={"62.8%"}
-                        className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[6%]'
+                        className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[32px]'
                     >
                         <Image
+                            key={index}
                             src={o}
                             alt='phone image'
                             className='relative phone-image object-cover will-change-transform transform-3d w-full h-auto '
@@ -218,7 +282,6 @@ const Phone = ({ }: { isInView: boolean }) => {
                     </Box>
                 );
             })}
-
             <Flex
                 id="phone-text"
                 pos={"absolute"}
@@ -227,13 +290,12 @@ const Phone = ({ }: { isInView: boolean }) => {
                 direction={"column"}
                 gap={{ base: 8, md: 10, xl: 12 }}
                 align={"center"}
-                className='-translate-x-1/2'
             >
-                <Text fz={{ base: 14, sm: 16, md: 18, "2xl": 20 }} lh={1.4} lts={-0.5} c={"#FFFFFFCC"} className='whitespace-nowrap'>
+                <Text fz={{ base: 11, sm: 12, md: 14, lg: 16, xl: 18, "2xl": 20 }} lh={1.2} c={"#FFFFFFCC"} className='whitespace-nowrap'>
                     Your content. Your rules. Public, private, or premium.
                 </Text>
 
-                <Text fz={{ base: 20, sm: 22, md: 26, lg: 28, xl: 30, "2xl": 32 }} fw={500} lh={1.4} c={"white"} className='whitespace-nowrap'>
+                <Text fz={{ base: 20, sm: 22, md: 26, lg: 28, xl: 30, "2xl": 32 }} fw={500} lh={1.2} c={"white"} className='whitespace-nowrap'>
                     KNKY adapts to you!
                 </Text>
             </Flex>
@@ -274,38 +336,103 @@ export const Circle = () => {
                     const rotate = i * 22.5;
 
                     return (
-                        <Image
+                        <Box
+                            pos={"absolute"}
                             key={i}
-                            src={src}
-                            alt='circle image'
-                            width={100}
-                            height={100}
-                            className='absolute w-[8.86%] h-auto object-cover'
                             style={{
                                 left: "50%",
                                 top: "50%",
                                 transform: `translate(${x}px, ${y}px) translate(-50%, -50%) rotate(${rotate}deg)`,
                             }}
-                        />
+                            w={"8.86%"}
+                        >
+                            {src.includes("video") ? (
+                                <video
+                                    autoPlay={true}
+                                    playsInline
+                                    loop
+                                    preload="auto"
+                                    controls={false}
+                                    muted={true}
+                                    className={twMerge('w-full aspect-[0.54179566563] rounded-md object-cover')}
+                                >
+                                    <source src={src} type="video/mp4" />
+                                </video>
+                            ) : (
+                                <Image
+                                    key={i}
+                                    src={src}
+                                    alt='circle image'
+                                    width={100}
+                                    height={100}
+                                    className='w-full h-auto object-cover'
+                                />
+
+                            )}
+
+                        </Box>
                     );
                 })}
-
             </motion.div>
         </Box>
     );
 };
 
-export const Phase3 = () => {
 
+export const Phase3 = () => {
+    const list = [
+        {
+            text1: "MUTIPLE-LEVEL",
+            text2: "SUBSCRIPTIONS",
+            text3: "Industry-first subscriptions with channels, collabs, and tailored niches",
+            text4: "Upsells that drive real growth."
+        },
+        {
+            text1: "PRIVATE",
+            text2: "MESSAGING",
+            text3: "One to one messaging reimagined with calls, media and advanced analytics.",
+            text4: "Smarter chats. Stronger connections."
+        },
+        {
+            text1: "LIVE",
+            text2: "& EVENTS",
+            text3: "Host ticketed lives, pay-per-view streams, or one-to-one sessions.",
+            text4: "Connect with fans like never before."
+        },
+        {
+            text1: "SELL DIGITAL",
+            text2: "SELL PHYSICAL",
+            text3: "Offer digital goods, clips, and premium services.",
+            text4: "Expand into merch and physical sales with ease."
+        }
+    ];
     return (
         <Flex
             pos={"absolute"}
-            w={"100%"}
+            w={"58%"}
             h={"100%"}
             right={0}
-            top={"62%"}
+            top={0}
         >
-            {bannerTexts.map((o, index) => {
+            {stars.map((o, i) => {
+                return (
+                    <Image
+                        className='star-icon'
+                        key={i}
+                        src={starIcon}
+                        alt='start icon'
+                        style={{
+                            position: "absolute",
+                            top: o.top + "%",
+                            left: o.left + "%",
+                            width: o.width,
+                            height: o.width,
+                            rotate: o.rotate + "deg"
+                        }}
+                    />
+                );
+            })}
+            {list.map((o, index) => {
                 return (
                     <Flex
                         key={index}
@@ -317,7 +444,7 @@ export const Phase3 = () => {
                         left={0}
                         align={"center"}
                         justify={"center"}
-                        className={`text-item`}
+                        className={`text-item z-[1]`}
                     >
                         <Flex
                             pos={"relative"}
@@ -328,35 +455,18 @@ export const Phase3 = () => {
                             justify={"center"}
                             h={"100%"}
                         >
-                            <CurveText text={o.text1} className='text-[32px] font-black' rootClassName='absolute top-[0%] left-[50%] -translate-x-1/2' />
-                            <CurveText text={o.text2} className='text-[32px] font-black' rootClassName='absolute top-[9%] left-[50%] -translate-x-1/2' />
-                            {o.mobile.map((x, i) => {
-                                return (
-                                    <CurveText
-                                        key={i}
-                                        text={x}
-                                        className='text-[13px] font-medium'
-                                        rootClassName={`absolute top-[${17 + i * 4}%] left-[50%] -translate-x-1/2`}
-                                    />
-                                );
-                            })}
-                            {/* <CurveText
+                            <CurveText text={o.text1} className='text-[70px] font-black' rootClassName='absolute top-[0%] left-[50%] -translate-x-1/2' />
+                            <CurveText text={o.text2} className='text-[70px] font-black' rootClassName='absolute top-[16%] left-[50%] -translate-x-1/2' />
+                            <CurveText
                                 text={o.text3}
-                                className='text-[13px] font-medium'
-                                rootClassName='absolute top-[17%] left-[50%] -translate-x-1/2'
+                                className='text-[18px] font-medium'
+                                rootClassName='absolute top-[24%] left-[50%] -translate-x-1/2'
                             />
                             <CurveText
                                 text={o.text4}
-                                className='text-[13px] font-medium'
-                                rootClassName='absolute top-[21%] left-[50%] -translate-x-1/2'
+                                className='text-[18px] font-medium'
+                                rootClassName='absolute top-[29%] left-[50%] -translate-x-1/2'
                             />
-                            {o.text5 && (
-                                <CurveText
-                                    text={o.text5}
-                                    className='text-[13px] font-medium'
-                                    rootClassName='absolute top-[25%] left-[50%] -translate-x-1/2'
-                                />
-                            )} */}
                         </Flex>
                     </Flex>
                 );
@@ -365,9 +475,9 @@ export const Phase3 = () => {
             <SectionButton
                 id="banner-button"
                 pos={"absolute"}
-                bottom={"2%"}
+                bottom={0}
                 left={"50%"}
-                className=''
+                className='z-10'
                 show={true}
                 w={{ base: 216 }}
                 h={{ base: 40 }}
@@ -375,9 +485,6 @@ export const Phase3 = () => {
                 title={"Join KNKY today →"}
                 fz={{ sm: 16 }}
                 fw={600}
-                style={{
-                    opacity: 0
-                }}
             />
         </Flex>
     );

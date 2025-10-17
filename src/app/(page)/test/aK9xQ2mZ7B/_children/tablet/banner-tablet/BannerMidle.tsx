@@ -3,10 +3,7 @@
 
 import { Box, Flex, Text } from '@mantine/core';
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
-
 import logo from "@public/version-3/banner/logo.webp";
-import logoWhite from "@public/version-3/banner/logo-white.webp";
-
 import Image from 'next/image';
 import gsap from 'gsap/dist/gsap';
 import { useGSAP } from '@gsap/react';
@@ -18,19 +15,15 @@ import { twMerge } from 'tailwind-merge';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from 'swiper/modules';
 import phoneBorder from "@public/version-3/banner/phone/phone-border.webp";
-import { motion, useAnimate, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useAnimate, useInView } from 'framer-motion';
 
 import phone1 from "@public/version-3/banner/phone/1.webp";
 import phone2 from "@public/version-3/banner/phone/2.webp";
 import phone3 from "@public/version-3/banner/phone/3.webp";
 import phone4 from "@public/version-3/banner/phone/4.webp";
 import phone5 from "@public/version-3/banner/phone/5.webp";
-import phone6 from "@public/version-3/banner/phone/6.webp";
-import phone7 from "@public/version-3/banner/phone/7.webp";
-import phone8 from "@public/version-3/banner/phone/8.webp";
-
-import { Circle, Phase3 } from './BannerBottom';
 import { stars } from '@/utils/stars';
+import { Circle, Phase3 } from './BannerBottom';
 
 interface Props {
     idols: ICreatorIdol[];
@@ -99,28 +92,15 @@ export function BannerMidle({ idols }: Props) {
             );
 
             tl.fromTo(
-                "#banner-logo-img",
-                { autoAlpha: 0 },
-                { autoAlpha: 1, duration: 1 },
-                "<"
-            );
-
-            tl.fromTo(
-                "#banner-white-logo-img",
-                { autoAlpha: 1 },
-                { autoAlpha: 0, duration: 1 },
-                "<"
-            );
-
-            tl.fromTo(
                 "#text-1",
-                { x: "105%", y: 0 },
+                { x: "100%", y: 0 },
                 { x: 0, y: 0, duration: 1 },
+                "<"
             );
 
             tl.fromTo(
                 "#text-2",
-                { x: "-105%", y: 0 },
+                { x: "-100%", y: 0 },
                 { x: 0, y: 0, duration: 1 },
                 "<"
             );
@@ -128,12 +108,12 @@ export function BannerMidle({ idols }: Props) {
             tl.fromTo(
                 "#banner-logo-img",
                 { scale: 1 },
-                { scale: 0, duration: 1 },
+                { scale: 0.22692307692, duration: 1 },
             );
 
             tl.to(
                 "#banner-logo",
-                { top: "10%", gap: 0, duration: 1 },
+                { top: "10%", duration: 1 },
                 "<"
             );
 
@@ -147,7 +127,7 @@ export function BannerMidle({ idols }: Props) {
             tl.fromTo(
                 "#mySwiper",
                 { y: 0, },
-                { y: 0, duration: 1.4 },
+                { y: 0, duration: 2 },
             );
 
             tl.fromTo(
@@ -175,12 +155,6 @@ export function BannerMidle({ idols }: Props) {
                 "<"
             );
 
-            tl.to(
-                "#mySwiper",
-                { display: "none", duration: 0 },
-                "<"
-            );
-
             tl.fromTo(
                 phoneImageEls[0],
                 { y: "100%" },
@@ -191,7 +165,7 @@ export function BannerMidle({ idols }: Props) {
             tl.fromTo(
                 '#center-idol-fake',
                 { x: "-50%", y: "-50%", filter: "blur(0px)", scale: 1 },
-                { x: "-50%", y: "-50%", filter: "blur(20px)", scale: 0.8, duration: 1, ease: "power2.inOut" },
+                { filter: "blur(20px)", scale: 0.8, duration: 1, ease: "power2.inOut" },
                 "<"
             );
 
@@ -207,19 +181,6 @@ export function BannerMidle({ idols }: Props) {
                 "<"
             );
 
-            tl.fromTo(
-                "#phone-1-bg",
-                { autoAlpha: 0 },
-                { autoAlpha: 1, duration: 1 },
-                "<"
-            );
-
-            tl.fromTo(
-                "#banner-bg-1",
-                { autoAlpha: 1 },
-                { autoAlpha: 0, duration: 1 },
-                "<"
-            );
 
 
 
@@ -266,31 +227,17 @@ export function BannerMidle({ idols }: Props) {
             );
 
             tl.fromTo(
-                "#phone-wrap",
-                { rotateX: 0, rotateY: 0, rotateZ: 0, opacity: 1, x: 0, y: 0 },
+                "#phone",
+                { rotateX: 0, rotateY: 0, rotateZ: 0, x: 0, y: 0 },
                 {
-                    // rotateX: 4,
-                    // rotateY: -4,
-                    // rotateZ: 4,
-                    opacity: 2,
+                    rotateX: 8,
+                    rotateY: -8,
+                    rotateZ: 8,
+                    duration: 2,
                     x: "-88%",
                     y: "12%",
-                    duration: 2,
                     ease: "power2.inOut",
                 },
-                "<"
-            );
-
-            tl.fromTo(
-                "#banner-bg-2",
-                { autoAlpha: 0 },
-                { autoAlpha: 1, duration: 1 },
-                "<"
-            );
-
-            tl.to(
-                "#phone-1-bg",
-                { width: "150%", height: "100%", duration: 1 },
                 "<"
             );
 
@@ -317,22 +264,6 @@ export function BannerMidle({ idols }: Props) {
                     { x: "0%", y: 0, rotate: 0, autoAlpha: 1, duration: 1 },
                     index == 0 ? "<=+0.3" : "<"
                 );
-
-                // const random = Math.floor(Math.random() * 100) + 1;
-
-                // if (index > 0) {
-                //     tl.to(
-                //         "#phone",
-                //         {
-                //             rotateX: random % 2 != 0 ? "-=4" : "+=4",
-                //             rotateY: random % 2 != 0 ? "+=4" : "-=4",
-                //             rotateZ: random % 2 != 0 ? "-=4" : "+=4",
-                //             duration: 1,
-                //             ease: "power2.inOut",
-                //         },
-                //         "<"
-                //     );
-                // }
 
                 tl.fromTo(
                     phoneImageEls[index + 1],
@@ -378,7 +309,6 @@ export function BannerMidle({ idols }: Props) {
             >
                 <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0} className='overflow-hidden'>
                     <Box
-                        id='banner-bg-1'
                         pos={"absolute"}
                         top={0}
                         left={"50%"}
@@ -388,42 +318,26 @@ export function BannerMidle({ idols }: Props) {
                             background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.4) 0%, rgba(18, 2, 32, 0) 100%)"
                         }}
                     />
-
-                    <Box
-                        id='banner-bg-2'
-                        pos={"absolute"}
-                        top={"0"}
-                        right={"0"}
-                        w={"50%"}
-                        className='aspect-square -translate-y-1/3 translate-x-1/3'
-                        style={{
-                            background: "radial-gradient(50% 50% at 50% 50%, rgba(17, 96, 175, 0.3) 0%, rgba(17, 96, 175, 0) 100%)"
-                        }}
-                    />
                 </Box>
 
-                <Flex
+                <Box
                     pos={"absolute"}
                     top={"50%"}
                     left={"50%"}
                     id='banner-logo'
                     c={"white"}
-                    h={{ lg: 400, xl: 420, '2xl': 458 }}
-                    align={"center"}
-                    gap={{ base: 3, md: 110, xl: 130, "2xl": 150 }}
+                    h={{ base: "48.1481481481vh" }}
                 >
-                    <Box pos={"absolute"} top={"50%"} left={0} w={"100%"} className='aspect-[1.66812227074] -translate-y-1/2'>
-                        <Image src={logo} alt='logo' id='banner-logo-img' fill className='object-cover' />
-                        <Image src={logoWhite} alt='logo' id='banner-white-logo-img' fill className='object-cover z-10' />
-                    </Box>
-
+                    <Image src={logo} alt='logo' id='banner-logo-img' className='h-full w-auto object-cover' />
                     <Text
                         id='text-1-wrap'
-                        pr={{ base: 5, md: 6, xl: 8, "2xl": 10 }}
-                        // fz={{ base: 36, sm: 40, md: 45, lg: 50, xl: 56, "2xl": 60 }}
+                        pos={"absolute"}
+                        top={"50%"}
+                        left={"-0.6vh"}
+                        // fz={{ base: 40, sm: 46, md: 52, lg: 56, xl: 60, "2xl": 64 }}
                         fz={{ base: "clamp(40px, 6.2vh, 64px)" }}
                         fw={900}
-                        className='overflow-hidden whitespace-nowrap'
+                        className='-translate-y-1/2 overflow-hidden whitespace-nowrap'
                     >
                         <span id='text-1' className='block'>
                             WHO’S IN
@@ -432,16 +346,19 @@ export function BannerMidle({ idols }: Props) {
 
                     <Text
                         id='text-2-wrap'
-                        className='overflow-hidden whitespace-nowrap'
-                        fz={{ base: "clamp(40px, 6.2vh, 64px)" }}
+                        pos={"absolute"}
+                        top={"50%"}
+                        // fz={{ base: 40, sm: 46, md: 52, lg: 56, xl: 60, "2xl": 64 }}
+                        fz={{ base: "clamp(40px, 5.92592592593vh, 64px)" }}
                         fw={900}
-                        pl={{ base: 5, md: 6, xl: 8, "2xl": 10 }}
+                        left={"51vh"}
+                        className='-translate-y-1/2 overflow-hidden whitespace-nowrap'
                     >
                         <span id='text-2' className='block'>
                             ALREADY
                         </span>
                     </Text>
-                </Flex>
+                </Box>
                 <Phase2 idols={idols} />
             </Flex>
         </Box>
@@ -579,64 +496,10 @@ const phoneImages = [
     phone2,
     phone3,
     phone4,
-    phone5,
-    phone6,
-    phone7,
-    phone8,
+    phone5
 ];
 
 const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {
-    const ref = useRef<HTMLDivElement>(null);
-
-    const [availableMove, setAvailableMove] = useState(false);
-
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-
-    const rotateX = useTransform(y, [-0.5, 0.5], [15, -15]); // nghiêng trên - dưới
-    const rotateY = useTransform(x, [-0.5, 0.5], [-15, 15]);
-
-    const handleMouseMove = (e: React.MouseEvent) => {
-        if (!availableMove) return;
-
-        const rect = ref.current?.getBoundingClientRect();
-        if (!rect) return;
-
-        // Lấy vị trí tương đối con trỏ so với tâm
-        const offsetX = (e.clientX - rect.left) / rect.width - 0.5;
-        const offsetY = (e.clientY - rect.top) / rect.height - 0.5;
-
-        console.log("move");
-
-        x.set(offsetX);
-        y.set(offsetY);
-    };
-
-    // const handleMouseLeave = () => {
-    //     console.log("leave");
-    //     // x.set(0);
-    //     // y.set(0);
-    // };
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const phoneWrapEl = document.getElementById("phone-wrap");
-            if (!phoneWrapEl) {
-                return;
-            }
-            setAvailableMove(Number(phoneWrapEl.style.opacity) > 1.6);
-            if (Number(phoneWrapEl.style.opacity) < 1.5) {
-                x.set(0);
-                y.set(0);
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, [x, y]);
-
     return (
         <Flex
             id='phone-1-section'
@@ -650,100 +513,74 @@ const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {
         >
             <Circle />
             <Phase3 />
-
-            <motion.div
-                id='phone-wrap'
-                ref={ref}
-                onMouseMove={handleMouseMove}
-                style={{
-                    perspective: 1000,
-                }}
-                className="relative z-10"
+            <Box
+                id='phone'
+                w={"23.802083333vw"}
+                pos={"relative"}
+                className=' aspect-[0.65312441358] z-10'
             >
-                <motion.div
-                    style={{
-                        rotateX,
-                        rotateY,
-                        transformStyle: "preserve-3d",
-                    }}
-                    className={twMerge('w-fit h-fit')}
+
+                <Image src={phoneBorder} alt='phoneBorder' fill className='object-cover' />
+                <Box
+                    pos={"absolute"}
+                    top={"50%"}
+                    left={"50%"}
+                    w={"62.8%"}
+                    h={"88%"}
+                    bg={"black"}
+                    className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[32px]'
+                />
+
+                <Box
+                    id='center-idol-fake'
+                    pos={"absolute"}
+                    w={'17.427604166vw'}
+                    px={'1.32005208333vw'}
+                    top={"50%"}
+                    left={"50%"}
+                    className='overflow-hidden'
                 >
-                    <Box
-                        id='phone'
-                        w={"23.802083333vw"}
-                        pos={"relative"}
-                        className='aspect-[0.65312441358] z-10'
-                    >
-                        <Box
-                            id="phone-1-bg"
-                            pos={"absolute"} w={"200%"} h={"200%"} top={"50%"} left={"50%"} className='-translate-y-1/2 -translate-x-1/2 will-change-transform'
-                            style={{
-                                background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.3) 0%, rgba(18, 2, 32, 0) 100%)"
-                            }}
-                        />
-                        <Image src={phoneBorder} alt='phoneBorder' fill className='object-cover' />
-                        <Box
-                            pos={"absolute"}
-                            top={"50%"}
-                            left={"50%"}
-                            w={"62.8%"}
-                            h={"88%"}
-                            bg={"black"}
-                            className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[32px]'
-                        />
+                    <IdolItem idol={centerIdol} centerRealIndex={1} index={1} isInView={true} />
+                </Box>
+                {
+                    phoneImages.map((o, index) => {
+                        return (
+                            <Box
+                                key={index}
+                                pos={"absolute"}
+                                top={"50%"}
+                                left={"50%"}
+                                w={"62.8%"}
+                                className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[32px]'
+                            >
+                                <Image
+                                    key={index}
+                                    src={o}
+                                    alt='phone image'
+                                    className='relative phone-image object-cover will-change-transform transform-3d w-full h-auto '
+                                />
+                            </Box>
+                        );
+                    })
+                }
+                <Flex
+                    id="phone-text"
+                    pos={"absolute"}
+                    bottom={{ base: "-15%" }}
+                    left={"50%"}
+                    direction={"column"}
+                    gap={{ base: 8, md: 10, xl: 12 }}
+                    align={"center"}
+                >
+                    <Text fz={{ base: 11, sm: 12, md: 14, lg: 16, xl: 18, "2xl": 20 }} lh={1.2} c={"#FFFFFFCC"} className='whitespace-nowrap'>
+                        Your content. Your rules. Public, private, or premium.
+                    </Text>
 
-                        <Box
-                            id='center-idol-fake'
-                            pos={"absolute"}
-                            w={'17.427604166vw'}
-                            px={'1.32005208333vw'}
-                            top={"50%"}
-                            left={"50%"}
-                            className='overflow-hidden will-change-transform'
-                        >
-                            <IdolItem idol={centerIdol} centerRealIndex={1} index={1} isInView={true} />
-                        </Box>
-                        {
-                            phoneImages.map((o, index) => {
-                                return (
-                                    <Box
-                                        key={index}
-                                        pos={"absolute"}
-                                        top={"50%"}
-                                        left={"50%"}
-                                        w={"62.8%"}
-                                        className='-translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[32px]'
-                                    >
-                                        <Image
-                                            key={index}
-                                            src={o}
-                                            alt='phone image'
-                                            className='relative phone-image object-cover will-change-transform transform-3d w-full h-auto '
-                                        />
-                                    </Box>
-                                );
-                            })
-                        }
-                        <Flex
-                            id="phone-text"
-                            pos={"absolute"}
-                            bottom={{ base: "-15%" }}
-                            left={"50%"}
-                            direction={"column"}
-                            gap={{ base: 8, md: 10, xl: 12 }}
-                            align={"center"}
-                        >
-                            <Text fz={{ base: 11, sm: 12, md: 14, lg: 16, xl: 18, "2xl": 20 }} lh={1.2} c={"#FFFFFFCC"} className='whitespace-nowrap'>
-                                Your content. Your rules. Public, private, or premium.
-                            </Text>
-
-                            <Text fz={{ base: 20, sm: 22, md: 26, lg: 28, xl: 30, "2xl": 32 }} fw={500} lh={1.2} c={"white"} className='whitespace-nowrap'>
-                                KNKY adapts to you!
-                            </Text>
-                        </Flex>
-                    </Box>
-                </motion.div>
-            </motion.div>
+                    <Text fz={{ base: 20, sm: 22, md: 26, lg: 28, xl: 30, "2xl": 32 }} fw={500} lh={1.2} c={"white"} className='whitespace-nowrap'>
+                        KNKY adapts to you!
+                    </Text>
+                </Flex>
+            </Box >
         </Flex>
     );
 };

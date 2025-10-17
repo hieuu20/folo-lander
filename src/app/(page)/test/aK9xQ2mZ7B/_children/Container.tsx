@@ -23,23 +23,35 @@ import { INews } from "@/app/api/_entities";
 import News from "./News";
 import { TimeToShine } from "./TimeToShine";
 import { TimeToShineMobile } from "./mobile/TimeToShineMobile";
+import { BannerTablet } from "./tablet/BannerTablet";
 
 interface Props {
     idols: ICreatorIdol[],
     news: INews[],
 }
 export default function Container(props: Props) {
-    const { isMb } = useBrowserWidth();
+    const { width } = useBrowserWidth();
     const pathname = usePathname();
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
 
+    const render = () => {
+        if (width < 992) {
+            return <Mobile {...props} />;
+        }
+
+        if (width < 1240) {
+            <Tablet {...props} />;
+        }
+
+        return <Desktop {...props} />;
+    };
+
     return (
         <>
-            {!isMb && <Desktop {...props} />}
-            {isMb && <Mobile {...props} />}
+            {render()}
         </>
     );
 }
@@ -131,6 +143,46 @@ const Desktop = ({ idols, news }: Props) => {
                     <News news={news} />
                 </Box>
                 <TimeToShine />
+                <Footer />
+            </Box>
+        </Box>
+    );
+};
+
+const Tablet = ({ idols, news }: Props) => {
+    const main = useRef<any>();
+    const smoother = useRef<ScrollSmoother>();
+
+    useGSAP(
+        () => {
+            // smoother.current = ScrollSmoother.create({
+            //   smooth: 0,
+            //   effects: true,
+            //   smoothTouch: 0.5,
+            //   ignoreMobileResize: true,
+            //   normalizeScroll: true
+            // });
+        },
+        {
+            scope: main,
+        }
+    );
+
+    return (
+        <Box id="smooth-wrapper" ref={main}>
+            <Box
+                id="smooth-content"
+                className='bg-contain bg-repeat'
+                style={{
+                    backgroundImage: "url('/version-3/banner/bg-mb.webp')",
+                    backgroundColor: "#0A0014"
+                }}
+            >
+                <BannerTablet idols={idols} />
+                <UnlimitedMobile />
+                <MoreMobile />
+                <GrowthMobile news={news} />
+                {/* <News news={news} /> */}
                 <Footer />
             </Box>
         </Box>

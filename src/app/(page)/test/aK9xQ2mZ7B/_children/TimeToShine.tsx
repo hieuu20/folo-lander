@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import SectionButton from '@/components/buttons/SectionButton';
 import { Box, Flex, Text } from '@mantine/core';
 import { AnimatePresence, motion, useAnimationFrame, useMotionValue, useTransform } from 'framer-motion';
 import Image from 'next/image';
@@ -219,10 +218,8 @@ const ImageCircle = ({ setIsHovering, isHovering, type = 'right' }: { type?: "le
                                 const x = Math.cos(angle);
                                 const isScale = getIsScale(x);
 
-                                console.log({ x, i });
-
                                 if (isScale) {
-                                    return type == "right" ? 0.5 + 0.6 * (1 - x) : 0.5 + 0.6 * (1 + x);
+                                    return type == "right" ? 0.52 + 0.6 * (1 - x) : 0.52 + 0.6 * (1 + x);
                                 }
                                 return 1;
                             }),

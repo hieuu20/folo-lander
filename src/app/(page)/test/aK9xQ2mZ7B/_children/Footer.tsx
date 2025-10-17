@@ -26,7 +26,7 @@ import flag2 from "@public/footer/flag-2.png";
 
 import xmaIcon from "@public/version-3/footer/xma.webp";
 // import chartImg from "@public/version-3/footer/chart.svg";
-import chartImg from "@public/version-3/footer/chart-disable.svg";
+// import chartImg from "@public/version-3/footer/chart-disable.svg";
 import SectionButton from "@/components/buttons/SectionButton";
 
 const socials = [
@@ -164,7 +164,7 @@ export function Footer() {
                     <Flex
                         w={"100%"}
                         direction={"column"}
-                        align={{base: "start", md: "center"}}
+                        align={{ base: "start", md: "center" }}
                         gap={{ base: 24 }}
                         mb={{ base: 48, sm: 60, md: 80, lg: 90, xl: 104, "2xl": 120 }}
                     >

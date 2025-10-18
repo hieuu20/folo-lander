@@ -31,7 +31,7 @@ export function Unlimited() {
                     trigger: main.current,
                     pin: true,
                     start: 'top top',
-                    end: '+=1000',
+                    end: '+=30%',
                     markers: false,
                     scrub: true,
                 },
@@ -79,12 +79,11 @@ export function Unlimited() {
     return (
         <Box bg={"#F0F0FC"}>
             <Box className='container-version3'>
-                <Box id='unlimited' h={2000}
+                <Box id='unlimited' h={"142vh"}
                     style={{
                         // backgroundImage: "url('/version-3/unlimited/bg-pc.webp')",
                         backgroundColor: "#F0F0FC"
                     }}
-                    className='bg-contain'
                 >
                     <Box ref={main} className='z-10' bg={"#F0F0FC"}>
                         <Box
@@ -94,7 +93,7 @@ export function Unlimited() {
                                 backgroundColor: "#F0F0FC"
                             }}
                             py={{ base: 104, md: 110, xl: 115, "2xl": 120 }}
-                            className='bg-contain w-full aspect-[1.63148148148]'
+                            className='bg-cover w-full aspect-[1.63148148148]'
                         >
                             <Title
                                 w={{ base: "100%" }}

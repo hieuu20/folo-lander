@@ -20,6 +20,17 @@ export function TimeToShineMobile() {
                         background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.4) 0%, rgba(18, 2, 32, 0) 100%)"
                     }}
                 />
+                <Box
+                    pos={"absolute"}
+                    top={"50%"}
+                    left={"50%"}
+                    w={"300%"}
+                    style={{
+                        background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.3) 0%, rgba(18, 2, 32, 0) 100%)",
+                    }}
+                    className='aspect-[4.44578313253] -translate-x-1/2 -translate-y-1/2'
+                />
+
                 <Flex pos={"relative"} className='container-version3' align={"center"} justify={"center"} h={"100%"} >
                     <ImageCircle />
                     <ImageCircle type='left' />

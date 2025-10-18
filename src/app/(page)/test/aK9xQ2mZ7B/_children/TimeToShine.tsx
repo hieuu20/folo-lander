@@ -49,6 +49,17 @@ export function TimeToShine() {
                     }}
                 />
 
+                <Box 
+                    pos={"absolute"}
+                    top={"50%"}
+                    left={"50%"}
+                    w={"150%"}
+                    style={{
+                        background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.4) 0%, rgba(18, 2, 32, 0) 100%)"
+                    }}
+                    className='aspect-[5.38461538462] -translate-x-1/2 -translate-y-1/2'
+                />
+
                 <Flex
                     ref={containerRef}
                     pos={"relative"} className='container-version3' align={"center"} justify={"center"} h={"100%"}

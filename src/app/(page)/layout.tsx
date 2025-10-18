@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     apple: "/icons/shortcut-icon.png",
   },
   openGraph: {
-    title: "Premium Starts With You 👑 - Creators earn, fans experience. <br/> Join the award winning social marketplace! 🏆",
+    title: "Premium Starts With You 👑 - Creators earn, fans experience. Join the award winning social marketplace! 🏆",
     description:
       "Let's get KNKY! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
     images: [

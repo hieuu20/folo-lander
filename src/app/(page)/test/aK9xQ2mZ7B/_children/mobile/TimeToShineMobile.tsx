@@ -12,16 +12,6 @@ export function TimeToShineMobile() {
             <Box id='Running' pos={"relative"} w={"100%"} bg={"#160328"} className='overflow-hidden aspect-[0.46284829721]'>
                 <Box
                     pos={"absolute"}
-                    bottom={0}
-                    left={"50%"}
-                    w={"120%"}
-                    className='aspect-square translate-y-2/3 -translate-x-1/2 overflow-hidden z-10'
-                    style={{
-                        background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.4) 0%, rgba(18, 2, 32, 0) 100%)"
-                    }}
-                />
-                <Box
-                    pos={"absolute"}
                     top={"50%"}
                     left={"50%"}
                     w={"300%"}

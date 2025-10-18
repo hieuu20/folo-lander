@@ -38,17 +38,6 @@ export function TimeToShine() {
                 w={"100%"} h={"110vh"} bg={"#160328"}
                 className='overflow-hidden'
             >
-                <Box
-                    pos={"absolute"}
-                    bottom={0}
-                    left={"50%"}
-                    w={"120%"}
-                    className='aspect-[6.68049792531] translate-y-2/3 -translate-x-1/2 overflow-hidden z-10'
-                    style={{
-                        background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.4) 0%, rgba(18, 2, 32, 0) 100%)"
-                    }}
-                />
-
                 <Box 
                     pos={"absolute"}
                     top={"50%"}

@@ -13,7 +13,6 @@ import { BannerMobile } from "./mobile/BannerMoblie";
 import { UnlimitedMobile } from "./mobile/UnlimitedMobile";
 import { GrowthMobile } from "./mobile/GrowthMobile";
 import { MoreMobile } from "./mobile/MoreMobile";
-import { Footer } from "./Footer";
 import { BannerPc } from "./BannerPc";
 import { Unlimited } from "./Unlimited";
 import { Growth } from "./Growth";
@@ -24,6 +23,7 @@ import News from "./News";
 import { TimeToShine } from "./TimeToShine";
 import { TimeToShineMobile } from "./mobile/TimeToShineMobile";
 import { BannerTablet } from "./tablet/BannerTablet";
+import { Footer } from "@/components/layouts";
 
 interface Props {
     idols: ICreatorIdol[],

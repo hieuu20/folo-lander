@@ -31,7 +31,7 @@ export function Unlimited() {
                     trigger: main.current,
                     pin: true,
                     start: 'top top',
-                    end: '+=30%',
+                    end: '+=40%',
                     markers: false,
                     scrub: true,
                 },
@@ -79,7 +79,7 @@ export function Unlimited() {
     return (
         <Box bg={"#F0F0FC"}>
             <Box className='container-version3'>
-                <Box id='unlimited' h={"142vh"}
+                <Box id='unlimited' h={"154vh"}
                     style={{
                         // backgroundImage: "url('/version-3/unlimited/bg-pc.webp')",
                         backgroundColor: "#F0F0FC"

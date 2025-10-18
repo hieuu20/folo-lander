@@ -108,7 +108,7 @@ export function BannerMidle({ idols }: Props) {
 
             tl.to(
                 "#banner-logo",
-                { top: "20%", duration: 1 },
+                { top: "16%", duration: 1 },
                 "<"
             );
 
@@ -122,7 +122,7 @@ export function BannerMidle({ idols }: Props) {
             tl.fromTo(
                 "#mySwiper",
                 { y: 0, },
-                { y: 0, duration: 1.2 },
+                { y: 0, duration: 1.5 },
             );
 
             tl.fromTo(
@@ -181,8 +181,6 @@ export function BannerMidle({ idols }: Props) {
                 { scale: 1.1, y: "-10%", duration: 1 },
                 "<"
             );
-
-
 
 
 
@@ -328,7 +326,6 @@ export function BannerMidle({ idols }: Props) {
                         <Image src={logoWhite} alt='logo' id='banner-white-logo-img' className='object-cover z-10' />
                     </Box>
 
-
                     <Text
                         id='text-2-wrap'
                         fz={{ base: 40, sm: 46, md: 52, lg: 56, xl: 60, "2xl": 64 }}
@@ -375,7 +372,7 @@ const Phase2 = ({ idols }: Props) => {
                 timeoutId = setTimeout(() => {
                     swiper?.autoplay?.start();
                     isAutoplaying.current = true;
-                }, 1000);
+                }, 500);
             } else if (!shouldPlay && isAutoplaying.current) {
                 swiper?.autoplay?.stop();
                 isAutoplaying.current = false;
@@ -422,7 +419,7 @@ const Phase2 = ({ idols }: Props) => {
                 pos={"absolute"}
                 w={"100%"}
                 left={0}
-                top={"64vh"}
+                top={"56vh"}
                 className='-translate-y-1/2'
             >
                 <Swiper
@@ -485,7 +482,7 @@ const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {
             direction={"column"}
             align={"center"}
             justify={"center"}
-            top={"64vh"}
+            top={"56vh"}
             left={"50%"}
             className='container-version3 will-change-transform -translate-y-1/2 -translate-x-1/2'
         >
@@ -573,7 +570,7 @@ const Phone2 = ({ isInView }: { isInView: boolean }) => {
             pos={"absolute"}
             w={"62.3306666667vw"}
             left={"50%"}
-            top={"64vh"}
+            top={"56vh"}
             className='-translate-y-1/2 -translate-x-1/2 aspect-[0.65383647095] will-change-transform'
         >
             <motion.div

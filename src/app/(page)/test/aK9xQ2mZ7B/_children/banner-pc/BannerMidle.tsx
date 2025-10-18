@@ -606,16 +606,15 @@ const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {
         const offsetX = (e.clientX - rect.left) / rect.width - 0.5;
         const offsetY = (e.clientY - rect.top) / rect.height - 0.5;
 
-        console.log("move");
-
         x.set(offsetX);
         y.set(offsetY);
     };
 
     const handleMouseLeave = () => {
-        console.log("leave");
-        x.set(0);
-        y.set(0);
+        setTimeout(() => {
+            x.set(0);
+            y.set(0);
+        }, 300);
     };
 
     useEffect(() => {
@@ -625,6 +624,7 @@ const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {
                 return;
             }
             setAvailableMove(Number(phoneWrapEl.style.opacity) > 1.6);
+
             if (Number(phoneWrapEl.style.opacity) < 1.5) {
                 x.set(0);
                 y.set(0);

@@ -81,7 +81,7 @@ export function Unlimited() {
             <Box className='container-version3'>
                 <Box id='unlimited' h={2000}
                     style={{
-                        backgroundImage: "url('/version-3/unlimited/bg-pc.webp')",
+                        // backgroundImage: "url('/version-3/unlimited/bg-pc.webp')",
                         backgroundColor: "#F0F0FC"
                     }}
                     className='bg-contain'

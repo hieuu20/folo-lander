@@ -130,7 +130,7 @@ export function TimeToShine() {
                                     top: position.y,
                                     transform: 'translate(-50%, -50%)',
                                 }}
-                                className="absolute z-[9999] bg-[#AC1991] text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-lg pointer-events-none select-none"
+                                className="absolute z-[9999] bg-[#AC1991] text-white text-base font-semibold px-5 py-3 rounded-lg shadow-lg pointer-events-none select-none"
                             >
                                 Join KNKY →
                             </motion.div>
@@ -143,11 +143,11 @@ export function TimeToShine() {
 }
 
 const images = Array.from({ length: 38 }, (_, i) => {
-    if (i <= 19) {
-        return `/version-3/circle/${i + 1}.png`;
+    if (i <= 14) {
+        return `/version-3/circle/${i + 1}.webp`;
     }
 
-    return `/version-3/circle/${Math.floor(Math.random() * 20) + 1}.png`;
+    return `/version-3/circle/${Math.floor(Math.random() * 14) + 1}.webp`;
 });
 
 const ImageCircle = ({ setIsHovering, isHovering, type = 'right' }: { type?: "left" | "right", setIsHovering: (isHoving: boolean) => void, isHovering: boolean }) => {
@@ -237,15 +237,6 @@ const ImageCircle = ({ setIsHovering, isHovering, type = 'right' }: { type?: "le
                             height={50}
                             className="object-cover aspect-[0.63459983831]"
                             style={{ width: size }}
-                        />
-                        <Box
-                            bg={"#37015D"}
-                            pos={"absolute"}
-                            top={0}
-                            left={0}
-                            w={"100%"}
-                            h={"100%"}
-                            className='opacity-60 '
                         />
                     </motion.div>
                 );

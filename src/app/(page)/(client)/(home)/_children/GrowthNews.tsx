@@ -21,7 +21,7 @@ interface Props {
     news: INews[];
 }
 
-export default function News({ news }: Props) {
+export default function GrowthNews({ news }: Props) {
     const [height, setHeight] = useState(0);
     const [scope] = useAnimate();
     const isInView = useInView(scope, { amount: 0.2, once: true });

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Box, Flex, Input, Text } from '@mantine/core';
+import { Box, Flex, Text } from '@mantine/core';
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import SectionButton from '@/components/buttons/SectionButton';
@@ -18,6 +18,25 @@ export const BannerTop = () => {
 
         if (videoRef.current.paused) {
             videoRef.current.play();
+        }
+    }, []);
+
+    const ref = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        const input = ref.current;
+        if (!input) return;
+        input.readOnly = true;
+
+        setTimeout(() => {
+            input.readOnly = false;
+        }, 300);
+    }, []);
+
+    useEffect(() => {
+        const input = document.getElementById('banner-input');
+        if (input && document.activeElement === input) {
+            input.blur();
         }
     }, []);
 
@@ -95,7 +114,6 @@ export const BannerTop = () => {
 
                             <motion.div
                                 initial={{ y: "30%", opacity: 0 }}
-                                // animate={isInView ? { y: 0, opacity: 1 } : {}}
                                 whileInView={{ y: 0, opacity: 1 }}
                                 viewport={{ once: true }}
                                 transition={{
@@ -136,25 +154,20 @@ export const BannerTop = () => {
                                 w={{ base: 293, sm: 320, md: 360, lg: 390, xl: 410, "2xl": 438 }}
                                 align={"center"}
                             >
-                                <Input
-                                    bg={"transparent"}
-                                    fz={{ base: 16, md: 18, "2xl": 20 }}
-                                    fw={500}
-                                    placeholder='Your username'
+                                <input
+                                    ref={ref}
+                                    id='banner-input'
                                     autoFocus={false}
                                     value={userName}
                                     onChange={(e) => setUserName(e.target.value)}
-                                    classNames={{
-                                        input: "placeholder-[#FFFFFF59] bg-transparent pl-1 md:pl-2",
-                                        wrapper: "bg-transparent"
-                                    }}
-                                    c={"white"}
+                                    placeholder='Your username'
+                                    className='bg-transparent text-base font-medium placeholder-[#FFFFFF59] pl-1 md:pl-2 text-white outline-none w-[68%]'
                                 />
 
                                 <SectionButton
                                     show={true}
                                     title='Create Now →'
-                                    className='rounded-2xl'
+                                    className='rounded-2xl block'
                                     fz={{ base: 14, md: 15, "2xl": 16 }}
                                     fw={500}
                                     w={{ base: 110, md: 120, xl: 124 }}

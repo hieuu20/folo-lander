@@ -93,7 +93,7 @@ const Mobile = ({ idols, news }: Props) => {
                     id='News'
                     w={{ base: "100%" }}
                     pos={"relative"}
-                    className='aspect-[0.5105357142]'
+                    className='aspect-[0.505]'
                 >
                     <News news={news} />
                 </Box>

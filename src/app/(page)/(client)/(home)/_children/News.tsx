@@ -89,10 +89,10 @@ export default function News({ news }: Props) {
             top={0}
             left={0}
             bg={"#160328"}
-            py={{ base: 80, md: 90, xl: 100, "2xl": 106 }}
+            py={{ base: 100, md: 108, "2xl": 116 }}
         >
-            <Image src={bg1} alt='bg1' className='w-[8.5%] h-auto absolute bottom-0 left-0' />
-            <Image src={bg2} alt='bg-2' className='w-[8.5%] h-auto absolute top-0 right-0' />
+            <Image src={bg1} alt='bg1' className='w-[40%] md:w-[8.5%] h-auto absolute bottom-0 left-0' />
+            <Image src={bg2} alt='bg-2' className='w-[40%] md:w-[8.5%] h-auto absolute top-0 right-0' />
             <Box className='container-version3'>
                 <Title
                     w={{ base: "100%" }}

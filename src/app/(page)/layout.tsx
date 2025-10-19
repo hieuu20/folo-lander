@@ -43,6 +43,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: process.env.NEXT_PUBLIC_DOMAIN,
   },
+  viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
 };
 
 export default function RootLayout({
@@ -59,6 +60,10 @@ export default function RootLayout({
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="KNKY" />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
         {/* <Script
           src={`https://www.googletagmanager.com/gtag/js?id=G-D8RVL2BLVD`}

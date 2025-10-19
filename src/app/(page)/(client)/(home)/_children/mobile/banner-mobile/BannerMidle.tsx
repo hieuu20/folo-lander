@@ -275,7 +275,7 @@ export function BannerMidle({ idols }: Props) {
     return (
         <Box
             w={"100%"}
-            h={17950}
+            h={18000}
         >
             <Flex
                 ref={main}

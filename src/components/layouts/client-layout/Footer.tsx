@@ -164,7 +164,7 @@ export function Footer() {
           <Flex
             w={"100%"}
             direction={"column"}
-            align={{ base: "start", md: "center" }}
+            align={{ base: "center" }}
             gap={{ base: 24 }}
             mb={{ base: 48, sm: 60, md: 80, lg: 90, xl: 104, "2xl": 120 }}
           >
@@ -208,13 +208,14 @@ export function Footer() {
                   span={{ base: 12, lg: 4 }}
                 >
                   <Flex
-                    justify={{ base: "unset", md: index == 0 ? "unset" : (index == 1 ? "center" : "flex-end") }}
+                    justify={{ base: "center", md: index == 0 ? "unset" : (index == 1 ? "center" : "flex-end") }}
                     w={"100%"}
                   >
                     <Flex
                       w={"fit-content"}
                       direction={"column"}
                       gap={{ base: 4, md: 6, xl: 8 }}
+                      align={{ base: "center", md: "unset" }}
                     >
                       <Text c={"#FFFFFF99"} fz={{ base: 13, md: 14, lg: 15, xl: 16 }} lh={1.5}>
                         {f.title}
@@ -283,7 +284,7 @@ export function Footer() {
               justify={"space-between"}
               bg={"#200638"}
               className='rounded-xl'
-              w={{ base: "90%", md: "26%" }}
+              w={{ base: "88%", md: "26%" }}
               mx={"auto"}
             >
               <Flex direction={"column"} c={"white"} gap={4}>
@@ -313,7 +314,7 @@ export function Footer() {
             </Flex>
           </Flex>
 
-          <Flex direction={{ base: "column", md: "row" }} gap={24} justify={"space-between"}>
+          <Flex direction={{ base: "column", md: "row" }} gap={{ base: 48, md: 24 }} mt={{ base: 48, md: 0 }} justify={"space-between"}>
             <Link
               href={"https://www.xbiz.com/news/292013/2025-euro-xma-winners-announced"}
               target="_blank"

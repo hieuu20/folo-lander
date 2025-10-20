@@ -35,7 +35,9 @@ export function TimeToShine() {
             <Box
                 id='Running'
                 pos={"relative"}
-                w={"100%"} h={"110vh"} bg={"#160328"}
+                w={"100%"} h={"110vh"} 
+                bg={"#160328"}
+                // bg={"white"}
                 className='overflow-hidden'
             >
                 <Box 
@@ -74,9 +76,8 @@ export function TimeToShine() {
                             c={"white"}
                             fw={900}
                             lh={1}
-                            className='overflow-hidden'
                             style={{
-                                textShadow: "0px 4px 20px #000000CC, 0px 8px 20px rgba(0, 0, 0, 0.3)",
+                                textShadow: "0px 0px 30px #000000CC",
                             }}
                         >
                             <motion.span
@@ -98,9 +99,8 @@ export function TimeToShine() {
                             c={"white"}
                             fw={900}
                             lh={1}
-                            className='overflow-hidden'
                             style={{
-                                textShadow: "0px 4px 20px #000000CC, 0px 8px 20px rgba(0, 0, 0, 0.3)",
+                                textShadow: "0px 0px 30px #000000CC",
                             }}
                         >
                             <motion.span
@@ -109,7 +109,8 @@ export function TimeToShine() {
                                 viewport={{ once: true }}
                                 transition={{
                                     duration: 0.4,
-                                    ease: "linear"
+                                    ease: "linear",
+                                    delay: 0.1
                                 }}
                                 className="inline-block"
                             >

@@ -41,9 +41,8 @@ export function TimeToShineMobile() {
                             c={"white"}
                             fw={900}
                             lh={1}
-                            className='overflow-hidden'
                             style={{
-                                textShadow: "0px 4px 20px #000000CC, 0px 8px 20px rgba(0, 0, 0, 0.3)",
+                                textShadow: "0px 0px 30px #000000CC",
                             }}
                         >
                             <motion.span
@@ -65,9 +64,8 @@ export function TimeToShineMobile() {
                             c={"white"}
                             fw={900}
                             lh={1}
-                            className='overflow-hidden'
                             style={{
-                                textShadow: "0px 4px 20px #000000CC, 0px 8px 20px rgba(0, 0, 0, 0.3)",
+                                textShadow: "0px 0px 30px #000000CC",
                             }}
                         >
                             <motion.span
@@ -76,7 +74,8 @@ export function TimeToShineMobile() {
                                 viewport={{ once: true }}
                                 transition={{
                                     duration: 0.4,
-                                    ease: "linear"
+                                    ease: "linear",
+                                    delay: 0.1
                                 }}
                                 className="inline-block"
                             >

@@ -30,6 +30,7 @@ import phone8 from "@public/version-3/banner/phone/8.webp";
 import phone from "@public/version-3/banner/phone/phone-border.webp";
 
 import { Circle, Phase3 } from './BannerBottom';
+import { useBrowserWidth } from '@/hooks';
 
 interface Props {
     idols: ICreatorIdol[];
@@ -37,7 +38,21 @@ interface Props {
 
 
 export function BannerMidle({ idols }: Props) {
-    const main = useRef(null);
+    const main = useRef<HTMLDivElement>(null);
+
+    const [height, setHeight] = useState(0);
+
+    const [width, setWidth] = useState(0);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setHeight(window.screen.height);
+        }
+
+        const containerWidth = main.current?.getBoundingClientRect();
+        setWidth(containerWidth?.width || 0);
+    }, []);
+
     useGSAP(
         () => {
             const tl = gsap.timeline({
@@ -176,6 +191,20 @@ export function BannerMidle({ idols }: Props) {
                 "<"
             );
 
+            tl.fromTo(
+                "#phone-1-bg",
+                { autoAlpha: 0 },
+                { autoAlpha: 1, duration: 1 },
+                "<"
+            );
+
+            tl.fromTo(
+                "#banner-bg-1",
+                { autoAlpha: 1 },
+                { autoAlpha: 0, duration: 1 },
+                "<"
+            );
+
             tl.to(
                 "#phone",
                 { scale: 1.1, y: "-10%", duration: 1 },
@@ -210,6 +239,19 @@ export function BannerMidle({ idols }: Props) {
                 "#image-circle1",
                 { y: 0, opacity: 1, rotate: 60 },
                 { y: "-136%", opacity: 0, rotate: 95, duration: 2, ease: "none" },
+            );
+
+            tl.fromTo(
+                "#banner-bg-2",
+                { autoAlpha: 0 },
+                { autoAlpha: 1, duration: 1 },
+                "<"
+            );
+
+            tl.to(
+                "#phone-1-bg",
+                { width: "140%", height: "100%", duration: 1 },
+                "<"
             );
 
             tl.fromTo(
@@ -283,20 +325,36 @@ export function BannerMidle({ idols }: Props) {
                 justify={"center"}
                 align={"center"}
                 w={"100%"}
-                className='overflow-hidden aspect-[0.46205357142]'
+                className='overflow-hidden'
+                style={{
+                    aspectRatio: width / height,
+                }}
             >
-                {/* <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0} className='overflow-hidden'>
+                <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0} className='overflow-hidden'>
                     <Box
+                        id='banner-bg-1'
                         pos={"absolute"}
                         top={0}
                         left={"50%"}
-                        w={"500%"}
+                        w={"400%"}
                         className='aspect-[6.68049792531] -translate-y-1/2 -translate-x-1/2'
                         style={{
                             background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.4) 0%, rgba(18, 2, 32, 0) 100%)"
                         }}
                     />
-                </Box> */}
+
+                    <Box
+                        id='banner-bg-2'
+                        pos={"absolute"}
+                        top={"0"}
+                        right={"0"}
+                        w={"160%"}
+                        className='aspect-[1.39776951673] -translate-y-[40%] translate-x-[40%]'
+                        style={{
+                            background: "radial-gradient(50% 50% at 50% 50%, rgba(17, 96, 175, 0.3) 0%, rgba(17, 96, 175, 0) 100%)"
+                        }}
+                    />
+                </Box>
 
                 <Flex
                     id='banner-logo'
@@ -475,6 +533,8 @@ const phoneImages = [
 ];
 
 const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {
+
+
     return (
         <Flex
             id='phone-1-section'
@@ -495,6 +555,13 @@ const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {
                 w={"63.3306666667vw"}
                 className='aspect-[0.65383647095] origin-top will-change-transform'
             >
+                <Box
+                    id="phone-1-bg"
+                    pos={"absolute"} w={"200%"} h={"140%"} top={"50%"} left={"50%"} className='-translate-y-1/2 -translate-x-1/2 will-change-transform'
+                    style={{
+                        background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.3) 0%, rgba(18, 2, 32, 0) 100%)"
+                    }}
+                />
 
                 <Image src={phone} alt='phone' fill className='object-cover' />
 

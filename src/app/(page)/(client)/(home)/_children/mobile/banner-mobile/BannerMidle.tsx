@@ -285,7 +285,7 @@ export function BannerMidle({ idols }: Props) {
                 w={"100%"}
                 className='overflow-hidden aspect-[0.46205357142]'
             >
-                <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0} className='overflow-hidden'>
+                {/* <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0} className='overflow-hidden'>
                     <Box
                         pos={"absolute"}
                         top={0}
@@ -296,7 +296,7 @@ export function BannerMidle({ idols }: Props) {
                             background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.4) 0%, rgba(18, 2, 32, 0) 100%)"
                         }}
                     />
-                </Box>
+                </Box> */}
 
                 <Flex
                     id='banner-logo'

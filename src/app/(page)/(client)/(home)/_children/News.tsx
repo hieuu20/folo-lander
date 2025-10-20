@@ -82,14 +82,11 @@ export default function News({ news }: Props) {
 
     return (
         <Box
+            pos={"relative"}
             id='News'
             w={"100%"}
-            pos={"absolute"}
-            h={"100%"}
-            top={0}
-            left={0}
             bg={"#160328"}
-            py={{ base: 100, md: 108, "2xl": 116 }}
+            py={{ base: 90, md: 108, "2xl": 116 }}
         >
             <Image src={bg1} alt='bg-1' className='w-[45%] md:w-[8.5%] h-auto absolute top-0 right-0' />
             <Image src={bg2} alt='bg-2' className='w-[45%] md:w-[8.5%] h-auto absolute bottom-0 left-0' />

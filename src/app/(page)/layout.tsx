@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Metadata } from "next";
+
 // import Script from "next/script";
 import { theme } from "@/lib/theme";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
@@ -55,15 +56,14 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <ColorSchemeScript />
-
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="KNKY" />
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
 
         {/* <Script
           src={`https://www.googletagmanager.com/gtag/js?id=G-D8RVL2BLVD`}
@@ -83,9 +83,9 @@ export default function RootLayout({
         /> */}
       </head>
       <body className={`antialiased`}>
-         <ProgressBarProvider>
+        <ProgressBarProvider>
           <MantineProvider theme={theme}>{children}</MantineProvider>
-         </ProgressBarProvider>
+        </ProgressBarProvider>
       </body>
     </html>
   );

@@ -9,7 +9,7 @@ import { twMerge } from 'tailwind-merge';
 export function TimeToShineMobile() {
     return (
         <>
-            <Box id='Running' pos={"relative"} w={"100%"} bg={"#160328"} className='overflow-hidden aspect-[0.48284829721]'>
+            <Box id='Running' pos={"relative"} w={"100%"} bg={"#160328"} className='overflow-hidden aspect-[0.68]' pb={40}>
                 <Box
                     pos={"absolute"}
                     top={"50%"}

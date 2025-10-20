@@ -15,7 +15,6 @@ import { GrowthMobile } from "./mobile/GrowthMobile";
 import { MoreMobile } from "./mobile/MoreMobile";
 import { BannerPc } from "./BannerPc";
 import { Unlimited } from "./Unlimited";
-import { Growth } from "./Growth";
 import { More } from "./More";
 import { ICreatorIdol } from "@/app/api/_entities/creatorIdol";
 import { INews } from "@/app/api/_entities";
@@ -24,6 +23,7 @@ import { TimeToShine } from "./TimeToShine";
 import { TimeToShineMobile } from "./mobile/TimeToShineMobile";
 import { BannerTablet } from "./tablet/BannerTablet";
 import { Footer } from "@/components/layouts";
+import GrowthNews from "./GrowthNews";
 
 interface Props {
     idols: ICreatorIdol[],
@@ -89,14 +89,14 @@ const Mobile = ({ idols, news }: Props) => {
                 <UnlimitedMobile />
                 <MoreMobile />
                 {/* <GrowthMobile news={news} /> */}
-                <Box
+                {/* <Box
                     id='News'
                     w={{ base: "100%" }}
                     pos={"relative"}
-                    className='aspect-[0.505]'
-                >
-                    <News news={news} />
-                </Box>
+                    className='aspect-[0.54]'
+                > */}
+                <News news={news} />
+                {/* </Box> */}
                 {/* <News news={news} /> */}
                 <TimeToShineMobile />
                 <Footer />
@@ -140,7 +140,7 @@ const Desktop = ({ idols, news }: Props) => {
                     h={{ base: "110vh" }}
                     pos={"relative"}
                 >
-                    <News news={news} />
+                    <GrowthNews news={news} />
                 </Box>
                 <TimeToShine />
                 <Footer />

@@ -198,12 +198,12 @@ export function BannerMidle({ idols }: Props) {
                 "<"
             );
 
-            tl.fromTo(
-                "#banner-bg-1",
-                { autoAlpha: 1 },
-                { autoAlpha: 0, duration: 1 },
-                "<"
-            );
+            // tl.fromTo(
+            //     "#banner-bg-1",
+            //     { autoAlpha: 1 },
+            //     { autoAlpha: 0, duration: 1 },
+            //     "<"
+            // );
 
             tl.to(
                 "#phone",
@@ -331,7 +331,7 @@ export function BannerMidle({ idols }: Props) {
                 }}
             >
                 <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0} className='overflow-hidden'>
-                    <Box
+                    {/* <Box
                         id='banner-bg-1'
                         pos={"absolute"}
                         top={0}
@@ -341,7 +341,7 @@ export function BannerMidle({ idols }: Props) {
                         style={{
                             background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.4) 0%, rgba(18, 2, 32, 0) 100%)"
                         }}
-                    />
+                    /> */}
 
                     <Box
                         id='banner-bg-2'

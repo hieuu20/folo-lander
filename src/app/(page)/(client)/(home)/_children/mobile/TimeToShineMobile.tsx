@@ -9,7 +9,7 @@ import { twMerge } from 'tailwind-merge';
 export function TimeToShineMobile() {
     return (
         <>
-            <Box id='Running' pos={"relative"} w={"100%"} bg={"#160328"} className='overflow-hidden aspect-[0.68]' pb={40}>
+            <Box id='Running' pos={"relative"} w={"100%"} bg={"#160328"} className='overflow-hidden aspect-[0.74]' pb={24}>
                 <Box
                     pos={"absolute"}
                     top={"50%"}
@@ -21,7 +21,7 @@ export function TimeToShineMobile() {
                     className='aspect-[4.44578313253] -translate-x-1/2 -translate-y-1/2'
                 />
 
-                <Flex pos={"relative"} className='container-version3' align={"center"} justify={"center"} h={"100%"} >
+                <Flex pos={"relative"} className='container-version3 -translate-y-[8%]' align={"center"} justify={"center"} h={"100%"} >
                     <ImageCircle />
                     <ImageCircle type='left' />
 
@@ -46,8 +46,8 @@ export function TimeToShineMobile() {
                             }}
                         >
                             <motion.span
-                                initial={{ y: "65%", rotateX: -70 }}
-                                whileInView={{ y: 0, rotateX: 0 }}
+                                initial={{ y: "65%", opacity: 0 }}
+                                whileInView={{ y: 0, opacity: 1 }}
                                 viewport={{ once: true }}
                                 transition={{
                                     duration: 0.4,
@@ -69,8 +69,8 @@ export function TimeToShineMobile() {
                             }}
                         >
                             <motion.span
-                                initial={{ y: "65%", rotateX: -70 }}
-                                whileInView={{ y: 0, rotateX: 0 }}
+                                initial={{ y: "65%", opacity: 0 }}
+                                whileInView={{ y: 0, opacity: 1 }}
                                 viewport={{ once: true }}
                                 transition={{
                                     duration: 0.4,
@@ -126,7 +126,7 @@ const ImageCircle = ({ type = 'right' }: { type?: "left" | "right" }) => {
         <Box
             pos={"relative"} w={width}
             className={twMerge(
-                "aspect-[0.91265560166] -translate-y-[4%]",
+                "aspect-[0.91265560166]",
                 type == "right" ? "translate-x-[-26%]" : "translate-x-[26%]"
             )}
         >

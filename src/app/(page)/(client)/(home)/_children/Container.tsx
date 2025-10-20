@@ -134,14 +134,8 @@ const Desktop = ({ idols, news }: Props) => {
                 <Unlimited />
                 <More />
                 {/* <Growth idols={idols} news={news} /> */}
-                <Box
-                    id='News'
-                    w={{ base: "100%" }}
-                    h={{ base: "110vh" }}
-                    pos={"relative"}
-                >
-                    <GrowthNews news={news} />
-                </Box>
+
+                <News news={news} />
                 <TimeToShine />
                 <Footer />
             </Box>

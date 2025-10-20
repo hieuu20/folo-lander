@@ -81,8 +81,8 @@ export function TimeToShine() {
                             }}
                         >
                             <motion.span
-                                initial={{ y: "65%", rotateX: -70 }}
-                                whileInView={{ y: 0, rotateX: 0 }}
+                                initial={{ y: "65%", opacity: 0 }}
+                                whileInView={{ y: 0, opacity: 1 }}
                                 viewport={{ once: true }}
                                 transition={{
                                     duration: 0.4,
@@ -104,8 +104,8 @@ export function TimeToShine() {
                             }}
                         >
                             <motion.span
-                                initial={{ y: "65%", rotateX: -70 }}
-                                whileInView={{ y: 0, rotateX: 0 }}
+                                initial={{ y: "65%", opacity: 0 }}
+                                whileInView={{ y: 0, opacity: 1 }}
                                 viewport={{ once: true }}
                                 transition={{
                                     duration: 0.4,

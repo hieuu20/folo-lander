@@ -147,9 +147,13 @@ const images = Array.from({ length: 38 }, (_, i) => {
     if (i <= 14) {
         return `/version-3/circle/${i + 1}.webp`;
     }
+    if(i<= 28){
+        return `/version-3/circle/${(i - 15) + 1}.webp`;
+    }
 
-    return `/version-3/circle/${Math.floor(Math.random() * 14) + 1}.webp`;
+    return `/version-3/circle/${(i - 29) + 1}.webp`;
 });
+
 
 const ImageCircle = ({ setIsHovering, isHovering, type = 'right' }: { type?: "left" | "right", setIsHovering: (isHoving: boolean) => void, isHovering: boolean }) => {
     const [windowHeight, setWindowHeight] = useState(0);

@@ -534,7 +534,6 @@ const phoneImages = [
 
 const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {
 
-
     return (
         <Flex
             id='phone-1-section'

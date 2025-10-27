@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: process.env.NEXT_PUBLIC_DOMAIN,
   },
-  // viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
+  viewport: "width=device-width, initial-scale=1, viewport-fit=cover",
 };
 
 export default function RootLayout({
@@ -57,7 +57,7 @@ export default function RootLayout({
         <ColorSchemeScript />
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
+        {/* <meta name="viewport" content="initial-scale=1, width=device-width" /> */}
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="KNKY" />
 

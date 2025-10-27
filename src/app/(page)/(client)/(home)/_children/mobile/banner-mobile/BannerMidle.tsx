@@ -29,8 +29,15 @@ import phone8 from "@public/version-3/banner/phone/8.webp";
 
 import phone from "@public/version-3/banner/phone/phone-border.webp";
 
-import { Circle, Phase3 } from './BannerBottom';
-import { useBrowserWidth } from '@/hooks';
+import phonebgImage from "@public/version-3/banner/phone-bg.webp";
+// import bannerbg1 from "@public/version-3/banner/banner-bg-1.webp";
+// import bannerbg2 from "@public/version-3/banner/banner-bg-2.webp";
+
+
+import SectionButton from '@/components/buttons/SectionButton';
+import { CurveText } from '@/components/Typo';
+
+import { bannerTexts } from '@/utils/bannerText';
 
 interface Props {
     idols: ICreatorIdol[];
@@ -214,8 +221,6 @@ export function BannerMidle({ idols }: Props) {
 
 
 
-
-
             tl.fromTo(
                 "#image-circle1",
                 { y: "100%", opacity: 0.2 },
@@ -237,8 +242,8 @@ export function BannerMidle({ idols }: Props) {
 
             tl.fromTo(
                 "#image-circle1",
-                { y: 0, opacity: 1, rotate: 60 },
-                { y: "-136%", opacity: 0, rotate: 95, duration: 2, ease: "none" },
+                { y: 0, autoAlpha: 1, rotate: 60 },
+                { y: "-136%", autoAlpha: 0, rotate: 95, duration: 2, ease: "none" },
             );
 
             tl.fromTo(
@@ -330,18 +335,17 @@ export function BannerMidle({ idols }: Props) {
                     aspectRatio: width / height,
                 }}
             >
-                <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0} className='overflow-hidden'>
-                    {/* <Box
+                {/* <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0} className='overflow-hidden'>
+                    <Box
                         id='banner-bg-1'
                         pos={"absolute"}
                         top={0}
                         left={"50%"}
                         w={"400%"}
                         className='aspect-[6.68049792531] -translate-y-1/2 -translate-x-1/2'
-                        style={{
-                            background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.4) 0%, rgba(18, 2, 32, 0) 100%)"
-                        }}
-                    /> */}
+                    >
+                        <Image src={bannerbg1} alt='bannerbg1' fill className='object-cover' />
+                    </Box>
 
                     <Box
                         id='banner-bg-2'
@@ -350,11 +354,10 @@ export function BannerMidle({ idols }: Props) {
                         right={"0"}
                         w={"160%"}
                         className='aspect-[1.39776951673] -translate-y-[40%] translate-x-[40%]'
-                        style={{
-                            background: "radial-gradient(50% 50% at 50% 50%, rgba(17, 96, 175, 0.3) 0%, rgba(17, 96, 175, 0) 100%)"
-                        }}
-                    />
-                </Box>
+                    >
+                        <Image src={bannerbg2} alt='bannerbg2' fill className='object-cover' />
+                    </Box>
+                </Box> */}
 
                 <Flex
                     id='banner-logo'
@@ -454,7 +457,6 @@ const Phase2 = ({ idols }: Props) => {
             clearTimeout(timeoutId);
         };
     }, [swiperRef]);
-
 
     const list = [...idols, ...idols];
 
@@ -556,11 +558,10 @@ const Phone1 = ({ centerIdol }: { centerIdol: ICreatorIdol }) => {
             >
                 <Box
                     id="phone-1-bg"
-                    pos={"absolute"} w={"200%"} h={"140%"} top={"50%"} left={"50%"} className='-translate-y-1/2 -translate-x-1/2 will-change-transform'
-                    style={{
-                        background: "radial-gradient(50% 50% at 50% 50%, rgba(117, 17, 175, 0.3) 0%, rgba(18, 2, 32, 0) 100%)"
-                    }}
-                />
+                    pos={"absolute"} w={"240%"} h={"160%"} top={"50%"} left={"50%"} className='-translate-y-1/2 -translate-x-1/2 will-change-transform'
+                >
+                    <Image src={phonebgImage} alt='phonebgImage' fill className='object-cover' />
+                </Box>
 
                 <Image src={phone} alt='phone' fill className='object-cover' />
 
@@ -808,4 +809,165 @@ const AnimationWraper = ({ children, hasAnimation = false, y = 0, isInView = fal
         );
     }
     return children;
+};
+
+const Circle = () => {
+    const [containerWidth, setContainerWidth] = useState(0);
+
+    useEffect(() => {
+        const element = document.getElementById("image-circle")?.getBoundingClientRect();
+        if (element) {
+            setContainerWidth(element.width);
+        }
+    }, []);
+
+    const images = [
+        "/version-3/banner/circle/1.webp",
+        "/version-3/banner/circle/2.webp",
+        "/version-3/banner/circle/3.webp",
+        "/version-3/banner/circle/4.webp",
+        "/version-3/banner/circle/5.webp",
+        "/version-3/banner/circle/6.webp",
+        "/version-3/banner/circle/7.webp",
+        "/version-3/banner/circle/8.webp",
+        "/version-3/banner/circle/9.webp",
+        "/version-3/banner/circle/10.webp",
+        "/version-3/banner/circle/11.webp",
+        "/version-3/banner/circle/12.webp",
+        "/version-3/banner/circle/13.webp",
+        "/version-3/banner/circle/14.webp",
+        "/version-3/banner/circle/15.webp",
+        "/version-3/banner/circle/16.webp",
+    ];
+
+    return (
+        <Box
+            id='image-circle'
+            pos={"absolute"}
+            top={"24%"}
+            left={"50%"}
+            w={{ base: 680, sm: 720, md: "84%" }}
+            className='aspect-square -translate-x-1/2'
+        >
+            <motion.div
+                id='image-circle1'
+                className="absolute w-full h-full origin-center"
+            >
+                {images.map((src, i) => {
+                    const imgSize = containerWidth * 0.086; // 8% của div ngoài
+                    const radius = containerWidth / 2 - (imgSize * 1);
+
+                    const angle = (i / images.length) * 2 * Math.PI - Math.PI / 2;
+                    const x = radius * Math.cos(angle);
+                    const y = radius * Math.sin(angle);
+                    const rotate = i * 22.5;
+
+                    return (
+                        <Image
+                            key={i}
+                            src={src}
+                            alt='circle image'
+                            width={100}
+                            height={100}
+                            className='absolute w-[8.86%] h-auto object-cover'
+                            style={{
+                                left: "50%",
+                                top: "50%",
+                                transform: `translate(${x}px, ${y}px) translate(-50%, -50%) rotate(${rotate}deg)`,
+                            }}
+                        />
+                    );
+                })}
+
+            </motion.div>
+        </Box>
+    );
+};
+
+const Phase3 = () => {
+
+    return (
+        <Flex
+            pos={"absolute"}
+            w={"100%"}
+            h={"100%"}
+            right={0}
+            top={"62%"}
+        >
+            {bannerTexts.map((o, index) => {
+                return (
+                    <Flex
+                        key={index}
+                        direction={"column"}
+                        pos={"absolute"}
+                        w={"100%"}
+                        h={"100%"}
+                        top={0}
+                        left={0}
+                        align={"center"}
+                        justify={"center"}
+                        className={`text-item`}
+                    >
+                        <Flex
+                            pos={"relative"}
+                            top={"20%"}
+                            direction={"column"}
+                            w={"100%"}
+                            align={"center"}
+                            justify={"center"}
+                            h={"100%"}
+                        >
+                            <CurveText text={o.text1} className='text-[32px] font-black' rootClassName='absolute top-[0%] left-[50%] -translate-x-1/2' />
+                            <CurveText text={o.text2} className='text-[32px] font-black' rootClassName='absolute top-[9%] left-[50%] -translate-x-1/2' />
+                            {o.mobile.map((x, i) => {
+                                return (
+                                    <CurveText
+                                        key={i}
+                                        text={x}
+                                        className='text-[13px] font-medium'
+                                        rootClassName={`absolute top-[${17 + i * 4}%] left-[50%] -translate-x-1/2`}
+                                    />
+                                );
+                            })}
+                            {/* <CurveText
+                                text={o.text3}
+                                className='text-[13px] font-medium'
+                                rootClassName='absolute top-[17%] left-[50%] -translate-x-1/2'
+                            />
+                            <CurveText
+                                text={o.text4}
+                                className='text-[13px] font-medium'
+                                rootClassName='absolute top-[21%] left-[50%] -translate-x-1/2'
+                            />
+                            {o.text5 && (
+                                <CurveText
+                                    text={o.text5}
+                                    className='text-[13px] font-medium'
+                                    rootClassName='absolute top-[25%] left-[50%] -translate-x-1/2'
+                                />
+                            )} */}
+                        </Flex>
+                    </Flex>
+                );
+            })}
+
+            <SectionButton
+                id="banner-button"
+                pos={"absolute"}
+                bottom={"2%"}
+                left={"50%"}
+                className=''
+                show={true}
+                w={{ base: 216 }}
+                h={{ base: 40 }}
+                href='https://knky.co/fresh'
+                title={"Join KNKY today →"}
+                fz={{ sm: 16 }}
+                fw={600}
+                style={{
+                    opacity: 0
+                }}
+            />
+        </Flex>
+    );
 };

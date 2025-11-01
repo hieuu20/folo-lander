@@ -194,7 +194,7 @@ export function BannerMidle({ idols }: Props) {
 
             tl.to(
                 "#phone-1-section",
-                { top: "40vh", duration: 1 },
+                { top: "37vh", duration: 1 },
                 "<"
             );
 
@@ -217,8 +217,6 @@ export function BannerMidle({ idols }: Props) {
                 { scale: 1.1, y: "-10%", duration: 1 },
                 "<"
             );
-
-
 
 
             tl.fromTo(
@@ -256,6 +254,13 @@ export function BannerMidle({ idols }: Props) {
             tl.to(
                 "#phone-1-bg",
                 { width: "140%", height: "100%", duration: 1 },
+                "<"
+            );
+
+            tl.fromTo(
+                "#phone",
+                { scale: 1.1, y: "-10%" },
+                { scale: 1.05, y: "-10%", duration: 1 },
                 "<"
             );
 
@@ -910,7 +915,7 @@ const Phase3 = () => {
                     >
                         <Flex
                             pos={"relative"}
-                            top={"20%"}
+                            top={"18%"}
                             direction={"column"}
                             w={"100%"}
                             align={"center"}
@@ -954,7 +959,7 @@ const Phase3 = () => {
             <SectionButton
                 id="banner-button"
                 pos={"absolute"}
-                bottom={"2%"}
+                bottom={"5%"}
                 left={"50%"}
                 className=''
                 show={true}

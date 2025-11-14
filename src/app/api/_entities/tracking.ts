@@ -1,3 +1,4 @@
+import { SECTION_TYPE } from "@/utils/enum";
 import mongoose from "mongoose";
 
 export interface ITracking {
@@ -12,6 +13,7 @@ export interface ITracking {
   twitterId: string;
   omnisendTrackingCode: string;
   isShowSplash?: boolean;
+  type: SECTION_TYPE;
 }
 
 const trackingSchema: mongoose.Schema<ITracking> =
@@ -27,6 +29,7 @@ const trackingSchema: mongoose.Schema<ITracking> =
     twitterId: String,
     omnisendTrackingCode: String,
     isShowSplash: Boolean,
+    type: String,
   });
 
 export const TrackingModel: mongoose.Model<ITracking> =

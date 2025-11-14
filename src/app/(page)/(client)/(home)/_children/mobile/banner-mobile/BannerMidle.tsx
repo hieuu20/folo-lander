@@ -337,7 +337,7 @@ export function BannerMidle({ idols }: Props) {
                 w={"100%"}
                 className='overflow-hidden'
                 style={{
-                    aspectRatio: width / height,
+                    aspectRatio: (!!width && !!height ) ? width / height : 1,
                 }}
             >
                 {/* <Box pos={"absolute"} w={"100%"} h={"100%"} top={0} left={0} className='overflow-hidden'>

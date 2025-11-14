@@ -6,10 +6,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Metadata } from "next";
-// import Script from "next/script";
+import Script from "next/script";
 import { theme } from "@/lib/theme";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { ProgressBarProvider } from "@/lib/ProgressBarProvider";
+import { connectDB } from "../api/_db/connect";
+import { ITracking, TrackingModel } from "../api/_entities";
+import { SECTION_TYPE } from "@/utils";
 
 export const metadata: Metadata = {
   title: "KNKY",
@@ -46,11 +49,21 @@ export const metadata: Metadata = {
   viewport: "width=device-width, initial-scale=1, viewport-fit=cover",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  await connectDB();
+
+  const [trackingResponse] = await Promise.all([
+    TrackingModel.findOne({ type: SECTION_TYPE.CREATOR }).lean(),
+  ]);
+
+  const tracking = JSON.parse(JSON.stringify(trackingResponse)) as ITracking;
+
+  console.log({ tracking });
+
   return (
     <html lang="en">
       <head>
@@ -61,8 +74,8 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="KNKY" />
 
-        {/* <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=G-D8RVL2BLVD`}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${tracking.ga4Tracking || tracking.uaTracking}`}
         />
 
         <Script
@@ -73,15 +86,15 @@ export default function RootLayout({
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
 
-              gtag('config', 'G-D8RVL2BLVD');
+              gtag('config', '${tracking.ga4Tracking || tracking.uaTracking}');
             `,
           }}
-        /> */}
+        />
       </head>
       <body className={`antialiased`}>
-         <ProgressBarProvider>
+        <ProgressBarProvider>
           <MantineProvider theme={theme}>{children}</MantineProvider>
-         </ProgressBarProvider>
+        </ProgressBarProvider>
       </body>
     </html>
   );

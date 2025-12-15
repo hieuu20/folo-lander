@@ -62,7 +62,7 @@ export default async function RootLayout({
 
   const tracking = JSON.parse(JSON.stringify(trackingResponse)) as ITracking;
 
-  console.log({ tracking });
+  // console.log({ tracking });
 
   return (
     <html lang="en">

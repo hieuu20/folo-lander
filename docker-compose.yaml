@@ -1,0 +1,13 @@
+services:
+    folo-lander:
+        container_name: folo-lander
+        restart: on-failure
+        env_file:
+            - .env
+        build: .
+        ports:
+            - ${PORT}:${PORT}
+
+volumes:
+    dataclient:
+        driver: local

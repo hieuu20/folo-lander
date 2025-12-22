@@ -5,7 +5,7 @@ import gsap from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/dist/ScrollSmoother';
 import { useGSAP } from '@gsap/react';
-import { Header } from "@/components/layouts";
+// import { Header } from "@/components/layouts";
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
@@ -18,7 +18,7 @@ export default function ClientLayout({
 }>) {
   return (
     <React.Fragment>
-      <Header />
+      {/* <Header /> */}
       <main className="">{children}</main>
     </React.Fragment>
   );

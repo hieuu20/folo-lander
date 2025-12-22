@@ -79,7 +79,6 @@ export default function GrowthNews({ news }: Props) {
         ],
     };
 
-
     return (
         <Box
             id='News'

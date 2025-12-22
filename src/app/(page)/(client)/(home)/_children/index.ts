@@ -1,4 +1,4 @@
 export * from "./BannerPc";
-export * from "./Unlimited";
+export * from "./Slogan";
 export * from "./Growth";
-export * from "./More";
+export * from "./MuchMore";

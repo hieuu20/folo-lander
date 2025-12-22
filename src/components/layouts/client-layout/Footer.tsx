@@ -1,62 +1,73 @@
 "use client";
 
-import footerLogo from "@public/version-3/icons/logo.webp";
-import facebookIcon from "@public/version-3/footer/socials/1.svg";
-import xIcon from "@public/version-3/footer/socials/2.svg";
-import instagramIcon from "@public/version-3/footer/socials/3.svg";
-import tiktokIcon from "@public/version-3/footer/socials/4.svg";
-import redditIcon from "@public/version-3/footer/socials/5.svg";
-import blueSkyIcon from "@public/version-3/footer/socials/6.svg";
-import TelegramIcon from "@public/version-3/footer/socials/7.svg";
-import { Box, Flex, Grid, Text } from "@mantine/core";
+import { Box, Flex, Text } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
 
-import smallLogo from "@public/version-3/footer/logo.svg";
+import footerPay1 from "@public/footer/payment/1.png";
+import footerPay2 from "@public/footer/payment/2.png";
+import footerPay3 from "@public/footer/payment/3.png";
+import footerPay4 from "@public/footer/payment/4.png";
+import footerPay5 from "@public/footer/payment/5.png";
+import footerPay6 from "@public/footer/payment/6.png";
 
-import footerPay1 from "@public/version-3/footer/payments/1.png";
-import footerPay2 from "@public/version-3/footer/payments/2.png";
-import footerPay3 from "@public/version-3/footer/payments/3.png";
-// import footerPay4 from "@public/version-3/footer/payments/4.png";
-// import footerPay5 from "@public/version-3/footer/payments/5.png";
-import footerPay6 from "@public/version-3/footer/payments/6.png";
+import social1 from "@public/footer/socials/1.svg";
+import social2 from "@public/footer/socials/2.svg";
+import social3 from "@public/footer/socials/3.svg";
+import social4 from "@public/footer/socials/4.svg";
+import social5 from "@public/footer/socials/5.svg";
+import social6 from "@public/footer/socials/6.svg";
+import social7 from "@public/footer/socials/7.svg";
+
+import bg1 from "@public/footer/bg1.webp";
+import bg2 from "@public/footer/bg2.webp";
+import bg3 from "@public/footer/bg3.webp";
+
+import ellip1 from "@public/footer/ellip1.webp";
+import ellip2 from "@public/footer/ellip2.webp";
+import ellip3 from "@public/footer/ellip3.webp";
+
+import xma from "@public/footer/xma.webp";
+
+import smallLogo from "@public/footer/logo.svg";
 
 import flag1 from "@public/footer/flag-1.png";
 import flag2 from "@public/footer/flag-2.png";
 
-import xmaIcon from "@public/version-3/footer/xma.webp";
-// import chartImg from "@public/version-3/footer/chart.svg";
-// import chartImg from "@public/version-3/footer/chart-disable.svg";
 import SectionButton from "@/components/buttons/SectionButton";
+import { motion, useInView } from "framer-motion";
+
+import token from "@public/footer/test.png";
+import { PropsWithChildren, useRef } from "react";
 
 const socials = [
   {
-    icon: facebookIcon,
-    href: "https://facebook.com/knkyco",
+    icon: social1,
+    href: "https://facebook.com/folow",
   },
   {
-    icon: xIcon,
-    href: "https://twitter.com/knkyco",
+    icon: social2,
+    href: "https://twitter.com/folow",
   },
   {
-    icon: instagramIcon,
-    href: "https://www.instagram.com/knkyco",
+    icon: social3,
+    href: "https://www.instagram.com/folow",
   },
   {
-    icon: tiktokIcon,
-    href: "https://www.tiktok.com/@knkyco",
+    icon: social4,
+    href: "https://www.tiktok.com/@folow",
   },
   {
-    icon: redditIcon,
+    icon: social5,
     href: "https://www.reddit.com/user/letsgetknky/",
   },
   {
-    icon: blueSkyIcon,
-    href: "https://bsky.app/profile/knkyco.bsky.social",
+    icon: social6,
+    href: "https://bsky.app/profile/folow.bsky.social",
   },
   {
-    icon: TelegramIcon,
-    href: "https://t.me/knkyco",
+    icon: social7,
+    href: "https://t.me/folow",
   },
 ];
 
@@ -146,42 +157,99 @@ const footerPays = [
   footerPay1,
   footerPay2,
   footerPay3,
-  // footerPay4,
-  // footerPay5,
+  footerPay4,
+  footerPay5,
   footerPay6
 ];
 
+const delayStep = 0.3;
+
 export function Footer() {
   const currenYear = new Date().getFullYear();
+
+  const ref = useRef(null);
+
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
   return (
-    <footer className="bg-[#160328] overflow-hidden">
-      <Box
-        className="container-version3"
-        pt={{ base: 48, md: 56, lg: 64, xl: 72, "2xl": 80 }}
-        pb={{ base: 48, md: 38 }}
+    <footer className="bg-white overflow-hidden rounded-t-[18px] relative w-full aspect-[1.05340160936] -top-6 pt-6">
+      <motion.div
+        animate={{
+          height: ["90%", "100%", "90%"]
+        }}
+        transition={{
+          duration: 1.5,
+          ease: "easeInOut",
+          repeat: Infinity
+        }}
+        className='w-full absolute top-0 left-0 origin-bottom'
       >
-        <Box>
-          <Flex
-            w={"100%"}
-            direction={"column"}
-            align={{ base: "center" }}
-            gap={{ base: 24 }}
-            mb={{ base: 48, sm: 60, md: 80, lg: 90, xl: 104, "2xl": 120 }}
-          >
-            <Box w={{ base: 260, sm: 300, md: 340, lg: 370, xl: 400, "2xl": 420 }}>
-              <Image src={footerLogo} alt="footerLogo" className="w-full h-auto" />
-            </Box>
-            <Flex
-              wrap={"wrap"}
-              gap={{ base: 8, md: 10, xl: 12 }}
-            >
-              {socials.map((s, index) => {
-                return (
+        <Image src={bg1} alt='layer' fill className='object-cover object-bottom' />
+      </motion.div>
+
+      <motion.div
+        animate={{
+          height: ["90%", "100%", "90%"]
+        }}
+        transition={{
+          duration: 1.5,
+          ease: "easeInOut",
+          repeat: Infinity
+        }}
+        className='w-full absolute top-0 left-0 origin-bottom'
+      >
+        <Image src={bg2} alt='layer' fill className='object-cover object-bottom' />
+      </motion.div>
+
+      <motion.div
+        animate={{
+          height: ["80%", "90%", "80%"]
+        }}
+        transition={{
+          duration: 1.5,
+          ease: "easeInOut",
+          repeat: Infinity
+        }}
+        className='w-full absolute top-0 left-0 origin-bottom'
+      >
+        <Image src={bg3} alt='layer' fill className='object-cover object-bottom' />
+      </motion.div>
+
+      <FadeInAni isInView={isInView} y={500} delay={delayStep * 3} classname="h-[30%] w-full absolute top-0 left-0 flex justify-center">
+        <Image src={ellip3} alt='elipse' className='w-auto h-full object-cover ' />
+      </FadeInAni>
+
+      <FadeInAni isInView={isInView} y={500} delay={delayStep * 4} classname="h-[42%] w-full absolute top-0 left-0 flex justify-center">
+        <Image src={ellip2} alt='elipse' className='w-auto h-full object-cover ' />
+      </FadeInAni>
+
+      <FadeInAni isInView={isInView} y={500} delay={delayStep * 5} classname="h-[55%] w-full absolute top-0 left-0 flex justify-center">
+        <Image src={ellip1} alt='elipse' className='w-auto h-full object-cover ' />
+      </FadeInAni>
+
+      {/* <Image src={ellip3} alt='elipse' className='w-auto h-[30%] absolute top-0 left-1/2 -translate-x-1/2 object-cover' />
+      <Image src={ellip2} alt='elipse' className='w-auto h-[42%] absolute top-0 left-1/2 -translate-x-1/2 object-cover' />
+      <Image src={ellip1} alt='elipse' className='w-auto h-[55%] absolute top-0 left-1/2 -translate-x-1/2 object-cover' /> */}
+
+      <Link
+        href={"https://www.xbiz.com/news/292013/2025-euro-xma-winners-announced"}
+        target="_blank"
+        className="absolute top-0 left-[2%] w-[10.4%]"
+      >
+        <Image src={xma} alt="xma" className="w-full h-auto object-cover" />
+      </Link>
+
+      <Box className="container" ref={ref}>
+        <Flex pos={"relative"} w={"100%"} mt={{ base: 136, md: 80 }} direction={"column"} align={"center"}>
+          <Flex pos={"absolute"} top={0} right={0} direction={"column"} gap={{ base: 24 }}>
+            {socials.map((s, index) => {
+              return (
+                <FadeInAni key={index} isInView={isInView} delay={index * (delayStep / 2)}>
                   <Link
-                    key={index}
                     href={s.href}
                     rel="nofollow"
                     target="blank"
+                    className="hover:opacity-70 transition-all duration-200"
                   >
                     <Image
                       src={s.icon}
@@ -191,31 +259,52 @@ export function Footer() {
                       className="w-10 md:w-11 xl:w-12 aspect-square"
                     />
                   </Link>
-                );
-              })}
-            </Flex>
+                </FadeInAni>
+              );
+            })}
           </Flex>
 
-          <Grid
-            w={{ base: "100%" }}
-            gutter={48}
-            mb={{ base: 48, md: 56, lg: 64, xl: 72, "2xl": 80 }}
-          >
-            {footerList.map((f, index) => {
-              return (
-                <Grid.Col
-                  key={index}
-                  span={{ base: 12, lg: 4 }}
-                >
+          <Flex direction={"column"} gap={{ base: 32 }} align={"center"} mb={{ base: 120 }}>
+            <Text ta={"center"} fz={{ base: 72 }} fw={600} c={"white"} lh={1.2}>
+              <FadeInAni isInView={isInView} >
+                The You Platform.
+              </FadeInAni>
+
+              <FadeInAni isInView={isInView} delay={delayStep}>
+                For Everyone.
+              </FadeInAni>
+            </Text>
+
+            <FadeInAni isInView={isInView} delay={delayStep * 2}>
+              <SectionButton
+                show={true}
+                title='Join the waitlist'
+                w={{ base: 150 }}
+                h={{ base: 40 }}
+                fz={{ base: 16 }}
+                c={"white"}
+                fw={600}
+                px={0}
+                bg={"#376CEC"}
+                href='https://knky.co'
+              />
+            </FadeInAni>
+          </Flex>
+
+          <FadeInAni isInView={isInView} delay={delayStep * 3}>
+            <Flex w={{ base: "fit-content" }} gap={{ base: 80 }} mb={{ base: 100 }}>
+              {footerList.map((f, index) => {
+                return (
                   <Flex
+                    key={index}
                     justify={{ base: "center", md: index == 0 ? "unset" : (index == 1 ? "center" : "flex-end") }}
-                    w={"100%"}
+                    w={{ base: "fit-content" }}
                   >
                     <Flex
                       w={"fit-content"}
                       direction={"column"}
                       gap={{ base: 4, md: 6, xl: 8 }}
-                      align={{ base: "center", md: "unset" }}
+                      align={{ base: "center" }}
                     >
                       <Text c={"#FFFFFF99"} fz={{ base: 13, md: 14, lg: 15, xl: 16 }} lh={1.5}>
                         {f.title}
@@ -228,7 +317,7 @@ export function Footer() {
                             href={child.href}
                             target="blank"
                             rel="nofollow"
-                            className="group relative w-fit text-white text-base md:text-lg xl:text-xl font-medium leading-[1.4]"
+                            className="group relative w-fit text-white text-base md:text-lg xl:text-xl font-medium leading-[1.4] text-center whitespace-nowrap"
                             onClick={
                               child.href.includes("mailto")
                                 ? () => {
@@ -244,17 +333,13 @@ export function Footer() {
                       })}
                     </Flex>
                   </Flex>
-                </Grid.Col>
-              );
-            })}
-          </Grid>
+                );
+              })}
+            </Flex>
+          </FadeInAni>
 
-          <Flex direction={{ base: "column" }} gap={48} className="md:hidden">
-            <Flex
-              justify={"center"}
-              gap={{ base: 16, sm: 22, md: 32, lg: 37, xl: 43, "2xl": 48 }}
-              className="md:translate-x-1/3"
-            >
+          <FadeInAni isInView={isInView} delay={delayStep * 4}>
+            <Flex w={{ base: "fit-content" }} gap={{ base: 48 }} mb={{ base: 90 }}>
               {footerPays.map((o, index) => {
                 return (
                   <Box key={index} h={{ base: 20, sm: 24, md: 30, lg: 34, xl: 36, "2xl": 40 }}>
@@ -263,185 +348,169 @@ export function Footer() {
                 );
               })}
             </Flex>
+          </FadeInAni>
 
-            <Flex
-              direction={"column"}
-              fz={{ base: 40, sm: 45, md: 52, lg: 56, xl: 60, "2xl": 64 }}
-              lh={1.2}
-              fw={900}
-              c={"white"}
-              align={"center"}
-            >
-              <span>TIME TO SHINE.</span>
-              <span>TIME FOR KNKY.</span>
-            </Flex>
 
-            <Flex
-              p={12}
-              align="center"
-              gap={12}
-              h={{ base: "fit-content" }}
-              justify={"space-between"}
-              bg={"#200638"}
-              className='rounded-xl'
-              w={{ base: "88%", md: "26%" }}
-              mx={"auto"}
-            >
-              <Flex direction={"column"} c={"white"} gap={4}>
-                <Text fz={{ base: 11 }} fw={400} c={"#FFFFFFCC"}>
-                  $KNKY Cash Value
-                </Text>
-                <Text fz={16} fw={600} c={"#F1AD00"}>
-                  {/* 0.000156 USD */}
-                  Coming soon
-                </Text>
-
-                <Text fz={10} c={"#D0D0D0"} lh={1.2}>
-                  <span className='text-[#00AB44]'>0%</span>{" "} in the last 24h
-                </Text>
-              </Flex>
-              {/* <Image src={chartImg} alt='chart img' className='w-[88px] md:w-[76px] h-auto' /> */}
-              <SectionButton
-                title="Join $KNKY →"
-                href="https://knky.cash"
-                show={true}
-                w={{ base: 114 }}
-                h={{ base: 34 }}
-                px={0}
-                fz={{ base: 14 }}
-                fw={600}
-              />
-            </Flex>
-          </Flex>
-
-          <Flex direction={{ base: "column", md: "row" }} gap={{ base: 48, md: 24 }} mt={{ base: 48, md: 0 }} justify={"space-between"}>
-            <Link
-              href={"https://www.xbiz.com/news/292013/2025-euro-xma-winners-announced"}
-              target="_blank"
-              rel="nofollow"
-              className="flex flex-col items-center gap-2 md:gap-2 "
-            >
-              <Box>
-                <Image src={xmaIcon} alt="xma icon" className="w-[297px] sm:w-[320px] md:w-[196px] h-auto" />
-              </Box>
+          <FadeInAni delay={0}>
+            <Flex direction={"column"} gap={{ base: 4, md: 6, xl: 8 }} align={{ base: "center" }} mb={{ base: 120 }}>
               <Text
-                fz={{ base: 24, md: 20 }}
+                fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }}
+                ta={"center"}
+                fw={500}
                 lh={1.4}
-                fw={600}
-                c={"white"}
-                lts={-0.24}
+                c={"#FFFFFF99"}
+                className="gap-1.5 hidden md:flex items-center"
               >
-                <Flex gap={4} align={"center"}>
-                  XMA EU <Image src={flag2} alt="flag 2" className="h-7 md:h-6 w-auto inline" /> 2025 WINNER →
+                All rights reserved. © {currenYear} FOLO® and
+                <Image src={smallLogo} alt="smallLogo" className="h-4 md:h-5 lg:h-6 2xl:h-7 w-auto" />
+                logos are registered trademarks.
+              </Text>
+
+              <Text
+                fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }}
+                ta={"center"}
+                fw={500}
+                lh={1.4}
+                c={"#FFFFFF99"}
+                className="flex flex-col items-center md:hidden"
+              >
+                All rights reserved. © {currenYear} KNKY® <br />
+                <span className="flex gap-1 items-center">
+                  and <Image src={smallLogo} alt="smallLogo" className="h-4 md:h-5 lg:h-6 2xl:h-7 w-auto" />
+                  logos are registered trademarks.
+                </span>
+
+              </Text>
+
+              <Text
+                fz={{ base: 8, sm: 9, md: 10, lg: 11, xl: 12, "2xl": 13 }}
+                c={"#6D6177"}
+                lh={1.375}
+                ta={{ base: "center", md: "right" }}
+                lts={-0.2}
+                fw={400}
+              >
+                <Flex gap={2} align={"center"} justify={{ base: "center", md: "flex-end" }}>
+                  Social Commerce UK Ltd <Image src={flag1} alt="flag 1" className="h-3 md:h-[14px] lg:h-[15px] 2xl:h-4 w-auto inline" />
+                  | 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ.UK
+                </Flex>
+
+                <Flex gap={2} align={"center"} justify={{ base: "center", md: "flex-end" }}>
+                  Social Commerce EU Ltd  <Image src={flag2} alt="flag 2" className="h-3 md:h-[14px] lg:h-[15px] 2xl:h-4 w-auto inline" /> 4th Floor, Agios Nikolaos, Kamares , 6037 Larnaca. Cyprus
                 </Flex>
               </Text>
-            </Link>
-
-            <Flex flex={1} direction={"column"} justify={"space-between"}>
-              <Flex direction={{ base: "column", md: "row" }} justify={"space-between"} align={"center"} className="hidden md:flex">
-                <Flex
-                  justify={"center"}
-                  gap={{ base: 16, sm: 22, md: 32, lg: 37, xl: 43, "2xl": 48 }}
-                  className="md:translate-x-1/3"
-                >
-                  {footerPays.map((o, index) => {
-                    return (
-                      <Box key={index} h={{ base: 20, sm: 24, md: 30, lg: 34, xl: 36, "2xl": 40 }}>
-                        <Image src={o} alt="payment" className="h-full w-auto" />
-                      </Box>
-                    );
-                  })}
-                </Flex>
-
-                <Flex
-                  p={12}
-                  align="center"
-                  gap={12}
-                  h={{ base: "fit-content" }}
-                  justify={"space-between"}
-                  bg={"#200638"}
-                  className='rounded-xl'
-                  w={{ base: "100%", md: "26%" }}
-                >
-                  <Flex direction={"column"} c={"white"} gap={4}>
-                    <Text fz={{ base: 11 }} fw={400} c={"#FFFFFFCC"}>
-                      $KNKY Cash Value
-                    </Text>
-                    <Text fz={16} fw={600} c={"#F1AD00"}>
-                      {/* 0.000156 USD */}
-                      Coming soon
-                    </Text>
-
-                    <Text fz={10} c={"#D0D0D0"} lh={1.2}>
-                      <span className='text-[#00AB44]'>0%</span>{" "} in the last 24h
-                    </Text>
-                  </Flex>
-                  {/* <Image src={chartImg} alt='chart img' className='w-[88px] md:w-[76px] h-auto' /> */}
-                  <SectionButton
-                    title="Join $KNKY →"
-                    href="https://knky.cash"
-                    show={true}
-                    w={{ base: 114 }}
-                    h={{ base: 34 }}
-                    px={0}
-                    fz={{ base: 14 }}
-                    fw={600}
-                  />
-                </Flex>
-              </Flex>
-
-              <Flex direction={"column"} gap={{ base: 4, md: 6, xl: 8 }} align={{ base: "center", md: "flex-end" }}>
-                <Text
-                  fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }}
-                  ta={"center"}
-                  fw={500}
-                  lh={1.4}
-                  c={"#FFFFFF99"}
-                  className="gap-1.5 hidden md:flex items-center"
-                >
-                  All rights reserved. © {currenYear} KNKY® and
-                  <Image src={smallLogo} alt="smallLogo" className="h-4 md:h-5 lg:h-6 2xl:h-7 w-auto" />
-                  logos are registered trademarks.
-                </Text>
-
-                <Text
-                  fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }}
-                  ta={"center"}
-                  fw={500}
-                  lh={1.4}
-                  c={"#FFFFFF99"}
-                  className="flex flex-col items-center md:hidden"
-                >
-                  All rights reserved. © {currenYear} KNKY® <br />
-                  <span className="flex gap-1 items-center">
-                    and <Image src={smallLogo} alt="smallLogo" className="h-4 md:h-5 lg:h-6 2xl:h-7 w-auto" />
-                    logos are registered trademarks.
-                  </span>
-
-                </Text>
-
-                <Text
-                  fz={{ base: 8, sm: 9, md: 10, lg: 11, xl: 12, "2xl": 13 }}
-                  c={"#6D6177"}
-                  lh={1.375}
-                  ta={{ base: "center", md: "right" }}
-                  lts={-0.2}
-                  fw={400}
-                >
-                  <Flex gap={2} align={"center"} justify={{ base: "center", md: "flex-end" }}>
-                    Social Commerce UK Ltd <Image src={flag1} alt="flag 1" className="h-3 md:h-[14px] lg:h-[15px] 2xl:h-4 w-auto inline" />
-                    | 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ.UK
-                  </Flex>
-
-                  <Flex gap={2} align={"center"} justify={{ base: "center", md: "flex-end" }}>
-                    Social Commerce EU Ltd  <Image src={flag2} alt="flag 2" className="h-3 md:h-[14px] lg:h-[15px] 2xl:h-4 w-auto inline" /> 4th Floor, Agios Nikolaos, Kamares , 6037 Larnaca. Cyprus
-                  </Flex>
-                </Text>
-              </Flex>
             </Flex>
-          </Flex>
-        </Box>
+          </FadeInAni>
+
+          <Image src={token} alt="token" className="w-[24%] h-auto object-cover" />
+
+          {/* <Box w={"24%"}>
+            <TokenAnimation />
+          </Box> */}
+
+        </Flex>
+
       </Box>
     </footer>
   );
 }
+
+
+const FadeInAni = ({ classname, isInView, children, delay = 0, y = 100 }: PropsWithChildren<{ classname?: string, delay?: number, isInView?: boolean, y?: number }>) => {
+  return (
+    <motion.div
+      initial={{
+        y: y, opacity: 0
+      }}
+      animate={isInView && { y: 0, opacity: 1 }}
+      whileInView={!isInView ? { y: 0, opacity: 1 } : {}}
+      transition={{
+        duration: 0.8,
+        ease: "circOut",
+        delay: delay
+      }}
+      className={classname}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+// const TokenAnimation = () => {
+//   return (
+//     <div className="relative w-[260px] h-[260px]">
+//       {/* <Image
+//         src={token}
+//         alt="coin"
+//         className="w-full h-full object-contain"
+//       /> */}
+
+//       <CircularText
+//         text="COMING SOON 🔥 COMING SOON 🔥 COMING SOON 🔥 "
+//         duration={14}
+//       />
+//     </div>
+//   )
+// }
+
+// export function CircularText({
+//   text,
+//   size = 260,
+//   duration = 12,
+// }: {
+//   text: string
+//   size?: number
+//   duration?: number
+// }) {
+//   const radius = size / 2 - 20
+
+//   return (
+//     <div
+//       className="relative w-[260px] h-[260px]"
+//       style={{
+//         perspective: '800px',
+//       }}
+//     >
+//       <motion.svg
+//         width={260}
+//         height={260}
+//         viewBox="0 0 260 260"
+//         animate={{ rotate: 360 }}
+//         transition={{
+//           duration: 14,
+//           repeat: Infinity,
+//           ease: 'linear',
+//         }}
+//         style={{
+//           transformStyle: 'preserve-3d',
+//           transform: 'rotateX(55deg) rotateZ(-25deg)',
+//         }}
+//         className="absolute inset-0"
+//       >
+//         <defs>
+//           <path
+//             id="circlePath"
+//             d="
+//           M 130,130
+//           m -100,0
+//           a 100,100 0 1,1 200,0
+//           a 100,100 0 1,1 -200,0
+//         "
+//           />
+//         </defs>
+
+//         <text
+//           fill="#7C6CFF"
+//           fontSize="18"
+//           fontWeight="600"
+//           letterSpacing="4"
+//         >
+//           <textPath href="#circlePath">
+//             COMING SOON 🔥 $FOLO 🔥 COMING SOON
+//           </textPath>
+//         </text>
+//       </motion.svg>
+//     </div>
+
+//   )
+// }

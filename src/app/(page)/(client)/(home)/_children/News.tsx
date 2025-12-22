@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef, useState } from 'react';
 
-import bg1 from "@public/version-3/news/bg1.webp";
-import bg2 from "@public/version-3/news/bg2.webp";
 import { Box, Flex, Text, Title } from '@mantine/core';
 import Image from 'next/image';
 import { INews } from '@/app/api/_entities';
@@ -85,22 +83,20 @@ export default function News({ news }: Props) {
             pos={"relative"}
             id='News'
             w={"100%"}
-            bg={"#160328"}
+            bg={"white"}
             py={{ base: 90, md: 108, "2xl": 116 }}
         >
-            <Image src={bg1} alt='bg-1' className='w-[45%] md:w-[8.5%] h-auto absolute top-0 right-0' />
-            <Image src={bg2} alt='bg-2' className='w-[45%] md:w-[8.5%] h-auto absolute bottom-0 left-0' />
-            <Box className='container-version3'>
+            <Box className='container'>
                 <Title
                     w={{ base: "100%" }}
                     px={16}
                     order={2}
-                    fz={{ base: 40, sm: 45, md: 52, lg: 56, xl: 60, "2xl": 64 }}
-                    c={"white"}
-                    fw={900}
+                    fz={{ base: 32, sm: 36, md: 45, lg: 48, xl: 53, "2xl": 56 }}
+                    c={"#131416"}
+                    fw={6700}
                     lh={1.2}
                     ta={"center"}
-                    mb={{ base: 40, sm: 45, md: 48, lg: 52, xl: 56, "2xl": 60 }}
+                    mb={{ base: 16, sm: 21, md: 24, lg: 28, xl: 32, "2xl": 36 }}
                 >
                     <motion.span
                         initial={{ y: "150%", opacity: 0 }}
@@ -108,7 +104,7 @@ export default function News({ news }: Props) {
                         viewport={{ once: true }}
                         transition={{
                             duration: 0.6,
-                            ease: "easeIn"
+                            ease: "easeOut"
                         }}
                         className="inline-block"
                     >
@@ -133,14 +129,16 @@ export default function News({ news }: Props) {
                                         ease: 'easeInOut',
                                         delay: index * 0.2
                                     }}
+                                    className='group bg-white pt-6'
                                 >
                                     <Flex
                                         direction={"column"}
-                                        className='rounded-2xl overflow-hidden translate-x-[20%] sm:translate-x-0'
-                                        bd={"1px solid #5600A8"}
+                                        className='rounded-2xl translate-x-[20%] sm:translate-x-0'
+                                        bd={"1px solid #E7E7F8"}
+
                                     >
-                                        <Box pos={"relative"} w={"100%"} h={"fit-content"}>
-                                            <Image src={o.thumb} alt={o.title} width={200} height={200} className='w-full h-auto object-cover' />
+                                        <Box pos={"relative"} w={"100%"} h={"fit-content"} className='group-hover:scale-105 transition-all duration-300 ease-in-out'>
+                                            <Image src={o.thumb} alt={o.title} width={200} height={200} className='rounded-t-2xl w-full h-auto object-cover' />
                                             <Image src={newsLogo} alt='newsLogo' className='absolute bottom-0 left-0 w-[108px] h-auto object-cover' />
                                         </Box>
 
@@ -148,14 +146,15 @@ export default function News({ news }: Props) {
                                             direction={"column"}
                                             p={{ base: 16, md: 20, xl: 24 }}
                                             gap={{ base: 16 }}
-                                            bg={"#160328"}
+                                            bg={"white"}
+                                            className='rounded-b-2xl'
                                         >
-                                            <Text fz={{ base: 16 }} c={"#FFFFFFCC"} lh={1.2}>
+                                            <Text fz={{ base: 16 }} c={"#4D5053"} lh={1.2}>
                                                 {formatTime(o.createdAt as any)}
                                             </Text>
 
                                             <Box h={height}>
-                                                <Text fz={{ base: 20, md: 22, xl: 24 }} c={"white"} lh={1.2} fw={600} className='news-title'>
+                                                <Text fz={{ base: 20, md: 22, xl: 24 }} c={"#131416"} lh={1.2} fw={600} className='news-title'>
                                                     {o.title}
                                                 </Text>
                                             </Box>
@@ -163,7 +162,7 @@ export default function News({ news }: Props) {
                                             <Link
                                                 href={o.hasLink ? o.buttonLink : `/news/${o.slug}`}
                                                 target={'_blank'}
-                                                className="text-[#C98FFF] font-semibold py-2 md:mt-2 hover:opacity-70"
+                                                className="text-[#376CEC] font-semibold py-2 md:mt-2 hover:opacity-70"
                                             >
                                                 {o.hasLink ? o.buttonLabel : "Read article →"}
                                             </Link>

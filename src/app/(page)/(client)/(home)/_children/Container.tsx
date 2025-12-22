@@ -13,17 +13,22 @@ import { BannerMobile } from "./mobile/BannerMoblie";
 import { UnlimitedMobile } from "./mobile/UnlimitedMobile";
 import { GrowthMobile } from "./mobile/GrowthMobile";
 import { MoreMobile } from "./mobile/MoreMobile";
-import { BannerPc } from "./BannerPc";
-import { Unlimited } from "./Unlimited";
-import { More } from "./More";
 import { ICreatorIdol } from "@/app/api/_entities/creatorIdol";
 import { INews } from "@/app/api/_entities";
 import News from "./News";
-import { TimeToShine } from "./TimeToShine";
 import { TimeToShineMobile } from "./mobile/TimeToShineMobile";
 import { BannerTablet } from "./tablet/BannerTablet";
 import { Footer } from "@/components/layouts";
-import GrowthNews from "./GrowthNews";
+import { Loading } from "../../_shared/Loading";
+import { Growth } from "./Growth";
+import { Slogan } from "./Slogan";
+import { MuchMore } from "./MuchMore";
+import { BeSeen } from "./BeSeen";
+import { BannerPc } from "./BannerPc";
+import { SloganMobile } from "./mobile/SloganMobile";
+import { MuchMoreMobile } from "./mobile/MuchMoreMobile";
+import { FooterMobile } from "./mobile/FooterMobile";
+import { BeSeenMobile } from "./mobile/BeSeenMobile";
 
 interface Props {
     idols: ICreatorIdol[],
@@ -33,24 +38,29 @@ export default function Container(props: Props) {
     const { width } = useBrowserWidth();
     const pathname = usePathname();
 
+    console.log({ width });
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
 
     const render = () => {
+        if (width == 0) return null;
+
         if (width < 992) {
             return <Mobile {...props} />;
         }
 
-        if (width < 1240) {
-            <Tablet {...props} />;
-        }
+        // if (width < 1240) {
+        //     <Tablet {...props} />;
+        // }
 
         return <Desktop {...props} />;
     };
 
     return (
         <>
+            <Loading />
             {render()}
         </>
     );
@@ -59,6 +69,10 @@ export default function Container(props: Props) {
 const Mobile = ({ idols, news }: Props) => {
     const main = useRef<any>();
     const smoother = useRef<ScrollSmoother>();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     useGSAP(
         () => {
@@ -81,25 +95,15 @@ const Mobile = ({ idols, news }: Props) => {
                 id="smooth-content"
                 className=''
                 style={{
-                    // backgroundImage: "url('/version-3/banner/bg-mb.webp')",
-                    backgroundColor: "#0A0014"
+                    backgroundColor: "#fff"
                 }}
             >
-                <BannerMobile idols={idols} />
-                <UnlimitedMobile />
-                <MoreMobile />
-                {/* <GrowthMobile news={news} /> */}
-                {/* <Box
-                    id='News'
-                    w={{ base: "100%" }}
-                    pos={"relative"}
-                    className='aspect-[0.54]'
-                > */}
+                <BannerMobile />
+                <SloganMobile />
+                <MuchMoreMobile />
+                <BeSeenMobile />
                 <News news={news} />
-                {/* </Box> */}
-                {/* <News news={news} /> */}
-                <TimeToShineMobile />
-                <Footer />
+                <FooterMobile />
             </Box>
         </Box>
     );
@@ -112,7 +116,7 @@ const Desktop = ({ idols, news }: Props) => {
     useGSAP(
         () => {
             smoother.current = ScrollSmoother.create({
-                smooth: 1,
+                smooth: 3,
                 effects: true,
             });
         },
@@ -120,23 +124,25 @@ const Desktop = ({ idols, news }: Props) => {
             scope: main,
         }
     );
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <Box id="smooth-wrapper" ref={main}>
             <Box
                 id="smooth-content"
                 className=''
                 style={{
-                    // backgroundImage: "url('/version-3/banner/bg-pc.webp')",
-                    backgroundColor: "#0A0014"
+                    backgroundColor: "#fff"
                 }}
             >
-                <BannerPc idols={idols} />
-                <Unlimited />
-                <More />
-                {/* <Growth idols={idols} news={news} /> */}
-
+                <BannerPc />
+                <Slogan />
+                <MuchMore />
+                <BeSeen />
                 <News news={news} />
-                <TimeToShine />
                 <Footer />
             </Box>
         </Box>

@@ -15,9 +15,9 @@ import { ITracking, TrackingModel } from "../api/_entities";
 import { SECTION_TYPE } from "@/utils";
 
 export const metadata: Metadata = {
-  title: "KNKY",
+  title: "Folo",
   description:
-    "Let's get KNKY! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
+    "Let's get Folo! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
   icons: {
     icon: "/icons/shortcut-icon.png",
     shortcut: "/icons/shortcut-icon.png",
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Premium Starts With You 👑 - Creators earn, fans experience. Join the award winning social marketplace! 🏆",
     description:
-      "Let's get KNKY! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
+      "Let's get Folo! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
     images: [
       {
         url: process.env.DOMAIN + '/images/thumb.webp',
         width: 800,
         height: 500,
-        alt: "Let's get KNKY! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
+        alt: "Let's get Folo! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
       },
     ],
   },
@@ -72,7 +72,7 @@ export default async function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         {/* <meta name="viewport" content="initial-scale=1, width=device-width" /> */}
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="KNKY" />
+        <meta name="apple-mobile-web-app-title" content="Folo" />
 
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${tracking.ga4Tracking || tracking.uaTracking}`}

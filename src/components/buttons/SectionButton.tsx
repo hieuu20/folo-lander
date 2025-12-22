@@ -30,10 +30,10 @@ export default function SectionButton(props: Props) {
       px={32}
       onClick={onClick}
       className={twMerge(
-        "rounded-lg [&_.mantine-Button-label]:w-full",
+        "rounded-lg [&_.mantine-Button-label]:w-full transition-all duration-200",
         !rest.bg || rest.bg === "#AC1991"
           ? "hover:bg-[#751363]"
-          : "hover:opacity-90",
+          : "hover:opacity-80",
         className
       )}
       {...rest}

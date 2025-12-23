@@ -244,7 +244,7 @@ export function Footer() {
           <Flex pos={"absolute"} top={0} right={0} direction={"column"} gap={{ base: 24 }}>
             {socials.map((s, index) => {
               return (
-                <FadeInAni key={index} isInView={isInView} delay={index * (delayStep / 2)}>
+                <FadeInAni key={index} isInView={isInView} y={150} delay={index * (delayStep / 1.5)}>
                   <Link
                     href={s.href}
                     rel="nofollow"

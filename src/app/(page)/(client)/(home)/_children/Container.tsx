@@ -29,6 +29,7 @@ import { SloganMobile } from "./mobile/SloganMobile";
 import { MuchMoreMobile } from "./mobile/MuchMoreMobile";
 import { FooterMobile } from "./mobile/FooterMobile";
 import { BeSeenMobile } from "./mobile/BeSeenMobile";
+import { loadingTime } from "@/utils";
 
 interface Props {
     idols: ICreatorIdol[],
@@ -38,10 +39,20 @@ export default function Container(props: Props) {
     const { width } = useBrowserWidth();
     const pathname = usePathname();
 
-    console.log({ width });
-
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.touchAction = 'none';
+
+        const timeoutId = setTimeout(() => {
+            document.documentElement.style.overflow = '';
+            document.body.style.touchAction = '';
+            document.body.style.overflow = '';
+        }, loadingTime * 1000 * 2.5);
+
+        return () => clearTimeout(timeoutId);
     }, [pathname]);
 
     const render = () => {

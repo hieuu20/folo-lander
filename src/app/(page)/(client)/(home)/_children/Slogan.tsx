@@ -53,7 +53,7 @@ export function Slogan() {
     useGSAP(
         () => {
             const step = window.innerHeight;
-            const endValue = step * 3;
+            const endValue = step * 2;
 
             const tl = gsap.timeline({
                 scrollTrigger: {
@@ -82,12 +82,12 @@ export function Slogan() {
             tl.fromTo(
                 "#feature",
                 { y: 0 },
-                { y: "-100vh", duration: 1.5, ease: "power2.out", delay: 0.5 },
+                { y: "-99vh", duration: 1.5, ease: "power2.out", delay: 0.5 },
             );
 
             tl.fromTo(
                 "#feature-1-text",
-                { y: "70%", opacity: 0 },
+                { y: 150, opacity: 0 },
                 { y: 0, opacity: 1, duration: 1, ease: "power2.out" },
                 "<+=0.6"
             );
@@ -99,45 +99,47 @@ export function Slogan() {
 
     return (
         <Box>
-            <Box ref={main} bg={"white"} h={"400vh"}>
-                <Box id='slogan' w={"100%"} h={"100vh"} pos={"relative"} className='overflow-hidden'>
-                    <BackgroundAnimation />
+            <Box h={"300vh"} bg={"white"}>
+                <Box ref={main} h={"100vh"}>
+                    <Box id='slogan' w={"100%"} h={"100vh"} pos={"relative"} className='overflow-hidden'>
+                        <BackgroundAnimation />
 
-                    <Box w={"100%"} h={"100%"} pos={"relative"} className='container'>
-                        <Image src={elipse1} alt='elipse' className='w-auto h-[15%] absolute bottom-0 left-1/2 -translate-x-1/2 object-cover ' />
-                        <Image src={elipse2} alt='elipse' className='w-auto h-[35%] absolute bottom-0 left-1/2 -translate-x-1/2 object-cover ' />
-                        <Image src={elipse3} alt='elipse' className='w-auto h-[55%] absolute bottom-0 left-1/2 -translate-x-1/2 object-cover ' />
+                        <Box w={"100%"} h={"100%"} pos={"relative"} className='container'>
+                            <Image src={elipse1} alt='elipse' className='w-auto h-[15%] absolute bottom-0 left-1/2 -translate-x-1/2 object-cover ' />
+                            <Image src={elipse2} alt='elipse' className='w-auto h-[35%] absolute bottom-0 left-1/2 -translate-x-1/2 object-cover ' />
+                            <Image src={elipse3} alt='elipse' className='w-auto h-[55%] absolute bottom-0 left-1/2 -translate-x-1/2 object-cover ' />
 
-                        <Flex
-                            id='slogan-text'
-                            direction={"column"}
-                            pos={"absolute"}
-                            top={"45%"}
-                            left={"50%"}
-                            align={"center"}
-                            c={"white"}
-                        >
-                            <Image src={starIcon} alt='starIcon' className='w-[104px] h-auto mb-10' />
-                            <Title
-                                order={2} fz={{ base: 32, md: 40, lg: 45, xl: 50, "2xl": 56 }} fw={600}
-                                lh={1.2}
-                                ta={"center"}
-                                mb={16}
+                            <Flex
+                                id='slogan-text'
+                                direction={"column"}
+                                pos={"absolute"}
+                                top={"45%"}
+                                left={"50%"}
+                                align={"center"}
+                                c={"white"}
                             >
-                                Faster, Simpler and Smarter.
-                            </Title>
+                                <Image src={starIcon} alt='starIcon' className='w-[104px] h-auto mb-10' />
+                                <Title
+                                    order={2} fz={{ base: 32, md: 40, lg: 45, xl: 50, "2xl": 56 }} fw={600}
+                                    lh={1.2}
+                                    ta={"center"}
+                                    mb={16}
+                                >
+                                    Faster, Simpler and Smarter.
+                                </Title>
 
-                            <Text
-                                c={"#FFFFFFCC"} fz={{ base: 18, md: 22, lg: 24, xl: 26, "2xl": 28 }} lh={1.2} ta={"center"}
-                            >
-                                The AI-first system understands your needs, increases your earnings, and improves every micro interaction.
-                            </Text>
-                        </Flex>
+                                <Text
+                                    c={"#FFFFFFCC"} fz={{ base: 18, md: 22, lg: 24, xl: 26, "2xl": 28 }} lh={1.2} ta={"center"}
+                                >
+                                    The AI-first system understands your needs, increases your earnings, and improves every micro interaction.
+                                </Text>
+                            </Flex>
+                        </Box>
                     </Box>
-                </Box>
 
-                <Box id='feature' w={"100%"} bg={"white"} className='rounded-t-[24px] overflow-hidden'>
-                    <Feature1 padding={ctnPadding} />
+                    <Box id='feature' w={"100%"} bg={"white"} pos={"absolute"} top={"100vh"} left={0} h={"100vh"} className='rounded-t-[24px] overflow-hidden'>
+                        <Feature1 padding={ctnPadding} />
+                    </Box>
                 </Box>
             </Box>
 
@@ -200,7 +202,7 @@ const Feature2 = ({ padding }: { padding: number }) => {
 
             tl.fromTo(
                 "#feature-2-text",
-                { y: "70%", opacity: 0 },
+                { y: 150, opacity: 0 },
                 { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
             );
         },
@@ -213,6 +215,7 @@ const Feature2 = ({ padding }: { padding: number }) => {
         <Box
             ref={main}
             h={"115vh"}
+            className='z-10 -mt-4'
         >
             <Flex
                 h={wdheight}
@@ -221,7 +224,7 @@ const Feature2 = ({ padding }: { padding: number }) => {
                 align={{ base: "center" }}
                 pr={padding}
             >
-                <Box ref={ref} h={wdheight * 0.74} w={"auto"} pos={"relative"} className='aspect-[1.11842105263]'>
+                <Box ref={ref} h={wdheight * 0.78} w={"auto"} pos={"relative"} className='aspect-[1.11842105263]'>
                     <Image src={feature2} alt='feature1' className='h-full w-auto object-cover' />
                     <Flex
                         h={"10.3%"}
@@ -311,7 +314,7 @@ const Feature3 = ({ padding }: { padding: number }) => {
                 scrollTrigger: {
                     trigger: main.current,
                     // pin: true,
-                    start: 'top 35%',
+                    start: 'top 45%',
                     end: `+=${endValue}`,
                     markers: false,
                     scrub: true,
@@ -320,7 +323,7 @@ const Feature3 = ({ padding }: { padding: number }) => {
 
             tl.fromTo(
                 "#feature-3-text",
-                { y: "70%", opacity: 0 },
+                { y: 150, opacity: 0 },
                 { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
             );
 
@@ -403,7 +406,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
 
             tl.fromTo(
                 "#feature-4-text",
-                { y: "70%", opacity: 0 },
+                { y: 150, opacity: 0 },
                 { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
             );
 

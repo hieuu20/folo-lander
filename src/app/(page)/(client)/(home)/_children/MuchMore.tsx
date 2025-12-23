@@ -24,9 +24,6 @@ export function MuchMore() {
 
     useGSAP(
         () => {
-            // const step = width * 0.225;
-            // const scrollWidth = step * moreList.length;
-
             const step = window.innerHeight;
             const endValue = step * 7;
 
@@ -47,7 +44,7 @@ export function MuchMore() {
                 },
                 {
                     x: -(window.innerWidth * 0.225 * (moreList.length - 0.5)),
-                    duration: 1, ease: "power2.out"
+                    duration: 1, ease: "power2.in"
                 }
             );
 
@@ -57,7 +54,7 @@ export function MuchMore() {
                 },
                 {
                     x: -(window.innerWidth * 0.225 * (moreList.length - 0.5)),
-                    duration: 1, ease: "power2.out"
+                    duration: 1, ease: "power2.in"
                 },
                 "<"
             );
@@ -100,7 +97,6 @@ export function MuchMore() {
                             })}
                         </Flex>
                     </Box>
-
                 </Flex>
             </Box>
         </Box>

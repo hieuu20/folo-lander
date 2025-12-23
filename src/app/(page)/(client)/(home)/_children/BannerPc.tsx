@@ -59,7 +59,7 @@ export function BannerPc() {
                     <motion.div
                         initial={{ top: wdHeight * 0.245 }}
                         animate={{ top: spacing }}
-                        transition={{ duration: 0.5, ease: "circOut", delay: loadingTime + 2.5 }}
+                        transition={{ duration: 0.5, ease: "circOut", delay: loadingTime + 3 }}
                         className='absolute aspect-[2.75862068966]'
                         style={{
                             height: topHeight
@@ -74,7 +74,7 @@ export function BannerPc() {
                                 width: "100%",
                                 aspectRatio: 2.75862068966,
                             }}
-                            transition={{ duration: 1, ease: "linear", delay: loadingTime + 1.5 }}
+                            transition={{ duration: 1, ease: "linear", delay: loadingTime + 2 }}
                             className='rounded-[300px] overflow-hidden center-absolute'
                         >
                             <Image src={bgImage} alt='banner bg' fill className='object-cover' />
@@ -91,7 +91,7 @@ export function BannerPc() {
                         id='banner-title'
                         initial={{ y: "100%", opacity: 0, x: "-50%" }}
                         animate={{ y: 0, opacity: 1, x: "-50%" }}
-                        transition={{ duration: 0.8, ease: "circOut", delay: loadingTime + 2.8 }}
+                        transition={{ duration: 0.8, ease: "circOut", delay: loadingTime + 3.3 }}
                         className='flex flex-col gap-6 justify-center absolute left-1/2'
                         style={{ bottom: spacing }}
                     >

@@ -35,7 +35,7 @@ export function BeSeen() {
                 {
                     clipPath: "inset(0 0% 0 0%)",
                     duration: 1,
-                    ease: "power2.out"
+                    ease: "power2.in"
                 }
             );
 

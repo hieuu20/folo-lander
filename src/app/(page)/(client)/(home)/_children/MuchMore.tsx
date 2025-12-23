@@ -44,7 +44,7 @@ export function MuchMore() {
                 },
                 {
                     x: -(window.innerWidth * 0.225 * (moreList.length - 0.5)),
-                    duration: 1, ease: "power2.in"
+                    duration: 1
                 }
             );
 
@@ -54,7 +54,7 @@ export function MuchMore() {
                 },
                 {
                     x: -(window.innerWidth * 0.225 * (moreList.length - 0.5)),
-                    duration: 1, ease: "power2.in"
+                    duration: 1
                 },
                 "<"
             );

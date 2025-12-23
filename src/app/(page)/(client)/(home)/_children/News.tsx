@@ -42,7 +42,7 @@ export default function News({ news }: Props) {
         return () => clearTimeout(timeoutId);
     }, []);
 
-    const isPlay = news.length > 4;
+    const isPlay = isInView && news.length > 4;
 
     const settings = {
         dots: false,

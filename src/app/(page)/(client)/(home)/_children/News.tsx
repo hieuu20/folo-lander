@@ -125,15 +125,14 @@ export default function News({ news }: Props) {
     };
 
     return (
-        <Box w={"100%"} bg={"white"} h={"150vh"} ref={main}>
+        <Box w={"100%"} bg={"white"} h={"150vh"}>
             <Flex
-                // pos={"relative"}
                 id='News'
                 w={"100%"}
-                // h={"100vh"}
                 bg={"white"}
                 align={"center"}
                 py={{ base: 90 }}
+                ref={main}
             >
                 <Box className='container' ref={scope}>
                     <Title

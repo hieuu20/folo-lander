@@ -8,8 +8,8 @@ import footerPay1 from "@public/footer/payment/1.png";
 import footerPay2 from "@public/footer/payment/2.png";
 import footerPay3 from "@public/footer/payment/3.png";
 import footerPay4 from "@public/footer/payment/4.png";
-import footerPay5 from "@public/footer/payment/5.png";
-import footerPay6 from "@public/footer/payment/6.png";
+// import footerPay5 from "@public/footer/payment/5.png";
+// import footerPay6 from "@public/footer/payment/6.png";
 
 import social1 from "@public/footer/socials/1.svg";
 import social2 from "@public/footer/socials/2.svg";
@@ -39,6 +39,7 @@ import { motion, useInView } from "framer-motion";
 
 import token from "@public/footer/test.png";
 import { PropsWithChildren, useRef } from "react";
+import { isNil } from "lodash";
 
 const socials = [
   {
@@ -158,8 +159,8 @@ const footerPays = [
   footerPay2,
   footerPay3,
   footerPay4,
-  footerPay5,
-  footerPay6
+  // footerPay5,
+  // footerPay6
 ];
 
 const delayStep = 0.3;
@@ -169,10 +170,12 @@ export function Footer() {
 
   const ref = useRef(null);
 
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: false, amount: 0.3 });
+
+  console.log({ isInView });
 
   return (
-    <footer className="bg-white overflow-hidden rounded-t-[18px] relative w-full aspect-[1.05340160936] -top-6 pt-6">
+    <footer className="bg-white overflow-hidden rounded-t-[24px] relative w-full aspect-[1.05340160936] -top-6 pt-6">
       <motion.div
         animate={{
           height: ["90%", "100%", "90%"]
@@ -423,7 +426,7 @@ const FadeInAni = ({ classname, isInView, children, delay = 0, y = 100 }: PropsW
         y: y, opacity: 0
       }}
       animate={isInView && { y: 0, opacity: 1 }}
-      whileInView={!isInView ? { y: 0, opacity: 1 } : {}}
+      whileInView={isNil(isInView) ? { y: 0, opacity: 1 } : {}}
       transition={{
         duration: 0.8,
         ease: "circOut",

@@ -12,6 +12,7 @@ import SectionButton from '@/components/buttons/SectionButton';
 import { motion } from 'framer-motion';
 import { useWindowHeight } from '@/hooks';
 import { loadingTime } from '@/utils/constants';
+// import 
 
 // interface Props {
 //     idols: ICreatorIdol[];
@@ -59,8 +60,8 @@ export function BannerPc() {
                     <motion.div
                         initial={{ top: wdHeight * 0.245 }}
                         animate={{ top: spacing }}
-                        transition={{ duration: 0.5, ease: "circOut", delay: loadingTime + 3.5 }}
-                        className='absolute aspect-[2.75862068966]'
+                        transition={{ duration: 0.5, ease: "easeInOut", delay: loadingTime + 2 }}
+                        className='absolute aspect-[2.75862068966] z-10'
                         style={{
                             height: topHeight
                         }}
@@ -69,15 +70,28 @@ export function BannerPc() {
                             initial={{
                                 width: "8.5vw",
                                 aspectRatio: 1.62727272727,
+                                opacity: 0
                             }}
                             animate={{
                                 width: "100%",
                                 aspectRatio: 2.75862068966,
+                                opacity: 1
                             }}
-                            transition={{ duration: 1, ease: "linear", delay: loadingTime + 2.5 }}
+                            transition={{ duration: 0.8, ease: "easeInOut", delay: loadingTime + 1.2 }}
                             className='rounded-[300px] overflow-hidden center-absolute'
                         >
-                            <Image src={bgImage} alt='banner bg' fill className='object-cover' />
+                            {/* <Image src={bgImage} alt='banner bg' fill className='object-cover' /> */}
+                            <video
+                                autoPlay={true}
+                                playsInline
+                                loop
+                                preload="auto"
+                                controls={false}
+                                muted={true}
+                                className="w-full h-full object-cover"
+                            >
+                                <source src={"/banner/video.mp4"} type="video/mp4" />
+                            </video>
                         </motion.div>
 
                         <Image
@@ -91,7 +105,7 @@ export function BannerPc() {
                         id='banner-title'
                         initial={{ y: "100%", opacity: 0, x: "-50%" }}
                         animate={{ y: 0, opacity: 1, x: "-50%" }}
-                        transition={{ duration: 0.8, ease: "circOut", delay: loadingTime + 3.8 }}
+                        transition={{ duration: 0.5, ease: "easeInOut", delay: loadingTime + 2 }}
                         className='flex flex-col gap-6 justify-center absolute left-1/2'
                         style={{ bottom: spacing }}
                     >

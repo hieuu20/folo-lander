@@ -12,9 +12,9 @@ import elipse1 from "@public/slogan/ellipse1.webp";
 import elipse2 from "@public/slogan/ellipse2.webp";
 import elipse3 from "@public/slogan/ellipse3.webp";
 
-import layer1 from "@public/slogan/layer1.webp";
-import layer2 from "@public/slogan/layer2.webp";
-import layer3 from "@public/slogan/layer3.webp";
+// import layer1 from "@public/slogan/layer1.webp";
+// import layer2 from "@public/slogan/layer2.webp";
+// import layer3 from "@public/slogan/layer3.webp";
 
 import starIcon from "@public/slogan/star.png";
 
@@ -26,13 +26,16 @@ import featureShop from "@public/slogan/feature/2/img2.webp";
 import { LiveCount } from './slogan/LiveCount';
 import { LiveComments } from './slogan/LiveComment';
 
-import bgFeature3 from "@public/slogan/feature/3/bg.webp";
+// import bgFeature3 from "@public/slogan/feature/3/bg.webp";
 import img1Feature3 from "@public/slogan/feature/3/img1.webp";
 import img2Feature3 from "@public/slogan/feature/3/img2.webp";
 import logoFeature3 from "@public/slogan/feature/3/logo.webp";
 
-import bgFeature4 from "@public/slogan/feature/4/img.webp";
+// import bgFeature4 from "@public/slogan/feature/4/img.webp";
 import { useWindowHeight } from '@/hooks';
+
+import bgFeature4 from "@public/slogan/feature/4/bg.webp";
+// import imgFeature4 from "@public/slogan/feature/4/img.webp";
 
 
 
@@ -85,11 +88,26 @@ export function Slogan() {
                 { y: "-99vh", duration: 1.5, ease: "power2.out", delay: 0.5 },
             );
 
+
+            tl.fromTo(
+                "#feature1-image",
+                { y: 200, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1, ease: "power2.out" },
+                "<+=0.4"
+            );
+
+            tl.fromTo(
+                "#feature1-phone",
+                { y: 200, opacity: 0, x: "-50%" },
+                { y: 0, opacity: 1, x: "-50%", duration: 1, ease: "power2.out" },
+                "<+=0.4"
+            );
+
             tl.fromTo(
                 "#feature-1-text",
                 { y: 150, opacity: 0 },
                 { y: 0, opacity: 1, duration: 1, ease: "power2.out" },
-                "<+=0.6"
+                "<"
             );
         },
         {
@@ -102,7 +120,7 @@ export function Slogan() {
             <Box h={"300vh"} bg={"white"}>
                 <Box ref={main} h={"100vh"}>
                     <Box id='slogan' w={"100%"} h={"100vh"} pos={"relative"} className='overflow-hidden'>
-                        <BackgroundAnimation />
+                        <BackgroundAnimations />
 
                         <Box w={"100%"} h={"100%"} pos={"relative"} className='container'>
                             <Image src={elipse1} alt='elipse' className='w-auto h-[15%] absolute bottom-0 left-1/2 -translate-x-1/2 object-cover ' />
@@ -170,8 +188,8 @@ const Feature1 = ({ padding }: { padding: number }) => {
             </Flex>
 
             <Box h={"76%"} w={"fit-content"} pos={"relative"}>
-                <Image src={feature1} alt='feature1' className='h-full w-auto object-cover' />
-                <Image src={feature1Phone} alt='feature1Phone' className='h-[80%] w-auto absolute bottom-[-6%] left-0 -translate-x-1/2 object-cover' />
+                <Image src={feature1} alt='feature1' id='feature1-image' className='h-full w-auto object-cover' />
+                <Image src={feature1Phone} alt='feature1-phone' id='feature1-phone' className='h-[80%] w-auto absolute bottom-[-6%] left-0 object-cover' />
             </Box>
         </Flex>
     );
@@ -181,7 +199,7 @@ const Feature2 = ({ padding }: { padding: number }) => {
     const main = useRef(null);
     const ref = useRef(null);
 
-    const isInView = useInView(ref, { once: true, amount: 0.6 });
+    const isInView = useInView(ref, { once: false, amount: 0.6 });
 
     const wdheight = useWindowHeight();
 
@@ -205,10 +223,15 @@ const Feature2 = ({ padding }: { padding: number }) => {
                 { y: 150, opacity: 0 },
                 { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
             );
+
+            tl.fromTo(
+                "#feature2-shop",
+                { x: "100%", opacity: 0 },
+                { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+                "<"
+            );
         },
-        {
-            scope: main,
-        }
+        { scope: main }
     );
 
     return (
@@ -225,7 +248,7 @@ const Feature2 = ({ padding }: { padding: number }) => {
                 pr={padding}
             >
                 <Box ref={ref} h={wdheight * 0.78} w={"auto"} pos={"relative"} className='aspect-[1.11842105263]'>
-                    <Image src={feature2} alt='feature1' className='h-full w-auto object-cover' />
+                    <Image src={feature2} alt='feature2' className='h-full w-auto object-cover' />
                     <Flex
                         h={"10.3%"}
                         pos={"absolute"}
@@ -271,20 +294,12 @@ const Feature2 = ({ padding }: { padding: number }) => {
                         <LiveComments />
                     </Flex>
 
-                    {isInView && (
-                        <motion.div
-                            initial={{ x: "100%", opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{
-                                duration: 0.6,
-                                ease: "circOut",
-                                delay: 0.3
-                            }}
-                            className='absolute w-[37%] h-fit bottom-0 right-[2.5%]'
-                        >
-                            <Image src={featureShop} alt='featureShop' className='w-full h-auto object-cover' />
-                        </motion.div>
-                    )}
+                    <motion.div
+                        id='feature2-shop'
+                        className='absolute w-[37%] h-fit bottom-0 right-[2.5%]'
+                    >
+                        <Image src={featureShop} alt='featureShop' className='w-full h-auto object-cover' />
+                    </motion.div>
 
                 </Box>
 
@@ -314,7 +329,7 @@ const Feature3 = ({ padding }: { padding: number }) => {
                 scrollTrigger: {
                     trigger: main.current,
                     // pin: true,
-                    start: 'top 45%',
+                    start: 'top 50%',
                     end: `+=${endValue}`,
                     markers: false,
                     scrub: true,
@@ -328,9 +343,16 @@ const Feature3 = ({ padding }: { padding: number }) => {
             );
 
             tl.fromTo(
+                "#bgFeature3",
+                { x: 600 },
+                { x: 0, duration: 0.72, ease: "power2.out" },
+                "<"
+            );
+
+            tl.fromTo(
                 "#logoFeature3",
-                { y: "-50%", x: 300, opacity: 0 },
-                { y: "-50%", x: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+                { y: "-50%", x: 500 },
+                { y: "-50%", x: 0, duration: 0.6, ease: "power2.out" },
                 "<"
             );
 
@@ -338,14 +360,14 @@ const Feature3 = ({ padding }: { padding: number }) => {
                 "#img1Feature3",
                 { y: "-50%", x: 300, opacity: 0 },
                 { y: "-50%", x: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-                "<+=0.1"
+                "<+=0.3"
             );
 
             tl.fromTo(
                 "#img2Feature3",
                 { y: "-50%", x: 300, opacity: 0 },
                 { y: "-50%", x: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-                "<+=0.1"
+                "<+=0.2"
             );
 
         },
@@ -374,8 +396,13 @@ const Feature3 = ({ padding }: { padding: number }) => {
                     </Text>
                 </Flex>
 
-                <Box h={"76%"} w={"fit-content"} pos={"relative"}>
-                    <Image src={bgFeature3} alt='bgFeature3' className='h-full w-auto object-cover' />
+                <Box h={"82%"} w={"auto"} pos={"relative"} className='aspect-[1.0303030303]'>
+                    {/* <Image src={bgFeature3} alt='bgFeature3' className='h-full w-auto object-cover' /> */}
+                    <Box bg={"#AC1991"} w={"100%"} h={"100%"} className='rounded-l-[1000px]' />
+
+                    <Box bg={"#376CEC"} id='bgFeature3' w={"100%"} h={"100%"} className='rounded-l-[1000px] absolute top-0 left-0' />
+
+
                     <Image src={img2Feature3} id='img2Feature3' alt='img2Feature3' style={{ opacity: 0 }} className='w-[27%] h-auto absolute left-[63%] top-1/2' />
                     <Image src={img1Feature3} id='img1Feature3' alt='img1Feature3' style={{ opacity: 0 }} className='w-[40%] h-auto absolute left-[28%] top-1/2' />
                     <Image src={logoFeature3} id='logoFeature3' alt='logoFeature3' className='w-[40%] h-auto absolute left-[0%] top-1/2' />
@@ -411,9 +438,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
             );
 
         },
-        {
-            scope: main,
-        }
+        { scope: main }
     );
 
     return (
@@ -428,8 +453,56 @@ const Feature4 = ({ padding }: { padding: number }) => {
                 align={{ base: "center" }}
                 pr={padding}
             >
-                <Box h={"76%"} w={"fit-content"} pos={"relative"}>
-                    <Image src={bgFeature4} alt='bgFeature4' className='h-full w-auto object-cover' />
+                <Box h={"82%"} w={"auto"} pos={"relative"} className='aspect-[1.11842105263] overflow-hidden rounded-r-[1000px]'>
+                    {/* <Image
+                        src={bgFeature4}
+                        alt='bgFeature4'
+                        className='h-[200%] w-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover'
+                    /> */}
+
+                    <motion.div
+                        initial={{
+                            x: "0%"
+                        }}
+                        // animate={{
+                        //     x: ["0%", "100%"]
+                        // }}
+                        transition={{
+                            repeat: Infinity,
+                            ease: "linear",
+                            duration: 6,
+                        }}
+                        className='w-full h-full overflow-hidden'
+                    >
+                        <Image
+                            src={bgFeature4}
+                            alt='waveIcon'
+                            className="h-[200%] w-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover"
+                        />
+                    </motion.div>
+
+                    {/* <motion.div
+                            initial={{
+                                y: "-50%"
+                            }}
+                            animate={{
+                                y: "-50%",
+                                x: ["-100%", "100%"]
+                            }}
+                            transition={{
+                                repeat: Infinity,
+                                ease: "linear",
+                                duration: 6,
+                                delay: 3
+                            }}
+                            className='absolute top-1/2 left-0 w-full'
+                        >
+                            <Image
+                                src={waveIcon}
+                                alt='waveIcon'
+                                className="w-full h-auto object-cover"
+                            />
+                        </motion.div> */}
                 </Box>
 
                 <Flex id='feature-4-text' direction={"column"} gap={{ base: 16 }} w={"36%"} >
@@ -446,45 +519,96 @@ const Feature4 = ({ padding }: { padding: number }) => {
     );
 };
 
-
-const BackgroundAnimation = () => {
+const BackgroundAnimations = () => {
     return (
         <>
-            <motion.div
-                // initial={{ height: '75%', opacity: 1 }}
-                animate={{
-                    height: ['75%', '100%', '75%'],
-                }}
-                transition={{
-                    duration: 2.3,
-                    ease: 'circOut',
-                    // times: [0, 0.87, 1],
-                    repeat: Infinity,
-                    // repeatDelay: 1,
-                }}
-                className='w-full absolute bottom-0 left-0 origin-top'
+            {/* {Array.from({ length: 50 }).map((o, index) => {
+                return (
+                    <BackgroundAnimation key={index} index={index} />
+                );
+            })} */}
+            <video
+                autoPlay={true}
+                playsInline
+                loop
+                preload="auto"
+                controls={false}
+                muted={true}
+                className="w-full h-full object-cover absolute top-0 left-0"
             >
-                <motion.div
-                    className='w-full h-full absolute bottom-0 left-0'
-                >
-                    <Image src={layer3} alt='layer' fill className='object-cover object-top' />
-                </motion.div>
-
-                <motion.div
-                    className='w-full h-full absolute bottom-0 left-0'
-                >
-                    <Image src={layer2} alt='layer' className='w-full h-full object-cover object-top' />
-                </motion.div>
-
-                <motion.div
-                    className='w-full h-[92%] absolute bottom-0 left-0'
-                >
-                    <Image src={layer1} alt='layer' className='w-full h-full object-cover object-top' />
-                </motion.div>
-            </motion.div>
+                <source src={"/slogan/layer.mov"} type="video/mp4" />
+            </video>
         </>
     );
 };
+
+// const BackgroundAnimation = ({ index }: { index: number, }) => {
+//     return (
+//         <>
+//             <motion.div
+//                 initial={{
+//                     height: '0%',
+//                     opacity: 1
+//                 }}
+//                 animate={{
+//                     height: "100%",
+//                     opacity: [1, 1, 0],
+//                 }}
+//                 // transition={{
+//                 //     duration: 2.3,
+//                 //     ease: "circOut",
+//                 //     delay: delay,
+//                 //     repeat: Infinity,
+//                 //     repeatDelay: 2.3 * 3
+//                 // }}
+//                 transition={{
+//                     // ease: 'circOut',
+//                     // duration: 3,
+//                     // delay: index * 2
+
+//                     height: {
+//                         duration: 3,
+//                         ease: 'circOut',
+//                         delay: index * 2,
+//                         times: [0, 0.9, 1],
+//                         // repeat: Infinity,
+//                         // repeatDelay: 3
+//                     },
+//                     opacity: {
+//                         duration: 3,
+//                         delay: index * 3,
+//                         times: [0, 0.999999, 1],
+//                         ease: "linear",
+//                         // repeat: Infinity,
+//                         // repeatDelay: 3
+//                     },
+
+//                 }}
+//                 className='w-full absolute bottom-0 left-0 origin-top'
+//             >
+//                 <motion.div
+//                     className='w-full h-full absolute bottom-0 left-0'
+//                 >
+//                     <Image src={layer3} alt='layer' fill className='object-cover object-top' />
+//                 </motion.div>
+
+//                 <motion.div
+//                     className='w-full h-full absolute bottom-0 left-0'
+//                 >
+//                     <Image src={layer2} alt='layer' className='w-full h-full object-cover object-top' />
+//                 </motion.div>
+
+//                 <motion.div
+//                     className='w-full h-[92%] absolute bottom-0 left-0'
+//                 >
+//                     <Image src={layer1} alt='layer' className='w-full h-full object-cover object-top' />
+//                 </motion.div>
+//             </motion.div>
+//         </>
+//     );
+// };
+
+
 
 // export default function BackgroundAnimation() {
 //     const [halos, setHalos] = useState<{ id: number; z: number }[]>([]);

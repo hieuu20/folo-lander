@@ -127,7 +127,7 @@ const Desktop = ({ idols, news }: Props) => {
     useGSAP(
         () => {
             smoother.current = ScrollSmoother.create({
-                smooth: 3,
+                smooth: 2,
                 effects: true,
             });
         },

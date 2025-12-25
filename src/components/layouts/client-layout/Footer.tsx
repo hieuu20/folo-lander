@@ -317,7 +317,7 @@ export function Footer() {
                 ta={"center"}
                 fw={500}
                 lh={1.4}
-                c={"#FFFFFF99"}
+                c={"#FFFFFFCC"}
                 className="gap-1.5 hidden md:flex items-center"
               >
                 All rights reserved. © {currenYear} FOLO® and
@@ -326,35 +326,19 @@ export function Footer() {
               </Text>
 
               <Text
-                fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }}
-                ta={"center"}
-                fw={500}
-                lh={1.4}
-                c={"#FFFFFF99"}
-                className="flex flex-col items-center md:hidden"
-              >
-                All rights reserved. © {currenYear} KNKY® <br />
-                <span className="flex gap-1 items-center">
-                  and <Image src={smallLogo} alt="smallLogo" className="h-4 md:h-5 lg:h-6 2xl:h-7 w-auto" />
-                  logos are registered trademarks.
-                </span>
-
-              </Text>
-
-              <Text
                 fz={{ base: 8, sm: 9, md: 10, lg: 11, xl: 12, "2xl": 13 }}
-                c={"#6D6177"}
+                c={"#FFFFFFCC"}
                 lh={1.375}
                 ta={{ base: "center", md: "right" }}
                 lts={-0.2}
                 fw={400}
               >
-                <Flex gap={2} align={"center"} justify={{ base: "center", md: "flex-end" }}>
+                <Flex gap={2} align={"center"} c={"#FFFFFFCC"} justify={{ base: "center", md: "flex-end" }}>
                   Social Commerce UK Ltd <Image src={flag1} alt="flag 1" className="h-3 md:h-[14px] lg:h-[15px] 2xl:h-4 w-auto inline" />
                   | 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ.UK
                 </Flex>
 
-                <Flex gap={2} align={"center"} justify={{ base: "center", md: "flex-end" }}>
+                <Flex gap={2} align={"center"} c={"#FFFFFFCC"} justify={{ base: "center", md: "flex-end" }}>
                   Social Commerce EU Ltd  <Image src={flag2} alt="flag 2" className="h-3 md:h-[14px] lg:h-[15px] 2xl:h-4 w-auto inline" /> 4th Floor, Agios Nikolaos, Kamares , 6037 Larnaca. Cyprus
                 </Flex>
               </Text>

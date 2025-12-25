@@ -3,6 +3,7 @@
 
 import { Box, Flex, Text, Title } from '@mantine/core';
 import React, { useEffect, useRef, useState } from 'react';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 import gsap from 'gsap/dist/gsap';
 import { useGSAP } from '@gsap/react';
@@ -34,6 +35,7 @@ import { useWindowHeight } from '@/hooks';
 import bgFeature4 from "@public/slogan/feature/4/bg.webp";
 import bg1Feature4 from "@public/slogan/feature/4/bg-1.webp";
 import imgFeature4 from "@public/slogan/feature/4/img1.webp";
+import { twMerge } from 'tailwind-merge';
 
 
 
@@ -55,7 +57,7 @@ export function Slogan() {
     useGSAP(
         () => {
             const step = window.innerHeight;
-            const endValue = step * 2;
+            const endValue = step * 2.5;
 
             const tl = gsap.timeline({
                 scrollTrigger: {
@@ -87,7 +89,6 @@ export function Slogan() {
                 { y: "-99vh", duration: 1.5, ease: "power2.out", delay: 0.5 },
             );
 
-
             tl.fromTo(
                 "#feature1-image",
                 { y: 200, opacity: 0 },
@@ -108,6 +109,12 @@ export function Slogan() {
                 { y: 0, opacity: 1, duration: 1, ease: "power2.out" },
                 "<"
             );
+
+            tl.fromTo(
+                "#feature",
+                { x: 0, y: "-99vh" },
+                { x: 0, y: "-99vh", duration: 0.3, ease: "power2.out", delay: 0.5 },
+            );
         },
         {
             scope: main,
@@ -116,7 +123,7 @@ export function Slogan() {
 
     return (
         <Box>
-            <Box h={"300vh"} bg={"white"}>
+            <Box h={"350vh"} bg={"white"}>
                 <Box ref={main} h={"100vh"}>
                     <Box id='slogan' w={"100%"} h={"100vh"} pos={"relative"} className='overflow-hidden'>
                         <BackgroundAnimations />
@@ -202,42 +209,51 @@ const Feature2 = ({ padding }: { padding: number }) => {
 
     const wdheight = useWindowHeight();
 
-    useGSAP(
-        () => {
-            const step = window.innerHeight;
-            const endValue = step * 0.6;
+    useGSAP(() => {
+        gsap.registerPlugin(ScrollTrigger);
 
-            const tl = gsap.timeline({
+        gsap.fromTo(
+            "#feature-2-text",
+            { y: 150, opacity: 0 },
+            {
+                y: 0, opacity: 1, ease: "power2.out",
                 scrollTrigger: {
                     trigger: main.current,
                     start: 'top 35%',
-                    end: `+=${endValue}`,
-                    markers: false,
+                    end: 'top top',
                     scrub: true,
                 },
-            });
+            }
+        );
 
-            tl.fromTo(
-                "#feature-2-text",
-                { y: 150, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
-            );
+        gsap.fromTo(
+            "#feature2-shop",
+            { x: "100%", opacity: 0 },
+            {
+                x: 0, opacity: 1, ease: "power2.out",
+                scrollTrigger: {
+                    trigger: main.current,
+                    start: 'top 35%',
+                    end: 'top top',
+                    scrub: true,
+                },
+            }
+        );
 
-            tl.fromTo(
-                "#feature2-shop",
-                { x: "100%", opacity: 0 },
-                { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
-                "<"
-            );
-        },
-        { scope: main }
-    );
+        ScrollTrigger.create({
+            trigger: main.current,
+            start: 'top top',
+            end: '+=60%',
+            pin: true,
+            pinSpacing: true,
+        });
+    }, { scope: main });
 
     return (
         <Box
             ref={main}
-            h={"115vh"}
-            className='z-10 -mt-4'
+            h={"100vh"}
+            className='z-10'
         >
             <Flex
                 h={wdheight}
@@ -321,15 +337,13 @@ const Feature3 = ({ padding }: { padding: number }) => {
 
     useGSAP(
         () => {
-            const step = window.innerHeight;
-            const endValue = step * 0.6;
+            gsap.registerPlugin(ScrollTrigger);
 
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: main.current,
                     start: 'top 50%',
-                    end: `+=${endValue}`,
-                    markers: false,
+                    end: 'top top',
                     scrub: true,
                 },
             });
@@ -343,7 +357,7 @@ const Feature3 = ({ padding }: { padding: number }) => {
             tl.fromTo(
                 "#bgFeature3",
                 { x: 600 },
-                { x: 0, duration: 0.72, ease: "power2.out" },
+                { x: 0, duration: 0.88, ease: "power2.out" },
                 "<"
             );
 
@@ -368,12 +382,19 @@ const Feature3 = ({ padding }: { padding: number }) => {
                 "<"
             );
 
+            ScrollTrigger.create({
+                trigger: main.current,
+                start: 'top top',
+                end: '+=60%',
+                pin: true,
+                pinSpacing: true,
+            });
         },
         { scope: main, }
     );
 
     return (
-        <Box ref={main} h={"115vh"}>
+        <Box ref={main} h={"100vh"}>
             <Flex
                 h={"100vh"}
                 direction={{ base: "column", md: "row" }}
@@ -392,7 +413,7 @@ const Feature3 = ({ padding }: { padding: number }) => {
                 </Flex>
 
                 <Box h={"82%"} w={"auto"} pos={"relative"} className='aspect-[1.0303030303]'>
-                    <Box bg={"#AC1991"} w={"100%"} h={"100%"} className='rounded-l-[1000px]' />
+                    {/* <Box bg={"#AC1991"} w={"100%"} h={"100%"} className='rounded-l-[1000px]' /> */}
                     <Box bg={"#376CEC"} id='bgFeature3' w={"100%"} h={"100%"} className='rounded-l-[1000px] absolute top-0 left-0' />
 
                     <Image src={img2Feature3} id='img2Feature3' alt='img2Feature3' style={{ opacity: 0 }} className='w-[27%] h-auto absolute left-[63%] top-1/2' />
@@ -409,15 +430,12 @@ const Feature4 = ({ padding }: { padding: number }) => {
 
     useGSAP(
         () => {
-            const step = window.innerHeight;
-            const endValue = step * 0.6;
 
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: main.current,
-                    // pin: true,
                     start: 'top 35%',
-                    end: `+=${endValue}`,
+                    end: `top top`,
                     markers: false,
                     scrub: true,
                 },
@@ -429,6 +447,13 @@ const Feature4 = ({ padding }: { padding: number }) => {
                 { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
             );
 
+            ScrollTrigger.create({
+                trigger: main.current,
+                start: 'top top',
+                end: '+=60%',
+                pin: true,
+                pinSpacing: true,
+            });
         },
         { scope: main }
     );
@@ -436,7 +461,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
     return (
         <Box
             ref={main}
-            h={"115vh"}
+            h={"100vh"}
         >
             <Flex
                 h={"100vh"}
@@ -496,7 +521,10 @@ const Feature4 = ({ padding }: { padding: number }) => {
                     </motion.div>
 
                     <motion.div
-                        className='w-[70%] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 '
+                        className={twMerge(
+                            'w-[70%] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 ',
+                            "backdrop-blur-[4px] rounded-[100px]"
+                        )}
                     >
                         <Image
                             src={imgFeature4}

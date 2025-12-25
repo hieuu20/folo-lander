@@ -35,7 +35,7 @@ export default function News({ news }: Props) {
         () => {
 
             const step = window.innerHeight;
-            const endValue = step * 1.5;
+            const endValue = step * 2.5;
 
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const tl = gsap.timeline({
@@ -49,24 +49,11 @@ export default function News({ news }: Props) {
                 },
             });
 
-            // tl.fromTo(
-            //     "#news-title",
-            //     { opacity: 0, y: 100 },
-            //     { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
-            // );
-
-            // tl.fromTo(
-            //     "#news-list",
-            //     { opacity: 0, y: "40%" },
-            //     { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
-            //     "<"
-            // );
-
-            // tl.fromTo(
-            //     "#News",
-            //     { x: 0, y: 0 },
-            //     { x: 0, y: 0, duration: 2, ease: "power2.out" },
-            // );
+            tl.fromTo(
+                "#News",
+                { x: 0, y: 0 },
+                { x: 0, y: 0, duration: 2, ease: "power2.out" },
+            );
         },
         {
             scope: main,
@@ -125,7 +112,7 @@ export default function News({ news }: Props) {
     };
 
     return (
-        <Box w={"100%"} bg={"white"} h={"150vh"}>
+        <Box w={"100%"} bg={"white"} h={"250vh"}>
             <Flex
                 // pos={"relative"}
                 id='News'
@@ -190,7 +177,7 @@ export default function News({ news }: Props) {
                                             bd={"1px solid #E7E7F8"}
                                         >
                                             <Box pos={"relative"} w={"100%"} h={"auto"} className='overflow-hidden aspect-[1.24279835391]'>
-                                                <Image src={o.thumb} alt={o.title} width={200} height={200} className='rounded-t-2xl w-full h-auto object-cover group-hover:scale-105 transition-all duration-300 ease-in-out' />
+                                                <Image src={o.thumb} alt={o.title} width={200} height={200} className='rounded-t-2xl w-full h-full object-cover group-hover:scale-105 transition-all duration-300 ease-in-out' />
                                                 <Image src={newsLogo} alt='newsLogo' className='absolute bottom-0 left-0 w-[108px] h-auto object-cover' />
                                             </Box>
 

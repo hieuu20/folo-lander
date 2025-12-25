@@ -39,7 +39,9 @@ export default function Container(props: Props) {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+    }, [pathname]);
 
+    useEffect(() => {
         document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';
         document.body.style.touchAction = 'none';

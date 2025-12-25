@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { Box, Flex, Text, Title } from '@mantine/core';
@@ -11,10 +12,6 @@ import { motion, useInView } from 'framer-motion';
 import elipse1 from "@public/slogan/ellipse1.webp";
 import elipse2 from "@public/slogan/ellipse2.webp";
 import elipse3 from "@public/slogan/ellipse3.webp";
-
-// import layer1 from "@public/slogan/layer1.webp";
-// import layer2 from "@public/slogan/layer2.webp";
-// import layer3 from "@public/slogan/layer3.webp";
 
 import starIcon from "@public/slogan/star.png";
 
@@ -35,7 +32,9 @@ import logoFeature3 from "@public/slogan/feature/3/logo.webp";
 import { useWindowHeight } from '@/hooks';
 
 import bgFeature4 from "@public/slogan/feature/4/bg.webp";
-// import imgFeature4 from "@public/slogan/feature/4/img.webp";
+import bg1Feature4 from "@public/slogan/feature/4/bg-1.webp";
+import imgFeature4 from "@public/slogan/feature/4/img1.webp";
+
 
 
 
@@ -328,7 +327,6 @@ const Feature3 = ({ padding }: { padding: number }) => {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: main.current,
-                    // pin: true,
                     start: 'top 50%',
                     end: `+=${endValue}`,
                     markers: false,
@@ -365,9 +363,9 @@ const Feature3 = ({ padding }: { padding: number }) => {
 
             tl.fromTo(
                 "#img2Feature3",
-                { y: "-50%", x: 300, opacity: 0 },
+                { y: "-50%", x: 400, opacity: 0 },
                 { y: "-50%", x: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-                "<+=0.2"
+                "<"
             );
 
         },
@@ -375,10 +373,7 @@ const Feature3 = ({ padding }: { padding: number }) => {
     );
 
     return (
-        <Box
-            ref={main}
-            h={"115vh"}
-        >
+        <Box ref={main} h={"115vh"}>
             <Flex
                 h={"100vh"}
                 direction={{ base: "column", md: "row" }}
@@ -397,11 +392,8 @@ const Feature3 = ({ padding }: { padding: number }) => {
                 </Flex>
 
                 <Box h={"82%"} w={"auto"} pos={"relative"} className='aspect-[1.0303030303]'>
-                    {/* <Image src={bgFeature3} alt='bgFeature3' className='h-full w-auto object-cover' /> */}
                     <Box bg={"#AC1991"} w={"100%"} h={"100%"} className='rounded-l-[1000px]' />
-
                     <Box bg={"#376CEC"} id='bgFeature3' w={"100%"} h={"100%"} className='rounded-l-[1000px] absolute top-0 left-0' />
-
 
                     <Image src={img2Feature3} id='img2Feature3' alt='img2Feature3' style={{ opacity: 0 }} className='w-[27%] h-auto absolute left-[63%] top-1/2' />
                     <Image src={img1Feature3} id='img1Feature3' alt='img1Feature3' style={{ opacity: 0 }} className='w-[40%] h-auto absolute left-[28%] top-1/2' />
@@ -453,56 +445,65 @@ const Feature4 = ({ padding }: { padding: number }) => {
                 align={{ base: "center" }}
                 pr={padding}
             >
-                <Box h={"82%"} w={"auto"} pos={"relative"} className='aspect-[1.11842105263] overflow-hidden rounded-r-[1000px]'>
-                    {/* <Image
-                        src={bgFeature4}
-                        alt='bgFeature4'
-                        className='h-[200%] w-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover'
-                    /> */}
-
+                <Box h={"78%"} w={"auto"} pos={"relative"} className='aspect-[1.11842105263] rounded-r-[1000px] overflow-hidden'>
                     <motion.div
                         initial={{
-                            x: "0%"
+                            x: "0%",
+                            y: "-50%",
+                            rotate: "-14.8deg"
                         }}
-                        // animate={{
-                        //     x: ["0%", "100%"]
-                        // }}
+                        animate={{
+                            x: ["-100%", "100%"]
+                        }}
                         transition={{
                             repeat: Infinity,
                             ease: "linear",
-                            duration: 6,
+                            duration: 24,
                         }}
-                        className='w-full h-full overflow-hidden'
+                        className='h-[200%] w-auto absolute top-1/2 right-[-16%] aspect-[1.42911153119]'
                     >
                         <Image
-                            src={bgFeature4}
+                            src={bg1Feature4}
                             alt='waveIcon'
-                            className="h-[200%] w-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover"
+                            fill
+                            className="object-cover"
                         />
                     </motion.div>
 
-                    {/* <motion.div
-                            initial={{
-                                y: "-50%"
-                            }}
-                            animate={{
-                                y: "-50%",
-                                x: ["-100%", "100%"]
-                            }}
-                            transition={{
-                                repeat: Infinity,
-                                ease: "linear",
-                                duration: 6,
-                                delay: 3
-                            }}
-                            className='absolute top-1/2 left-0 w-full'
-                        >
-                            <Image
-                                src={waveIcon}
-                                alt='waveIcon'
-                                className="w-full h-auto object-cover"
-                            />
-                        </motion.div> */}
+                    <motion.div
+                        initial={{
+                            x: "0%",
+                            y: "-50%",
+                            rotate: "-14.8deg"
+                        }}
+                        animate={{
+                            x: ["-100%", "100%"]
+                        }}
+                        transition={{
+                            repeat: Infinity,
+                            ease: "linear",
+                            duration: 24,
+                            delay: 12
+                        }}
+                        className='h-[200%] w-auto absolute top-1/2 right-[-16%] aspect-[1.42911153119]'
+                    >
+                        <Image
+                            src={bg1Feature4}
+                            alt='waveIcon'
+                            fill
+                            className="object-cover"
+                        />
+                    </motion.div>
+
+                    <motion.div
+                        className='w-[70%] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 '
+                    >
+                        <Image
+                            src={imgFeature4}
+                            alt='imgFeature4'
+                            className="object-cover w-full h-auto"
+                        />
+                    </motion.div>
                 </Box>
 
                 <Flex id='feature-4-text' direction={"column"} gap={{ base: 16 }} w={"36%"} >
@@ -534,7 +535,7 @@ const BackgroundAnimations = () => {
                 preload="auto"
                 controls={false}
                 muted={true}
-                className="w-full h-full object-cover absolute top-0 left-0"
+                className="w-full h-full object-cover absolute top-0 left-0 object-top"
             >
                 <source src={"/slogan/layer.mov"} type="video/mp4" />
             </video>
@@ -551,8 +552,8 @@ const BackgroundAnimations = () => {
 //                     opacity: 1
 //                 }}
 //                 animate={{
-//                     height: "100%",
-//                     opacity: [1, 1, 0],
+//                     height: `${100}%`,
+//                     opacity: index > 0 ? 0 : 1,
 //                 }}
 //                 // transition={{
 //                 //     duration: 2.3,
@@ -562,27 +563,11 @@ const BackgroundAnimations = () => {
 //                 //     repeatDelay: 2.3 * 3
 //                 // }}
 //                 transition={{
-//                     // ease: 'circOut',
-//                     // duration: 3,
-//                     // delay: index * 2
-
-//                     height: {
-//                         duration: 3,
-//                         ease: 'circOut',
-//                         delay: index * 2,
-//                         times: [0, 0.9, 1],
-//                         // repeat: Infinity,
-//                         // repeatDelay: 3
-//                     },
-//                     opacity: {
-//                         duration: 3,
-//                         delay: index * 3,
-//                         times: [0, 0.999999, 1],
-//                         ease: "linear",
-//                         // repeat: Infinity,
-//                         // repeatDelay: 3
-//                     },
-
+//                     ease: 'circOut',
+//                     duration: 3,
+//                     delay: index * 3,
+//                     // repeat: Infinity,
+//                     // repeatDelay: 3
 //                 }}
 //                 className='w-full absolute bottom-0 left-0 origin-top'
 //             >
@@ -607,63 +592,3 @@ const BackgroundAnimations = () => {
 //         </>
 //     );
 // };
-
-
-
-// export default function BackgroundAnimation() {
-//     const [halos, setHalos] = useState<{ id: number; z: number }[]>([]);
-
-//     useEffect(() => {
-//         let id = 0;
-
-//         // spawn mỗi 2.3s
-//         const spawn = setInterval(() => {
-//             id++;
-//             setHalos((prev) => [...prev, { id, z: id }]);
-
-//             // remove sau 4.6s
-//             setTimeout(() => {
-//                 setHalos((prev) => prev.filter((h) => h.id !== id));
-//             }, 4600);
-//         }, 2300);
-
-//         return () => clearInterval(spawn);
-//     }, []);
-
-//     return (
-//         <AnimatePresence>
-//             {halos.map((h) => (
-//                 <Halo key={h.id} z={h.z} />
-//             ))}
-//         </AnimatePresence>
-//     );
-// }
-
-// function Halo({ z }: { z: number }) {
-//     return (
-//         <motion.div
-//             initial={{ height: '75%', opacity: 1 }}
-//             animate={{
-//                 height: ['75%', '100%', '100%'],
-//                 opacity: [1, 1, 0],
-//             }}
-//             transition={{
-//                 duration: 2.3,
-//                 ease: 'circOut',
-//                 times: [0, 0.87, 1],
-//             }}
-//             className="w-full absolute bottom-0 left-0 origin-top"
-//             style={{ zIndex: z }}
-//         >
-//             <div className="absolute inset-0">
-//                 <Image src={layer3} fill alt="" className="object-cover object-top" />
-//             </div>
-//             <div className="absolute inset-0">
-//                 <Image src={layer2} alt="" className="w-full h-full object-cover object-top" />
-//             </div>
-//             <div className="absolute bottom-0 left-0 w-full h-[92%]">
-//                 <Image src={layer1} alt="" className="w-full h-full object-cover object-top" />
-//             </div>
-//         </motion.div>
-//     );
-// }

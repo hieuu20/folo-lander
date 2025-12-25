@@ -127,12 +127,14 @@ export default function News({ news }: Props) {
     return (
         <Box w={"100%"} bg={"white"} h={"150vh"}>
             <Flex
+                // pos={"relative"}
                 id='News'
                 w={"100%"}
+                // h={"100vh"}
                 bg={"white"}
                 align={"center"}
-                py={{ base: 90 }}
                 ref={main}
+                py={{ base: "14vh" }}
             >
                 <Box className='container' ref={scope}>
                     <Title
@@ -145,7 +147,7 @@ export default function News({ news }: Props) {
                         fw={6700}
                         lh={1.2}
                         ta={"center"}
-                        mb={{ base: 40, sm: 45, md: 48, lg: 52, xl: 56, "2xl": 60 }}
+                        mb={{ base: "7vh" }}
                     >
                         <motion.span
                             initial={{ y: "150%", opacity: 0 }}
@@ -187,7 +189,7 @@ export default function News({ news }: Props) {
                                             className='rounded-2xl translate-x-[20%] sm:translate-x-0 overflow-hidden'
                                             bd={"1px solid #E7E7F8"}
                                         >
-                                            <Box pos={"relative"} w={"100%"} h={"fit-content"} className='overflow-hidden'>
+                                            <Box pos={"relative"} w={"100%"} h={"auto"} className='overflow-hidden aspect-[1.24279835391]'>
                                                 <Image src={o.thumb} alt={o.title} width={200} height={200} className='rounded-t-2xl w-full h-auto object-cover group-hover:scale-105 transition-all duration-300 ease-in-out' />
                                                 <Image src={newsLogo} alt='newsLogo' className='absolute bottom-0 left-0 w-[108px] h-auto object-cover' />
                                             </Box>
@@ -212,7 +214,7 @@ export default function News({ news }: Props) {
                                                 <Link
                                                     href={o.hasLink ? o.buttonLink : `/news/${o.slug}`}
                                                     target={'_blank'}
-                                                    className="text-[#435EFB] font-semibold py-2 md:mt-2 hover:opacity-70 transition-all duration-200"
+                                                    className="text-[#435EFB] font-semibold py-2 hover:opacity-70 transition-all duration-200"
                                                 >
                                                     {o.hasLink ? o.buttonLabel : "Read article →"}
                                                 </Link>

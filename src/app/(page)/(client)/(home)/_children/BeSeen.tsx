@@ -13,66 +13,77 @@ export function BeSeen() {
 
     useGSAP(
         () => {
-
             const step = window.innerHeight;
-            const endValue = step * 4;
+
+            const imageDuration = 1;         // 1 unit timeline
+            // const textDuration = list.length; // mỗi chữ = 1 unit
 
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: main.current,
                     pin: true,
                     start: 'top top',
-                    end: `+=${endValue}`,
-                    markers: false,
+                    end: `+=${step * 3}`,
                     scrub: true,
+                    markers: false,
                 },
             });
 
-            tl.fromTo("#beSeen-image",
-                {
-                    clipPath: "inset(0 50% 0 50%)"
-                },
-                {
-                    clipPath: "inset(0 0% 0 0%)",
-                    duration: 1,
-                    ease: "power2.in"
-                }
-            );
+            /* ---------------- IMAGE PHASE ---------------- */
+            tl.to("#beSeen-image", {
+                width: "100%",
+                height: "100%",
+                duration: imageDuration,
+                ease: "power2.inOut",
+            });
 
-            list.forEach((o, index) => {
-                if (index > 0) {
-                    tl.fromTo(
-                        `#be-${index}`,
-                        { autoAlpha: 0 },
-                        { autoAlpha: 1, duration: 1, delay: 0.2, ease: "power2.out" },
-                        "<"
-                    );
-                }
+            /* ---------------- TEXT PHASE ---------------- */
+            list.forEach((_, index) => {
+                tl.call(
+                    () => {
+                        list.forEach((__, i) => {
+                            gsap.set(`#be-${i}`, {
+                                display: i === index ? 'block' : 'none',
+                            });
+                        });
+                    },
+                    [],
+                    imageDuration + index // ⬅️ bắt đầu SAU image
+                );
+            });
 
-                if (index < list.length - 1) {
-                    tl.fromTo(
-                        `#be-${index}`,
-                        { autoAlpha: 1 },
-                        { autoAlpha: 0, duration: 1, ease: "power2.out" },
-                    );
-                }
+            /* init */
+            list.forEach((_, i) => {
+                gsap.set(`#be-${i}`, {
+                    display: i === 0 ? 'block' : 'none',
+                });
+            });
 
+            tl.to("#beSeen-image", {
+                opacity: 1,
+                duration: imageDuration / 2,
+                ease: "power2.inOut",
             });
         },
-        {
-            scope: main,
-        }
+        { scope: main }
     );
 
     return (
-        <Box id='BeSeen' w={"100%"} bg={"white"} h={"500vh"}>
+        <Box id='BeSeen' w={"100%"} bg={"white"} h={"400vh"}>
             <Box
                 ref={main}
                 h={"100vh"}
                 w={"100%"}
             >
-                <Box w={"100%"} h={"100%"} pos={"relative"}>
-                    <Box id='beSeen-image' w={"100%"} h={"100%"} pos={"absolute"} top={0} left={0} className='origin-center'>
+                <Flex w={"100%"} h={"100%"} pos={"relative"} justify={"center"} align={"center"}>
+                    <Box
+                        id='beSeen-image'
+                        w={"80%"}
+                        h={"80%"}
+                        pos={"absolute"}
+                        top={"50%"} left={"50%"}
+                        className='origin-center -translate-x-1/2 -translate-y-1/2'
+                    >
                         <Image src={bg} alt='bg' className='object-cover h-full w-full' />
                         <Flex
                             pos={"absolute"}
@@ -102,7 +113,18 @@ export function BeSeen() {
                             })}
                         </Flex>
                     </Box>
-                </Box>
+
+                    {/* <Box
+                        id='beSeen-image'
+                        w={"80%"}
+                        h={"80%"}
+                        // pos={"absolute"}
+                        // top={"50%"} left={"50%"}
+                        className='overflow-hidden'
+                    >
+                        <Image src={bg} alt='bg' fill className='object-cover' />
+                    </Box> */}
+                </Flex>
             </Box>
         </Box>
     );

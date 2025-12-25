@@ -19,10 +19,6 @@ import social5 from "@public/footer/socials/5.svg";
 import social6 from "@public/footer/socials/6.svg";
 import social7 from "@public/footer/socials/7.svg";
 
-import bg1 from "@public/footer/bg1.webp";
-import bg2 from "@public/footer/bg2.webp";
-import bg3 from "@public/footer/bg3.webp";
-
 import ellip1 from "@public/footer/ellip1.webp";
 import ellip2 from "@public/footer/ellip2.webp";
 import ellip3 from "@public/footer/ellip3.webp";
@@ -174,47 +170,7 @@ export function FooterMobile() {
 
     return (
         <footer className="bg-white overflow-hidden rounded-t-[18px] relative w-full aspect-[0.2408477842] -top-6 pt-6">
-            <motion.div
-                animate={{
-                    height: ["90%", "100%", "90%"]
-                }}
-                transition={{
-                    duration: 1.5,
-                    ease: "easeInOut",
-                    repeat: Infinity
-                }}
-                className='w-full absolute top-0 left-0 origin-bottom'
-            >
-                <Image src={bg1} alt='layer' fill className='object-cover object-bottom' />
-            </motion.div>
-
-            <motion.div
-                animate={{
-                    height: ["90%", "100%", "90%"]
-                }}
-                transition={{
-                    duration: 1.5,
-                    ease: "easeInOut",
-                    repeat: Infinity
-                }}
-                className='w-full absolute top-0 left-0 origin-bottom'
-            >
-                <Image src={bg2} alt='layer' fill className='object-cover object-bottom' />
-            </motion.div>
-
-            <motion.div
-                animate={{
-                    height: ["80%", "90%", "80%"]
-                }}
-                transition={{
-                    duration: 1.5,
-                    ease: "easeInOut",
-                    repeat: Infinity
-                }}
-                className='w-full absolute top-0 left-0 origin-bottom'
-            >
-                <Image src={bg3} alt='layer' fill className='object-cover object-bottom' />
-            </motion.div>
+            <BackgroundAnimation />
 
             <FadeInAni isInView={isInView} y={500} delay={delayStep * 3} classname="h-[20%] w-full absolute top-0 left-0 flex justify-center">
                 <Image src={ellip3} alt='elipse' className='w-auto h-full object-cover ' />
@@ -433,6 +389,29 @@ const FadeInAni = ({ classname, isInView, children, delay = 0, y = 100 }: PropsW
         </motion.div>
     );
 };
+
+const BackgroundAnimation = () => {
+    return (
+        <>
+            {/* {Array.from({ length: 50 }).map((o, index) => {
+                return (
+                    <BackgroundAnimation key={index} index={index} />
+                );
+            })} */}
+            <video
+                autoPlay={true}
+                playsInline
+                loop
+                preload="auto"
+                controls={false}
+                muted={true}
+                className="w-full h-full object-cover absolute top-0 left-0 object-bottom"
+            >
+                <source src={"/footer/layer.mov"} type="video/mp4" />
+            </video>
+        </>
+    );
+  };
 
 // const TokenAnimation = () => {
 //   return (

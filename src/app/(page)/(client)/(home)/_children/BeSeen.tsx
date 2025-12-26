@@ -2,9 +2,7 @@ import { useGSAP } from '@gsap/react';
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap/dist/gsap';
 import { Box, Flex, Text } from '@mantine/core';
-import Image from 'next/image';
 
-import bg from "@public/be-seen/img.webp";
 import { motion, useAnimate, useInView } from 'framer-motion';
 
 const list = ["Be Seen.", "Be Engaging.", "Be Profitable."];
@@ -18,14 +16,10 @@ export function BeSeen() {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
-        // if (!isInView) return;
-
         const iId = setInterval(() => setIndex(o => o == 2 ? 0 : o + 1), 2000);
 
         return () => clearInterval(iId);
     }, []);
-
-    console.log({ index });
 
     useGSAP(
         () => {
@@ -37,7 +31,7 @@ export function BeSeen() {
                     trigger: main.current,
                     pin: true,
                     start: 'top top',
-                    end: `+=${step * 3}`,
+                    end: `+=${step * 1}`,
                     scrub: true,
                     markers: false,
                 },
@@ -53,7 +47,7 @@ export function BeSeen() {
     );
 
     return (
-        <Box id='BeSeen' w={"100%"} bg={"white"} h={"400vh"}>
+        <Box id='BeSeen' w={"100%"} bg={"white"} h={"200vh"}>
             <Box
                 ref={main}
                 h={"100vh"}
@@ -71,7 +65,18 @@ export function BeSeen() {
                         }}
                         className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
                     >
-                        <Image src={bg} alt='bg' className='object-cover h-full w-full' />
+                        {/* <Image src={bg} alt='bg' className='object-cover h-full w-full' /> */}
+                        <video
+                            autoPlay={true}
+                            playsInline
+                            loop
+                            preload="auto"
+                            controls={false}
+                            muted={true}
+                            className="w-full h-full object-cover"
+                        >
+                            <source src={"/be-seen/video.mp4"} type="video/mp4" />
+                        </video>
                         <Flex
                             pos={"absolute"}
                             top={"50%"}
@@ -100,6 +105,4 @@ export function BeSeen() {
         </Box>
     );
 }
-
-// box-shadow: 0px 0px 8px 0px #00000040;
 

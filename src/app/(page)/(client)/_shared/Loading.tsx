@@ -18,19 +18,11 @@ export function Loading() {
     const logoRef = useRef<any>(null);
 
     useEffect(() => {
-        const handleLoad = () => {
-            setTimeout(() => {
-                setDone(true);
-            }, loadingTime * 1000);
-        };
+        const timeOutId = setTimeout(() => {
+            setDone(true);
+        }, loadingTime * 1000);
 
-        if (document.readyState === 'complete') {
-            handleLoad();
-        } else {
-            window.addEventListener('load', handleLoad);
-        }
-
-        return () => window.removeEventListener('load', handleLoad);
+        return () => clearTimeout(timeOutId);
     }, []);
 
     useEffect(() => {
@@ -58,7 +50,7 @@ export function Loading() {
                         }}
                         className="flex w-screen fixed top-0 left-0 bg-white justify-center items-center z-20"
                     >
-                        <div ref={logoRef} className="w-[48%] md:w-[32%] md:top-[-2.1vh] h-auto relative">
+                        <div ref={logoRef} className="w-[90%] md:w-[32%] top-[-9.8vh] md:top-[-2.1vh] h-auto relative">
 
                         </div>
                     </motion.div>

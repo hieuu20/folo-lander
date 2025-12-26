@@ -14,7 +14,7 @@ import elipse1 from "@public/slogan/ellipse1.webp";
 import elipse2 from "@public/slogan/ellipse2.webp";
 import elipse3 from "@public/slogan/ellipse3.webp";
 
-import starIcon from "@public/slogan/star.png";
+import starIcon from "@public/slogan/star.svg";
 
 import feature1 from "@public/slogan/feature/1/img.webp";
 import feature1Phone from "@public/slogan/feature/1/phone.webp";
@@ -32,12 +32,9 @@ import logoFeature3 from "@public/slogan/feature/3/logo.webp";
 // import bgFeature4 from "@public/slogan/feature/4/img.webp";
 import { useWindowHeight } from '@/hooks';
 
-import bgFeature4 from "@public/slogan/feature/4/bg.webp";
 import bg1Feature4 from "@public/slogan/feature/4/bg-1.webp";
 import imgFeature4 from "@public/slogan/feature/4/img1.webp";
 import { twMerge } from 'tailwind-merge';
-
-
 
 
 export function Slogan() {
@@ -70,17 +67,16 @@ export function Slogan() {
                 },
             });
 
-            // tl.fromTo(
-            //     "#slogan",
-            //     { x: 0, y: 0 },
-            //     { x: 0, y: 0, duration: 1, ease: "power2.out" },
-            // );
-
             tl.fromTo(
                 "#slogan-text",
                 { autoAlpha: 0, y: "50%", x: "-50%" },
-                { autoAlpha: 1, y: -50, x: "-50%", duration: 1, ease: "power2.out" },
-                // "<+=0.2"
+                { autoAlpha: 1, y: -74, x: "-50%", duration: 0.4, ease: "power2.out" },
+            );
+
+            tl.fromTo(
+                "#feature",
+                { y: 0 },
+                { y: 0, duration: 0.4, ease: "power2.out", delay: 0.5 },
             );
 
             tl.fromTo(
@@ -113,12 +109,10 @@ export function Slogan() {
             tl.fromTo(
                 "#feature",
                 { x: 0, y: "-99vh" },
-                { x: 0, y: "-99vh", duration: 0.3, ease: "power2.out", delay: 0.5 },
+                { x: 0, y: "-99vh", duration: 0.1, ease: "power2.out", delay: 0.5 },
             );
         },
-        {
-            scope: main,
-        }
+        { scope: main, }
     );
 
     return (
@@ -142,7 +136,7 @@ export function Slogan() {
                                 align={"center"}
                                 c={"white"}
                             >
-                                <Image src={starIcon} alt='starIcon' className='w-[104px] h-auto mb-10' />
+                                <Image src={starIcon} alt='starIcon' className='w-[155px] h-auto mb-10' />
                                 <Title
                                     order={2} fz={{ base: 32, md: 40, lg: 45, xl: 50, "2xl": 56 }} fw={600}
                                     lh={1.2}
@@ -243,7 +237,7 @@ const Feature2 = ({ padding }: { padding: number }) => {
         ScrollTrigger.create({
             trigger: main.current,
             start: 'top top',
-            end: '+=60%',
+            end: '+=30%',
             pin: true,
             pinSpacing: true,
         });
@@ -385,7 +379,7 @@ const Feature3 = ({ padding }: { padding: number }) => {
             ScrollTrigger.create({
                 trigger: main.current,
                 start: 'top top',
-                end: '+=60%',
+                end: '+=30%',
                 pin: true,
                 pinSpacing: true,
             });
@@ -413,7 +407,6 @@ const Feature3 = ({ padding }: { padding: number }) => {
                 </Flex>
 
                 <Box h={"82%"} w={"auto"} pos={"relative"} className='aspect-[1.0303030303]'>
-                    {/* <Box bg={"#AC1991"} w={"100%"} h={"100%"} className='rounded-l-[1000px]' /> */}
                     <Box bg={"#376CEC"} id='bgFeature3' w={"100%"} h={"100%"} className='rounded-l-[1000px] absolute top-0 left-0' />
 
                     <Image src={img2Feature3} id='img2Feature3' alt='img2Feature3' style={{ opacity: 0 }} className='w-[27%] h-auto absolute left-[63%] top-1/2' />
@@ -430,7 +423,6 @@ const Feature4 = ({ padding }: { padding: number }) => {
 
     useGSAP(
         () => {
-
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: main.current,
@@ -450,7 +442,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
             ScrollTrigger.create({
                 trigger: main.current,
                 start: 'top top',
-                end: '+=60%',
+                end: '+=30%',
                 pin: true,
                 pinSpacing: true,
             });
@@ -459,10 +451,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
     );
 
     return (
-        <Box
-            ref={main}
-            h={"100vh"}
-        >
+        <Box ref={main} h={"100vh"}>
             <Flex
                 h={"100vh"}
                 direction={{ base: "column", md: "row" }}
@@ -483,7 +472,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
                         transition={{
                             repeat: Infinity,
                             ease: "linear",
-                            duration: 24,
+                            duration: 30,
                         }}
                         className='h-[200%] w-auto absolute top-1/2 right-[-16%] aspect-[1.42911153119]'
                     >
@@ -507,8 +496,8 @@ const Feature4 = ({ padding }: { padding: number }) => {
                         transition={{
                             repeat: Infinity,
                             ease: "linear",
-                            duration: 24,
-                            delay: 12
+                            duration: 30,
+                            delay: 15
                         }}
                         className='h-[200%] w-auto absolute top-1/2 right-[-16%] aspect-[1.42911153119]'
                     >

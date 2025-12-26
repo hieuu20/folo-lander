@@ -41,19 +41,19 @@ export default function Container(props: Props) {
         window.scrollTo(0, 0);
     }, [pathname]);
 
-    useEffect(() => {
-        document.body.style.overflow = 'hidden';
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.touchAction = 'none';
+    // useEffect(() => {
+    //     document.body.style.overflow = 'hidden';
+    //     document.documentElement.style.overflow = 'hidden';
+    //     document.body.style.touchAction = 'none';
 
-        const timeoutId = setTimeout(() => {
-            document.documentElement.style.overflow = '';
-            document.body.style.touchAction = '';
-            document.body.style.overflow = '';
-        }, loadingTime * 1000 * 2.5);
+    //     const timeoutId = setTimeout(() => {
+    //         document.documentElement.style.overflow = '';
+    //         document.body.style.touchAction = '';
+    //         document.body.style.overflow = '';
+    //     }, loadingTime * 1000 * 2.5);
 
-        return () => clearTimeout(timeoutId);
-    }, [pathname]);
+    //     return () => clearTimeout(timeoutId);
+    // }, [pathname]);
 
     const render = () => {
         if (width == 0) return null;
@@ -109,8 +109,8 @@ const Mobile = ({ idols, news }: Props) => {
                     backgroundColor: "#fff"
                 }}
             >
-                <BannerMobile />
-                <SloganMobile />
+                {/* <BannerMobile />
+                <SloganMobile /> */}
                 <MuchMoreMobile />
                 <BeSeenMobile />
                 <News news={news} />
@@ -131,9 +131,7 @@ const Desktop = ({ idols, news }: Props) => {
                 effects: true,
             });
         },
-        {
-            scope: main,
-        }
+        { scope: main, }
     );
 
     useEffect(() => {

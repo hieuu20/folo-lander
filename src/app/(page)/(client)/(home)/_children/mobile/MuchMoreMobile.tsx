@@ -1,115 +1,118 @@
 import { Box, Flex, Text } from '@mantine/core';
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap/dist/gsap';
-import { useGSAP } from '@gsap/react';
+import React, { useRef } from 'react';
+
 import { More, moreList } from '@/utils';
-import { useBrowserWidth } from '@/hooks';
+import Slider from 'react-slick';
+import { motion } from 'framer-motion';
+import right from "@public/version-3/news/arrow-right.svg";
+import left from "@public/version-3/news/arrow-left.svg";
 
 export function MuchMoreMobile() {
-    const main = useRef(null);
-    const [ctnPadding, setCtnPadding] = useState(0);
 
-    const { width } = useBrowserWidth();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const sliderRef = useRef<any>();
 
-    useEffect(() => {
-        const containerEl = document.querySelector(".container");
-        if (containerEl) {
-            const styles = window.getComputedStyle(containerEl);
-            const paddingLeft = parseFloat(styles.paddingLeft);
-            const marginLeft = parseFloat(styles.marginLeft);
-            setCtnPadding(paddingLeft + marginLeft);
-        }
-    }, []);
-
-    useGSAP(
-        () => {
-            const step = window.innerHeight;
-            const endValue = step * 7;
-
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: main.current,
-                    pin: true,
-                    start: 'top top',
-                    end: `+=${endValue}`,
-                    markers: false,
-                    scrub: true,
+    const settings = {
+        dots: false,
+        arrows: false,
+        infinite: true,
+        speed: 500,
+        pauseOnHover: true,
+        autoplay: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        initialSlide: 0,
+        draggable: true,
+        responsive: [
+            {
+                breakpoint: 1240,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
                 },
-            });
-
-            tl.fromTo("#track",
-                {
-                    x: 0
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1.25,
+                    slidesToScroll: 1,
                 },
-                {
-                    x: -(window.innerWidth * 0.7 * (moreList.length - 0.7)),
-                    duration: 1
-                },
-                "<"
-            );
-        },
-        {
-            scope: main,
-        }
-    );
+            },
+        ],
+    };
 
     return (
-        <Box id='MuchMore' w={"100%"} bg={"white"} h={"750vh"}>
-            <Box
-                ref={main}
-                h={"100vh"}
+        <Box w={"100%"} id='MuchMore' bg={"white"}>
+            <Flex
+                h={"fit-content"}
                 w={"100%"}
+                justify={"center"}
+                align={"center"}
+                direction={"column"}
+                gap={24}
+                className='container'
+                py={{base: 40}}
             >
-                <Flex
-                    h={"100%"}
-                    w={"100%"}
-                    justify={"center"}
-                    align={"center"}
-                    pl={ctnPadding}
-                    direction={"column"}
-                    gap={24}
-                    className='container'
+                <motion.div
+                    id='more-text'
+                    initial={{ y: 100, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, ease: "circOut" }}
+                    className='flex flex-col gap-4 w-[94%]'
                 >
-                    <Flex id='more-text' direction={"column"} gap={{ base: 16 }} w={"94%"} >
-                        <Text fz={{ base: 32, sm: 36, md: 45, lg: 48, xl: 53, "2xl": 56 }} fw={600} c={"#131416"} lh={1.2} ta={"center"}>
-                            And much more
-                        </Text>
+                    <Text fz={{ base: 32, sm: 36, md: 45, lg: 48, xl: 53, "2xl": 56 }} fw={600} c={"#131416"} lh={1.2} ta={"center"}>
+                        And much more
+                    </Text>
 
-                        <Text fz={{ base: 16 }} fw={500} c={"#4D5053"} lh={1.2} ta={"center"}>
-                            A growing set of tools designed to support creators, brands, and users to help you grow.
-                        </Text>
-                    </Flex>
+                    <Text fz={{ base: 16 }} fw={500} c={"#4D5053"} lh={1.2} ta={"center"}>
+                        A growing set of tools designed to support creators, brands, and users to help you grow.
+                    </Text>
+                </motion.div>
 
-                    <Box w={"100%"} className='overflow-hidden'>
-                        <Flex align={"center"} w={"fit-content"} gap={24} id='track'>
-                            {moreList.map((o, index) => {
-                                return (
-                                    <MoreItem key={index} item={o} width={width * 0.7} />
-                                );
-                            })}
-                        </Flex>
-                    </Box>
+                <motion.div
+                    initial={{ y: 150, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, ease: "circOut", delay: 0.3 }}
+                    className='w-full overflow-hidden'
+                >
+                    <Slider
+                        ref={sliderRef}
+                        {...settings}
+                        className="[&_.slick-slide]:px-2.5 2xl:[&_.slick-slide]:px-3 [&_.slick-slide]:translate-x-[25%] [&_.slick-list]:-mx-2.5 2xl:[&_.slick-list]:-mx-3"
+                    >
+                        {moreList.map((o, index) => {
+                            return (
+                                <MoreItem key={index} item={o} />
+                            );
+                        })}
+                    </Slider>
+                </motion.div>
 
+                <Flex gap={24} w={"100%"} justify={"center"} mt={{ base: 24, md: 32, xl: 48 }} className="">
+                    <Image src={left} alt='left arrow' className='w-8 md:w-10 h-auto cursor-pointer' onClick={() => sliderRef.current.slickPrev()} />
+                    <Image src={right} alt='left arrow' className='w-8 md:w-10 h-auto cursor-pointer' onClick={() => sliderRef.current.slickNext()} />
                 </Flex>
-            </Box>
+            </Flex>
         </Box>
     );
 }
 
 
-const MoreItem = ({ item, width }: { item: More, width: number }) => {
+const MoreItem = ({ item }: { item: More }) => {
     return (
         <Flex
             direction={"column"}
             justify={"space-between"}
-            w={width}
+            w={"100%"}
             bg={item.backgroundRadiant || item.backgroundColor || undefined}
             style={{
                 backgroundImage: item.backgroundImg ? `url('${item.backgroundImg}')` : undefined
             }}
             p={{ base: 24 }}
-            className='rounded-[40px] aspect-[0.60267857142] overflow-hidden bg-no-repeat bg-cover'
+            className='rounded-[40px] aspect-[0.62267857142] overflow-hidden bg-no-repeat bg-cover'
         >
             <Flex direction={"column"} gap={{ base: 12 }}>
                 <Text fz={{ base: 24, md: 32 }} c={item.titleColor} fw={600} lh={1.2}>

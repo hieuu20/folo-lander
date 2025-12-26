@@ -3,7 +3,7 @@
 "use client";
 
 import { Box, Flex, Text } from '@mantine/core';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import logoWhite from "@public/icons/logo-white.webp";
 import bgImage from "@public/banner/bg.webp";
 
@@ -11,6 +11,7 @@ import Image from 'next/image';
 import SectionButton from '@/components/buttons/SectionButton';
 import { motion } from 'framer-motion';
 import { useWindowHeight } from '@/hooks';
+import { loadingTime } from '@/utils';
 
 // interface Props {
 //     idols: ICreatorIdol[];
@@ -32,9 +33,6 @@ export function BannerMobile() {
     const spacing = 40;
 
     const topHeight = wdHeight - (tileHeight + 40 * 2 + 32);
-
-
-    // console.log({ spacing, tileHeight, topHeight, wdHeight });
 
     return (
         <Box
@@ -62,7 +60,7 @@ export function BannerMobile() {
                         animate={{
                             top: spacing
                         }}
-                        transition={{ duration: 0.5, ease: "circOut", delay: 4.5 }}
+                        transition={{ duration: 0.5, ease: "easeInOut", delay: loadingTime + 2.8 }}
                         className='absolute aspect-[0.77954545454]'
                         style={{
                             height: topHeight
@@ -77,10 +75,21 @@ export function BannerMobile() {
                                 width: "100%",
                                 aspectRatio: 0.77954545454,
                             }}
-                            transition={{ duration: 1, ease: "linear", delay: 3.3 }}
+                            transition={{ duration: 1, ease: "easeInOut", delay: loadingTime + 2 }}
                             className='rounded-[300px] overflow-hidden center-absolute'
                         >
-                            <Image src={bgImage} alt='banner bg' fill className='object-cover' />
+                            <video
+                                autoPlay={true}
+                                playsInline
+                                loop
+                                preload="auto"
+                                controls={false}
+                                muted={true}
+                                className="w-full h-full object-cover"
+                            >
+                                <source src={"/banner/video.mp4"} type="video/mp4" />
+                            </video>
+                            {/* <Image src={bgImage} alt='banner bg' fill className='object-cover' /> */}
                         </motion.div>
 
                         <Image
@@ -94,7 +103,7 @@ export function BannerMobile() {
                         id='banner-title-mb'
                         initial={{ y: "100%", opacity: 0, x: "-50%" }}
                         animate={{ y: 0, opacity: 1, x: "-50%" }}
-                        transition={{ duration: 0.8, ease: "circOut", delay: 4.8 }}
+                        transition={{ duration: 0.8, ease: "easeInOut", delay: loadingTime + 2.8 }}
                         className='flex flex-col gap-6 justify-center absolute left-1/2 w-[90%]'
                         style={{ bottom: spacing }}
                     >

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { Box, Flex, Text } from "@mantine/core";
@@ -23,7 +24,8 @@ import ellip1 from "@public/footer/ellip1.webp";
 import ellip2 from "@public/footer/ellip2.webp";
 import ellip3 from "@public/footer/ellip3.webp";
 
-import xma from "@public/footer/xma.webp";
+import xmaLogo from "@public/footer/xma-logo.webp";
+import xmaBg from "@public/footer/xma-bg.webp";
 
 import smallLogo from "@public/footer/logo.svg";
 
@@ -33,7 +35,7 @@ import flag2 from "@public/footer/flag-2.png";
 import SectionButton from "@/components/buttons/SectionButton";
 import { motion, useInView } from "framer-motion";
 
-import token from "@public/footer/test.png";
+import token from "@public/footer/token.webp";
 import { PropsWithChildren, useRef } from "react";
 import { isNil } from "lodash";
 
@@ -193,9 +195,10 @@ export function Footer() {
       <Link
         href={"https://www.xbiz.com/news/292013/2025-euro-xma-winners-announced"}
         target="_blank"
-        className="absolute top-0 left-[2%] w-[10.4%]"
+        className="absolute top-0 left-[2%] w-[10.4%] aspect-[0.74137931034] group cursor-pointer z-10"
       >
-        <Image src={xma} alt="xma" className="w-full h-auto object-cover" />
+        <Image src={xmaBg} alt="xmaBg" className="w-full h-full object-cover" />
+        <Image src={xmaLogo} alt="xmaLogo" className="w-full h-auto object-cover absolute left-0 top-[4%] group-hover:scale-105 transition-all duration-300" />
       </Link>
 
       <Box className="container" ref={ref}>
@@ -345,11 +348,13 @@ export function Footer() {
             </Flex>
           </FadeInAni>
 
-          <Image src={token} alt="token" className="w-[24%] h-auto object-cover" />
+          {/* <Image src={token} alt="token" className="w-[24%] h-auto object-cover" /> */}
 
-          {/* <Box w={"24%"}>
+          <Box w={240} h={320}>
             <TokenAnimation />
-          </Box> */}
+          </Box>
+
+          <Box pb={500} />
 
         </Flex>
 
@@ -381,97 +386,204 @@ const FadeInAni = ({ classname, isInView, children, delay = 0, y = 100 }: PropsW
 
 const BackgroundAnimation = () => {
   return (
-      <>
-          <video
-              autoPlay={true}
-              playsInline
-              loop
-              preload="auto"
-              controls={false}
-              muted={true}
-              className="w-full h-full object-cover absolute top-0 left-0 object-bottom"
-          >
-              <source src={"/footer/layer.mov"} type="video/mp4" />
-          </video>
-      </>
+    <>
+      <video
+        autoPlay={true}
+        playsInline
+        loop
+        preload="auto"
+        controls={false}
+        muted={true}
+        className="w-full h-full object-cover absolute top-0 left-0 object-bottom"
+      >
+        <source src={"/footer/layer.mov"} type="video/mp4" />
+      </video>
+    </>
   );
 };
 
-// const TokenAnimation = () => {
-//   return (
-//     <div className="relative w-[260px] h-[260px]">
-//       {/* <Image
-//         src={token}
-//         alt="coin"
-//         className="w-full h-full object-contain"
-//       /> */}
+const TokenAnimation = () => {
+  return (
+    <div className="relative w-full h-full">
+      <Image
+        src={token}
+        alt="coin"
+        className="w-[90%] h-auto object-cover absolute top-[48%] left-1/2 -translate-x-1/2 -translate-y-1/2"
+      />
+      <CircularText />
+    </div>
+  );
+};
 
-//       <CircularText
-//         text="COMING SOON 🔥 COMING SOON 🔥 COMING SOON 🔥 "
-//         duration={14}
-//       />
-//     </div>
-//   )
-// }
+// $FOLO 🌕 COMING SOON 🚀 $FOLO 🌕 COMING SOON 🔥
 
-// export function CircularText({
-//   text,
-//   size = 260,
-//   duration = 12,
-// }: {
-//   text: string
-//   size?: number
-//   duration?: number
-// }) {
-//   const radius = size / 2 - 20
+const text = "$FOLO 🌕 COMING SOON 🚀 $FOLO 🌕 COMING SOON 🔥";
 
-//   return (
-//     <div
-//       className="relative w-[260px] h-[260px]"
-//       style={{
-//         perspective: '800px',
-//       }}
-//     >
-//       <motion.svg
-//         width={260}
-//         height={260}
-//         viewBox="0 0 260 260"
-//         animate={{ rotate: 360 }}
-//         transition={{
-//           duration: 14,
-//           repeat: Infinity,
-//           ease: 'linear',
-//         }}
-//         style={{
-//           transformStyle: 'preserve-3d',
-//           transform: 'rotateX(55deg) rotateZ(-25deg)',
-//         }}
-//         className="absolute inset-0"
-//       >
-//         <defs>
-//           <path
-//             id="circlePath"
-//             d="
-//           M 130,130
-//           m -100,0
-//           a 100,100 0 1,1 200,0
-//           a 100,100 0 1,1 -200,0
-//         "
-//           />
-//         </defs>
+export function CircularText() {
+  console.log({ test: text.repeat(20) });
+  return (
+    // <motion.svg
+    //   width={240}
+    //   height={320}
+    //   viewBox="0 0 240 320"
+    //   initial={{ rotate: "35deg"}}
+    //   // animate={{ rotate: 360 }}
+    //   transition={{
+    //     duration: 20,
+    //     repeat: Infinity,
+    //     ease: "linear",
+    //   }}
+    //   style={{
+    //     transformOrigin: "120px 160px",
+    //   }}
+    // >
+    //   <defs>
+    //     {/* Gradient text */}
+    //     <linearGradient id="textGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+    //       <stop offset="0%" stopColor="#EEA2FF" />
+    //       <stop offset="100%" stopColor="#376CEC" />
+    //     </linearGradient>
 
-//         <text
-//           fill="#7C6CFF"
-//           fontSize="18"
-//           fontWeight="600"
-//           letterSpacing="4"
-//         >
-//           <textPath href="#circlePath">
-//             COMING SOON 🔥 $FOLO 🔥 COMING SOON
-//           </textPath>
-//         </text>
-//       </motion.svg>
-//     </div>
+    //     {/* 🔥 ELLIPSE PATH */}
+    //     <path
+    //       id="ellipsePath"
+    //       d="
+    //         M 120,160
+    //         m -90,0
+    //         a 90,130 0 1,1 180,0
+    //         a 90,130 0 1,1 -180,0
+    //       "
+    //     />
+    //   </defs>
 
-//   )
-// }
+    //   <g>
+    //     <text
+    //       fontSize="20"
+    //       fontWeight="900"
+    //       letterSpacing="3"
+    //       fill="url(#textGradient)"
+    //     >
+    //       <textPath
+    //         href="#ellipsePath"
+    //         startOffset="50%"
+    //         textAnchor="middle"
+    //       >
+    //         {text}
+    //       </textPath>
+    //     </text>
+    //   </g>
+    // </motion.svg>
+
+    <svg
+      width={240}
+      height={320}
+      viewBox="0 0 240 320"
+      style={{ transform: "rotate(35deg)" }} // 👈 nghiêng cố định
+    >
+      <defs>
+        <linearGradient id="textGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#EEA2FF" />
+          <stop offset="100%" stopColor="#376CEC" />
+        </linearGradient>
+
+        {/* Ellipse */}
+        <path
+          id="ellipsePath"
+          d="
+            M 120,160
+            m -90,0
+            a 90,130 0 1,1 180,0
+            a 90,130 0 1,1 -180,0
+          "
+        />
+
+        {/* Fade mask */}
+        <linearGradient id="fadeMask" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="white" stopOpacity="0" />
+          <stop offset="10%" stopColor="white" stopOpacity="1" />
+          <stop offset="90%" stopColor="white" stopOpacity="1" />
+          <stop offset="100%" stopColor="white" stopOpacity="0" />
+        </linearGradient>
+
+        <mask id="textFadeMask">
+          <rect width="100%" height="100%" fill="url(#fadeMask)" />
+        </mask>
+      </defs>
+
+      <text
+        fontSize="20"
+        fontWeight="900"
+        letterSpacing="3"
+        fill="url(#textGradient)"
+        mask="url(#textFadeMask)"
+      >
+        <motion.textPath
+          href="#ellipsePath"
+          startOffset="0%"
+          animate={{ startOffset: ["0%", "-50%"] }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        >
+          {text.repeat(3)}
+        </motion.textPath>
+      </text>
+    </svg>
+
+    // <svg
+    //   width="240"
+    //   height="320"
+    //   viewBox="0 0 240 320"
+    //   className="absolute top-0 left-0"
+    // >
+    //   <defs>
+    //     <linearGradient id="textGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+    //       <stop offset="0%" stopColor="#EEA2FF" />
+    //       <stop offset="100%" stopColor="#376CEC" />
+    //     </linearGradient>
+
+    //     <path
+    //       id="ellipsePath"
+    //       d="
+    //         M 120,160
+    //         m -90,0
+    //         a 90,130 0 1,1 180,0
+    //         a 90,130 0 1,1 -180,0
+    //       "
+    //     />
+    //   </defs>
+
+    //   {/* giữ nghiêng cố định */}
+    //   <g transform="rotate(35 120 160)">
+    //     <text
+    //       fontSize="24"
+    //       fontWeight="900"
+    //       letterSpacing="3"
+    //       fill="url(#textGradient)"
+    //     >
+    //       <textPath href="#ellipsePath" startOffset="0%">
+    //         {text}
+
+    //         {/* 🔥 SVG SMIL animation */}
+    //         <animate
+    //           attributeName="startOffset"
+    //           from="0%"
+    //           to="100%"
+    //           dur="18s"
+    //           repeatCount="indefinite"
+    //         />
+    //       </textPath>
+    //     </text>
+    //   </g>
+    // </svg>
+  );
+}
+
+
+
+
+
+
+// background: linear-gradient(180deg, #EEA2FF 0%, #376CEC 100%);

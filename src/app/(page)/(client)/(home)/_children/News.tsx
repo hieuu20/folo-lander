@@ -35,9 +35,8 @@ export default function News({ news }: Props) {
         () => {
 
             const step = window.innerHeight;
-            const endValue = step * 2.5;
+            const endValue = step * 2;
 
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: main.current,
@@ -55,9 +54,7 @@ export default function News({ news }: Props) {
                 { x: 0, y: 0, duration: 2, ease: "power2.out" },
             );
         },
-        {
-            scope: main,
-        }
+        { scope: main, }
     );
 
     useEffect(() => {
@@ -112,12 +109,10 @@ export default function News({ news }: Props) {
     };
 
     return (
-        <Box w={"100%"} bg={"white"} h={"250vh"}>
+        <Box w={"100%"} bg={"white"} h={"150vh"}>
             <Flex
-                // pos={"relative"}
                 id='News'
                 w={"100%"}
-                // h={"100vh"}
                 bg={"white"}
                 align={"center"}
                 ref={main}

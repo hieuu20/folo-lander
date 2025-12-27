@@ -464,7 +464,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
                         initial={{
                             x: "100%",
                             y: "-50%",
-                            // rotate: "-14.8deg"
+                            rotate: "-14.8deg"
                         }}
                         animate={{
                             x: ["-100%", "100%"]
@@ -474,7 +474,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
                             ease: "linear",
                             duration: 30,
                         }}
-                        className='h-[200%] w-auto absolute top-1/2 aspect-[1.42911153119]'
+                        className='h-[200%] w-auto absolute top-1/2 right-[-16%] aspect-[1.42911153119]'
                     >
                         <Image
                             src={bg1Feature4}
@@ -488,7 +488,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
                         initial={{
                             x: "0%",
                             y: "-50%",
-                            // rotate: "-14.8deg"
+                            rotate: "-14.8deg"
                         }}
                         animate={{
                             x: ["-100%", "100%"]
@@ -499,7 +499,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
                             duration: 30,
                             delay: 15
                         }}
-                        className='h-[200%] w-auto absolute top-1/2 aspect-[1.42911153119]'
+                        className='h-[200%] w-auto absolute top-1/2 right-[-10%] aspect-[1.42911153119]'
                     >
                         <Image
                             src={bg1Feature4}

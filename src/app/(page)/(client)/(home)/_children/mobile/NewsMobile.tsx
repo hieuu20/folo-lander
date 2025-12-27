@@ -22,17 +22,17 @@ interface Props {
     news: INews[];
 }
 
-export default function News({ news }: Props) {
+export default function NewsMobile({ news }: Props) {
     const [height, setHeight] = useState(0);
     const [scope] = useAnimate();
     const isInView = useInView(scope, { amount: 0.4, once: false });
 
     const sliderRef = useRef<any>();
+
     const main = useRef(null);
 
     useGSAP(
         () => {
-
             const step = window.innerHeight;
             const endValue = step * 2;
 

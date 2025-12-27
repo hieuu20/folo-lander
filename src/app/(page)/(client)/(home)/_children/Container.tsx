@@ -28,6 +28,7 @@ import { MuchMoreMobile } from "./mobile/MuchMoreMobile";
 import { FooterMobile } from "./mobile/FooterMobile";
 import { BeSeenMobile } from "./mobile/BeSeenMobile";
 import { loadingTime } from "@/utils";
+import NewsMobile from "./mobile/NewsMobile";
 
 interface Props {
     idols: ICreatorIdol[],
@@ -93,9 +94,9 @@ const Mobile = ({ idols, news }: Props) => {
     const main = useRef<any>();
     const smoother = useRef<ScrollSmoother>();
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+    // useEffect(() => {
+    //     window.scrollTo(0, 0);
+    // }, []);
 
     useGSAP(
         () => {
@@ -125,7 +126,7 @@ const Mobile = ({ idols, news }: Props) => {
                 <SloganMobile />
                 <MuchMoreMobile />
                 <BeSeenMobile />
-                <News news={news} />
+                <NewsMobile news={news} />
                 <FooterMobile />
             </Box>
         </Box>
@@ -146,9 +147,9 @@ const Desktop = ({ idols, news }: Props) => {
         { scope: main, }
     );
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+    // useEffect(() => {
+    //     window.scrollTo(0, 0);
+    // }, []);
 
     return (
         <Box id="smooth-wrapper" ref={main}>

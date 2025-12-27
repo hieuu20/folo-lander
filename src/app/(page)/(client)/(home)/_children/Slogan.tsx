@@ -76,7 +76,7 @@ export function Slogan() {
             tl.fromTo(
                 "#feature",
                 { y: 0 },
-                { y: 0, duration: 0.4, ease: "power2.out", delay: 0.5 },
+                { y: 0, duration: 0.1, ease: "power2.out", delay: 0.5 },
             );
 
             tl.fromTo(
@@ -88,21 +88,21 @@ export function Slogan() {
             tl.fromTo(
                 "#feature1-image",
                 { y: 200, opacity: 0 },
-                { y: 0, opacity: 1, duration: 1, ease: "power2.out" },
+                { y: 0, opacity: 1, duration: 0.9, ease: "power2.out" },
                 "<+=0.4"
             );
 
             tl.fromTo(
                 "#feature1-phone",
                 { y: 200, opacity: 0, x: "-50%" },
-                { y: 0, opacity: 1, x: "-50%", duration: 1, ease: "power2.out" },
-                "<+=0.4"
+                { y: 0, opacity: 1, x: "-50%", duration: 0.8, ease: "power2.out" },
+                "<+=0.2"
             );
 
             tl.fromTo(
                 "#feature-1-text",
                 { y: 150, opacity: 0 },
-                { y: 0, opacity: 1, duration: 1, ease: "power2.out" },
+                { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
                 "<"
             );
 
@@ -462,9 +462,9 @@ const Feature4 = ({ padding }: { padding: number }) => {
                 <Box h={"78%"} w={"auto"} pos={"relative"} className='aspect-[1.11842105263] rounded-r-[1000px] overflow-hidden'>
                     <motion.div
                         initial={{
-                            x: "0%",
+                            x: "100%",
                             y: "-50%",
-                            rotate: "-14.8deg"
+                            // rotate: "-14.8deg"
                         }}
                         animate={{
                             x: ["-100%", "100%"]
@@ -474,7 +474,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
                             ease: "linear",
                             duration: 30,
                         }}
-                        className='h-[200%] w-auto absolute top-1/2 right-[-16%] aspect-[1.42911153119]'
+                        className='h-[200%] w-auto absolute top-1/2 aspect-[1.42911153119]'
                     >
                         <Image
                             src={bg1Feature4}
@@ -488,7 +488,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
                         initial={{
                             x: "0%",
                             y: "-50%",
-                            rotate: "-14.8deg"
+                            // rotate: "-14.8deg"
                         }}
                         animate={{
                             x: ["-100%", "100%"]
@@ -499,7 +499,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
                             duration: 30,
                             delay: 15
                         }}
-                        className='h-[200%] w-auto absolute top-1/2 right-[-16%] aspect-[1.42911153119]'
+                        className='h-[200%] w-auto absolute top-1/2 aspect-[1.42911153119]'
                     >
                         <Image
                             src={bg1Feature4}

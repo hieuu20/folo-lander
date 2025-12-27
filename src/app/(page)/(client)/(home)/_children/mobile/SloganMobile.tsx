@@ -74,9 +74,8 @@ export function SloganMobile() {
             tl.fromTo(
                 "#feature",
                 { y: 0 },
-                { y: 0, duration: 0.4, ease: "power2.out", delay: 0.5 },
+                { y: 0, duration: 0.2, ease: "power2.out", delay: 0.5 },
             );
-
 
             tl.fromTo(
                 "#feature",
@@ -336,7 +335,7 @@ const Feature3 = ({ padding }: { padding: number }) => {
                 scrollTrigger: {
                     trigger: main.current,
                     // pin: true,
-                    start: 'top 25%',
+                    start: 'top 30%',
                     end: `top top`,
                     markers: false,
                     scrub: true,

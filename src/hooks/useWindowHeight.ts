@@ -10,15 +10,15 @@ export function useWindowHeight(): number {
   useEffect(() => {
     if (!isClient) return;
 
-    const onResize = () => {
-      setHeight(window.innerHeight);
-    };
+    // const onResize = () => {
+    //   setHeight(window.innerHeight);
+    // };
 
     // cập nhật ngay (trường hợp kích thước thay đổi trước khi event được gắn)
     setHeight(window.innerHeight);
 
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    // window.addEventListener("resize", onResize);
+    // return () => window.removeEventListener("resize", onResize);
   }, [isClient]);
 
   return height;

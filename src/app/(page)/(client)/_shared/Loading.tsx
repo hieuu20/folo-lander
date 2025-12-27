@@ -18,11 +18,19 @@ export function Loading() {
     const logoRef = useRef<any>(null);
 
     useEffect(() => {
-        const timeOutId = setTimeout(() => {
-            setDone(true);
-        }, loadingTime * 1000);
+        const handleLoad = () => {
+            setTimeout(() => {
+                setDone(true);
+            }, loadingTime * 1000);
+        };
 
-        return () => clearTimeout(timeOutId);
+        if (document.readyState === 'complete') {
+            handleLoad();
+        } else {
+            window.addEventListener('load', handleLoad);
+        }
+
+        return () => window.removeEventListener('load', handleLoad);
     }, []);
 
     useEffect(() => {

@@ -15,24 +15,24 @@ import { ITracking, TrackingModel } from "../api/_entities";
 import { SECTION_TYPE } from "@/utils";
 
 export const metadata: Metadata = {
-  title: "Folo",
+  title: "FOLO",
   description:
-    "Let's get Folo! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
+    "Support creators, join channels, and connect through real conversations. FOLO is built for relationships, not feeds.",
   icons: {
     icon: "/icons/shortcut-icon.png",
     shortcut: "/icons/shortcut-icon.png",
     apple: "/icons/shortcut-icon.png",
   },
   openGraph: {
-    title: "Premium Starts With You 👑 - Creators earn, fans experience. Join the award winning social marketplace! 🏆",
+    title: "FOLO - The You Platform Where Creators and Communities Connect",
     description:
-      "Let's get Folo! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
+      "Support creators, join channels, and connect through real conversations. FOLO is built for relationships, not feeds.",
     images: [
       {
         url: process.env.DOMAIN + '/images/thumb.webp',
         width: 800,
         height: 500,
-        alt: "Let's get Folo! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
+        alt: "Support creators, join channels, and connect through real conversations. FOLO is built for relationships, not feeds.",
       },
     ],
   },

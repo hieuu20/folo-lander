@@ -420,7 +420,7 @@ const TokenAnimation = () => {
 
   return (
     <div className="relative w-full h-full">
-      <motion.div
+      {/* <motion.div
         initial={{ x: "-50%", y: "-50%" }}
         animate={{
           y: ["-60%", "-45%" , "-60%"]
@@ -438,13 +438,21 @@ const TokenAnimation = () => {
           alt="coin"
           className="w-full h-full object-cover"
         />
-      </motion.div>
+      </motion.div> */}
 
-      <div ref={compRef} className="w-full h-full top-[-9.8vh] md:top-[-2.1vh] relative" />
+      {/* <div ref={compRef} className="w-full h-full top-[-9.8vh] md:top-[-2.1vh] relative" />
 
 
-      {/* 
-      <CircularText /> */}
+      {/*  */}
+
+      <Image
+        src={token}
+        alt="coin"
+        className="w-[90%] h-auto object-cover absolute top-[48%] left-1/2 -translate-x-1/2 -translate-y-1/2"
+      />
+
+      <CircularText />
+
     </div>
   );
 };

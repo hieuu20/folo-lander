@@ -285,6 +285,7 @@ const Feature2 = ({ padding }: { padding: number }) => {
                 justify={{ base: "space-between" }}
                 align={{ base: "center" }}
                 pr={padding}
+                bg={"#F5F5FF"}
             >
                 <Box ref={ref} h={wdheight * 0.78} w={"auto"} pos={"relative"} className='aspect-[1.11842105263]'>
                     <Box w={"100%"} h={"100%"} className='rounded-r-[1000px] overflow-hidden'>
@@ -502,6 +503,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
                 justify={{ base: "space-between" }}
                 align={{ base: "center" }}
                 pr={padding}
+                bg={"#F5F5FF"}
             >
                 <Box h={"78%"} w={"auto"} pos={"relative"} className='aspect-[1.11842105263] rounded-r-[1000px] overflow-hidden'>
                     <motion.div

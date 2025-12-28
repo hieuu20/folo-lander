@@ -56,6 +56,28 @@ export function Slogan() {
             const step = window.innerHeight;
             const endValue = step * 2.5;
 
+            // tl.fromTo(
+            //     "#slogan-text",
+            //     { autoAlpha: 0, y: "50%", x: "-50%" },
+            //     { autoAlpha: 1, y: -74, x: "-50%", duration: 0.4, ease: "power2.out" },
+            // );
+
+            gsap.registerPlugin(ScrollTrigger);
+
+            gsap.fromTo(
+                "#slogan-text",
+                { autoAlpha: 0, y: "50%", x: "-50%" },
+                {
+                    autoAlpha: 1, y: -74, x: "-50%", ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: main.current,
+                        start: 'top 45%',
+                        end: 'top top',
+                        scrub: true,
+                    },
+                }
+            );
+
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: main.current,
@@ -67,11 +89,11 @@ export function Slogan() {
                 },
             });
 
-            tl.fromTo(
-                "#slogan-text",
-                { autoAlpha: 0, y: "50%", x: "-50%" },
-                { autoAlpha: 1, y: -74, x: "-50%", duration: 0.4, ease: "power2.out" },
-            );
+            // tl.fromTo(
+            //     "#slogan-text",
+            //     { autoAlpha: 0, y: "50%", x: "-50%" },
+            //     { autoAlpha: 1, y: -74, x: "-50%", duration: 0.4, ease: "power2.out" },
+            // );
 
             tl.fromTo(
                 "#feature",
@@ -199,6 +221,8 @@ const Feature2 = ({ padding }: { padding: number }) => {
     const main = useRef(null);
     const ref = useRef(null);
 
+    const videoRef = useRef<HTMLVideoElement>(null);
+
     const isInView = useInView(ref, { once: false, amount: 0.6 });
 
     const wdheight = useWindowHeight();
@@ -243,6 +267,12 @@ const Feature2 = ({ padding }: { padding: number }) => {
         });
     }, { scope: main });
 
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.playbackRate = 1.5;
+        }
+    }, []);
+
     return (
         <Box
             ref={main}
@@ -257,14 +287,28 @@ const Feature2 = ({ padding }: { padding: number }) => {
                 pr={padding}
             >
                 <Box ref={ref} h={wdheight * 0.78} w={"auto"} pos={"relative"} className='aspect-[1.11842105263]'>
-                    <Image src={feature2} alt='feature2' className='h-full w-auto object-cover' />
+                    <Box w={"100%"} h={"100%"} className='rounded-r-[1000px] overflow-hidden'>
+                        <video
+                            ref={videoRef}
+                            autoPlay={true}
+                            playsInline
+                            loop
+                            preload="auto"
+                            controls={false}
+                            muted={true}
+                            className="w-full h-full object-cover"
+                        >
+                            <source src={"/slogan/feature/2/video.mp4"} type="video/mp4" />
+                        </video>
+                    </Box>
+                    {/* <Image src={feature2} alt='feature2' className='h-full w-auto object-cover' /> */}
                     <Flex
                         h={"10.3%"}
                         pos={"absolute"}
                         top={"3%"}
                         left={"3%"}
                         bg={"#F11E11"}
-                        fz={"2.9cqh"}
+                        fz={"3.6cqh"}
                         fw={500}
                         c={"white"}
                         justify={"center"}
@@ -279,7 +323,7 @@ const Feature2 = ({ padding }: { padding: number }) => {
                         left={"22%"}
                         // w={"11.2%"}
                         h={"10.3%"}
-                        fz={"2.9cqh"}
+                        fz={"3.6cqh"}
                         fw={500}
                         c={"white"}
                         justify={"center"}

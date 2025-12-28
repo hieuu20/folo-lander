@@ -17,7 +17,7 @@ import { ICreatorIdol } from "@/app/api/_entities/creatorIdol";
 import { INews } from "@/app/api/_entities";
 import News from "./News";
 import { BannerTablet } from "./tablet/BannerTablet";
-import { Footer } from "@/components/layouts";
+import { Footer, Header } from "@/components/layouts";
 import { Loading } from "../../_shared/Loading";
 import { Slogan } from "./Slogan";
 import { MuchMore } from "./MuchMore";
@@ -94,10 +94,6 @@ const Mobile = ({ idols, news }: Props) => {
     const main = useRef<any>();
     const smoother = useRef<ScrollSmoother>();
 
-    // useEffect(() => {
-    //     window.scrollTo(0, 0);
-    // }, []);
-
     useGSAP(
         () => {
             // smoother.current = ScrollSmoother.create({
@@ -147,10 +143,6 @@ const Desktop = ({ idols, news }: Props) => {
         { scope: main, }
     );
 
-    // useEffect(() => {
-    //     window.scrollTo(0, 0);
-    // }, []);
-
     return (
         <Box id="smooth-wrapper" ref={main}>
             <Box
@@ -161,6 +153,7 @@ const Desktop = ({ idols, news }: Props) => {
                 }}
             >
                 <BannerPc />
+                {/* <Header /> */}
                 <Slogan />
                 <MuchMore />
                 <BeSeen />

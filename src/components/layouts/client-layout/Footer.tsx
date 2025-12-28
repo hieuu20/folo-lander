@@ -4,6 +4,7 @@
 import { Box, Flex, Text } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
+import lottie from 'lottie-web';
 
 import footerPay1 from "@public/footer/payment/1.png";
 import footerPay2 from "@public/footer/payment/2.png";
@@ -36,7 +37,7 @@ import SectionButton from "@/components/buttons/SectionButton";
 import { motion, useInView } from "framer-motion";
 
 import token from "@public/footer/token.webp";
-import { PropsWithChildren, useRef } from "react";
+import { PropsWithChildren, useEffect, useRef } from "react";
 import { isNil } from "lodash";
 
 const socials = [
@@ -403,14 +404,47 @@ const BackgroundAnimation = () => {
 };
 
 const TokenAnimation = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const compRef = useRef<any>(null);
+  useEffect(() => {
+    const animation = lottie.loadAnimation({
+      container: compRef.current,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: '/json/comp.json',
+    });
+
+    return () => animation.destroy(); // Cleanup khi unmount component
+  }, []);
+
   return (
     <div className="relative w-full h-full">
-      <Image
-        src={token}
-        alt="coin"
-        className="w-[90%] h-auto object-cover absolute top-[48%] left-1/2 -translate-x-1/2 -translate-y-1/2"
-      />
-      <CircularText />
+      <motion.div
+        initial={{ x: "-50%", y: "-50%" }}
+        animate={{
+          y: ["-60%", "-45%" , "-60%"]
+        }}
+
+        transition={{
+          duration: 2,
+          ease: "linear",
+          repeat: Infinity
+        }}
+        className="w-[66%] aspect-[0.86046511627] absolute top-1/2 left-1/2"
+      >
+        <Image
+          src={token}
+          alt="coin"
+          className="w-full h-full object-cover"
+        />
+      </motion.div>
+
+      <div ref={compRef} className="w-full h-full top-[-9.8vh] md:top-[-2.1vh] relative" />
+
+
+      {/* 
+      <CircularText /> */}
     </div>
   );
 };
@@ -422,58 +456,6 @@ const text = "$FOLO 🌕 COMING SOON 🚀 $FOLO 🌕 COMING SOON 🔥";
 export function CircularText() {
   console.log({ test: text.repeat(20) });
   return (
-    // <motion.svg
-    //   width={240}
-    //   height={320}
-    //   viewBox="0 0 240 320"
-    //   initial={{ rotate: "35deg"}}
-    //   // animate={{ rotate: 360 }}
-    //   transition={{
-    //     duration: 20,
-    //     repeat: Infinity,
-    //     ease: "linear",
-    //   }}
-    //   style={{
-    //     transformOrigin: "120px 160px",
-    //   }}
-    // >
-    //   <defs>
-    //     {/* Gradient text */}
-    //     <linearGradient id="textGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-    //       <stop offset="0%" stopColor="#EEA2FF" />
-    //       <stop offset="100%" stopColor="#376CEC" />
-    //     </linearGradient>
-
-    //     {/* 🔥 ELLIPSE PATH */}
-    //     <path
-    //       id="ellipsePath"
-    //       d="
-    //         M 120,160
-    //         m -90,0
-    //         a 90,130 0 1,1 180,0
-    //         a 90,130 0 1,1 -180,0
-    //       "
-    //     />
-    //   </defs>
-
-    //   <g>
-    //     <text
-    //       fontSize="20"
-    //       fontWeight="900"
-    //       letterSpacing="3"
-    //       fill="url(#textGradient)"
-    //     >
-    //       <textPath
-    //         href="#ellipsePath"
-    //         startOffset="50%"
-    //         textAnchor="middle"
-    //       >
-    //         {text}
-    //       </textPath>
-    //     </text>
-    //   </g>
-    // </motion.svg>
-
     <svg
       width={240}
       height={320}
@@ -531,53 +513,6 @@ export function CircularText() {
         </motion.textPath>
       </text>
     </svg>
-
-    // <svg
-    //   width="240"
-    //   height="320"
-    //   viewBox="0 0 240 320"
-    //   className="absolute top-0 left-0"
-    // >
-    //   <defs>
-    //     <linearGradient id="textGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-    //       <stop offset="0%" stopColor="#EEA2FF" />
-    //       <stop offset="100%" stopColor="#376CEC" />
-    //     </linearGradient>
-
-    //     <path
-    //       id="ellipsePath"
-    //       d="
-    //         M 120,160
-    //         m -90,0
-    //         a 90,130 0 1,1 180,0
-    //         a 90,130 0 1,1 -180,0
-    //       "
-    //     />
-    //   </defs>
-
-    //   {/* giữ nghiêng cố định */}
-    //   <g transform="rotate(35 120 160)">
-    //     <text
-    //       fontSize="24"
-    //       fontWeight="900"
-    //       letterSpacing="3"
-    //       fill="url(#textGradient)"
-    //     >
-    //       <textPath href="#ellipsePath" startOffset="0%">
-    //         {text}
-
-    //         {/* 🔥 SVG SMIL animation */}
-    //         <animate
-    //           attributeName="startOffset"
-    //           from="0%"
-    //           to="100%"
-    //           dur="18s"
-    //           repeatCount="indefinite"
-    //         />
-    //       </textPath>
-    //     </text>
-    //   </g>
-    // </svg>
   );
 }
 

@@ -8,8 +8,8 @@ import footerPay1 from "@public/footer/payment/1.png";
 import footerPay2 from "@public/footer/payment/2.png";
 import footerPay3 from "@public/footer/payment/3.png";
 import footerPay4 from "@public/footer/payment/4.png";
-import footerPay5 from "@public/footer/payment/5.png";
-import footerPay6 from "@public/footer/payment/6.png";
+// import footerPay5 from "@public/footer/payment/5.png";
+// import footerPay6 from "@public/footer/payment/6.png";
 
 import social1 from "@public/footer/socials/1.svg";
 import social2 from "@public/footer/socials/2.svg";
@@ -155,8 +155,8 @@ const footerPays = [
     footerPay2,
     footerPay3,
     footerPay4,
-    footerPay5,
-    footerPay6
+    // footerPay5,
+    // footerPay6
 ];
 
 const delayStep = 0.2;

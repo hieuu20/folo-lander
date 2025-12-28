@@ -34,13 +34,23 @@ export function Loading() {
     }, []);
 
     useEffect(() => {
-        const animation = lottie.loadAnimation({
-            container: logoRef.current,
-            renderer: 'svg',
-            loop: false,
-            autoplay: true,
-            path: '/json/loading.json',
-        });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        let animation: any = null;
+        const handleLoad = () => {
+            animation = lottie.loadAnimation({
+                container: logoRef.current,
+                renderer: 'svg',
+                loop: false,
+                autoplay: true,
+                path: '/json/loading.json',
+            });
+        };
+
+        if (document.readyState === 'complete') {
+            handleLoad();
+        } else {
+            window.addEventListener('load', handleLoad);
+        }
 
         return () => animation.destroy(); // Cleanup khi unmount component
     }, []);

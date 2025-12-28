@@ -10,6 +10,8 @@ import left from "@public/version-3/news/arrow-left.svg";
 
 export function MuchMoreMobile() {
 
+    const main = useRef(null);
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sliderRef = useRef<any>();
 
@@ -43,7 +45,7 @@ export function MuchMoreMobile() {
     };
 
     return (
-        <Box w={"100%"} id='MuchMore' bg={"white"}>
+        <Box w={"100%"} id='MuchMore' bg={"white"} ref={main}>
             <Flex
                 h={"fit-content"}
                 w={"100%"}

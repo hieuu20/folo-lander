@@ -19,7 +19,6 @@ import starIcon from "@public/slogan/star.svg";
 import feature1 from "@public/slogan/feature/1/img.webp";
 import feature1Phone from "@public/slogan/feature/1/phone.webp";
 
-import feature2 from "@public/slogan/feature/2/img.webp";
 import featureShop from "@public/slogan/feature/2/img2.webp";
 
 import img1Feature3 from "@public/slogan/feature/3/img1.webp";
@@ -239,6 +238,14 @@ const Feature2 = ({ padding }: { padding: number }) => {
         });
     }, { scope: main });
 
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.playbackRate = 1.5;
+        }
+    }, []);
+
     return (
         <Box
             ref={main}
@@ -252,10 +259,24 @@ const Feature2 = ({ padding }: { padding: number }) => {
                 gap={80}
                 pr={padding}
                 className='overflow-hidden'
+                bg={"#F5F5FF"}
             >
                 <Box pr={padding}>
                     <Box ref={ref} w={"full"} pos={"relative"} className='aspect-[1.11842105263]'>
-                        <Image src={feature2} alt='feature1' className='h-auto w-full object-cover' />
+                        <Box w={"100%"} h={"100%"} className='rounded-r-[1000px] overflow-hidden'>
+                            <video
+                                ref={videoRef}
+                                autoPlay={true}
+                                playsInline
+                                loop
+                                preload="auto"
+                                controls={false}
+                                muted={true}
+                                className="w-full h-full object-cover"
+                            >
+                                <source src={"/slogan/feature/2/video.mp4"} type="video/mp4" />
+                            </video>
+                        </Box>
                         <Flex
                             h={"12%"}
                             pos={"absolute"}
@@ -471,6 +492,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
                 align={{ base: "center" }}
                 gap={80}
                 className='overflow-hidden'
+                bg={"#F5F5FF"}
             >
                 <Box pr={padding} w={"100%"} h={"fit-content"}>
                     <Box h={"auto"} w={"100%"} pos={"relative"} className='aspect-[1.11842105263] rounded-r-[1000px] overflow-hidden'>

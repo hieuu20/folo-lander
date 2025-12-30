@@ -63,7 +63,7 @@ export default function Container(props: Props) {
     }, [pathname]);
 
     const render = () => {
-        // if (width == 0) return null;
+        if (width == 0) return null;
 
         if (width < 992) {
             return <Mobile {...props} />;

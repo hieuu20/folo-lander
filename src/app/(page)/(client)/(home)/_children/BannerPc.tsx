@@ -188,7 +188,7 @@ export const ScrollButton = ({ opacity }: { opacity: any }) => {
             transition={{
                 duration: 0.6,
                 ease: "easeInOut",
-                delay: 1.2
+                delay: 3
             }}
             className='absolute bottom-6 left-6'
         >

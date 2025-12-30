@@ -72,7 +72,7 @@ export function SignupPopup({ userName, opened, close }: Props) {
                 {({ values, dirty, isSubmitting, setFieldValue }) => {
                     const isEnable = values.userName && values.firstName && values.lastName && values.email;
                     return (
-                        <Form className='w-[92%] mx-auto'>
+                        <Form className='w-[96%] md:w-[92%] mx-auto'>
                             <Text fz={{ base: 10, md: 12 }} c={"#4D5053"} lh={1.4} mb={4}>
                                 Ho will you use FOLO? <span className='text-[#F11E11]'>*</span>
                             </Text>

@@ -56,7 +56,7 @@ export function BannerMobile() {
                         animate={{
                             top: spacing
                         }}
-                        transition={{ duration: 0.5, ease: "easeInOut", delay: loadingTime + 2.2 }}
+                        transition={{ duration: 0.5, ease: "easeInOut", delay: loadingTime + 1.8 }}
                         className='absolute aspect-[0.77954545454]'
                         style={{
                             height: topHeight
@@ -71,7 +71,7 @@ export function BannerMobile() {
                                 width: "100%",
                                 aspectRatio: 0.77954545454,
                             }}
-                            transition={{ duration: 0.6, ease: "easeInOut", delay: loadingTime + 1.6 }}
+                            transition={{ duration: 0.6, ease: "easeInOut", delay: loadingTime + 1.2 }}
                             className='rounded-[300px] overflow-hidden center-absolute'
                         >
                             <video
@@ -99,7 +99,7 @@ export function BannerMobile() {
                         id='banner-title-mb'
                         initial={{ y: "100%", opacity: 0, x: "-50%" }}
                         animate={{ y: 0, opacity: 1, x: "-50%" }}
-                        transition={{ duration: 0.8, ease: "easeInOut", delay: loadingTime + 2.2 }}
+                        transition={{ duration: 0.8, ease: "easeInOut", delay: loadingTime + 1.8 }}
                         className='flex flex-col gap-6 justify-center absolute left-1/2 w-[90%]'
                         style={{ bottom: spacing }}
                     >

@@ -32,7 +32,7 @@ export const STORAGE_KEY = {
   CARTS: "CARTS",
 };
 
-export const loadingTime = 1.2;
+export const loadingTime = 1.3;
 
 export const TIME_FORMAT = "HH:mm MMM DD,YYYY";
 export const DATE_FORMAT = "DD MMM, YYYY";

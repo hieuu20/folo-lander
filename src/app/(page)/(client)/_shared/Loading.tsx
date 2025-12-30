@@ -19,6 +19,14 @@ export function Loading() {
 
     useEffect(() => {
         const handleLoad = () => {
+            lottie.loadAnimation({
+                container: logoRef.current,
+                renderer: 'svg',
+                loop: false,
+                autoplay: true,
+                path: '/json/loading.json',
+            });
+
             setTimeout(() => {
                 setDone(true);
             }, loadingTime * 1000);
@@ -31,26 +39,6 @@ export function Loading() {
         }
 
         return () => window.removeEventListener('load', handleLoad);
-    }, []);
-
-    useEffect(() => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        let animation: any = null;
-        const handleLoad = () => {
-            animation = lottie.loadAnimation({
-                container: logoRef.current,
-                renderer: 'svg',
-                loop: false,
-                autoplay: true,
-                path: '/json/loading.json',
-            });
-        };
-
-        if (document.readyState === 'complete') {
-            handleLoad();
-        }
-
-        return () => animation?.destroy(); // Cleanup khi unmount component
     }, []);
 
     return (

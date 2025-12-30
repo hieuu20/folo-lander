@@ -30,17 +30,17 @@ export function BannerMobile() {
             control2.start({
                 width: "100%",
                 aspectRatio: 0.77954545454,
-                transition: { duration: 0.6, ease: "easeInOut", delay: loadingTime + 1 }
+                transition: { duration: 0.6, ease: "easeInOut", delay: loadingTime + 1.3 }
             });
 
             control1.start({
                 top: spacing,
-                transition: { duration: 0.5, ease: "easeInOut", delay: loadingTime + 1.6 }
+                transition: { duration: 0.5, ease: "easeInOut", delay: loadingTime + 1.9 }
             });
 
             control3.start({
                 y: 0, opacity: 1, x: "-50%",
-                transition: { duration: 0.8, ease: "easeInOut", delay: loadingTime + 1.6 }
+                transition: { duration: 0.8, ease: "easeInOut", delay: loadingTime + 1.9 }
             });
         };
 

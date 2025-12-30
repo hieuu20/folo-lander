@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { Box, Flex, Text } from '@mantine/core';
+import { Box, Flex, Input, Text } from '@mantine/core';
 import React, { useEffect, useRef, useState } from 'react';
 import logoWhite from "@public/icons/logo-white.webp";
 import bgImage from "@public/banner/bg.webp";
@@ -10,12 +10,15 @@ import bgImage from "@public/banner/bg.webp";
 import Image from 'next/image';
 import SectionButton from '@/components/buttons/SectionButton';
 import { motion, useAnimation } from 'framer-motion';
-import { useWindowHeight } from '@/hooks';
+import { useDisclosure, useWindowHeight } from '@/hooks';
 import { loadingTime } from '@/utils';
+import { SignupPopup } from '@/components/Popups';
 
 export function BannerMobile() {
     const main = useRef<any>();
     const wdHeight = useWindowHeight();
+    const [userName, setUserName] = useState('');
+    const [opened, { open, close }] = useDisclosure();
 
     const control1 = useAnimation();
     const control2 = useAnimation();
@@ -150,34 +153,51 @@ export function BannerMobile() {
                         </Text>
 
                         <Flex
-                            justify={{ base: "space-between", md: "center" }}
-                            gap={{ base: 16 }} w={{ base: "100%" }}
+                            justify={"space-between"}
+                            bg={"transparent"}
+                            bd={"1px solid #E7E7F8"}
+                            p={{ base: 8 }}
+                            className='rounded-3xl'
+                            h={{ base: 50, sm: 52, md: 56, lg: 58, xl: 60, "2xl": 64 }}
+                            w={{ base: "100%", sm: 320, md: 360, lg: 390, xl: 410, "2xl": 438 }}
+                            align={"center"}
                         >
-                            <SectionButton
-                                show={true}
-                                title={"Join the waitlist"}
-                                href={"/"}
-                                w={{ base: "480%", md: 150 }}
-                                h={{ base: 40 }}
-                                fz={{ base: 16 }}
-                                px={0}
-                                fw={600}
-                                bg={"#376CEC"}
+                            <Input
+                                bg={"transparent"}
+                                fz={{ base: 16, md: 18, "2xl": 20 }}
+                                fw={500}
+                                pl={4}
+                                placeholder='Enter username'
+                                classNames={{
+                                    input: "placeholder-[#4D5053] bg-transparent pl-1 md:pl-2",
+                                    wrapper: "bg-transparent"
+                                }}
+                                value={userName}
+                                onChange={(e) => setUserName(e.target.value)}
+                                c={"black"}
+                            // className='placeholder-[#FFFFFF59]'
                             />
 
                             <SectionButton
                                 show={true}
-                                title={"See More"}
-                                href={"/"}
-                                w={{ base: "480%", md: 150 }}
-                                h={{ base: 40 }}
-                                fz={{ base: 16 }}
-                                px={0}
+                                title='Join Now →'
+                                className='rounded-2xl'
+                                fz={{ base: 14, md: 15, "2xl": 16 }}
                                 fw={600}
-                                bg={"#131416"}
+                                w={{ base: 90, md: 96, xl: 107 }}
+                                h={"100%"}
+                                bg={"#435EFB"}
+                                px={0}
+                                onClick={() => {
+                                    open();
+                                    setTimeout(() => {
+                                        setUserName('');
+                                    }, 300);
+                                }}
                             />
                         </Flex>
                     </motion.div>
+                    <SignupPopup opened={opened} close={close} userName={userName} />
                 </Flex>
             </Box>
         </Box>

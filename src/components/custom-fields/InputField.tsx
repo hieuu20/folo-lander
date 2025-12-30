@@ -32,11 +32,11 @@ export function InputField(props: InputFieldProps) {
   const errorString = errors[name] as string;
 
   return (
-    <div className="w-full flex flex-col h-fit mb-1 relative gap-1">
+    <div className="w-full flex flex-col h-fit relative gap-1">
       {label && (
         <span>
-          <span className="text-[#4D5053] text-xs">{label}</span>
-          {required && <span className="text-[#F11E11] ml-[2px]">*</span>}
+          <span className="text-[#4D5053] text-xs leading-[1.2]">{label}</span>
+          {required && <span className="text-[#F11E11] ml-[2px] leading-[1.2] text-sm">*</span>}
         </span>
       )}
 
@@ -50,7 +50,7 @@ export function InputField(props: InputFieldProps) {
         bg={"##F5F5F6"}
         classNames={{
           input: twMerge(
-            "px-3 bg-[#F5F5F6] placeholder-gray-500 placeholder-font-bold text-black text-base h-10 rounded-lg font-medium",
+            "px-3 bg-white placeholder:text-[#4D5053] placeholder:font-normal text-black text-sm h-10 rounded-lg font-medium border border-solid border-[#E7E7F8]",
             className
           ),
           wrapper: "",

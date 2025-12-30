@@ -33,7 +33,7 @@ export function FooterMobile() {
     const isInView = useInView(ref, { once: true, amount: 0.3 });
 
     return (
-        <footer className="bg-white overflow-hidden rounded-t-[18px] relative w-full aspect-[0.2408477842] -top-6 pt-6">
+        <footer id="footer" className="bg-white overflow-hidden rounded-t-[18px] relative w-full aspect-[0.2408477842] -top-6 pt-6">
             <BackgroundAnimation />
 
             <FadeInAni isInView={isInView} y={500} delay={delayStep * 3} classname="h-[20%] w-full absolute top-0 left-0 flex justify-center">
@@ -47,10 +47,6 @@ export function FooterMobile() {
             <FadeInAni isInView={isInView} y={500} delay={delayStep * 5} classname="h-[45%] w-full absolute top-0 left-0 flex justify-center">
                 <Image src={ellip1} alt='elipse' className='w-auto h-full object-cover ' />
             </FadeInAni>
-
-            {/* <Image src={ellip3} alt='elipse' className='w-auto h-[30%] absolute top-0 left-1/2 -translate-x-1/2 object-cover' />
-      <Image src={ellip2} alt='elipse' className='w-auto h-[42%] absolute top-0 left-1/2 -translate-x-1/2 object-cover' />
-      <Image src={ellip1} alt='elipse' className='w-auto h-[55%] absolute top-0 left-1/2 -translate-x-1/2 object-cover' /> */}
 
             <Link
                 href={"https://www.xbiz.com/news/292013/2025-euro-xma-winners-announced"}
@@ -220,15 +216,9 @@ export function FooterMobile() {
                         </Flex>
                     </FadeInAni>
 
-                    {/* <Image src={token} alt="token" className="w-[56%] h-auto object-cover" /> */}
-
                     <Box w={200} h={176}>
                         <TokenAnimation />
                     </Box>
-
-                    {/* <Box w={"24%"}>
-            <TokenAnimation />
-          </Box> */}
 
                 </Flex>
             </Box>

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { Flex } from '@mantine/core';
@@ -8,18 +7,21 @@ import React, { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import logo from "@public/header/logo.svg";
 import SectionButton from '@/components/buttons/SectionButton';
-import { useBrowserWidth } from '@/hooks';
 
 
 export function Header() {
-  const [isSticky, setIsSticky] = useState(false);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const header = document.getElementById('Header');
-      if (header) {
-        setIsSticky(window.scrollY >= window.innerHeight);
+      const footerElm = document.getElementById("footer");
+
+      if (header && footerElm) {
+        const rect = footerElm.getBoundingClientRect();
+        setShow(window.scrollY >= window.innerHeight && rect.top > 100);
       }
+      
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -31,7 +33,7 @@ export function Header() {
       id='Header'
       className={twMerge(
         "z-50 w-full h-fit bg-transparent fixed top-0 left-0 transition-all duration-800 ease-in-out backdrop-blur-sm",
-        isSticky ? "opacity-[1]" : "opacity-0"
+        show ? "opacity-[1]" : "opacity-0"
       )}
     >
       <Flex

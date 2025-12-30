@@ -98,28 +98,7 @@ export function SloganMobile() {
             tl.fromTo(
                 "#feature",
                 { y: 0 },
-                { y: "-100vh", duration: 1.5, ease: "power2.out", delay: 0.5 },
-            );
-
-            tl.fromTo(
-                "#feature1-image",
-                { y: 110, opacity: 0 },
-                { y: 0, opacity: 1, duration: 1, ease: "power2.out" },
-                "<+=0.4"
-            );
-
-            tl.fromTo(
-                "#feature1-phone",
-                { y: 110, opacity: 0, x: "-50%" },
-                { y: 0, opacity: 1, x: "-50%", duration: 1, ease: "power2.out" },
-                "<"
-            );
-
-            tl.fromTo(
-                "#feature-1-text",
-                { y: 90, opacity: 0 },
-                { y: 0, opacity: 1, duration: 1, ease: "power2.out" },
-                "<+=0.4"
+                { y: "-99vh", duration: 1.5, ease: "power2.out", delay: 0.5 },
             );
 
             tl.fromTo(
@@ -127,7 +106,6 @@ export function SloganMobile() {
                 { x: 0, y: "-99vh" },
                 { x: 0, y: "-99vh", duration: 0.1, ease: "power2.out", delay: 0.5 },
             );
-
         },
         { scope: main, }
     );
@@ -202,7 +180,7 @@ const Feature1 = ({ }: { padding: number }) => {
         >
             <Box w={"70%"} h={"fit-content"} pos={"relative"} ml={"auto"}>
                 <Image src={feature1} alt='feature1' id='feature1-image' className='h-auto w-full object-cover' />
-                <Image src={feature1Phone} alt='feature1Phone' id='feature1-phone' className='h-[80%] w-auto absolute bottom-[-6%] left-0 object-cover' />
+                <Image src={feature1Phone} alt='feature1Phone' id='feature1-phone' className='h-[80%] w-auto absolute bottom-[-6%] left-0 object-cover -translate-x-1/2' />
             </Box>
 
             <Flex id='feature-1-text' direction={"column"} gap={{ base: 16 }} w={"90%"} >
@@ -226,23 +204,6 @@ const Feature2 = ({ padding }: { padding: number }) => {
 
     useGSAP(() => {
         gsap.registerPlugin(ScrollTrigger);
-
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: main.current,
-                start: 'top 30%',
-                end: 'top top',
-                scrub: true,
-            },
-        });
-
-        tl.fromTo(
-            "#feature-2-text",
-            { y: 150, opacity: 0 },
-            {
-                y: 0, opacity: 1, duration: 1, ease: "power2.out",
-            }
-        );
 
         ScrollTrigger.create({
             trigger: main.current,
@@ -366,28 +327,6 @@ const Feature3 = ({ padding }: { padding: number }) => {
         () => {
             gsap.registerPlugin(ScrollTrigger);
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: main.current,
-                    start: 'top 50%',
-                    end: 'top top',
-                    scrub: true,
-                },
-            });
-
-            tl.fromTo(
-                "#imgFeature3",
-                { y: 110, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-                "<"
-            );
-
-            tl.fromTo(
-                "#feature-3-text",
-                { y: 90, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-            );
-
             ScrollTrigger.create({
                 trigger: main.current,
                 start: 'top top',
@@ -443,29 +382,6 @@ const Feature4 = ({ padding }: { padding: number }) => {
     useGSAP(
         () => {
             gsap.registerPlugin(ScrollTrigger);
-
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: main.current,
-                    start: 'top 50%',
-                    end: `top top`,
-                    markers: false,
-                    scrub: true,
-                },
-            });
-
-            tl.fromTo(
-                "#imgFeature4",
-                { y: 110, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-            );
-
-            tl.fromTo(
-                "#feature-4-text",
-                { y: 90, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
-            );
-
             ScrollTrigger.create({
                 trigger: main.current,
                 start: 'top top',
@@ -520,31 +436,6 @@ const Feature5 = ({ padding }: { padding: number }) => {
     useGSAP(
         () => {
             gsap.registerPlugin(ScrollTrigger);
-
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: main.current,
-                    // pin: true,
-                    start: 'top 50%',
-                    end: `top top`,
-                    markers: false,
-                    scrub: true,
-                },
-            });
-
-            tl.fromTo(
-                "#imgFeature5",
-                { y: 110, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-            );
-
-           
-            tl.fromTo(
-                "#feature-5-text",
-                { y: 90, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-            );
-
             ScrollTrigger.create({
                 trigger: main.current,
                 start: 'top top',
@@ -601,23 +492,6 @@ const Feature6 = ({ padding }: { padding: number }) => {
     useGSAP(
         () => {
             gsap.registerPlugin(ScrollTrigger);
-
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: main.current,
-                    start: 'top 25%',
-                    end: `top top`,
-                    markers: false,
-                    scrub: true,
-                },
-            });
-
-            tl.fromTo(
-                "#feature-6-text",
-                { y: 90, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
-            );
-
             ScrollTrigger.create({
                 trigger: main.current,
                 start: 'top top',

@@ -77,10 +77,10 @@ export function MuchMoreMobile() {
             >
                 <motion.div
                     id='more-text'
-                    initial={{ y: 100, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, ease: "circOut" }}
+                    // initial={{ y: 100, opacity: 0 }}
+                    // whileInView={{ y: 0, opacity: 1 }}
+                    // viewport={{ once: true }}
+                    // transition={{ duration: 0.6, ease: "circOut" }}
                     className='flex flex-col gap-4 w-[94%]'
                 >
                     <Text fz={{ base: 32, sm: 36, md: 45, lg: 48, xl: 53, "2xl": 56 }} fw={600} c={"#131416"} lh={1.2} ta={"center"}>
@@ -93,10 +93,10 @@ export function MuchMoreMobile() {
                 </motion.div>
 
                 <motion.div
-                    initial={{ y: 150, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, ease: "circOut", delay: 0.3 }}
+                    // initial={{ y: 150, opacity: 0 }}
+                    // whileInView={{ y: 0, opacity: 1 }}
+                    // viewport={{ once: true }}
+                    // transition={{ duration: 0.6, ease: "circOut", delay: 0.3 }}
                     className='w-full overflow-hidden'
                 >
                     <Slider

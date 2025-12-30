@@ -131,81 +131,72 @@ export default function NewsMobile({ news }: Props) {
                         mb={{ base: "3vh" }}
                     >
                         <motion.span
-                            initial={{ y: "150%", opacity: 0 }}
-                            animate={isInView ? { y: 0, opacity: 1 } : {}}
-                            transition={{
-                                duration: 0.6,
-                                ease: "easeIn"
-                            }}
+                            // initial={{ y: "150%", opacity: 0 }}
+                            // animate={isInView ? { y: 0, opacity: 1 } : {}}
+                            // transition={{
+                            //     duration: 0.6,
+                            //     ease: "easeIn"
+                            // }}
                             className="inline-block"
                         >
                             NEWS
                         </motion.span>
                     </Title>
 
-                    <motion.div
-                        initial={{ y: "30%", opacity: 0 }}
-                        animate={isInView ? { y: 0, opacity: 1 } : {}}
-                        transition={{
-                            duration: 1,
-                            ease: 'easeInOut',
-                        }}
+                    <Slider
+                        ref={sliderRef}
+                        {...settings}
+                        className="[&_.slick-slide]:px-2.5 2xl:[&_.slick-slide]:px-3 [&_.slick-list]:-mx-2.5 2xl:[&_.slick-list]:-mx-3"
                     >
-                        <Slider
-                            ref={sliderRef}
-                            {...settings}
-                            className="[&_.slick-slide]:px-2.5 2xl:[&_.slick-slide]:px-3 [&_.slick-list]:-mx-2.5 2xl:[&_.slick-list]:-mx-3"
-                        >
-                            {news.map((o, index) => {
-                                return (
-                                    <motion.div
-                                        key={index}
-                                        className={twMerge('group bg-white cursor-pointer')}
-                                        onClick={() => {
-                                            window.open(o.hasLink ? o.buttonLink : `/news/${o.slug}`, "_blank");
-                                        }}
+                        {news.map((o, index) => {
+                            return (
+                                <motion.div
+                                    key={index}
+                                    className={twMerge('group bg-white cursor-pointer')}
+                                    onClick={() => {
+                                        window.open(o.hasLink ? o.buttonLink : `/news/${o.slug}`, "_blank");
+                                    }}
+                                >
+                                    <Flex
+                                        direction={"column"}
+                                        className='rounded-2xl translate-x-[30%] sm:translate-x-0 overflow-hidden'
+                                        bd={"1px solid #E7E7F8"}
                                     >
+                                        <Box pos={"relative"} w={"100%"} h={"32vh"} className='overflow-hidden'>
+                                            <Image src={o.thumb} alt={o.title} width={200} height={200} className='rounded-t-2xl w-full h-full object-cover group-hover:scale-105 transition-all duration-300 ease-in-out' />
+                                            <Image src={newsLogo} alt='newsLogo' className='absolute bottom-0 left-0 w-[108px] h-auto object-cover' />
+                                        </Box>
+
                                         <Flex
                                             direction={"column"}
-                                            className='rounded-2xl translate-x-[30%] sm:translate-x-0 overflow-hidden'
-                                            bd={"1px solid #E7E7F8"}
+                                            p={{ base: 16, md: 20, xl: 24 }}
+                                            gap={{ base: 16 }}
+                                            bg={"white"}
+                                            className='rounded-b-2xl'
                                         >
-                                            <Box pos={"relative"} w={"100%"} h={"32vh"} className='overflow-hidden'>
-                                                <Image src={o.thumb} alt={o.title} width={200} height={200} className='rounded-t-2xl w-full h-full object-cover group-hover:scale-105 transition-all duration-300 ease-in-out' />
-                                                <Image src={newsLogo} alt='newsLogo' className='absolute bottom-0 left-0 w-[108px] h-auto object-cover' />
+                                            <Text fz={{ base: 14 }} c={"#4D5053"} lh={1.2}>
+                                                {formatTime(o.createdAt as any)}
+                                            </Text>
+
+                                            <Box h={height}>
+                                                <Text fz={{ base: 18, md: 22, xl: 24 }} c={"#131416"} lh={1.2} fw={600} className='news-title'>
+                                                    {o.title}
+                                                </Text>
                                             </Box>
 
-                                            <Flex
-                                                direction={"column"}
-                                                p={{ base: 16, md: 20, xl: 24 }}
-                                                gap={{ base: 16 }}
-                                                bg={"white"}
-                                                className='rounded-b-2xl'
+                                            <Link
+                                                href={o.hasLink ? o.buttonLink : `/news/${o.slug}`}
+                                                target={'_blank'}
+                                                className="text-[#435EFB] font-semibold py-2 hover:opacity-70 transition-all duration-200"
                                             >
-                                                <Text fz={{ base: 14 }} c={"#4D5053"} lh={1.2}>
-                                                    {formatTime(o.createdAt as any)}
-                                                </Text>
-
-                                                <Box h={height}>
-                                                    <Text fz={{ base: 18, md: 22, xl: 24 }} c={"#131416"} lh={1.2} fw={600} className='news-title'>
-                                                        {o.title}
-                                                    </Text>
-                                                </Box>
-
-                                                <Link
-                                                    href={o.hasLink ? o.buttonLink : `/news/${o.slug}`}
-                                                    target={'_blank'}
-                                                    className="text-[#435EFB] font-semibold py-2 hover:opacity-70 transition-all duration-200"
-                                                >
-                                                    {o.hasLink ? o.buttonLabel : "Read article →"}
-                                                </Link>
-                                            </Flex>
+                                                {o.hasLink ? o.buttonLabel : "Read article →"}
+                                            </Link>
                                         </Flex>
-                                    </motion.div>
-                                );
-                            })}
-                        </Slider>
-                    </motion.div>
+                                    </Flex>
+                                </motion.div>
+                            );
+                        })}
+                    </Slider>
 
                     <Flex gap={24} w={"100%"} justify={"center"} mt={{ base: "3vh" }} className={twMerge(!isPlay ? "lg:invisible" : "")}>
                         <Image src={left} alt='left arrow' className='w-8 md:w-10 h-auto cursor-pointer' onClick={() => sliderRef.current.slickPrev()} />

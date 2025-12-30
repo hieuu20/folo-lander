@@ -171,10 +171,8 @@ export function Footer() {
 
   const isInView = useInView(ref, { once: false, amount: 0.2 });
 
-  console.log({ isInView });
-
   return (
-    <footer className="bg-white overflow-hidden rounded-t-[24px] relative w-full aspect-[1.05340160936] -top-6 pt-6">
+    <footer id="footer" className="bg-white overflow-hidden rounded-t-[24px] relative w-full aspect-[1.05340160936] -top-6 pt-6">
       <BackgroundAnimation />
 
       <FadeInAni isInView={isInView} y={500} delay={delayStep * 3} classname="h-[30%] w-full absolute top-0 left-0 flex justify-center">
@@ -188,10 +186,6 @@ export function Footer() {
       <FadeInAni isInView={isInView} y={500} delay={delayStep * 5} classname="h-[55%] w-full absolute top-0 left-0 flex justify-center">
         <Image src={ellip1} alt='elipse' className='w-auto h-full object-cover ' />
       </FadeInAni>
-
-      {/* <Image src={ellip3} alt='elipse' className='w-auto h-[30%] absolute top-0 left-1/2 -translate-x-1/2 object-cover' />
-      <Image src={ellip2} alt='elipse' className='w-auto h-[42%] absolute top-0 left-1/2 -translate-x-1/2 object-cover' />
-      <Image src={ellip1} alt='elipse' className='w-auto h-[55%] absolute top-0 left-1/2 -translate-x-1/2 object-cover' /> */}
 
       <Link
         href={"https://www.xbiz.com/news/292013/2025-euro-xma-winners-announced"}

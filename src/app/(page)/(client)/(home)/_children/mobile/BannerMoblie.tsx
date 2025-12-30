@@ -9,7 +9,7 @@ import bgImage from "@public/banner/bg.webp";
 
 import Image from 'next/image';
 import SectionButton from '@/components/buttons/SectionButton';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { useWindowHeight } from '@/hooks';
 import { loadingTime } from '@/utils';
 
@@ -17,7 +17,41 @@ export function BannerMobile() {
     const main = useRef<any>();
     const wdHeight = useWindowHeight();
 
+    const control1 = useAnimation();
+    const control2 = useAnimation();
+    const control3 = useAnimation();
+
     const [tileHeight, setTitleHeight] = useState(0);
+    const spacing = 40;
+
+
+    useEffect(() => {
+        const handleLoad = () => {
+            control2.start({
+                width: "100%",
+                aspectRatio: 0.77954545454,
+                transition: { duration: 0.6, ease: "easeInOut", delay: loadingTime + 0.4 }
+            });
+
+            control1.start({
+                top: spacing,
+                transition: { duration: 0.5, ease: "easeInOut", delay: loadingTime + 1 }
+            });
+
+            control3.start({
+                y: 0, opacity: 1, x: "-50%",
+                transition: { duration: 0.8, ease: "easeInOut", delay: loadingTime + 1 }
+            });
+        };
+
+        if (document.readyState === 'complete') {
+            handleLoad();
+        } else {
+            window.addEventListener('load', handleLoad);
+        }
+
+        return () => window.removeEventListener('load', handleLoad);
+    }, [control1, control2, control3]);
 
     useEffect(() => {
         const titleElement = document.getElementById("banner-title-mb");
@@ -26,7 +60,6 @@ export function BannerMobile() {
         }
     }, []);
 
-    const spacing = 40;
 
     const topHeight = wdHeight - (tileHeight + 40 * 2 + 32);
 
@@ -53,10 +86,11 @@ export function BannerMobile() {
                         initial={{
                             top: wdHeight - topHeight
                         }}
-                        animate={{
-                            top: spacing
-                        }}
-                        transition={{ duration: 0.5, ease: "easeInOut", delay: loadingTime + 2.6 }}
+                        // animate={{
+                        //     top: spacing
+                        // }}
+                        animate={control1}
+                        // transition={{ duration: 0.5, ease: "easeInOut", delay: loadingTime + 2.6 }}
                         className='absolute aspect-[0.77954545454]'
                         style={{
                             height: topHeight
@@ -67,11 +101,12 @@ export function BannerMobile() {
                                 width: "26vw",
                                 aspectRatio: 1.62727272727,
                             }}
-                            animate={{
-                                width: "100%",
-                                aspectRatio: 0.77954545454,
-                            }}
-                            transition={{ duration: 0.6, ease: "easeInOut", delay: loadingTime + 2 }}
+                            animate={control2}
+                            // animate={{
+                            //     width: "100%",
+                            //     aspectRatio: 0.77954545454,
+                            // }}
+                            // transition={{ duration: 0.6, ease: "easeInOut", delay: loadingTime + 2 }}
                             className='rounded-[300px] overflow-hidden center-absolute'
                         >
                             <video
@@ -98,8 +133,9 @@ export function BannerMobile() {
                     <motion.div
                         id='banner-title-mb'
                         initial={{ y: "100%", opacity: 0, x: "-50%" }}
-                        animate={{ y: 0, opacity: 1, x: "-50%" }}
-                        transition={{ duration: 0.8, ease: "easeInOut", delay: loadingTime + 2.6 }}
+                        // animate={{ y: 0, opacity: 1, x: "-50%" }}
+                        // transition={{ duration: 0.8, ease: "easeInOut", delay: loadingTime + 2.6 }}
+                        animate={control3}
                         className='flex flex-col gap-6 justify-center absolute left-1/2 w-[90%]'
                         style={{ bottom: spacing }}
                     >

@@ -9,15 +9,16 @@ import bgImage from "@public/banner/bg.webp";
 
 import Image from 'next/image';
 import SectionButton from '@/components/buttons/SectionButton';
-import { motion } from 'framer-motion';
+import { motion, useAnimate, useScroll, useTransform } from 'framer-motion';
 import { useDisclosure, useWindowHeight } from '@/hooks';
 import { loadingTime } from '@/utils/constants';
 import { SignupPopup } from '@/components/Popups';
+import downIcon from "@public/version-3/banner/down.svg";
 
 export function BannerPc() {
-    const main = useRef<any>();
     const wdHeight = useWindowHeight();
     const [opened, { open, close }] = useDisclosure();
+    const [scope] = useAnimate();
 
     const [userName, setUserName] = useState('');
 
@@ -36,9 +37,16 @@ export function BannerPc() {
         return (wdHeight - (topHeight + tileHeight + 40)) / 2;
     }, [tileHeight, topHeight, wdHeight]);
 
+    const { scrollYProgress } = useScroll({
+        target: scope,
+        offset: ['start 0', 'start -0.3'],
+    });
+
+    const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+
     return (
         <Box
-            ref={main}
+            ref={scope}
             h={{ base: "100vh" }}
             bg={"white"}
             pos={"relative"}
@@ -161,8 +169,10 @@ export function BannerPc() {
                             />
                         </Flex>
                     </motion.div>
+
                 </Flex>
             </Box>
+            <ScrollButton opacity={opacity} />
             <SignupPopup opened={opened} close={close} userName={userName} />
         </Box>
     );
@@ -170,3 +180,48 @@ export function BannerPc() {
 
 
 
+export const ScrollButton = ({ opacity }: { opacity: any }) => {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+                duration: 0.6,
+                ease: "easeInOut",
+                delay: 1.2
+            }}
+            className='absolute bottom-6 left-6'
+        >
+            <motion.div
+                initial={{ y: 0 }}
+                animate={{ y: [0, 10, 0] }}
+                transition={{
+                    duration: 2,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                }}
+                style={{
+                    opacity: opacity
+                }}
+                className='bg-[#F7F7FC] rounded-[100px] p-3'
+            >
+                <Flex gap={4} align={"center"} className='overflow-hidden'>
+                    <motion.div
+                        initial={{ y: -26 }}
+                        animate={{ y: 26 }}
+                        transition={{
+                            duration: 2,
+                            ease: "linear",
+                            repeat: Infinity
+                        }}
+                    >
+                        <Image src={downIcon} alt='down icon' width={24} height={24} />
+                    </motion.div>
+                    <span className='text-lg font-semibold text-[#4D5053]'>
+                        Scroll for more
+                    </span>
+                </Flex>
+            </motion.div>
+        </motion.div>
+    );
+};

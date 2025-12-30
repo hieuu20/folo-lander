@@ -12,11 +12,6 @@ import SectionButton from '@/components/buttons/SectionButton';
 import { motion } from 'framer-motion';
 import { useWindowHeight } from '@/hooks';
 import { loadingTime } from '@/utils/constants';
-// import 
-
-// interface Props {
-//     idols: ICreatorIdol[];
-// }
 
 export function BannerPc() {
     const main = useRef<any>();
@@ -44,7 +39,9 @@ export function BannerPc() {
             ref={main}
             h={{ base: "100vh" }}
             bg={"white"}
-            className='overflow-hidden'
+            // className='overflow-hidden'
+            pos={"relative"}
+            className='z-10'
         >
             <Box className='container'>
                 <Flex
@@ -90,7 +87,7 @@ export function BannerPc() {
                                 muted={true}
                                 className="w-full h-full object-cover"
                             >
-                                <source src={"/banner/video.mp4"} type="video/mp4" />
+                                <source src={"/banner/video1-pc.mp4"} type="video/mp4" />
                             </video>
                         </motion.div>
 

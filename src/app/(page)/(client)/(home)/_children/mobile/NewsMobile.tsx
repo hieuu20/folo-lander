@@ -100,7 +100,7 @@ export default function NewsMobile({ news }: Props) {
                 settings: {
                     autoplay: true,
                     infinite: true,
-                    slidesToShow: 1.2,
+                    slidesToShow: 1.3,
                     slidesToScroll: 1,
                 },
             },
@@ -113,22 +113,22 @@ export default function NewsMobile({ news }: Props) {
                 id='News'
                 w={"100%"}
                 bg={"white"}
-                align={"center"}
+                align={"start"}
+                h={"100vh"}
                 ref={main}
-                py={{ base: "14vh" }}
             >
-                <Box className='container' ref={scope}>
+                <Box className='container' pt={71} ref={scope}>
                     <Title
                         id='news-title'
                         w={{ base: "100%" }}
                         px={16}
                         order={2}
-                        fz={{ base: 32, sm: 36, md: 45, lg: 48, xl: 53, "2xl": 56 }}
+                        fz={{ base: 32 }}
                         c={"#131416"}
                         fw={6700}
                         lh={1.2}
                         ta={"center"}
-                        mb={{ base: "7vh" }}
+                        mb={{ base: "3vh" }}
                     >
                         <motion.span
                             initial={{ y: "150%", opacity: 0 }}
@@ -167,10 +167,10 @@ export default function NewsMobile({ news }: Props) {
                                     >
                                         <Flex
                                             direction={"column"}
-                                            className='rounded-2xl translate-x-[20%] sm:translate-x-0 overflow-hidden'
+                                            className='rounded-2xl translate-x-[30%] sm:translate-x-0 overflow-hidden'
                                             bd={"1px solid #E7E7F8"}
                                         >
-                                            <Box pos={"relative"} w={"100%"} h={"auto"} className='overflow-hidden aspect-[1.24279835391]'>
+                                            <Box pos={"relative"} w={"100%"} h={"32vh"} className='overflow-hidden'>
                                                 <Image src={o.thumb} alt={o.title} width={200} height={200} className='rounded-t-2xl w-full h-full object-cover group-hover:scale-105 transition-all duration-300 ease-in-out' />
                                                 <Image src={newsLogo} alt='newsLogo' className='absolute bottom-0 left-0 w-[108px] h-auto object-cover' />
                                             </Box>
@@ -182,12 +182,12 @@ export default function NewsMobile({ news }: Props) {
                                                 bg={"white"}
                                                 className='rounded-b-2xl'
                                             >
-                                                <Text fz={{ base: 16 }} c={"#4D5053"} lh={1.2}>
+                                                <Text fz={{ base: 14 }} c={"#4D5053"} lh={1.2}>
                                                     {formatTime(o.createdAt as any)}
                                                 </Text>
 
                                                 <Box h={height}>
-                                                    <Text fz={{ base: 20, md: 22, xl: 24 }} c={"#131416"} lh={1.2} fw={600} className='news-title'>
+                                                    <Text fz={{ base: 18, md: 22, xl: 24 }} c={"#131416"} lh={1.2} fw={600} className='news-title'>
                                                         {o.title}
                                                     </Text>
                                                 </Box>
@@ -207,7 +207,7 @@ export default function NewsMobile({ news }: Props) {
                         </Slider>
                     </motion.div>
 
-                    <Flex gap={24} w={"100%"} justify={"center"} mt={{ base: 24, md: 32, xl: 48 }} className={twMerge(!isPlay ? "lg:invisible" : "")}>
+                    <Flex gap={24} w={"100%"} justify={"center"} mt={{ base: "3vh" }} className={twMerge(!isPlay ? "lg:invisible" : "")}>
                         <Image src={left} alt='left arrow' className='w-8 md:w-10 h-auto cursor-pointer' onClick={() => sliderRef.current.slickPrev()} />
                         <Image src={right} alt='left arrow' className='w-8 md:w-10 h-auto cursor-pointer' onClick={() => sliderRef.current.slickNext()} />
                     </Flex>

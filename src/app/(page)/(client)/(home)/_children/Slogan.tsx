@@ -24,16 +24,25 @@ import featureShop from "@public/slogan/feature/2/img2.webp";
 import { LiveCount } from './slogan/LiveCount';
 import { LiveComments } from './slogan/LiveComment';
 
+import bgFeature3 from "@public/slogan/feature/3/bg.webp";
+import descriptionFeature3 from "@public/slogan/feature/3/description.webp";
+import phoneFeature3 from "@public/slogan/feature/3/phone.webp";
+import starFeature3 from "@public/slogan/feature/3/star.webp";
+
+import img1Feature4 from "@public/slogan/feature/4/img1.webp";
+import img2Feature4 from "@public/slogan/feature/4/img2.webp";
+import img3Feature4 from "@public/slogan/feature/4/img3.webp";
+
 // import bgFeature3 from "@public/slogan/feature/3/bg.webp";
-import img1Feature3 from "@public/slogan/feature/3/img1.webp";
-import img2Feature3 from "@public/slogan/feature/3/img2.webp";
-import logoFeature3 from "@public/slogan/feature/3/logo.webp";
+import img1Feature5 from "@public/slogan/feature/5/img1.webp";
+import img2Feature5 from "@public/slogan/feature/5/img2.webp";
+import logoFeature5 from "@public/slogan/feature/5/logo.webp";
 
 // import bgFeature4 from "@public/slogan/feature/4/img.webp";
 import { useWindowHeight } from '@/hooks';
 
-import bg1Feature4 from "@public/slogan/feature/4/bg-1.webp";
-import imgFeature4 from "@public/slogan/feature/4/img1.webp";
+import bg1Feature6 from "@public/slogan/feature/6/bg-1.webp";
+import imgFeature6 from "@public/slogan/feature/6/img1.webp";
 import { twMerge } from 'tailwind-merge';
 
 
@@ -186,6 +195,8 @@ export function Slogan() {
             <Feature2 padding={ctnPadding} />
             <Feature3 padding={ctnPadding} />
             <Feature4 padding={ctnPadding} />
+            <Feature5 padding={ctnPadding} />
+            <Feature6 padding={ctnPadding} />
         </Box>
     );
 }
@@ -381,6 +392,190 @@ const Feature3 = ({ padding }: { padding: number }) => {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: main.current,
+                    start: 'top 60%',
+                    end: 'top top',
+                    scrub: true,
+                },
+            });
+
+            tl.fromTo(
+                "#bgFeature3",
+                { x: 600 },
+                { x: 0, duration: 0.6, ease: "power2.out" },
+                "<"
+            );
+
+            tl.fromTo(
+                "#feature-3-text",
+                { y: 150, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+                "<"
+            );
+
+            tl.fromTo(
+                "#phoneFeature3",
+                { y: "100%%", opacity: 0 },
+                { y: "-50%", opacity: 1, duration: 0.5, ease: "power2.out" },
+                "<"
+            );
+
+            tl.fromTo(
+                "#descriptionFeature3",
+                { y: "50%", opacity: 0 },
+                { y: "0%", opacity: 1, duration: 0.5, ease: "power2.out" },
+                "<+=0.2"
+            );
+
+            tl.fromTo(
+                "#starFeature3",
+                { y: 150, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" },
+                "<+=0.1"
+            );
+
+            ScrollTrigger.create({
+                trigger: main.current,
+                start: 'top top',
+                end: '+=30%',
+                pin: true,
+                pinSpacing: true,
+            });
+        },
+        { scope: main, }
+    );
+
+    return (
+        <Box ref={main} h={"100vh"}>
+            <Flex
+                h={"100vh"}
+                direction={{ base: "column", md: "row" }}
+                justify={{ base: "space-between" }}
+                align={{ base: "center" }}
+                pl={padding}
+            >
+                <Flex id='feature-3-text' direction={"column"} gap={{ base: 16 }} w={"36%"} >
+                    <Text fz={{ base: 56 }} fw={600} c={"#131416"} lh={1.2}>
+                        Don’t Fake It. Scale It Authentically
+                    </Text>
+
+                    <Text fz={{ base: 28 }} fw={500} c={"#4D5053"} lh={1.2}>
+                        Our Ai co-pilot flags high-value fans, filters noise, and helps you reply faster.
+                    </Text>
+                </Flex>
+
+                <Box h={"82%"} w={"auto"} pos={"relative"} className='aspect-[1.0303030303]'>
+                    <Image src={bgFeature3} id='bgFeature3' alt='bgFeature3' className='w-full h-full object-cover' />
+
+                    <Image src={starFeature3} id='starFeature3' alt='starFeature3' style={{ opacity: 0 }} className='w-[36%] h-auto absolute left-[54%] top-[14%]' />
+                    <Image src={phoneFeature3} id='phoneFeature3' alt='phoneFeature3' className='w-[57%] h-auto absolute left-[-4%] top-1/2' />
+                    <Image src={descriptionFeature3} id='descriptionFeature3' alt='descriptionFeature3' className='w-[49.8%] h-auto absolute left-[37%] bottom-[5%]' />
+                </Box>
+            </Flex>
+        </Box>
+    );
+};
+
+const Feature4 = ({ padding }: { padding: number }) => {
+    const main = useRef(null);
+
+    useGSAP(
+        () => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: main.current,
+                    start: 'top 60%',
+                    end: `top top`,
+                    markers: false,
+                    scrub: true,
+                },
+            });
+
+            tl.fromTo(
+                "#bgFeature4",
+                { x: -600 },
+                { x: 0, duration: 0.5, ease: "power2.out" },
+            );
+
+            tl.fromTo(
+                "#feature-4-text",
+                { y: 150, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+                "<"
+            );
+
+            tl.fromTo(
+                "#img1Feature4",
+                { y: 150, opacity: 0 },
+                { y: "-50%", opacity: 1, duration: 0.5, ease: "power2.out" },
+                "<"
+            );
+
+            tl.fromTo(
+                "#img2Feature4",
+                { y: 150, opacity: 0 },
+                { y: "0%", opacity: 1, duration: 0.5, ease: "power2.out" },
+                "<+=0.2"
+            );
+
+            tl.fromTo(
+                "#img3Feature4",
+                { y: 150, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" },
+                "<+=0.1"
+            );
+
+            ScrollTrigger.create({
+                trigger: main.current,
+                start: 'top top',
+                end: '+=30%',
+                pin: true,
+                pinSpacing: true,
+            });
+        },
+        { scope: main }
+    );
+
+    return (
+        <Box ref={main} h={"100vh"}>
+            <Flex
+                h={"100vh"}
+                direction={{ base: "column", md: "row" }}
+                justify={{ base: "space-between" }}
+                align={{ base: "center" }}
+                pr={padding}
+                bg={"#F5F5FF"}
+            >
+                <Box h={"78%"} w={"auto"} pos={"relative"} className='aspect-[1.11842105263] '>
+                    <Box id='bgFeature4' w={"100%"} h={"100%"} bg={"#D0CBFF"} className='rounded-r-[1000px]' />
+                    <Image src={img1Feature4} id='img1Feature4' alt='img1Feature4' style={{ opacity: 0 }} className='absolute w-[60%] h-auto object-cover top-1/2 left-[7%]' />
+                    <Image src={img2Feature4} id='img2Feature4' alt='img2Feature4' style={{ opacity: 0 }} className='absolute w-[33%] h-auto object-cover top-[14%] right-[-3%]' />
+                    <Image src={img3Feature4} id='img3Feature4' alt='img3Feature4' style={{ opacity: 0 }} className='absolute w-[33%] h-auto object-cover top-[45%] right-[-3%]' />
+                </Box>
+
+                <Flex id='feature-4-text' direction={"column"} gap={{ base: 16 }} w={"36%"} >
+                    <Text fz={{ base: 56 }} fw={600} c={"#131416"} lh={1.2}>
+                        Build Meaningful Relationships
+                    </Text>
+
+                    <Text fz={{ base: 28 }} fw={500} c={"#4D5053"} lh={1.2}>
+                        Channels help you build a loyal community and deliver premium value and services to your subscribers.
+                    </Text>
+                </Flex>
+            </Flex>
+        </Box>
+    );
+};
+
+const Feature5 = ({ padding }: { padding: number }) => {
+    const main = useRef(null);
+
+    useGSAP(
+        () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: main.current,
                     start: 'top 50%',
                     end: 'top top',
                     scrub: true,
@@ -388,34 +583,34 @@ const Feature3 = ({ padding }: { padding: number }) => {
             });
 
             tl.fromTo(
-                "#feature-3-text",
+                "#feature-5-text",
                 { y: 150, opacity: 0 },
                 { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
             );
 
             tl.fromTo(
-                "#bgFeature3",
+                "#bgFeature5",
                 { x: 600 },
                 { x: 0, duration: 0.88, ease: "power2.out" },
                 "<"
             );
 
             tl.fromTo(
-                "#logoFeature3",
+                "#logoFeature5",
                 { y: "-50%", x: 500 },
                 { y: "-50%", x: 0, duration: 0.6, ease: "power2.out" },
                 "<"
             );
 
             tl.fromTo(
-                "#img1Feature3",
+                "#img1Feature5",
                 { y: "-50%", x: 300, opacity: 0 },
                 { y: "-50%", x: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
                 "<+=0.3"
             );
 
             tl.fromTo(
-                "#img2Feature3",
+                "#img2Feature5",
                 { y: "-50%", x: 400, opacity: 0 },
                 { y: "-50%", x: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
                 "<"
@@ -441,7 +636,7 @@ const Feature3 = ({ padding }: { padding: number }) => {
                 align={{ base: "center" }}
                 pl={padding}
             >
-                <Flex id='feature-3-text' direction={"column"} gap={{ base: 16 }} w={"36%"} >
+                <Flex id='feature-5-text' direction={"column"} gap={{ base: 16 }} w={"36%"} >
                     <Text fz={{ base: 56 }} fw={600} c={"#131416"} lh={1.2}>
                         The Platform for Everyone.
                     </Text>
@@ -452,18 +647,18 @@ const Feature3 = ({ padding }: { padding: number }) => {
                 </Flex>
 
                 <Box h={"82%"} w={"auto"} pos={"relative"} className='aspect-[1.0303030303]'>
-                    <Box bg={"#376CEC"} id='bgFeature3' w={"100%"} h={"100%"} className='rounded-l-[1000px] absolute top-0 left-0' />
+                    <Box bg={"#376CEC"} id='bgFeature5' w={"100%"} h={"100%"} className='rounded-l-[1000px] absolute top-0 left-0' />
 
-                    <Image src={img2Feature3} id='img2Feature3' alt='img2Feature3' style={{ opacity: 0 }} className='w-[27%] h-auto absolute left-[63%] top-1/2' />
-                    <Image src={img1Feature3} id='img1Feature3' alt='img1Feature3' style={{ opacity: 0 }} className='w-[40%] h-auto absolute left-[28%] top-1/2' />
-                    <Image src={logoFeature3} id='logoFeature3' alt='logoFeature3' className='w-[40%] h-auto absolute left-[0%] top-1/2' />
+                    <Image src={img2Feature5} id='img2Feature5' alt='img2Feature3' style={{ opacity: 0 }} className='w-[27%] h-auto absolute left-[63%] top-1/2' />
+                    <Image src={img1Feature5} id='img1Feature5' alt='img1Feature3' style={{ opacity: 0 }} className='w-[40%] h-auto absolute left-[28%] top-1/2' />
+                    <Image src={logoFeature5} id='logoFeature5' alt='logoFeature3' className='w-[40%] h-auto absolute left-[0%] top-1/2' />
                 </Box>
             </Flex>
         </Box>
     );
 };
 
-const Feature4 = ({ padding }: { padding: number }) => {
+const Feature6 = ({ padding }: { padding: number }) => {
     const main = useRef(null);
 
     useGSAP(
@@ -479,7 +674,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
             });
 
             tl.fromTo(
-                "#feature-4-text",
+                "#feature-6-text",
                 { y: 150, opacity: 0 },
                 { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
             );
@@ -523,7 +718,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
                         className='h-[200%] w-auto absolute top-1/2 right-[-16%] aspect-[1.42911153119]'
                     >
                         <Image
-                            src={bg1Feature4}
+                            src={bg1Feature6}
                             alt='waveIcon'
                             fill
                             className="object-cover"
@@ -548,7 +743,7 @@ const Feature4 = ({ padding }: { padding: number }) => {
                         className='h-[200%] w-auto absolute top-1/2 right-[-10%] aspect-[1.42911153119]'
                     >
                         <Image
-                            src={bg1Feature4}
+                            src={bg1Feature6}
                             alt='waveIcon'
                             fill
                             className="object-cover"
@@ -562,14 +757,14 @@ const Feature4 = ({ padding }: { padding: number }) => {
                         )}
                     >
                         <Image
-                            src={imgFeature4}
+                            src={imgFeature6}
                             alt='imgFeature4'
                             className="object-cover w-full h-auto"
                         />
                     </motion.div>
                 </Box>
 
-                <Flex id='feature-4-text' direction={"column"} gap={{ base: 16 }} w={"36%"} >
+                <Flex id='feature-6-text' direction={"column"} gap={{ base: 16 }} w={"36%"} >
                     <Text fz={{ base: 56 }} fw={600} c={"#131416"} lh={1.2}>
                         Where You Get Found
                     </Text>
@@ -582,7 +777,6 @@ const Feature4 = ({ padding }: { padding: number }) => {
         </Box>
     );
 };
-
 const BackgroundAnimations = () => {
     return (
         <>

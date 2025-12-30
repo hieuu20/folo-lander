@@ -4,16 +4,33 @@ import React, { useRef } from 'react';
 
 import { More, moreList } from '@/utils';
 import Slider from 'react-slick';
+import gsap from 'gsap/dist/gsap';
 import { motion } from 'framer-motion';
 import right from "@public/version-3/news/arrow-right.svg";
 import left from "@public/version-3/news/arrow-left.svg";
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 export function MuchMoreMobile() {
-
     const main = useRef(null);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sliderRef = useRef<any>();
+
+    useGSAP(
+        () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            ScrollTrigger.create({
+                trigger: main.current,
+                start: 'top top',
+                end: '+=30%',
+                pin: true,
+                pinSpacing: true,
+            });
+        },
+        { scope: main }
+    );
 
     const settings = {
         dots: false,
@@ -37,7 +54,7 @@ export function MuchMoreMobile() {
             {
                 breakpoint: 768,
                 settings: {
-                    slidesToShow: 1.25,
+                    slidesToShow: 1.5,
                     slidesToScroll: 1,
                 },
             },
@@ -45,16 +62,18 @@ export function MuchMoreMobile() {
     };
 
     return (
-        <Box w={"100%"} id='MuchMore' bg={"white"} ref={main}>
+        <Box w={"100%"} h={"130vh"} id='MuchMore' bg={"white"}>
             <Flex
-                h={"fit-content"}
+                ref={main}
+                h={"100vh"}
                 w={"100%"}
                 justify={"center"}
                 align={"center"}
                 direction={"column"}
                 gap={24}
                 className='container'
-                py={{base: 40}}
+                pb={{ base: 40 }}
+                pt={71}
             >
                 <motion.div
                     id='more-text'
@@ -83,7 +102,7 @@ export function MuchMoreMobile() {
                     <Slider
                         ref={sliderRef}
                         {...settings}
-                        className="[&_.slick-slide]:px-2.5 2xl:[&_.slick-slide]:px-3 [&_.slick-slide]:translate-x-[25%] [&_.slick-list]:-mx-2.5 2xl:[&_.slick-list]:-mx-3"
+                        className="[&_.slick-slide]:px-2.5 2xl:[&_.slick-slide]:px-3 [&_.slick-slide]:translate-x-[50%] [&_.slick-list]:-mx-2.5 2xl:[&_.slick-list]:-mx-3"
                     >
                         {moreList.map((o, index) => {
                             return (
@@ -117,11 +136,11 @@ const MoreItem = ({ item }: { item: More }) => {
             className='rounded-[40px] aspect-[0.62267857142] overflow-hidden bg-no-repeat bg-cover'
         >
             <Flex direction={"column"} gap={{ base: 12 }}>
-                <Text fz={{ base: 24, md: 32 }} c={item.titleColor} fw={600} lh={1.2}>
+                <Text fz={{ base: 20, md: 32 }} c={item.titleColor} fw={600} lh={1.2}>
                     {item.title}
                 </Text>
 
-                <Text fz={{ base: 16, md: 20 }} c={item.dscColor} mb={{ base: 12 }} lh={1.2}>
+                <Text fz={{ base: 14, md: 20 }} c={item.dscColor} mb={{ base: 12 }} lh={1.2}>
                     {item.description}
                 </Text>
             </Flex>

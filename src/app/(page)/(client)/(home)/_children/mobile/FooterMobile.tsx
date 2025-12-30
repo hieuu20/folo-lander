@@ -4,21 +4,6 @@ import { Box, Flex, Text } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
 
-import footerPay1 from "@public/footer/payment/1.png";
-import footerPay2 from "@public/footer/payment/2.png";
-import footerPay3 from "@public/footer/payment/3.png";
-import footerPay4 from "@public/footer/payment/4.png";
-// import footerPay5 from "@public/footer/payment/5.png";
-// import footerPay6 from "@public/footer/payment/6.png";
-
-import social1 from "@public/footer/socials/1.svg";
-import social2 from "@public/footer/socials/2.svg";
-import social3 from "@public/footer/socials/3.svg";
-import social4 from "@public/footer/socials/4.svg";
-import social5 from "@public/footer/socials/5.svg";
-import social6 from "@public/footer/socials/6.svg";
-import social7 from "@public/footer/socials/7.svg";
-
 import ellip1 from "@public/footer/ellip1.webp";
 import ellip2 from "@public/footer/ellip2.webp";
 import ellip3 from "@public/footer/ellip3.webp";
@@ -33,131 +18,10 @@ import flag2 from "@public/footer/flag-2.png";
 import SectionButton from "@/components/buttons/SectionButton";
 import { motion, useInView } from "framer-motion";
 
-import token from "@public/footer/test.png";
 import { PropsWithChildren, useRef } from "react";
 import Marquee from "react-fast-marquee";
+import { footerList, footerPays, socials, TokenAnimation } from "@/components/layouts/client-layout/Footer";
 
-const socials = [
-    {
-        icon: social1,
-        href: "https://facebook.com/folow",
-    },
-    {
-        icon: social2,
-        href: "https://twitter.com/folow",
-    },
-    {
-        icon: social3,
-        href: "https://www.instagram.com/folow",
-    },
-    {
-        icon: social4,
-        href: "https://www.tiktok.com/@folow",
-    },
-    {
-        icon: social5,
-        href: "https://www.reddit.com/user/letsgetknky/",
-    },
-    {
-        icon: social6,
-        href: "https://bsky.app/profile/folow.bsky.social",
-    },
-    {
-        icon: social7,
-        href: "https://t.me/folow",
-    },
-];
-
-const footerList = [
-    {
-        title: "General",
-        children: [
-            {
-                title: "Community Guidelines",
-                href: "https://knky.co/articles/community-guidelines",
-            },
-            {
-                title: "Help Centre",
-                href: "https://help.knky.co/en/",
-            },
-            {
-                title: "Feedback Center",
-                href: "https://app.getacute.io/v/knky",
-            },
-            {
-                title: "Terms of Service",
-                href: "https://knky.co/articles/terms-of-service",
-            },
-            {
-                title: "Contact Us",
-                href: "mailto:support@knky.com",
-            },
-            {
-                title: "Blog",
-                href: "https://knky.co/fresh/",
-            },
-        ],
-    },
-    {
-        title: "For Creators & Fans",
-        children: [
-            {
-                title: "About KNKY",
-                href: "https://lander.knky.co/",
-            },
-            {
-                title: "Premium Plans",
-                href: "https://knky.co/platform-plans",
-            },
-            {
-                title: "Fans & Purchasing Terms",
-                href: "https://knky.co/articles/additional-terms-for-fans-buying-creator-content",
-            },
-            {
-                title: "Creator & Collaborator Terms",
-                href: "https://knky.co/articles/additional-terms-for-creators-and-collaborators",
-            },
-        ],
-    },
-    {
-        title: "T&C docs",
-        children: [
-            {
-                title: "Content Moderation Policy",
-                href: "https://knky.co/articles/content-moderation-and-protection-policy",
-            },
-            {
-                title: "USC 2257",
-                href: "https://knky.co/articles/usc-2257",
-            },
-            {
-                title: "Privacy Policy",
-                href: "https://knky.co/articles/privacy-policy",
-            },
-            {
-                title: "Cookie Policy",
-                href: "https://knky.co/articles/cookie-policy",
-            },
-            {
-                title: "Complaint Policy",
-                href: "https://knky.co/articles/complaint-policy",
-            },
-            {
-                title: "DMCA",
-                href: "https://knky.co/articles/dmca-takedown-policy",
-            },
-        ],
-    },
-];
-
-const footerPays = [
-    footerPay1,
-    footerPay2,
-    footerPay3,
-    footerPay4,
-    // footerPay5,
-    // footerPay6
-];
 
 const delayStep = 0.2;
 
@@ -231,7 +95,7 @@ export function FooterMobile() {
                             return (
                                 <FadeInAni key={index} isInView={isInView} delay={index * (delayStep / 2) + delayStep * 3}>
                                     <Link
-                                        
+
                                         href={s.href}
                                         rel="nofollow"
                                         target="blank"
@@ -356,14 +220,17 @@ export function FooterMobile() {
                         </Flex>
                     </FadeInAni>
 
-                    <Image src={token} alt="token" className="w-[56%] h-auto object-cover" />
+                    {/* <Image src={token} alt="token" className="w-[56%] h-auto object-cover" /> */}
+
+                    <Box w={200} h={176}>
+                        <TokenAnimation />
+                    </Box>
 
                     {/* <Box w={"24%"}>
             <TokenAnimation />
           </Box> */}
 
                 </Flex>
-
             </Box>
         </footer >
     );
@@ -411,83 +278,46 @@ const BackgroundAnimation = () => {
             </video>
         </>
     );
-  };
+};
 
 // const TokenAnimation = () => {
-//   return (
-//     <div className="relative w-[260px] h-[260px]">
-//       {/* <Image
-//         src={token}
-//         alt="coin"
-//         className="w-full h-full object-contain"
-//       /> */}
+//     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//     const compRef = useRef<any>(null);
+//     useEffect(() => {
+//         const animation = lottie.loadAnimation({
+//             container: compRef.current,
+//             renderer: 'svg',
+//             loop: true,
+//             autoplay: true,
+//             path: '/json/comp1.json',
+//         });
 
-//       <CircularText
-//         text="COMING SOON 🔥 COMING SOON 🔥 COMING SOON 🔥 "
-//         duration={14}
-//       />
-//     </div>
-//   )
-// }
+//         return () => animation.destroy(); // Cleanup khi unmount component
+//     }, []);
 
-// export function CircularText({
-//   text,
-//   size = 260,
-//   duration = 12,
-// }: {
-//   text: string
-//   size?: number
-//   duration?: number
-// }) {
-//   const radius = size / 2 - 20
+//     return (
+//         <div className="relative w-full h-full">
+//             <motion.div
+//                 // initial={{ x: "-50%", y: "-50%" }}
+//                 // animate={{
+//                 //   y: ["-60%", "-45%" , "-60%"]
+//                 // }}
 
-//   return (
-//     <div
-//       className="relative w-[260px] h-[260px]"
-//       style={{
-//         perspective: '800px',
-//       }}
-//     >
-//       <motion.svg
-//         width={260}
-//         height={260}
-//         viewBox="0 0 260 260"
-//         animate={{ rotate: 360 }}
-//         transition={{
-//           duration: 14,
-//           repeat: Infinity,
-//           ease: 'linear',
-//         }}
-//         style={{
-//           transformStyle: 'preserve-3d',
-//           transform: 'rotateX(55deg) rotateZ(-25deg)',
-//         }}
-//         className="absolute inset-0"
-//       >
-//         <defs>
-//           <path
-//             id="circlePath"
-//             d="
-//           M 130,130
-//           m -100,0
-//           a 100,100 0 1,1 200,0
-//           a 100,100 0 1,1 -200,0
-//         "
-//           />
-//         </defs>
+//                 transition={{
+//                     duration: 4,
+//                     ease: "linear",
+//                     repeat: Infinity
+//                 }}
+//                 className="w-[70%] aspect-[0.86046511627] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+//             >
+//                 <Image
+//                     src={token}
+//                     alt="coin"
+//                     className="w-full h-full object-cover"
+//                 />
+//             </motion.div>
 
-//         <text
-//           fill="#7C6CFF"
-//           fontSize="18"
-//           fontWeight="600"
-//           letterSpacing="4"
-//         >
-//           <textPath href="#circlePath">
-//             COMING SOON 🔥 $FOLO 🔥 COMING SOON
-//           </textPath>
-//         </text>
-//       </motion.svg>
-//     </div>
-
-//   )
-// }
+//             <div ref={compRef} className="w-full h-full top-[-9.8vh] md:top-[-2.1vh] relative" />
+//         </div>
+//     );
+// };

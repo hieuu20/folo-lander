@@ -13,10 +13,6 @@ import { motion } from 'framer-motion';
 import { useWindowHeight } from '@/hooks';
 import { loadingTime } from '@/utils';
 
-// interface Props {
-//     idols: ICreatorIdol[];
-// }
-
 export function BannerMobile() {
     const main = useRef<any>();
     const wdHeight = useWindowHeight();
@@ -60,7 +56,7 @@ export function BannerMobile() {
                         animate={{
                             top: spacing
                         }}
-                        transition={{ duration: 0.5, ease: "easeInOut", delay: loadingTime + 2.8 }}
+                        transition={{ duration: 0.5, ease: "easeInOut", delay: loadingTime + 2.2 }}
                         className='absolute aspect-[0.77954545454]'
                         style={{
                             height: topHeight
@@ -75,7 +71,7 @@ export function BannerMobile() {
                                 width: "100%",
                                 aspectRatio: 0.77954545454,
                             }}
-                            transition={{ duration: 1, ease: "easeInOut", delay: loadingTime + 2 }}
+                            transition={{ duration: 0.6, ease: "easeInOut", delay: loadingTime + 1.6 }}
                             className='rounded-[300px] overflow-hidden center-absolute'
                         >
                             <video
@@ -87,7 +83,7 @@ export function BannerMobile() {
                                 muted={true}
                                 className="w-full h-full object-cover"
                             >
-                                <source src={"/banner/video.mp4"} type="video/mp4" />
+                                <source src={"/banner/video1-mb.mp4"} type="video/mp4" />
                             </video>
                             {/* <Image src={bgImage} alt='banner bg' fill className='object-cover' /> */}
                         </motion.div>
@@ -103,7 +99,7 @@ export function BannerMobile() {
                         id='banner-title-mb'
                         initial={{ y: "100%", opacity: 0, x: "-50%" }}
                         animate={{ y: 0, opacity: 1, x: "-50%" }}
-                        transition={{ duration: 0.8, ease: "easeInOut", delay: loadingTime + 2.8 }}
+                        transition={{ duration: 0.8, ease: "easeInOut", delay: loadingTime + 2.2 }}
                         className='flex flex-col gap-6 justify-center absolute left-1/2 w-[90%]'
                         style={{ bottom: spacing }}
                     >

@@ -65,7 +65,7 @@ export function BeSeenMobile() {
                             muted={true}
                             className="w-full h-full object-cover"
                         >
-                            <source src={"/be-seen/video.mp4"} type="video/mp4" />
+                            <source src={"/be-seen/video-mb.mp4"} type="video/mp4" />
                         </video>
                         <Flex
                             pos={"absolute"}

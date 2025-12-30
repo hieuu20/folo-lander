@@ -10,13 +10,8 @@ import { useBrowserWidth } from "@/hooks";
 
 import { usePathname } from "next/navigation";
 import { BannerMobile } from "./mobile/BannerMoblie";
-import { UnlimitedMobile } from "./mobile/UnlimitedMobile";
-import { GrowthMobile } from "./mobile/GrowthMobile";
-import { MoreMobile } from "./mobile/MoreMobile";
-import { ICreatorIdol } from "@/app/api/_entities/creatorIdol";
 import { INews } from "@/app/api/_entities";
 import News from "./News";
-import { BannerTablet } from "./tablet/BannerTablet";
 import { Footer, Header } from "@/components/layouts";
 import { Loading } from "../../_shared/Loading";
 import { Slogan } from "./Slogan";
@@ -31,7 +26,6 @@ import { loadingTime } from "@/utils";
 import NewsMobile from "./mobile/NewsMobile";
 
 interface Props {
-    idols: ICreatorIdol[],
     news: INews[],
 }
 export default function Container(props: Props) {
@@ -69,7 +63,7 @@ export default function Container(props: Props) {
     }, [pathname]);
 
     const render = () => {
-        if (width == 0) return null;
+        // if (width == 0) return null;
 
         if (width < 992) {
             return <Mobile {...props} />;
@@ -90,7 +84,7 @@ export default function Container(props: Props) {
     );
 }
 
-const Mobile = ({ idols, news }: Props) => {
+const Mobile = ({ news }: Props) => {
     const main = useRef<any>();
     const smoother = useRef<ScrollSmoother>();
 
@@ -110,26 +104,29 @@ const Mobile = ({ idols, news }: Props) => {
     );
 
     return (
-        <Box id="smooth-wrapper" ref={main}>
-            <Box
-                id="smooth-content"
-                className=''
-                style={{
-                    backgroundColor: "#fff"
-                }}
-            >
-                <BannerMobile />
-                <SloganMobile />
-                <MuchMoreMobile />
-                <BeSeenMobile />
-                <NewsMobile news={news} />
-                <FooterMobile />
+        <>
+            <Header />
+            <Box id="smooth-wrapper" ref={main}>
+                <Box
+                    id="smooth-content"
+                    className=''
+                    style={{
+                        backgroundColor: "#fff"
+                    }}
+                >
+                    <BannerMobile />
+                    <SloganMobile />
+                    <MuchMoreMobile />
+                    <BeSeenMobile />
+                    <NewsMobile news={news} />
+                    <FooterMobile />
+                </Box>
             </Box>
-        </Box>
+        </>
     );
 };
 
-const Desktop = ({ idols, news }: Props) => {
+const Desktop = ({ news }: Props) => {
     const main = useRef<any>();
     const smoother = useRef<ScrollSmoother>();
 
@@ -144,62 +141,65 @@ const Desktop = ({ idols, news }: Props) => {
     );
 
     return (
-        <Box id="smooth-wrapper" ref={main}>
-            <Box
-                id="smooth-content"
-                className=''
-                style={{
-                    backgroundColor: "#fff"
-                }}
-            >
-                <BannerPc />
-                {/* <Header /> */}
-                <Slogan />
-                <MuchMore />
-                <BeSeen />
-                <News news={news} />
-                <Footer />
+        <>
+            <Header />
+
+            <Box id="smooth-wrapper" ref={main}>
+                <Box
+                    id="smooth-content"
+                    className=''
+                    style={{
+                        backgroundColor: "#fff"
+                    }}
+                >
+                    <BannerPc />
+                    <Slogan />
+                    <MuchMore />
+                    <BeSeen />
+                    <News news={news} />
+                    <Footer />
+                </Box>
             </Box>
-        </Box>
+        </>
     );
 };
 
-const Tablet = ({ idols, news }: Props) => {
-    const main = useRef<any>();
-    const smoother = useRef<ScrollSmoother>();
+// const Tablet = ({ news }: Props) => {
+//     const main = useRef<any>();
+//     const smoother = useRef<ScrollSmoother>();
 
-    useGSAP(
-        () => {
-            // smoother.current = ScrollSmoother.create({
-            //   smooth: 0,
-            //   effects: true,
-            //   smoothTouch: 0.5,
-            //   ignoreMobileResize: true,
-            //   normalizeScroll: true
-            // });
-        },
-        {
-            scope: main,
-        }
-    );
+//     useGSAP(
+//         () => {
+//             // smoother.current = ScrollSmoother.create({
+//             //   smooth: 0,
+//             //   effects: true,
+//             //   smoothTouch: 0.5,
+//             //   ignoreMobileResize: true,
+//             //   normalizeScroll: true
+//             // });
+//         },
+//         {
+//             scope: main,
+//         }
+//     );
 
-    return (
-        <Box id="smooth-wrapper" ref={main}>
-            <Box
-                id="smooth-content"
-                className='bg-contain bg-repeat'
-                style={{
-                    backgroundImage: "url('/version-3/banner/bg-mb.webp')",
-                    backgroundColor: "#0A0014"
-                }}
-            >
-                <BannerTablet idols={idols} />
-                <UnlimitedMobile />
-                <MoreMobile />
-                <GrowthMobile news={news} />
-                {/* <News news={news} /> */}
-                <Footer />
-            </Box>
-        </Box>
-    );
-};
+//     return (
+//         <Box id="smooth-wrapper" ref={main}>
+//             <Box
+//                 id="smooth-content"
+//                 className='bg-contain bg-repeat'
+//                 style={{
+//                     backgroundImage: "url('/version-3/banner/bg-mb.webp')",
+//                     backgroundColor: "#0A0014"
+//                 }}
+//             >
+//                 {/* <BannerTablet idols={idols} /> */}
+//                 <UnlimitedMobile />
+//                 <MoreMobile />
+//                 <GrowthMobile news={news} />
+//                 {/* <News news={news} /> */}
+//                 <Footer />
+//             </Box>
+//         </Box>
+//     );
+// };

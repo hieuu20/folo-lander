@@ -117,9 +117,8 @@ export default function News({ news }: Props) {
                 h={"100vh"}
                 ref={main}
                 // py={{ base: "5vh" }}
-
             >
-                <Box className='container' h={"fit-content%"} ref={scope}>
+                <Box className='container' pt={40} h={"fit-content%"} ref={scope}>
                     <Title
                         id='news-title'
                         w={{ base: "100%" }}

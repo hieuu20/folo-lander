@@ -48,11 +48,9 @@ export function Loading() {
 
         if (document.readyState === 'complete') {
             handleLoad();
-        } else {
-            window.addEventListener('load', handleLoad);
         }
 
-        return () => animation.destroy(); // Cleanup khi unmount component
+        return () => animation?.destroy(); // Cleanup khi unmount component
     }, []);
 
     return (

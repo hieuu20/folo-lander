@@ -40,22 +40,22 @@ import token from "@public/footer/token.webp";
 import { PropsWithChildren, useEffect, useRef } from "react";
 import { isNil } from "lodash";
 
-const socials = [
+export const socials = [
   {
     icon: social1,
-    href: "https://facebook.com/folow",
+    href: "https://facebook.com/folo",
   },
   {
     icon: social2,
-    href: "https://twitter.com/folow",
+    href: "https://twitter.com/folo",
   },
   {
     icon: social3,
-    href: "https://www.instagram.com/folow",
+    href: "https://www.instagram.com/folo",
   },
   {
     icon: social4,
-    href: "https://www.tiktok.com/@folow",
+    href: "https://www.tiktok.com/@folo",
   },
   {
     icon: social5,
@@ -63,15 +63,15 @@ const socials = [
   },
   {
     icon: social6,
-    href: "https://bsky.app/profile/folow.bsky.social",
+    href: "https://bsky.app/profile/folo.bsky.social",
   },
   {
     icon: social7,
-    href: "https://t.me/folow",
+    href: "https://t.me/folo",
   },
 ];
 
-const footerList = [
+export const footerList = [
   {
     title: "General",
     children: [
@@ -153,7 +153,7 @@ const footerList = [
   },
 ];
 
-const footerPays = [
+export const footerPays = [
   footerPay1,
   footerPay2,
   footerPay3,
@@ -313,7 +313,6 @@ export function Footer() {
             </Flex>
           </FadeInAni>
 
-
           <FadeInAni delay={0}>
             <Flex direction={"column"} gap={{ base: 4, md: 6, xl: 8 }} align={{ base: "center" }} mb={{ base: 120 }}>
               <Text
@@ -351,14 +350,11 @@ export function Footer() {
 
           {/* <Image src={token} alt="token" className="w-[24%] h-auto object-cover" /> */}
 
-          <Box w={240} h={320}>
+          <Box w={330} h={290} mb={100}>
             <TokenAnimation />
           </Box>
 
-          <Box pb={500} />
-
         </Flex>
-
       </Box>
     </footer>
   );
@@ -403,7 +399,7 @@ const BackgroundAnimation = () => {
   );
 };
 
-const TokenAnimation = () => {
+export const TokenAnimation = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const compRef = useRef<any>(null);
   useEffect(() => {
@@ -420,38 +416,32 @@ const TokenAnimation = () => {
 
   return (
     <div className="relative w-full h-full">
-      {/* <motion.div
-        initial={{ x: "-50%", y: "-50%" }}
+      <motion.div
         animate={{
-          y: ["-60%", "-45%" , "-60%"]
+          y: ["0", "-20%", "0"]
         }}
-
         transition={{
-          duration: 2,
+          duration: 4,
           ease: "linear",
           repeat: Infinity
         }}
-        className="w-[66%] aspect-[0.86046511627] absolute top-1/2 left-1/2"
       >
         <Image
           src={token}
           alt="coin"
-          className="w-full h-full object-cover"
+          className="object-cover w-[70%] aspect-[0.86046511627] absolute top-1/2 left-1/2 -translate-x-[47%] -translate-y-1/2"
         />
-      </motion.div> */}
 
-      {/* <div ref={compRef} className="w-full h-full top-[-9.8vh] md:top-[-2.1vh] relative" />
+        <div ref={compRef} className="w-full h-full relative" />
+      </motion.div>
 
-
-      {/*  */}
-
-      <Image
+      {/* <Image
         src={token}
         alt="coin"
         className="w-[90%] h-auto object-cover absolute top-[48%] left-1/2 -translate-x-1/2 -translate-y-1/2"
       />
 
-      <CircularText />
+      <CircularText /> */}
 
     </div>
   );

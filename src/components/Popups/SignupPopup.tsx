@@ -74,7 +74,7 @@ export function SignupPopup({ userName, opened, close }: Props) {
                     return (
                         <Form className='w-[96%] md:w-[92%] mx-auto'>
                             <Text fz={{ base: 10, md: 12 }} c={"#4D5053"} lh={1.4} mb={4}>
-                                Ho will you use FOLO? <span className='text-[#F11E11]'>*</span>
+                                Who will you use FOLO? <span className='text-[#F11E11]'>*</span>
                             </Text>
 
                             <Grid gutter={12} mb={4}>
@@ -102,7 +102,6 @@ export function SignupPopup({ userName, opened, close }: Props) {
                                                 {values.userType == o.type && (
                                                     <Image src={checkIcon} alt='checkIcon' className='absolute top-0 right-0' />
                                                 )}
-
                                             </Flex>
 
                                         </Grid.Col>

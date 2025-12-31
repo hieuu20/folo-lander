@@ -12,7 +12,6 @@ import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { ProgressBarProvider } from "@/lib/ProgressBarProvider";
 import { connectDB } from "../api/_db/connect";
 import { ITracking, TrackingModel } from "../api/_entities";
-import { SECTION_TYPE } from "@/utils";
 
 export const metadata: Metadata = {
   title: "FOLO",
@@ -57,7 +56,7 @@ export default async function RootLayout({
   await connectDB();
 
   const [trackingResponse] = await Promise.all([
-    TrackingModel.findOne({ type: SECTION_TYPE.CREATOR }).lean(),
+    TrackingModel.findOne({}).lean(),
   ]);
 
   const tracking = JSON.parse(JSON.stringify(trackingResponse)) as ITracking;

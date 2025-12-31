@@ -1,16 +1,18 @@
 "use client";
 
-import { Flex } from '@mantine/core';
+import { Button, Flex } from '@mantine/core';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import logo from "@public/header/logo.svg";
-import SectionButton from '@/components/buttons/SectionButton';
+import { useDisclosure } from '@/hooks';
+import { SignupPopup } from '@/components/Popups';
 
 
 export function Header() {
   const [show, setShow] = useState(false);
+  const [opened, { open, close }] = useDisclosure();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,18 +52,21 @@ export function Header() {
           <Image src={logo} alt="header logo" id='header-logo' fill className='object-cover opacity1 transition-all duration-150' />
         </Link>
         <Flex gap={12}>
-          <SectionButton
-            title="Join the waitlist"
-            href="https://knky.co/fresh"
-            show={true}
+          <Button
             w={{ base: 150 }}
             h={{ base: 40 }}
             px={0}
             fz={{ base: 14 }}
             fw={600}
+            c={"white"}
             bg={"#435EFB"}
-          />
+            className='rounded-lg transition-all duration-200 hover:scale-105'
+            onClick={open}
+          >
+            Join the waitlist
+          </Button>
         </Flex>
+        <SignupPopup opened={opened} close={close} />
       </Flex>
     </header>
   );

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { Box, Flex, Text } from "@mantine/core";
+import { Box, Button, Flex, Text } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
 import lottie from 'lottie-web';
@@ -39,6 +39,8 @@ import { motion, useInView } from "framer-motion";
 import token from "@public/footer/token.webp";
 import { PropsWithChildren, useEffect, useRef } from "react";
 import { isNil } from "lodash";
+import { useDisclosure } from "@/hooks";
+import { SignupPopup } from "@/components/Popups";
 
 export const socials = [
   {
@@ -166,6 +168,7 @@ const delayStep = 0.3;
 
 export function Footer() {
   const currenYear = new Date().getFullYear();
+  const [opened, { open, close }] = useDisclosure();
 
   const ref = useRef(null);
 
@@ -233,18 +236,19 @@ export function Footer() {
             </Text>
 
             <FadeInAni isInView={isInView} delay={delayStep * 2}>
-              <SectionButton
-                show={true}
-                title='Join the waitlist'
+              <Button
                 w={{ base: 150 }}
                 h={{ base: 40 }}
-                fz={{ base: 16 }}
-                c={"white"}
-                fw={600}
                 px={0}
-                bg={"#376CEC"}
-                href='https://knky.co'
-              />
+                fz={{ base: 16 }}
+                fw={600}
+                c={"white"}
+                bg={"#435EFB"}
+                className='rounded-lg transition-all duration-200 hover:scale-105'
+                onClick={open}
+              >
+                Join the waitlist
+              </Button>
             </FadeInAni>
           </Flex>
 
@@ -348,6 +352,7 @@ export function Footer() {
             <TokenAnimation />
           </Box>
 
+          <SignupPopup opened={opened} close={close} />
         </Flex>
       </Box>
     </footer>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Flex, Text } from "@mantine/core";
+import { Box, Button, Flex, Text } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,18 +15,20 @@ import smallLogo from "@public/footer/logo.svg";
 import flag1 from "@public/footer/flag-1.png";
 import flag2 from "@public/footer/flag-2.png";
 
-import SectionButton from "@/components/buttons/SectionButton";
 import { motion, useInView } from "framer-motion";
 
 import { PropsWithChildren, useRef } from "react";
 import Marquee from "react-fast-marquee";
 import { footerList, footerPays, socials, TokenAnimation } from "@/components/layouts/client-layout/Footer";
+import { useDisclosure } from "@/hooks";
+import { SignupPopup } from "@/components/Popups";
 
 
 const delayStep = 0.2;
 
 export function FooterMobile() {
     const currenYear = new Date().getFullYear();
+    const [opened, { open, close }] = useDisclosure();
 
     const ref = useRef(null);
 
@@ -71,18 +73,19 @@ export function FooterMobile() {
                         </Text>
 
                         <FadeInAni isInView={isInView} delay={delayStep * 2}>
-                            <SectionButton
-                                show={true}
-                                title='Join the waitlist'
+                            <Button
                                 w={{ base: 150 }}
                                 h={{ base: 40 }}
-                                fz={{ base: 16 }}
-                                c={"white"}
-                                fw={600}
                                 px={0}
-                                bg={"#376CEC"}
-                                href='https://knky.co'
-                            />
+                                fz={{ base: 16 }}
+                                fw={600}
+                                c={"white"}
+                                bg={"#435EFB"}
+                                className='rounded-lg transition-all duration-200 hover:scale-105'
+                                onClick={open}
+                            >
+                                Join the waitlist
+                            </Button>
                         </FadeInAni>
                     </Flex>
 
@@ -220,6 +223,7 @@ export function FooterMobile() {
                         <TokenAnimation />
                     </Box>
 
+                    <SignupPopup opened={opened} close={close} />
                 </Flex>
             </Box>
         </footer >

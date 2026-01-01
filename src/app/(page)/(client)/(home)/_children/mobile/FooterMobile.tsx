@@ -191,7 +191,7 @@ export function FooterMobile() {
                                 c={"#D7D7F0"}
                                 className="flex flex-col items-center"
                             >
-                                All rights reserved. © {currenYear} KNKY® <br />
+                                All rights reserved. © {currenYear} FOLO® <br />
                                 <span className="flex gap-1 items-center">
                                     and <Image src={smallLogo} alt="smallLogo" className="h-4 md:h-5 lg:h-6 2xl:h-7 w-auto" />
                                     logos are registered trademarks.

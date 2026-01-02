@@ -65,12 +65,6 @@ export function Slogan() {
             const step = window.innerHeight;
             const endValue = step * 2.5;
 
-            // tl.fromTo(
-            //     "#slogan-text",
-            //     { autoAlpha: 0, y: "50%", x: "-50%" },
-            //     { autoAlpha: 1, y: -74, x: "-50%", duration: 0.4, ease: "power2.out" },
-            // );
-
             gsap.registerPlugin(ScrollTrigger);
 
             gsap.fromTo(
@@ -97,12 +91,6 @@ export function Slogan() {
                     scrub: true,
                 },
             });
-
-            // tl.fromTo(
-            //     "#slogan-text",
-            //     { autoAlpha: 0, y: "50%", x: "-50%" },
-            //     { autoAlpha: 1, y: -74, x: "-50%", duration: 0.4, ease: "power2.out" },
-            // );
 
             tl.fromTo(
                 "#feature",

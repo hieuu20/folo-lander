@@ -428,20 +428,11 @@ export const TokenAnimation = () => {
         <Image
           src={token}
           alt="coin"
-          className="object-cover w-[70%] aspect-[0.86046511627] absolute top-1/2 left-1/2 -translate-x-[47%] -translate-y-1/2"
+          className="object-cover w-[70%] aspect-[0.86046511627] absolute top-1/2 left-1/2 -translate-x-[47%] -translate-y-[45%]"
         />
 
         <div ref={compRef} className="w-full h-full relative" />
       </motion.div>
-
-      {/* <Image
-        src={token}
-        alt="coin"
-        className="w-[90%] h-auto object-cover absolute top-[48%] left-1/2 -translate-x-1/2 -translate-y-1/2"
-      />
-
-      <CircularText /> */}
-
     </div>
   );
 };

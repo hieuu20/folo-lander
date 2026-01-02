@@ -11,11 +11,11 @@ import Link from 'next/link';
 import gsap from 'gsap/dist/gsap';
 import { useGSAP } from '@gsap/react';
 
-import right from "@public/version-3/news/arrow-right.svg";
-import left from "@public/version-3/news/arrow-left.svg";
+import right from "@public/news/arrow-right.svg";
+import left from "@public/news/arrow-left.svg";
 import { twMerge } from 'tailwind-merge';
 
-import newsLogo from "@public/version-3/news/logo.png";
+import newsLogo from "@public/news/logo.png";
 import { motion, useAnimate, useInView } from 'framer-motion';
 
 interface Props {

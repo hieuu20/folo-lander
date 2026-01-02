@@ -6,8 +6,8 @@ import { More, moreList } from '@/utils';
 import Slider from 'react-slick';
 import gsap from 'gsap/dist/gsap';
 import { motion } from 'framer-motion';
-import right from "@public/version-3/news/arrow-right.svg";
-import left from "@public/version-3/news/arrow-left.svg";
+import right from "@public/news/arrow-right.svg";
+import left from "@public/news/arrow-left.svg";
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 

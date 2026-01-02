@@ -3,9 +3,9 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "KNKY",
-    short_name: "KNKY",
-    description: "Let's get KNKY! A private, secure and feature-packed platform to Create, Consume & Discover people, content & experiences ;)",
+    name: "FOLO",
+    short_name: "FOLO",
+    description: "Support creators, join channels, and connect through real conversations. FOLO is built for relationships, not feeds.",
     start_url: "/",
     display: "standalone",
     background_color: "#FFFFFF",

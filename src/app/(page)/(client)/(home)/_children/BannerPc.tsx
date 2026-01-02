@@ -5,15 +5,14 @@
 import { Box, Flex, Input, Text } from '@mantine/core';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import logoWhite from "@public/icons/logo-white.webp";
-import bgImage from "@public/banner/bg.webp";
 
 import Image from 'next/image';
 import SectionButton from '@/components/buttons/SectionButton';
 import { motion, useAnimate, useScroll, useTransform } from 'framer-motion';
 import { useDisclosure, useWindowHeight } from '@/hooks';
 import { loadingTime } from '@/utils/constants';
-import { SignupPopup, SuccessPopup } from '@/components/Popups';
-import downIcon from "@public/version-3/banner/down.svg";
+import { SuccessPopup } from '@/components/Popups';
+import downIcon from "@public/icons/down.svg";
 import { validateEmail } from '@/utils';
 
 export function BannerPc() {

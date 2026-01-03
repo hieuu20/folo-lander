@@ -33,22 +33,6 @@ export default function Container(props: Props) {
     const pathname = usePathname();
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-
-        const handleLoad = () => {
-            window.scrollTo(0, 0);
-        };
-
-        if (document.readyState === 'complete') {
-            handleLoad();
-        } else {
-            window.addEventListener('load', handleLoad);
-        }
-
-        return () => window.removeEventListener('load', handleLoad);
-    }, [pathname]);
-
-    useEffect(() => {
         document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';
         document.body.style.touchAction = 'none';

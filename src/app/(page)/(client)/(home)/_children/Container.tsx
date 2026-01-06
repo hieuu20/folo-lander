@@ -102,7 +102,7 @@ const Mobile = ({ news }: Props) => {
                     <SloganMobile />
                     <MuchMoreMobile />
                     <BeSeenMobile />
-                    <NewsMobile news={news} />
+                    {/* <NewsMobile news={news} /> */}
                     <FooterMobile />
                 </Box>
             </Box>
@@ -140,7 +140,7 @@ const Desktop = ({ news }: Props) => {
                     <Slogan />
                     <MuchMore />
                     <BeSeen />
-                    <News news={news} />
+                    {/* <News news={news} /> */}
                     <Footer />
                 </Box>
             </Box>

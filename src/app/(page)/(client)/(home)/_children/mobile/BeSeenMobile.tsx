@@ -2,7 +2,7 @@ import { useGSAP } from '@gsap/react';
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap/dist/gsap';
 import { Box, Flex, Text } from '@mantine/core';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+// import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 import { motion, useAnimate, useInView } from 'framer-motion';
 
@@ -24,23 +24,34 @@ export function BeSeenMobile() {
 
     useGSAP(
         () => {
-            gsap.registerPlugin(ScrollTrigger);
+            const step = window.innerHeight;
+            const endValue = step * 2;
 
-            ScrollTrigger.create({
-                trigger: main.current,
-                start: 'top top',
-                end: '+=30%',
-                pin: true,
-                pinSpacing: true,
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: main.current,
+                    pin: true,
+                    start: 'top top',
+                    end: `+=${endValue}`,
+                    markers: false,
+                    scrub: true,
+                },
             });
+
+            tl.fromTo(
+                "#BeSeen",
+                { x: 0, y: 0 },
+                { x: 0, y: 0, duration: 2, ease: "power2.out" },
+            );
         },
-        { scope: main }
+        { scope: main, }
     );
 
     return (
-        <Box id='BeSeen' w={"100%"} bg={"white"}>
+        <Box  w={"100%"} bg={"white"} h={"150vh"}>
             <Box
                 ref={main}
+                id='BeSeen'
                 h={"100vh"}
                 w={"100%"}
             >

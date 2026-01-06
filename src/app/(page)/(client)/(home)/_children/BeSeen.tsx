@@ -24,31 +24,32 @@ export function BeSeen() {
     useGSAP(
         () => {
             const step = window.innerHeight;
-            const imageDuration = 1;
+            const endValue = step * 2;
 
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: main.current,
                     pin: true,
                     start: 'top top',
-                    end: `+=${step * 1}`,
-                    scrub: true,
+                    end: `+=${endValue}`,
                     markers: false,
+                    scrub: true,
                 },
             });
 
-            tl.to("#beSeen-image", {
-                opacity: 1,
-                duration: imageDuration / 2,
-                ease: "power2.inOut",
-            });
+            tl.fromTo(
+                "#BeSeen",
+                { x: 0, y: 0 },
+                { x: 0, y: 0, duration: 2, ease: "power2.out" },
+            );
         },
-        { scope: main }
+        { scope: main, }
     );
 
     return (
-        <Box id='BeSeen' w={"100%"} bg={"white"} h={"200vh"}>
+        <Box w={"100%"} bg={"white"} h={"150vh"}>
             <Box
+                id='BeSeen' 
                 ref={main}
                 h={"100vh"}
                 w={"100%"}

@@ -32,7 +32,6 @@ export default function News({ news }: Props) {
 
     useGSAP(
         () => {
-
             const step = window.innerHeight;
             const endValue = step * 2;
 

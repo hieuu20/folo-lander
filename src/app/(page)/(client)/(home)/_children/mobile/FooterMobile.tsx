@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { Box, Button, Flex, Text } from "@mantine/core";
@@ -22,6 +23,7 @@ import Marquee from "react-fast-marquee";
 import { footerList, footerPays, socials, TokenAnimation } from "@/components/layouts/client-layout/Footer";
 import { useDisclosure } from "@/hooks";
 import { SignupPopup } from "@/components/Popups";
+import { EmailWaitingListInput } from "../../../_shared/EmailWaitingListInput";
 
 
 const delayStep = 0.2;
@@ -73,19 +75,7 @@ export function FooterMobile() {
                         </Text>
 
                         <FadeInAni isInView={isInView} delay={delayStep * 2}>
-                            <Button
-                                w={{ base: 150 }}
-                                h={{ base: 40 }}
-                                px={0}
-                                fz={{ base: 16 }}
-                                fw={600}
-                                c={"white"}
-                                bg={"#435EFB"}
-                                className='rounded-lg transition-all duration-200 hover:scale-105'
-                                onClick={open}
-                            >
-                                Join the waitlist
-                            </Button>
+                            <EmailWaitingListInput />
                         </FadeInAni>
                     </Flex>
 
@@ -223,7 +213,7 @@ export function FooterMobile() {
                         <TokenAnimation />
                     </Box>
 
-                    <SignupPopup opened={opened} close={close} />
+                    {/* <SignupPopup opened={opened} close={close} /> */}
                 </Flex>
             </Box>
         </footer >

@@ -2,28 +2,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { Box, Flex, Input, Text } from '@mantine/core';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Box, Flex, Text } from '@mantine/core';
+import React, { useEffect, useMemo, useState } from 'react';
 import logoWhite from "@public/icons/logo-white.webp";
 
 import Image from 'next/image';
-import SectionButton from '@/components/buttons/SectionButton';
 import { motion, useAnimate, useScroll, useTransform } from 'framer-motion';
-import { useDisclosure, useWindowHeight } from '@/hooks';
+import { useWindowHeight } from '@/hooks';
 import { loadingTime } from '@/utils/constants';
-import { SuccessPopup } from '@/components/Popups';
 import downIcon from "@public/icons/down.svg";
-import { validateEmail } from '@/utils';
+import { EmailWaitingListInput } from '../../_shared/EmailWaitingListInput';
 
 export function BannerPc() {
     const wdHeight = useWindowHeight();
     const [scope] = useAnimate();
-    const [submiting, setSubmitting] = useState(false);
-    const [susscessOpened, { open: successOpen, close: successClose }] = useDisclosure();
-    const [errorMsg, setErrorMsg] = useState("");
-
-    const [userName, setUserName] = useState('');
-
     const [tileHeight, setTitleHeight] = useState(0);
 
     useEffect(() => {
@@ -33,30 +25,6 @@ export function BannerPc() {
         }
     }, []);
 
-    const handleSignup = useCallback(async () => {
-        try {
-            setSubmitting(true);
-            const res = await fetch("/api/waiting-list", {
-                method: "POST",
-                body: JSON.stringify({ email: userName })
-            });
-
-            const result = await res.json();
-
-            if (result?.data) {
-                close();
-                successOpen();
-                setUserName("");
-                setErrorMsg("");
-            } else {
-                setErrorMsg("You’ve already signed up");
-            }
-        } catch (err) {
-            console.log({ err });
-        } finally {
-            setSubmitting(false);
-        }
-    }, [successOpen, userName]);
 
     const topHeight = wdHeight * 0.51;
 
@@ -71,7 +39,7 @@ export function BannerPc() {
 
     const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
-    const isValid = userName && validateEmail(userName);
+
 
     return (
         <Box
@@ -153,57 +121,8 @@ export function BannerPc() {
                         >
                             Together, We Build <br /> the <span className='italic'>You</span> Platform.
                         </Text>
-
-                        <Flex
-                            justify={"space-between"}
-                            bg={"transparent"}
-                            bd={"1px solid #E7E7F8"}
-                            p={{ base: 8 }}
-                            className='rounded-3xl'
-                            h={{ base: 48, sm: 52, md: 56, lg: 58, xl: 60, "2xl": 64 }}
-                            w={{ base: "100%", sm: 320, md: 360, lg: 390, xl: 410, "2xl": 438 }}
-                            align={"center"}
-                            pos={"relative"}
-                        >
-                            <Input
-                                bg={"transparent"}
-                                fz={{ base: 16, md: 18, "2xl": 20 }}
-                                fw={500}
-                                placeholder='Your Email address'
-                                classNames={{
-                                    input: "placeholder-[#4D5053] bg-transparent pl-1 md:pl-2",
-                                    wrapper: "bg-transparent"
-                                }}
-                                value={userName}
-                                onChange={(e) => setUserName(e.target.value)}
-                                c={"black"}
-                            // className='placeholder-[#FFFFFF59]'
-                            />
-
-                            <SectionButton
-                                show={true}
-                                title='Join Now →'
-                                className='rounded-2xl transition-all duration-300 ease-in-out '
-                                fz={{ base: 14, md: 15, "2xl": 16 }}
-                                fw={600}
-                                w={{ base: 88, md: 96, xl: 107 }}
-                                h={"100%"}
-                                bg={isValid ? "#435EFB" : "gray"}
-                                disabled={!isValid}
-                                px={0}
-                                onClick={handleSignup}
-                                loading={submiting}
-                            />
-
-                            {errorMsg && (
-                                <Text fz={14} c={"#F11E11"} pos={"absolute"} left={12} bottom={-24}>
-                                    {errorMsg}
-                                </Text>
-                            )}
-
-                        </Flex>
+                        <EmailWaitingListInput />
                     </motion.div>
-                    <SuccessPopup opened={susscessOpened} close={successClose} />
                 </Flex>
             </Box>
             <ScrollButton opacity={opacity} />

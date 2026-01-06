@@ -13,14 +13,11 @@ import { motion, useAnimation } from 'framer-motion';
 import { useDisclosure, useWindowHeight } from '@/hooks';
 import { loadingTime } from '@/utils';
 import { SuccessPopup } from '@/components/Popups';
+import { EmailWaitingListInput } from '../../../_shared/EmailWaitingListInput';
 
 export function BannerMobile() {
     const main = useRef<any>();
     const wdHeight = useWindowHeight();
-    const [userName, setUserName] = useState('');
-    const [submiting, setSubmitting] = useState(false);
-    const [susscessOpened, { open: successOpen, close: successClose }] = useDisclosure();
-    const [errorMsg, setErrorMsg] = useState("");
 
     const control1 = useAnimation();
     const control2 = useAnimation();
@@ -64,32 +61,6 @@ export function BannerMobile() {
             setTitleHeight(titleElement.getBoundingClientRect()?.height);
         }
     }, []);
-
-    const handleSignup = useCallback(async () => {
-        try {
-            setSubmitting(true);
-            const res = await fetch("/api/waiting-list", {
-                method: "POST",
-                body: JSON.stringify({ email: userName })
-            });
-
-            const result = await res.json();
-
-            if (result?.data) {
-                close();
-                successOpen();
-                setUserName("");
-                setErrorMsg("");
-            } else {
-                setErrorMsg("You’ve already signed up");
-            }
-        } catch (err) {
-            console.log({ err });
-        } finally {
-            setSubmitting(false);
-        }
-    }, [successOpen, userName]);
-
 
     const topHeight = wdHeight - (tileHeight + 40 * 2 + 32);
 
@@ -179,55 +150,8 @@ export function BannerMobile() {
                             Together, We Build <br /> the <span className='italic'>You</span> Platform.
                         </Text>
 
-                        <Flex
-                            justify={"space-between"}
-                            bg={"transparent"}
-                            bd={"1px solid #E7E7F8"}
-                            p={{ base: 8 }}
-                            className='rounded-3xl'
-                            h={{ base: 50, sm: 52, md: 56, lg: 58, xl: 60, "2xl": 64 }}
-                            w={{ base: "100%", sm: 320, md: 360, lg: 390, xl: 410, "2xl": 438 }}
-                            align={"center"}
-                            pos={"relative"}
-                        >
-                            <Input
-                                bg={"transparent"}
-                                fz={{ base: 16, md: 18, "2xl": 20 }}
-                                fw={500}
-                                pl={4}
-                                placeholder='Enter username'
-                                classNames={{
-                                    input: "placeholder-[#4D5053] bg-transparent pl-1 md:pl-2",
-                                    wrapper: "bg-transparent"
-                                }}
-                                value={userName}
-                                onChange={(e) => setUserName(e.target.value)}
-                                c={"black"}
-                            // className='placeholder-[#FFFFFF59]'
-                            />
-
-                            <SectionButton
-                                show={true}
-                                title='Join Now →'
-                                className='rounded-2xl'
-                                fz={{ base: 14, md: 15, "2xl": 16 }}
-                                fw={600}
-                                w={{ base: 90, md: 96, xl: 107 }}
-                                h={"100%"}
-                                bg={"#435EFB"}
-                                px={0}
-                                onClick={handleSignup}
-                                loading={submiting}
-                            />
-
-                            {errorMsg && (
-                                <Text fz={14} c={"#F11E11"} pos={"absolute"} left={12} bottom={-24}>
-                                    {errorMsg}
-                                </Text>
-                            )}
-                        </Flex>
+                        <EmailWaitingListInput />
                     </motion.div>
-                    <SuccessPopup opened={susscessOpened} close={successClose} />
                 </Flex>
             </Box>
         </Box>

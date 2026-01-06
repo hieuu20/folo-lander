@@ -41,6 +41,7 @@ import { PropsWithChildren, useEffect, useRef } from "react";
 import { isNil } from "lodash";
 import { useDisclosure } from "@/hooks";
 import { SignupPopup } from "@/components/Popups";
+import { EmailWaitingListInput } from "@/app/(page)/(client)/_shared/EmailWaitingListInput";
 
 export const socials = [
   {
@@ -236,19 +237,7 @@ export function Footer() {
             </Text>
 
             <FadeInAni isInView={isInView} delay={delayStep * 2}>
-              <Button
-                w={{ base: 150 }}
-                h={{ base: 40 }}
-                px={0}
-                fz={{ base: 16 }}
-                fw={600}
-                c={"white"}
-                bg={"#435EFB"}
-                className='rounded-lg transition-all duration-200 hover:scale-105'
-                onClick={open}
-              >
-                Join the waitlist
-              </Button>
+              <EmailWaitingListInput />
             </FadeInAni>
           </Flex>
 
@@ -352,7 +341,7 @@ export function Footer() {
             <TokenAnimation />
           </Box>
 
-          <SignupPopup opened={opened} close={close} />
+          {/* <SignupPopup opened={opened} close={close} /> */}
         </Flex>
       </Box>
     </footer>

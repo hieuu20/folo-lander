@@ -63,7 +63,7 @@ export const socials = [
   },
   {
     icon: social5,
-    href: "https://www.reddit.com/user/letsgetknky/",
+    href: "https://www.reddit.com/user/folo/",
   },
   {
     icon: social6,
@@ -212,7 +212,7 @@ export function Footer() {
                     href={s.href}
                     rel="nofollow"
                     target="blank"
-                    className="hover:opacity-70 transition-all duration-200"
+                    className="hover:opacity-70 transition-all duration-200 pointer-events-none"
                   >
                     <Image
                       src={s.icon}

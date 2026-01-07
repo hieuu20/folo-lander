@@ -84,13 +84,12 @@ export function FooterMobile() {
                     <Flex gap={{ base: 12 }} mb={{ base: 48 }}>
                         {socials.map((s, index) => {
                             return (
-                                <FadeInAni key={index} isInView={isInView} delay={index * (delayStep / 2) + delayStep * 3}>
+                                <FadeInAni key={index} isInView={isInView} delay={index * (delayStep / 2) + delayStep * 3} classname="pointer-events-none">
                                     <Link
-
                                         href={s.href}
                                         rel="nofollow"
                                         target="blank"
-                                        className="hover:opacity-70 transition-all duration-200"
+                                        className="hover:opacity-70 transition-all duration-200 pointer-events-none"
                                     >
                                         <Image
                                             src={s.icon}

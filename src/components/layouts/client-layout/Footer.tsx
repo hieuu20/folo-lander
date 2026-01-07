@@ -42,6 +42,7 @@ import { isNil } from "lodash";
 import { useDisclosure } from "@/hooks";
 import { SignupPopup } from "@/components/Popups";
 import { EmailWaitingListInput } from "@/app/(page)/(client)/_shared/EmailWaitingListInput";
+import { twMerge } from "tailwind-merge";
 
 export const socials = [
   {
@@ -80,27 +81,27 @@ export const footerList = [
     children: [
       {
         title: "Community Guidelines",
-        href: "https://knky.co/articles/community-guidelines",
+        // href: "/policy/comunity-guideline",
       },
       {
         title: "Help Centre",
-        href: "https://help.knky.co/en/",
+        // href: "/policy/comunity-guideline",
       },
       {
         title: "Feedback Center",
-        href: "https://app.getacute.io/v/knky",
+        // href: "https://app.getacute.io/v/folo",
       },
       {
         title: "Terms of Service",
-        href: "https://knky.co/articles/terms-of-service",
+        // href: "/policy/terms-of-service",
       },
       {
         title: "Contact Us",
-        href: "mailto:support@knky.com",
+        href: "mailto:support@folo.com",
       },
       {
         title: "Blog",
-        href: "https://knky.co/fresh/",
+        // href: "https://knky.co/fresh/",
       },
     ],
   },
@@ -108,20 +109,20 @@ export const footerList = [
     title: "For Creators & Fans",
     children: [
       {
-        title: "About KNKY",
-        href: "https://lander.knky.co/",
+        title: "About FOLO",
+        // href: "https://lander.folo.co/",
       },
       {
         title: "Premium Plans",
-        href: "https://knky.co/platform-plans",
+        // href: "https://knky.co/platform-plans",
       },
       {
         title: "Fans & Purchasing Terms",
-        href: "https://knky.co/articles/additional-terms-for-fans-buying-creator-content",
+        // href: "https://knky.co/articles/additional-terms-for-fans-buying-creator-content",
       },
       {
         title: "Creator & Collaborator Terms",
-        href: "https://knky.co/articles/additional-terms-for-creators-and-collaborators",
+        // href: "https://knky.co/articles/additional-terms-for-creators-and-collaborators",
       },
     ],
   },
@@ -130,27 +131,27 @@ export const footerList = [
     children: [
       {
         title: "Content Moderation Policy",
-        href: "https://knky.co/articles/content-moderation-and-protection-policy",
+        // href: "https://knky.co/articles/content-moderation-and-protection-policy",
       },
       {
         title: "USC 2257",
-        href: "https://knky.co/articles/usc-2257",
+        // href: "https://knky.co/articles/usc-2257",
       },
       {
         title: "Privacy Policy",
-        href: "https://knky.co/articles/privacy-policy",
+        // href: "https://knky.co/articles/privacy-policy",
       },
       {
         title: "Cookie Policy",
-        href: "https://knky.co/articles/cookie-policy",
+        // href: "https://knky.co/articles/cookie-policy",
       },
       {
         title: "Complaint Policy",
-        href: "https://knky.co/articles/complaint-policy",
+        // href: "https://knky.co/articles/complaint-policy",
       },
       {
         title: "DMCA",
-        href: "https://knky.co/articles/dmca-takedown-policy",
+        // href: "https://knky.co/articles/dmca-takedown-policy",
       },
     ],
   },
@@ -192,9 +193,10 @@ export function Footer() {
       </FadeInAni>
 
       <Link
-        href={"https://www.xbiz.com/news/292013/2025-euro-xma-winners-announced"}
+        // href={"https://www.xbiz.com/news/292013/2025-euro-xma-winners-announced"}
+        href={"/"}
         target="_blank"
-        className="absolute top-0 left-[2%] w-[10.4%] aspect-[0.74137931034] group cursor-pointer z-10"
+        className="absolute top-0 left-[2%] w-[10.4%] aspect-[0.74137931034] group cursor-pointer z-10 pointer-events-none"
       >
         <Image src={xmaBg} alt="xmaBg" className="w-full h-full object-cover" />
         <Image src={xmaLogo} alt="xmaLogo" className="w-full h-auto object-cover absolute left-0 top-[4%] group-hover:scale-105 transition-all duration-300" />
@@ -264,12 +266,15 @@ export function Footer() {
                         return (
                           <a
                             key={index}
-                            href={child.href}
+                            href={child.href || "/"}
                             target="blank"
                             rel="nofollow"
-                            className="group relative w-fit text-white text-base md:text-lg xl:text-xl font-medium leading-[1.4] text-center whitespace-nowrap"
+                            className={twMerge(
+                              "group relative w-fit text-white text-base md:text-lg xl:text-xl font-medium leading-[1.4] text-center whitespace-nowrap",
+                              child.href ? "cursor-pointer" : "pointer-events-none"
+                            )}
                             onClick={
-                              child.href.includes("mailto")
+                              child.href?.includes("mailto")
                                 ? () => {
                                   window.location.href = child.href;
                                 }

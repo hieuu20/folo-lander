@@ -12,6 +12,7 @@ import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { ProgressBarProvider } from "@/lib/ProgressBarProvider";
 import { connectDB } from "../api/_db/connect";
 import { ITracking, TrackingModel } from "../api/_entities";
+import localFont from 'next/font/local';
 
 export const metadata: Metadata = {
   title: "FOLO",
@@ -48,6 +49,63 @@ export const metadata: Metadata = {
   viewport: "width=device-width, initial-scale=1, viewport-fit=cover",
 };
 
+export const myFont = localFont({
+  src: [
+    {
+      path: '../../../public/fonts/SFDisplay/SF-Pro-Display-Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/SFDisplay/SF-Pro-Display-RegularItalic.otf',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: '../../../public/fonts/SFDisplay/SF-Pro-Display-Medium.otf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/SFDisplay/SF-Pro-Display-MediumItalic.otf',
+      weight: '500',
+      style: 'italic',
+    },
+    {
+      path: '../../../public/fonts/SFDisplay/SF-Pro-Display-Semibold.otf',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/SFDisplay/SF-Pro-Display-SemiboldItalic.otf',
+      weight: '600',
+      style: 'italic',
+    },
+    {
+      path: '../../../public/fonts/SFDisplay/SF-Pro-Display-Bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/SFDisplay/SF-Pro-Display-BoldItalic.otf',
+      weight: '700',
+      style: 'italic',
+    },
+    {
+      path: '../../../public/fonts/SFDisplay/SF-Pro-Display-Black.otf',
+      weight: '900',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/SFDisplay/SF-Pro-Display-BlackItalic.otf',
+      weight: '900',
+      style: 'italic',
+    },
+  ],
+  variable: '--font-myfont', // để dùng với Tailwind
+  display: 'swap',
+});
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -64,7 +122,7 @@ export default async function RootLayout({
   // console.log({ tracking });
 
   return (
-    <html lang="en">
+    <html lang="en" className={myFont.variable}>
       <head>
         <ColorSchemeScript />
 

@@ -36,6 +36,10 @@ const config: Config = {
         '2xl': '1632px',
         '3xl': '1920px',
       },
+
+      fontFamily: {
+        sfDisplay: ['var(--font-myfont)'],
+      },
   },
   },
   important: true,

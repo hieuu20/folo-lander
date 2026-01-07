@@ -24,6 +24,7 @@ import { footerList, footerPays, socials, TokenAnimation } from "@/components/la
 import { useDisclosure } from "@/hooks";
 import { SignupPopup } from "@/components/Popups";
 import { EmailWaitingListInput } from "../../../_shared/EmailWaitingListInput";
+import { twMerge } from "tailwind-merge";
 
 
 const delayStep = 0.2;
@@ -53,9 +54,10 @@ export function FooterMobile() {
             </FadeInAni>
 
             <Link
-                href={"https://www.xbiz.com/news/292013/2025-euro-xma-winners-announced"}
+                // href={"https://www.xbiz.com/news/292013/2025-euro-xma-winners-announced"}
+                href={"/"}
                 target="_blank"
-                className="absolute top-0 left-1/2 -translate-x-1/2 w-[23.2%]"
+                className="absolute top-0 left-1/2 -translate-x-1/2 w-[23.2%] pointer-events-none"
             >
                 <Image src={xma} alt="xma" className="w-full h-auto object-cover" />
             </Link>
@@ -128,9 +130,12 @@ export function FooterMobile() {
                                                         href={child.href}
                                                         target="blank"
                                                         rel="nofollow"
-                                                        className="mb-1.5 group relative w-fit text-white text-base md:text-lg xl:text-xl font-medium leading-[1.4] text-center whitespace-nowrap"
+                                                        className={twMerge(
+                                                            "mb-1.5 group relative w-fit text-white text-base md:text-lg xl:text-xl font-medium leading-[1.4] text-center whitespace-nowrap",
+                                                            child.href ? "cursor-pointer" : "pointer-events-none"
+                                                        )}
                                                         onClick={
-                                                            child.href.includes("mailto")
+                                                            child.href?.includes("mailto")
                                                                 ? () => {
                                                                     window.location.href = child.href;
                                                                 }

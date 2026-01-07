@@ -147,7 +147,8 @@ export function BannerMobile() {
                             fw={700}
                             ta={"center"}
                         >
-                            Together, We Build <br /> the <span className='italic'>You</span> Platform.
+                            <span className='italic'>The You</span> Platform. <br/>
+                            For Creators and Communities
                         </Text>
 
                         <EmailWaitingListInput />

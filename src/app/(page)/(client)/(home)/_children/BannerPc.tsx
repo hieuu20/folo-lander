@@ -109,17 +109,19 @@ export function BannerPc() {
                         initial={{ y: "100%", opacity: 0, x: "-50%" }}
                         animate={{ y: 0, opacity: 1, x: "-50%" }}
                         transition={{ duration: 0.5, ease: "easeInOut", delay: loadingTime + 2.4 }}
-                        className='flex flex-col gap-6 justify-center items-center absolute left-1/2'
+                        className='flex flex-col gap-6 justify-center items-center w-full absolute left-1/2'
                         style={{ bottom: spacing }}
                     >
                         <Text
                             c={"#131416"}
                             fz={{ base: 36, sm: 42, md: 54, lg: 60, xl: 66, "2xl": 72 }}
+                            w={"fit-content"}
                             lh={1.2}
                             fw={700}
                             ta={"center"}
                         >
-                            Together, We Build <br /> the <span className='italic'>You</span> Platform.
+                            <span className='italic'>The You</span> Platform. <br/>
+                            For Creators and Communities
                         </Text>
                         <EmailWaitingListInput />
                     </motion.div>

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { Box, Button, Flex, Text } from "@mantine/core";
+import { Box, Flex, Text } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,7 +22,6 @@ import { PropsWithChildren, useRef } from "react";
 import Marquee from "react-fast-marquee";
 import { footerList, footerPays, socials, TokenAnimation } from "@/components/layouts/client-layout/Footer";
 import { useDisclosure } from "@/hooks";
-import { SignupPopup } from "@/components/Popups";
 import { EmailWaitingListInput } from "../../../_shared/EmailWaitingListInput";
 import { twMerge } from "tailwind-merge";
 

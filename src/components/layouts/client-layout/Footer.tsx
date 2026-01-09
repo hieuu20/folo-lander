@@ -12,6 +12,7 @@ import footerPay3 from "@public/footer/payment/3.png";
 import footerPay4 from "@public/footer/payment/4.png";
 // import footerPay5 from "@public/footer/payment/5.png";
 // import footerPay6 from "@public/footer/payment/6.png";
+import footerPay7 from "@public/footer/payment/7.svg";
 
 import social1 from "@public/footer/socials/1.svg";
 import social2 from "@public/footer/socials/2.svg";
@@ -162,6 +163,7 @@ export const footerPays = [
   footerPay2,
   footerPay3,
   footerPay4,
+  footerPay7
   // footerPay5,
   // footerPay6
 ];

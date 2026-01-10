@@ -332,11 +332,12 @@ export function Footer() {
               >
                 <Flex gap={2} align={"center"} c={"#FFFFFFCC"} justify={{ base: "center", md: "flex-end" }}>
                   Social Commerce UK Ltd <Image src={flag1} alt="flag 1" className="h-3 md:h-[14px] lg:h-[15px] 2xl:h-4 w-auto inline" />
-                  | 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ.UK
+                  71 - 75 Shelton Street, Covent Garden, London, WC2H 9JQ.UK
                 </Flex>
 
                 <Flex gap={2} align={"center"} c={"#FFFFFFCC"} justify={{ base: "center", md: "flex-end" }}>
-                  Social Commerce EU Ltd  <Image src={flag2} alt="flag 2" className="h-3 md:h-[14px] lg:h-[15px] 2xl:h-4 w-auto inline" /> 4th Floor, Agios Nikolaos, Kamares , 6037 Larnaca. Cyprus
+                  Social Commerce EU Ltd <Image src={flag2} alt="flag 2" className="h-3 md:h-[14px] lg:h-[15px] 2xl:h-4 w-auto inline" /> 
+                  4th Floor, Agios Nikolaos, Kamares, 6037 Larnaca.Cyprus.EU
                 </Flex>
               </Text>
             </Flex>
@@ -506,3 +507,8 @@ export function CircularText() {
 
 
 // background: linear-gradient(180deg, #EEA2FF 0%, #376CEC 100%);
+
+
+// Social Commerce US LLC 🇺🇸  1201 North Orange St, Suite 711, Wilmington, 19801, Delaware, USA
+// Social Commerce UK Ltd 🇬🇧  71 - 75 Shelton Street, Covent Garden, London, WC2H 9JQ.UK
+// Social Commerce EU Ltd 🇪🇺  4th Floor, Agios Nikolaos, Kamares, 6037 Larnaca.Cyprus.EU

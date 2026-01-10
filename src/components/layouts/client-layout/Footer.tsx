@@ -326,16 +326,17 @@ export function Footer() {
                 fz={{ base: 8, sm: 9, md: 10, lg: 11, xl: 12, "2xl": 13 }}
                 c={"#FFFFFFCC"}
                 lh={1.375}
-                ta={{ base: "center", md: "right" }}
+                ta={{ base: "center" }}
                 lts={-0.2}
                 fw={400}
+
               >
-                <Flex gap={2} align={"center"} c={"#FFFFFFCC"} justify={{ base: "center", md: "flex-end" }}>
+                <Flex gap={2} align={"center"} c={"#FFFFFFCC"} justify={{ base: "center" }}>
                   Social Commerce UK Ltd <Image src={flag1} alt="flag 1" className="h-3 md:h-[14px] lg:h-[15px] 2xl:h-4 w-auto inline" />
-                  71 - 75 Shelton Street, Covent Garden, London, WC2H 9JQ.UK
+                  71-75 Shelton Street, Covent Garden, London, WC2H 9JQ.UK
                 </Flex>
 
-                <Flex gap={2} align={"center"} c={"#FFFFFFCC"} justify={{ base: "center", md: "flex-end" }}>
+                <Flex gap={2} align={"center"} c={"#FFFFFFCC"} justify={{ base: "center" }}>
                   Social Commerce EU Ltd <Image src={flag2} alt="flag 2" className="h-3 md:h-[14px] lg:h-[15px] 2xl:h-4 w-auto inline" /> 
                   4th Floor, Agios Nikolaos, Kamares, 6037 Larnaca.Cyprus.EU
                 </Flex>

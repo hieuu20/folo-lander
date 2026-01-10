@@ -202,7 +202,7 @@ export function FooterMobile() {
                             >
                                 <Flex gap={2} align={"center"} justify={{ base: "center", md: "flex-end" }}>
                                     Social Commerce UK Ltd <Image src={flag1} alt="flag 1" className="h-3 md:h-[14px] lg:h-[15px] 2xl:h-4 w-auto inline" />
-                                    71 - 75 Shelton Street, Covent Garden, London, WC2H 9JQ.UK
+                                    71-75 Shelton Street, Covent Garden, London, WC2H 9JQ.UK
                                 </Flex>
 
                                 <Flex gap={2} align={"center"} justify={{ base: "center", md: "flex-end" }}>

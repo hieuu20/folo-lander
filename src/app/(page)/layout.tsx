@@ -111,13 +111,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  await connectDB();
 
-  const [trackingResponse] = await Promise.all([
-    TrackingModel.findOne({}).lean(),
-  ]);
-
-  const tracking = JSON.parse(JSON.stringify(trackingResponse)) as ITracking;
+  const tracking = {
+    uaTracking: "dasda",
+    ga4Tracking: "Dasdsa"
+  }
 
   // console.log({ tracking });
 

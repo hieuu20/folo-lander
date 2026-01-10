@@ -1,6 +1,7 @@
 import { connectDB } from "@/app/api/_db";
 import { INews, NewsModel } from "@/app/api/_entities/news";
 import { Footer } from "@/components/layouts";
+import { getNewsBySlug } from "@/service";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -12,11 +13,8 @@ export default async function NewsDetailPage({
   await connectDB();
 
   const slug = params.slug;
-  const [newsRes] = await Promise.all([
-    NewsModel.findOne({ slug: slug }).lean(),
-  ]);
+  const news = await getNewsBySlug(slug)
 
-  const news = JSON.parse(JSON.stringify(newsRes)) as INews;
   if (!news) return notFound();
 
   return (

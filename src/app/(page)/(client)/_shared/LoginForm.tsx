@@ -1,0 +1,113 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { InputField, InputPasswordField } from '@/components';
+import { getDeviceId, validateEmail } from '@/utils';
+import { Box, Button, Flex } from '@mantine/core';
+import { Field, Form, Formik, FormikHelpers } from 'formik';
+import React, { useCallback } from 'react';
+import xIcon from "@public/leaderboard/x.png";
+import fbIcon from "@public/leaderboard/facebook.png";
+import ggIcon from "@public/leaderboard/google.png";
+import Image from 'next/image';
+
+export default function LoginForm() {
+
+    const handleSignup = useCallback(async (values: any, {
+        setErrors,
+        setSubmitting,
+    }: FormikHelpers<any>) => {
+        try {
+            setSubmitting(true);
+            const res = await fetch("/api/login", {
+                method: "POST",
+                body: JSON.stringify(values)
+            });
+
+            const result = await res.json();
+
+            if (result?.data) {
+                close();
+            } else {
+                setErrors({ email: "You’ve already signed up" });
+            }
+        } catch (err) {
+            console.log({ err });
+        } finally {
+            setSubmitting(false);
+        }
+    }, []);
+
+    return (
+        <Flex direction={"column"} gap={{ base: 24, md: 32, xl: 40 }} align={"center"} w={{ base: "100%" }}>
+            <Formik
+                initialValues={{
+                    user_type: "USER",
+                    email: "",
+                    password: "",
+                    deviceId: getDeviceId()
+                }}
+                onSubmit={handleSignup}
+            >
+                {({ values, isSubmitting }) => {
+                    const isEnable = validateEmail(values.email) && values.password;
+                    return (
+                        <Form className='w-full md:w-[340px]'>
+                            <Flex direction={"column"} gap={16} align={"center"} w={{ base: "100%" }}>
+                                <Field
+                                    id="email"
+                                    name="email"
+                                    placeholder="Enter your email"
+                                    label="Email"
+                                    required={true}
+                                    className="text-sm"
+                                    value={values.email}
+                                    component={InputField}
+                                />
+
+                                <Field
+                                    id="password"
+                                    name="password"
+                                    placeholder="Enter password"
+                                    label="Password"
+                                    required={true}
+                                    className="text-sm"
+                                    value={values.password}
+                                    component={InputPasswordField}
+                                />
+
+                                <Button
+                                    className='rounded-lg'
+                                    fz={{ base: 16 }}
+                                    fw={600}
+                                    w={{ base: 170 }}
+                                    h={40}
+                                    bg={isEnable ? "#435EFB" : "gray"}
+                                    px={0}
+                                    type='submit'
+                                    c={"white"}
+                                    mx={"auto"}
+                                    loading={isSubmitting}
+                                    disabled={!isEnable}
+                                >
+                                    Login
+                                </Button>
+                            </Flex>
+                        </Form>
+                    );
+                }}
+            </Formik>
+
+            <Flex gap={{ base: 24 }} align={"center"} justify={"center"}>
+                <Box w={48} h={48} className='overflow-hidden cursor-pointer'>
+                    <Image src={ggIcon} alt='ggIcon' className='w-full h-full scale-[1.58] relative bottom-[-4%] origin-center' />
+                </Box>
+                <Box w={48} h={48} className='overflow-hidden cursor-pointer'>
+                    <Image src={xIcon} alt='ggIcon' className='w-full h-full scale-[0.96] origin-center' />
+                </Box>
+                <Box w={48} h={48} className='overflow-hidden cursor-pointer'>
+                    <Image src={fbIcon} alt='ggIcon' className='w-full h-full scale-[1.54] relative bottom-[-4%] origin-center' />
+                </Box>
+            </Flex>
+
+        </Flex>
+    );
+}

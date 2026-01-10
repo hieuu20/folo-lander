@@ -24,6 +24,8 @@ import { FooterMobile } from "./mobile/FooterMobile";
 import { BeSeenMobile } from "./mobile/BeSeenMobile";
 import { loadingTime } from "@/utils";
 import NewsMobile from "./mobile/NewsMobile";
+import { LeaderBoardMobile } from "./mobile/LeaderBoardMobile";
+import { LeaderBoard } from "./LeaderBoard";
 
 interface Props {
     news: INews[],
@@ -99,6 +101,7 @@ const Mobile = ({ news }: Props) => {
                     }}
                 >
                     <BannerMobile />
+                    <LeaderBoardMobile />
                     <SloganMobile />
                     <MuchMoreMobile />
                     <BeSeenMobile />
@@ -137,6 +140,7 @@ const Desktop = ({ news }: Props) => {
                     }}
                 >
                     <BannerPc />
+                    <LeaderBoard />
                     <Slogan />
                     <MuchMore />
                     <BeSeen />

@@ -1,4 +1,3 @@
-import { connectDB } from "@/app/api/_db";
 import { Footer } from "@/components/layouts";
 import { getNewsBySlug } from "@/service";
 import Link from "next/link";
@@ -9,7 +8,6 @@ export default async function NewsDetailPage({
 }: {
   params: { slug: string };
 }) {
-  await connectDB();
 
   const slug = params.slug;
   const news = await getNewsBySlug(slug);

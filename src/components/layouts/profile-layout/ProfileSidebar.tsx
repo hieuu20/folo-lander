@@ -17,7 +17,7 @@ import banner from "@public/profile/banner-image.webp";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useApp } from "@/app/context/AppContext";
-import logoutIcon from "@public/icons/Logout.svg";
+import logoutIcon from "@public/icons/logout.svg";
 
 import avatar from "@public/profile/avatar.svg";
 import pointIcon from "@public/icons/point-icon.svg";

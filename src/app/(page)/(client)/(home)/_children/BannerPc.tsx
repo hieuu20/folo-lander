@@ -12,8 +12,11 @@ import { useWindowHeight } from '@/hooks';
 import { loadingTime } from '@/utils/constants';
 import downIcon from "@public/icons/down.svg";
 import { EmailWaitingListInput } from '../../_shared/EmailWaitingListInput';
+import { useApp } from '@/app/context/AppContext';
+import SectionButton from '@/components/buttons/SectionButton';
 
 export function BannerPc() {
+    const { profile } = useApp();
     const wdHeight = useWindowHeight();
     const [scope] = useAnimate();
     const [tileHeight, setTitleHeight] = useState(0);
@@ -38,8 +41,6 @@ export function BannerPc() {
     });
 
     const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-
-
 
     return (
         <Box
@@ -120,10 +121,44 @@ export function BannerPc() {
                             fw={700}
                             ta={"center"}
                         >
-                            <span className='italic'>The You</span> Platform. <br/>
+                            <span className='italic'>The You</span> Platform. <br />
                             For Creators and Communities
                         </Text>
-                        <EmailWaitingListInput />
+                        {profile ? (
+                            <Flex gap={16}>
+                                <SectionButton
+                                    show={true}
+                                    title='Share to earn'
+                                    className='rounded-lg'
+                                    fz={{ base: 16 }}
+                                    fw={600}
+                                    w={{ base: 150 }}
+                                    h={40}
+                                    px={0}
+                                    bg={"#435EFB"}
+                                    c={"white"}
+                                    mx={"auto"}
+                                />
+
+                                <SectionButton
+                                    show={true}
+                                    title='My dashboard'
+                                    className='rounded-lg'
+                                    fz={{ base: 16 }}
+                                    fw={600}
+                                    w={{ base: 150 }}
+                                    h={40}
+                                    px={0}
+                                    bg={"#131416"}
+                                    c={"white"}
+                                    mx={"auto"}
+                                    href='/profile'
+                                />
+
+                            </Flex>
+                        ) : (
+                            <EmailWaitingListInput />
+                        )}
                     </motion.div>
                 </Flex>
             </Box>

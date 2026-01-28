@@ -1,17 +1,24 @@
 import { Box, Flex } from '@mantine/core';
 import React from 'react';
-import LeaderBoardTable from '../../../_shared/LeaderBoardTable';
-import LeaderBoardTitle from '../../../_shared/LeaderBoardTitle';
+import LeaderBoardTable from '../leaderboard/LeaderBoardTable';
+import LeaderBoardTitle from '../leaderboard/LeaderBoardTitle';
 import LoginForm from '../../../_shared/LoginForm';
-import LeaderBoardCount from '../../../_shared/LeaderBoardCount';
+import LeaderBoardCount from '../leaderboard/LeaderBoardCount';
+import { PointSetting } from '@/types/pointSetting';
+import { Role } from '@/types/role';
 
-export function LeaderBoardMobile() {
+interface Props {
+    pointSettings: PointSetting[]
+    roles: Role[]
+}
+
+export function LeaderBoardMobile({ roles }: Props) {
     return (
         <Box w={"100%"} py={{ base: 40 }}>
             <Flex direction={"column"} gap={24} className='container'>
                 <LeaderBoardTitle />
                 <LeaderBoardTable />
-                <LoginForm />
+                <LoginForm roles={roles} />
                 <LeaderBoardCount />
             </Flex>
         </Box>

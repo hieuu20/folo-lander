@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     const apiKey = process.env.UPVIRAL_API_KEY!;
-    const campaignId = process.env.CAMPAIGN_ID!
+    const campaignId = process.env.CAMPAIGN_ID!;
     const id = params.id;
     
     const bodyParams = new URLSearchParams({
@@ -36,7 +36,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 export async function POST(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     const apiKey = process.env.UPVIRAL_API_KEY!;
-    const campaignId = process.env.CAMPAIGN_ID!
+    const campaignId = process.env.CAMPAIGN_ID!;
     const id = params.id;
     
     const bodyParams = new URLSearchParams({
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest, { params }: { params: { id: str
       uvmethod: "add_points",
       campaign_id: campaignId,
       lead_id: id,
-      points: "3000"
+      points: "-3000"
     });
 
     const res = await fetch(`https://app.upviral.com/api/v1/`, {

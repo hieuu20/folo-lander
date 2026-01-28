@@ -5,14 +5,18 @@ import "slick-carousel/slick/slick-theme.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import '@mantine/core/styles.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { Metadata } from "next";
 import Script from "next/script";
 import { theme } from "@/lib/theme";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { ProgressBarProvider } from "@/lib/ProgressBarProvider";
-import { connectDB } from "../api/_db/connect";
-import { ITracking, TrackingModel } from "../api/_entities";
 import localFont from 'next/font/local';
+import AppProvider from "../context/AppContext";
+import { ToastContainer } from 'react-toastify';
+import { getSystemSetting } from "@/service/systemSetting";
 
 export const metadata: Metadata = {
   title: "FOLO",
@@ -112,12 +116,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const tracking = {
-    uaTracking: "dasda",
-    ga4Tracking: "Dasdsa"
-  }
-
-  // console.log({ tracking });
+  const [setting] = await Promise.all([
+    getSystemSetting(),
+  ]);
 
   return (
     <html lang="en" className={myFont.variable}>
@@ -130,7 +131,7 @@ export default async function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Folo" />
 
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${tracking.ga4Tracking || tracking.uaTracking}`}
+          src={`https://www.googletagmanager.com/gtag/js?id=${setting?.tracking?.googleAnalytics.ga4Id || setting?.tracking?.googleAnalytics.uaId}`}
         />
 
         <Script
@@ -141,15 +142,18 @@ export default async function RootLayout({
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
 
-              gtag('config', '${tracking.ga4Tracking || tracking.uaTracking}');
+              gtag('config', '${setting?.tracking?.googleAnalytics.ga4Id || setting?.tracking?.googleAnalytics.uaId}');
             `,
           }}
         />
       </head>
       <body className={`antialiased`}>
-        <ProgressBarProvider>
-          <MantineProvider theme={theme}>{children}</MantineProvider>
-        </ProgressBarProvider>
+        <AppProvider setting={setting}>
+          <ToastContainer />
+          <ProgressBarProvider>
+            <MantineProvider theme={theme}>{children}</MantineProvider>
+          </ProgressBarProvider>
+        </AppProvider>
       </body>
     </html>
   );

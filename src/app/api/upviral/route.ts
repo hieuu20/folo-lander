@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextRequest, NextResponse } from "next/server";
 import { WaitingEmailModel } from "../_entities";
 import { throwBadRequest } from "../_utils";
 import { headers } from "next/headers";
 import { UAParser } from "ua-parser-js";
+import { generateRandomIP } from "@/utils";
 
 export async function GET(request: NextRequest) {
   try {
     const apiKey = process.env.UPVIRAL_API_KEY!;
-    const campaignId = process.env.CAMPAIGN_ID!
+    const campaignId = process.env.CAMPAIGN_ID!;
 
     const params = new URLSearchParams({
       uvapikey: apiKey,
@@ -42,7 +44,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const apiKey = process.env.UPVIRAL_API_KEY!;
-    const campaignId = process.env.CAMPAIGN_ID!
+    const campaignId = process.env.CAMPAIGN_ID!;
     const body = await request.json();
     // const ip = (request.headers.get("x-forwarded-for") ?? "127.0.0.1").split(
     //   ","
@@ -80,9 +82,3 @@ export async function POST(request: NextRequest) {
   }
 }
 // https://www.linkedin.com/feed/?linkOrigin=LI_BADGE&shareActive=true&shareUrl=https://lander.folo.co/
-
-
-function generateRandomIP(): string {
-  const octet = () => Math.floor(Math.random() * 254) + 1;
-  return `${octet()}.${octet()}.${octet()}.${octet()}`;
-}

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { InputField, InputPasswordField } from '@/components';
-import { getDeviceId, validateEmail } from '@/utils';
+import { getDeviceId, getLocalStorage, USER_TYPE_ENUM, validateEmail } from '@/utils';
 import { Box, Button, Flex } from '@mantine/core';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import React, { useCallback } from 'react';
@@ -8,8 +8,16 @@ import xIcon from "@public/leaderboard/x.png";
 import fbIcon from "@public/leaderboard/facebook.png";
 import ggIcon from "@public/leaderboard/google.png";
 import Image from 'next/image';
-
-export default function LoginForm() {
+import { useRouter } from 'next/navigation';
+import { RolePopup } from '@/components/Popups';
+import { Role } from '@/types/role';
+import { useDisclosure } from '@/hooks';
+interface Props {
+    roles: Role[]
+}
+export default function LoginForm({ roles }: Props) {
+    const router = useRouter();
+    const [opened, { open, close }] = useDisclosure();
 
     const handleSignup = useCallback(async (values: any, {
         setErrors,
@@ -17,7 +25,7 @@ export default function LoginForm() {
     }: FormikHelpers<any>) => {
         try {
             setSubmitting(true);
-            const res = await fetch("/api/login", {
+            const res = await fetch("/api/auth/signin", {
                 method: "POST",
                 body: JSON.stringify(values)
             });
@@ -25,7 +33,13 @@ export default function LoginForm() {
             const result = await res.json();
 
             if (result?.data) {
-                close();
+                router.refresh();
+                const event = new CustomEvent('REFETCH_PROFILE', {
+                    detail: {
+                        value: null,
+                    }
+                });
+                window.dispatchEvent(event);
             } else {
                 setErrors({ email: "You’ve already signed up" });
             }
@@ -34,20 +48,22 @@ export default function LoginForm() {
         } finally {
             setSubmitting(false);
         }
-    }, []);
+    }, [router]);
 
     return (
-        <Flex direction={"column"} gap={{ base: 24, md: 32, xl: 40 }} align={"center"} w={{ base: "100%" }}>
+        <Flex direction={"column"} gap={{ base: 24 }} align={"center"} w={{ base: "100%" }}>
             <Formik
                 initialValues={{
-                    user_type: "USER",
+                    userType: USER_TYPE_ENUM.USER,
                     email: "",
                     password: "",
-                    deviceId: getDeviceId()
+                    deviceId: getDeviceId(),
+                    referralCode: getLocalStorage("referralCode"),
+                    roleId: roles[0]?._id
                 }}
                 onSubmit={handleSignup}
             >
-                {({ values, isSubmitting }) => {
+                {({ values, isSubmitting, setFieldValue, submitForm }) => {
                     const isEnable = validateEmail(values.email) && values.password;
                     return (
                         <Form className='w-full md:w-[340px]'>
@@ -82,14 +98,24 @@ export default function LoginForm() {
                                     h={40}
                                     bg={isEnable ? "#435EFB" : "gray"}
                                     px={0}
-                                    type='submit'
+                                    type='button'
                                     c={"white"}
                                     mx={"auto"}
                                     loading={isSubmitting}
                                     disabled={!isEnable}
+                                    onClick={open}
                                 >
                                     Login
                                 </Button>
+
+                                <RolePopup
+                                    values={values}
+                                    roles={roles}
+                                    opened={opened}
+                                    close={close}
+                                    setFieldValue={setFieldValue}
+                                    submitForm={submitForm}
+                                />
                             </Flex>
                         </Form>
                     );
@@ -98,13 +124,13 @@ export default function LoginForm() {
 
             <Flex gap={{ base: 24 }} align={"center"} justify={"center"}>
                 <Box w={48} h={48} className='overflow-hidden cursor-pointer'>
-                    <Image src={ggIcon} alt='ggIcon' className='w-full h-full scale-[1.58] relative bottom-[-4%] origin-center' />
+                    <Image src={ggIcon} alt='ggIcon' width={24} height={24} className='w-full h-full scale-[1.58] relative bottom-[-4%] origin-center' />
                 </Box>
                 <Box w={48} h={48} className='overflow-hidden cursor-pointer'>
-                    <Image src={xIcon} alt='ggIcon' className='w-full h-full scale-[0.96] origin-center' />
+                    <Image src={xIcon} alt='ggIcon' width={24} height={24} className='w-full h-full scale-[0.96] origin-center' />
                 </Box>
                 <Box w={48} h={48} className='overflow-hidden cursor-pointer'>
-                    <Image src={fbIcon} alt='ggIcon' className='w-full h-full scale-[1.54] relative bottom-[-4%] origin-center' />
+                    <Image src={fbIcon} alt='ggIcon' width={24} height={24} className='w-full h-full scale-[1.54] relative bottom-[-4%] origin-center' />
                 </Box>
             </Flex>
 

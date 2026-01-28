@@ -2,20 +2,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { Box, Flex, Input, Text } from '@mantine/core';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Box, Flex, Text } from '@mantine/core';
+import React, { useEffect, useRef, useState } from 'react';
 import logoWhite from "@public/icons/logo-white.webp";
-import bgImage from "@public/banner/bg.webp";
 
 import Image from 'next/image';
 import SectionButton from '@/components/buttons/SectionButton';
 import { motion, useAnimation } from 'framer-motion';
-import { useDisclosure, useWindowHeight } from '@/hooks';
+import { useWindowHeight } from '@/hooks';
 import { loadingTime } from '@/utils';
-import { SuccessPopup } from '@/components/Popups';
 import { EmailWaitingListInput } from '../../../_shared/EmailWaitingListInput';
+import { useApp } from '@/app/context/AppContext';
 
 export function BannerMobile() {
+    const { profile } = useApp();
     const main = useRef<any>();
     const wdHeight = useWindowHeight();
 
@@ -147,11 +147,47 @@ export function BannerMobile() {
                             fw={700}
                             ta={"center"}
                         >
-                            <span className='italic'>The You</span> Platform. <br/>
+                            <span className='italic'>The You</span> Platform. <br />
                             For Creators and Communities
                         </Text>
 
-                        <EmailWaitingListInput />
+                        {profile ? (
+                            <Flex justify={"space-between"}>
+                                <SectionButton
+                                    show={true}
+                                    title='Share to earn'
+                                    className='rounded-lg'
+                                    fz={{ base: 16 }}
+                                    fw={600}
+                                    w={{ base: "48%" }}
+                                    h={40}
+                                    px={0}
+                                    bg={"#435EFB"}
+                                    c={"white"}
+                                    mx={"auto"}
+                                />
+
+                                <SectionButton
+                                    show={true}
+                                    title='My dashboard'
+                                    className='rounded-lg'
+                                    fz={{ base: 16 }}
+                                    fw={600}
+                                    w={{ base: "48%" }}
+                                    h={40}
+                                    px={0}
+                                    bg={"#131416"}
+                                    c={"white"}
+                                    mx={"auto"}
+                                    href='/profile'
+                                />
+
+                            </Flex>
+                        ) : (
+                            <EmailWaitingListInput />
+                        )}
+
+
                     </motion.div>
                 </Flex>
             </Box>

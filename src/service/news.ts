@@ -1,7 +1,7 @@
 import { INews } from "@/types/news";
 
 export const getAllNews = async (): Promise<INews[]> => {
-  const response = await fetch(process.env.API_URL + `/client/news`, {
+  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `/client/news`, {
     cache: 'no-store',
     method: 'GET',
   });
@@ -10,7 +10,7 @@ export const getAllNews = async (): Promise<INews[]> => {
 };
 
 export const getNewsBySlug = async (slug: string): Promise<INews> => {
-  const response = await fetch(process.env.API_URL + `/client/news/${slug}`, {
+  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `/client/news/${slug}`, {
     cache: 'no-store',
     method: 'GET',
   });

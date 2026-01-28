@@ -18,11 +18,10 @@ export enum SECTION_TYPE {
 }
 
 export enum USER_TYPE_ENUM {
-  BOSS = "BOSS",
-  CREATOR = "CREATOR",
   ADMIN = "ADMIN",
+  CREATOR = "CREATOR",
   USER = "USER",
-  CUSTOMER = "CUSTOMER",
+  BUSINESS = "BUSINESS",
 }
 
 export enum CUSTOMER_TAG {

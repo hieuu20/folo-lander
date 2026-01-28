@@ -2,20 +2,21 @@
 import React from "react";
 
 import Container from "./_children/Container";
-import { INews, NewsModel } from "@/app/api/_entities";
 import { getAllNews } from "@/service";
+import { getAllRole } from "@/service/role";
+import { getPointSetting } from "@/service/pointSetting";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const [news] = await Promise.all([
-    getAllNews()
+  const [news, roles, pointSettings] = await Promise.all([
+    getAllNews(),
+    getAllRole(),
+    getPointSetting()
   ]);
-
-  console.log({ news })
 
 
   return (
-    <Container news={news} />
+    <Container news={news} roles={roles} pointSettings={pointSettings} />
   );
 }

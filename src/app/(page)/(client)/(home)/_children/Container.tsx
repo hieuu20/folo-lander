@@ -8,7 +8,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollSmoother } from 'gsap/dist/ScrollSmoother';
 import { useBrowserWidth } from "@/hooks";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { BannerMobile } from "./mobile/BannerMoblie";
 import { INews } from "@/app/api/_entities";
 import News from "./News";
@@ -22,17 +22,27 @@ import { SloganMobile } from "./mobile/SloganMobile";
 import { MuchMoreMobile } from "./mobile/MuchMoreMobile";
 import { FooterMobile } from "./mobile/FooterMobile";
 import { BeSeenMobile } from "./mobile/BeSeenMobile";
-import { loadingTime } from "@/utils";
+import { loadingTime, setLocalStorage } from "@/utils";
 import NewsMobile from "./mobile/NewsMobile";
 import { LeaderBoardMobile } from "./mobile/LeaderBoardMobile";
 import { LeaderBoard } from "./LeaderBoard";
+import { Role } from "@/types/role";
+import { Social } from "@/types/social";
+import { PointSetting } from "@/types/pointSetting";
+import ScrollToTop from "../../_shared/ScrollToTop";
 
 interface Props {
     news: INews[],
+    roles: Role[],
+    pointSettings: PointSetting[],
 }
 export default function Container(props: Props) {
     const { width } = useBrowserWidth();
     const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const router = useRouter();
+
+    // console.log({ props });
 
     useEffect(() => {
         document.body.style.overflow = 'hidden';
@@ -62,15 +72,25 @@ export default function Container(props: Props) {
         return <Desktop {...props} />;
     };
 
+    useEffect(() => {
+        const refCode = searchParams.get('ref');
+        if (refCode) {
+            setLocalStorage("referralCode", refCode);
+            router.replace("/");
+        }
+    }, [router, searchParams]);
+
     return (
         <>
             <Loading />
+            <ScrollToTop />
+
             {render()}
         </>
     );
 }
 
-const Mobile = ({ news }: Props) => {
+const Mobile = ({ news, pointSettings, roles }: Props) => {
     const main = useRef<any>();
     const smoother = useRef<ScrollSmoother>();
 
@@ -101,7 +121,7 @@ const Mobile = ({ news }: Props) => {
                     }}
                 >
                     <BannerMobile />
-                    <LeaderBoardMobile />
+                    <LeaderBoardMobile pointSettings={pointSettings} roles={roles} />
                     <SloganMobile />
                     <MuchMoreMobile />
                     <BeSeenMobile />
@@ -113,7 +133,7 @@ const Mobile = ({ news }: Props) => {
     );
 };
 
-const Desktop = ({ news }: Props) => {
+const Desktop = ({ news, pointSettings, roles }: Props) => {
     const main = useRef<any>();
     const smoother = useRef<ScrollSmoother>();
 
@@ -130,7 +150,6 @@ const Desktop = ({ news }: Props) => {
     return (
         <>
             <Header />
-
             <Box id="smooth-wrapper" ref={main}>
                 <Box
                     id="smooth-content"
@@ -140,7 +159,7 @@ const Desktop = ({ news }: Props) => {
                     }}
                 >
                     <BannerPc />
-                    <LeaderBoard />
+                    <LeaderBoard pointSettings={pointSettings} roles={roles} />
                     <Slogan />
                     <MuchMore />
                     <BeSeen />

@@ -41,7 +41,6 @@ import token from "@public/footer/token.webp";
 import { PropsWithChildren, useEffect, useRef } from "react";
 import { isNil } from "lodash";
 import { useDisclosure } from "@/hooks";
-import { SignupPopup } from "@/components/Popups";
 import { EmailWaitingListInput } from "@/app/(page)/(client)/_shared/EmailWaitingListInput";
 import { twMerge } from "tailwind-merge";
 
@@ -440,7 +439,6 @@ export const TokenAnimation = () => {
 const text = "$FOLO 🌕 COMING SOON 🚀 $FOLO 🌕 COMING SOON 🔥";
 
 export function CircularText() {
-  console.log({ test: text.repeat(20) });
   return (
     <svg
       width={240}

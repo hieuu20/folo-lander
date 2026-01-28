@@ -1,5 +1,6 @@
 
 export interface IWaitingEmail {
+    _id: string;
     email: string;
-    createdAt: Date;
+    createdAt: string;
 }

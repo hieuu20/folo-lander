@@ -17,6 +17,15 @@ export const convertPriceToNumber = (value: string): number => {
   return +result.join("");
 };
 
+export function formatNumber(value: string | number) {
+  return Number(value).toLocaleString("en-US");
+}
+
+export function generateRandomIP(): string {
+  const octet = () => Math.floor(Math.random() * 254) + 1;
+  return `${octet()}.${octet()}.${octet()}.${octet()}`;
+}
+
 export const covertUserID = (id: string) => {
   if (!id) return;
 
@@ -34,8 +43,20 @@ export const getLocalStorage = <T>(key: string): T | undefined | null => {
 };
 
 export function formatTime(date: string) {
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
   const d = new Date(date);
 
@@ -45,7 +66,7 @@ export function formatTime(date: string) {
   const day = String(d.getDate()).padStart(2, "0");
   const year = d.getFullYear();
 
-  return `${hours}:${minutes} ${month} ${day},${year}`;
+  return `${hours}:${minutes} ${month} ${day}, ${year}`;
 }
 
 export const setLocalStorage = (key: string, value: unknown) => {
@@ -57,7 +78,6 @@ export const setLocalStorage = (key: string, value: unknown) => {
 export const getRandomInt = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
-
 
 export const convertNumberToMonth = (number: number) => {
   switch (number) {
@@ -88,6 +108,26 @@ export const convertNumberToMonth = (number: number) => {
   }
 };
 
+export async function upload(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  file: any
+): Promise<{ filePath: string } | null> {
+  try {
+    const data = new FormData();
+    data.append("file", file, file.name);
+
+    const res = await fetch(process.env.NEXT_PUBLIC_API_URL + `/admin/upload`, {
+      method: "POST",
+      body: data,
+    });
+    const result = await res.json();
+    return result;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
+    return null;
+  }
+}
+
 export function getOs() {
   if (!window.navigator) {
     return OS_TYPE.OTHER;
@@ -113,10 +153,10 @@ export const formatToPrice = (n = 0) => {
 };
 
 export function getDeviceId() {
-  let id = localStorage.getItem('device_id')
+  let id = localStorage.getItem("device_id");
   if (!id) {
-    id = crypto.randomUUID()
-    localStorage.setItem('device_id', id)
+    id = crypto.randomUUID();
+    localStorage.setItem("device_id", id);
   }
-  return id
+  return id;
 }

@@ -23,17 +23,14 @@ export default function SectionButton(props: Props) {
   return (
     <Button
       id={id}
-      bg={"#AC1991"}
+      bg={"#435EFB"}
       c={"white"}
       fw={500}
       h={40}
       px={32}
       onClick={onClick}
       className={twMerge(
-        "rounded-lg [&_.mantine-Button-label]:w-full transition-all duration-200",
-        !rest.bg || rest.bg === "#AC1991"
-          ? "hover:bg-[#751363]"
-          : "hover:opacity-80",
+        "rounded-lg [&_.mantine-Button-label]:w-full transition-all duration-200 hover:scale-105",
         className
       )}
       {...rest}

@@ -37,9 +37,7 @@ export default function TabComponent({ data }: Props) {
                 router.push(`?${params.toString()}`, { scroll: false });
             }}
         >
-            <Tabs.List 
-                // className="before:border-[0px]"
-            >
+            <Tabs.List>
                 {data.map((o) => {
                     return (
                         <Tabs.Tab
@@ -56,7 +54,7 @@ export default function TabComponent({ data }: Props) {
 
             {data.map((o) => {
                 return (
-                    <Tabs.Panel key={o.key} value={o.key} pt="xs" >
+                    <Tabs.Panel key={o.key} value={o.key} >
                         {o.component()}
                     </Tabs.Panel>
                 );

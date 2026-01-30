@@ -14,7 +14,13 @@ export function EarningHistories({ earningHistories }: Props) {
             <Flex direction={"column"} gap={4} mb={12}>
                 <Text fw={600} fz={20}>Earning history</Text>
                 <Text c={"#4D5053"} fz={14} >
-                    Need help? <Link href={"mailto:support@folo.com"} className="text-[#435EFB] font-semibold">Contact Our Support →</Link>
+                    Need help? 
+                    <Link 
+                        href={"mailto:support@folo.com"} 
+                        className="text-[#435EFB] font-semibold hover:opacity-70 transition-all duration-200 ml-1"
+                    >
+                        Contact Our Support →
+                    </Link>
                 </Text>
             </Flex>
 

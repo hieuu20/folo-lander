@@ -12,9 +12,8 @@ export default async function Home() {
   const [news, roles, pointSettings] = await Promise.all([
     getAllNews(),
     getAllRole(),
-    getPointSetting()
+    getPointSetting(),
   ]);
-
 
   return (
     <Container news={news} roles={roles} pointSettings={pointSettings} />

@@ -34,7 +34,7 @@ const tabList = [
 
 export default function RewardPage() {
     return (
-        <div className="bg-white min-h-screen">
+        <div className="bg-white">
             <Flex justify={"space-between"} align={"center"} px={16}>
                 <Flex direction={"column"} gap={4} py={12}>
                     <h2 className="font-semibold text-xl">Leaderboard and rewards</h2>

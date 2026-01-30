@@ -124,7 +124,7 @@ export function RolePopup({ roles, setFieldValue, opened, close, submitForm }: P
     );
 }
 
-export const SuccessPopup = ({ opened, close }: { opened: boolean, close: () => void }) => {
+export const SuccessPopup = ({ opened, close, title, size = 260  }: { opened: boolean; size?: number; title: string; close: () => void }) => {
     useEffect(() => {
         const func = () => {
             if (opened) {
@@ -141,7 +141,7 @@ export const SuccessPopup = ({ opened, close }: { opened: boolean, close: () => 
         <Modal
             opened={opened}
             onClose={close}
-            size={259}
+            size={size}
             centered={true}
             classNames={{
                 header: "hidden",
@@ -151,7 +151,7 @@ export const SuccessPopup = ({ opened, close }: { opened: boolean, close: () => 
             <Flex direction={"column"} gap={16} align={"center"}>
                 <Tick />
                 <Text c={"#131416"} fz={20} fw={600} lh={1.4}>
-                    Welcome aboard! 🎉
+                    {title}
                 </Text>
             </Flex>
         </Modal>
@@ -175,6 +175,6 @@ const Tick = () => {
 
 
     return (
-        <Box ref={container} w={64} h={64} />
+        <Box ref={container} w={68} h={68} />
     );
 };

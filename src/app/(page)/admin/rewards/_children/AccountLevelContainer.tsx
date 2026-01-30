@@ -1,6 +1,5 @@
 "use client";
 
-import { Box, Text } from '@mantine/core';
 import React, { useCallback, useEffect, useState } from 'react';
 import AccountLevelFormPopup from './account-level/AccountLevelFormPopup';
 import { AccountLevelTable } from './account-level/AccountLevelTable';
@@ -48,21 +47,6 @@ export function AccountLevelContainer() {
 
     return (
         <div className="border border-[#E7E7F8] bg-white border-t-0">
-            <Box pl={16} pb={12}>
-                <Text fz={14} c={"#4D5053"}>
-                    Note: Reward images and APIs are setup in here. Data syncing with Upviral app.
-                </Text>
-                {/* <CreateButton
-                    onClick={() => {
-                        setAccount({
-                            title: '',
-                            mintPoint: 0,
-                            isActive: true,
-                            perks: []
-                        });
-                    }}
-                /> */}
-            </Box>
             <AccountLevelTable
                 data={data}
                 loading={loading}

@@ -2,8 +2,8 @@
 
 import { IWaitingEmail } from '@/types/waitingEmail';
 import { formatTime } from '@/utils';
-import { Table, Text, Pagination, Stack, Flex } from '@mantine/core';
-import { IconCaretDownFilled, IconCaretUpFilled, IconLoader2 } from '@tabler/icons-react';
+import { Table, Text, Pagination, Stack, Flex, Group } from '@mantine/core';
+import { IconCaretDownFilled, IconCaretUpFilled, IconDownload, IconLoader2 } from '@tabler/icons-react';
 import { useCallback, useEffect, useState } from 'react';
 
 export function WaitingTable() {
@@ -39,7 +39,12 @@ export function WaitingTable() {
         fetchData();
     }, [fetchData]);
     return (
-        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
+        <Flex
+            direction={"column"}
+            justify={"space-between"}
+            className="overflow-hidden"
+            mih={window.innerHeight - 150}
+        >
             <Table
                 highlightOnHover
                 verticalSpacing="md"
@@ -58,7 +63,12 @@ export function WaitingTable() {
                                 <IconCaretDownFilled color='#4D5053' className='text-[16px] -translate-y-1/3' />
                             </Stack>
                         </Table.Th>
-                        <Table.Th px={12} py={4} fw={400} className='text-right' pr={24}>Export</Table.Th>
+                        <Table.Th px={12} py={4} fw={400} className='text-right' pr={24}>
+                            <Group justify="flex-end" gap={6}>
+                                <IconDownload size={14} />
+                                Export
+                            </Group>
+                        </Table.Th>
                     </Table.Tr>
                 </Table.Thead>
 
@@ -102,9 +112,16 @@ export function WaitingTable() {
                     )}
                 </Table.Tbody>
             </Table>
-            <div className="flex justify-center py-4">
-                <Pagination total={1} />
+            <div className="flex justify-center py-4 mt-auto">
+                <Pagination
+                    total={1}
+                    color='#131416'
+                    fz={14} fw={600}
+                    classNames={{
+                        control: "rounded-lg"
+                    }}
+                />
             </div>
-        </div>
+        </Flex>
     );
 }

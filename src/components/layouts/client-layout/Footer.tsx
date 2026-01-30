@@ -43,6 +43,7 @@ import { isNil } from "lodash";
 import { useDisclosure } from "@/hooks";
 import { EmailWaitingListInput } from "@/app/(page)/(client)/_shared/EmailWaitingListInput";
 import { twMerge } from "tailwind-merge";
+import { useApp } from "@/app/context/AppContext";
 
 export const socials = [
   {
@@ -170,12 +171,12 @@ export const footerPays = [
 const delayStep = 0.3;
 
 export function Footer() {
+  const { profile } = useApp();
+
   const currenYear = new Date().getFullYear();
-  const [opened, { open, close }] = useDisclosure();
-
   const ref = useRef(null);
-
   const isInView = useInView(ref, { once: false, amount: 0.2 });
+
 
   return (
     <footer id="footer" className="bg-white overflow-hidden rounded-t-[24px] relative w-full aspect-[1.05340160936] -top-6 pt-6">
@@ -238,10 +239,11 @@ export function Footer() {
                 For Everyone.
               </FadeInAni>
             </Text>
-
-            <FadeInAni isInView={isInView} delay={delayStep * 2}>
-              <EmailWaitingListInput />
-            </FadeInAni>
+            {!profile && (
+              <FadeInAni isInView={isInView} delay={delayStep * 2}>
+                <EmailWaitingListInput />
+              </FadeInAni>
+            )}
           </Flex>
 
           <FadeInAni isInView={isInView} delay={delayStep * 3}>
@@ -336,7 +338,7 @@ export function Footer() {
                 </Flex>
 
                 <Flex gap={2} align={"center"} c={"#FFFFFFCC"} justify={{ base: "center" }}>
-                  Social Commerce EU Ltd <Image src={flag2} alt="flag 2" className="h-3 md:h-[14px] lg:h-[15px] 2xl:h-4 w-auto inline" /> 
+                  Social Commerce EU Ltd <Image src={flag2} alt="flag 2" className="h-3 md:h-[14px] lg:h-[15px] 2xl:h-4 w-auto inline" />
                   4th Floor, Agios Nikolaos, Kamares, 6037 Larnaca.Cyprus.EU
                 </Flex>
               </Text>

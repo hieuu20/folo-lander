@@ -30,11 +30,12 @@ import { Role } from "@/types/role";
 import { Social } from "@/types/social";
 import { PointSetting } from "@/types/pointSetting";
 import ScrollToTop from "../../_shared/ScrollToTop";
+import { IUser } from "@/types/user";
 
 interface Props {
-    news: INews[],
-    roles: Role[],
-    pointSettings: PointSetting[],
+    news: INews[];
+    roles: Role[];
+    pointSettings: PointSetting[];
 }
 export default function Container(props: Props) {
     const { width } = useBrowserWidth();
@@ -159,7 +160,7 @@ const Desktop = ({ news, pointSettings, roles }: Props) => {
                     }}
                 >
                     <BannerPc />
-                    <LeaderBoard pointSettings={pointSettings} roles={roles} />
+                    <LeaderBoard pointSettings={pointSettings} roles={roles}/>
                     <Slogan />
                     <MuchMore />
                     <BeSeen />

@@ -3,16 +3,9 @@ import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    const searchParams = request.nextUrl.searchParams;
-    const id = searchParams.get("id");
-
-    if(!id){
-      return NextResponse.json({ data: null });
-    }
-
-    const resData = await getUserPerk(id);
+    const resData = await getUserPerk();
 
     return NextResponse.json({ data: resData });
   } catch (error) {

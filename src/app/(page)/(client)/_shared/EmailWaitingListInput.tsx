@@ -94,7 +94,7 @@ export function EmailWaitingListInput() {
                 </Text>
             )}
 
-            <SuccessPopup opened={susscessOpened} close={successClose} />
+            <SuccessPopup opened={susscessOpened} close={successClose} title='Welcome aboard! 🎉' />
         </Flex>
     );
 }

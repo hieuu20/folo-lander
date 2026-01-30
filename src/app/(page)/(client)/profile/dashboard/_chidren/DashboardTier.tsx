@@ -2,8 +2,6 @@
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Box, Card, Flex, Stack, Text } from "@mantine/core";
-import leftIcon from "@public/news/arrow-left.svg";
-import rightIcon from "@public/news/arrow-right.svg";
 import Image from "next/image";
 import Slider from "react-slick";
 import { AccountLevel } from "@/types/accountLevel";
@@ -11,6 +9,8 @@ import { IUser } from "@/types/user";
 import pointIcon from "@public/icons/point-icon.svg";
 import { formatNumber } from "@/utils";
 import checkIcon from "@public/icons/circle-check.svg";
+import { ArrowLeft } from "@/components/icons/ArrowLeft";
+import { ArrowRight } from "@/components/icons/ArrowRight";
 
 interface Props {
     accountLevels: AccountLevel[];
@@ -140,8 +140,13 @@ export function DashboardTier({ accountLevels, profile }: Props) {
             </Box>
 
             <Flex gap={24} w={"100%"} justify={"center"} mt={{ base: 24, md: "4vh" }}>
-                <Image src={leftIcon} alt='left arrow' className='w-8 h-auto cursor-pointer' onClick={onPrev} />
-                <Image src={rightIcon} alt='left arrow' className='w-8 h-auto cursor-pointer' onClick={onNext} />
+                <Box onClick={onPrev} className="hover:opacity-70 transition-all duration-200 cursor-pointer">
+                    <ArrowLeft w={32} h={32} />
+                </Box>
+
+                <Box onClick={onNext} className="hover:opacity-60 transition-all duration-200 cursor-pointer">
+                    <ArrowRight w={32} h={32} />
+                </Box>
             </Flex>
         </Box>
     );

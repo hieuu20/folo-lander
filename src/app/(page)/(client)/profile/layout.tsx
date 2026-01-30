@@ -1,5 +1,6 @@
 import { ProfileContainer } from "@/components/layouts/profile-layout/ProfileContainer";
 import { getMe } from "@/service/auth";
+import { USER_TYPE_ENUM } from "@/utils";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -11,7 +12,11 @@ export default async function ProfileLayout({
   const profile = await getMe();
 
   if (!profile) {
-    redirect("/");
+    return redirect("/");
+  }
+
+  if (profile.userType == USER_TYPE_ENUM.ADMIN) {
+    return redirect("/admin");
   }
 
   return (

@@ -100,7 +100,7 @@ export function ProfileSidebar() {
           const isActive = pathname == o.href;
           const isLast = index == sidebarList.length - 1;
           return (
-            <Link key={index} href={o.href} className={twMerge("relative w-full px-5 py-1")}>
+            <Link key={index} href={o.href} className={twMerge("relative w-full px-3 py-1")}>
               {isActive && (
                 <Box pos={"absolute"} top={0} left={0} h={"100%"} w={4} bg={"#131416"} />
               )}
@@ -109,10 +109,14 @@ export function ProfileSidebar() {
                 pt={isLast ? 16 : 8}
                 gap={8}
                 align={"center"}
-                className={isLast ? "border-t-[1px] border-solid border-[#E7E7F8]" : ""}
+                className={twMerge(
+                  "hover:bg-[#F7F7FC] transition-all duration-200 rounded-lg",
+                  isLast && "border-t-[1px] border-solid border-[#E7E7F8]"
+                )}
+                px={8}
               >
                 <Image src={isActive ? o.activeIcon : o.icon} alt="sidebar icon" className="w-7 h-7" />
-                <Text c={"#4D5053"} fw={isActive ? 700 : 400} fz={18} className="whitespace-nowrap transition-all duration-150">{o.label}</Text>
+                <Text c={isActive ? "#131416" : "#4D5053"} fw={isActive ? 700 : 400} fz={18} className="whitespace-nowrap transition-all duration-150">{o.label}</Text>
               </Flex>
             </Link>
           );
@@ -127,7 +131,7 @@ export function ProfileSidebar() {
 
       <Box px={20} py={12} mt={"auto"} className="border-t-[1px] border-[#E7E7F8]">
         <Stack gap={24}>
-          <Flex 
+          <Flex
             gap={8} fz={18} c={"#4D5053"} className="cursor-pointer"
             onClick={onLogout}
           >

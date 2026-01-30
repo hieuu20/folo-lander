@@ -30,7 +30,6 @@ const delayStep = 0.2;
 
 export function FooterMobile() {
     const currenYear = new Date().getFullYear();
-    const [opened, { open, close }] = useDisclosure();
 
     const ref = useRef(null);
 

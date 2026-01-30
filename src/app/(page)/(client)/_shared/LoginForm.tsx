@@ -8,15 +8,14 @@ import xIcon from "@public/leaderboard/x.png";
 import fbIcon from "@public/leaderboard/facebook.png";
 import ggIcon from "@public/leaderboard/google.png";
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { RolePopup } from '@/components/Popups';
 import { Role } from '@/types/role';
 import { useDisclosure } from '@/hooks';
+import { dispatchFetchProfile } from '@/utils/windowEvent';
 interface Props {
     roles: Role[]
 }
 export default function LoginForm({ roles }: Props) {
-    const router = useRouter();
     const [opened, { open, close }] = useDisclosure();
 
     const handleSignup = useCallback(async (values: any, {
@@ -29,17 +28,9 @@ export default function LoginForm({ roles }: Props) {
                 method: "POST",
                 body: JSON.stringify(values)
             });
-
             const result = await res.json();
-
             if (result?.data) {
-                router.refresh();
-                const event = new CustomEvent('REFETCH_PROFILE', {
-                    detail: {
-                        value: null,
-                    }
-                });
-                window.dispatchEvent(event);
+                dispatchFetchProfile();
             } else {
                 setErrors({ email: "You’ve already signed up" });
             }
@@ -48,7 +39,27 @@ export default function LoginForm({ roles }: Props) {
         } finally {
             setSubmitting(false);
         }
-    }, [router]);
+    }, []);
+
+    const onLogin = useCallback(async (email: string, submitForm: () => void, setSubmitting: (isSubmitting: boolean) => void) => {
+        try {
+            setSubmitting(true);
+            const res = await fetch(`/api/auth/check-exist-email?email=${email}`);
+            const resData = await res.json();
+
+            console.log({ resData });
+
+            if (resData.data.isExistEmail) {
+                submitForm();
+            } else {
+                open();
+            }
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (err) { }
+        finally {
+            setSubmitting(false);
+        }
+    }, [open]);
 
     return (
         <Flex direction={"column"} gap={{ base: 24 }} align={"center"} w={{ base: "100%" }}>
@@ -63,7 +74,7 @@ export default function LoginForm({ roles }: Props) {
                 }}
                 onSubmit={handleSignup}
             >
-                {({ values, isSubmitting, setFieldValue, submitForm }) => {
+                {({ values, isSubmitting, setFieldValue, submitForm, setSubmitting }) => {
                     const isEnable = validateEmail(values.email) && values.password;
                     return (
                         <Form className='w-full md:w-[340px]'>
@@ -103,7 +114,7 @@ export default function LoginForm({ roles }: Props) {
                                     mx={"auto"}
                                     loading={isSubmitting}
                                     disabled={!isEnable}
-                                    onClick={open}
+                                    onClick={() => onLogin(values.email, submitForm, setSubmitting)}
                                 >
                                     Login
                                 </Button>

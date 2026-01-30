@@ -30,7 +30,7 @@ export default function UserPage() {
         ), []);
 
     return (
-        <div className="bg-white min-h-screen">
+        <div className="bg-white">
             <Flex justify={"space-between"} align={"center"} px={16}>
                 <Flex direction={"column"} gap={4} py={12}>
                     <h2 className="font-semibold text-xl">Users</h2>
@@ -44,12 +44,12 @@ export default function UserPage() {
                     bd={"1px solid #E7E7F8"}
                     w={346}
                     classNames={{
-                        input: "pl-9"
+                        input: "pl-9 rounded-lg border-none"
                     }}
                     className="rounded-lg overflow-hidden"
                     onChange={onSearch}
                     leftSection={<IconSearch size={20} className="font-semibold text-[#4D5053]" />}
-                    placeholder="Search pages"
+                    placeholder="Search user"
                 />
             </Flex>
             <TabComponent data={tabList} />

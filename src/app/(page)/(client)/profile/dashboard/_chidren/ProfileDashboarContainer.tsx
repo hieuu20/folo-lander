@@ -16,6 +16,7 @@ import { AccountLevel } from "@/types/accountLevel";
 import infoIcon from "@public/icons/info.svg";
 import Image from "next/image";
 import { EarningHistory } from "@/types/earningHistory";
+import { formatNumber } from "@/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -46,7 +47,7 @@ function CreditSummary({ profile }: { profile: IUser }) {
                 <Grid.Col span={{ base: 12, md: 6 }}>
                     <Flex direction="column" align="center">
                         <Text fw={700} fz={{ base: 30 }}>
-                            {profile.totalpoint}
+                            {formatNumber(profile.totalpoint)}
                         </Text>
                         <Text fz={16} fw={500} c="#4D5053">
                             My Total Credit Points

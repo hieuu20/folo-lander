@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-
 "use client";
 import { createContext, PropsWithChildren, ReactNode, useCallback, useContext, useEffect, useState } from "react";
 // import { isExpired } from "./common";
@@ -13,18 +12,19 @@ interface AppContextConfig {
     setProfile: (data: IUser | null) => void;
     leaderboard: IUser[];
     setting: SystemSetting | null;
+    loading: boolean;
 }
 
 export const AppContext = createContext<AppContextConfig | undefined>(undefined);
 
 interface Props {
     setting: SystemSetting | null;
+    initProfile: IUser;
 }
-const AppProvider = ({ children, setting }: PropsWithChildren<Props>) => {
-    const [profile, setProfile] = useState<IUser | null>(null);
+const AppProvider = ({ children, setting, initProfile }: PropsWithChildren<Props>) => {
+    const [profile, setProfile] = useState<IUser | null>(initProfile);
     const [loading, setLoading] = useState(false);
     const [leaderboard, setLeaderboard] = useState<IUser[]>([]);
-
 
     const fetchProfile = useCallback(async () => {
         try {
@@ -35,24 +35,29 @@ const AppProvider = ({ children, setting }: PropsWithChildren<Props>) => {
             if (resData.data._id) {
                 setProfile(resData.data);
             }
+        } catch (err) { } finally {
+            setLoading(false);
+        }
+    }, []);
 
-            const ldRes = await fetch(`/api/leaderboard?id=${resData.data._id || ''}`);
+    const fetLeaderBoard = useCallback(async () => {
+        try {
+            setLoading(true);
+            const ldRes = await fetch(`/api/leaderboard?id=${profile?._id || ''}`);
             const ldResData = await ldRes.json();
 
             if (ldResData.data) {
                 setLeaderboard(ldResData.data);
             }
-
-        } catch (err) {
-            console.log({ err });
-        } finally {
+        } catch (err) { } finally {
             setLoading(false);
         }
-    }, []);
+    }, [profile?._id]);
 
     useEffect(() => {
         fetchProfile();
-    }, [fetchProfile]);
+        fetLeaderBoard();
+    }, [fetchProfile, fetLeaderBoard]);
 
     useEffect(() => {
         window.addEventListener("REFETCH_PROFILE", fetchProfile);
@@ -68,7 +73,8 @@ const AppProvider = ({ children, setting }: PropsWithChildren<Props>) => {
                 profile,
                 setProfile,
                 leaderboard,
-                setting
+                setting,
+                loading,
             }}
         >
             {children}

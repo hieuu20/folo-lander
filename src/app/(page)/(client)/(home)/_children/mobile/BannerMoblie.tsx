@@ -154,6 +154,7 @@ export function BannerMobile() {
                         {profile ? (
                             <Flex justify={"space-between"}>
                                 <SectionButton
+                                    href='#Leaderboard'
                                     show={true}
                                     title='Share to earn'
                                     className='rounded-lg'

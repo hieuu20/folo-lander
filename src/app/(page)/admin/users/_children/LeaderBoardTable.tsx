@@ -4,7 +4,7 @@
 
 'use client';
 
-import { Table, Anchor, Group, Badge } from '@mantine/core';
+import { Table, Group, Badge, Pagination, Flex, Text } from '@mantine/core';
 import { IconFilter, IconDownload } from '@tabler/icons-react';
 import { IconHeartFilled, IconCircleFilled } from '@tabler/icons-react';
 
@@ -33,33 +33,38 @@ export const data: LeaderboardRow[] = Array.from({ length: 20 }).map((_, i) => (
 
 export function LeaderboardTable() {
     return (
-        <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
+        <Flex
+            direction={"column"}
+            justify={"space-between"}
+            className="overflow-hidden"
+            mih={window.innerHeight - 150}
+        >
             <Table highlightOnHover className="text-sm">
                 <Table.Thead className="bg-gray-50">
                     <Table.Tr>
-                        <Table.Th>Rank</Table.Th>
-                        <Table.Th>Username</Table.Th>
-                        <Table.Th>Level</Table.Th>
-                        <Table.Th>Email address</Table.Th>
+                        <Table.Th px={12} py={4} fw={400} w={100}>Rank</Table.Th>
+                        <Table.Th px={12} py={4} fw={400} w={100}>Username</Table.Th>
+                        <Table.Th px={12} py={4} fw={400} w={100}>Level</Table.Th>
+                        <Table.Th px={12} py={4} fw={400} w={100}>Email address</Table.Th>
 
-                        <Table.Th>
+                        <Table.Th px={12} py={4} fw={400} w={100}>
                             <Group gap={6}>
                                 Type
                                 <IconFilter size={14} />
                             </Group>
                         </Table.Th>
 
-                        <Table.Th>
+                        <Table.Th px={6} py={4} fw={400} w={100}>
                             <Group gap={6}>
                                 Account created on
                                 <IconFilter size={14} />
                             </Group>
                         </Table.Th>
 
-                        <Table.Th>Total earned points</Table.Th>
-                        <Table.Th>Donation/invest value</Table.Th>
+                        <Table.Th px={12} py={4} fw={400} w={100}>Total earned points</Table.Th>
+                        <Table.Th px={12} py={4} fw={400} w={100}>Donation/invest value</Table.Th>
 
-                        <Table.Th className="text-right">
+                        <Table.Th px={12} py={4} fw={400} w={100} className="text-right">
                             <Group justify="flex-end" gap={6}>
                                 <IconDownload size={14} />
                                 Export
@@ -91,15 +96,30 @@ export function LeaderboardTable() {
                             <Table.Td>{row.donation}</Table.Td>
 
                             <Table.Td className="text-right">
-                                <Anchor className="text-blue-600 hover:underline">
+                                <Text
+                                    fz={13}
+                                    fw={500}
+                                    className="hover:underline transition-all duration-150 cursor-pointer"
+                                >
                                     View details
-                                </Anchor>
+                                </Text>
                             </Table.Td>
                         </Table.Tr>
                     ))}
                 </Table.Tbody>
             </Table>
-        </div>
+
+            <div className="flex justify-center py-4 mt-auto">
+                <Pagination
+                    total={1}
+                    color='#131416'
+                    fz={14} fw={600}
+                    classNames={{
+                        control: "rounded-lg"
+                    }}
+                />
+            </div>
+        </Flex>
     );
 }
 

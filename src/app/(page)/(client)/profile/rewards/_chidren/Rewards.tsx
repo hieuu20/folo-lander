@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useCallback, useEffect, useState } from 'react';
 import { SimpleGrid } from '@mantine/core';
 import { Perk } from '@/types/perk';
@@ -9,6 +10,9 @@ import { UserPerk, UserPerkType } from '@/types/userPerk';
 import pointIcon from "@public/icons/point-icon.svg";
 import pointDisableIcon from "@public/icons/point-icon-disable.png";
 import { WalletIcon } from '@/components/icons/WalletIcon';
+import { dispatchFetchProfile } from '@/utils/windowEvent';
+import { SuccessPopup } from '@/components/Popups';
+import { useDisclosure } from '@/hooks';
 
 interface Props {
     perks: Perk[];
@@ -61,33 +65,37 @@ function RewardItem({ perk, profile, userPerks, refresh, fetching }: { perk: Per
     const isDisableClaim = profile.point < perk.pointToClaim || isClamed;
     // Claimed
     const [loading, setLoading] = useState(false);
+    const [opened, { open, close }] = useDisclosure();
 
     const onClaim = useCallback(async () => {
         if (isDisableClaim) return;
-        setLoading(true);
-        await fetch("/api/claim-reward", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-            body: JSON.stringify({
-                perkId: perk._id,
-                userId: profile?._id,
-                type: UserPerkType.CLAIM
-            })
-        }).finally(() => {
-            setLoading(false);
-            refresh();
-
-            const event = new CustomEvent('REFETCH_PROFILE', {
-                detail: {
-                    value: null,
-                }
+        try {
+            setLoading(true);
+            const res = await fetch("/api/claim-reward", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: JSON.stringify({
+                    perkId: perk._id,
+                    userId: profile?._id,
+                    type: UserPerkType.CLAIM
+                })
             });
-            window.dispatchEvent(event);
-        });
-    }, [isDisableClaim, perk._id, profile?._id, refresh]);
+            const resData = await res.json();
+
+            console.log({ resData });
+            if (resData?.data?._id) {
+                open();
+                refresh();
+            }
+
+        } catch (err) { } finally {
+            setLoading(false);
+            dispatchFetchProfile();
+        }
+    }, [isDisableClaim, open, perk._id, profile?._id, refresh]);
 
     return (
         <Box bd={"1px solid #E7E7F8"} className="rounded-lg overflow-hidden">
@@ -120,7 +128,7 @@ function RewardItem({ perk, profile, userPerks, refresh, fetching }: { perk: Per
                     rightSection={
                         <Image src={isDisableClaim ? pointDisableIcon : pointIcon} alt='point icon' className='w-5 h-auto' />
                     }
-                    className={twMerge("rounded-lg [&_.mantine-Button-section]:ml-1", (!isDisableClaim && !isClamed) && "hover:scale-[1.03] transition-all duration-300")}
+                    className={twMerge("rounded-lg [&_.mantine-Button-section]:ml-1", !isDisableClaim && "hover:bg-[#2036B5] transition-all duration-300")}
                 >
                     {isClamed ? "Clamed" : "Claim with"} {perk.pointToClaim}
                 </Button>
@@ -135,10 +143,12 @@ function RewardItem({ perk, profile, userPerks, refresh, fetching }: { perk: Per
                     loading={fetching}
                     fw={600}
                     bd={"1px solid #E7E7F8"}
-                    className={twMerge(!isClamed && "hover:scale-[1.03] transition-all duration-300 rounded-lg")}
+                    className={twMerge(!isClamed && "hover:opacity-70 transition-all duration-300 rounded-lg")}
                 >
                     Buy with ${perk.priceToBuy}
                 </Button>
+
+                <SuccessPopup opened={opened} close={close} title='Reward claimed successfully' size={336} />
             </Flex>
         </Box>
     );

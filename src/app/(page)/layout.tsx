@@ -17,6 +17,7 @@ import localFont from 'next/font/local';
 import AppProvider from "../context/AppContext";
 import { ToastContainer } from 'react-toastify';
 import { getSystemSetting } from "@/service/systemSetting";
+import { getUserDetail } from "@/service/user";
 
 export const metadata: Metadata = {
   title: "FOLO",
@@ -116,8 +117,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const [setting] = await Promise.all([
+  const [setting, profile] = await Promise.all([
     getSystemSetting(),
+    getUserDetail(),
   ]);
 
   return (
@@ -148,7 +150,7 @@ export default async function RootLayout({
         />
       </head>
       <body className={`antialiased`}>
-        <AppProvider setting={setting}>
+        <AppProvider setting={setting} initProfile={profile} >
           <ToastContainer />
           <ProgressBarProvider>
             <MantineProvider theme={theme}>{children}</MantineProvider>

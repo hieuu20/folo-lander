@@ -66,6 +66,7 @@
   /* padding: 0;
   margin: 0; */
   box-sizing: border-box;
+  /* color: #131416; */
 }
 
 html {
@@ -88,6 +89,7 @@ body {
   padding-right: env(safe-area-inset-right);
   background: #2a2626;
   font-family: var(--font-myfont);
+  /* color: #131416; */
 }
 
 h1,

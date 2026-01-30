@@ -1,23 +1,27 @@
 'use client';
 
-import React from "react";
-import {
-    Box,
-    Flex,
-    Text,
-    Button,
-    Card,
-} from '@mantine/core';
+import React, { useCallback } from "react";
+import { Box, Flex, Text, Button, Card, } from '@mantine/core';
 import shareIcon from "@public/profile/dashboard/share.svg";
 import Image from "next/image";
 import giftIcon from "@public/profile/dashboard/gift.svg";
 import { IUser } from "@/types/user";
+import SectionButton from "@/components/buttons/SectionButton";
 
 interface Props {
     profile: IUser;
 }
 export function DashboardHeader({ profile }: Props) {
     const referralLink = `${window.location.origin}?ref=${profile?.referralCode}`;
+
+    const handleRefLink = useCallback(async () => {
+        await navigator.share({
+            title: "Let join Folo",
+            text: "Let join Folo",
+            url: referralLink,
+        });
+    }, [referralLink]);
+
     return (
         <Flex
             className="rounded-b-3xl bg-no-repeat bg-cover aspect-[3.62258064516]"
@@ -30,13 +34,13 @@ export function DashboardHeader({ profile }: Props) {
             <Flex direction="column" align="center" gap={16} m={"auto"}>
                 <Flex gap={24} c={"#FFFFFFCC"} justify={"center"}>
                     <Text c="#FFFFFFCC" lh={1.4} fz={{ base: 14 }}>
-                        <span className="font-semibold">+1.2K</span> Today points
+                        <span className="font-semibold text-white">+1.2K</span> Today points
                     </Text>
                     <Text c="#FFFFFFCC" lh={1.4} fz={{ base: 14 }}>
-                        <span className="font-semibold">+31</span> Fans
+                        <span className="font-semibold text-white">+31</span> Fans
                     </Text>
                     <Text c="#FFFFFFCC" lh={1.4} fz={{ base: 14 }}>
-                        <span className="font-semibold">+12</span> Creators
+                        <span className="font-semibold text-white">+12</span> Creators
                     </Text>
                 </Flex>
 
@@ -58,7 +62,12 @@ export function DashboardHeader({ profile }: Props) {
                             </Text>
                         </Box>
 
-                        <Button w={40} h={40} bg={"white"} className="rounded-2xl" p={0}>
+                        <Button
+                            w={40} h={40} bg={"white"}
+                            className="rounded-2xl hover:opacity-70 transition-all duration-200"
+                            p={0}
+                            onClick={handleRefLink}
+                        >
                             <Image src={shareIcon} alt="shareIcon" className="w-6 h-auto" />
                         </Button>
                     </Flex>
@@ -76,18 +85,21 @@ export function DashboardHeader({ profile }: Props) {
                     >
                         My rank: {profile?.rank}
                     </Button>
-                    <Button
+                    <SectionButton
+                        show={true}
+                        href="/profile/rewards"
+                        title="Rewards"
                         leftSection={<Image src={giftIcon} alt="giftIcon" className="w-6 h-auto" />}
                         bd={"1px solid #E7E7F826"}
-                        className="rounded-2xl"
                         w={"48%"}
                         h={48}
                         fz={16}
                         fw={600}
                         bg={"linear-gradient(180deg, rgba(247, 247, 252, 0.1) 0%, rgba(116, 116, 173, 0.1) 100%)"}
-                    >
-                        Rewards
-                    </Button>
+                        className="rounded-2xl"
+                    />
+                    {/* Rewards
+                    </SectionButton> */}
                 </Flex>
             </Flex>
         </Flex>

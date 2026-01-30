@@ -14,7 +14,7 @@ type Props = ButtonProps & {
   onClick?: () => void
 };
 export default function SectionButton(props: Props) {
-  const { show, title, href, icon, className, id, onClick, ...rest } = props;
+  const { show = true, title, href, icon, className, id, onClick, bg, ...rest } = props;
 
   if (!show) {
     return null;
@@ -23,14 +23,15 @@ export default function SectionButton(props: Props) {
   return (
     <Button
       id={id}
-      bg={"#435EFB"}
+      bg={ bg || "#435EFB"}
       c={"white"}
       fw={500}
       h={40}
       px={32}
       onClick={onClick}
       className={twMerge(
-        "rounded-lg [&_.mantine-Button-label]:w-full transition-all duration-200 hover:scale-105",
+        "rounded-lg [&_.mantine-Button-label]:w-full transition-all duration-200",
+        !bg || bg == "#435EFB" ? "hover:bg-[#2036B5]" : "hover:opacity-70",
         className
       )}
       {...rest}

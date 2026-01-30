@@ -1,10 +1,9 @@
-import { Box, Flex } from '@mantine/core';
+import { Box, Flex, Stack } from '@mantine/core';
 import React from 'react';
 import LeaderBoardTable from './leaderboard/LeaderBoardTable';
 import LeaderBoardTitle from './leaderboard/LeaderBoardTitle';
 import LoginForm from '../../_shared/LoginForm';
 import LeaderBoardCount from './leaderboard/LeaderBoardCount';
-import { useApp } from '@/app/context/AppContext';
 import { SocialShare } from './leaderboard/SocialShare';
 import bgPc from "@public/leaderboard/bg-pc.webp";
 import bgMb from "@public/leaderboard/bg-mb.webp";
@@ -12,20 +11,26 @@ import { useBrowserWidth } from '@/hooks';
 import Image from 'next/image';
 import { PointSetting } from '@/types/pointSetting';
 import { Role } from '@/types/role';
+import { useApp } from '@/app/context/AppContext';
+import SectionButton from '@/components/buttons/SectionButton';
 
 interface Props {
-    pointSettings: PointSetting[]
-    roles: Role[]
+    pointSettings: PointSetting[];
+    roles: Role[];
 }
 
-export function LeaderBoard({ pointSettings, roles}: Props) {
-    const { profile } = useApp();
+export function LeaderBoard({ pointSettings, roles }: Props) {
     const { isMb } = useBrowserWidth();
-    console.log({ profile });
+    const { profile } = useApp();
 
     return (
-        <Box w={"100%"} py={{ base: 80 }}>
-            <Box className='container'>
+        <Box
+            id='Leaderboard'
+            w={"100%"}
+            py={{ base: 80 }}
+            h={925}
+        >
+            <Box className='container h-fit'>
                 <Flex
                     w={"100%"}
                     pos={"relative"}
@@ -57,7 +62,23 @@ export function LeaderBoard({ pointSettings, roles}: Props) {
                         <Flex direction={"column"} w={"38%"} gap={{ base: 24 }}>
                             <LeaderBoardTitle />
                             {profile && (
-                                <SocialShare pointSettings={pointSettings} />
+                                <Stack gap={24}>
+                                    <SocialShare pointSettings={pointSettings} />
+                                    <SectionButton
+                                        show={true}
+                                        title='My dashboard'
+                                        className='rounded-lg'
+                                        fz={{ base: 16 }}
+                                        fw={600}
+                                        w={{ base: 150 }}
+                                        h={40}
+                                        px={0}
+                                        bg={"#131416"}
+                                        c={"white"}
+                                        mx={"auto"}
+                                        href='/profile'
+                                    />
+                                </Stack>
                             )}
 
                             {!profile && (

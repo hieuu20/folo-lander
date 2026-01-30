@@ -1,7 +1,7 @@
 "use client";
 
 import { CreateButton } from '@/components/buttons/CreateButton';
-import { Button, Flex, LoadingOverlay, Text } from '@mantine/core';
+import { Button, Flex, LoadingOverlay } from '@mantine/core';
 import React, { useCallback, useEffect, useState } from 'react';
 import { RewardTable } from './reward/RewardTable';
 import { Reward } from '@/types/reward';
@@ -50,10 +50,7 @@ export function RewardContainer() {
 
     return (
         <div className="border border-[#E7E7F8] bg-white border-t-0">
-            <Flex  px={16} pb={12} justify={"space-between"}>
-                <Text fz={14} c={"#4D5053"}>
-                    Note: Reward images and APIs are setup in here. Data syncing with Upviral app.
-                </Text>
+            <Flex  px={16} py={12} justify={"flex-end"}>
                 <CreateButton
                     onClick={() => {
                         setReward({

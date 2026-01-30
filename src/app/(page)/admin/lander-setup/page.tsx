@@ -41,7 +41,7 @@ const tabList: TabItem[] = [
 
 export default function SettingPage() {
     return (
-        <div className="bg-white min-h-screen">
+        <div className="bg-white">
             <Flex justify={"space-between"} align={"center"} px={16}>
                 <Flex direction={"column"} gap={4} py={12}>
                     <h2 className="font-semibold text-xl">Lander setup</h2>

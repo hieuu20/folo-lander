@@ -26,6 +26,13 @@ export function ReferToEarnContainer({ profile, pointSettings }: Props) {
     }, [referralLink]);
 
     const handleShare = useCallback(async (pointSetting: PointSetting) => {
+        const referralLink = `${window.location.origin}?ref=${profile?.referralCode}`;
+        const redirectLink = `${pointSetting.social?.link}${referralLink}`;
+        window.open(
+            redirectLink,
+            "_blank",
+        );
+
         await fetch("/api/share-social", {
             method: "POST",
             headers: {
@@ -37,13 +44,6 @@ export function ReferToEarnContainer({ profile, pointSettings }: Props) {
                 userId: profile?._id
             })
         });
-
-        const referralLink = `${window.location.origin}?ref=${profile?.referralCode}`;
-        const redirectLink = `${pointSetting.social?.link}${referralLink}`;
-        window.open(
-            redirectLink,
-            "_blank",
-        );
     }, [profile?._id, profile?.referralCode]);
 
     return (
@@ -121,7 +121,7 @@ export function ReferToEarnContainer({ profile, pointSettings }: Props) {
                                     w={{ base: "100%", md: 480 }}
                                     h={{ base: 64 }}
                                     gap={{ base: 4, md: 6, lg: 8, xl: 10 }}
-                                    align={"center"} 
+                                    align={"center"}
                                     justify={"space-between"}
                                     px={{ base: 16 }}
                                     className='rounded-2xl cursor-pointer'
@@ -133,9 +133,11 @@ export function ReferToEarnContainer({ profile, pointSettings }: Props) {
                                         )}
                                         <Text fz={16} fw={500}>Share on {o.social?.name}</Text>
                                     </Flex>
-                                    <Text fz={16} fw={500}>
-                                        +{o.point}
-                                    </Text>
+                                    {!profile.userSocials.some((x) => x.socialId == o.socialId) && (
+                                        <Text fz={16} fw={500}>
+                                            +{o.point}
+                                        </Text>
+                                    )}
                                 </Flex>
                             );
                         })}

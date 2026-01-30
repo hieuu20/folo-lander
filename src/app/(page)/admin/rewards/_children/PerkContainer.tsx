@@ -1,7 +1,7 @@
 "use client";
 
 import { CreateButton } from '@/components/buttons/CreateButton';
-import { Button, Flex, LoadingOverlay, Text } from '@mantine/core';
+import { Button, Flex, LoadingOverlay } from '@mantine/core';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Perk } from '@/types/perk';
 import PerkFormPopup from './perk/PerkFormPopup';
@@ -50,10 +50,7 @@ export function PerkContainer() {
 
     return (
         <div className="border border-[#E7E7F8] bg-white border-t-0">
-            <Flex justify={"space-between"} align={"center"} px={16} pb={12}>
-                <Text fz={14} c={"#4D5053"}>
-                    Note: Users can claim perks with their power point or buy with credit card.
-                </Text>
+            <Flex justify={"flex-end"} align={"center"} px={16} py={12}>
                 <CreateButton
                     onClick={() => {
                         setAccount({

@@ -1,4 +1,6 @@
 import { USER_TYPE_ENUM } from "@/utils";
+import { UserSocial } from "./userSocial";
+import { Role } from "./role";
 
 export interface IUser {
   createAt: string;
@@ -16,4 +18,6 @@ export interface IUser {
   userType: USER_TYPE_ENUM;
   _id: string;
   rank?: number
+  userSocials: UserSocial[];
+  role: Role;
 }

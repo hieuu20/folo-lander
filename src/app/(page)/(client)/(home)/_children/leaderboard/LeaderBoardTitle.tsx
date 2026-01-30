@@ -9,6 +9,8 @@ import Image from 'next/image';
 export default function LeaderBoardTitle() {
     const { profile } = useApp();
 
+    console.log({ profile });
+
     const referralLink = `${window.location.origin}?ref=${profile?.referralCode}`;
 
     const handleRefLink = useCallback(async () => {
@@ -26,9 +28,6 @@ export default function LeaderBoardTitle() {
             </Title>
             <Text fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }} c={"#4D5053"} lh={1.4} ta={{ base: "center", md: "unset" }}>
                 Earn 100 points per fan, 200 points per creator, 300 per brand who signup from your referral link.
-                {/* <Link href={"/"} className='underline ml-1'>
-                    Read more
-                </Link> */}
             </Text>
             {profile && (
                 <Flex
@@ -65,13 +64,14 @@ export default function LeaderBoardTitle() {
                             px={16}
                             fz={{ base: 16 }} fw={600}
                             c={"white"}
-                            className='rounded-lg'
+                            bg={"#435EFB"}
+                            className='rounded-lg hover:bg-[#2036B5] transition-all duration-200'
                         >
                             Copy
                         </ButtonCopy>
                     </Box>
 
-                    <Button bg={"#FFFFFF"} h={40} p={8} className='rounded-lg' onClick={handleRefLink}>
+                    <Button bg={"#FFFFFF"} h={40} p={8} className='rounded-lg hover:opacity-60 transition-all duration-200' onClick={handleRefLink}>
                         <Image src={shareIcon} alt='shareIcon' className='w-6 h-auto' />
                     </Button>
 

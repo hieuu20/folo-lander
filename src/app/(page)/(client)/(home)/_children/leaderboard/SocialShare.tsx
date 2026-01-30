@@ -1,8 +1,9 @@
-import { Flex, Grid, Text } from '@mantine/core';
-import React, { useCallback } from 'react';
+import { Flex, Loader, Text } from '@mantine/core';
+import React, { useCallback, useState } from 'react';
 import Image from 'next/image';
 import { PointSetting } from '@/types/pointSetting';
 import { useApp } from '@/app/context/AppContext';
+import { dispatchFetchProfile } from '@/utils/windowEvent';
 
 
 interface Props {
@@ -10,9 +11,11 @@ interface Props {
 }
 
 export function SocialShare({ pointSettings }: Props) {
-
   const { profile } = useApp();
+  const [loadingId, setLoadingId] = useState<string | null>();
+
   const handleShare = useCallback(async (pointSetting: PointSetting) => {
+    setLoadingId(pointSetting._id);
     await fetch("/api/share-social", {
       method: "POST",
       headers: {
@@ -23,7 +26,10 @@ export function SocialShare({ pointSettings }: Props) {
         socialId: pointSetting.socialId,
         userId: profile?._id
       })
+    }).finally(() => {
+      setLoadingId(null);
     });
+    dispatchFetchProfile();
 
     const referralLink = `${window.location.origin}?ref=${profile?.referralCode}`;
     const redirectLink = `${pointSetting.social?.link}${referralLink}`;
@@ -32,6 +38,7 @@ export function SocialShare({ pointSettings }: Props) {
       "_blank",
     );
   }, [profile?._id, profile?.referralCode]);
+
 
   return (
     <Flex gap={{ base: 8, md: 10, xl: 12 }} direction={"column"}>
@@ -42,30 +49,43 @@ export function SocialShare({ pointSettings }: Props) {
       >
         Share on socials:
       </Text>
-
-      <Grid gutter={{ base: 8, md: 12, xl: 16 }}>
+      <Flex wrap={"wrap"} gap={{ base: 8, md: 12 }}>
         {pointSettings?.map((o, index) => {
           return (
-            <Grid.Col key={index} span={{ base: 3, md: 4 }}>
-              <Flex
-                bg={"white"}
-                gap={{ base: 4, md: 6, lg: 8, xl: 10 }}
-                align={"center"} justify={"center"}
-                py={{ base: 8, md: 10, xl: 12 }}
-                className='rounded-2xl cursor-pointer'
-                onClick={() => handleShare(o)}
-              >
-                {o.social?.icon && (
-                  <Image src={o.social?.icon} alt='social icon' width={32} height={32} className='w-5 md:w-6 lg:w-7 2xl:w-8 h-auto' />
-                )}
-                <Text fz={{ base: 14, md: 16, lg: 18, xl: 20 }} fw={500} c={"#131416"}>
-                  +{o.point}
-                </Text>
-              </Flex>
-            </Grid.Col>
+            <Flex
+              key={index}
+              w={{ base: "auto", md: 87 }}
+              h={{ base: 36, md: 40 }}
+              flex={{ base: 1, md: "unset" }}
+              bg={"white"}
+              gap={{ base: 4, md: 6 }}
+              align={"center"} justify={"center"}
+              py={{ base: 8, md: 10, xl: 12 }}
+              className='rounded-lg md:rounded-2xl cursor-pointer hover:opacity-60 transition-all duration-300'
+              onClick={() => handleShare(o)}
+            >
+              {loadingId == o._id ? (
+                <Loader size={20} color={"#4D5053"} />
+              ) : (
+                <>
+                  {o.social?.icon && (
+                    <Image src={o.social?.icon} alt='social icon' width={32} height={32} className='w-5 md:w-7 h-auto' />
+                  )}
+
+                  {!profile?.userSocials?.some((x) => x.socialId == o.socialId) && (
+                    <Text fz={{ base: 14, md: 16 }} fw={500} c={"#131416"}>
+                      +{o.point}
+                    </Text>
+                  )}
+                </>
+              )}
+
+
+            </Flex>
           );
         })}
-      </Grid>
+
+      </Flex>
     </Flex>
   );
 }

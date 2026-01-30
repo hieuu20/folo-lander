@@ -127,6 +127,7 @@ export function BannerPc() {
                         {profile ? (
                             <Flex gap={16}>
                                 <SectionButton
+                                    href='#Leaderboard'
                                     show={true}
                                     title='Share to earn'
                                     className='rounded-lg'
@@ -135,7 +136,6 @@ export function BannerPc() {
                                     w={{ base: 150 }}
                                     h={40}
                                     px={0}
-                                    bg={"#435EFB"}
                                     c={"white"}
                                     mx={"auto"}
                                 />
@@ -154,7 +154,6 @@ export function BannerPc() {
                                     mx={"auto"}
                                     href='/profile'
                                 />
-
                             </Flex>
                         ) : (
                             <EmailWaitingListInput />

@@ -11,18 +11,24 @@ import { formatNumber } from "@/utils";
 import checkIcon from "@public/icons/circle-check.svg";
 import { ArrowLeft } from "@/components/icons/ArrowLeft";
 import { ArrowRight } from "@/components/icons/ArrowRight";
+import { twMerge } from "tailwind-merge";
 
 interface Props {
     accountLevels: AccountLevel[];
     profile: IUser
 }
+
+const itemWidth = 250;
+
 export function DashboardTier({ accountLevels, profile }: Props) {
     const [height, setHeight] = useState(0);
     const sliderRef = useRef<any>();
-    const [slideWidth, setSlideWidth] = useState(0);
-    const progressRef = useRef<any>();
-
     const [translateX, setTranslateX] = useState(0);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [containerWidth, setContainerWidth] = useState<number>(0);
+    const [current, setCurrent] = useState(0);
+
+    const slideToShow = containerWidth / itemWidth;
 
     const settings = {
         dots: false,
@@ -31,10 +37,18 @@ export function DashboardTier({ accountLevels, profile }: Props) {
         speed: 500,
         pauseOnHover: true,
         autoplay: false,
-        slidesToShow: 4,
+        slidesToShow: slideToShow,
         slidesToScroll: 4,
         initialSlide: 0,
         draggable: true,
+        beforeChange: (current: any, next: any) => {
+            console.log({ current, next });
+            console.log("User bắt đầu kéo / swipe");
+            setTranslateX(itemWidth * -next);
+        },
+        afterChange: (index: any) => {
+            setCurrent(index);
+        },
         responsive: [
             {
                 breakpoint: 1240,
@@ -55,6 +69,9 @@ export function DashboardTier({ accountLevels, profile }: Props) {
 
     const indexActive = accountLevels.filter(o => o.mintPoint < profile.totalpoint).length - 1;
 
+    const isAtStart = current === 0;
+    const isAtEnd = current >= accountLevels.length - slideToShow;
+
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             const elements = document.querySelectorAll(".tier-perk");
@@ -65,45 +82,29 @@ export function DashboardTier({ accountLevels, profile }: Props) {
                 }, 0);
                 setHeight(max);
             }
-
-            const slickTrackEl = document.querySelector(".slick-slide");
-            if (slickTrackEl) {
-                const width = slickTrackEl.getBoundingClientRect().width;
-                setSlideWidth(width);
-            }
         }, 200);
 
         return () => clearTimeout(timeoutId);
     }, [accountLevels]);
 
-    const percent = (((indexActive + 1) / accountLevels.length) * 100) - 8.3334;
+    useEffect(() => {
+        if (containerRef.current) {
+            setContainerWidth(containerRef.current.getBoundingClientRect().width);
+        }
+    }, []);
 
-    console.log({ percent });
+    const progressWidth = (indexActive + 1) * itemWidth - itemWidth / 2;
 
     const onPrev = useCallback(() => {
         sliderRef.current.slickPrev();
-        setTranslateX(prev => {
-            if (prev < 0) {
-                return 0;
-            }
-            return prev;
-        });
     }, []);
 
     const onNext = useCallback(() => {
         sliderRef.current.slickNext();
-        setTranslateX(prev => {
-            if (prev == 0) {
-                return slideWidth * -2;
-            }
-            return prev;
-        });
-    }, [slideWidth]);
-
-    console.log({ translateX });
+    }, []);
 
     return (
-        <Box mt={40}>
+        <Box mt={40} ref={containerRef} w={"100%"}>
             <Flex direction="column" align="center" mb={24} gap={4}>
                 <Text fw={600} fz={{ base: 20 }} lh={1.4} ta={{ base: "left", md: "center" }}>
                     My Tier
@@ -127,25 +128,24 @@ export function DashboardTier({ accountLevels, profile }: Props) {
 
             <Box w={"100%"} className="overflow-hidden">
                 <Box
-                    ref={progressRef}
-                    w={slideWidth * accountLevels.length} pos={"relative"} bg={"#E7E7F8"} h={4} my={{ base: 24 }}
+                    w={itemWidth * accountLevels.length} pos={"relative"} bg={"#E7E7F8"} h={4} my={{ base: 24 }}
                     style={{
                         transform: `translateX(${translateX}px)`,
                     }}
                     className="transition-all duration-500"
                 >
-                    <Box w={`${percent}%`} bg={"linear-gradient(90deg, #435EFB 0%, #283895 100%)"} h={"100%"} pos={"absolute"} left={0} />
-                    <Box bg={"#435EFB"} w={12} h={12} pos={"absolute"} left={`${percent}%`} top={"50%"} className="-translate-x-1/2 -translate-y-1/2 rounded-full" />
+                    <Box w={progressWidth} bg={"linear-gradient(90deg, #435EFB 0%, #283895 100%)"} h={"100%"} pos={"absolute"} left={0} />
+                    <Box bg={"#435EFB"} w={12} h={12} pos={"absolute"} left={progressWidth} top={"50%"} className="-translate-x-1/2 -translate-y-1/2 rounded-full" />
                 </Box>
             </Box>
 
             <Flex gap={24} w={"100%"} justify={"center"} mt={{ base: 24, md: "4vh" }}>
-                <Box onClick={onPrev} className="hover:opacity-70 transition-all duration-200 cursor-pointer">
-                    <ArrowLeft w={32} h={32} />
+                <Box onClick={onPrev} className={twMerge(!isAtStart && "hover:opacity-70 transition-all duration-200 cursor-pointer")}>
+                    <ArrowLeft w={32} h={32} c={isAtStart ? "#6E7174" : "#131416"} />
                 </Box>
 
-                <Box onClick={onNext} className="hover:opacity-60 transition-all duration-200 cursor-pointer">
-                    <ArrowRight w={32} h={32} />
+                <Box onClick={onNext} className={twMerge(!isAtEnd && "hover:opacity-60 transition-all duration-200 cursor-pointer")}>
+                    <ArrowRight w={32} h={32} c={isAtEnd ? "#6E7174" : "#131416"} />
                 </Box>
             </Flex>
         </Box>

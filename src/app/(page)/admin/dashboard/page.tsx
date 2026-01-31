@@ -4,7 +4,7 @@ import { StatsCard } from "./_children/StatsCard";
 
 export default function DashboardPage() {
     return (
-        <div className="bg-[#F0F0FC] min-h-screen space-y-8">
+        <div className="bg-[#F0F0FC] space-y-8">
 
             {/* USERS OVERVIEW */}
             <section>

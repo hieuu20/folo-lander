@@ -14,12 +14,29 @@ import downIcon from "@public/icons/down.svg";
 import { EmailWaitingListInput } from '../../_shared/EmailWaitingListInput';
 import { useApp } from '@/app/context/AppContext';
 import SectionButton from '@/components/buttons/SectionButton';
+import gsap from "gsap";
+import ScrollToPlugin from "gsap/ScrollToPlugin";
 
 export function BannerPc() {
     const { profile } = useApp();
     const wdHeight = useWindowHeight();
     const [scope] = useAnimate();
     const [tileHeight, setTitleHeight] = useState(0);
+
+    const scrollToLeaderboard = () => {
+        gsap.to(window, {
+            duration: 1,
+            scrollTo: {
+                y: "#Leaderboard",
+                autoKill: false,
+            },
+            ease: "power2.out",
+        });
+    };
+
+    useEffect(() => {
+        gsap.registerPlugin(ScrollToPlugin);
+    }, []);
 
     useEffect(() => {
         const titleElement = document.getElementById("banner-title");
@@ -127,7 +144,7 @@ export function BannerPc() {
                         {profile ? (
                             <Flex gap={16}>
                                 <SectionButton
-                                    href='#Leaderboard'
+                                    // href='#Leaderboard'
                                     show={true}
                                     title='Share to earn'
                                     className='rounded-lg'
@@ -138,6 +155,7 @@ export function BannerPc() {
                                     px={0}
                                     c={"white"}
                                     mx={"auto"}
+                                    onClick={scrollToLeaderboard}
                                 />
 
                                 <SectionButton

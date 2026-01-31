@@ -9,11 +9,27 @@ import { twMerge } from 'tailwind-merge';
 import logo from "@public/header/logo.svg";
 import { useApp } from '@/app/context/AppContext';
 import SectionButton from '@/components/buttons/SectionButton';
-
+import gsap from "gsap";
+import ScrollToPlugin from "gsap/ScrollToPlugin";
 
 export function Header() {
   const [show, setShow] = useState(false);
   const { profile } = useApp();
+
+  const scrollToLeaderboard = () => {
+    gsap.to(window, {
+        duration: 1,
+        scrollTo: {
+            y: "#Leaderboard",
+            autoKill: false,
+        },
+        ease: "power2.out",
+    });
+};
+
+useEffect(() => {
+    gsap.registerPlugin(ScrollToPlugin);
+}, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,6 +82,7 @@ export function Header() {
               bg={"#435EFB"}
               c={"white"}
               mx={"auto"}
+              onClick={scrollToLeaderboard}
             />
 
             <SectionButton

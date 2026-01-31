@@ -100,18 +100,22 @@ export function ProfileSidebar() {
           const isActive = pathname == o.href;
           const isLast = index == sidebarList.length - 1;
           return (
-            <Link key={index} href={o.href} className={twMerge("relative w-full px-3 py-1")}>
+            <Link key={index}
+              href={o.href}
+              className={twMerge(
+                "relative w-full px-3 py-1 block",
+                isLast && "border-t-[1px] border-solid border-[#E7E7F8] mt-2"
+              )}
+              >
               {isActive && (
                 <Box pos={"absolute"} top={0} left={0} h={"100%"} w={4} bg={"#131416"} />
               )}
               <Flex
                 py={8}
-                pt={isLast ? 16 : 8}
                 gap={8}
                 align={"center"}
                 className={twMerge(
                   "hover:bg-[#F7F7FC] transition-all duration-200 rounded-lg",
-                  isLast && "border-t-[1px] border-solid border-[#E7E7F8]"
                 )}
                 px={8}
               >
@@ -129,10 +133,10 @@ export function ProfileSidebar() {
         </Link>
       </Box>
 
-      <Box px={20} py={12} mt={"auto"} className="border-t-[1px] border-[#E7E7F8]">
-        <Stack gap={24}>
+      <Box px={20} py={12} pt={4} mt={"auto"} className="border-t-[1px] border-[#E7E7F8]">
+        <Stack gap={12}>
           <Flex
-            gap={8} fz={18} c={"#4D5053"} className="cursor-pointer"
+            gap={8} fz={18} c={"#4D5053"} py={8} className="cursor-pointer hover:bg-[#F7F7FC] transition-all duration-200 rounded-lg"
             onClick={onLogout}
           >
             <Image src={logoutIcon} alt="logoutIcon" className="w-7 h-7" />
@@ -159,7 +163,6 @@ export function ProfileSidebar() {
               4th Floor, Agios Nikolaos, Kamares, 6037 Larnaca.Cyprus.EU
             </Text>
           </Flex>
-
         </Stack>
       </Box>
     </AppShell.Navbar>

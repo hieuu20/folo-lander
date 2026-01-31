@@ -98,8 +98,6 @@ export function DashboardHeader({ profile }: Props) {
                         bg={"linear-gradient(180deg, rgba(247, 247, 252, 0.1) 0%, rgba(116, 116, 173, 0.1) 100%)"}
                         className="rounded-2xl"
                     />
-                    {/* Rewards
-                    </SectionButton> */}
                 </Flex>
             </Flex>
         </Flex>

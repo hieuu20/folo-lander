@@ -1,7 +1,7 @@
 "use client";
 
 import { AppShell, Box, Flex, Text } from "@mantine/core";
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useCallback } from "react";
 import logo from "@public/admin/icons/logo.svg";
 import Image from "next/image";
 import sortIcon from "@public/admin/icons/sort.svg";
@@ -16,9 +16,10 @@ import sidebarActive1 from "@public/admin/sidebar/home-active.svg";
 import sidebarActive2 from "@public/admin/sidebar/user-active.svg";
 import sidebarActive3 from "@public/admin/sidebar/gift-active.svg";
 import sidebarActive4 from "@public/admin/sidebar/setting-active.svg";
+import logoutIcon from "@public/icons/logout.svg";
 // import logoutIcon from "@public/admin/sidebar/Logout.svg";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const sidebarList = [
   {
@@ -59,6 +60,14 @@ interface Props {
 
 export function AdminSidebar({ opened, toggle }: Props) {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const onLogout = useCallback(async () => {
+    await fetch("/api/auth/logout", { method: "PUT" });
+    location.reload();
+    router.replace("/");
+  }, [router]);
+
   return (
     <AppShell.Navbar className="transition-all duration-300 ease-in-out">
       <Flex w={"100%"} bg={"black"} h={60} px={opened ? 20 : 14} align={"center"} justify={"center"}>
@@ -75,7 +84,6 @@ export function AdminSidebar({ opened, toggle }: Props) {
       <Flex direction={"column"} mt={12}>
         {sidebarList.map((o, index) => {
           const isActive = pathname == o.href;
-
           return (
             <Link key={index} href={o.href} className={twMerge("relative w-full px-[18px] py-1")}>
               {isActive && (
@@ -85,18 +93,35 @@ export function AdminSidebar({ opened, toggle }: Props) {
                 py={8}
                 gap={8}
                 align={"center"}
-                className={index == sidebarList.length - 1 ? "border-t-[1px] border-solid border-[#E7E7F8]" : ""}
+                className={twMerge(
+                  index == sidebarList.length - 1 && "border-t-[1px] border-solid border-[#E7E7F8]",
+                  "hover:bg-[#F7F7FC] transition-all duration-200 rounded-lg",
+                )}
               >
                 <Image src={isActive ? o.activeIcon : o.icon} alt="sidebar icon" className="w-7 h-7" />
                 <FadeELement condition={opened}>
                   <Text c={"#4D5053"} fw={isActive ? 700 : 400} fz={18} className="whitespace-nowrap transition-all duration-150">{o.label}</Text>
                 </FadeELement>
               </Flex>
-
             </Link>
           );
         })}
       </Flex>
+
+      <Box px={16} py={12} mt={"auto"} className="border-t-[1px] border-[#E7E7F8]">
+        <Flex
+          py={8}
+          gap={8}
+          align={"center"}
+          onClick={onLogout}
+          className={twMerge("hover:bg-[#F7F7FC] transition-all duration-200 rounded-lg cursor-pointer")}
+        >
+          <Image src={logoutIcon} alt="logoutIcon" className="w-7 h-7" />
+          <FadeELement condition={opened}>
+            <Text c={"#4D5053"} fw={400} fz={18} className="whitespace-nowrap transition-all duration-150">Logout</Text>
+          </FadeELement>
+        </Flex>
+      </Box>
     </AppShell.Navbar>
   );
 }

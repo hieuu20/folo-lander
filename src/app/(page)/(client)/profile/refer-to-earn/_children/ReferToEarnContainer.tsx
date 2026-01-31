@@ -6,8 +6,8 @@ import { Box, Button, Flex, Stack, Text } from '@mantine/core';
 import Image from 'next/image';
 import React, { useCallback } from 'react';
 import tickIcon from "@public/icons/tick.svg";
-import shareIcon from "@public/icons/share.svg";
 import { PointSetting } from '@/types/pointSetting';
+import { ShareIcon } from '@/components/icons/ShareIcon';
 
 interface Props {
     profile: IUser,
@@ -92,14 +92,14 @@ export function ReferToEarnContainer({ profile, pointSettings }: Props) {
                             px={16}
                             fz={{ base: 16 }} fw={600}
                             c={"white"}
-                            className='rounded-lg'
+                            className='rounded-lg hover:bg-[#2036B5] transition-all duration-200'
                         >
                             Copy
                         </ButtonCopy>
                     </Box>
 
-                    <Button bg={"#FFFFFF"} h={40} p={8} className='rounded-lg' onClick={handleRefLink}>
-                        <Image src={shareIcon} alt='shareIcon' className='w-6 h-auto' />
+                    <Button bg={"#FFFFFF"} h={40} p={8} className='rounded-lg hover:bg-[#F7F7FC] transition-all duration-200' onClick={handleRefLink}>
+                        <ShareIcon w={24} h={24}  />
                     </Button>
                 </Flex>
 
@@ -124,7 +124,7 @@ export function ReferToEarnContainer({ profile, pointSettings }: Props) {
                                     align={"center"}
                                     justify={"space-between"}
                                     px={{ base: 16 }}
-                                    className='rounded-2xl cursor-pointer'
+                                    className='rounded-2xl cursor-pointer hover:bg-[#F7F7FC] transition-all duration-200'
                                     onClick={() => handleShare(o)}
                                 >
                                     <Flex gap={8} align={"center"}>

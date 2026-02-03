@@ -26,11 +26,26 @@ interface Props {
     earningHistories: EarningHistory[];
 }
 export function ProfileDashboardContainer({ profile, accountLevels, earningHistories }: Props) {
-    return (
-        <Box className="bg-white min-h-screen">
-            <DashboardHeader profile={profile} />
+    // const [loading, setLoading] = useState(true);
 
-            <Box px={{ base: 16, md: 32 }} pb={60}>
+    return (
+        <Box pos={"relative"} className="bg-white min-h-screen">
+
+            {/* {loading && (
+                <Box pos={"absolute"} top={0} left={0} w={"100%"} h={"100vh"} bg={"white"}>
+                    <div className="dots-3"></div>
+                </Box>
+            )} */}
+
+            <DashboardHeader profile={profile} />
+            <Box
+                px={{ base: 16, md: 32 }}
+                pb={{ base: 60 }}
+                pt={{ base: 16, md: 24 }}
+                mt={{ base: -16, md: -24 }}
+                className="rounded-t-3xl z-[10]"
+                bg={"white"}
+            >
                 <DashboardTier accountLevels={accountLevels} profile={profile} />
                 <CreditSummary profile={profile} />
                 <EarningHistories earningHistories={earningHistories} />
@@ -42,8 +57,8 @@ export function ProfileDashboardContainer({ profile, accountLevels, earningHisto
 
 function CreditSummary({ profile }: { profile: IUser }) {
     return (
-        <Card radius={16} mt={40} p="lg" bg={"#F7F7FC"}>
-            <Grid>
+        <Card radius={16} mt={40} px={24} py={32} bg={"#F7F7FC"}>
+            <Grid gutter={{ base: 24 }}>
                 <Grid.Col span={{ base: 12, md: 6 }}>
                     <Flex direction="column" align="center">
                         <Text fw={700} fz={{ base: 30 }}>

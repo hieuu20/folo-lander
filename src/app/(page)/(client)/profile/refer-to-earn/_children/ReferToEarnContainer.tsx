@@ -2,7 +2,7 @@
 
 import { ButtonCopy } from '@/components/buttons/ButtonCopy';
 import { IUser } from '@/types/user';
-import { Box, Button, Flex, Stack, Text } from '@mantine/core';
+import { Box, Button, Flex, Text } from '@mantine/core';
 import Image from 'next/image';
 import React, { useCallback } from 'react';
 import tickIcon from "@public/icons/tick.svg";
@@ -47,9 +47,9 @@ export function ReferToEarnContainer({ profile, pointSettings }: Props) {
     }, [profile?._id, profile?.referralCode]);
 
     return (
-        <Box p={16} bg={"#F0F0FC"}>
+        <Box px={16} py={{ base: 16, md: 24 }} bg={{ base: "white", md: "#F0F0FC" }} mih={"100vh"}>
             <Box>
-                <Box p={{ base: 16 }}>
+                <Box pb={{ base: 12, md: 16 }}>
                     <Text fw={600} fz={{ base: 20 }} mb={4}>
                         Refer to Earn
                     </Text>
@@ -59,12 +59,13 @@ export function ReferToEarnContainer({ profile, pointSettings }: Props) {
                 </Box>
 
                 <Flex
-                    bg={"white"}
+                    bg={{ base: "#F7F7FC", md: "white" }}
                     className='rounded-2xl'
                     w={{ base: "100%", md: 480 }}
                     h={{ base: 56, sm: 58, md: 62, lg: 64, xl: 68, "2xl": 72 }}
                     align={"center"}
                     px={{ base: 12, md: 14, xl: 16 }}
+                    mb={{ base: 12, md: 40 }}
                     gap={{ base: 12 }}
                 >
                     <Text
@@ -99,49 +100,51 @@ export function ReferToEarnContainer({ profile, pointSettings }: Props) {
                     </Box>
 
                     <Button bg={"#FFFFFF"} h={40} p={8} className='rounded-lg hover:bg-[#F7F7FC] transition-all duration-200' onClick={handleRefLink}>
-                        <ShareIcon w={24} h={24}  />
+                        <ShareIcon w={24} h={24} />
                     </Button>
                 </Flex>
 
-                <Flex gap={{ base: 8, md: 10, xl: 12 }} direction={"column"} mt={{ base: 40 }}>
+                <Flex gap={{ base: 8, md: 10, xl: 12 }} direction={"column"}>
                     <Text
                         c={"#4D5053"}
                         fz={{ base: 14, md: 16, lg: 17, xl: 18, "2xl": 20 }}
                         lh={1.2}
+                        ta={{ base: "center", md: "unset" }}
                     >
                         Spread the Love
                     </Text>
 
-                    <Stack gap={16}>
+                    <Flex direction={"column"} gap={{ base: 8, md: 16 }}>
                         {pointSettings?.map((o, index) => {
                             return (
                                 <Flex
                                     key={index}
-                                    bg={"white"}
+                                    bg={{ base: "#F7F7FC", md: "white" }}
                                     w={{ base: "100%", md: 480 }}
-                                    h={{ base: 64 }}
+                                    h={{ base: 40, md: 64 }}
                                     gap={{ base: 4, md: 6, lg: 8, xl: 10 }}
                                     align={"center"}
                                     justify={"space-between"}
-                                    px={{ base: 16 }}
+                                    px={{ base: 8, md: 16 }}
+                                    py={{ base: 8, md: 16 }}
                                     className='rounded-2xl cursor-pointer hover:bg-[#F7F7FC] transition-all duration-200'
                                     onClick={() => handleShare(o)}
                                 >
-                                    <Flex gap={8} align={"center"}>
+                                    <Flex gap={8} align={"center"} h={"100%"}>
                                         {o.social?.icon && (
-                                            <Image src={o.social?.icon} alt='social icon' width={32} height={32} className='w-5 md:w-6 lg:w-7 2xl:w-8 h-auto' />
+                                            <Image src={o.social?.icon} alt='social icon' width={32} height={32} className='h-full w-auto' />
                                         )}
-                                        <Text fz={16} fw={500}>Share on {o.social?.name}</Text>
+                                        <Text fz={{ base: 14, md: 16 }} fw={500}>Share on {o.social?.name}</Text>
                                     </Flex>
                                     {!profile.userSocials.some((x) => x.socialId == o.socialId) && (
-                                        <Text fz={16} fw={500}>
+                                        <Text fz={{ base: 14, md: 16 }} fw={500}>
                                             +{o.point}
                                         </Text>
                                     )}
                                 </Flex>
                             );
                         })}
-                    </Stack>
+                    </Flex>
                 </Flex>
 
 

@@ -9,10 +9,10 @@ export const ProgressBarProvider = ({ children }: PropsWithChildren) => {
     <>
       {children}
       <ProgressBar
-        height="1.5px"
-        color="#AC1991"
+        height="2px"
+        color="#131416"
         options={{ showSpinner: false }}
-        shallowRouting
+        // shallowRouting
       />
     </>
   );

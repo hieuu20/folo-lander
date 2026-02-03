@@ -51,13 +51,12 @@ export function SelectField(props: Props) {
         onChange={onSelect}
         placeholder={placeholder}
         disabled={disabled}
-        bg={"##F5F5F6"}
         classNames={{
           input: twMerge(
-            "px-3 bg-[#F5F5F6] placeholder-gray-400 text-black text-base h-10 rounded-lg font-medium cursor-pointer",
+            "px-3 bg-white placeholder-gray-400 text-black text-base h-10 font-medium cursor-pointer",
+            "border border-[#E7E7F8] rounded-lg",
             className
           ),
-          wrapper: "",
         }}
         rightSection={<IconChevronDown width={24} height={24} color="#000" />}
       />

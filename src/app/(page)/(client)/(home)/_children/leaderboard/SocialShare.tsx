@@ -46,39 +46,43 @@ export function SocialShare({ pointSettings }: Props) {
         c={"#4D5053"}
         fz={{ base: 14, md: 16, lg: 17, xl: 18, "2xl": 20 }}
         lh={1.2}
+        ta={{ base: "center", md: "left" }}
       >
         Share on socials:
       </Text>
       <Flex wrap={"wrap"} gap={{ base: 8, md: 12 }}>
         {pointSettings?.map((o, index) => {
+          const isLoading = loadingId == o._id;
+
           return (
             <Flex
+              pos={"relative"}
               key={index}
-              w={{ base: "auto", md: 87 }}
-              h={{ base: 36, md: 40 }}
-              flex={{ base: 1, md: "unset" }}
               bg={"white"}
               gap={{ base: 4, md: 6 }}
-              align={"center"} justify={"center"}
-              py={{ base: 8, md: 10, xl: 12 }}
-              className='rounded-lg md:rounded-2xl cursor-pointer hover:opacity-60 transition-all duration-300'
+              py={{ base: 6 }}
+              px={{ base: 8 }}
+              align={"center"}
+              className='rounded-lg md:rounded-2xl cursor-pointer hover:opacity-60 transition-all duration-300 overflow-hidden'
               onClick={() => handleShare(o)}
             >
-              {loadingId == o._id ? (
-                <Loader size={20} color={"#4D5053"} />
-              ) : (
-                <>
-                  {o.social?.icon && (
-                    <Image src={o.social?.icon} alt='social icon' width={32} height={32} className='w-5 md:w-7 h-auto' />
-                  )}
+              <>
+                {isLoading && (
+                  <Flex pos={"absolute"} top={0} left={0} w={"100%"} h={"100%"} bg={"white"} align={"center"} justify={"center"}>
+                    <Loader size={20} color={"#4D5053"} />
+                  </Flex>
+                )}
 
-                  {!profile?.userSocials?.some((x) => x.socialId == o.socialId) && (
-                    <Text fz={{ base: 14, md: 16 }} fw={500} c={"#131416"}>
-                      +{o.point}
-                    </Text>
-                  )}
-                </>
-              )}
+                {o.social?.icon && (
+                  <Image src={o.social?.icon} alt='social icon' width={32} height={32} className='w-6 md:w-7 h-auto' />
+                )}
+
+                {!profile?.userSocials?.some((x) => x.socialId == o.socialId) && (
+                  <Text fz={{ base: 14, md: 16 }} fw={500} c={"#131416"}>
+                    +{o.point}
+                  </Text>
+                )}
+              </>
 
 
             </Flex>

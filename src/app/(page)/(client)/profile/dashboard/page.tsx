@@ -13,6 +13,7 @@ export default async function ProfileDashboardPage() {
         getUserDetail(),
         getEarningHistory()
     ]);
+    
     if (!profile) {
         redirect("/");
     }

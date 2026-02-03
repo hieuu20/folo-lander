@@ -22,7 +22,7 @@ export default function LeaderBoardTitle() {
     }, [referralLink]);
 
     return (
-        <Flex direction={"column"} gap={{ base: 12, md: 16 }} w={{ base: "90%", md: "100%" }} mx={"auto"} mt={{ base: 16 }}>
+        <Flex direction={"column"} gap={{ base: 12, md: 16 }} w={{ base: "100%", md: "100%" }} mx={"auto"} mt={{ base: 16 }}>
             <Title order={3} fz={{ base: 32, sm: 36, md: 40, lg: 45, xl: 50, "2xl": 56 }} lh={1.2} c={"#131416"} fw={600} ta={{ base: "center", md: "unset" }}>
                 {profile ? "Leaderboard" : "Join, share and earn"}
             </Title>
@@ -74,7 +74,6 @@ export default function LeaderBoardTitle() {
                     <Button bg={"#FFFFFF"} h={40} p={8} className='rounded-lg hover:opacity-60 transition-all duration-200' onClick={handleRefLink}>
                         <Image src={shareIcon} alt='shareIcon' className='w-6 h-auto' />
                     </Button>
-
                 </Flex>
             )}
         </Flex>

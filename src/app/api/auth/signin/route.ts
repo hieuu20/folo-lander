@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { cookies, headers } from "next/headers";
 import { UAParser } from "ua-parser-js";
 import { signin } from "@/service/auth";
-import { generateRandomIP } from "@/utils";
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,11 +14,11 @@ export async function POST(request: NextRequest) {
     const parser = new UAParser(ua);
     const uaResult = parser.getResult();
 
-    // const ip = (request.headers.get("x-forwarded-for") ?? "127.0.0.1").split(
-    //   ","
-    // )[0];
+    const ip = (request.headers.get("x-forwarded-for") ?? "127.0.0.1").split(
+      ","
+    )[0];
 
-    const ip = generateRandomIP();
+    // const ip = generateRandomIP();
 
     const res = await signin({
       email: body.email,

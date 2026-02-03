@@ -24,14 +24,18 @@ export function DashboardHeader({ profile }: Props) {
 
     return (
         <Flex
-            className="rounded-b-3xl bg-no-repeat bg-cover aspect-[3.62258064516]"
+            id="dashboard-header"
+            className="bg-no-repeat bg-cover bg-center aspect-[1.30208333333] md:aspect-[3.62258064516]"
             style={{
                 backgroundImage: "url('/profile/dashboard/bg.webp')"
             }}
             align={"center"}
             justify={"center"}
+            pb={{ base: 16, md: 24 }}
+            mt={{ base: -60, md: 0 }}
+            pt={{ base: 50, md: 0 }}
         >
-            <Flex direction="column" align="center" gap={16} m={"auto"}>
+            <Flex direction="column" align="center" gap={16} m={"auto"} px={{ base: 16 }} w={"100%"}>
                 <Flex gap={24} c={"#FFFFFFCC"} justify={"center"}>
                     <Text c="#FFFFFFCC" lh={1.4} fz={{ base: 14 }}>
                         <span className="font-semibold text-white">+1.2K</span> Today points
@@ -48,7 +52,9 @@ export function DashboardHeader({ profile }: Props) {
                     radius="16px"
                     px={16} py={12}
                     bd={"1px solid #E7E7F826"}
-                    h={64} w={{ base: "100%", md: 343 }}
+                    h={64}
+                    w={{ base: "100%", md: 343 }}
+                    maw={343}
                     bg={"linear-gradient(180deg, rgba(247, 247, 252, 0.1) 0%, rgba(116, 116, 173, 0.1) 100%)"}
                     className="backdrop-blur-sm"
                 >
@@ -73,7 +79,7 @@ export function DashboardHeader({ profile }: Props) {
                     </Flex>
                 </Card>
 
-                <Flex gap={12} w={{ base: "100%", md: 343 }} justify={"space-between"}>
+                <Flex gap={12} w={{ base: "100%", md: 343 }} maw={343} justify={"space-between"}>
                     <Button
                         bd={"1px solid #E7E7F826"}
                         className="rounded-2xl"

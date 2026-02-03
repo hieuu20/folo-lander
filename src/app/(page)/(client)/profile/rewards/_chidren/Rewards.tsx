@@ -45,7 +45,7 @@ export function Rewards({ perks, profile }: Props) {
     }, [fetchData]);
 
     return (
-        <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing={16} p={{ base: 16 }} pt={{ base: 6 }}>
+        <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing={16} p={{ base: 16 }} pt={{ base: 16 }}>
             {perks.map((item) => (
                 <RewardItem
                     key={item._id}
@@ -143,7 +143,7 @@ function RewardItem({ perk, profile, userPerks, refresh, fetching }: { perk: Per
                     loading={fetching}
                     fw={600}
                     bd={"1px solid #E7E7F8"}
-                    className={twMerge(!isClamed && "hover:opacity-70 transition-all duration-300 rounded-lg")}
+                    className={twMerge(!isClamed && "hover:opacity-70 transition-all duration-300", "rounded-lg")}
                 >
                     Buy with ${perk.priceToBuy}
                 </Button>

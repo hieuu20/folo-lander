@@ -19,7 +19,7 @@ export function ProfileRewardContainer({ perks, profile, userPerks }: Props) {
     // const [userPerks, setUserPerks] = useState(userPerks);
 
     return (
-        <Box p={16} bg={"#F0F0FC"}>
+        <Box p={{ md: 16 }} bg={"#F0F0FC"}>
             <Box bg={"white"}>
                 <Box p={{ base: 16 }}>
                     <Text fw={600} fz={{ base: 20 }} mb={4}>

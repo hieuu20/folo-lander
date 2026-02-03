@@ -1,6 +1,6 @@
 "use client";
 
-import { AppShell, Box, Flex, Group, Stack, Text } from "@mantine/core";
+import { Box, Flex, Group, Stack, Text } from "@mantine/core";
 import React, { useCallback } from "react";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
@@ -25,6 +25,7 @@ import logo from "@public/profile/logo.svg";
 
 import flag1 from "@public/footer/flag-1.png";
 import flag2 from "@public/footer/flag-2.png";
+import { ArrowLeft } from "@/components/icons/ArrowLeft";
 
 const sidebarList = [
   {
@@ -68,8 +69,8 @@ export function ProfileSidebar() {
   }, [router]);
 
   return (
-    <AppShell.Navbar className="transition-all duration-300 ease-in-out h-screen" c={"#131416"}>
-      <Flex w={"100%"} px={20} py={16} align={"center"} justify={"space-between"}>
+    <>
+      <Flex w={"100%"} px={20} py={16} align={"center"} justify={"space-between"} className="hidden md:flex">
         <Group gap={8}>
           <Image src={avatar} alt="avatar" className="w-10 h-auto" />
           <div>
@@ -106,7 +107,7 @@ export function ProfileSidebar() {
                 "relative w-full px-3 py-1 block",
                 isLast && "border-t-[1px] border-solid border-[#E7E7F8] mt-2"
               )}
-              >
+            >
               {isActive && (
                 <Box pos={"absolute"} top={0} left={0} h={"100%"} w={4} bg={"#131416"} />
               )}
@@ -133,8 +134,17 @@ export function ProfileSidebar() {
         </Link>
       </Box>
 
-      <Box px={20} py={12} pt={4} mt={"auto"} className="border-t-[1px] border-[#E7E7F8]">
+      <Box px={20} py={12} pt={4} mt={{ base: 16, md: "auto" }} className="border-t-[1px] border-[#E7E7F8]">
         <Stack gap={12}>
+          <Link href={"/"}>
+            <Flex
+              gap={8} fz={18} c={"#4D5053"} py={8} className="cursor-pointer hover:bg-[#F7F7FC] transition-all duration-200 rounded-lg"
+            >
+              <ArrowLeft w={28} h={28} c="#4D5053" />
+              Back to lander
+            </Flex>
+          </Link>
+
           <Flex
             gap={8} fz={18} c={"#4D5053"} py={8} className="cursor-pointer hover:bg-[#F7F7FC] transition-all duration-200 rounded-lg"
             onClick={onLogout}
@@ -165,6 +175,6 @@ export function ProfileSidebar() {
           </Flex>
         </Stack>
       </Box>
-    </AppShell.Navbar>
+    </>
   );
 }

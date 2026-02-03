@@ -11,7 +11,7 @@ interface Props {
 }
 export function MyReward({ userPerks }: Props) {
     return (
-        <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing={16} p={{ base: 16 }} pt={{ base: 6 }}>
+        <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing={16} p={{ base: 16 }} pt={{ base: 16 }}>
             {userPerks.map((item, index) => (
                 <RewardItem key={index} userPerk={item} />
             ))}

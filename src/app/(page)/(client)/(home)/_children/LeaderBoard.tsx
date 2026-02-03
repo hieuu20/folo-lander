@@ -6,8 +6,6 @@ import LoginForm from '../../_shared/LoginForm';
 import LeaderBoardCount from './leaderboard/LeaderBoardCount';
 import { SocialShare } from './leaderboard/SocialShare';
 import bgPc from "@public/leaderboard/bg-pc.webp";
-import bgMb from "@public/leaderboard/bg-mb.webp";
-import { useBrowserWidth } from '@/hooks';
 import Image from 'next/image';
 import { PointSetting } from '@/types/pointSetting';
 import { Role } from '@/types/role';
@@ -20,7 +18,6 @@ interface Props {
 }
 
 export function LeaderBoard({ pointSettings, roles }: Props) {
-    const { isMb } = useBrowserWidth();
     const { profile } = useApp();
 
     return (
@@ -40,14 +37,7 @@ export function LeaderBoard({ pointSettings, roles }: Props) {
                     bd={"8px solid #f6f4f4"}
                     className='rounded-3xl md:rounded-[45px] lg:rounded-[56px] 2xl:rounded-[64px] overflow-hidden'
                 >
-                    {isMb && (
-                        <Image src={bgMb} alt='bgMb' fill className='object-cover' />
-                    )}
-
-
-                    {!isMb && (
-                        <Image src={bgPc} alt='bgPc' fill className='object-cover' />
-                    )}
+                    <Image src={bgPc} alt='bgPc' fill className='object-cover' />
 
                     <Flex
                         pos={"relative"}

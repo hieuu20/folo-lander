@@ -27,7 +27,7 @@ export default function LeaderBoardTable() {
     }, []);
 
     return (
-        <Paper bd={"1px solid #E7E7F8"} className='rounded-3xl overflow-hidden'>
+        <Paper bd={"1px solid #E7E7F8"} w={"100%"} className='rounded-3xl overflow-hidden'>
             <Table w={"100%"}>
                 <Table.Thead>
                     <Table.Tr fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }}>
@@ -44,20 +44,20 @@ export default function LeaderBoardTable() {
                             <Table.Tr key={index} fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }} fw={500} className='border-t-[1px] border-solid border-[#E7E7F8]'>
                                 <Table.Td w={{ base: "34%", md: "24.2%" }} px={16} py={{ base: 10, xl: 20 }} className='border-r-[1px] border-solid border-[#E7E7F8]'>
                                     <Text
-                                        fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }} fw={500}
-                                        className={twMerge(getTopClass(index), "flex gap-3 flex-wrap flex-col md:flex-row w-full items-start md:justify-center")}
+                                        fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }} fw={400}
+                                        className={twMerge(getTopClass(index), "flex gap-3 flex-wrap w-full items-start md:justify-center")}
                                     >
                                         <span className={twMerge(getTopClass(index), index <= 2 && "font-black")}>{index + 1}</span>
                                         {profile?._id == o._id ? "You" : `${formatLeaderboardId(o._id)}`}
-                                        {isMb && (
-                                            <Text
-                                                fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }} fw={500}
-                                                className={twMerge(getTopClass(index))}
-                                            >
-                                                {o.point}
-                                            </Text>
-                                        )}
                                     </Text>
+                                    {isMb && (
+                                        <Text
+                                            fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }} fw={400}
+                                            className={twMerge(getTopClass(index))}
+                                        >
+                                            {o.point}
+                                        </Text>
+                                    )}
                                 </Table.Td>
                                 {!isMb && (
                                     <Table.Td w={"22.2%"} py={{ base: 10, xl: 20 }} align='center' className='border-r-[1px] border-solid border-[#E7E7F8]'>

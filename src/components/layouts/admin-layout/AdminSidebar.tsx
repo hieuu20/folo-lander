@@ -20,6 +20,7 @@ import logoutIcon from "@public/icons/logout.svg";
 // import logoutIcon from "@public/admin/sidebar/Logout.svg";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { ArrowLeft } from "@/components/icons/ArrowLeft";
 
 const sidebarList = [
   {
@@ -109,6 +110,21 @@ export function AdminSidebar({ opened, toggle }: Props) {
       </Flex>
 
       <Box px={16} py={12} mt={"auto"} className="border-t-[1px] border-[#E7E7F8]">
+        <Link href={"/"}>
+          <Flex
+            py={8}
+            mb={12}
+            gap={8}
+            align={"center"}
+            className={twMerge("hover:bg-[#F7F7FC] transition-all duration-200 rounded-lg cursor-pointer")}
+          >
+            <ArrowLeft w={28} h={28} c="#4D5053" />
+            <FadeELement condition={opened}>
+              <Text c={"#4D5053"} fw={400} fz={18} className="whitespace-nowrap transition-all duration-150">Back to lander</Text>
+            </FadeELement>
+          </Flex>
+        </Link>
+
         <Flex
           py={8}
           gap={8}

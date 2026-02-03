@@ -28,50 +28,6 @@ export function DashboardTier({ accountLevels, profile }: Props) {
     const [containerWidth, setContainerWidth] = useState<number>(0);
     const [current, setCurrent] = useState(0);
 
-    const slideToShow = containerWidth / itemWidth;
-
-    const settings = {
-        dots: false,
-        arrows: false,
-        infinite: false,
-        speed: 500,
-        pauseOnHover: true,
-        autoplay: false,
-        slidesToShow: slideToShow,
-        slidesToScroll: 4,
-        initialSlide: 0,
-        draggable: true,
-        beforeChange: (current: any, next: any) => {
-            console.log({ current, next });
-            console.log("User bắt đầu kéo / swipe");
-            setTranslateX(itemWidth * -next);
-        },
-        afterChange: (index: any) => {
-            setCurrent(index);
-        },
-        responsive: [
-            {
-                breakpoint: 1240,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                },
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 1.4,
-                    slidesToScroll: 1,
-                },
-            },
-        ],
-    };
-
-    const indexActive = accountLevels.filter(o => o.mintPoint < profile.totalpoint).length - 1;
-
-    const isAtStart = current === 0;
-    const isAtEnd = current >= accountLevels.length - slideToShow;
-
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             const elements = document.querySelectorAll(".tier-perk");
@@ -93,7 +49,6 @@ export function DashboardTier({ accountLevels, profile }: Props) {
         }
     }, []);
 
-    const progressWidth = (indexActive + 1) * itemWidth - itemWidth / 2;
 
     const onPrev = useCallback(() => {
         sliderRef.current.slickPrev();
@@ -103,9 +58,55 @@ export function DashboardTier({ accountLevels, profile }: Props) {
         sliderRef.current.slickNext();
     }, []);
 
+    const slideToShow = containerWidth / itemWidth;
+    const indexActive = accountLevels.filter(o => o.mintPoint < profile.totalpoint).length - 1;
+    const progressWidth = (indexActive + 1) * itemWidth - itemWidth / 2;
+
+    useEffect(() => {
+        sliderRef.current?.slickGoTo(indexActive, true);
+    }, [indexActive]);
+
+    const centerPadding = ((slideToShow - 1) / 2) * itemWidth;
+    console.log({ slideToShow, centerPadding });
+
+    const settings = {
+        dots: false,
+        arrows: false,
+        infinite: false,
+        autoplay: false,
+        slidesToShow: slideToShow,
+        slidesToScroll: 4,
+        draggable: true,
+        initialSlide: 0,
+        beforeChange: (current: any, next: any) => {
+            console.log({ current, next });
+            console.log("User bắt đầu kéo / swipe");
+            setTranslateX(itemWidth * -next);
+        },
+        afterChange: (index: any) => {
+            setCurrent(index);
+        },
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    // slidesToShow: slideToShow,
+                    // slidesToScroll: 1,
+
+                    centerMode: true,
+                    centerPadding: `${centerPadding + 6}px`,
+                    slidesToShow: 1,
+                },
+            },
+        ],
+    };
+
+    const isAtStart = current === 0;
+    const isAtEnd = current >= accountLevels.length - slideToShow;
+
     return (
-        <Box mt={40} ref={containerRef} w={"100%"}>
-            <Flex direction="column" align="center" mb={24} gap={4}>
+        <Box mt={{ md: 40 }} ref={containerRef} w={"100%"}>
+            <Flex direction="column" align={{ base: "unset", md: "center" }} mb={24} gap={4}>
                 <Text fw={600} fz={{ base: 20 }} lh={1.4} ta={{ base: "left", md: "center" }}>
                     My Tier
                 </Text>
@@ -128,14 +129,34 @@ export function DashboardTier({ accountLevels, profile }: Props) {
 
             <Box w={"100%"} className="overflow-hidden">
                 <Box
-                    w={itemWidth * accountLevels.length} pos={"relative"} bg={"#E7E7F8"} h={4} my={{ base: 24 }}
+                    w={{
+                        base: itemWidth * accountLevels.length + centerPadding * 2,
+                        md: itemWidth * accountLevels.length
+                    }}
+                    pos={"relative"}
+                    bg={"#E7E7F8"}
+                    h={4}
+                    my={{ base: 24 }}
                     style={{
                         transform: `translateX(${translateX}px)`,
                     }}
                     className="transition-all duration-500"
                 >
-                    <Box w={progressWidth} bg={"linear-gradient(90deg, #435EFB 0%, #283895 100%)"} h={"100%"} pos={"absolute"} left={0} />
-                    <Box bg={"#435EFB"} w={12} h={12} pos={"absolute"} left={progressWidth} top={"50%"} className="-translate-x-1/2 -translate-y-1/2 rounded-full" />
+                    <Box
+                        w={{ base: progressWidth + centerPadding, md: progressWidth }}
+                        bg={"linear-gradient(90deg, #435EFB 0%, #283895 100%)"}
+                        h={"100%"}
+                        pos={"absolute"} left={0}
+                    />
+                    <Box
+                        bg={"#435EFB"}
+                        w={12}
+                        h={12}
+                        pos={"absolute"}
+                        left={{ base: progressWidth + centerPadding, md: progressWidth }}
+                        top={"50%"}
+                        className="-translate-x-1/2 -translate-y-1/2 rounded-full"
+                    />
                 </Box>
             </Box>
 

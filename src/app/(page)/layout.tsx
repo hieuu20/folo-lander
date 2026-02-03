@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Metadata } from "next";
@@ -18,6 +19,7 @@ import AppProvider from "../context/AppContext";
 import { ToastContainer } from 'react-toastify';
 import { getSystemSetting } from "@/service/systemSetting";
 import { getUserDetail } from "@/service/user";
+// import { RouteProgress } from "@/lib/RouteProgress";
 
 export const metadata: Metadata = {
   title: "FOLO",
@@ -150,12 +152,12 @@ export default async function RootLayout({
         />
       </head>
       <body className={`antialiased`}>
-        <AppProvider setting={setting} initProfile={profile} >
-          <ToastContainer />
-          <ProgressBarProvider>
+        <ProgressBarProvider>
+          <AppProvider setting={setting} initProfile={profile} >
+            <ToastContainer />
             <MantineProvider theme={theme}>{children}</MantineProvider>
-          </ProgressBarProvider>
-        </AppProvider>
+          </AppProvider>
+        </ProgressBarProvider>
       </body>
     </html>
   );

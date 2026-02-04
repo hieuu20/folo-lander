@@ -65,7 +65,7 @@ export default function LeaderBoardTitle() {
                             fz={{ base: 16 }} fw={600}
                             c={"white"}
                             bg={"#435EFB"}
-                            className='rounded-lg hover:bg-[#2036B5] transition-all duration-200'
+                            className='rounded-lg transition-all duration-200'
                         >
                             Copy
                         </ButtonCopy>

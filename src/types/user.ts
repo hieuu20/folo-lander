@@ -8,6 +8,7 @@ export interface IUser {
   updateAt: string;
   updateBy: string;
   email: string;
+  username: string;
   referred_by: string;
   referralCode: string;
   uvId: string;
@@ -17,7 +18,7 @@ export interface IUser {
   totalpoint: number;
   userType: USER_TYPE_ENUM;
   _id: string;
-  rank?: number
+  rank: number
   userSocials: UserSocial[];
   role: Role;
 }

@@ -108,26 +108,6 @@ export const convertNumberToMonth = (number: number) => {
   }
 };
 
-export async function upload(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  file: any
-): Promise<{ filePath: string } | null> {
-  try {
-    const data = new FormData();
-    data.append("file", file, file.name);
-
-    const res = await fetch(process.env.NEXT_PUBLIC_API_URL + `/admin/upload`, {
-      method: "POST",
-      body: data,
-    });
-    const result = await res.json();
-    return result;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (error) {
-    return null;
-  }
-}
-
 export function getOs() {
   if (!window.navigator) {
     return OS_TYPE.OTHER;

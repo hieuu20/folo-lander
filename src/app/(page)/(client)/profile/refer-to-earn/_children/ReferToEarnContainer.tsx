@@ -93,7 +93,7 @@ export function ReferToEarnContainer({ profile, pointSettings }: Props) {
                             px={16}
                             fz={{ base: 16 }} fw={600}
                             c={"white"}
-                            className='rounded-lg hover:bg-[#2036B5] transition-all duration-200'
+                            className='rounded-lg transition-all duration-200'
                         >
                             Copy
                         </ButtonCopy>

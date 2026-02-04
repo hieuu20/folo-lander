@@ -2,14 +2,10 @@
 import { AreaField, InputField, NumberInputField } from '@/components';
 import { Popup } from '@/components/Popups/Popup';
 import UploadImage from '@/components/upload/UploadImage';
-import { AccountLevel } from '@/types/accountLevel';
 import { Perk } from '@/types/perk';
-import { Reward } from '@/types/reward';
 import { notify } from '@/utils/notify';
-import { Button, Checkbox, Flex, Input, Modal, Stack, Text } from '@mantine/core';
-import { IconCheck, IconEdit, IconTrash } from '@tabler/icons-react';
+import { Button, Checkbox, Flex, Input } from '@mantine/core';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
-import { isNil } from 'lodash';
 import React, { useCallback, useState } from 'react';
 
 

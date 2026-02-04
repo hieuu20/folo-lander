@@ -11,13 +11,15 @@ import { PointSetting } from '@/types/pointSetting';
 import { Role } from '@/types/role';
 import { useApp } from '@/app/context/AppContext';
 import SectionButton from '@/components/buttons/SectionButton';
+import { Reward } from '@/types/reward';
 
 interface Props {
     pointSettings: PointSetting[];
     roles: Role[];
+    rewards: Reward[];
 }
 
-export function LeaderBoard({ pointSettings, roles }: Props) {
+export function LeaderBoard({ pointSettings, roles, rewards }: Props) {
     const { profile } = useApp();
 
     return (
@@ -46,7 +48,7 @@ export function LeaderBoard({ pointSettings, roles }: Props) {
                         align={"center"}
                     >
                         <Box w={"58%"}>
-                            <LeaderBoardTable />
+                            <LeaderBoardTable rewards={rewards} />
                         </Box>
 
                         <Flex direction={"column"} w={"38%"} gap={{ base: 24 }}>

@@ -1,6 +1,6 @@
 "use client";
 
-import { upload } from '@/utils';
+import { upload } from '@/utils/upload';
 import { Flex } from '@mantine/core';
 import { IconContrast2Filled } from '@tabler/icons-react';
 import Image from 'next/image';

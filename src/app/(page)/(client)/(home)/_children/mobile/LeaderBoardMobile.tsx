@@ -11,14 +11,16 @@ import Image from 'next/image';
 import { useApp } from '@/app/context/AppContext';
 import { SocialShare } from '../leaderboard/SocialShare';
 import SectionButton from '@/components/buttons/SectionButton';
+import { Reward } from '@/types/reward';
 
 
 interface Props {
     pointSettings: PointSetting[];
     roles: Role[];
+    rewards: Reward[];
 }
 
-export function LeaderBoardMobile({ roles, pointSettings }: Props) {
+export function LeaderBoardMobile({ roles, pointSettings, rewards }: Props) {
     const { profile } = useApp();
 
     return (
@@ -60,7 +62,7 @@ export function LeaderBoardMobile({ roles, pointSettings }: Props) {
                             <SocialShare pointSettings={pointSettings} />
                         )}
 
-                        <LeaderBoardTable />
+                        <LeaderBoardTable rewards={rewards} />
 
                         {profile && (
                             <SectionButton

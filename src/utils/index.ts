@@ -2,3 +2,4 @@ export * from './helpers';
 export * from './constants';
 export * from './enum';
 export * from "./countries";
+export * from "./upload";

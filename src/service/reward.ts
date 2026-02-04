@@ -1,6 +1,7 @@
+import { Reward } from "@/types/reward";
 import { cookies } from "next/headers";
 
-export const getRewards= async () => {
+export const getRewards= async (): Promise<Reward[]> => {
   const cks = cookies();
   const token = cks.get("access_token")?.value;
   const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `/client/reward`, {

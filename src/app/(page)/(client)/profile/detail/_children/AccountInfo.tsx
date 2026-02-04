@@ -50,6 +50,7 @@ export function AccountInfo({ profile }: Props) {
                 onSubmit={handleSignup}
             >
                 {({ values, isSubmitting, setFieldValue }) => {
+                    // const isActive = values.userName != profile.username
                     return (
                         <Form className='w-full'>
                             <Flex direction={"column"} gap={16} w={{ base: "100%" }}>
@@ -59,7 +60,7 @@ export function AccountInfo({ profile }: Props) {
                                     placeholder="Enter your email"
                                     label="Email"
                                     required={true}
-                                    className="text-base font-medium bg-[#C6CBD0] text-[#6E7174]"
+                                    className="text-sm text-[#6E7174]"
                                     readOnly={true}
                                     value={values.email}
                                     component={InputField}
@@ -80,7 +81,7 @@ export function AccountInfo({ profile }: Props) {
                                     placeholder="Select location"
                                     label="Location (public)"
                                     required={false}
-                                    className="text-base font-medium"
+                                    className="text-sm text-[#131416] font-normal"
                                     value={values.location}
                                     data={countries.map((o) => {
                                         return `${o.flag} ${o.value}`;
@@ -95,7 +96,7 @@ export function AccountInfo({ profile }: Props) {
                                     value={values.dateOfBirth}
                                     classNames={{
                                         label: "text-[#4D5053] text-xs leading-[1.2] font-normal",
-                                        input: "h-10 border border-[#E7E7F8] rounded-lg px-3 text-[#131416] font-medium",
+                                        input: "h-10 border border-[#E7E7F8] rounded-lg px-3 text-sm text-[#131416] font-normal",
                                         section: "pr-3 w-fit"
                                     }}
                                     w={"100%"}

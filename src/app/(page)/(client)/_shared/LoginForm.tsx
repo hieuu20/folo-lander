@@ -5,8 +5,8 @@ import { Box, Button, Flex } from '@mantine/core';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import React, { useCallback } from 'react';
 import xIcon from "@public/leaderboard/x.png";
-import fbIcon from "@public/leaderboard/facebook.png";
-import ggIcon from "@public/leaderboard/google.png";
+import fbIcon from "@public/leaderboard/fb.png";
+import ggIcon from "@public/leaderboard/gg.png";
 import Image from 'next/image';
 import { RolePopup } from '@/components/Popups';
 import { Role } from '@/types/role';
@@ -135,13 +135,13 @@ export default function LoginForm({ roles }: Props) {
 
             <Flex gap={{ base: 24 }} align={"center"} justify={"center"}>
                 <Box w={48} h={48} className='overflow-hidden cursor-pointer'>
-                    <Image src={ggIcon} alt='ggIcon' width={24} height={24} className='w-full h-full scale-[1.58] relative bottom-[-4%] origin-center' />
+                    <Image src={ggIcon} alt='ggIcon' width={24} height={24} className='w-full h-full relative' />
                 </Box>
                 <Box w={48} h={48} className='overflow-hidden cursor-pointer'>
-                    <Image src={xIcon} alt='ggIcon' width={24} height={24} className='w-full h-full scale-[0.96] origin-center' />
+                    <Image src={xIcon} alt='ggIcon' width={24} height={24} className='w-full h-full' />
                 </Box>
                 <Box w={48} h={48} className='overflow-hidden cursor-pointer'>
-                    <Image src={fbIcon} alt='ggIcon' width={24} height={24} className='w-full h-full scale-[1.54] relative bottom-[-4%] origin-center' />
+                    <Image src={fbIcon} alt='ggIcon' width={24} height={24} className='w-full h-full relative' />
                 </Box>
             </Flex>
 

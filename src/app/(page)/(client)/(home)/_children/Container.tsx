@@ -27,15 +27,15 @@ import NewsMobile from "./mobile/NewsMobile";
 import { LeaderBoardMobile } from "./mobile/LeaderBoardMobile";
 import { LeaderBoard } from "./LeaderBoard";
 import { Role } from "@/types/role";
-import { Social } from "@/types/social";
 import { PointSetting } from "@/types/pointSetting";
 import ScrollToTop from "../../_shared/ScrollToTop";
-import { IUser } from "@/types/user";
+import { Reward } from "@/types/reward";
 
 interface Props {
     news: INews[];
     roles: Role[];
     pointSettings: PointSetting[];
+    rewards: Reward[];
 }
 export default function Container(props: Props) {
     const { width } = useBrowserWidth();
@@ -91,7 +91,7 @@ export default function Container(props: Props) {
     );
 }
 
-const Mobile = ({ news, pointSettings, roles }: Props) => {
+const Mobile = ({ news, pointSettings, roles, rewards }: Props) => {
     const main = useRef<any>();
     const smoother = useRef<ScrollSmoother>();
 
@@ -122,7 +122,7 @@ const Mobile = ({ news, pointSettings, roles }: Props) => {
                     }}
                 >
                     <BannerMobile />
-                    <LeaderBoardMobile pointSettings={pointSettings} roles={roles} />
+                    <LeaderBoardMobile pointSettings={pointSettings} roles={roles} rewards={rewards} />
                     <SloganMobile />
                     <MuchMoreMobile />
                     <BeSeenMobile />
@@ -134,7 +134,7 @@ const Mobile = ({ news, pointSettings, roles }: Props) => {
     );
 };
 
-const Desktop = ({ news, pointSettings, roles }: Props) => {
+const Desktop = ({ news, pointSettings, roles, rewards }: Props) => {
     const main = useRef<any>();
     const smoother = useRef<ScrollSmoother>();
 
@@ -160,7 +160,7 @@ const Desktop = ({ news, pointSettings, roles }: Props) => {
                     }}
                 >
                     <BannerPc />
-                    <LeaderBoard pointSettings={pointSettings} roles={roles}/>
+                    <LeaderBoard pointSettings={pointSettings} roles={roles} rewards={rewards} />
                     <Slogan />
                     <MuchMore />
                     <BeSeen />

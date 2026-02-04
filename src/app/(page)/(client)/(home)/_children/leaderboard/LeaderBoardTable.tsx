@@ -3,6 +3,8 @@ import React, { useCallback } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { useBrowserWidth } from '@/hooks';
 import { useApp } from '@/app/context/AppContext';
+import { Reward } from '@/types/reward';
+import Image from 'next/image';
 
 
 const getTopClass = (index: number) => {
@@ -17,7 +19,11 @@ const getTopClass = (index: number) => {
     }
 };
 
-export default function LeaderBoardTable() {
+interface Props {
+    rewards: Reward[];
+}
+
+export default function LeaderBoardTable({ rewards }: Props) {
     const { profile } = useApp();
     const { isMb } = useBrowserWidth();
     const { leaderboard } = useApp();
@@ -27,27 +33,28 @@ export default function LeaderBoardTable() {
     }, []);
 
     return (
-        <Paper bd={"1px solid #E7E7F8"} w={"100%"} className='rounded-3xl overflow-hidden'>
+        <Paper bd={"1px solid #E7E7F8"} w={"100%"} className='rounded-3xl overflow-hidden border-b'>
             <Table w={"100%"}>
                 <Table.Thead>
                     <Table.Tr fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }}>
-                        <Table.Th c={"#4D5053"} fw={400} ta={{ base: "unset", md: "center" }} px={16} py={{ base: 8, md: 10, xl: 12 }} className='border-r-[1px] border-solid border-[#E7E7F8]'>Rank</Table.Th>
+                        <Table.Th c={"#4D5053"} fw={400} ta={{ base: "unset", md: "center" }} px={16} py={{ base: 8, md: 10, xl: 12 }} className='border-r-[1px] border-[#E7E7F8]'>Rank</Table.Th>
                         {!isMb && (
-                            <Table.Th c={"#4D5053"} fw={400} ta={{ base: "unset", md: "center" }} px={16} py={{ base: 8, md: 10, xl: 12 }} className='border-r-[1px] border-solid border-[#E7E7F8]'>Power points</Table.Th>
+                            <Table.Th c={"#4D5053"} fw={400} ta={{ base: "unset", md: "center" }} px={16} py={{ base: 8, md: 10, xl: 12 }} className='border-r-[1px] border-[#E7E7F8]'>Power points</Table.Th>
                         )}
                         <Table.Th c={"#4D5053"} fw={400} ta={{ base: "unset", md: "center" }} px={16} py={{ base: 8, md: 10, xl: 12 }}>Rewards</Table.Th>
                     </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
                     {leaderboard.map((o, index) => {
+                        const rws = rewards.filter(x => x.leaderboardFrom <= o.rank && o.rank <= x.leaderboardTo);
                         return (
-                            <Table.Tr key={index} fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }} fw={500} className='border-t-[1px] border-solid border-[#E7E7F8]'>
-                                <Table.Td w={{ base: "34%", md: "24.2%" }} px={16} py={{ base: 10, xl: 20 }} className='border-r-[1px] border-solid border-[#E7E7F8]'>
+                            <Table.Tr key={index} fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }} fw={500} className='border-t-[1px] border-[#E7E7F8]'>
+                                <Table.Td w={{ base: "34%", md: "24.2%" }} px={16} py={{ base: 10, xl: 20 }} className='border-r-[1px] border-[#E7E7F8]'>
                                     <Text
                                         fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }} fw={400}
                                         className={twMerge(getTopClass(index), "flex gap-3 flex-wrap w-full items-start md:justify-center")}
                                     >
-                                        <span className={twMerge(getTopClass(index), index <= 2 && "font-black")}>{index + 1}</span>
+                                        <span className={twMerge(getTopClass(index), index <= 2 && "font-black")}>{o.rank}</span>
                                         {profile?._id == o._id ? "You" : `${formatLeaderboardId(o._id)}`}
                                     </Text>
                                     {isMb && (
@@ -60,7 +67,7 @@ export default function LeaderBoardTable() {
                                     )}
                                 </Table.Td>
                                 {!isMb && (
-                                    <Table.Td w={"22.2%"} py={{ base: 10, xl: 20 }} align='center' className='border-r-[1px] border-solid border-[#E7E7F8]'>
+                                    <Table.Td w={"22.2%"} py={{ base: 10, xl: 20 }} align='center' className='border-r-[1px] border-[#E7E7F8]'>
                                         <Text
                                             fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }} fw={500}
                                             className={twMerge(getTopClass(index), "flex gap-1 w-fit")}
@@ -71,26 +78,11 @@ export default function LeaderBoardTable() {
                                 )}
                                 <Table.Td py={{ base: 10, md: 16, xl: 20 }} px={16}>
                                     <Flex gap={12} w={"100%"} wrap={"wrap"} justify={{ base: "unset", md: "center" }}>
-                                        {/* {o.rewards.map((x, i) => {
+                                        {rws.map((x) => {
                                             return (
-                                                <Flex
-                                                    key={i} gap={2} bg={x.color} p={4} pr={8} align={"center"}
-                                                    fz={{ base: 14, md: 16 }}
-                                                    fw={500} c={"#131416"}
-                                                    className='rounded-lg'
-                                                >
-                                                    {typeof x.icon == "string" ? (
-                                                        <span>{x.icon}</span>
-                                                    ) : (
-                                                        <Image src={x.icon} alt='reward icon' width={28} height={28} className='w-5 md:w-6 xl:w-7 h-auto' />
-                                                    )}
-
-                                                    <Text fw={500} fz={{ base: 14, md: 16 }}>
-                                                        {x.title}
-                                                    </Text>
-                                                </Flex>
+                                                <Image key={x._id} src={x.icon} alt='reward icon' width={36} height={36} className='h-7 md:h-8 xl:h-9 w-auto' />
                                             );
-                                        })} */}
+                                        })}
                                     </Flex>
                                 </Table.Td>
                             </Table.Tr>

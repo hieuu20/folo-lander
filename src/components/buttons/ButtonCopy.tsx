@@ -1,12 +1,19 @@
 import { Button, ButtonProps, CopyButton } from '@mantine/core';
 import React from 'react';
 import { ReactNode } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 export function ButtonCopy(prop: ButtonProps & { text: string; copiedSection: ReactNode }) {
   return (
     <CopyButton value={prop?.text}>
       {({ copied, copy }) => (
-        <Button {...prop} disabled={copied} onClick={copy} bg={copied ? "#19A50D" : "#435EFB"}>
+        <Button 
+          {...prop} 
+          disabled={copied} 
+          onClick={copy} 
+          bg={copied ? "#19A50D" : "#435EFB"} 
+          className={twMerge(prop.className, !copied && "hover:bg-[#2036B5]")}
+        >
           {copied ? prop?.copiedSection : prop?.children}
         </Button>
       )}

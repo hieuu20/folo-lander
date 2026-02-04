@@ -6,7 +6,7 @@ import Image from "next/image";
 import Slider from "react-slick";
 import { AccountLevel } from "@/types/accountLevel";
 import { IUser } from "@/types/user";
-import pointIcon from "@public/icons/point-icon.svg";
+import pointIcon from "@public/icons/point-icon.png";
 import { formatNumber } from "@/utils";
 import checkIcon from "@public/icons/circle-check.svg";
 import { ArrowLeft } from "@/components/icons/ArrowLeft";

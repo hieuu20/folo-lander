@@ -6,7 +6,7 @@ import { ProfileSidebar } from "./ProfileSidebar";
 import { useDisclosure } from "@/hooks";
 import { MenuIcon } from "@/components/icons/MenuIcon";
 import LogoIcon from "@/components/icons/LogoIcon";
-import pointIcon from "@public/icons/point-icon.svg";
+import pointIcon from "@public/icons/point-icon.png";
 import Image from "next/image";
 import { useApp } from "@/app/context/AppContext";
 import { CloseIcon } from "@/components/icons/CloseIcon";

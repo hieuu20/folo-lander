@@ -4,7 +4,7 @@ import { ActionIcon, Checkbox, Flex, Menu, Pagination, Stack, Table, Text } from
 import { IconDots, IconEdit, IconLoader2, IconTrash } from '@tabler/icons-react';
 import Image from 'next/image';
 import React from 'react';
-import pointLogo from "@public/icons/point-icon.svg";
+import pointLogo from "@public/icons/point-icon.png";
 
 interface Props {
   data: Perk[];

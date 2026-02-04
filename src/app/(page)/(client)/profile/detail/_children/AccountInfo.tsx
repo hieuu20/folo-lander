@@ -60,7 +60,7 @@ export function AccountInfo({ profile }: Props) {
                                     placeholder="Enter your email"
                                     label="Email"
                                     required={true}
-                                    className="text-sm text-[#6E7174]"
+                                    className="text-sm text-[#6E7174] bg-[#C6CBD0]"
                                     readOnly={true}
                                     value={values.email}
                                     component={InputField}

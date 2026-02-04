@@ -20,7 +20,7 @@ import { useApp } from "@/app/context/AppContext";
 import logoutIcon from "@public/icons/logout.svg";
 
 import avatar from "@public/profile/avatar.svg";
-import pointIcon from "@public/icons/point-icon.svg";
+import pointIcon from "@public/icons/point-icon.png";
 import logo from "@public/profile/logo.svg";
 
 import flag1 from "@public/footer/flag-1.png";

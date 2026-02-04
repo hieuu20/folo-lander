@@ -7,7 +7,7 @@ import { Box, Button, Flex, Stack, Text } from '@mantine/core';
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 import { UserPerk, UserPerkType } from '@/types/userPerk';
-import pointIcon from "@public/icons/point-icon.svg";
+import pointIcon from "@public/icons/point-icon.png";
 import pointDisableIcon from "@public/icons/point-icon-disable.png";
 import { WalletIcon } from '@/components/icons/WalletIcon';
 import { dispatchFetchProfile } from '@/utils/windowEvent';

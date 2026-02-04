@@ -32,17 +32,17 @@ export function BannerMobile() {
             control2.start({
                 width: "100%",
                 aspectRatio: 0.77954545454,
-                transition: { duration: 0.6, ease: "easeInOut", delay: loadingTime + 1.3 }
+                transition: { duration: 0.6, ease: "easeInOut", delay: loadingTime + 1.6 }
             });
 
             control1.start({
                 top: spacing,
-                transition: { duration: 0.5, ease: "easeInOut", delay: loadingTime + 1.9 }
+                transition: { duration: 0.5, ease: "easeInOut", delay: loadingTime + 2.2 }
             });
 
             control3.start({
                 y: 0, opacity: 1, x: "-50%",
-                transition: { duration: 0.8, ease: "easeInOut", delay: loadingTime + 1.9 }
+                transition: { duration: 0.8, ease: "easeInOut", delay: loadingTime + 2.2 }
             });
         };
 
@@ -67,7 +67,6 @@ export function BannerMobile() {
     return (
         <Box
             ref={main}
-            id='aasasa'
             h={{ base: window.innerHeight }}
             bg={"white"}
             className='overflow-hidden'
@@ -84,18 +83,10 @@ export function BannerMobile() {
                     gap={{ base: 32, md: 40 }}
                 >
                     <motion.div
-                        initial={{
-                            top: wdHeight - topHeight
-                        }}
-                        // animate={{
-                        //     top: spacing
-                        // }}
+                        initial={{ top: wdHeight - topHeight }}
                         animate={control1}
-                        // transition={{ duration: 0.5, ease: "easeInOut", delay: loadingTime + 2.6 }}
                         className='absolute aspect-[0.77954545454]'
-                        style={{
-                            height: topHeight
-                        }}
+                        style={{ height: topHeight }}
                     >
                         <motion.div
                             initial={{
@@ -103,11 +94,6 @@ export function BannerMobile() {
                                 aspectRatio: 1.62727272727,
                             }}
                             animate={control2}
-                            // animate={{
-                            //     width: "100%",
-                            //     aspectRatio: 0.77954545454,
-                            // }}
-                            // transition={{ duration: 0.6, ease: "easeInOut", delay: loadingTime + 2 }}
                             className='rounded-[300px] overflow-hidden center-absolute'
                         >
                             <video
@@ -121,7 +107,6 @@ export function BannerMobile() {
                             >
                                 <source src={"/banner/video1-mb.mp4"} type="video/mp4" />
                             </video>
-                            {/* <Image src={bgImage} alt='banner bg' fill className='object-cover' /> */}
                         </motion.div>
 
                         <Image
@@ -134,8 +119,6 @@ export function BannerMobile() {
                     <motion.div
                         id='banner-title-mb'
                         initial={{ y: "100%", opacity: 0, x: "-50%" }}
-                        // animate={{ y: 0, opacity: 1, x: "-50%" }}
-                        // transition={{ duration: 0.8, ease: "easeInOut", delay: loadingTime + 2.6 }}
                         animate={control3}
                         className='flex flex-col gap-6 justify-center absolute left-1/2 w-[90%]'
                         style={{ bottom: spacing }}
@@ -187,8 +170,6 @@ export function BannerMobile() {
                         ) : (
                             <EmailWaitingListInput />
                         )}
-
-
                     </motion.div>
                 </Flex>
             </Box>

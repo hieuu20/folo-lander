@@ -16,8 +16,6 @@ export async function POST(request: NextRequest) {
     const uaResult = parser.getResult();
     const email = (body.email as string).toLowerCase();
 
-    console.log({ email });
-
     const checkEmailRes = await fetch(
       `https://backend.knky.co/v1/users/email-validation?email=${email}`,
       {

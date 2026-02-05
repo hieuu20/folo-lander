@@ -72,10 +72,10 @@ export function ProfileSidebar() {
     <>
       <Flex w={"100%"} px={20} py={16} align={"center"} justify={"space-between"} className="hidden md:flex">
         <Group gap={8}>
-          <Image src={avatar} alt="avatar" className="w-10 h-auto" />
+          <Image src={profile?.avatar || avatar} width={60} height={60} alt="avatar" className="w-10 h-auto rounded-full" />
           <div>
             <Text fz={{ base: 14 }} fw={500} lh={1.4}>
-              Username
+              {profile?.username}
             </Text>
             <Text fz={13} c="#4D5053">
               {profile?.email}

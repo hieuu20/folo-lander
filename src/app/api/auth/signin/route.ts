@@ -18,8 +18,6 @@ export async function POST(request: NextRequest) {
       ","
     )[0];
 
-    // const ip = generateRandomIP();
-
     const res = await signin({
       email: body.email,
       password: body.password,
@@ -27,7 +25,14 @@ export async function POST(request: NextRequest) {
       userType: body.userType,
       referralCode: body.referralCode,
       roleId: body.roleId,
-      deviceId: body.deviceId
+      deviceInfo: {
+        device: uaResult.device.type || "desktop",
+        os: uaResult.os.name || "",
+        browser: uaResult.browser.name || "",
+        country: "unknow",
+        city: "unknow",
+        device_id: body.deviceId,
+      },
     });
 
     const expiryDate = new Date();

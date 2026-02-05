@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
     email && query.set("email", String(email));
 
     const response = await fetch(
-      process.env.NEXT_PUBLIC_API_URL + `/client/user/check-exist-email?${query.toString()}`);
+      process.env.NEXT_PUBLIC_API_URL + `/client/user/verify-email?${query.toString()}`);
 
     const result = await response.json();
 

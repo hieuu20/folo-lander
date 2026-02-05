@@ -43,9 +43,9 @@ export function AccountInfo({ profile }: Props) {
             <Formik
                 initialValues={{
                     email: profile.email,
-                    userName: "username",
-                    location: "🇺🇸 USA",
-                    dateOfBirth: dayjs('2004-08-08').toDate()
+                    userName: profile.username,
+                    location: profile.countryCode || "🇺🇸 USA",
+                    dateOfBirth: profile.dob ? dayjs(profile.dob).toDate() : dayjs('2004-08-08').toDate()
                 }}
                 onSubmit={handleSignup}
             >

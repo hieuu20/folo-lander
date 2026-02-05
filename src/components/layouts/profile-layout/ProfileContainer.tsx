@@ -82,11 +82,14 @@ export function ProfileContainer({
                             bg={"#F7F7FC"}
                             fz={16}
                             fw={700}
+                            w={"auto"}
+                            h={"fit-content"}
+                            align={"center"}
                             gap={8}
                             className="rounded-2xl"
                         >
                             {profile?.point}
-                            <Image src={pointIcon} alt="pointIcon" className="w-5 h-auto" />
+                            <Image src={pointIcon} alt="pointIcon" className="w-5 h-5 object-cover" />
                         </Flex>
                     </Flex>
                 </AppShell.Header>

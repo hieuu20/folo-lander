@@ -47,6 +47,9 @@ export function InputField(props: InputFieldProps) {
         name={name}
         placeholder={placeholder}
         disabled={disable}
+        autoCapitalize="none"
+        autoCorrect="off"
+        spellCheck={false}
         bg={"##F5F5F6"}
         classNames={{
           input: twMerge(

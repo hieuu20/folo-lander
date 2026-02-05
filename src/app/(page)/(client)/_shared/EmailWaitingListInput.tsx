@@ -16,13 +16,13 @@ export function EmailWaitingListInput() {
     const handleSignup = useCallback(async () => {
         if (!userName) {
             setIsWarning(true);
-        
+
             setTimeout(() => {
                 setIsWarning(false);
             }, 2000);
-        
+
             return;
-          }
+        }
         try {
             setSubmitting(true);
             const res = await fetch("/api/waiting-list", {
@@ -51,7 +51,7 @@ export function EmailWaitingListInput() {
         <Flex
             justify={"space-between"}
             bg={"white"}
-            bd={isWarning ? "1px solid #F11E11" : "1px solid #E7E7F8"} 
+            bd={isWarning ? "1px solid #F11E11" : "1px solid #E7E7F8"}
             p={{ base: 8 }}
             h={{ base: 48, sm: 52, md: 56, lg: 58, xl: 60, "2xl": 64 }}
             w={{ base: "100%", sm: 320, md: 360, lg: 390, xl: 410, "2xl": 438 }}
@@ -69,6 +69,9 @@ export function EmailWaitingListInput() {
                     wrapper: "bg-transparent"
                 }}
                 value={userName}
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck={false}
                 onChange={(e) => setUserName(e.target.value)}
                 c={"black"}
             />

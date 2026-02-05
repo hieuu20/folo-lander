@@ -21,4 +21,8 @@ export interface IUser {
   rank: number
   userSocials: UserSocial[];
   role: Role;
+
+  avatar: string;
+  dob: string;
+  countryCode: string;
 }

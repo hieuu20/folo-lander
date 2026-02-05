@@ -19,8 +19,8 @@ export function ReferToEarnContainer({ profile, pointSettings }: Props) {
 
     const handleRefLink = useCallback(async () => {
         await navigator.share({
-            title: "Let join Folo",
-            text: "Let join Folo",
+            title: "Join Folo with me today!",
+            text: "Join Folo with me today!",
             url: referralLink,
         });
     }, [referralLink]);

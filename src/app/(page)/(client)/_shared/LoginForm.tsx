@@ -29,10 +29,11 @@ export default function LoginForm({ roles }: Props) {
                 body: JSON.stringify(values)
             });
             const result = await res.json();
-            if (result?.data) {
+
+            if (result?.data?.accessToken) {
                 dispatchFetchProfile();
             } else {
-                setErrors({ email: "You’ve already signed up" });
+                setErrors({ password: result?.data?.message });
             }
         } catch (err) {
             console.log({ err });
@@ -44,15 +45,15 @@ export default function LoginForm({ roles }: Props) {
     const onLogin = useCallback(async (email: string, submitForm: () => void, setSubmitting: (isSubmitting: boolean) => void) => {
         try {
             setSubmitting(true);
-            const res = await fetch(`/api/auth/check-exist-email?email=${email}`);
+            const res = await fetch(`/api/auth/verify-email?email=${email}`);
             const resData = await res.json();
 
             console.log({ resData });
 
-            if (resData.data.isExistEmail) {
-                submitForm();
-            } else {
+            if (resData.data.isAvailable) {
                 open();
+            } else {
+                submitForm();
             }
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (err) { }

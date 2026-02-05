@@ -5,6 +5,7 @@ import { createContext, PropsWithChildren, ReactNode, useCallback, useContext, u
 // import { isExpired } from "./common";
 import { IUser } from "@/types/user";
 import { SystemSetting } from "@/types/systemSetting";
+import { useRouter } from "next/navigation";
 
 
 interface AppContextConfig {
@@ -26,6 +27,8 @@ const AppProvider = ({ children, setting, initProfile }: PropsWithChildren<Props
     const [loading, setLoading] = useState(false);
     const [leaderboard, setLeaderboard] = useState<IUser[]>([]);
 
+    const router = useRouter();
+
     const fetchProfile = useCallback(async () => {
         try {
             setLoading(true);
@@ -35,10 +38,15 @@ const AppProvider = ({ children, setting, initProfile }: PropsWithChildren<Props
             if (resData.data._id) {
                 setProfile(resData.data);
             }
+
+            if (resData?.data?.statusCode == 401) {
+                location.reload();
+                router.replace("/");
+            }
         } catch (err) { } finally {
             setLoading(false);
         }
-    }, []);
+    }, [router]);
 
     const fetLeaderBoard = useCallback(async () => {
         try {

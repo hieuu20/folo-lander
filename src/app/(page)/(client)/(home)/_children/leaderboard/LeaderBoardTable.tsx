@@ -51,7 +51,7 @@ export default function LeaderBoardTable({ rewards }: Props) {
                             <Table.Tr key={index} fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }} fw={500} className='border-t-[1px] border-[#E7E7F8]'>
                                 <Table.Td w={{ base: "34%", md: "24.2%" }} px={16} py={{ base: 10, xl: 20 }} className='border-r-[1px] border-[#E7E7F8]'>
                                     <Text
-                                        fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }} fw={400}
+                                        fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }}
                                         className={twMerge(getTopClass(index), "flex gap-3 flex-wrap w-full items-start md:justify-center")}
                                     >
                                         <span className={twMerge(getTopClass(index), index <= 2 && "font-black")}>{o.rank}</span>
@@ -59,7 +59,7 @@ export default function LeaderBoardTable({ rewards }: Props) {
                                     </Text>
                                     {isMb && (
                                         <Text
-                                            fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }} fw={400}
+                                            fz={{ base: 14, sm: 15, md: 16, lg: 17, xl: 18, "2xl": 20 }}
                                             className={twMerge(getTopClass(index))}
                                         >
                                             {o.point}

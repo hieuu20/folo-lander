@@ -63,18 +63,26 @@ export const signin = async (data: RegisterDto): Promise<SigninResponse> => {
   return await response.json();
 };
 
-export const getMe = async (): Promise<SigninResponse["user"]> => {
-  const cks = cookies();
-  const token = cks.get("access_token")?.value;
-  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `/auth/me`, {
-    cache: "no-store",
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: `Bearer ${token || ""}`,
-    },
-  });
+export const getMe = async (): Promise<IUser | null> => {
+  try {
+    const cks = cookies();
+    const token = cks.get("access_token")?.value;
 
-  return await response.json();
+    if (!token) return null;
+
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `/auth/me`, {
+      cache: "no-store",
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token || ""}`,
+      },
+    });
+
+    return await response.json();
+  } catch (err) {
+    console.log({ err });
+    return null;
+  }
 };

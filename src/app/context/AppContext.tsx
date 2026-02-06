@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 "use client";
-import { createContext, PropsWithChildren, ReactNode, useCallback, useContext, useEffect, useState } from "react";
+import { createContext, PropsWithChildren, useCallback, useContext, useEffect, useState } from "react";
 // import { isExpired } from "./common";
 import { IUser } from "@/types/user";
 import { SystemSetting } from "@/types/systemSetting";
@@ -20,7 +20,7 @@ export const AppContext = createContext<AppContextConfig | undefined>(undefined)
 
 interface Props {
     setting: SystemSetting | null;
-    initProfile: IUser;
+    initProfile: IUser | null;
 }
 const AppProvider = ({ children, setting, initProfile }: PropsWithChildren<Props>) => {
     const [profile, setProfile] = useState<IUser | null>(initProfile);

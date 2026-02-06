@@ -2,9 +2,6 @@ import "@/styles/globals.css";
 import "@mantine/core/styles.layer.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,7 +16,6 @@ import AppProvider from "../context/AppContext";
 import { ToastContainer } from 'react-toastify';
 import { getSystemSetting } from "@/service/systemSetting";
 import { getUserDetail } from "@/service/user";
-// import { RouteProgress } from "@/lib/RouteProgress";
 
 export const metadata: Metadata = {
   title: "FOLO",

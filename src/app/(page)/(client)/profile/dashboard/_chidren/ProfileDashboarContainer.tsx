@@ -17,16 +17,20 @@ import infoIcon from "@public/icons/info.svg";
 import Image from "next/image";
 import { EarningHistory } from "@/types/earningHistory";
 import { formatNumber } from "@/utils";
+import { useApp } from "@/app/context/AppContext";
 
 export const dynamic = "force-dynamic";
 
 interface Props {
-    profile: IUser,
     accountLevels: AccountLevel[];
     earningHistories: EarningHistory[];
 }
-export function ProfileDashboardContainer({ profile, accountLevels, earningHistories }: Props) {
-    // const [loading, setLoading] = useState(true);
+export function ProfileDashboardContainer({ accountLevels, earningHistories }: Props) {
+    const { profile } = useApp();
+
+    if (!profile) {
+        return <></>;
+    }
 
     return (
         <Box pos={"relative"} className="bg-white min-h-screen">

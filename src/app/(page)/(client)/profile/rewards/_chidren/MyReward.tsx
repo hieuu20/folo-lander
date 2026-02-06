@@ -4,6 +4,7 @@ import { formatTime } from '@/utils';
 import { Box, Flex, SimpleGrid, Stack, Text } from '@mantine/core';
 import Image from 'next/image';
 import React, { useCallback } from 'react';
+import emptyIcon from "@public/icons/empty-icon.svg";
 
 interface Props {
     profile: IUser;
@@ -11,11 +12,22 @@ interface Props {
 }
 export function MyReward({ userPerks }: Props) {
     return (
-        <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing={16} p={{ base: 16 }} pt={{ base: 16 }}>
-            {userPerks.map((item, index) => (
-                <RewardItem key={index} userPerk={item} />
-            ))}
-        </SimpleGrid>
+        <>
+            {!userPerks.length && (
+                <Flex w={"100%"} justify={"center"} align={"center"} pt={{ base: 56, md: 76 }} pb={{ base: 16, md: 24 }} direction={"column"} gap={{ base: 12, md: 16 }}>
+                    <Image src={emptyIcon} alt="emptyIcon" className="w-[64px] md:h-[80px] h-auto " />
+                    <Text ta={"center"} fz={{ base: 16, md: 18 }} fw={600}>No history yet</Text>
+                </Flex>
+            )}
+
+            {!!userPerks.length && (
+                <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing={16} p={{ base: 16 }} pt={{ base: 16 }}>
+                    {userPerks.map((item, index) => (
+                        <RewardItem key={index} userPerk={item} />
+                    ))}
+                </SimpleGrid>
+            )}
+        </>
     );
 }
 

@@ -1,5 +1,6 @@
 import { emailRegExp } from "./constants";
 import { OS_TYPE } from "./enum";
+import { isMobile } from 'react-device-detect';
 
 export function validateEmail(email: string) {
   const re = emailRegExp;
@@ -139,4 +140,28 @@ export function getDeviceId() {
     localStorage.setItem("device_id", id);
   }
   return id;
+}
+
+export const openAppOrWeb = async ({
+  link,
+}: {
+  link: string;
+}) => {
+  if (isMobile) {
+    window.location.href = link;
+  } else {
+    window.open(link, '_blank', 'noopener');
+  }
+};
+
+export function formatCompact(num: number) {
+  const sign = num >= 0 ? '+' : '-';
+
+  return (
+    sign +
+    new Intl.NumberFormat('en', {
+      notation: 'compact',
+      maximumFractionDigits: 1,
+    }).format(Math.abs(num))
+  );
 }

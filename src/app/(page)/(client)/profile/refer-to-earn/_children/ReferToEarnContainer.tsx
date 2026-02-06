@@ -1,20 +1,21 @@
 "use client";
 
 import { ButtonCopy } from '@/components/buttons/ButtonCopy';
-import { IUser } from '@/types/user';
 import { Box, Button, Flex, Text } from '@mantine/core';
 import Image from 'next/image';
 import React, { useCallback } from 'react';
 import tickIcon from "@public/icons/tick.svg";
 import { PointSetting } from '@/types/pointSetting';
 import { ShareIcon } from '@/components/icons/ShareIcon';
+import { useApp } from '@/app/context/AppContext';
+import { openAppOrWeb } from '@/utils';
 
 interface Props {
-    profile: IUser,
     pointSettings: PointSetting[]
 }
 
-export function ReferToEarnContainer({ profile, pointSettings }: Props) {
+export function ReferToEarnContainer({ pointSettings }: Props) {
+    const { profile } = useApp();
     const referralLink = `${window.location.origin}?ref=${profile?.referralCode}`;
 
     const handleRefLink = useCallback(async () => {
@@ -28,10 +29,10 @@ export function ReferToEarnContainer({ profile, pointSettings }: Props) {
     const handleShare = useCallback(async (pointSetting: PointSetting) => {
         const referralLink = `${window.location.origin}?ref=${profile?.referralCode}`;
         const redirectLink = `${pointSetting.social?.link}${referralLink}`;
-        window.open(
-            redirectLink,
-            "_blank",
-        );
+      
+        openAppOrWeb({
+            link: redirectLink
+        });
 
         await fetch("/api/share-social", {
             method: "POST",
@@ -136,7 +137,7 @@ export function ReferToEarnContainer({ profile, pointSettings }: Props) {
                                         )}
                                         <Text fz={{ base: 14, md: 16 }} fw={500}>Share on {o.social?.name}</Text>
                                     </Flex>
-                                    {!profile.userSocials.some((x) => x.socialId == o.socialId) && (
+                                    {!profile?.userSocials.some((x) => x.socialId == o.socialId) && (
                                         <Text fz={{ base: 14, md: 16 }} fw={500}>
                                             +{o.point}
                                         </Text>

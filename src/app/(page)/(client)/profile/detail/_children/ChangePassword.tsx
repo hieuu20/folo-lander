@@ -8,9 +8,23 @@ export function ChangePassword() {
 
   const handleSignup = useCallback(async (values: any, {
     setSubmitting,
+    setFieldError
   }: FormikHelpers<any>) => {
     try {
       setSubmitting(true);
+      const res = await fetch('/api/auth/change-password', {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        method: "PUT",
+        body: JSON.stringify(values)
+      });
+      const resData = await res.json();
+
+      if (!resData?.data?.data) {
+        setFieldError("email", resData?.data?.message);
+      }
     } catch (err) {
       console.log({ err });
     } finally {

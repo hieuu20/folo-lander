@@ -59,7 +59,7 @@ export function DashboardTier({ accountLevels, profile }: Props) {
     }, []);
 
     const slideToShow = containerWidth / itemWidth;
-    const indexActive = accountLevels.filter(o => o.mintPoint < profile.totalpoint).length - 1;
+    const indexActive = accountLevels.filter(o => o.mintPoint <= profile.totalpoint).length - 1;
     const progressWidth = (indexActive + 1) * itemWidth - itemWidth / 2;
 
     useEffect(() => {
@@ -67,7 +67,6 @@ export function DashboardTier({ accountLevels, profile }: Props) {
     }, [indexActive]);
 
     const centerPadding = ((slideToShow - 1) / 2) * itemWidth;
-    console.log({ slideToShow, centerPadding });
 
     const settings = {
         dots: false,
@@ -79,8 +78,6 @@ export function DashboardTier({ accountLevels, profile }: Props) {
         draggable: true,
         initialSlide: 0,
         beforeChange: (current: any, next: any) => {
-            console.log({ current, next });
-            console.log("User bắt đầu kéo / swipe");
             setTranslateX(itemWidth * -next);
         },
         afterChange: (index: any) => {
@@ -90,9 +87,6 @@ export function DashboardTier({ accountLevels, profile }: Props) {
             {
                 breakpoint: 768,
                 settings: {
-                    // slidesToShow: slideToShow,
-                    // slidesToScroll: 1,
-
                     centerMode: true,
                     centerPadding: `${centerPadding + 6}px`,
                     slidesToShow: 1,

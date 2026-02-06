@@ -1,18 +1,32 @@
 'use client';
 
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Box, Flex, Text, Button, Card, } from '@mantine/core';
 import shareIcon from "@public/profile/dashboard/share.svg";
 import Image from "next/image";
 import giftIcon from "@public/profile/dashboard/gift.svg";
-import { IUser } from "@/types/user";
+import { EarningOverview, IUser } from "@/types/user";
 import SectionButton from "@/components/buttons/SectionButton";
+import { formatCompact } from "@/utils";
 
 interface Props {
     profile: IUser;
 }
 export function DashboardHeader({ profile }: Props) {
     const referralLink = `${window.location.origin}?ref=${profile?.referralCode}`;
+
+    const [earningOverview, setEarningOverview] = useState<EarningOverview>();
+
+    const fetchData = useCallback(async () => {
+        const res = await fetch("/api/earing-overview");
+        const resData = await res.json();
+        setEarningOverview(resData.data);
+
+    }, []);
+
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
 
     const handleRefLink = useCallback(async () => {
         await navigator.share({
@@ -38,13 +52,13 @@ export function DashboardHeader({ profile }: Props) {
             <Flex direction="column" align="center" gap={16} m={"auto"} px={{ base: 16 }} w={"100%"}>
                 <Flex gap={24} c={"#FFFFFFCC"} justify={"center"}>
                     <Text c="#FFFFFFCC" lh={1.4} fz={{ base: 14 }}>
-                        <span className="font-semibold text-white">+1.2K</span> Today points
+                        <span className="font-semibold text-white">{formatCompact(earningOverview?.pointToday || 0)}</span> Today points
                     </Text>
                     <Text c="#FFFFFFCC" lh={1.4} fz={{ base: 14 }}>
-                        <span className="font-semibold text-white">+31</span> Fans
+                        <span className="font-semibold text-white">{formatCompact(earningOverview?.numberOfFan || 0)}</span> Fans
                     </Text>
                     <Text c="#FFFFFFCC" lh={1.4} fz={{ base: 14 }}>
-                        <span className="font-semibold text-white">+12</span> Creators
+                        <span className="font-semibold text-white">{formatCompact(earningOverview?.numberOfCreator || 0)}</span> Creators
                     </Text>
                 </Flex>
 

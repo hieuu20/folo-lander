@@ -20,7 +20,7 @@ export default async function AdminLayout({
 
     const profile = await getMe();
 
-    if (profile.userType != USER_TYPE_ENUM.ADMIN) {
+    if (profile?.userType != USER_TYPE_ENUM.ADMIN) {
         redirect("/");
     }
 

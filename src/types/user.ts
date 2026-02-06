@@ -18,11 +18,17 @@ export interface IUser {
   totalpoint: number;
   userType: USER_TYPE_ENUM;
   _id: string;
-  rank: number
+  rank: number;
   userSocials: UserSocial[];
   role: Role;
 
   avatar: string;
   dob: string;
-  countryCode: string;
+  location: string;
+}
+
+export interface EarningOverview {
+  pointToday: number;
+  numberOfFan: number;
+  numberOfCreator: number;
 }

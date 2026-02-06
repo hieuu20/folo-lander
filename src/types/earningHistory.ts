@@ -4,7 +4,7 @@ export enum EarningType {
   DONATION = "DONATION",
   INVESTMENT = "INVESTMENT",
   FRAUD = "FRAUD",
-  CLAIM_REWARD = "CLAIM_REWARD"
+  CLAIM_REWARD = "CLAIM_REWARD",
 }
 
 export enum EarningStatus {
@@ -12,14 +12,13 @@ export enum EarningStatus {
   CONFIRM = "CONFIRM",
 }
 
-
 export interface EarningHistory {
-    userId: string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    detail: any;
-    type: EarningType;
-    value: number;
-    status: EarningStatus;
-    createdAt: string;
-    updatedAt: string;
-  }
+  userId: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  detail: any;
+  type: EarningType;
+  value: number;
+  status: EarningStatus;
+  createdAt: string;
+  updatedAt: string;
+}

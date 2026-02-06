@@ -1,6 +1,6 @@
 "use client";
 
-import { AppShell, Flex } from "@mantine/core";
+import { AppShell, Flex, Text } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import { ProfileSidebar } from "./ProfileSidebar";
 import { useDisclosure } from "@/hooks";
@@ -31,7 +31,7 @@ export function ProfileContainer({
 
         const elm = document.getElementById("dashboard-header")?.getBoundingClientRect();
         const onScroll = () => {
-            setIsChangeColor(window.scrollY >= (elm?.height || 300));
+            setIsChangeColor(window.scrollY >= (elm?.height ? elm?.height - 60 : 300));
         };
 
         window.addEventListener("scroll", onScroll);
@@ -73,22 +73,24 @@ export function ProfileContainer({
                         ) : (
                             <MenuIcon c={!isChangeColor ? "white" : undefined} onClick={toggle} />
                         )}
-
                         <LogoIcon c={!isChangeColor ? "white" : undefined} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-
                         <Flex
-                            px={12} py={6}
+                            px={14} py={6}
                             bd={"1px solid #E7E7F8"}
                             bg={"#F7F7FC"}
-                            fz={16}
-                            fw={700}
                             w={"auto"}
                             h={"fit-content"}
                             align={"center"}
                             gap={8}
                             className="rounded-2xl"
                         >
-                            {profile?.point}
+                            <Text 
+                                fz={16}
+                                fw={700}
+                                lh={1.5}
+                            >
+                                {profile?.point}
+                            </Text>
                             <Image src={pointIcon} alt="pointIcon" className="w-5 h-5 object-cover" />
                         </Flex>
                     </Flex>

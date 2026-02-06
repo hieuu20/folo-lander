@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { PointSetting } from '@/types/pointSetting';
 import { useApp } from '@/app/context/AppContext';
 import { dispatchFetchProfile } from '@/utils/windowEvent';
+import { openAppOrWeb } from '@/utils';
 
 
 interface Props {
@@ -33,10 +34,7 @@ export function SocialShare({ pointSettings }: Props) {
 
     const referralLink = `${window.location.origin}?ref=${profile?.referralCode}`;
     const redirectLink = `${pointSetting.social?.link}${referralLink}`;
-    window.open(
-      redirectLink,
-      "_blank",
-    );
+    openAppOrWeb({ link: redirectLink });
   }, [profile?._id, profile?.referralCode]);
 
 
@@ -83,8 +81,6 @@ export function SocialShare({ pointSettings }: Props) {
                   </Text>
                 )}
               </>
-
-
             </Flex>
           );
         })}

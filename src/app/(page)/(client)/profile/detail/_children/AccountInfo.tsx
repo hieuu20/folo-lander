@@ -10,6 +10,7 @@ import dayjs from 'dayjs';
 import { countries } from '@/utils';
 import calendarIcon from "@public/icons/calendar.svg";
 import Image from 'next/image';
+import { dispatchFetchProfile } from '@/utils/windowEvent';
 
 interface Props {
     profile: IUser;
@@ -18,9 +19,25 @@ interface Props {
 export function AccountInfo({ profile }: Props) {
     const handleSignup = useCallback(async (values: any, {
         setSubmitting,
+        setFieldError
     }: FormikHelpers<any>) => {
         try {
             setSubmitting(true);
+            const res = await fetch('/api/user', {
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                method: "PUT",
+                body: JSON.stringify(values)
+            });
+            const resData = await res.json();
+
+            if (resData?.data?.data) {
+                dispatchFetchProfile();
+            } else {
+                setFieldError("email", resData?.data?.message);
+            }
         } catch (err) {
             console.log({ err });
         } finally {
@@ -28,12 +45,25 @@ export function AccountInfo({ profile }: Props) {
         }
     }, []);
 
+    const getLocation = useCallback(() => {
+        if (!profile.location) return "USA:United States";
+
+        if (profile.location.split(":").length > 1) {
+            return profile.location;
+        } else {
+            const country = countries.find(o => o.label == profile.location);
+            if (country) {
+                return `${country.value}:${country.label}`;
+            }
+        }
+        return "USA:United States";
+    }, [profile]);
 
     return (
-        <Box 
-            w={{ base: "100%" }} 
-            p={{ base: 16 }} c={"#131416"} 
-            bg={"#FFFFFF"} 
+        <Box
+            w={{ base: "100%" }}
+            p={{ base: 16 }} c={"#131416"}
+            bg={"#FFFFFF"}
             className='md:rounded-lg border border-[#E7E7F8] md:border-none'
         >
             <Text fz={{ base: 20 }} fw={600} mb={{ base: 12, md: 16 }}>
@@ -43,14 +73,16 @@ export function AccountInfo({ profile }: Props) {
             <Formik
                 initialValues={{
                     email: profile.email,
-                    userName: profile.username,
-                    location: profile.countryCode || "🇺🇸 USA",
-                    dateOfBirth: profile.dob ? dayjs(profile.dob).toDate() : dayjs('2004-08-08').toDate()
+                    username: profile.username,
+                    location: getLocation(),
+                    dateOfBirth: dayjs(profile.dob).format('YYYY-MM-DD')
                 }}
+                enableReinitialize={true}
                 onSubmit={handleSignup}
             >
                 {({ values, isSubmitting, setFieldValue }) => {
-                    // const isActive = values.userName != profile.username
+                    console.log({ values });
+                    const isActive = values.username != profile.username || values.location != profile.location || values.dateOfBirth != profile.dob;
                     return (
                         <Form className='w-full'>
                             <Flex direction={"column"} gap={16} w={{ base: "100%" }}>
@@ -67,12 +99,12 @@ export function AccountInfo({ profile }: Props) {
                                 />
 
                                 <Field
-                                    name="userName"
+                                    name="username"
                                     placeholder="Enter username"
                                     label="Request username"
                                     required={true}
                                     className="text-sm text-[#131416] font-normal"
-                                    value={values.userName}
+                                    value={values.username}
                                     component={InputField}
                                 />
 
@@ -84,7 +116,10 @@ export function AccountInfo({ profile }: Props) {
                                     className="text-sm text-[#131416] font-normal"
                                     value={values.location}
                                     data={countries.map((o) => {
-                                        return `${o.flag} ${o.value}`;
+                                        return {
+                                            value: `${o.value}:${o.label}`,
+                                            label: `${o.flag} ${o.value}`
+                                        };
                                     })}
                                     searchable={true}
                                     component={SelectField}
@@ -93,7 +128,7 @@ export function AccountInfo({ profile }: Props) {
                                 <DatePickerInput
                                     label="Date of birth"
                                     placeholder="Pick date"
-                                    value={values.dateOfBirth}
+                                    value={dayjs(values.dateOfBirth).toDate()}
                                     classNames={{
                                         label: "text-[#4D5053] text-xs leading-[1.2] font-normal",
                                         input: "h-10 border border-[#E7E7F8] rounded-lg px-3 text-sm text-[#131416] font-normal",
@@ -101,7 +136,7 @@ export function AccountInfo({ profile }: Props) {
                                     }}
                                     w={"100%"}
                                     onChange={(value) => {
-                                        setFieldValue('dateOfBirth', value);
+                                        setFieldValue('dateOfBirth', dayjs(value).format('YYYY-MM-DD'));
                                     }}
                                     rightSection={
                                         <Image src={calendarIcon} alt='calendarIcon' className='w-6 h-auto cursor-pointer' />
@@ -111,9 +146,9 @@ export function AccountInfo({ profile }: Props) {
                                 <Button
                                     h={40}
                                     w={198}
-                                    bg={"#376CEC"}
-                                    c={"white"}
-
+                                    bg={isActive ? "#376CEC" : "#C6CBD0"}
+                                    c={isActive ? "white" : "#6E7174"}
+                                    disabled={!isActive}
                                     fz={16}
                                     fw={600}
                                     loading={isSubmitting}

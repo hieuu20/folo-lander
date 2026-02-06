@@ -8,7 +8,8 @@ export function ChangePassword() {
 
   const handleSignup = useCallback(async (values: any, {
     setSubmitting,
-    setFieldError
+    setFieldError,
+    resetForm
   }: FormikHelpers<any>) => {
     try {
       setSubmitting(true);
@@ -21,6 +22,10 @@ export function ChangePassword() {
         body: JSON.stringify(values)
       });
       const resData = await res.json();
+
+      if (resData?.data?.status == 200) {
+        resetForm();
+      }
 
       if (!resData?.data?.data) {
         setFieldError("email", resData?.data?.message);
@@ -43,7 +48,6 @@ export function ChangePassword() {
           password: "",
           newPassword: "",
           confirmPassword: "",
-          dateOfBirth: ""
         }}
         onSubmit={handleSignup}
       >

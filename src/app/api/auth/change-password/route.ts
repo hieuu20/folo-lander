@@ -38,7 +38,7 @@ export async function PUT(request: NextRequest) {
       }
     );
 
-    const result = response.json();
+    const result = await response.json();
 
     return NextResponse.json({ data: result });
   } catch (error) {

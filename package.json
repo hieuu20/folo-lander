@@ -33,7 +33,8 @@
     "sharp": "^0.33.5",
     "slick-carousel": "^1.8.1",
     "tailwind-merge": "^2.5.4",
-    "ua-parser-js": "^2.0.7"
+    "ua-parser-js": "^2.0.7",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.13",

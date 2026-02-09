@@ -49,7 +49,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: process.env.NEXT_PUBLIC_DOMAIN,
   },
-  viewport: "width=device-width, initial-scale=1, viewport-fit=cover",
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
 };
 
 export const myFont = localFont({

@@ -152,7 +152,7 @@ export const countries = [
     { value: 'UA', label: 'Ukraine', flag: '🇺🇦' },
     { value: 'AE', label: 'United Arab Emirates', flag: '🇦🇪' },
     { value: 'GB', label: 'United Kingdom', flag: '🇬🇧' },
-    { value: 'USA', label: 'United States', flag: '🇺🇸' },
+    { value: 'US', label: 'United States', flag: '🇺🇸' },
   
     { value: 'VN', label: 'Vietnam', flag: '🇻🇳' },
   

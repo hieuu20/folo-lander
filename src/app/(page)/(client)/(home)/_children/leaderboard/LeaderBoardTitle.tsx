@@ -9,8 +9,6 @@ import Image from 'next/image';
 export default function LeaderBoardTitle() {
     const { profile } = useApp();
 
-    console.log({ profile });
-
     const referralLink = `${window.location.origin}?ref=${profile?.referralCode}`;
 
     const handleRefLink = useCallback(async () => {

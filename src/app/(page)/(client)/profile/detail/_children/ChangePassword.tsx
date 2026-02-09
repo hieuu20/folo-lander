@@ -3,6 +3,7 @@ import { InputPasswordField } from '@/components';
 import { Box, Button, Flex, Text } from '@mantine/core';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import React, { useCallback } from 'react';
+import * as Yup from 'yup';
 
 export function ChangePassword() {
 
@@ -39,8 +40,12 @@ export function ChangePassword() {
 
   return (
     <Box w={{ base: "100%" }} p={{ base: 16 }} c={"#131416"} h={"fit-content"} bg={"#FFFFFF"} className='md:rounded-lg'>
-      <Text fz={{ base: 20 }} fw={600} mb={{ base: 12, md: 16 }}>
+      <Text fz={{ base: 20 }} fw={600} mb={{ base: 4 }}>
         Change password
+      </Text>
+
+      <Text c={"#4D5053"} fz={{ base: 13, md: 14 }} lh={1.2} mb={{ base: 12, md: 16 }}>
+        If your account was created using social login, you can’t change your password.
       </Text>
 
       <Formik
@@ -49,10 +54,20 @@ export function ChangePassword() {
           newPassword: "",
           confirmPassword: "",
         }}
+        validationSchema={Yup.object({
+          newPassword: Yup.string()
+            .required('New password is required')
+            .min(8, 'Password must be at least 8 characters')
+            .matches(
+              /(\d|[!@#$%^&*()_\-+=.,?])/,
+              'Must contain at least one number or one special character'
+            ),
+        })}
         onSubmit={handleSignup}
       >
-        {({ values, isSubmitting }) => {
-          const isValid = values.password && values.newPassword && values.confirmPassword && values.newPassword == values.confirmPassword;
+        {({ values, isSubmitting, isValid }) => {
+          const isActive = isValid && values.password && values.newPassword && values.confirmPassword && values.newPassword == values.confirmPassword;
+
           return (
             <Form className='w-full'>
               <Flex direction={"column"} gap={16} w={{ base: "100%" }}>
@@ -66,7 +81,7 @@ export function ChangePassword() {
                   component={InputPasswordField}
                 />
 
-                <Flex direction={"column"} gap={4}>
+                <Flex direction={"column"} gap={16}>
                   <Field
                     name="newPassword"
                     placeholder="Enter new password"
@@ -96,9 +111,9 @@ export function ChangePassword() {
                 <Button
                   h={40}
                   w={198}
-                  bg={isValid ? "#376CEC" : "#C6CBD0"}
-                  c={isValid ? "white" : "#6E7174"}
-                  disabled={!isValid}
+                  bg={isActive ? "#376CEC" : "#C6CBD0"}
+                  c={isActive ? "white" : "#6E7174"}
+                  disabled={!isActive}
                   fz={16}
                   fw={600}
                   loading={isSubmitting}

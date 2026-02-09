@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { InputField, InputPasswordField } from '@/components';
 import { getDeviceId, getLocalStorage, USER_TYPE_ENUM, validateEmail } from '@/utils';
@@ -12,11 +13,24 @@ import { RolePopup } from '@/components/Popups';
 import { Role } from '@/types/role';
 import { useDisclosure } from '@/hooks';
 import { dispatchFetchProfile } from '@/utils/windowEvent';
+import { firebaseAuth } from '@/utils/firebase';
+import { useSignInWithGoogle, useSignInWithFacebook, useSignInWithTwitter, useAuthState } from 'react-firebase-hooks/auth';
+import { FacebookAuthProvider, signInWithPopup, TwitterAuthProvider } from 'firebase/auth';
 interface Props {
     roles: Role[]
 }
+
+const XProvider = new TwitterAuthProvider();
+const FbProvider = new FacebookAuthProvider();
+
+
 export default function LoginForm({ roles }: Props) {
     const [opened, { open, close }] = useDisclosure();
+    const [signInWithGoogle] = useSignInWithGoogle(firebaseAuth);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [signInWithFacebook] = useSignInWithFacebook(firebaseAuth);
+    const [signInWithTwitter] = useSignInWithTwitter(firebaseAuth);
+    const [user, loading] = useAuthState(firebaseAuth);
 
     const handleSignup = useCallback(async (values: any, {
         setErrors,
@@ -61,6 +75,38 @@ export default function LoginForm({ roles }: Props) {
             setSubmitting(false);
         }
     }, [open]);
+
+    const signInGoogle = async () => {
+        const test = await signInWithGoogle();
+        const user = test?.user;
+        console.log({ test, user });
+    };
+
+    const signInFacebook = async () => {
+        const test = signInWithFacebook();
+
+        console.log({ test });
+
+        // const result = await signInWithPopup(firebaseAuth, FbProvider);
+        // const token = await result.user.getIdToken();
+        // const user = await result.user;
+
+        // console.log({ token, user });
+    };
+
+    const signInTwitter = async () => {
+        // const test = await signInWithTwitter();
+        // const user = test?.user;
+        // console.log({ test, user });
+
+        const result = await signInWithPopup(firebaseAuth, XProvider);
+        const token = await result.user.getIdToken();
+        const user = await result.user;
+
+        console.log({ token, user });
+    };
+
+    console.log({ user, loading });
 
     return (
         <Flex direction={"column"} gap={{ base: 24 }} align={"center"} w={{ base: "100%" }}>
@@ -135,13 +181,13 @@ export default function LoginForm({ roles }: Props) {
             </Formik>
 
             <Flex gap={{ base: 24 }} align={"center"} justify={"center"}>
-                <Box w={48} h={48} className='overflow-hidden cursor-pointer'>
+                <Box w={48} h={48} className='overflow-hidden cursor-pointer' onClick={signInGoogle}>
                     <Image src={ggIcon} alt='ggIcon' width={24} height={24} className='w-full h-full relative' />
                 </Box>
                 <Box w={48} h={48} className='overflow-hidden cursor-pointer'>
-                    <Image src={xIcon} alt='ggIcon' width={24} height={24} className='w-full h-full' />
+                    <Image src={xIcon} alt='ggIcon' width={24} height={24} className='w-full h-full' onClick={signInTwitter} />
                 </Box>
-                <Box w={48} h={48} className='overflow-hidden cursor-pointer'>
+                <Box w={48} h={48} className='overflow-hidden cursor-pointer' onClick={signInFacebook}>
                     <Image src={fbIcon} alt='ggIcon' width={24} height={24} className='w-full h-full relative' />
                 </Box>
             </Flex>
@@ -149,3 +195,4 @@ export default function LoginForm({ roles }: Props) {
         </Flex>
     );
 }
+

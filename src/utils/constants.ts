@@ -318,6 +318,7 @@ export const moreList: More[] = [
     backgroundRadiant: "linear-gradient(180deg, #376CEC 28.81%, #CADAFF 100%)",
     absolute: { bottom: true, right: true },
     larger: true,
-
   },
 ];
+
+

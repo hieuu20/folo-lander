@@ -19,7 +19,8 @@ interface Props {
 export function AccountInfo({ profile }: Props) {
     const handleSignup = useCallback(async (values: any, {
         setSubmitting,
-        setFieldError
+        setFieldError,
+        resetForm
     }: FormikHelpers<any>) => {
         try {
             setSubmitting(true);
@@ -35,6 +36,7 @@ export function AccountInfo({ profile }: Props) {
 
             if (resData?.data?.data) {
                 dispatchFetchProfile();
+                resetForm();
             } else {
                 setFieldError("email", resData?.data?.message);
             }
@@ -56,7 +58,7 @@ export function AccountInfo({ profile }: Props) {
                 return `${country.value}:${country.label}`;
             }
         }
-        return "USA:United States";
+        return "US:United States";
     }, [profile]);
 
     return (
@@ -81,8 +83,8 @@ export function AccountInfo({ profile }: Props) {
                 onSubmit={handleSignup}
             >
                 {({ values, isSubmitting, setFieldValue }) => {
-                    console.log({ values });
                     const isActive = values.username != profile.username || values.location != profile.location || values.dateOfBirth != profile.dob;
+
                     return (
                         <Form className='w-full'>
                             <Flex direction={"column"} gap={16} w={{ base: "100%" }}>

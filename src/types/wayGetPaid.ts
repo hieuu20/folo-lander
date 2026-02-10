@@ -1,6 +1,6 @@
 export interface WayGetPaid {
-  priority: number;
-  _id: number;
-  title: string;
-  isActive: boolean;
+    priority: number;
+    _id: string;
+    title: string;
+    isActive: boolean;
 }

@@ -1,6 +1,6 @@
 export interface IPeopleSay {
-  priority: number;
-  _id: number;
-  feedback: string;
-  isActive: boolean;
+    priority: number;
+    _id: string;
+    feedback: string;
+    isActive: boolean;
 }

@@ -1,6 +1,6 @@
 export interface PartnerSlide {
-  priority: number;
-  _id: number;
-  thumb: string;
-  isActive: boolean;
+    priority: number;
+    _id: string;
+    thumb: string;
+    isActive: boolean;
 }

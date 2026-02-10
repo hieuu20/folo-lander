@@ -4,7 +4,7 @@ import { CreateButton } from '@/components/buttons/CreateButton';
 import { IFeaturedCreator } from '@/types/featuredCreator';
 import { notify } from '@/utils/notify';
 import { ActionIcon, Checkbox, Group, Menu, Stack, Text } from '@mantine/core';
-import { IconDots, IconEdit, IconMenu2 } from '@tabler/icons-react';
+import { IconDots, IconEdit, IconMenu2, IconTrash } from '@tabler/icons-react';
 import { Reorder, useDragControls } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
 import FeaturedCreatorFormPopup from './FeaturedCreatorFormPopup';
@@ -233,6 +233,15 @@ function SortableItem({
                                 onClick={() => onEdit(section)}
                             >
                                 Edit
+                            </Menu.Item>
+                            <Menu.Item
+                                color="#F11E11"
+                                leftSection={<IconTrash size={20} />}
+                                fw={500}
+                                fz={14}
+                                onClick={() => onDelete(section._id)}
+                            >
+                                Delete
                             </Menu.Item>
                         </Menu.Dropdown>
                     </Menu>

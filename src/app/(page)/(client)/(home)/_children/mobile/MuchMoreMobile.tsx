@@ -2,7 +2,6 @@ import { Box, Flex, Text } from '@mantine/core';
 import Image from 'next/image';
 import React, { useRef } from 'react';
 
-import { More, moreList } from '@/utils';
 import Slider from 'react-slick';
 import gsap from 'gsap/dist/gsap';
 import { motion } from 'framer-motion';
@@ -10,6 +9,7 @@ import right from "@public/news/arrow-right.svg";
 import left from "@public/news/arrow-left.svg";
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { More, moreList } from '@/utils/much-more';
 
 export function MuchMoreMobile() {
     const main = useRef(null);

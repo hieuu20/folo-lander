@@ -52,7 +52,7 @@ export function EmailWaitingListInput() {
             justify={"space-between"}
             bg={"white"}
             bd={isWarning ? "1px solid #F11E11" : "1px solid #E7E7F8"}
-            p={{ base: 8 }}
+            p={{ base: 4, md: 6, xl: 8 }}
             h={{ base: 48, sm: 52, md: 56, lg: 58, xl: 60, "2xl": 64 }}
             w={{ base: "100%", sm: 320, md: 360, lg: 390, xl: 410, "2xl": 438 }}
             align={"center"}
@@ -78,11 +78,11 @@ export function EmailWaitingListInput() {
 
             <SectionButton
                 show={true}
-                title='Join Now →'
-                className='rounded-2xl transition-all duration-300 ease-in-out '
-                fz={{ base: 14, md: 15, "2xl": 16 }}
+                title='Join the Waitlist →'
+                className='rounded-2xl transition-all duration-300 ease-in-out'
+                fz={{ base: 13, md: 14, "2xl": 16 }}
                 fw={600}
-                w={{ base: 88, md: 96, xl: 107 }}
+                w={{ base: 121, md: 136, xl: 152 }}
                 h={"100%"}
                 bg={"#435EFB"}
                 // disabled={!isValid}

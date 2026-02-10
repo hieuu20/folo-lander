@@ -14,29 +14,12 @@ import downIcon from "@public/icons/down.svg";
 import { EmailWaitingListInput } from '../../_shared/EmailWaitingListInput';
 import { useApp } from '@/app/context/AppContext';
 import SectionButton from '@/components/buttons/SectionButton';
-import gsap from "gsap";
-import ScrollToPlugin from "gsap/ScrollToPlugin";
 
 export function BannerPc() {
     const { profile } = useApp();
     const wdHeight = useWindowHeight();
     const [scope] = useAnimate();
     const [tileHeight, setTitleHeight] = useState(0);
-
-    const scrollToLeaderboard = () => {
-        gsap.to(window, {
-            duration: 1,
-            scrollTo: {
-                y: "#Leaderboard",
-                autoKill: false,
-            },
-            ease: "power2.out",
-        });
-    };
-
-    useEffect(() => {
-        gsap.registerPlugin(ScrollToPlugin);
-    }, []);
 
     useEffect(() => {
         const titleElement = document.getElementById("banner-title");
@@ -45,11 +28,10 @@ export function BannerPc() {
         }
     }, []);
 
-
     const topHeight = wdHeight * 0.51;
 
     const spacing = useMemo(() => {
-        return (wdHeight - (topHeight + tileHeight + 40)) / 2;
+        return (wdHeight - (topHeight + tileHeight + 36)) / 2;
     }, [tileHeight, topHeight, wdHeight]);
 
     const { scrollYProgress } = useScroll({
@@ -76,7 +58,7 @@ export function BannerPc() {
                     w={{ base: "100%" }}
                     h={{ base: "100vh" }}
                     pos={"relative"}
-                    gap={{ base: 32, md: 40 }}
+                    gap={{ base: 32, md: 36 }}
                 >
                     <motion.div
                         initial={{ top: wdHeight * 0.245 }}
@@ -130,21 +112,27 @@ export function BannerPc() {
                         className='flex flex-col gap-6 justify-center items-center w-full absolute left-1/2'
                         style={{ bottom: spacing }}
                     >
-                        <Text
-                            c={"#131416"}
-                            fz={{ base: 36, sm: 42, md: 54, lg: 60, xl: 66, "2xl": 72 }}
-                            w={"fit-content"}
-                            lh={1.2}
-                            fw={700}
-                            ta={"center"}
-                        >
-                            <span className='italic'>The You</span> Platform. <br />
-                            For Creators and Communities
-                        </Text>
+                        <Flex direction={"column"} align={"center"} gap={{ base: 12, md: 8 }}>
+                            <Text
+                                c={"#131416"}
+                                fz={{ base: 32, sm: 36, md: 40, lg: 44, xl: 48 }}
+                                w={"fit-content"}
+                                lh={1.2}
+                                fw={700}
+                                ta={"center"}
+                            >
+                                <span className='italic'>The You</span> Platform. <br />
+                                For Creators and Communities
+                            </Text>
+
+                            <Text c={"#4D5053"} w={"80%"} fz={{ base: 14, md: 16 }} lh={1.4} ta={"center"}>
+                                Folo is a creator commerce platform that helps you monetise your audience through chat, subscriptions, community, products and AI tools.
+                            </Text>
+                        </Flex>
                         {profile ? (
                             <Flex gap={16}>
                                 <SectionButton
-                                    // href='#Leaderboard'
+                                    href='#Leaderboard'
                                     show={true}
                                     title='Share to earn'
                                     className='rounded-lg'
@@ -155,7 +143,6 @@ export function BannerPc() {
                                     px={0}
                                     c={"white"}
                                     mx={"auto"}
-                                    onClick={scrollToLeaderboard}
                                 />
 
                                 <SectionButton

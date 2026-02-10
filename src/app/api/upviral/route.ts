@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextRequest, NextResponse } from "next/server";
-import { WaitingEmailModel } from "../_entities";
 import { throwBadRequest } from "../_utils";
 import { headers } from "next/headers";
 import { UAParser } from "ua-parser-js";

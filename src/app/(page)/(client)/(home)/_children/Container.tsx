@@ -4,19 +4,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box } from "@mantine/core";
 import React, { useEffect, useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import { ScrollSmoother } from 'gsap/dist/ScrollSmoother';
 import { useBrowserWidth } from "@/hooks";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { BannerMobile } from "./mobile/BannerMoblie";
-import { INews } from "@/app/api/_entities";
-import News from "./News";
+// import News from "./News";
 import { Footer, Header } from "@/components/layouts";
 import { Loading } from "../../_shared/Loading";
 import { Slogan } from "./Slogan";
 import { MuchMore } from "./MuchMore";
-import { BeSeen } from "./BeSeen";
 import { BannerPc } from "./BannerPc";
 import { SloganMobile } from "./mobile/SloganMobile";
 import { MuchMoreMobile } from "./mobile/MuchMoreMobile";
@@ -30,12 +26,32 @@ import { Role } from "@/types/role";
 import { PointSetting } from "@/types/pointSetting";
 import ScrollToTop from "../../_shared/ScrollToTop";
 import { Reward } from "@/types/reward";
+import { INews } from "@/types/news";
+import { useGSAP } from "@gsap/react";
+import { ScrollSmoother } from 'gsap/dist/ScrollSmoother';
+import { WayGetPaid } from "@/types/wayGetPaid";
+import { IPeopleSay } from "@/types/peopleSay";
+import { IFeaturedCreator } from "@/types/featuredCreator";
+import { Faq } from "@/types/faq";
+import { PartnerSlide } from "@/types/partnerSlide";
+import { Section } from "@/types/section";
+import { FeaturedCreator } from "./FeaturedCreator";
+import { EarningEstimate } from "./EarningEstimate";
+import { PartnerSlider } from "./PartnerSlider";
+import { PeopleSay } from "./PeopleSay";
+import { News } from "./News";
 
 interface Props {
     news: INews[];
     roles: Role[];
     pointSettings: PointSetting[];
     rewards: Reward[];
+    wayGetPaids: WayGetPaid[];
+    peopleSays: IPeopleSay[];
+    featuredCreators: IFeaturedCreator[];
+    faqs: Faq[];
+    partnerSlides: PartnerSlide[];
+    sections: Section[];
 }
 export default function Container(props: Props) {
     const { width } = useBrowserWidth();
@@ -91,29 +107,22 @@ export default function Container(props: Props) {
     );
 }
 
-const Mobile = ({ news, pointSettings, roles, rewards }: Props) => {
-    const main = useRef<any>();
-    const smoother = useRef<ScrollSmoother>();
-
-    useGSAP(
-        () => {
-            // smoother.current = ScrollSmoother.create({
-            //   smooth: 0,
-            //   effects: true,
-            //   smoothTouch: 0.5,
-            //   ignoreMobileResize: true,
-            //   normalizeScroll: true
-            // });
-        },
-        {
-            scope: main,
-        }
-    );
-
+const Mobile = ({
+    news,
+    pointSettings,
+    roles,
+    rewards,
+    wayGetPaids,
+    faqs,
+    partnerSlides,
+    peopleSays,
+    featuredCreators,
+    sections
+}: Props) => {
     return (
         <>
             <Header />
-            <Box id="smooth-wrapper" ref={main}>
+            <Box id="smooth-wrapper">
                 <Box
                     id="smooth-content"
                     className=''
@@ -123,18 +132,31 @@ const Mobile = ({ news, pointSettings, roles, rewards }: Props) => {
                 >
                     <BannerMobile />
                     <LeaderBoardMobile pointSettings={pointSettings} roles={roles} rewards={rewards} />
-                    <SloganMobile />
-                    <MuchMoreMobile />
-                    <BeSeenMobile />
+                    {/* <SloganMobile /> */}
+                    <MuchMore wayGetPaids={wayGetPaids} />
+                    <FeaturedCreator featuredCreators={featuredCreators} />
+                    <EarningEstimate />
+                    <PartnerSlider partnerSlides={partnerSlides} />
                     {/* <NewsMobile news={news} /> */}
-                    <FooterMobile />
+                    {/* <FooterMobile /> */}
                 </Box>
             </Box>
         </>
     );
 };
 
-const Desktop = ({ news, pointSettings, roles, rewards }: Props) => {
+const Desktop = ({
+    news,
+    pointSettings,
+    roles,
+    rewards,
+    wayGetPaids,
+    faqs,
+    partnerSlides,
+    peopleSays,
+    featuredCreators,
+    sections
+}: Props) => {
     const main = useRef<any>();
     const smoother = useRef<ScrollSmoother>();
 
@@ -147,7 +169,6 @@ const Desktop = ({ news, pointSettings, roles, rewards }: Props) => {
         },
         { scope: main, }
     );
-
     return (
         <>
             <Header />
@@ -161,11 +182,14 @@ const Desktop = ({ news, pointSettings, roles, rewards }: Props) => {
                 >
                     <BannerPc />
                     <LeaderBoard pointSettings={pointSettings} roles={roles} rewards={rewards} />
-                    <Slogan />
-                    <MuchMore />
-                    <BeSeen />
-                    {/* <News news={news} /> */}
-                    <Footer />
+                    {/* <Slogan /> */}
+                    <MuchMore wayGetPaids={wayGetPaids} />
+                    <FeaturedCreator featuredCreators={featuredCreators} />
+                    <EarningEstimate />
+                    <PartnerSlider partnerSlides={partnerSlides} />
+                    <PeopleSay peopleSays={peopleSays} />
+                    <News news={news} />
+                    {/* <Footer /> */}
                 </Box>
             </Box>
         </>

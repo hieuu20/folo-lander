@@ -1,7 +1,7 @@
 
 export interface INews {
     content: string;
-    status: boolean;
+    isActive: boolean;
     title: string;
     thumb: string;
     priority: number;

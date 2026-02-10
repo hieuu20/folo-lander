@@ -1,115 +1,136 @@
-import { Box, Flex, Text } from '@mantine/core';
+import { Box, Flex, Text, Title } from '@mantine/core';
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap/dist/gsap';
-import { useGSAP } from '@gsap/react';
-import { More, moreList } from '@/utils';
+import React, { useCallback, useRef, useState } from 'react';
+import Slider from 'react-slick';
 import { useBrowserWidth } from '@/hooks';
+import { WayGetPaid } from '@/types/wayGetPaid';
+import { ArrowLeft } from '@/components/icons/ArrowLeft';
+import { ArrowRight } from '@/components/icons/ArrowRight';
+import { twMerge } from 'tailwind-merge';
+import { More, moreList } from '@/utils/much-more';
 
-export function MuchMore() {
-    const main = useRef(null);
-    const [ctnPadding, setCtnPadding] = useState(0);
+interface Props {
+    wayGetPaids: WayGetPaid[];
+}
 
-    const { width } = useBrowserWidth();
+export function MuchMore({ wayGetPaids }: Props) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const sliderRef = useRef<any>();
+    const [current, setCurrent] = useState(0);
+    const { width, isMb } = useBrowserWidth();
 
-    useEffect(() => {
-        const containerEl = document.querySelector(".container");
-        if (containerEl) {
-            const styles = window.getComputedStyle(containerEl);
-            const paddingLeft = parseFloat(styles.paddingLeft);
-            const marginLeft = parseFloat(styles.marginLeft);
-            setCtnPadding(paddingLeft + marginLeft);
-        }
+    const itemWidth = isMb ? 290 : 338;
+
+
+    const slideToShow = width / itemWidth;
+
+    const onPrev = useCallback(() => {
+        sliderRef.current.slickPrev();
     }, []);
 
-    useGSAP(
-        () => {
-            const step = window.innerHeight;
-            const endValue = step * 7;
+    const onNext = useCallback(() => {
+        sliderRef.current.slickNext();
+    }, []);
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: main.current,
-                    pin: true,
-                    start: 'top top',
-                    end: `+=${endValue}`,
-                    markers: false,
-                    scrub: true,
-                },
-            });
+    const centerPadding = ((slideToShow - 1) / 2) * itemWidth;
 
-            tl.fromTo("#more-text",
-                {
-                    x: 0
-                },
-                {
-                    x: -(window.innerWidth * 0.225 * (moreList.length - 0.5)),
-                    duration: 1
-                }
-            );
+    // const settings = {
+    //     dots: false,
+    //     arrows: false,
+    //     infinite: false,
+    //     autoplay: false,
+    //     slidesToShow: slideToShow,
+    //     slidesToScroll: Math.floor(slideToShow),
+    //     draggable: true,
+    //     initialSlide: 0,
+    //     afterChange: (index: number) => {
+    //         setCurrent(index);
+    //     },
+    //     responsive: [
+    //         {
+    //             breakpoint: 768,
+    //             settings: {
+    //                 centerMode: true,
+    //                 centerPadding: `${centerPadding + 6}px`,
+    //                 slidesToShow: 1,
+    //             },
+    //         },
+    //     ],
+    // };
 
-            tl.fromTo("#track",
-                {
-                    x: 0
-                },
-                {
-                    x: -(window.innerWidth * 0.225 * (moreList.length - 0.5)),
-                    duration: 1
-                },
-                "<"
-            );
+    const settings = {
+        dots: false,
+        arrows: false,
+        infinite: false,
+        autoplay: false,
+        centerMode: true,
+        centerPadding: `${centerPadding + 6}px`,
+        slidesToShow: 1,
+        draggable: true,
+        afterChange: (index: number) => {
+            setCurrent(index);
         },
-        {
-            scope: main,
-        }
-    );
+        initialSlide: Math.floor(wayGetPaids.length / 2),
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    centerMode: true,
+                    centerPadding: `${centerPadding + 6}px`,
+                    slidesToShow: 1,
+                },
+            },
+        ],
+    };
+
+    const isAtStart = current == 0;
+    const isAtEnd = current >= wayGetPaids.length - slideToShow + 2;
 
     return (
-        <Box id='MuchMore' w={"100%"} bg={"white"} h={"800vh"}>
-            <Box
-                ref={main}
-                h={"100vh"}
-                w={"100%"}
-            >
-                <Flex
-                    h={"100%"}
-                    w={"100%"}
-                    align={"center"}
-                    pl={ctnPadding}
-                    justify={"space-between"}
+        <Box id='MuchMore' w={"100%"} bg={"white"} py={{ base: 60, md: 80 }}>
+            <Flex direction={"column"} gap={{ base: 24, md: 40 }}>
+                <Title order={4} fz={{ base: 32, md: 56 }} fw={700} c={"#131416"} lh={1.2} ta={"center"}>
+                    More ways to get paid
+                </Title>
+
+                <Slider
+                    ref={sliderRef}
+                    {...settings}
+                    className="[&_.slick-slide]:px-3 [&_.slick-list]:-mx-3 [&_.slick-track]:relative"
                 >
-                    <Flex id='more-text' direction={"column"} gap={{ base: 16 }} w={"36%"} >
-                        <Text fz={{ base: 56 }} fw={600} c={"#131416"} lh={1.2}>
-                            And much more
-                        </Text>
+                    {wayGetPaids.map((o, index) => {
+                        const item = moreList.find(x => x.title == o.title);
+                        if (!item) {
+                            return <></>;
+                        }
+                        return (
+                            <MoreItem key={index} item={item} />
+                        );
+                    })}
+                </Slider>
 
-                        <Text fz={{ base: 28 }} fw={500} c={"#4D5053"} lh={1.2}>
-                            A growing set of tools designed to support creators, brands, and users to help you grow.
-                        </Text>
-                    </Flex>
+                <Flex gap={24} w={"100%"} justify={"center"}>
+                    <Box onClick={onPrev} className={twMerge(isAtStart ? "pointer-events-none" : "hover:opacity-70 transition-all duration-200 cursor-pointer")}>
+                        <ArrowLeft w={32} h={32} c={isAtStart ? "#6E7174" : "#131416"} />
+                    </Box>
 
-                    <Box w={"56%"}>
-                        <Flex align={"center"} w={"fit-content"} gap={24} id='track'>
-                            {moreList.map((o, index) => {
-                                return (
-                                    <MoreItem key={index} item={o} width={width * 0.225} />
-                                );
-                            })}
-                        </Flex>
+                    <Box onClick={onNext} className={twMerge(isAtEnd ? "pointer-events-none" : "hover:opacity-60 transition-all duration-200 cursor-pointer")}>
+                        <ArrowRight w={32} h={32} c={isAtEnd ? "#6E7174" : "#131416"} />
                     </Box>
                 </Flex>
-            </Box>
+            </Flex>
         </Box>
     );
 }
 
 
-const MoreItem = ({ item, width }: { item: More, width: number }) => {
+const MoreItem = ({ item }: { item: More }) => {
+    const { isMb } = useBrowserWidth();
     return (
         <Flex
             direction={"column"}
             justify={"space-between"}
-            w={width}
+            w={"100%"}
             bg={item.backgroundRadiant || item.backgroundColor || undefined}
             style={{
                 backgroundImage: item.backgroundImg ? `url('${item.backgroundImg}')` : undefined
@@ -122,20 +143,36 @@ const MoreItem = ({ item, width }: { item: More, width: number }) => {
                     {item.title}
                 </Text>
 
-                <Text fz={{ base: 16, md: 20 }} c={item.dscColor} mb={{ base: 12 }} lh={1.2}>
+                <Text fz={{ base: 16, md: 20 }} c={item.dscColor} lh={1.4}>
                     {item.description}
                 </Text>
+
+                {item.isCommingSoon && item.buttonImgMb && item.buttonImgPc && (
+                    <Box
+                        w={{ base: 76, md: 138 }}
+                        h={{ base: 23, md: 38 }}
+                        pos={"relative"}
+                    // className='hover:opacity-75 transition-all duration-200 cursor-pointer'
+                    >
+                        <Image src={isMb ? item.buttonImgMb : item.buttonImgPc} alt='cmsButton' fill className='object-contain' />
+                    </Box>
+                )}
             </Flex>
 
-            <Box
-                w={item.larger ? "calc(100% + 24px)" : "100%"}
-                pos={"relative"}
-                bottom={item.absolute?.bottom ? -24 : 0}
-                right={item.absolute?.right ? 0 : 0}
-            >
-                <Image src={item.img} alt={item.title} className='w-full h-auto' />
-            </Box>
-
+            {item.isAi && item.imgMb ? (
+                <Flex w={"100%"} h={"fit-content"} pos={"relative"}>
+                    <Image src={isMb ? item.imgMb : item.img} alt='more img' className='w-full h-auto object-cover' />
+                </Flex>
+            ) : (
+                <Box
+                    w={item.larger ? "calc(100% + 24px)" : "100%"}
+                    pos={"relative"}
+                    bottom={item.absolute?.bottom ? -24 : 0}
+                    right={item.absolute?.right ? 0 : 0}
+                >
+                    <Image src={item.img} alt={item.title} className='w-full h-auto' />
+                </Box>
+            )}
         </Flex>
     );
 };

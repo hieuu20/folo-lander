@@ -21,7 +21,6 @@ import { motion, useInView } from "framer-motion";
 import { PropsWithChildren, useRef } from "react";
 import Marquee from "react-fast-marquee";
 import { footerList, footerPays, socials, TokenAnimation } from "@/components/layouts/client-layout/Footer";
-import { useDisclosure } from "@/hooks";
 import { EmailWaitingListInput } from "../../../_shared/EmailWaitingListInput";
 import { twMerge } from "tailwind-merge";
 

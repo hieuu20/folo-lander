@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { Box, Flex, Text, Title } from '@mantine/core';
 import Image from 'next/image';
-import { INews } from '@/app/api/_entities';
 import Slider from 'react-slick';
 import { formatTime } from '@/utils/helpers';
 import Link from 'next/link';
@@ -17,6 +16,7 @@ import { twMerge } from 'tailwind-merge';
 
 import newsLogo from "@public/news/logo.png";
 import { motion, useAnimate, useInView } from 'framer-motion';
+import { INews } from '@/types/news';
 
 interface Props {
     news: INews[];

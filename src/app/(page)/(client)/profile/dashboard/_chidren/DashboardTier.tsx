@@ -49,7 +49,6 @@ export function DashboardTier({ accountLevels, profile }: Props) {
         }
     }, []);
 
-
     const onPrev = useCallback(() => {
         sliderRef.current.slickPrev();
     }, []);

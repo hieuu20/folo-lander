@@ -59,6 +59,16 @@ export const metadata: Metadata = {
 export const myFont = localFont({
   src: [
     {
+      path: '../../../public/fonts/SFDisplay/SF-Pro-Display-Light.otf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/SFDisplay/SF-Pro-Display-LightItalic.otf',
+      weight: '300',
+      style: 'italic',
+    },
+    {
       path: '../../../public/fonts/SFDisplay/SF-Pro-Display-Regular.otf',
       weight: '400',
       style: 'normal',

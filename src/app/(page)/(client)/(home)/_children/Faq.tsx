@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { IFaq } from '@/types/faq';
 import { Accordion, Box, Flex, Text, Title } from '@mantine/core';
 import React from 'react';
@@ -30,6 +31,7 @@ export function Faq({ faqs }: Props) {
                 direction={{ base: "column", md: "row" }}
                 justify={{ base: "center", md: "space-between" }}
                 py={{ base: 40, md: 60, xl: 80 }}
+                pb={{ base: 60, md: 80, xl: 100 }}
                 gap={24}
             >
                 <Title
@@ -100,7 +102,7 @@ export function Faq({ faqs }: Props) {
                 </Flex>
             </Flex>
 
-            <Box
+            {/* <Box
                 pt={{ base: 40 }} pb={{ base: 80, md: 120 }}
                 px={{ base: 16 }}
             >
@@ -132,8 +134,7 @@ export function Faq({ faqs }: Props) {
                         onClick={scrollToLeaderboard}
                     />
                 </Flex>
-
-            </Box>
+            </Box> */}
         </Box>
     );
 }

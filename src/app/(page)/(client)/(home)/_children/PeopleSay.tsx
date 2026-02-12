@@ -55,6 +55,7 @@ export function PeopleSay({ peopleSays = [] }: Props) {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.6, ease: "easeInOut" }}
+                            className='text-center'
                         >
                             “{peopleSays[index].feedback}”
                         </motion.p>

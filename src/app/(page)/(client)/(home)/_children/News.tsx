@@ -88,6 +88,7 @@ export function News({ news }: Props) {
             w={"100%"}
             bg={"white"}
             py={{ base: 40, md: 60, xl: 80 }}
+            className='overflow-hidden'
         >
             <Box className='md:container'>
                 <Title

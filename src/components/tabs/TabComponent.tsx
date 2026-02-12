@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { Tabs } from '@mantine/core';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -10,9 +10,8 @@ export interface TabItem {
     title: string;
 }
 
-
 interface Props {
-    data: TabItem[]
+    data: TabItem[];
 }
 export default function TabComponent({ data }: Props) {
     const searchParams = useSearchParams();
@@ -33,7 +32,7 @@ export default function TabComponent({ data }: Props) {
             value={active}
             onChange={(e) => {
                 const params = new URLSearchParams(searchParams.toString());
-                params.set("tab", e!);
+                params.set('tab', e!);
                 router.push(`?${params.toString()}`, { scroll: false });
             }}
         >
@@ -54,7 +53,7 @@ export default function TabComponent({ data }: Props) {
 
             {data.map((o) => {
                 return (
-                    <Tabs.Panel key={o.key} value={o.key} >
+                    <Tabs.Panel key={o.key} value={o.key}>
                         {o.component()}
                     </Tabs.Panel>
                 );

@@ -77,10 +77,10 @@ export function Feature() {
   };
 
   return (
-    <Box 
+    <Box
       className='rounded-t-[24px] overflow-hidden z-10 relative'
       bg={"white"}
-      py={{ base: 40, md: 60, xl: 80 }} 
+      py={{ base: 40, md: 60, xl: 80 }}
       mt={-24}
     >
       <Flex mih={"100vh"} justify={"space-between"} className='container'>
@@ -89,12 +89,10 @@ export function Feature() {
             const isActive = activeIndex == index;
             return (
               <Flex
-                key={index} py={{ base: 24 }}
-                className='hover:bg-gray-50 transition-all duration-200 cursor-pointer rounded-lg'
-                onClick={() => handleClick(index)}
+                key={index} py={{ base: 12 }}
               >
                 {isActive && (
-                  <Flex direction={"column"} gap={16}>
+                  <Flex direction={"column"} gap={16} py={12}>
                     <Text c={"#131416"} fz={{ base: 48 }} fw={600}>
                       {o.title}
                     </Text>
@@ -116,9 +114,18 @@ export function Feature() {
                 )}
 
                 {!isActive && (
-                  <Text fz={{ base: 24 }} fw={600} c={"#4D5053"}>
-                    {o.title}
-                  </Text>
+                  <Box
+                    p={12}
+                    w={"100%"}
+                    onClick={() => handleClick(index)}
+                    pos={"relative"}
+                    left={-12}
+                    className='hover:bg-gray-50 transition-all duration-200 cursor-pointer rounded-2xl'
+                  >
+                    <Text fz={{ base: 24 }} fw={600} c={"#4D5053"}>
+                      {o.title}
+                    </Text>
+                  </Box>
                 )}
               </Flex>
             );

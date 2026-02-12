@@ -7,7 +7,7 @@ import img2 from "@public/feature/1/2.webp";
 
 export function Feature1() {
     return (
-        <Box 
+        <Box
             w={{ base: "100%" }} pos={"relative"}
             key={1}
             h={"fit-content"}
@@ -26,7 +26,7 @@ export function Feature1() {
                     preload="auto"
                     controls={false}
                     muted={true}
-                    className="w-[62.6%] aspect-[0.46176470588] rounded-[40px] object-cover absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    className="w-[62.6%] aspect-[0.46176470588] rounded-[21px] md:rounded-[40px] object-cover absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                     style={{
                         boxShadow: "0px 5.26px 13.15px 0px #00000080 inset"
                     }}

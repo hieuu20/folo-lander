@@ -84,7 +84,7 @@ export function MuchMore({ wayGetPaids }: Props) {
     };
 
     return (
-        <Box id='MuchMore' w={"100%"} bg={"white"} py={{ base: 60, md: 80 }}>
+        <Box id='MuchMore' w={"100%"} bg={"white"} py={{ base: 60, md: 80 }} className='overflow-hidden'>
             <Flex direction={"column"} gap={{ base: 24, md: 40 }}>
                 <Title order={4} fz={{ base: 32, md: 56 }} fw={700} c={"#131416"} lh={1.2} ta={"center"}>
                     More ways to get paid

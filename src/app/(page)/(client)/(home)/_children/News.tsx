@@ -13,6 +13,7 @@ import newsLogo from "@public/news/logo.png";
 import { INews } from '@/types/news';
 import right from "@public/news/arrow-right.svg";
 import left from "@public/news/arrow-left.svg";
+import { useBrowserWidth } from '@/hooks';
 
 interface Props {
     news: INews[];
@@ -20,8 +21,14 @@ interface Props {
 
 export function News({ news }: Props) {
     const [height, setHeight] = useState(0);
+    const { width } = useBrowserWidth();
 
     const sliderRef = useRef<any>();
+
+    const itemMobileWidth = 290;
+    const slideToShow = width / itemMobileWidth;
+
+    const centerPadding = ((slideToShow - 1) / 2) * itemMobileWidth;
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -44,13 +51,13 @@ export function News({ news }: Props) {
     const settings = {
         dots: false,
         arrows: false,
-        infinite: isPlay,
+        infinite: true,
         speed: 500,
         pauseOnHover: true,
         autoplay: isPlay,
         slidesToShow: 4,
         slidesToScroll: 1,
-        initialSlide: 0,
+        initialSlide: Math.floor(news.length / 2),
         draggable: true,
         responsive: [
             {
@@ -65,9 +72,9 @@ export function News({ news }: Props) {
             {
                 breakpoint: 768,
                 settings: {
-                    autoplay: true,
-                    infinite: true,
-                    slidesToShow: 1.2,
+                    centerMode: true,
+                    centerPadding: `${centerPadding + 5}px`,
+                    slidesToShow: 1,
                     slidesToScroll: 1,
                 },
             },
@@ -82,7 +89,7 @@ export function News({ news }: Props) {
             bg={"white"}
             py={{ base: 40, md: 60, xl: 80 }}
         >
-            <Box className='container'>
+            <Box className='md:container'>
                 <Title
                     w={{ base: "100%" }}
                     px={16}
@@ -111,7 +118,7 @@ export function News({ news }: Props) {
                                 >
                                     <Flex
                                         direction={"column"}
-                                        className='rounded-2xl overflow-hidden translate-x-[20%] sm:translate-x-0'
+                                        className='rounded-2xl overflow-hidden'
                                         bd={"1px solid #E7E7F8"}
                                     >
                                         <Box pos={"relative"} w={"100%"} className='overflow-hidden aspect-[1.24279835391]'>

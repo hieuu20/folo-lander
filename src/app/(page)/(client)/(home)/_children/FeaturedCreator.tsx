@@ -3,14 +3,14 @@ import { Box, Flex, Text, Title } from '@mantine/core';
 import React from 'react';
 import Marquee from "react-fast-marquee";
 import proBadge from "@public/icons/pro-badge.png";
-import verifiedBadge from "@public/icons/verified-badge.png";
+// import verifiedBadge from "@public/icons/verified-badge.png";
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 
-const badges = {
-    "VERIFIED": verifiedBadge,
-    "PRO": proBadge
-};
+// const badges = {
+//     "VERIFIED": verifiedBadge,
+//     "PRO": proBadge
+// };
 
 
 interface Props {
@@ -28,7 +28,7 @@ export function FeaturedCreator({ featuredCreators }: Props) {
 
             <Box>
                 <Marquee
-                    direction="right"
+                    direction="left"
                     speed={30}
                     delay={5}
                     play={true}
@@ -51,7 +51,7 @@ export function FeaturedCreator({ featuredCreators }: Props) {
                             >
                                 <Box pos={"relative"} w={{ base: 40, md: 64 }} className='aspect-square'>
                                     <Image src={o.avatar} alt='creator avatar' fill className='object-cover rounded-full' />
-                                    <Image src={badges[o.badge]} alt='badge' className='absolute bottom-0 right-0 w-[13px] md:w-[22px] h-auto' />
+                                    <Image src={proBadge} alt='badge' className='absolute bottom-0 right-0 w-[13px] md:w-[22px] h-auto' />
                                 </Box>
 
                                 <Flex direction={"column"} gap={2}>

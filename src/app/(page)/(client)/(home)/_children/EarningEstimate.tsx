@@ -7,8 +7,12 @@ import SectionButton from '@/components/buttons/SectionButton';
 import { useBrowserWidth } from '@/hooks';
 import { formatNumber } from '@/utils';
 
-const calc = (followers: number, views: number, sub: number) => {
-    return (followers * 3 / 100 * sub) + (views * 0.001);
+const calc1 = (followers: number, views: number, sub: number) => {
+    return (followers * 1 / 100 * sub) + (views * 0.001);
+};
+
+const calc2 = (followers: number, views: number, sub: number) => {
+    return (followers * 5 / 100 * sub) + (views * 0.001);
 };
 
 export function EarningEstimate() {
@@ -18,7 +22,8 @@ export function EarningEstimate() {
     const [monthlyViews, setMonthlyViews] = useState(500000);
     const [subscription, setSubscription] = useState(5);
 
-    const [monthlyEarn, setMonthlyEarn] = useState(calc(followers, monthlyViews, subscription));
+    const [monthlyEarn1, setMonthlyEarn1] = useState(calc1(followers, monthlyViews, subscription));
+    const [monthlyEarn2, setMonthlyEarn2] = useState(calc2(followers, monthlyViews, subscription));
     const [loading, setLoading] = useState(false);
 
     const onChangeFollower = (value: number) => {
@@ -35,15 +40,13 @@ export function EarningEstimate() {
 
     const onCalc = () => {
         setLoading(true);
-        setMonthlyEarn(calc(followers, monthlyViews, subscription));
+        setMonthlyEarn1(calc1(followers, monthlyViews, subscription));
+        setMonthlyEarn2(calc2(followers, monthlyViews, subscription));
 
         setTimeout(() => {
             setLoading(false);
         }, 500);
     };
-
-    // const monthlyEarn = (followers * 3 / 100 * subscription) + (monthlyViews * 0.001);
-    // const weeklyEarn = monthlyEarn / 4;
 
     return (
         <Box w={"100%"} py={{ base: 40, md: 80, xl: 120 }}>
@@ -54,11 +57,11 @@ export function EarningEstimate() {
                     align={"center"} justify={"center"}
                     px={{ base: 32, md: 60, lg: 90, xl: 120 }}
                     py={{ base: 40, md: 60, xl: 80 }}
-                    bd={"8px solid #f6f4f4"}
+                    bd={{ md: "8px solid #f6f4f4" }}
                     className='rounded-3xl md:rounded-[45px] lg:rounded-[56px] 2xl:rounded-[64px] overflow-hidden'
                 >
                     <Image src={bgPc} alt='bgPc' fill className='object-cover hidden md:inline-block' />
-                    <Image src={bgMb} alt='bgPc' fill className='object-cover md:hidden' />
+                    <Image src={bgMb} alt='bgMb' fill className='object-cover md:hidden' />
 
                     <Flex
                         pos={"relative"}
@@ -85,7 +88,11 @@ export function EarningEstimate() {
                         )}
 
                         <Box flex={1}>
-                            <EarningResult monthlyEarn={monthlyEarn} loading={loading} />
+                            <EarningResult
+                                monthlyEarn1={monthlyEarn1}
+                                monthlyEarn2={monthlyEarn2}
+                                loading={loading}
+                            />
                         </Box>
 
                         {isMb && (
@@ -223,46 +230,73 @@ const EarningForm = ({ followers, monthlyViews, subscription, onChangeFollower, 
     );
 };
 
-const EarningResult = ({ monthlyEarn }: { monthlyEarn: number, loading: boolean }) => {
-    const { isMb } = useBrowserWidth();
-
+const EarningResult = ({ monthlyEarn1, monthlyEarn2 }: { monthlyEarn1: number; monthlyEarn2: number; loading: boolean }) => {
     return (
         <Flex
             bg={"white"} direction={"column"} align={"center"}
-            gap={{ base: 16, md: 40 }} py={{ base: 24, md: 80 }}
+            gap={{ base: 16 }} py={{ base: 24, md: 80 }}
             px={{ base: 16, md: 48 }}
             className='rounded-2xl md:rounded-[40px]'
         >
-            {!isMb && <Text c={"#131416"} fz={{ base: 28 }} lh={1.2}>Your estimated earnings:</Text>}
-            <Flex gap={24} w={"100%"}>
-                <Flex direction={"column"} gap={4} flex={1} align={"center"}>
-                    <Text fz={{ base: 28, md: 40 }} fw={800} lh={1.2}>
-                        {/* {loading ? (
-                            <></>
-                        ) : (
-                            <>
-                                ${formatNumber(Math.floor(monthlyEarn / 4))}
-                            </>
-                        )} */}
-                        ${formatNumber(Math.floor(monthlyEarn / 4))}
-                    </Text>
-                    <Text fz={{ base: 14, md: 24 }} c={"#4D5053"} lh={1.2}>
-                        Weekly
-                    </Text>
-                </Flex>
-
-                <Flex direction={"column"} gap={4} flex={1} align={"center"}>
-                    <Text fz={{ base: 28, md: 40 }} fw={800} lh={1.2}>
-                        ${formatNumber(Math.floor(monthlyEarn))}
-                    </Text>
-                    <Text fz={{ base: 14, md: 24 }} c={"#4D5053"} lh={1.2}>
-                        Monthly
-                    </Text>
-                </Flex>
-            </Flex>
-            <Text fz={{ base: 10, md: 16 }} c={"#808386"} fw={300} lh={1.2} ta={"center"} w={"96%"}>
-                *This is an estimate based on average creator performance. Actual earnings may vary depending on content quality, engagement.
+            <Text
+                fz={{ base: 24, md: 40 }}
+                fw={600}
+                lh={1.2}
+                ta={"center"}
+                w={"80%"}
+            >
+                You could earn between 
+                <span className='font-bold text-[#435EFB]'>${formatNumber(monthlyEarn1)}</span> and 
+                <span className='font-bold text-[#435EFB]'>${formatNumber(monthlyEarn2)}</span> per month*
+            </Text>
+            <Text fz={{ base: 8, md: 13 }} c={"#808386"} fw={300} lh={1.2} ta={"center"} w={"96%"}>
+                *Based on estimate of between 1% and 5% of your followers subscribing. Earnings are net of platform fees. <br />
+                Monthly subscriptions can include profiles, channels & groups. On demand / Shop items  include approximate figures for additional features on the platform such as pay per view, requests, live streams, events, shops, auctions and tips.
             </Text>
         </Flex>
     );
 };
+
+// const EarningResult = ({ monthlyEarn }: { monthlyEarn: number, loading: boolean }) => {
+//     const { isMb } = useBrowserWidth();
+
+//     return (
+//         <Flex
+//             bg={"white"} direction={"column"} align={"center"}
+//             gap={{ base: 16, md: 40 }} py={{ base: 24, md: 80 }}
+//             px={{ base: 16, md: 48 }}
+//             className='rounded-2xl md:rounded-[40px]'
+//         >
+//             {!isMb && <Text c={"#131416"} fz={{ base: 28 }} lh={1.2}>Your estimated earnings:</Text>}
+//             <Flex gap={24} w={"100%"}>
+//                 <Flex direction={"column"} gap={4} flex={1} align={"center"}>
+//                     <Text fz={{ base: 28, md: 40 }} fw={800} lh={1.2}>
+//                         {/* {loading ? (
+//                             <></>
+//                         ) : (
+//                             <>
+//                                 ${formatNumber(Math.floor(monthlyEarn / 4))}
+//                             </>
+//                         )} */}
+//                         ${formatNumber(Math.floor(monthlyEarn / 4))}
+//                     </Text>
+//                     <Text fz={{ base: 14, md: 24 }} c={"#4D5053"} lh={1.2}>
+//                         Weekly
+//                     </Text>
+//                 </Flex>
+
+//                 <Flex direction={"column"} gap={4} flex={1} align={"center"}>
+//                     <Text fz={{ base: 28, md: 40 }} fw={800} lh={1.2}>
+//                         ${formatNumber(Math.floor(monthlyEarn))}
+//                     </Text>
+//                     <Text fz={{ base: 14, md: 24 }} c={"#4D5053"} lh={1.2}>
+//                         Monthly
+//                     </Text>
+//                 </Flex>
+//             </Flex>
+//             <Text fz={{ base: 10, md: 16 }} c={"#808386"} fw={300} lh={1.2} ta={"center"} w={"96%"}>
+//                 *This is an estimate based on average creator performance. Actual earnings may vary depending on content quality, engagement.
+//             </Text>
+//         </Flex>
+//     );
+// };

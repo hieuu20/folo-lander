@@ -2,14 +2,14 @@
 
 import React from "react";
 import gsap from 'gsap/dist/gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+// import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/dist/ScrollSmoother';
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 
 import { useGSAP } from '@gsap/react';
 
 if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin, useGSAP);
+  gsap.registerPlugin(ScrollSmoother, ScrollToPlugin, useGSAP);
 }
 
 export default function ClientLayout({

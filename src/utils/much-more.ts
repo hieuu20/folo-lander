@@ -9,7 +9,7 @@ import muchMore8 from "@public/much-more/8.webp";
 import muchMore9 from "@public/much-more/9.png";
 import muchMore9Mb from "@public/much-more/9-img-mb.png";
 
-import muchMore9Icon from "@public/much-more/9-icon.webp";
+import muchMore9Icon from "@public/much-more/9-icon.png";
 import button8Mb from "@public/much-more/8-bt-mb.png";
 import button9Mb from "@public/much-more/9-bt-mb.png";
 

@@ -18,18 +18,18 @@ export function Header() {
 
   const scrollToLeaderboard = () => {
     gsap.to(window, {
-        duration: 1,
-        scrollTo: {
-            y: "#Leaderboard",
-            autoKill: false,
-        },
-        ease: "power2.out",
+      duration: 1,
+      scrollTo: {
+        y: "#Leaderboard",
+        autoKill: false,
+      },
+      ease: "power2.out",
     });
-};
+  };
 
-useEffect(() => {
+  useEffect(() => {
     gsap.registerPlugin(ScrollToPlugin);
-}, []);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,7 +55,8 @@ useEffect(() => {
       )}
     >
       <Flex
-        justify="space-between"
+        // justify="space-between"
+        justify="center"
         align="center"
         h={{ base: 71 }}
         className={`container`}
@@ -68,7 +69,7 @@ useEffect(() => {
           <Image src={logo} alt="header logo" id='header-logo' fill className='object-cover opacity1 transition-all duration-150' />
         </Link>
 
-        {profile ? (
+        {/* {profile ? (
           <Flex gap={16}>
             <SectionButton
               show={true}
@@ -115,8 +116,7 @@ useEffect(() => {
               Join the waitlist
             </Button>
           </Flex>
-        )}
-
+        )} */}
       </Flex>
     </header>
   );

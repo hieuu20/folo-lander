@@ -21,8 +21,6 @@ interface Props {
 }
 
 const XProvider = new TwitterAuthProvider();
-const FbProvider = new FacebookAuthProvider();
-
 
 export default function LoginForm({ roles }: Props) {
     const [opened, { open, close }] = useDisclosure();
@@ -82,17 +80,17 @@ export default function LoginForm({ roles }: Props) {
         console.log({ test, user });
     };
 
-    const signInFacebook = async () => {
-        const test = signInWithFacebook();
+    // const signInFacebook = async () => {
+    //     const test = signInWithFacebook();
 
-        console.log({ test });
+    //     console.log({ test });
 
-        // const result = await signInWithPopup(firebaseAuth, FbProvider);
-        // const token = await result.user.getIdToken();
-        // const user = await result.user;
+    //     // const result = await signInWithPopup(firebaseAuth, FbProvider);
+    //     // const token = await result.user.getIdToken();
+    //     // const user = await result.user;
 
-        // console.log({ token, user });
-    };
+    //     // console.log({ token, user });
+    // };
 
     const signInTwitter = async () => {
         // const test = await signInWithTwitter();
@@ -105,8 +103,6 @@ export default function LoginForm({ roles }: Props) {
 
         console.log({ token, user });
     };
-
-    console.log({ user, loading });
 
     return (
         <Flex direction={"column"} gap={{ base: 24 }} align={"center"} w={{ base: "100%" }}>
@@ -187,9 +183,9 @@ export default function LoginForm({ roles }: Props) {
                 <Box w={48} h={48} className='overflow-hidden cursor-pointer'>
                     <Image src={xIcon} alt='ggIcon' width={24} height={24} className='w-full h-full' onClick={signInTwitter} />
                 </Box>
-                <Box w={48} h={48} className='overflow-hidden cursor-pointer' onClick={signInFacebook}>
+                {/* <Box w={48} h={48} className='overflow-hidden cursor-pointer' onClick={signInFacebook}>
                     <Image src={fbIcon} alt='ggIcon' width={24} height={24} className='w-full h-full relative' />
-                </Box>
+                </Box> */}
             </Flex>
 
         </Flex>

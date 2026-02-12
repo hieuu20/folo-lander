@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from '@mantine/core';
+import { Box, Flex, Title } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import trustIcon from "@public/people-say/trust.webp";
 import Image from 'next/image';
@@ -26,14 +26,15 @@ export function PeopleSay({ peopleSays = [] }: Props) {
                 direction={{ base: "column", md: "row" }}
                 justify={{ base: "center", md: "space-between" }}
                 align={{ base: "center" }}
+                gap={24}
             >
-                <Flex w={{ base: "100%", md: "24%" }} direction={"column"} gap={{ base: 24, md: 32 }}>
+                <Flex w={{ base: "100%", md: "24%" }} direction={"column"} gap={{ base: 24, md: 32 }} align={{ base: "center", md: "unset" }}>
                     <Image src={trustIcon} alt='trustIcon' className='w-[130px] md:w-[160px] xl:w-[195px] h-auto' />
-                    <Text fz={{ base: 32, md: 60, xl: 80 }} fw={{ base: 700, md: 600 }} c={"#131416"}>
+                    <Title order={4} fz={{ base: 32, md: 60, xl: 80 }} fw={{ base: 700, md: 600 }} lh={1.2} c={"#131416"}>
                         What
                         people
                         say 💬
-                    </Text>
+                    </Title>
                 </Flex>
 
                 <Flex
@@ -45,6 +46,7 @@ export function PeopleSay({ peopleSays = [] }: Props) {
                     fw={600}
                     c={"#131416"}
                     className='rounded-2xl md:rounded-3xl aspect-[1.10063897764]'
+                    align={"center"}
                 >
                     <AnimatePresence mode="wait">
                         <motion.p

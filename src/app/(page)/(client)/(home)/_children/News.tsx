@@ -10,7 +10,6 @@ import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
 import newsLogo from "@public/news/logo.png";
 
-import { motion, useAnimate, useInView } from 'framer-motion';
 import { INews } from '@/types/news';
 import right from "@public/news/arrow-right.svg";
 import left from "@public/news/arrow-left.svg";
@@ -21,8 +20,6 @@ interface Props {
 
 export function News({ news }: Props) {
     const [height, setHeight] = useState(0);
-    const [scope] = useAnimate();
-    const isInView = useInView(scope, { amount: 0.2, once: true });
 
     const sliderRef = useRef<any>();
 
@@ -52,7 +49,7 @@ export function News({ news }: Props) {
         pauseOnHover: true,
         autoplay: isPlay,
         slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToScroll: 1,
         initialSlide: 0,
         draggable: true,
         responsive: [
@@ -77,7 +74,6 @@ export function News({ news }: Props) {
         ],
     };
 
-
     return (
         <Box
             pos={"relative"}
@@ -98,21 +94,10 @@ export function News({ news }: Props) {
                     ta={"center"}
                     mb={{ base: 24, md: 40 }}
                 >
-                    <motion.span
-                        initial={{ y: "150%", opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{
-                            duration: 0.6,
-                            ease: "easeIn"
-                        }}
-                        className="inline-block"
-                    >
-                        NEWS
-                    </motion.span>
+                    NEWS
                 </Title>
 
-                <Box ref={scope} mb={{ base: 24 }}>
+                <Box mb={{ base: 24 }}>
                     <Slider
                         ref={sliderRef}
                         {...settings}
@@ -120,15 +105,8 @@ export function News({ news }: Props) {
                     >
                         {news.map((o, index) => {
                             return (
-                                <motion.div
+                                <Box
                                     key={index}
-                                    initial={{ y: "25%", opacity: 0 }}
-                                    animate={isInView ? { y: 0, opacity: 1 } : {}}
-                                    transition={{
-                                        duration: 1,
-                                        ease: 'easeInOut',
-                                        delay: index * 0.2
-                                    }}
                                     className={twMerge('group bg-white cursor-pointer')}
                                 >
                                     <Flex
@@ -136,7 +114,7 @@ export function News({ news }: Props) {
                                         className='rounded-2xl overflow-hidden translate-x-[20%] sm:translate-x-0'
                                         bd={"1px solid #E7E7F8"}
                                     >
-                                        <Box pos={"relative"} w={"100%"} h={"fit-content"} className='overflow-hidden'>
+                                        <Box pos={"relative"} w={"100%"} className='overflow-hidden aspect-[1.24279835391]'>
                                             <Image src={o.thumb} alt={o.title} width={200} height={200} className='w-full h-auto object-cover  group-hover:scale-105 transition-all duration-300 ease-in-out' />
                                             <Image src={newsLogo} alt='newsLogo' className='absolute bottom-0 left-0 w-[108px] h-auto object-cover' />
                                         </Box>
@@ -167,7 +145,7 @@ export function News({ news }: Props) {
                                             </Link>
                                         </Flex>
                                     </Flex>
-                                </motion.div>
+                                </Box>
                             );
                         })}
                     </Slider>

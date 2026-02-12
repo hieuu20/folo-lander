@@ -1,4 +1,4 @@
-export interface Faq {
+export interface IFaq {
   _id: number;
   priority: number;
   isActive: boolean;

@@ -28,7 +28,7 @@ export function LeaderBoardMobile({ roles, pointSettings, rewards }: Props) {
             id='Leaderboard'
             w={"100%"}
             py={{ base: 40 }}
-            h={profile ? 1250 : 1550}
+            // h={profile ? 1250 : 1550}
         >
             <Flex
                 id='leaderboard-container'

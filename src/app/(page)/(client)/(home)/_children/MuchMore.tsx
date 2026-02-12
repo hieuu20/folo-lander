@@ -1,6 +1,6 @@
 import { Box, Flex, Text, Title } from '@mantine/core';
 import Image from 'next/image';
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef } from 'react';
 import Slider from 'react-slick';
 import { useBrowserWidth } from '@/hooks';
 import { WayGetPaid } from '@/types/wayGetPaid';
@@ -16,7 +16,6 @@ interface Props {
 export function MuchMore({ wayGetPaids }: Props) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sliderRef = useRef<any>();
-    const [current, setCurrent] = useState(0);
     const { width, isMb } = useBrowserWidth();
 
     const itemWidth = isMb ? 290 : 338;
@@ -61,15 +60,16 @@ export function MuchMore({ wayGetPaids }: Props) {
     const settings = {
         dots: false,
         arrows: false,
-        infinite: false,
-        autoplay: false,
+        infinite: true,
+        autoplay: true,
+        speed: 500,
         centerMode: true,
         centerPadding: `${centerPadding + 6}px`,
         slidesToShow: 1,
         draggable: true,
-        afterChange: (index: number) => {
-            setCurrent(index);
-        },
+        // afterChange: (index: number) => {
+        //     setCurrent(index);
+        // },
         initialSlide: Math.floor(wayGetPaids.length / 2),
         responsive: [
             {
@@ -82,9 +82,6 @@ export function MuchMore({ wayGetPaids }: Props) {
             },
         ],
     };
-
-    const isAtStart = current == 0;
-    const isAtEnd = current >= wayGetPaids.length - slideToShow + 2;
 
     return (
         <Box id='MuchMore' w={"100%"} bg={"white"} py={{ base: 60, md: 80 }}>
@@ -110,12 +107,12 @@ export function MuchMore({ wayGetPaids }: Props) {
                 </Slider>
 
                 <Flex gap={24} w={"100%"} justify={"center"}>
-                    <Box onClick={onPrev} className={twMerge(isAtStart ? "pointer-events-none" : "hover:opacity-70 transition-all duration-200 cursor-pointer")}>
-                        <ArrowLeft w={32} h={32} c={isAtStart ? "#6E7174" : "#131416"} />
+                    <Box onClick={onPrev} className={twMerge("hover:opacity-70 transition-all duration-200 cursor-pointer")}>
+                        <ArrowLeft w={32} h={32} c={"#131416"} />
                     </Box>
 
-                    <Box onClick={onNext} className={twMerge(isAtEnd ? "pointer-events-none" : "hover:opacity-60 transition-all duration-200 cursor-pointer")}>
-                        <ArrowRight w={32} h={32} c={isAtEnd ? "#6E7174" : "#131416"} />
+                    <Box onClick={onNext} className={twMerge("hover:opacity-60 transition-all duration-200 cursor-pointer")}>
+                        <ArrowRight w={32} h={32} c={"#131416"} />
                     </Box>
                 </Flex>
             </Flex>
@@ -162,6 +159,7 @@ const MoreItem = ({ item }: { item: More }) => {
             {item.isAi && item.imgMb ? (
                 <Flex w={"100%"} h={"fit-content"} pos={"relative"}>
                     <Image src={isMb ? item.imgMb : item.img} alt='more img' className='w-full h-auto object-cover' />
+                    <Image src={item.icon || ""} alt='much more icon' className='w-[36px] md:w-[40px] absolute right-0 top-0 translate-x-[40%] -translate-y-1/3' />
                 </Flex>
             ) : (
                 <Box

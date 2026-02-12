@@ -14,6 +14,7 @@ import downIcon from "@public/icons/down.svg";
 import { EmailWaitingListInput } from '../../_shared/EmailWaitingListInput';
 import { useApp } from '@/app/context/AppContext';
 import SectionButton from '@/components/buttons/SectionButton';
+import gsap from "gsap";
 
 export function BannerPc() {
     const { profile } = useApp();
@@ -39,6 +40,17 @@ export function BannerPc() {
         offset: ['start 0', 'start -0.3'],
     });
 
+
+    const scrollToLeaderboard = () => {
+        gsap.to(window, {
+          duration: 1,
+          scrollTo: {
+            y: "#Leaderboard",
+            autoKill: false,
+          },
+          ease: "power2.out",
+        });
+      };
     const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
     return (
@@ -132,7 +144,7 @@ export function BannerPc() {
                         {profile ? (
                             <Flex gap={16}>
                                 <SectionButton
-                                    href='#Leaderboard'
+                                    // href='#Leaderboard'
                                     show={true}
                                     title='Share to earn'
                                     className='rounded-lg'
@@ -143,6 +155,7 @@ export function BannerPc() {
                                     px={0}
                                     c={"white"}
                                     mx={"auto"}
+                                    onClick={scrollToLeaderboard}
                                 />
 
                                 <SectionButton

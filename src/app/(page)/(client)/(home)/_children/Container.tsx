@@ -11,15 +11,10 @@ import { BannerMobile } from "./mobile/BannerMoblie";
 // import News from "./News";
 import { Footer, Header } from "@/components/layouts";
 import { Loading } from "../../_shared/Loading";
-import { Slogan } from "./Slogan";
 import { MuchMore } from "./MuchMore";
 import { BannerPc } from "./BannerPc";
-import { SloganMobile } from "./mobile/SloganMobile";
-import { MuchMoreMobile } from "./mobile/MuchMoreMobile";
 import { FooterMobile } from "./mobile/FooterMobile";
-import { BeSeenMobile } from "./mobile/BeSeenMobile";
 import { loadingTime, setLocalStorage } from "@/utils";
-import NewsMobile from "./mobile/NewsMobile";
 import { LeaderBoardMobile } from "./mobile/LeaderBoardMobile";
 import { LeaderBoard } from "./LeaderBoard";
 import { Role } from "@/types/role";
@@ -32,7 +27,7 @@ import { ScrollSmoother } from 'gsap/dist/ScrollSmoother';
 import { WayGetPaid } from "@/types/wayGetPaid";
 import { IPeopleSay } from "@/types/peopleSay";
 import { IFeaturedCreator } from "@/types/featuredCreator";
-import { Faq } from "@/types/faq";
+import { IFaq } from "@/types/faq";
 import { PartnerSlide } from "@/types/partnerSlide";
 import { Section } from "@/types/section";
 import { FeaturedCreator } from "./FeaturedCreator";
@@ -40,6 +35,10 @@ import { EarningEstimate } from "./EarningEstimate";
 import { PartnerSlider } from "./PartnerSlider";
 import { PeopleSay } from "./PeopleSay";
 import { News } from "./News";
+import { Faq } from "./Faq";
+import { Feature } from "./Feature";
+import { Ai } from "./Ai";
+import { FeatureMobile } from "./mobile/FeatureMobile";
 
 interface Props {
     news: INews[];
@@ -49,7 +48,7 @@ interface Props {
     wayGetPaids: WayGetPaid[];
     peopleSays: IPeopleSay[];
     featuredCreators: IFeaturedCreator[];
-    faqs: Faq[];
+    faqs: IFaq[];
     partnerSlides: PartnerSlide[];
     sections: Section[];
 }
@@ -131,14 +130,17 @@ const Mobile = ({
                     }}
                 >
                     <BannerMobile />
-                    <LeaderBoardMobile pointSettings={pointSettings} roles={roles} rewards={rewards} />
-                    {/* <SloganMobile /> */}
+                    {/* <LeaderBoardMobile pointSettings={pointSettings} roles={roles} rewards={rewards} /> */}
+                    <FeatureMobile />
+                    <Ai />
                     <MuchMore wayGetPaids={wayGetPaids} />
                     <FeaturedCreator featuredCreators={featuredCreators} />
                     <EarningEstimate />
                     <PartnerSlider partnerSlides={partnerSlides} />
-                    {/* <NewsMobile news={news} /> */}
-                    {/* <FooterMobile /> */}
+                    <PeopleSay peopleSays={peopleSays} />
+                    <News news={news} />
+                    <Faq faqs={faqs} />
+                    <FooterMobile />
                 </Box>
             </Box>
         </>
@@ -181,15 +183,17 @@ const Desktop = ({
                     }}
                 >
                     <BannerPc />
-                    <LeaderBoard pointSettings={pointSettings} roles={roles} rewards={rewards} />
-                    {/* <Slogan /> */}
+                    {/* <LeaderBoard pointSettings={pointSettings} roles={roles} rewards={rewards} /> */}
+                    <Ai />
+                    <Feature />
                     <MuchMore wayGetPaids={wayGetPaids} />
                     <FeaturedCreator featuredCreators={featuredCreators} />
                     <EarningEstimate />
                     <PartnerSlider partnerSlides={partnerSlides} />
                     <PeopleSay peopleSays={peopleSays} />
                     <News news={news} />
-                    {/* <Footer /> */}
+                    <Faq faqs={faqs} />
+                    <Footer />
                 </Box>
             </Box>
         </>

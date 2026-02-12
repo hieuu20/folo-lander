@@ -27,7 +27,7 @@ export function LeaderBoard({ pointSettings, roles, rewards }: Props) {
             id='Leaderboard'
             w={"100%"}
             py={{ base: 80 }}
-            h={925}
+            // h={925}
         >
             <Box className='container h-fit'>
                 <Flex

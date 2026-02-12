@@ -82,9 +82,7 @@ export function AccountInfo({ profile }: Props) {
                 enableReinitialize={true}
                 onSubmit={handleSignup}
             >
-                {({ values, isSubmitting, setFieldValue }) => {
-                    const isActive = values.username != profile.username || values.location != profile.location || values.dateOfBirth != profile.dob;
-
+                {({ values, isSubmitting, setFieldValue, dirty }) => {
                     return (
                         <Form className='w-full'>
                             <Flex direction={"column"} gap={16} w={{ base: "100%" }}>
@@ -148,9 +146,9 @@ export function AccountInfo({ profile }: Props) {
                                 <Button
                                     h={40}
                                     w={198}
-                                    bg={isActive ? "#376CEC" : "#C6CBD0"}
-                                    c={isActive ? "white" : "#6E7174"}
-                                    disabled={!isActive}
+                                    bg={dirty ? "#376CEC" : "#C6CBD0"}
+                                    c={dirty ? "white" : "#6E7174"}
+                                    disabled={!dirty}
                                     fz={16}
                                     fw={600}
                                     loading={isSubmitting}

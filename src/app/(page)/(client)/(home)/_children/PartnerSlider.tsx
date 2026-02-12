@@ -12,7 +12,7 @@ export function PartnerSlider({ partnerSlides }: Props) {
         <Box w={"100%"} py={{ base: 40, md: 60, xl: 80 }}>
             <Box>
                 <Marquee
-                    direction="right"
+                    direction="left"
                     speed={30}
                     delay={5}
                     play={true}

@@ -9,6 +9,8 @@ import { useApp } from '@/app/context/AppContext';
 export function ProfileDetailContainer() {
     const { profile } = useApp();
 
+    console.log({ profile });
+
     if (!profile) {
         return <></>;
     }

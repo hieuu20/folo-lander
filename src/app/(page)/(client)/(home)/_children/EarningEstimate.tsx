@@ -246,8 +246,8 @@ const EarningResult = ({ monthlyEarn1, monthlyEarn2 }: { monthlyEarn1: number; m
                 w={"80%"}
             >
                 You could earn between 
-                <span className='font-bold text-[#435EFB]'>${formatNumber(monthlyEarn1)}</span> and 
-                <span className='font-bold text-[#435EFB]'>${formatNumber(monthlyEarn2)}</span> per month*
+                <span className='font-bold text-[#435EFB]'> ${formatNumber(monthlyEarn1)}</span> and 
+                <span className='font-bold text-[#435EFB]'> ${formatNumber(monthlyEarn2)}</span> per month*
             </Text>
             <Text fz={{ base: 8, md: 13 }} c={"#808386"} fw={300} lh={1.2} ta={"center"} w={"96%"}>
                 *Based on estimate of between 1% and 5% of your followers subscribing. Earnings are net of platform fees. <br />

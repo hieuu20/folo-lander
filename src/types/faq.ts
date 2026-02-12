@@ -1,5 +1,5 @@
 export interface IFaq {
-  _id: number;
+  _id: string;
   priority: number;
   isActive: boolean;
   question: string;

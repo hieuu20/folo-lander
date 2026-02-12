@@ -7,6 +7,7 @@ import { Reorder, useDragControls } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
 
 export function WayGetPay() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [loading, setLoading] = useState(false);
 
     const [data, setData] = useState<WayGetPaid[]>([]);

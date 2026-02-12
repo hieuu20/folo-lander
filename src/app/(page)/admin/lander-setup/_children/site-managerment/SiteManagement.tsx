@@ -13,6 +13,7 @@ interface Section {
 }
 
 export function SiteManagement() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [loading, setLoading] = useState(false);
 
     const [data, setData] = useState<Section[]>([]);

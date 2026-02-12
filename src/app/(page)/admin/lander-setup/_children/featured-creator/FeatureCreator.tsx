@@ -8,8 +8,10 @@ import { IconDots, IconEdit, IconMenu2, IconTrash } from '@tabler/icons-react';
 import { Reorder, useDragControls } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
 import FeaturedCreatorFormPopup from './FeaturedCreatorFormPopup';
+import Image from 'next/image';
 
 export function FeatureCreator() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState<IFeaturedCreator[]>([]);
     const [popupOpened, setPopupOpened] = useState(false);
@@ -104,6 +106,7 @@ export function FeatureCreator() {
                 method: 'DELETE',
             });
             fetchData();
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (err) {
             notify.error('Delete fail');
         } finally {
@@ -190,9 +193,11 @@ function SortableItem({
                         <IconMenu2 size={20} />
                     </div>
 
-                    <img
+                    <Image
                         src={section.avatar}
                         alt={section.name}
+                        width={100}
+                        height={100}
                         className="w-10 h-10 rounded-full object-cover"
                     />
 

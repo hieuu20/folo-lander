@@ -4,7 +4,7 @@ import { InputField } from '@/components';
 import { Popup } from '@/components/Popups/Popup';
 import UploadImage from '@/components/upload/UploadImage';
 import { notify } from '@/utils/notify';
-import { Button, Checkbox, Flex, Select, Stack } from '@mantine/core';
+import { Button, Checkbox, Flex, Select } from '@mantine/core';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import React, { useCallback } from 'react';
 import Image from 'next/image';
@@ -65,6 +65,7 @@ export default function FeaturedCreatorFormPopup({ opened, close, initialValue, 
                 } else {
                     notify.error('Action fail');
                 }
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             } catch (err) {
                 notify.error('Action fail');
             } finally {

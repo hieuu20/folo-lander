@@ -2,7 +2,7 @@
 
 import { InputField } from '@/components';
 import { Popup } from '@/components/Popups/Popup';
-import { Faq } from '@/types/faq';
+import { IFaq } from '@/types/faq';
 import { notify } from '@/utils/notify';
 import { Button, Checkbox, Flex, Stack } from '@mantine/core';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
@@ -11,7 +11,7 @@ import React, { useCallback } from 'react';
 interface Props {
     opened: boolean;
     close: () => void;
-    initialValue?: Partial<Faq>;
+    initialValue?: Partial<IFaq>;
     refresh: () => void;
 }
 
@@ -19,7 +19,7 @@ export default function FaqsFormPopup({ opened, close, initialValue, refresh }: 
     const isEdit = !!initialValue?._id;
 
     const onSubmit = useCallback(
-        async (values: Partial<Faq>, { setSubmitting }: FormikHelpers<Partial<Faq>>) => {
+        async (values: Partial<IFaq>, { setSubmitting }: FormikHelpers<Partial<IFaq>>) => {
             try {
                 setSubmitting(true);
                 const res = await fetch(
@@ -43,6 +43,7 @@ export default function FaqsFormPopup({ opened, close, initialValue, refresh }: 
                 } else {
                     notify.error('Action fail');
                 }
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             } catch (err) {
                 notify.error('Action fail');
             } finally {

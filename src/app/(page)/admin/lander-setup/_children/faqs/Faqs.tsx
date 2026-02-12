@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { CreateButton } from '@/components/buttons/CreateButton';
@@ -7,13 +8,14 @@ import { IconDots, IconEdit, IconMenu2, IconTrash } from '@tabler/icons-react';
 import { Reorder, useDragControls } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
 import FaqsFormPopup from './FaqsFormPopup';
-import { Faq } from '@/types/faq';
+import { IFaq } from '@/types/faq';
 
 export function Faqs() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [loading, setLoading] = useState(false);
-    const [data, setData] = useState<Faq[]>([]);
+    const [data, setData] = useState<IFaq[]>([]);
     const [popupOpened, setPopupOpened] = useState(false);
-    const [selectedCreator, setSelectedCreator] = useState<Partial<Faq> | undefined>(undefined);
+    const [selectedCreator, setSelectedCreator] = useState<Partial<IFaq> | undefined>(undefined);
 
     const toggle = async (id: string, isActive: boolean) => {
         try {
@@ -26,7 +28,7 @@ export function Faqs() {
                 body: JSON.stringify({ _id: id, isActive }),
             });
 
-            setData((prev) => prev.map((item) => (item._id === id ? { ...item, isActive } : item)));
+            setData((prev) => prev.map((item) => (item._id == id ? { ...item, isActive } : item)));
         } catch (err) {
             console.log({ err });
         } finally {
@@ -34,7 +36,7 @@ export function Faqs() {
         }
     };
 
-    const updatePriorities = useCallback(async (items: Faq[]) => {
+    const updatePriorities = useCallback(async (items: IFaq[]) => {
         try {
             const priorityData = items.map((item, index) => ({
                 _id: item._id,
@@ -74,7 +76,7 @@ export function Faqs() {
     }, [fetchData]);
 
     const handleReorder = useCallback(
-        (newData: Faq[]) => {
+        (newData: IFaq[]) => {
             setData(newData);
             const timeoutId = setTimeout(() => {
                 updatePriorities(newData);
@@ -90,7 +92,7 @@ export function Faqs() {
         setPopupOpened(true);
     };
 
-    const handleEdit = (creator: Faq) => {
+    const handleEdit = (creator: IFaq) => {
         setSelectedCreator(creator);
         setPopupOpened(true);
     };
@@ -156,10 +158,10 @@ function SortableItem({
     onEdit,
     onDelete,
 }: {
-    section: Faq;
+    section: IFaq;
     index: number;
     toggle: (id: string, active: boolean) => void;
-    onEdit: (creator: Faq) => void;
+    onEdit: (creator: IFaq) => void;
     onDelete: (id: string) => void;
 }) {
     const controls = useDragControls();

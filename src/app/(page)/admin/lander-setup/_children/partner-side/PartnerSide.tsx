@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { CreateButton } from '@/components/buttons/CreateButton';
@@ -195,9 +196,11 @@ function SortableItem({
                         <IconMenu2 size={20} />
                     </div>
 
-                    <img
+                    <Image
                         src={section.thumb}
                         alt="Partner logo"
+                        width={100}
+                        height={100}
                         className="h-[64px] w-[160px] object-contain"
                     />
                 </Group>

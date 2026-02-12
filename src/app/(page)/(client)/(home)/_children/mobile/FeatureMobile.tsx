@@ -105,18 +105,21 @@ export function FeatureMobile() {
       mt={-24}
     >
       <Flex direction={"column"} className='container'>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeIndex}
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 0 }}
-            transition={{ duration: 0.2 }}
-            className='w-full aspect-[0.9] flex items-center'
-          >
-            {list[activeIndex].component()}
-          </motion.div>
-        </AnimatePresence>
+        <Flex pos={"relative"} w={"100%"} align={"center"} className='aspect-[0.93]'>
+          {list.map((o, index) => {
+            return (
+              <Box
+                key={index} pos={"absolute"} top={0} left={0} w={"100%"} h={"fit-content"}
+                className={twMerge(
+                  activeIndex == index ? "block" : "hidden",
+                  "transition-all duration-200"
+                )}
+              >
+                {o.component()}
+              </Box>
+            );
+          })}
+        </Flex>
 
         <Flex
           py={{ base: 24 }}

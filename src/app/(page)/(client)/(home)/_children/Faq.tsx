@@ -25,7 +25,12 @@ export function Faq({ faqs }: Props) {
         });
     };
     return (
-        <Box w={"100%"} bg={"#F7F7FC"}>
+        <Box
+            w={"100%"}
+            // bg={"#F7F7FC"}
+            bg={"white"}
+
+        >
             <Flex
                 className='container'
                 direction={{ base: "column", md: "row" }}

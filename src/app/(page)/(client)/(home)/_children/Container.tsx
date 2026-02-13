@@ -138,7 +138,7 @@ const Mobile = ({
                     <EarningEstimate />
                     <PartnerSlider partnerSlides={partnerSlides} />
                     <PeopleSay peopleSays={peopleSays} />
-                    <News news={news} />
+                    {/* <News news={news} /> */}
                     <Faq faqs={faqs} />
                     <FooterMobile />
                 </Box>
@@ -191,7 +191,7 @@ const Desktop = ({
                     <EarningEstimate />
                     <PartnerSlider partnerSlides={partnerSlides} />
                     <PeopleSay peopleSays={peopleSays} />
-                    <News news={news} />
+                    {/* <News news={news} /> */}
                     <Faq faqs={faqs} />
                     <Footer />
                 </Box>

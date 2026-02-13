@@ -135,7 +135,7 @@ export function News({ news }: Props) {
                                             className='rounded-b-2xl'
                                         >
                                             <Text fz={{ base: 16 }} c={"#4D5053"} lh={1.2}>
-                                                {formatTime(o.createdAt as any)}
+                                                {formatTime(o.date as any)}
                                             </Text>
 
                                             <Box h={height}>

@@ -12,6 +12,7 @@ import {
     TrackingSetting,
     WayGetPay,
 } from './_children';
+import NewsContainer from './_children/news/NewsContainer';
 
 const tabList: TabItem[] = [
     {
@@ -41,7 +42,7 @@ const tabList: TabItem[] = [
     },
     {
         key: 'news',
-        component: () => <></>,
+        component: NewsContainer,
         title: 'News',
     },
     {

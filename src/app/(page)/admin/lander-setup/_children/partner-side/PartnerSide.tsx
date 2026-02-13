@@ -4,13 +4,15 @@
 import { CreateButton } from '@/components/buttons/CreateButton';
 import { PartnerSlide } from '@/types/partnerSlide';
 import { notify } from '@/utils/notify';
-import { Checkbox, Flex, Group, Stack, Text } from '@mantine/core';
+import { Button, Checkbox, Flex, Group, LoadingOverlay, Stack, Text } from '@mantine/core';
 import TrashIcon from '@public/icons/trash-icon.svg';
 import { IconMenu2 } from '@tabler/icons-react';
 import { Reorder, useDragControls } from 'framer-motion';
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import FeaturedCreatorFormPopup from './PartnerSideFormPopup';
+import { Popup } from '@/components/Popups/Popup';
+import { twMerge } from 'tailwind-merge';
 
 export function PartnerSide() {
     const [loading, setLoading] = useState(false);
@@ -19,6 +21,9 @@ export function PartnerSide() {
     const [selectedCreator, setSelectedCreator] = useState<Partial<PartnerSlide> | undefined>(
         undefined,
     );
+
+    const [deleteId, setDeleteId] = useState<string>();
+    const [deleting, setDeleting] = useState(false);
 
     const toggle = async (id: string, isActive: boolean) => {
         try {
@@ -100,17 +105,18 @@ export function PartnerSide() {
         setPopupOpened(true);
     };
 
-    const handleDelete = async (id: string) => {
+    const handleDelete = async () => {
         try {
-            setLoading(true);
-            await fetch(`/api/admin/partner-side/${id}`, {
+            setDeleting(true);
+            await fetch(`/api/admin/partner-side/${deleteId}`, {
                 method: 'DELETE',
             });
             fetchData();
         } catch (err) {
             notify.error('Delete fail');
         } finally {
-            setLoading(false);
+            setDeleting(false);
+            setDeleteId(undefined);
         }
     };
 
@@ -142,7 +148,7 @@ export function PartnerSide() {
                         index={index}
                         toggle={toggle}
                         onEdit={handleEdit}
-                        onDelete={handleDelete}
+                        setDeleteId={setDeleteId}
                     />
                 ))}
             </Reorder.Group>
@@ -153,6 +159,27 @@ export function PartnerSide() {
                 initialValue={selectedCreator}
                 refresh={fetchData}
             />
+
+            <Popup
+                opened={!!deleteId}
+                onClose={() => setDeleteId(undefined)}
+                title={"Delete partner"}
+            >
+                <Flex pos="relative" direction="column" align="center">
+                    <LoadingOverlay
+                        visible={deleting}
+                        zIndex={1000}
+                        overlayProps={{ radius: 'sm', blur: 2 }}
+                    />
+                    <span>Are you want to delete this partner?</span>
+                    <Flex justify="center" gap={16} className="mt-4">
+                        <Button variant="outline" fw={600} onClick={() => setDeleteId(undefined)}>
+                            Cancel
+                        </Button>
+                        <Button onClick={handleDelete} fw={600} bg={"#376CEC"}>Yes</Button>
+                    </Flex>
+                </Flex>
+            </Popup>
         </Stack>
     );
 }
@@ -162,13 +189,13 @@ function SortableItem({
     index,
     toggle,
     onEdit,
-    onDelete,
+    setDeleteId,
 }: {
     section: PartnerSlide;
     index: number;
     toggle: (id: string, active: boolean) => void;
     onEdit: (creator: PartnerSlide) => void;
-    onDelete: (id: string) => void;
+    setDeleteId: (id: string) => void;
 }) {
     const controls = useDragControls();
 
@@ -181,12 +208,13 @@ function SortableItem({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0 }}
-            className="w-full relative"
+            className={twMerge("w-full relative", index % 2 != 0 && "border border-[#E7E7F8]")}
         >
             <Group
-                className={`py-3 px-4 ${index % 2 !== 0 ? 'bg-[#FAFAFA]' : 'bg-white'} border-b border-[#F7F7FC] hover:bg-gray-50 transition-colors duration-200 select-none`}
+                className={`py-3 px-4 ${index % 2 !== 0 ? 'bg-[#F7F7FC]' : 'bg-white'} border-b border-[#F7F7FC] hover:bg-gray-50 transition-colors duration-200 select-none`}
                 wrap="nowrap"
                 justify="space-between"
+
             >
                 <Group gap={12} wrap="nowrap" className="flex-1">
                     <div
@@ -210,14 +238,14 @@ function SortableItem({
                         label={section.isActive ? 'Active' : 'In-active'}
                         checked={section.isActive}
                         onChange={() => toggle(section._id, !section.isActive)}
-                        color="grape"
+                        color="#376CEC"
                         styles={{
                             label: { paddingLeft: 8, fontWeight: 500 },
                         }}
                     />
 
                     <button
-                        onClick={() => onDelete(section._id)}
+                        onClick={() => setDeleteId(section._id)}
                         className="p-1 text-gray-400 hover:text-red-600 transition-colors"
                     >
                         <Image src={TrashIcon} alt="Trash" width={20} height={20} />

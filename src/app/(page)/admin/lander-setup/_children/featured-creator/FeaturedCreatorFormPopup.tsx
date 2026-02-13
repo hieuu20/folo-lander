@@ -81,7 +81,7 @@ export default function FeaturedCreatorFormPopup({ opened, close, initialValue, 
             onClose={close}
             title={isEdit ? 'Edit Featured Creator' : 'New Featured Creator'}
         >
-            <Formik initialValues={initialValue || { isActive: false }} onSubmit={onSubmit}>
+            <Formik initialValues={initialValue || { isActive: true }} onSubmit={onSubmit}>
                 {({ values, setFieldValue, isSubmitting }) => {
                     const isValid = values.name && values.avatar && values.role;
                     return (

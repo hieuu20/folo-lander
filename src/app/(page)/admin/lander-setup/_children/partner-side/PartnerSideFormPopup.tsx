@@ -72,7 +72,7 @@ export default function PartnerSideFormPopup({ opened, close, initialValue, refr
                                 <div className="flex items-center gap-2 w-fit">
                                     <Checkbox
                                         checked={values.isActive}
-                                        color="grape"
+                                        color="#376CEC"
                                         onChange={(e) => {
                                             setFieldValue('isActive', e.target.checked);
                                         }}

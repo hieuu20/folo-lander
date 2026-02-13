@@ -3,12 +3,13 @@
 
 import { CreateButton } from '@/components/buttons/CreateButton';
 import { notify } from '@/utils/notify';
-import { ActionIcon, Checkbox, Group, Menu, Stack, Text } from '@mantine/core';
+import { ActionIcon, Button, Checkbox, Flex, Group, LoadingOverlay, Menu, Stack, Text } from '@mantine/core';
 import { IconDots, IconEdit, IconMenu2, IconTrash } from '@tabler/icons-react';
 import { Reorder, useDragControls } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
 import FaqsFormPopup from './FaqsFormPopup';
 import { IFaq } from '@/types/faq';
+import { Popup } from '@/components/Popups/Popup';
 
 export function Faqs() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -16,6 +17,9 @@ export function Faqs() {
     const [data, setData] = useState<IFaq[]>([]);
     const [popupOpened, setPopupOpened] = useState(false);
     const [selectedCreator, setSelectedCreator] = useState<Partial<IFaq> | undefined>(undefined);
+
+    const [deleteId, setDeleteId] = useState<string>();
+    const [deleting, setDeleting] = useState(false);
 
     const toggle = async (id: string, isActive: boolean) => {
         try {
@@ -97,17 +101,18 @@ export function Faqs() {
         setPopupOpened(true);
     };
 
-    const handleDelete = async (id: string) => {
+    const handleDelete = async () => {
         try {
-            setLoading(true);
-            await fetch(`/api/admin/faq/${id}`, {
+            setDeleting(true);
+            await fetch(`/api/admin/faq/${deleteId}`, {
                 method: 'DELETE',
             });
             fetchData();
         } catch (err) {
             notify.error('Delete fail');
         } finally {
-            setLoading(false);
+            setDeleting(false);
+            setDeleteId(undefined);
         }
     };
 
@@ -136,7 +141,7 @@ export function Faqs() {
                         index={index}
                         toggle={toggle}
                         onEdit={handleEdit}
-                        onDelete={handleDelete}
+                        setDeleteId={setDeleteId}
                     />
                 ))}
             </Reorder.Group>
@@ -147,6 +152,27 @@ export function Faqs() {
                 initialValue={selectedCreator}
                 refresh={fetchData}
             />
+
+            <Popup
+                opened={!!deleteId}
+                onClose={() => setDeleteId(undefined)}
+                title={"Delete faq"}
+            >
+                <Flex pos="relative" direction="column" align="center">
+                    <LoadingOverlay
+                        visible={deleting}
+                        zIndex={1000}
+                        overlayProps={{ radius: 'sm', blur: 2 }}
+                    />
+                    <span>Are you want to delete this faq?</span>
+                    <Flex justify="center" gap={16} className="mt-4">
+                        <Button variant="outline" fw={600} onClick={() => setDeleteId(undefined)}>
+                            Cancel
+                        </Button>
+                        <Button onClick={handleDelete} fw={600} bg={"#376CEC"}>Yes</Button>
+                    </Flex>
+                </Flex>
+            </Popup>
         </Stack>
     );
 }
@@ -156,13 +182,13 @@ function SortableItem({
     index,
     toggle,
     onEdit,
-    onDelete,
+    setDeleteId,
 }: {
     section: IFaq;
     index: number;
     toggle: (id: string, active: boolean) => void;
     onEdit: (creator: IFaq) => void;
-    onDelete: (id: string) => void;
+    setDeleteId: (id: string) => void;
 }) {
     const controls = useDragControls();
 
@@ -205,7 +231,7 @@ function SortableItem({
                         label={section.isActive ? 'Active' : 'In-active'}
                         checked={section.isActive}
                         onChange={() => toggle(section._id, !section.isActive)}
-                        color="grape"
+                        color="#376CEC"
                         styles={{
                             label: { paddingLeft: 8, fontWeight: 500 },
                         }}
@@ -233,7 +259,7 @@ function SortableItem({
                                 leftSection={<IconTrash size={20} />}
                                 fw={500}
                                 fz={14}
-                                onClick={() => onEdit(section)}
+                                onClick={() => setDeleteId(section._id)}
                             >
                                 Delete
                             </Menu.Item>

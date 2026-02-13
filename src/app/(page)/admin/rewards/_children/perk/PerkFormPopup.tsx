@@ -19,7 +19,6 @@ interface Props {
 export default function PerkFormPopup({ opened, close, initialValue, refresh }: Props) {
 
     const isEdit = !!initialValue?._id;
-    const [editIndex, setEditIndex] = useState<number>();
 
     const onSubmit = useCallback(async (values: Partial<Perk>, { setSubmitting }: FormikHelpers<Partial<Perk>>) => {
         try {

@@ -57,10 +57,10 @@ export default function PeopleSayFormPopup({ opened, close, initialValue, refres
         <Popup
             opened={opened}
             onClose={close}
-            title={isEdit ? 'Edit People Say' : 'New People Say'}
+            title={isEdit ? 'Edit feedback' : 'Add feedback'}
         >
             <Formik
-                initialValues={initialValue || { feedback: '', isActive: false }}
+                initialValues={initialValue || { feedback: '', isActive: false, priority: 50 }}
                 onSubmit={onSubmit}
             >
                 {({ values, setFieldValue, isSubmitting }) => {
@@ -84,7 +84,7 @@ export default function PeopleSayFormPopup({ opened, close, initialValue, refres
                                     }}
                                 />
 
-                                <div className="flex items-center gap-2 w-full">
+                                <div className="flex items-center justify-center gap-2 w-full">
                                     <Checkbox
                                         checked={values.isActive}
                                         color="#376CEC"

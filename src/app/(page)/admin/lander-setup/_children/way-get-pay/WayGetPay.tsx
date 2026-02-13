@@ -5,6 +5,7 @@ import { Checkbox, Group, Stack, Text } from '@mantine/core';
 import { IconMenu2 } from '@tabler/icons-react';
 import { Reorder, useDragControls } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 export function WayGetPay() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -126,10 +127,10 @@ function SortableItem({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0 }}
-            className="w-full relative"
+            className={twMerge("w-full relative", index % 2 != 0 && "border border-solid border-[#E7E7F8]")}
         >
             <Group
-                className={`py-4 px-4 ${index % 2 !== 0 ? 'bg-[#FAFAFA]' : 'bg-white'} border-b border-[#F7F7FC] hover:bg-gray-50 transition-colors duration-200 select-none`}
+                className={`py-4 px-4 ${index % 2 !== 0 ? 'bg-[#F7F7FC]' : 'bg-white'} border-b border-[#F7F7FC] hover:bg-gray-50 transition-colors duration-200 select-none`}
                 wrap="nowrap"
             >
                 <div
@@ -147,7 +148,7 @@ function SortableItem({
                         label={section.isActive ? 'Active' : 'In-active'}
                         checked={section.isActive}
                         onChange={() => toggle(section._id, !section.isActive)}
-                        color="grape"
+                        color="#376CEC"
                         className="pl-3 cursor-pointer font-medium"
                     />
                 </div>

@@ -64,7 +64,8 @@ export function SiteManagement() {
             {data.map((section, index) => (
                 <Group
                     key={section._id}
-                    className={`py-4 px-4 ${index % 2 !== 0 ? 'bg-[#FAFAFA]' : 'bg-white'}`}
+                    className={`py-4 px-4 ${index % 2 !== 0 ? 'bg-[#F7F7FC]' : 'bg-white'}`}
+                    bd={index % 2 !== 0 ? "1px solid #E7E7F8" : undefined}
                 >
                     <Text size="sm" fw={500} w={'60%'}>
                         {section.title}
@@ -73,7 +74,7 @@ export function SiteManagement() {
                         label={section.isActive ? 'Active' : 'In-active'}
                         checked={section.isActive}
                         onChange={() => toggle(section._id, !section.isActive)}
-                        color="grape"
+                        color="#376CEC"
                         className="pl-3 cursor-pointer font-medium"
                     />
                 </Group>

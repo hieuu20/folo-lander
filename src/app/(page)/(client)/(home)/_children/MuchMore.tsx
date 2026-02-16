@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Flex, Text, Title } from '@mantine/core';
 import Image from 'next/image';
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import Slider from 'react-slick';
 import { useBrowserWidth } from '@/hooks';
 import { WayGetPaid } from '@/types/wayGetPaid';
@@ -8,21 +9,20 @@ import { ArrowLeft } from '@/components/icons/ArrowLeft';
 import { ArrowRight } from '@/components/icons/ArrowRight';
 import { twMerge } from 'tailwind-merge';
 import { More, moreList } from '@/utils/much-more';
+import { useInView } from 'framer-motion';
 
 interface Props {
     wayGetPaids: WayGetPaid[];
 }
 
 export function MuchMore({ wayGetPaids }: Props) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sliderRef = useRef<any>();
+    const ref = useRef<any>(null);
+    const isInView = useInView(ref, { once: true, amount: 0.1 });
+
     const { width, isMb } = useBrowserWidth();
-
     const itemWidth = isMb ? 290 : 338;
-
-
     const slideToShow = width / itemWidth;
-
     const onPrev = useCallback(() => {
         sliderRef.current.slickPrev();
     }, []);
@@ -33,44 +33,26 @@ export function MuchMore({ wayGetPaids }: Props) {
 
     const centerPadding = ((slideToShow - 1) / 2) * itemWidth;
 
-    // const settings = {
-    //     dots: false,
-    //     arrows: false,
-    //     infinite: false,
-    //     autoplay: false,
-    //     slidesToShow: slideToShow,
-    //     slidesToScroll: Math.floor(slideToShow),
-    //     draggable: true,
-    //     initialSlide: 0,
-    //     afterChange: (index: number) => {
-    //         setCurrent(index);
-    //     },
-    //     responsive: [
-    //         {
-    //             breakpoint: 768,
-    //             settings: {
-    //                 centerMode: true,
-    //                 centerPadding: `${centerPadding + 6}px`,
-    //                 slidesToShow: 1,
-    //             },
-    //         },
-    //     ],
-    // };
+    console.log({ isInView });
+    useEffect(() => {
+        if (!sliderRef.current) return;
+
+        if (isInView) {
+            sliderRef.current.slickPlay();
+        }
+    }, [isInView]);
 
     const settings = {
         dots: false,
         arrows: false,
         infinite: true,
-        autoplay: true,
+        autoplay: false,
         speed: 500,
         centerMode: true,
         centerPadding: `${centerPadding + 6}px`,
         slidesToShow: 1,
         draggable: true,
-        // afterChange: (index: number) => {
-        //     setCurrent(index);
-        // },
-        initialSlide: Math.floor(wayGetPaids.length / 2),
+        initialSlide: 0,
         responsive: [
             {
                 breakpoint: 768,
@@ -84,7 +66,7 @@ export function MuchMore({ wayGetPaids }: Props) {
     };
 
     return (
-        <Box id='MuchMore' w={"100%"} bg={"white"} py={{ base: 60, md: 80 }} className='overflow-hidden'>
+        <Box ref={ref} id='MuchMore' w={"100%"} bg={"white"} py={{ base: 60, md: 80 }} className='overflow-hidden'>
             <Flex direction={"column"} gap={{ base: 24, md: 40 }}>
                 <Title order={4} fz={{ base: 32, md: 56 }} fw={700} c={"#131416"} lh={1.2} ta={"center"}>
                     More ways to get paid

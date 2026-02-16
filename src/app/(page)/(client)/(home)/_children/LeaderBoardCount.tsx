@@ -25,7 +25,7 @@ export default function LeaderBoardCount() {
     return (
         <Flex
             className="container"
-            pt={{ base: 24, md: 40, xl: 80 }}
+            py={{ base: 24, md: 40, xl: 80 }}
             align={"center"}
             direction={{ base: "column", md: "unset" }}
             justify={{ base: "center" }}

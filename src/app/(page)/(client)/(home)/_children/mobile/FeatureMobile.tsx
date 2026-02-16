@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Flex, Text } from '@mantine/core';
 import React, { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { Feature1 } from '../feature/Feature1';
 import { Feature2 } from '../feature/Feature2';
 import { Feature3 } from '../feature/Feature3';
@@ -53,6 +54,8 @@ export function FeatureMobile() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [progressKey, setProgressKey] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const ref = useRef<any>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.4 });
 
   const startTimer = () => {
     intervalRef.current = setInterval(() => {
@@ -62,11 +65,13 @@ export function FeatureMobile() {
   };
 
   useEffect(() => {
-    startTimer();
+    if (isInView) {
+      startTimer();
+    }
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, []);
+  }, [isInView]);
 
   const onPrev = () => {
     let index = activeIndex - 1;
@@ -104,7 +109,7 @@ export function FeatureMobile() {
       py={{ base: 40, md: 60, xl: 80 }}
       mt={-24}
     >
-      <Flex direction={"column"} className='container'>
+      <Flex ref={ref} direction={"column"} className='container'>
         <Flex pos={"relative"} w={"100%"} align={"center"} className='aspect-[0.93]'>
           {list.map((o, index) => {
             return (
@@ -141,7 +146,7 @@ export function FeatureMobile() {
           <motion.div
             key={progressKey}
             initial={{ width: "0%" }}
-            animate={{ width: "100%" }}
+            animate={isInView ? { width: "100%" } : {}}
             transition={{ duration: DURATION / 1000, ease: "linear" }}
             className="h-full bg-black"
           />

@@ -1,17 +1,23 @@
 'use client';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 export function useBrowserWidth() {
-  const [width, setWidth] = useState(0);
-  // const [readyOnBrowser, setReadyOnBrowser] = useState(false);
+    const [width, setWidth] = useState(0);
 
-  useEffect(() => {
-    setWidth(screen.width);
-  }, []);
+    useEffect(() => {
+        const onResize = () => {
+            setWidth(screen.width);
+        };
 
-  const isMb = React.useMemo(() => width <= 768, [width]);
-  return {
-    width,
-    isMb,
-  };
+        onResize();
+
+        window.addEventListener('resize', onResize);
+        return () => window.removeEventListener('resize', onResize);
+    }, []);
+
+    const isMb = React.useMemo(() => width <= 768, [width]);
+    return {
+        width,
+        isMb,
+    };
 }

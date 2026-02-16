@@ -2,34 +2,15 @@
 import { IFaq } from '@/types/faq';
 import { Accordion, Box, Flex, Text, Title } from '@mantine/core';
 import React from 'react';
-import bgPc from "@public/faq/bg-pc.webp";
-import bgMb from "@public/faq/bg-mb.webp";
-
-import Image from 'next/image';
-import SectionButton from '@/components/buttons/SectionButton';
-import gsap from "gsap";
 
 interface Props {
     faqs: IFaq[];
 }
 export function Faq({ faqs }: Props) {
-
-    const scrollToLeaderboard = () => {
-        gsap.to(window, {
-            duration: 1,
-            scrollTo: {
-                y: "#Leaderboard",
-                autoKill: false,
-            },
-            ease: "power2.out",
-        });
-    };
     return (
         <Box
             w={"100%"}
-            // bg={"#F7F7FC"}
-            bg={"white"}
-
+            bg={"#F7F7FC"}
         >
             <Flex
                 className='container'
@@ -103,43 +84,8 @@ export function Faq({ faqs }: Props) {
                             );
                         })}
                     </Accordion>
-
                 </Flex>
             </Flex>
-
-            {/* <Box
-                pt={{ base: 40 }} pb={{ base: 80, md: 120 }}
-                px={{ base: 16 }}
-            >
-                <Flex
-                    w={{ base: "100%", md: "80%", xl: 1160 }}
-                    direction={{ base: "column", md: "row" }}
-                    mx={"auto"}
-                    gap={{ base: 40 }}
-                    pos={"relative"}
-                    justify={"center"}
-                    align={"center"}
-                    className='aspect-[1.25182481752] md:aspect-[6.44444444444]'
-                    px={{ base: 32, md: 0 }}
-                >
-                    <Image src={bgPc} alt='bg' fill className='object-cover hidden md:inline-block' />
-                    <Image src={bgMb} alt='bg' fill className='object-cover md:hidden' />
-                    <Text fz={{ base: 32, md: 34 }} fw={700} c={"#131416"} lh={1.2} pos={"relative"} ta={"center"}>
-                        Refer Creators and your friends to earn 15% value.
-                    </Text>
-
-                    <SectionButton
-                        title='Invite friends now →'
-                        fz={{ base: 16, md: 20 }}
-                        fw={600}
-                        c={"white"}
-                        w={{ base: 180, md: 224 }}
-                        h={{ base: 40, md: 52 }}
-                        px={0}
-                        onClick={scrollToLeaderboard}
-                    />
-                </Flex>
-            </Box> */}
         </Box>
     );
 }

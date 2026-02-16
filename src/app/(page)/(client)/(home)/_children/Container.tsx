@@ -39,6 +39,8 @@ import { Faq } from "./Faq";
 import { Feature } from "./Feature";
 import { Ai } from "./Ai";
 import { FeatureMobile } from "./mobile/FeatureMobile";
+import LeaderBoardCount from "./LeaderBoardCount";
+import ReferFriend from "./ReferFriend";
 
 interface Props {
     news: INews[];
@@ -118,6 +120,22 @@ const Mobile = ({
     featuredCreators,
     sections
 }: Props) => {
+
+    const listMobile: Record<string, React.JSX.Element> = {
+        "Leaderboard": <LeaderBoardMobile pointSettings={pointSettings} roles={roles} rewards={rewards} />,
+        "User counters": <LeaderBoardCount />,
+        "Faster, Simpler and Smarter": <Ai />,
+        "Key USPS": <FeatureMobile />,
+        "More ways to get paid": <MuchMore wayGetPaids={wayGetPaids} />,
+        "Featured creators": <FeaturedCreator featuredCreators={featuredCreators} />,
+        "Earning estimation": <EarningEstimate />,
+        "Partners": <PartnerSlider partnerSlides={partnerSlides} />,
+        "People say": <PeopleSay peopleSays={peopleSays} />,
+        "News": <News news={news} />,
+        "FAQs": <Faq faqs={faqs} />,
+        "Refer your friends": <ReferFriend />
+    };
+
     return (
         <>
             <Header />
@@ -129,17 +147,27 @@ const Mobile = ({
                         backgroundColor: "#fff"
                     }}
                 >
-                    <BannerMobile />
-                    {/* <LeaderBoardMobile pointSettings={pointSettings} roles={roles} rewards={rewards} /> */}
-                    <FeatureMobile />
+                    {/* <BannerMobile />
+                    <LeaderBoardMobile pointSettings={pointSettings} roles={roles} rewards={rewards} />
                     <Ai />
+                    <FeatureMobile />
                     <MuchMore wayGetPaids={wayGetPaids} />
                     <FeaturedCreator featuredCreators={featuredCreators} />
                     <EarningEstimate />
                     <PartnerSlider partnerSlides={partnerSlides} />
                     <PeopleSay peopleSays={peopleSays} />
-                    {/* <News news={news} /> */}
+                    <News news={news} />
                     <Faq faqs={faqs} />
+                    <FooterMobile /> */}
+
+                    <BannerMobile />
+                    {sections.map((o, index) => {
+                        return (
+                            <React.Fragment key={index}>
+                                {listMobile[o.title]}
+                            </React.Fragment>
+                        );
+                    })}
                     <FooterMobile />
                 </Box>
             </Box>
@@ -171,6 +199,21 @@ const Desktop = ({
         },
         { scope: main, }
     );
+
+    const listDesktop: Record<string, React.JSX.Element> = {
+        "Leaderboard": <LeaderBoard pointSettings={pointSettings} roles={roles} rewards={rewards} />,
+        "User counters": <LeaderBoardCount />,
+        "Faster, Simpler and Smarter": <Ai />,
+        "Key USPS": <Feature />,
+        "More ways to get paid": <MuchMore wayGetPaids={wayGetPaids} />,
+        "Featured creators": <FeaturedCreator featuredCreators={featuredCreators} />,
+        "Earning estimation": <EarningEstimate />,
+        "Partners": <PartnerSlider partnerSlides={partnerSlides} />,
+        "People say": <PeopleSay peopleSays={peopleSays} />,
+        "News": <News news={news} />,
+        "FAQs": <Faq faqs={faqs} />,
+        "Refer your friends": <ReferFriend />
+    };
     return (
         <>
             <Header />
@@ -182,8 +225,8 @@ const Desktop = ({
                         backgroundColor: "#fff"
                     }}
                 >
-                    <BannerPc />
-                    {/* <LeaderBoard pointSettings={pointSettings} roles={roles} rewards={rewards} /> */}
+                    {/* <BannerPc />
+                    <LeaderBoard pointSettings={pointSettings} roles={roles} rewards={rewards} />
                     <Ai />
                     <Feature />
                     <MuchMore wayGetPaids={wayGetPaids} />
@@ -191,8 +234,18 @@ const Desktop = ({
                     <EarningEstimate />
                     <PartnerSlider partnerSlides={partnerSlides} />
                     <PeopleSay peopleSays={peopleSays} />
-                    {/* <News news={news} /> */}
-                    <Faq faqs={faqs} />
+                    <News news={news} />
+                    <Faq faqs={faqs} /> */}
+
+
+                    <BannerPc />
+                    {sections.map((o, index) => {
+                        return (
+                            <React.Fragment key={index}>
+                                {listDesktop[o.title]}
+                            </React.Fragment>
+                        );
+                    })}
                     <Footer />
                 </Box>
             </Box>

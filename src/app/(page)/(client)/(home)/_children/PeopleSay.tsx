@@ -1,26 +1,31 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Flex, Title } from '@mantine/core';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import trustIcon from "@public/people-say/trust.webp";
 import Image from 'next/image';
 import { IPeopleSay } from '@/types/peopleSay';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useInView } from 'framer-motion';
 
 interface Props {
     peopleSays: IPeopleSay[];
 }
 export function PeopleSay({ peopleSays = [] }: Props) {
     const [index, setIndex] = useState(0);
+    const ref = useRef<any>(null);
+    const isInView = useInView(ref, { once: true, amount: 0.2 });
 
     useEffect(() => {
-        const timer = setInterval(() => {
-            setIndex((prev) => (prev + 1) % peopleSays.length);
-        }, 5000);
-
-        return () => clearInterval(timer);
-    }, [peopleSays.length]);
+        let intervalId: NodeJS.Timeout;
+        if (isInView) {
+            intervalId = setInterval(() => {
+                setIndex((prev) => (prev + 1) % peopleSays.length);
+            }, 5000);
+        }
+        return () => clearInterval(intervalId);
+    }, [isInView, peopleSays.length]);
 
     return (
-        <Box w={"100%"} py={{ base: 40, md: 60, xl: 80 }} bg={"#F7F7FC"}>
+        <Box ref={ref} w={"100%"} py={{ base: 40, md: 60, xl: 80 }} bg={"#F7F7FC"}>
             <Flex
                 className='container'
                 direction={{ base: "column", md: "row" }}

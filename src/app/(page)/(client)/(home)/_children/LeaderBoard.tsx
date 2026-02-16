@@ -3,7 +3,6 @@ import React from 'react';
 import LeaderBoardTable from './leaderboard/LeaderBoardTable';
 import LeaderBoardTitle from './leaderboard/LeaderBoardTitle';
 import LoginForm from '../../_shared/LoginForm';
-import LeaderBoardCount from './leaderboard/LeaderBoardCount';
 import { SocialShare } from './leaderboard/SocialShare';
 import bgPc from "@public/leaderboard/bg-pc.webp";
 import Image from 'next/image';
@@ -26,7 +25,7 @@ export function LeaderBoard({ pointSettings, roles, rewards }: Props) {
         <Box
             id='Leaderboard'
             w={"100%"}
-            py={{ base: 80 }}
+            pt={{ base: 80 }}
             // h={925}
         >
             <Box className='container h-fit'>
@@ -80,7 +79,6 @@ export function LeaderBoard({ pointSettings, roles, rewards }: Props) {
                     </Flex>
                 </Flex>
             </Box>
-            <LeaderBoardCount />
         </Box>
     );
 }

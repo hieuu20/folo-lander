@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Flex, Text } from '@mantine/core';
 import React, { useEffect, useRef, useState } from 'react';
@@ -7,7 +8,7 @@ import { Feature3 } from './feature/Feature3';
 import { Feature4 } from './feature/Feature4';
 import { Feature5 } from './feature/Feature5';
 import { Feature6 } from './feature/Feature6';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useInView } from 'framer-motion';
 
 
 const list = [
@@ -48,6 +49,9 @@ const DURATION = 5000;
 export function Feature() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [progressKey, setProgressKey] = useState(0);
+  const ref = useRef<any>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const startTimer = () => {
@@ -58,11 +62,14 @@ export function Feature() {
   };
 
   useEffect(() => {
-    startTimer();
+    if (isInView) {
+      startTimer();
+    }
+
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, []);
+  }, [isInView]);
 
   const handleClick = (index: number) => {
     if (activeIndex == index) return;
@@ -83,7 +90,7 @@ export function Feature() {
       py={{ base: 40, md: 60, xl: 80 }}
       mt={-24}
     >
-      <Flex mih={"100vh"} justify={"space-between"} className='container'>
+      <Flex ref={ref} mih={"100vh"} justify={"space-between"} className='container'>
         <Flex w={{ base: "100%", md: "40%" }} direction={"column"}>
           {list.map((o, index) => {
             const isActive = activeIndex == index;
@@ -92,20 +99,26 @@ export function Feature() {
                 key={index} py={{ base: 12 }}
               >
                 {isActive && (
-                  <Flex direction={"column"} gap={16} py={12}>
-                    <Text c={"#131416"} fz={{ base: 48 }} fw={600}>
-                      {o.title}
-                    </Text>
+                  <Flex
+                    direction={"column"}
+                    gap={16}
+                    py={12}
+                  >
+                    <Flex direction={"column"} h={{ base: 230 }} gap={16}>
+                      <Text c={"#131416"} fz={{ base: 48 }} fw={600}>
+                        {o.title}
+                      </Text>
 
-                    <Text fz={{ base: 22 }} fw={500} c={"#4D5053"}>
-                      {o.description}
-                    </Text>
+                      <Text fz={{ base: 22 }} fw={500} c={"#4D5053"}>
+                        {o.description}
+                      </Text>
+                    </Flex>
 
                     <Box h={{ base: 6 }} bg={"#E7E7F8"} className="relative overflow-hidden">
                       <motion.div
                         key={progressKey}
                         initial={{ width: "0%" }}
-                        animate={{ width: "100%" }}
+                        animate={isInView ? { width: "100%" } : {}}
                         transition={{ duration: DURATION / 1000, ease: "linear" }}
                         className="h-full bg-black"
                       />

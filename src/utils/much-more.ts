@@ -1,19 +1,17 @@
 import muchMore1 from "@public/much-more/1.webp";
-import muchMore2 from "@public/much-more/2.webp";
 import muchMore3 from "@public/much-more/3.webp";
-import muchMore4 from "@public/much-more/4.webp";
 import muchMore5 from "@public/much-more/5.webp";
 import muchMore6 from "@public/much-more/6.webp";
 import muchMore7 from "@public/much-more/7.webp";
-import muchMore8 from "@public/much-more/8.webp";
 import muchMore9 from "@public/much-more/9.png";
 import muchMore9Mb from "@public/much-more/9-img-mb.png";
 
+import muchMore10 from "@public/much-more/10.webp";
+
+
 import muchMore9Icon from "@public/much-more/9-icon.png";
-import button8Mb from "@public/much-more/8-bt-mb.png";
 import button9Mb from "@public/much-more/9-bt-mb.png";
 
-import button8Pc from "@public/much-more/8-bt-pc.png";
 import button9Pc from "@public/much-more/9-bt-pc.png";
 
 import { StaticImageData } from "next/image";
@@ -51,16 +49,6 @@ export const moreList: More[] = [
   },
   {
     id: 2,
-    title: "Public and Private Price Plans.",
-    description:
-      "Reward your biggest fans with exclusive deals and private access.",
-    img: muchMore2,
-    backgroundColor: "#D0CBFF",
-    titleColor: "#131416",
-    dscColor: "#4D5053",
-  },
-  {
-    id: 3,
     title: "Pay-To-View Experiences.",
     description:
       "Monetize individual posts, drops, or premium exclusives on your terms.",
@@ -71,19 +59,7 @@ export const moreList: More[] = [
     absolute: { bottom: true, right: false },
   },
   {
-    id: 4,
-    title: "The Platform for Everyone.",
-    description:
-      "Express every side of you, with controls that let fans choose their experience.",
-    img: muchMore4,
-    backgroundColor: "#2C3086",
-    titleColor: "#fff",
-    dscColor: "#FFFFFFCC",
-    larger: true,
-    absolute: { bottom: false, right: true },
-  },
-  {
-    id: 5,
+    id: 3,
     title: "Collaboration, Reimagined",
     description:
       "Why just tag your partners when you can share content, products, and revenue.",
@@ -94,7 +70,7 @@ export const moreList: More[] = [
     backgroundImg: "/much-more/bg5.webp",
   },
   {
-    id: 6,
+    id: 4,
     title: "Create your own Services",
     description:
       "Offer paid calls, messaging, ratings, and custom requests with flexible pricing options.",
@@ -105,7 +81,7 @@ export const moreList: More[] = [
     absolute: { bottom: true, right: false },
   },
   {
-    id: 7,
+    id: 5,
     title: "Value Added Features",
     description:
       "No third parties – just powerful tools and benefits for creators, brands and users.",
@@ -118,23 +94,7 @@ export const moreList: More[] = [
     larger: true,
   },
   {
-    id: 8,
-    title: "Anti Screenshot",
-    description:
-      "Prevents screenshots and screen recordings to protect your content.",
-    img: muchMore8,
-    backgroundColor: "",
-    titleColor: "#fff",
-    dscColor: "#FFFFFFCC",
-    backgroundImg: "/much-more/bg8.webp",
-    isCommingSoon: true,
-    buttonImgPc: button8Pc,
-    buttonImgMb: button8Mb,
-    absolute: { bottom: true, right: false },
-  },
-
-  {
-    id: 9,
+    id: 6,
     title: "AI-Driven Affiliate",
     description:
       "AI promotes brand products in your public content - you earned % view-share.",
@@ -149,5 +109,16 @@ export const moreList: More[] = [
     icon: muchMore9Icon,
     isAi: true,
     imgMb: muchMore9Mb,
+  },
+  {
+    id: 7,
+    title: "And much more",
+    description:
+      "Give your fans the best experience while protecting your. The Platform for Everyone.",
+    img: muchMore10,
+    backgroundColor: "#EEF7FF",
+    titleColor: "#131416",
+    dscColor: "#4D5053",
+    // absolute: { bottom: true, right: false },
   },
 ];

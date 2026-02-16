@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IFeaturedCreator } from '@/types/featuredCreator';
 import { Box, Flex, Text, Title } from '@mantine/core';
-import React from 'react';
+import React, { useRef } from 'react';
 import Marquee from "react-fast-marquee";
 import proBadge from "@public/icons/pro-badge.png";
 // import verifiedBadge from "@public/icons/verified-badge.png";
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
+import { useInView } from 'framer-motion';
 
 // const badges = {
 //     "VERIFIED": verifiedBadge,
@@ -17,8 +19,12 @@ interface Props {
     featuredCreators: IFeaturedCreator[];
 }
 export function FeaturedCreator({ featuredCreators }: Props) {
+    const ref = useRef<any>(null);
+    const isInView = useInView(ref, { once: true, amount: 0.1 });
+
     return (
         <Box
+            ref={ref}
             py={{ base: 40, md: 60, xl: 80 }}
             bg={"linear-gradient(90deg, #FFFFFF 0%, #F7F7FC 50%, #FFFFFF 100%)"}
         >
@@ -31,9 +37,10 @@ export function FeaturedCreator({ featuredCreators }: Props) {
                     direction="left"
                     speed={30}
                     delay={5}
-                    play={true}
+                    play={isInView}
                     className=""
                     pauseOnHover
+                    autoFill={true}
                 >
                     {featuredCreators.map((o, i) => {
                         return (

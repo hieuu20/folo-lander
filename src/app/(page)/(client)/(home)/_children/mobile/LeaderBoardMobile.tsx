@@ -3,7 +3,6 @@ import React from 'react';
 import LeaderBoardTable from '../leaderboard/LeaderBoardTable';
 import LeaderBoardTitle from '../leaderboard/LeaderBoardTitle';
 import LoginForm from '../../../_shared/LoginForm';
-import LeaderBoardCount from '../leaderboard/LeaderBoardCount';
 import { PointSetting } from '@/types/pointSetting';
 import { Role } from '@/types/role';
 import bgMb from "@public/leaderboard/bg-mb.webp";
@@ -27,7 +26,7 @@ export function LeaderBoardMobile({ roles, pointSettings, rewards }: Props) {
         <Box
             id='Leaderboard'
             w={"100%"}
-            py={{ base: 40 }}
+            pt={{ base: 40 }}
             // h={profile ? 1250 : 1550}
         >
             <Flex
@@ -84,12 +83,8 @@ export function LeaderBoardMobile({ roles, pointSettings, rewards }: Props) {
                         {!profile && (
                             <LoginForm roles={roles} />
                         )}
-
                     </Flex>
-
                 </Flex>
-
-                <LeaderBoardCount />
             </Flex>
         </Box>
     );

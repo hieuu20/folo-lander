@@ -6,7 +6,7 @@ import { Box, Button, Flex } from '@mantine/core';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import React, { useCallback } from 'react';
 import xIcon from "@public/leaderboard/x.png";
-import fbIcon from "@public/leaderboard/fb.png";
+// import fbIcon from "@public/leaderboard/fb.png";
 import ggIcon from "@public/leaderboard/gg.png";
 import Image from 'next/image';
 import { RolePopup } from '@/components/Popups';
@@ -187,7 +187,6 @@ export default function LoginForm({ roles }: Props) {
                     <Image src={fbIcon} alt='ggIcon' width={24} height={24} className='w-full h-full relative' />
                 </Box> */}
             </Flex>
-
         </Flex>
     );
 }

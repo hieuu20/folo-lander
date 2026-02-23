@@ -11,7 +11,6 @@ import SectionButton from '@/components/buttons/SectionButton';
 import { motion, useAnimation } from 'framer-motion';
 import { useWindowHeight } from '@/hooks';
 import { loadingTime } from '@/utils';
-import { EmailWaitingListInput } from '../../../_shared/EmailWaitingListInput';
 import { useApp } from '@/app/context/AppContext';
 
 export function BannerMobile() {

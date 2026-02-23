@@ -44,6 +44,7 @@ import { useDisclosure } from "@/hooks";
 import { EmailWaitingListInput } from "@/app/(page)/(client)/_shared/EmailWaitingListInput";
 import { twMerge } from "tailwind-merge";
 import { useApp } from "@/app/context/AppContext";
+import { Role } from "@/types/role";
 
 export const socials = [
   {
@@ -170,7 +171,11 @@ export const footerPays = [
 
 const delayStep = 0.3;
 
-export function Footer() {
+interface Props {
+  roles: Role[];
+}
+
+export function Footer({ roles }: Props) {
   const { profile } = useApp();
 
   const currenYear = new Date().getFullYear();
@@ -241,7 +246,7 @@ export function Footer() {
             </Text>
             {!profile && (
               <FadeInAni isInView={isInView} delay={delayStep * 2}>
-                <EmailWaitingListInput />
+                <EmailWaitingListInput roles={roles} />
               </FadeInAni>
             )}
           </Flex>

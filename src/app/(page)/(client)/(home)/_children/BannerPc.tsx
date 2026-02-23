@@ -11,7 +11,6 @@ import { motion, useAnimate, useScroll, useTransform } from 'framer-motion';
 import { useWindowHeight } from '@/hooks';
 import { loadingTime } from '@/utils/constants';
 import downIcon from "@public/icons/down.svg";
-import { EmailWaitingListInput } from '../../_shared/EmailWaitingListInput';
 import { useApp } from '@/app/context/AppContext';
 import SectionButton from '@/components/buttons/SectionButton';
 import gsap from "gsap";

@@ -54,7 +54,7 @@ export function MuchMore({ wayGetPaids }: Props) {
         initialSlide: 0,
         responsive: [
             {
-                breakpoint: 768,
+                breakpoint: 1024,
                 settings: {
                     centerMode: true,
                     centerPadding: `${centerPadding + 6}px`,

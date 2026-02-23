@@ -23,11 +23,16 @@ import Marquee from "react-fast-marquee";
 import { footerList, footerPays, socials, TokenAnimation } from "@/components/layouts/client-layout/Footer";
 import { EmailWaitingListInput } from "../../../_shared/EmailWaitingListInput";
 import { twMerge } from "tailwind-merge";
+import { Role } from "@/types/role";
 
 
 const delayStep = 0.2;
 
-export function FooterMobile() {
+interface Props {
+    roles: Role[];
+}
+
+export function FooterMobile({ roles }: Props) {
     const currenYear = new Date().getFullYear();
 
     const ref = useRef(null);
@@ -74,7 +79,7 @@ export function FooterMobile() {
                         </Text>
 
                         <FadeInAni isInView={isInView} delay={delayStep * 2}>
-                            <EmailWaitingListInput />
+                            <EmailWaitingListInput roles={roles} />
                         </FadeInAni>
                     </Flex>
 

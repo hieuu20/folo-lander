@@ -56,6 +56,7 @@ export function WaitingTable() {
                     <Table.Tr fz={14} c={"#4D5053"} fw={400}>
                         <Table.Th px={12} py={4} fw={400} w={100}>No.</Table.Th>
                         <Table.Th px={12} py={4} fw={400} >Email address</Table.Th>
+                        <Table.Th px={12} py={4} fw={400} >User type</Table.Th>
                         <Table.Th px={12} py={4} fw={400} pos={"relative"} className='block'>
                             Registered at
                             <Stack gap={1} pos={"absolute"} top={"-32%"} left={92}>
@@ -78,6 +79,10 @@ export function WaitingTable() {
                             <Table.Td>{index + 1}</Table.Td>
                             <Table.Td>
                                 {row.email}
+                            </Table.Td>
+
+                            <Table.Td>
+                                {row.role?.name}
                             </Table.Td>
 
                             <Table.Td className="">

@@ -41,6 +41,7 @@ import { Ai } from "./Ai";
 import { FeatureMobile } from "./mobile/FeatureMobile";
 import LeaderBoardCount from "./LeaderBoardCount";
 import ReferFriend from "./ReferFriend";
+import { JoinWaitList } from "./JoinWaitList";
 
 interface Props {
     news: INews[];
@@ -79,7 +80,7 @@ export default function Container(props: Props) {
     const render = () => {
         if (width == 0) return null;
 
-        if (width < 992) {
+        if (width < 768) {
             return <Mobile {...props} />;
         }
 
@@ -124,6 +125,7 @@ const Mobile = ({
     const listMobile: Record<string, React.JSX.Element> = {
         "Leaderboard": <LeaderBoardMobile pointSettings={pointSettings} roles={roles} rewards={rewards} />,
         "User counters": <LeaderBoardCount />,
+        "Join wait list": <JoinWaitList roles={roles} />,
         "Faster, Simpler and Smarter": <Ai />,
         "Key USPS": <FeatureMobile />,
         "More ways to get paid": <MuchMore wayGetPaids={wayGetPaids} />,
@@ -168,7 +170,7 @@ const Mobile = ({
                             </React.Fragment>
                         );
                     })}
-                    <FooterMobile />
+                    <FooterMobile roles={roles}/>
                 </Box>
             </Box>
         </>
@@ -203,6 +205,7 @@ const Desktop = ({
     const listDesktop: Record<string, React.JSX.Element> = {
         "Leaderboard": <LeaderBoard pointSettings={pointSettings} roles={roles} rewards={rewards} />,
         "User counters": <LeaderBoardCount />,
+        "Join wait list": <JoinWaitList roles={roles} />,
         "Faster, Simpler and Smarter": <Ai />,
         "Key USPS": <Feature />,
         "More ways to get paid": <MuchMore wayGetPaids={wayGetPaids} />,
@@ -246,7 +249,7 @@ const Desktop = ({
                             </React.Fragment>
                         );
                     })}
-                    <Footer />
+                    <Footer roles={roles} />
                 </Box>
             </Box>
         </>

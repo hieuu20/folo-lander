@@ -82,48 +82,48 @@ export const footerList = [
     children: [
       {
         title: "Community Guidelines",
-        // href: "/policy/comunity-guideline",
+        href: "/docs/7. COMMUNITY GUIDELINES.pdf",
       },
-      {
-        title: "Help Centre",
-        // href: "/policy/comunity-guideline",
-      },
-      {
-        title: "Feedback Center",
-        // href: "https://app.getacute.io/v/folo",
-      },
+      // {
+      //   title: "Help Centre",
+      //   href: "/docs/2. ADDITIONAL TERMS FOR CREATORS AND COLLABORATORS.pdf",
+      // },
+      // {
+      //   title: "Feedback Center",
+      //   href: "/docs/3. ADDITIONAL TERMS FOR FANS BUYING CREATOR CONTENT.pdf",
+      // },
       {
         title: "Terms of Service",
-        // href: "/policy/terms-of-service",
+        href: "/docs/1. TERMS OF SERVICE.pdf",
       },
       {
         title: "Contact Us",
         href: "mailto:support@folo.com",
       },
-      {
-        title: "Blog",
-        // href: "https://knky.co/fresh/",
-      },
+      // {
+      //   title: "Blog",
+      //   // href: "https://knky.co/fresh/",
+      // },
     ],
   },
   {
     title: "For Creators & Fans",
     children: [
-      {
-        title: "About FOLO",
-        // href: "https://lander.folo.co/",
-      },
-      {
-        title: "Premium Plans",
-        // href: "https://knky.co/platform-plans",
-      },
+      // {
+      //   title: "About FOLO",
+      //   href: "https://lander.folo.co/",
+      // },
+      // {
+      //   title: "Premium Plans",
+      //   // href: "https://knky.co/platform-plans",
+      // },
       {
         title: "Fans & Purchasing Terms",
-        // href: "https://knky.co/articles/additional-terms-for-fans-buying-creator-content",
+        href: "/docs/3. ADDITIONAL TERMS FOR FANS BUYING CREATOR CONTENT.pdf",
       },
       {
         title: "Creator & Collaborator Terms",
-        // href: "https://knky.co/articles/additional-terms-for-creators-and-collaborators",
+        href: "/docs/2. ADDITIONAL TERMS FOR CREATORS AND COLLABORATORS.pdf",
       },
     ],
   },
@@ -132,27 +132,27 @@ export const footerList = [
     children: [
       {
         title: "Content Moderation Policy",
-        // href: "https://knky.co/articles/content-moderation-and-protection-policy",
+        href: "/docs/6. CONTENT MODERATION POLICY.pdf",
       },
       {
         title: "USC 2257",
-        // href: "https://knky.co/articles/usc-2257",
+        href: "/docs/9. USC 2257.pdf",
       },
       {
         title: "Privacy Policy",
-        // href: "https://knky.co/articles/privacy-policy",
+        href: "/docs/4. PRIVACY POLICY.pdf",
       },
       {
         title: "Cookie Policy",
-        // href: "https://knky.co/articles/cookie-policy",
+        href: "/docs/5. COOKIES POLICY.pdf",
       },
       {
         title: "Complaint Policy",
-        // href: "https://knky.co/articles/complaint-policy",
+        href: "/docs/10. COMPLAINTS POLICY.pdf",
       },
       {
         title: "DMCA",
-        // href: "https://knky.co/articles/dmca-takedown-policy",
+        href: "/docs/8. DMCA TAKEDOWN POLICY.pdf",
       },
     ],
   },

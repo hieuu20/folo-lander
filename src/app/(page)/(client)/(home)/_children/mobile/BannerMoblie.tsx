@@ -122,16 +122,24 @@ export function BannerMobile() {
                         className='flex flex-col gap-6 justify-center absolute left-1/2 w-[90%]'
                         style={{ bottom: spacing }}
                     >
-                        <Text
-                            c={"#131416"}
-                            fz={{ base: 36, sm: 42, md: 54, lg: 60, xl: 66, "2xl": 72 }}
-                            lh={1.2}
-                            fw={700}
-                            ta={"center"}
-                        >
-                            <span className='italic'>The You</span> Platform. <br />
-                            For Creators and Communities
-                        </Text>
+
+                        <Flex direction={"column"} align={"center"} gap={{ base: 12, md: 8 }}>
+                            <Text
+                                c={"#131416"}
+                                fz={{ base: 32, sm: 42, md: 54, lg: 60, xl: 66, "2xl": 72 }}
+                                lh={1.2}
+                                fw={700}
+                                ta={"center"}
+                            >
+                                <span className='italic'>The You</span> Platform. <br />
+                                For Creators and Communities
+                            </Text>
+
+                            <Text c={"#4D5053"} w={"100%"} fz={{ base: 13, md: 20 }} lh={{ base: 1.23, md: 1.4 }} ta={"center"}>
+                                Folo is a creator commerce platform that helps you monetise your audience through chat, subscriptions, community, products and AI tools.
+                            </Text>
+                        </Flex>
+
 
                         {profile ? (
                             <Flex justify={"space-between"}>
@@ -167,7 +175,8 @@ export function BannerMobile() {
 
                             </Flex>
                         ) : (
-                            <EmailWaitingListInput />
+                            // <EmailWaitingListInput />
+                            <></>
                         )}
                     </motion.div>
                 </Flex>

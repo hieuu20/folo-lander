@@ -33,7 +33,6 @@ export function MuchMore({ wayGetPaids }: Props) {
 
     const centerPadding = ((slideToShow - 1) / 2) * itemWidth;
 
-    console.log({ isInView });
     useEffect(() => {
         if (!sliderRef.current) return;
 
@@ -67,7 +66,7 @@ export function MuchMore({ wayGetPaids }: Props) {
 
     return (
         <Box ref={ref} id='MuchMore' w={"100%"} bg={"white"} py={{ base: 60, md: 80 }} className='overflow-hidden'>
-            <Flex direction={"column"} gap={{ base: 24, md: 40 }}>
+            <Flex direction={"column"} w={"100%"} gap={{ base: 24, md: 40 }}>
                 <Title order={4} fz={{ base: 32, md: 56 }} fw={700} c={"#131416"} lh={1.2} ta={"center"}>
                     More ways to get paid
                 </Title>
@@ -75,7 +74,7 @@ export function MuchMore({ wayGetPaids }: Props) {
                 <Slider
                     ref={sliderRef}
                     {...settings}
-                    className="[&_.slick-slide]:px-3 [&_.slick-list]:-mx-3 [&_.slick-track]:relative"
+                    className="[&_.slick-slide]:px-3 [&_.slick-list]:-mx-3 [&_.slick-track]:relative w-full"
                 >
                     {wayGetPaids.map((o, index) => {
                         const item = moreList.find(x => x.title == o.title);

@@ -28,8 +28,15 @@ export function FeaturedCreator({ featuredCreators }: Props) {
             py={{ base: 40, md: 60, xl: 80 }}
             bg={"linear-gradient(90deg, #FFFFFF 0%, #F7F7FC 50%, #FFFFFF 100%)"}
         >
-            <Title order={4} fz={{ base: 32, md: 45, xl: 56 }} fw={700} mb={{ base: 24, md: 32, xl: 40 }} c={"#131416"} ta={"center"}>
-                $1,245,665 earnt by creators
+            <Title
+                order={4}
+                fz={{ base: 32, md: 45, xl: 56 }}
+                fw={700}
+                mb={{ base: 24, md: 32, xl: 40 }}
+                c={"#131416"}
+                ta={"center"}
+            >
+                $1,245,665 <br className='md:hidden'/> earnt by creators
             </Title>
 
             <Box>
@@ -44,13 +51,13 @@ export function FeaturedCreator({ featuredCreators }: Props) {
                 >
                     {featuredCreators.map((o, i) => {
                         return (
-                            <Flex 
-                                key={i} 
-                                px={{ base: 24, md: 40, xl: 60 }} 
-                                gap={{ base: 8 }} 
+                            <Flex
+                                key={i}
+                                px={{ base: 24, md: 40, xl: 60 }}
+                                gap={{ base: 8 }}
                                 align={"center"}
                                 onClick={() => {
-                                    if(!o.profileLink) return;
+                                    if (!o.profileLink) return;
 
                                     window.open(o.profileLink, "_blank");
                                 }}

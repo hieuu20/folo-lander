@@ -145,7 +145,7 @@ export default async function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Folo" />
 
-        <Script
+        {/* <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${setting?.tracking?.googleAnalytics.ga4Id || setting?.tracking?.googleAnalytics.uaId}`}
         />
 
@@ -160,7 +160,25 @@ export default async function RootLayout({
               gtag('config', '${setting?.tracking?.googleAnalytics.ga4Id || setting?.tracking?.googleAnalytics.uaId}');
             `,
           }}
+        /> */}
+
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-PRD5LQTVK4`}
         />
+
+        <Script
+          id="gtag-init"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-PRD5LQTVK4');
+            `,
+          }}
+        />
+
       </head>
       <body className={`antialiased`}>
         <ProgressBarProvider>

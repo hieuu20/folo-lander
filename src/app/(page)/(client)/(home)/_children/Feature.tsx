@@ -87,10 +87,10 @@ export function Feature() {
     <Box
       className='rounded-t-[24px] overflow-hidden z-10 relative'
       bg={"white"}
-      py={{ base: 40, md: 60, xl: 80 }}
+      py={{ base: 40, md: 60, xl: 90 }}
       mt={-24}
     >
-      <Flex ref={ref} mih={"100vh"} justify={"space-between"} className='container'>
+      <Flex ref={ref} justify={"space-between"} className='container'>
         <Flex w={{ base: "100%", md: "40%" }} direction={"column"}>
           {list.map((o, index) => {
             const isActive = activeIndex == index;
@@ -145,7 +145,7 @@ export function Feature() {
           })}
         </Flex>
 
-        <AnimatePresence mode="wait">
+        {/* <AnimatePresence mode="wait">
           <motion.div
             key={activeIndex}
             initial={{ opacity: 0, y: 0 }}
@@ -156,7 +156,23 @@ export function Feature() {
           >
             {list[activeIndex].component()}
           </motion.div>
-        </AnimatePresence>
+        </AnimatePresence> */}
+        <Box pos={"relative"} w={"45%"}>
+          {list.map((o, index) => {
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={activeIndex == index ? { opacity: 1 } : { opacity: 0 }}
+                exit={{ opacity: 0, y: 0 }}
+                transition={{ duration: 0.2 }}
+                className='w-full h-full top-0 left-0 absolute'
+              >
+                {o.component()}
+              </motion.div>
+            );
+          })}
+        </Box>
       </Flex>
     </Box>
   );

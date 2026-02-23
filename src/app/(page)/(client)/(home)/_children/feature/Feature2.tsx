@@ -7,7 +7,6 @@ import { LiveCount } from '../slogan/LiveCount';
 
 export function Feature2() {
 
-
     return (
         <Box
             w={{ base: "100%" }} pos={"relative"}
@@ -34,7 +33,7 @@ export function Feature2() {
                     top={"3%"}
                     left={"3%"}
                     bg={"#F11E11"}
-                    fz={"3.6cqh"}
+                    fz={{ base: 20, md: 32 }}
                     fw={500}
                     c={"white"}
                     justify={"center"}
@@ -49,7 +48,7 @@ export function Feature2() {
                     left={"22%"}
                     // w={"11.2%"}
                     h={"10.3%"}
-                    fz={"3.6cqh"}
+                    fz={{ base: 20, md: 32 }}
                     fw={500}
                     c={"white"}
                     justify={"center"}

@@ -16,6 +16,14 @@ import { useApp } from '@/app/context/AppContext';
 import SectionButton from '@/components/buttons/SectionButton';
 import gsap from "gsap";
 
+const getTopHeight = (wdHeight: number) => {
+    const result = wdHeight * 0.51;
+
+    if (result > 500) return 500;
+
+    return result;
+};
+
 export function BannerPc() {
     const { profile } = useApp();
     const wdHeight = useWindowHeight();
@@ -29,7 +37,7 @@ export function BannerPc() {
         }
     }, []);
 
-    const topHeight = wdHeight * 0.51;
+    const topHeight = getTopHeight(wdHeight);
 
     const spacing = useMemo(() => {
         return (wdHeight - (topHeight + tileHeight + 36)) / 2;
@@ -40,17 +48,16 @@ export function BannerPc() {
         offset: ['start 0', 'start -0.3'],
     });
 
-
     const scrollToLeaderboard = () => {
         gsap.to(window, {
-          duration: 1,
-          scrollTo: {
-            y: "#Leaderboard",
-            autoKill: false,
-          },
-          ease: "power2.out",
+            duration: 1,
+            scrollTo: {
+                y: "#Leaderboard",
+                autoKill: false,
+            },
+            ease: "power2.out",
         });
-      };
+    };
     const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
     return (
@@ -73,12 +80,13 @@ export function BannerPc() {
                     gap={{ base: 32, md: 36 }}
                 >
                     <motion.div
-                        initial={{ top: wdHeight * 0.245 }}
+                        initial={{ top: wdHeight * 0.5 - (topHeight * 0.5) }}
                         animate={{ top: spacing }}
                         transition={{ duration: 0.5, ease: "easeInOut", delay: loadingTime + 2.4 }}
                         className='absolute aspect-[2.75862068966] z-10'
                         style={{
-                            height: topHeight
+                            height: topHeight,
+                            maxHeight: 600
                         }}
                     >
                         <motion.div
@@ -174,7 +182,8 @@ export function BannerPc() {
                                 />
                             </Flex>
                         ) : (
-                            <EmailWaitingListInput />
+                            // <EmailWaitingListInput />
+                            <></>
                         )}
                     </motion.div>
                 </Flex>

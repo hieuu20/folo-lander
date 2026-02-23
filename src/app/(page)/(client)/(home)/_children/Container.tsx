@@ -60,8 +60,6 @@ export default function Container(props: Props) {
     const searchParams = useSearchParams();
     const router = useRouter();
 
-    // console.log({ props });
-
     useEffect(() => {
         document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';

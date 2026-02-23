@@ -4,6 +4,7 @@ import { IWaitingEmail } from '@/types/waitingEmail';
 import { formatTime } from '@/utils';
 import { Table, Text, Pagination, Stack, Flex, Group } from '@mantine/core';
 import { IconCaretDownFilled, IconCaretUpFilled, IconDownload, IconLoader2 } from '@tabler/icons-react';
+import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 
 export function WaitingTable() {
@@ -89,13 +90,17 @@ export function WaitingTable() {
                                 {formatTime(row.createdAt)}
                             </Table.Td>
                             <Table.Td className="text-right">
-                                <Text
-                                    fz={13}
-                                    fw={500}
-                                    className="hover:underline transition-all duration-150 cursor-pointer"
-                                >
-                                    View details
-                                </Text>
+                                {row.userId && (
+                                    <Link href={"/"}>
+                                        <Text
+                                            fz={13}
+                                            fw={500}
+                                            className="hover:underline transition-all duration-150 cursor-pointer"
+                                        >
+                                            View details
+                                        </Text>
+                                    </Link>
+                                )}
                             </Table.Td>
                         </Table.Tr>
                     ))}

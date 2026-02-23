@@ -104,12 +104,12 @@ export function Feature() {
                     gap={16}
                     py={12}
                   >
-                    <Flex direction={"column"} h={{ base: 230 }} gap={16}>
-                      <Text c={"#131416"} fz={{ base: 48 }} fw={600}>
+                    <Flex direction={"column"} h={{ base: 120 }} gap={16}>
+                      <Text c={"#131416"} fz={{ base: 30 }} fw={600}>
                         {o.title}
                       </Text>
 
-                      <Text fz={{ base: 22 }} fw={500} c={"#4D5053"}>
+                      <Text fz={{ base: 20 }} fw={500} c={"#4D5053"}>
                         {o.description}
                       </Text>
                     </Flex>
@@ -135,7 +135,7 @@ export function Feature() {
                     left={-12}
                     className='hover:bg-gray-50 transition-all duration-200 cursor-pointer rounded-2xl'
                   >
-                    <Text fz={{ base: 24 }} fw={600} c={"#4D5053"}>
+                    <Text fz={{ base: 22 }} fw={600} c={"#4D5053"}>
                       {o.title}
                     </Text>
                   </Box>

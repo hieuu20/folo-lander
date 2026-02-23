@@ -8,7 +8,6 @@ import { useBrowserWidth } from "@/hooks";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { BannerMobile } from "./mobile/BannerMoblie";
-// import News from "./News";
 import { Footer, Header } from "@/components/layouts";
 import { Loading } from "../../_shared/Loading";
 import { MuchMore } from "./MuchMore";

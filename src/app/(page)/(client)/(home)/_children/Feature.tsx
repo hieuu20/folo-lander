@@ -1,15 +1,18 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Box, Flex, Text } from '@mantine/core';
-import React, { useEffect, useRef, useState } from 'react';
+"use client";
+
+import { useEffect, useRef, useState, useCallback } from "react";
+import { Box, Flex, Text } from "@mantine/core";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "framer-motion";
 import { Feature1 } from './feature/Feature1';
 import { Feature2 } from './feature/Feature2';
 import { Feature3 } from './feature/Feature3';
 import { Feature4 } from './feature/Feature4';
 import { Feature5 } from './feature/Feature5';
 import { Feature6 } from './feature/Feature6';
-import { AnimatePresence, motion, useInView } from 'framer-motion';
 
+const DURATION = 5000; // 5s
 
 const list = [
   {
@@ -44,43 +47,132 @@ const list = [
   }
 ];
 
-const DURATION = 5000;
-
 export function Feature() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [progressKey, setProgressKey] = useState(0);
-  const ref = useRef<any>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const [isPaused, setIsPaused] = useState(false);
 
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const controls = useAnimation();
 
-  const startTimer = () => {
-    intervalRef.current = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % list.length);
-      setProgressKey((prev) => prev + 1);
-    }, DURATION);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const startTimeRef = useRef<number>(0);
+  const remainingRef = useRef<number>(DURATION);
+
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
+
+  // ===============================
+  // CLEAR TIMER
+  // ===============================
+  const clearTimer = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
   };
 
+  // ===============================
+  // NEXT SLIDE
+  // ===============================
+  const nextSlide = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % list.length);
+  }, []);
+
+  // ===============================
+  // START PROGRESS
+  // ===============================
+  const startProgress = useCallback(
+    (duration: number) => {
+      clearTimer();
+
+      remainingRef.current = duration;
+      startTimeRef.current = Date.now();
+
+      controls.start({
+        width: "100%",
+        transition: {
+          duration: duration / 1000,
+          ease: "linear",
+        },
+      });
+
+      timeoutRef.current = setTimeout(() => {
+        controls.set({ width: "0%" });
+        nextSlide();
+      }, duration);
+    },
+    [controls, nextSlide]
+  );
+
+  // ===============================
+  // PAUSE
+  // ===============================
+  const pause = () => {
+    if (!timeoutRef.current) return;
+
+    clearTimer();
+
+    const elapsed = Date.now() - startTimeRef.current;
+    remainingRef.current = remainingRef.current - elapsed;
+
+    controls.stop();
+  };
+
+  // ===============================
+  // RESUME
+  // ===============================
+  const resume = () => {
+    if (remainingRef.current <= 0) return;
+
+    startTimeRef.current = Date.now();
+
+    controls.start({
+      width: "100%",
+      transition: {
+        duration: remainingRef.current / 1000,
+        ease: "linear",
+      },
+    });
+
+    timeoutRef.current = setTimeout(() => {
+      controls.set({ width: "0%" });
+      nextSlide();
+    }, remainingRef.current);
+  };
+
+  // ===============================
+  // WHEN ACTIVE INDEX CHANGES
+  // ===============================
   useEffect(() => {
-    if (isInView) {
-      startTimer();
-    }
+    if (!isInView) return;
 
+    controls.set({ width: "0%" });
+    startProgress(DURATION);
+
+    return clearTimer;
+  }, [activeIndex, isInView, startProgress, controls]);
+
+  // ===============================
+  // CLEANUP
+  // ===============================
+  useEffect(() => {
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      clearTimer();
     };
-  }, [isInView]);
+  }, []);
 
+  // ===============================
+  // HANDLE CLICK
+  // ===============================
   const handleClick = (index: number) => {
-    if (activeIndex == index) return;
+    if (index === activeIndex) return;
+
+    clearTimer();
+    controls.stop();
+    controls.set({ width: "0%" });
+
+    remainingRef.current = DURATION;
+
     setActiveIndex(index);
-    setProgressKey((prev) => prev + 1);
-
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-
-    startTimer();
   };
 
   return (
@@ -90,7 +182,7 @@ export function Feature() {
       py={{ base: 40, md: 60, xl: 90 }}
       mt={-24}
     >
-      <Flex ref={ref} justify={"space-between"} className='container'>
+      <Flex ref={containerRef} justify={"space-between"} className='container'>
         <Flex w={{ base: "100%", md: "40%" }} direction={"column"}>
           {list.map((o, index) => {
             const isActive = activeIndex == index;
@@ -103,6 +195,14 @@ export function Feature() {
                     direction={"column"}
                     gap={16}
                     py={12}
+                    onMouseEnter={() => {
+                      setIsPaused(true);
+                      pause();
+                    }}
+                    onMouseLeave={() => {
+                      setIsPaused(false);
+                      resume();
+                    }}
                   >
                     <Flex direction={"column"} h={{ base: 120 }} gap={16}>
                       <Text c={"#131416"} fz={{ base: 30 }} fw={600}>
@@ -114,12 +214,10 @@ export function Feature() {
                       </Text>
                     </Flex>
 
-                    <Box h={{ base: 6 }} bg={"#E7E7F8"} className="relative overflow-hidden">
+                    <Box h={6} bg="#E7E7F8" className="relative overflow-hidden">
                       <motion.div
-                        key={progressKey}
                         initial={{ width: "0%" }}
-                        animate={isInView ? { width: "100%" } : {}}
-                        transition={{ duration: DURATION / 1000, ease: "linear" }}
+                        animate={controls}
                         className="h-full bg-black"
                       />
                     </Box>

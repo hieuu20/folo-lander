@@ -119,10 +119,11 @@ const Mobile = ({
     sections
 }: Props) => {
 
+    const leaderboardSection = sections.find(o => o.title == "Leaderboard");
+
     const listMobile: Record<string, React.JSX.Element> = {
-        "Leaderboard": <LeaderBoardMobile pointSettings={pointSettings} roles={roles} rewards={rewards} />,
+        "Leaderboard": <LeaderBoardMobile pointSettings={pointSettings} roles={roles} rewards={rewards} phase={leaderboardSection?.phase || 1} />,
         "User counters": <LeaderBoardCount />,
-        "Join wait list": <JoinWaitList roles={roles} />,
         "Faster, Simpler and Smarter": <Ai />,
         "Key USPS": <FeatureMobile />,
         "More ways to get paid": <MuchMore wayGetPaids={wayGetPaids} />,
@@ -163,11 +164,11 @@ const Mobile = ({
                     {sections.map((o, index) => {
                         return (
                             <React.Fragment key={index}>
-                                {listMobile[o.title]}
+                                {listMobile[o.title] || ""}
                             </React.Fragment>
                         );
                     })}
-                    <FooterMobile roles={roles}/>
+                    <FooterMobile roles={roles} />
                 </Box>
             </Box>
         </>
@@ -199,10 +200,11 @@ const Desktop = ({
         { scope: main, }
     );
 
+    const leaderboardSection = sections.find(o => o.title == "Leaderboard");
+
     const listDesktop: Record<string, React.JSX.Element> = {
-        "Leaderboard": <LeaderBoard pointSettings={pointSettings} roles={roles} rewards={rewards} />,
+        "Leaderboard": <LeaderBoard pointSettings={pointSettings} roles={roles} rewards={rewards} phase={leaderboardSection?.phase || 1} />,
         "User counters": <LeaderBoardCount />,
-        "Join wait list": <JoinWaitList roles={roles} />,
         "Faster, Simpler and Smarter": <Ai />,
         "Key USPS": <Feature />,
         "More ways to get paid": <MuchMore wayGetPaids={wayGetPaids} />,
@@ -236,7 +238,6 @@ const Desktop = ({
                     <PeopleSay peopleSays={peopleSays} />
                     <News news={news} />
                     <Faq faqs={faqs} /> */}
-
 
                     <BannerPc />
                     {sections.map((o, index) => {

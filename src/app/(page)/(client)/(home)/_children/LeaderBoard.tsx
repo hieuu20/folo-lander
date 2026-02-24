@@ -11,22 +11,27 @@ import { Role } from '@/types/role';
 import { useApp } from '@/app/context/AppContext';
 import SectionButton from '@/components/buttons/SectionButton';
 import { Reward } from '@/types/reward';
+import { JoinWaitList } from './JoinWaitList';
 
 interface Props {
     pointSettings: PointSetting[];
     roles: Role[];
     rewards: Reward[];
+    phase: number;
 }
 
-export function LeaderBoard({ pointSettings, roles, rewards }: Props) {
+export function LeaderBoard({ pointSettings, roles, rewards, phase }: Props) {
     const { profile } = useApp();
+
+    if (phase == 1) {
+        return <JoinWaitList roles={roles} />;
+    }
 
     return (
         <Box
             id='Leaderboard'
             w={"100%"}
             pt={{ base: 80 }}
-            // h={925}
         >
             <Box className='container h-fit'>
                 <Flex

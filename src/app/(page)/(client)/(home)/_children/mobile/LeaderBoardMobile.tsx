@@ -11,16 +11,23 @@ import { useApp } from '@/app/context/AppContext';
 import { SocialShare } from '../leaderboard/SocialShare';
 import SectionButton from '@/components/buttons/SectionButton';
 import { Reward } from '@/types/reward';
+import { JoinWaitList } from '../JoinWaitList';
 
 
 interface Props {
     pointSettings: PointSetting[];
     roles: Role[];
     rewards: Reward[];
+    phase: number;
 }
 
-export function LeaderBoardMobile({ roles, pointSettings, rewards }: Props) {
+export function LeaderBoardMobile({ roles, pointSettings, rewards, phase }: Props) {
     const { profile } = useApp();
+
+    if(phase == 1){
+        return <JoinWaitList roles={roles} />;
+    }
+
 
     return (
         <Box

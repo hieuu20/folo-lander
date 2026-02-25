@@ -129,7 +129,7 @@ export function FeatureMobile() {
         <Flex
           py={{ base: 24 }}
           className='rounded-lg'
-          h={{ base: 240 }}
+          h={{ base: 210 }}
         >
           <Flex direction={"column"} gap={12}>
             <Text c={"#131416"} fz={{ base: 32 }} fw={700} ta={"center"}>

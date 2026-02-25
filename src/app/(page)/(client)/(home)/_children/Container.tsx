@@ -41,6 +41,8 @@ import { FeatureMobile } from "./mobile/FeatureMobile";
 import LeaderBoardCount from "./LeaderBoardCount";
 import ReferFriend from "./ReferFriend";
 import { JoinWaitList } from "./JoinWaitList";
+import { Limit } from "./Limit";
+import { LimitMobile } from "./mobile/LimitMobile";
 
 interface Props {
     news: INews[];
@@ -127,6 +129,7 @@ const Mobile = ({
         "Faster, Simpler and Smarter": <Ai />,
         "Key USPS": <FeatureMobile />,
         "More ways to get paid": <MuchMore wayGetPaids={wayGetPaids} />,
+        "Creating without limits": <LimitMobile /> ,
         "Featured creators": <FeaturedCreator featuredCreators={featuredCreators} />,
         "Earning estimation": <EarningEstimate />,
         "Partners": <PartnerSlider partnerSlides={partnerSlides} />,
@@ -208,6 +211,7 @@ const Desktop = ({
         "Faster, Simpler and Smarter": <Ai />,
         "Key USPS": <Feature />,
         "More ways to get paid": <MuchMore wayGetPaids={wayGetPaids} />,
+        "Creating without limits": <Limit /> ,
         "Featured creators": <FeaturedCreator featuredCreators={featuredCreators} />,
         "Earning estimation": <EarningEstimate />,
         "Partners": <PartnerSlider partnerSlides={partnerSlides} />,

@@ -1,18 +1,15 @@
 import { Box } from '@mantine/core';
-import Image from 'next/image';
 import React from 'react';
-import phone from "@public/feature/phone.webp";
-import img1 from "@public/feature/1/1.webp";
-import img2 from "@public/feature/1/2.webp";
 
 export function Feature1() {
     return (
         <Box
-            w={{ base: "100%" }} pos={"relative"}
+            w={{ base: "100%" }} 
+            pos={"relative"}
             key={1}
             h={"fit-content"}
         >
-            <Box
+            {/* <Box
                 pos={"relative"}
                 h={"fit-content"}
                 w={"74%"}
@@ -36,7 +33,19 @@ export function Feature1() {
             </Box>
 
             <Image src={img1} alt='img1' className='absolute w-[32%] h-auto left-0 top-[28%]' />
-            <Image src={img2} alt='img1' className='absolute w-[36%] h-auto right-[1%] top-[60%]' />
+            <Image src={img2} alt='img1' className='absolute w-[36%] h-auto right-[1%] top-[60%]' /> */}
+
+            <video
+                autoPlay={true}
+                playsInline
+                loop
+                preload="auto"
+                controls={false}
+                muted={true}
+                className="w-full h-auto object-cover"
+            >
+                <source src={"/feature/1/video.mp4"} type="video/mp4" />
+            </video>
         </Box>
     );
 }

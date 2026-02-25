@@ -1,9 +1,5 @@
-import { Box, Flex } from '@mantine/core';
+import { Box } from '@mantine/core';
 import React from 'react';
-import Image from 'next/image';
-import featureShop from "@public/slogan/feature/2/img2.webp";
-import { LiveComments } from '../slogan/LiveComment';
-import { LiveCount } from '../slogan/LiveCount';
 
 export function Feature2() {
 
@@ -13,7 +9,7 @@ export function Feature2() {
             key={2}
             h={"fit-content"}
         >
-            <Box w={"100%"} pos={"relative"} className='aspect-square rounded-[40px] overflow-hidden'>
+            {/* <Box w={"100%"} pos={"relative"} className='aspect-square rounded-[40px] overflow-hidden'>
                 <Box w={"100%"} h={"100%"} className='overflow-hidden'>
                     <video
                         autoPlay={true}
@@ -77,7 +73,18 @@ export function Feature2() {
                 >
                     <Image src={featureShop} alt='featureShop' className='w-full h-auto object-cover' />
                 </Box>
-            </Box>
+            </Box> */}
+            <video
+                autoPlay={true}
+                playsInline
+                loop
+                preload="auto"
+                controls={false}
+                muted={true}
+                className="w-full h-auto object-cover"
+            >
+                <source src={"/feature/2/video.mp4"} type="video/mp4" />
+            </video>
         </Box>
     );
 }

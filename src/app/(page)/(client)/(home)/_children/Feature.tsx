@@ -11,6 +11,7 @@ import { Feature3 } from './feature/Feature3';
 import { Feature4 } from './feature/Feature4';
 import { Feature5 } from './feature/Feature5';
 import { Feature6 } from './feature/Feature6';
+import React from "react";
 
 const DURATION = 5000; // 5s
 
@@ -49,7 +50,6 @@ const list = [
 
 export function Feature() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
 
   const controls = useAnimation();
 
@@ -60,9 +60,6 @@ export function Feature() {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
 
-  // ===============================
-  // CLEAR TIMER
-  // ===============================
   const clearTimer = () => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -70,16 +67,10 @@ export function Feature() {
     }
   };
 
-  // ===============================
-  // NEXT SLIDE
-  // ===============================
   const nextSlide = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % list.length);
   }, []);
 
-  // ===============================
-  // START PROGRESS
-  // ===============================
   const startProgress = useCallback(
     (duration: number) => {
       clearTimer();
@@ -103,9 +94,6 @@ export function Feature() {
     [controls, nextSlide]
   );
 
-  // ===============================
-  // PAUSE
-  // ===============================
   const pause = () => {
     if (!timeoutRef.current) return;
 
@@ -117,9 +105,6 @@ export function Feature() {
     controls.stop();
   };
 
-  // ===============================
-  // RESUME
-  // ===============================
   const resume = () => {
     if (remainingRef.current <= 0) return;
 
@@ -139,9 +124,6 @@ export function Feature() {
     }, remainingRef.current);
   };
 
-  // ===============================
-  // WHEN ACTIVE INDEX CHANGES
-  // ===============================
   useEffect(() => {
     if (!isInView) return;
 
@@ -151,18 +133,12 @@ export function Feature() {
     return clearTimer;
   }, [activeIndex, isInView, startProgress, controls]);
 
-  // ===============================
-  // CLEANUP
-  // ===============================
   useEffect(() => {
     return () => {
       clearTimer();
     };
   }, []);
 
-  // ===============================
-  // HANDLE CLICK
-  // ===============================
   const handleClick = (index: number) => {
     if (index === activeIndex) return;
 
@@ -196,13 +172,12 @@ export function Feature() {
                     gap={16}
                     py={12}
                     onMouseEnter={() => {
-                      setIsPaused(true);
                       pause();
                     }}
                     onMouseLeave={() => {
-                      setIsPaused(false);
                       resume();
                     }}
+                    className="cursor-pointer"
                   >
                     <Flex direction={"column"} h={{ base: 120 }} gap={16}>
                       <Text c={"#131416"} fz={{ base: 30 }} fw={600}>
@@ -266,7 +241,9 @@ export function Feature() {
                 transition={{ duration: 0.2 }}
                 className='w-full h-full top-0 left-0 absolute'
               >
-                {o.component()}
+                <React.Fragment key={index}>
+                  {o.component()}
+                </React.Fragment>
               </motion.div>
             );
           })}

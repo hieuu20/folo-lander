@@ -2,10 +2,12 @@ import { useBrowserWidth } from '@/hooks';
 import { Box, SimpleGrid } from '@mantine/core';
 import React from 'react';
 import img1 from "@public/limit/1.webp";
-import img2 from "@public/limit/2-large.webp";
+import img2 from "@public/limit/2.webp";
 import img3 from "@public/limit/3.webp";
-import img4 from "@public/limit/4-large.webp";
+import img4 from "@public/limit/4.webp";
 import img5 from "@public/limit/5.webp";
+import img2_1 from "@public/limit/2-1.webp";
+import img4_1 from "@public/limit/4-1.webp";
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
@@ -39,9 +41,11 @@ export function Limit() {
                                 duration: 40,
                                 ease: "linear"
                             }}
-                            className=""
+                            className="flex flex-col gap-2"
                         >
                             <Image src={img2} alt="limit-img" className="w-full h-auto" />
+                            <Image src={img2} alt="limit-img" className="w-full h-auto" />
+                            <Image src={img2_1} alt="limit-img" className="w-full h-auto" />
                         </motion.div>
                     </Box>
 
@@ -68,9 +72,11 @@ export function Limit() {
                                 duration: 40,
                                 ease: "linear"
                             }}
-                            className=""
+                            className="flex flex-col gap-2"
                         >
                             <Image src={img4} alt="limit-img" className="w-full h-auto" />
+                            <Image src={img4} alt="limit-img" className="w-full h-auto" />
+                            <Image src={img4_1} alt="limit-img" className="w-full h-auto" />
                         </motion.div>
                     </Box>
 

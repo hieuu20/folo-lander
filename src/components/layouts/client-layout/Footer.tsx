@@ -85,14 +85,14 @@ export const footerList = [
         title: "Community Guidelines",
         href: "/docs/7. COMMUNITY GUIDELINES.pdf",
       },
-      // {
-      //   title: "Help Centre",
-      //   href: "/docs/2. ADDITIONAL TERMS FOR CREATORS AND COLLABORATORS.pdf",
-      // },
-      // {
-      //   title: "Feedback Center",
-      //   href: "/docs/3. ADDITIONAL TERMS FOR FANS BUYING CREATOR CONTENT.pdf",
-      // },
+      {
+        title: "Help Centre",
+        // href: "/docs/2. ADDITIONAL TERMS FOR CREATORS AND COLLABORATORS.pdf",
+      },
+      {
+        title: "Feedback Center",
+        // href: "/docs/3. ADDITIONAL TERMS FOR FANS BUYING CREATOR CONTENT.pdf",
+      },
       {
         title: "Terms of Service",
         href: "/docs/1. TERMS OF SERVICE.pdf",
@@ -101,23 +101,23 @@ export const footerList = [
         title: "Contact Us",
         href: "mailto:support@folo.com",
       },
-      // {
-      //   title: "Blog",
-      //   // href: "https://knky.co/fresh/",
-      // },
+      {
+        title: "Blog",
+        // href: "https://knky.co/fresh/",
+      },
     ],
   },
   {
     title: "For Creators & Fans",
     children: [
-      // {
-      //   title: "About FOLO",
-      //   href: "https://lander.folo.co/",
-      // },
-      // {
-      //   title: "Premium Plans",
-      //   // href: "https://knky.co/platform-plans",
-      // },
+      {
+        title: "About FOLO",
+        href: "https://lander.folo.co/",
+      },
+      {
+        title: "Premium Plans",
+        // href: "https://knky.co/platform-plans",
+      },
       {
         title: "Fans & Purchasing Terms",
         href: "/docs/3. ADDITIONAL TERMS FOR FANS BUYING CREATOR CONTENT.pdf",

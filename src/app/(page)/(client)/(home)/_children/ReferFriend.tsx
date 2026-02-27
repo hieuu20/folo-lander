@@ -26,7 +26,7 @@ export default function ReferFriend() {
       bg={"#F7F7FC"}
     >
       <Flex
-        w={{ base: "100%", md: "80%", xl: 1160 }}
+        w={{ base: "100%", lg: "80%", "2xl": 1160 }}
         direction={{ base: "column", md: "row" }}
         mx={"auto"}
         gap={{ base: 40 }}
@@ -34,17 +34,17 @@ export default function ReferFriend() {
         justify={"center"}
         align={"center"}
         className='aspect-[1.25182481752] md:aspect-[6.44444444444]'
-        px={{ base: 32, md: 0 }}
+        px={{ base: 32, lg: 0 }}
       >
         <Image src={bgPc} alt='bg' fill className='object-cover hidden md:inline-block' />
         <Image src={bgMb} alt='bg' fill className='object-cover md:hidden' />
-        <Text fz={{ base: 32, md: 34 }} fw={700} c={"#131416"} lh={1.2} pos={"relative"} ta={"center"}>
+        <Text fz={{ base: 32, lg: 34 }} fw={700} c={"#131416"} lh={1.2} pos={"relative"} ta={"center"}>
           Refer Creators and your friends to earn 15% value.
         </Text>
 
         <SectionButton
           title='Invite friends now →'
-          fz={{ base: 16, md: 20 }}
+          fz={{ base: 16, sm: 18, lg: 20 }}
           fw={600}
           c={"white"}
           w={{ base: 180, md: 224 }}

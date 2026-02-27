@@ -14,19 +14,19 @@ export function Faq({ faqs }: Props) {
         >
             <Flex
                 className='container'
-                direction={{ base: "column", md: "row" }}
+                direction={{ base: "column", lg: "row" }}
                 justify={{ base: "center", md: "space-between" }}
                 py={{ base: 40, md: 60, xl: 80 }}
                 pb={{ base: 60, md: 80, xl: 100 }}
-                gap={24}
+                gap={{ base: 24, sm: 40 }}
             >
                 <Title
                     order={4}
                     fz={{ base: 32, md: 60, xl: 80 }}
                     fw={{ base: 700, md: 600 }}
                     c={"#131416"}
-                    w={{ base: "100%", md: "28%" }}
-                    ta={{ base: "center", md: "unset" }}
+                    w={{ base: "100%", lg: "28%" }}
+                    ta={{ base: "center", lg: "unset" }}
                 >
                     Frequently
                     Asked
@@ -34,7 +34,7 @@ export function Faq({ faqs }: Props) {
                 </Title>
 
                 <Flex
-                    w={{ base: "100%", md: "45%", x: 500 }}
+                    w={{ base: "100%", lg: "45%", "2xl": 500 }}
                     direction={"column"}
                 >
                     <Accordion

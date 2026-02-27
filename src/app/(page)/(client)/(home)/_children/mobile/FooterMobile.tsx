@@ -98,7 +98,7 @@ export function FooterMobile({ roles }: Props) {
                                             alt="social icons"
                                             width={40}
                                             height={40}
-                                            className="w-9 md:w-11 xl:w-12 aspect-square"
+                                            className="w-9 md:w-11 2xl:w-12 aspect-square"
                                         />
                                     </Link>
                                 </FadeInAni>

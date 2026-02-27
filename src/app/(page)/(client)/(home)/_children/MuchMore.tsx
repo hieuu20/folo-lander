@@ -20,9 +20,9 @@ export function MuchMore({ wayGetPaids }: Props) {
     const ref = useRef<any>(null);
     const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-    const { width, isMb } = useBrowserWidth();
+    const { isMb } = useBrowserWidth();
     const itemWidth = isMb ? 290 : 338;
-    const slideToShow = width / itemWidth;
+    const slideToShow = window.innerWidth / itemWidth;
     const onPrev = useCallback(() => {
         sliderRef.current.slickPrev();
     }, []);
@@ -54,7 +54,7 @@ export function MuchMore({ wayGetPaids }: Props) {
         initialSlide: 0,
         responsive: [
             {
-                breakpoint: 1024,
+                breakpoint: 1624,
                 settings: {
                     centerMode: true,
                     centerPadding: `${centerPadding + 6}px`,

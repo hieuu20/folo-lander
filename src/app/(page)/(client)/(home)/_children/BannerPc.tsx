@@ -8,17 +8,21 @@ import logoWhite from "@public/icons/logo-white.webp";
 
 import Image from 'next/image';
 import { motion, useAnimate, useScroll, useTransform } from 'framer-motion';
-import { useWindowHeight } from '@/hooks';
+import { useBrowserWidth, useWindowHeight } from '@/hooks';
 import { loadingTime } from '@/utils/constants';
 import downIcon from "@public/icons/down.svg";
 import { useApp } from '@/app/context/AppContext';
 import SectionButton from '@/components/buttons/SectionButton';
 import gsap from "gsap";
 
-const getTopHeight = (wdHeight: number) => {
+const getTopHeight = (wdHeight: number, wdWidth: number) => {
     const result = wdHeight * 0.51;
 
-    if (result > 500) return 500;
+    const width = result * 2.75862068966;
+
+    if (width > wdWidth) {
+        return wdWidth * 0.88 / 2.75862068966;
+    }
 
     return result;
 };
@@ -26,6 +30,7 @@ const getTopHeight = (wdHeight: number) => {
 export function BannerPc() {
     const { profile } = useApp();
     const wdHeight = useWindowHeight();
+    const { width } = useBrowserWidth();
     const [scope] = useAnimate();
     const [tileHeight, setTitleHeight] = useState(0);
 
@@ -36,7 +41,7 @@ export function BannerPc() {
         }
     }, []);
 
-    const topHeight = getTopHeight(wdHeight);
+    const topHeight = getTopHeight(wdHeight, window.innerWidth);
 
     const spacing = useMemo(() => {
         return (wdHeight - (topHeight + tileHeight + 36)) / 2;
@@ -85,7 +90,6 @@ export function BannerPc() {
                         className='absolute aspect-[2.75862068966] z-10'
                         style={{
                             height: topHeight,
-                            maxHeight: 600
                         }}
                     >
                         <motion.div
@@ -134,7 +138,7 @@ export function BannerPc() {
                         <Flex direction={"column"} align={"center"} gap={{ base: 12, md: 8 }}>
                             <Text
                                 c={"#131416"}
-                                fz={{ base: 32, sm: 36, md: 40, lg: 44, xl: 48 }}
+                                fz={{ base: 32, sm: 36, md: 40, lg: 44, "2xl": 48 }}
                                 w={"fit-content"}
                                 lh={1.2}
                                 fw={700}

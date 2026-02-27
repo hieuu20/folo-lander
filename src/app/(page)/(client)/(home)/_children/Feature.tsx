@@ -50,7 +50,6 @@ const list = [
 
 export function Feature() {
   const [activeIndex, setActiveIndex] = useState(0);
-
   const controls = useAnimation();
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -139,6 +138,7 @@ export function Feature() {
     };
   }, []);
 
+
   const handleClick = (index: number) => {
     if (index === activeIndex) return;
 
@@ -179,7 +179,7 @@ export function Feature() {
                     }}
                     className="cursor-pointer"
                   >
-                    <Flex direction={"column"} h={{ base: 120 }} gap={16}>
+                    <Flex direction={"column"} gap={16} h={{ base: 185, xl: 120 }}>
                       <Text c={"#131416"} fz={{ base: 30 }} fw={600}>
                         {o.title}
                       </Text>
@@ -218,19 +218,7 @@ export function Feature() {
           })}
         </Flex>
 
-        {/* <AnimatePresence mode="wait">
-          <motion.div
-            key={activeIndex}
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 0 }}
-            transition={{ duration: 0.2 }}
-            className='w-[45%]'
-          >
-            {list[activeIndex].component()}
-          </motion.div>
-        </AnimatePresence> */}
-        <Box pos={"relative"} w={"45%"}>
+        <Box pos={"relative"} w={"46%"} className="aspect-square">
           {list.map((o, index) => {
             return (
               <motion.div
@@ -239,7 +227,7 @@ export function Feature() {
                 animate={activeIndex == index ? { opacity: 1 } : { opacity: 0 }}
                 exit={{ opacity: 0, y: 0 }}
                 transition={{ duration: 0.2 }}
-                className='w-full h-full top-0 left-0 absolute'
+                className='w-full h-full top-0 left-0 absolute flex justify-center items-center'
               >
                 <React.Fragment key={index}>
                   {o.component()}

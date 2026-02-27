@@ -68,8 +68,8 @@ export function EarningEstimate() {
                         w={"100%"}
                         justify={"space-between"}
                         align={"center"}
-                        direction={{ base: "column", md: "row" }}
-                        gap={{ base: 24, md: 120 }}
+                        direction={{ base: "column", lg: "row" }}
+                        gap={{ base: 24, sm: 40, lg: 120 }}
                     >
                         {isMb && <EarningTitle />}
                         {!isMb && (

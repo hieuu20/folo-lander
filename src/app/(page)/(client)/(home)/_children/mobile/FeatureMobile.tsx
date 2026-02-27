@@ -128,21 +128,22 @@ export function FeatureMobile() {
 
         <Flex
           py={{ base: 24 }}
-          className='rounded-lg'
+          className='rounded-lg z-10'
           h={{ base: 210 }}
+          justify={"center"}
         >
-          <Flex direction={"column"} gap={12}>
-            <Text c={"#131416"} fz={{ base: 32 }} fw={700} ta={"center"}>
+          <Flex direction={"column"} align={"center"} gap={12}>
+            <Text c={"#131416"} fz={{ base: 32, sm: 36 }} fw={700} ta={"center"}>
               {list[activeIndex].title}
             </Text>
 
-            <Text fz={{ base: 16 }} fw={500} c={"#4D5053"} ta={"center"}>
+            <Text fz={{ base: 16, sm: 20 }} fw={500} c={"#4D5053"} ta={"center"}>
               {list[activeIndex].description}
             </Text>
           </Flex>
         </Flex>
 
-        <Box h={{ base: 6 }} bg={"#E7E7F8"} className="relative overflow-hidden" mb={12}>
+        <Box h={{ base: 6 }} bg={"#E7E7F8"} className="relative overflow-hidden" mb={{ base: 12, sm: 24 }}>
           <motion.div
             key={progressKey}
             initial={{ width: "0%" }}

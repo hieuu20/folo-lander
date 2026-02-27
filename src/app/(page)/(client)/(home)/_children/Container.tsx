@@ -40,7 +40,6 @@ import { Ai } from "./Ai";
 import { FeatureMobile } from "./mobile/FeatureMobile";
 import LeaderBoardCount from "./LeaderBoardCount";
 import ReferFriend from "./ReferFriend";
-import { JoinWaitList } from "./JoinWaitList";
 import { Limit } from "./Limit";
 import { LimitMobile } from "./mobile/LimitMobile";
 
@@ -83,9 +82,9 @@ export default function Container(props: Props) {
             return <Mobile {...props} />;
         }
 
-        // if (width < 1240) {
-        //     <Tablet {...props} />;
-        // }
+        if (width < 1200) {
+            return <Tablet {...props} />;
+        }
 
         return <Desktop {...props} />;
     };
@@ -120,7 +119,6 @@ const Mobile = ({
     featuredCreators,
     sections
 }: Props) => {
-
     const leaderboardSection = sections.find(o => o.title == "Leaderboard");
 
     const listMobile: Record<string, React.JSX.Element> = {
@@ -129,7 +127,7 @@ const Mobile = ({
         "Faster, Simpler and Smarter": <Ai />,
         "Key USPS": <FeatureMobile />,
         "More ways to get paid": <MuchMore wayGetPaids={wayGetPaids} />,
-        "Creating without limits": <LimitMobile /> ,
+        "Creating without limits": <LimitMobile />,
         "Featured creators": <FeaturedCreator featuredCreators={featuredCreators} />,
         "Earning estimation": <EarningEstimate />,
         "Partners": <PartnerSlider partnerSlides={partnerSlides} />,
@@ -150,19 +148,6 @@ const Mobile = ({
                         backgroundColor: "#fff"
                     }}
                 >
-                    {/* <BannerMobile />
-                    <LeaderBoardMobile pointSettings={pointSettings} roles={roles} rewards={rewards} />
-                    <Ai />
-                    <FeatureMobile />
-                    <MuchMore wayGetPaids={wayGetPaids} />
-                    <FeaturedCreator featuredCreators={featuredCreators} />
-                    <EarningEstimate />
-                    <PartnerSlider partnerSlides={partnerSlides} />
-                    <PeopleSay peopleSays={peopleSays} />
-                    <News news={news} />
-                    <Faq faqs={faqs} />
-                    <FooterMobile /> */}
-
                     <BannerMobile />
                     {sections.map((o, index) => {
                         return (
@@ -211,7 +196,7 @@ const Desktop = ({
         "Faster, Simpler and Smarter": <Ai />,
         "Key USPS": <Feature />,
         "More ways to get paid": <MuchMore wayGetPaids={wayGetPaids} />,
-        "Creating without limits": <Limit /> ,
+        "Creating without limits": <Limit />,
         "Featured creators": <FeaturedCreator featuredCreators={featuredCreators} />,
         "Earning estimation": <EarningEstimate />,
         "Partners": <PartnerSlider partnerSlides={partnerSlides} />,
@@ -258,42 +243,59 @@ const Desktop = ({
     );
 };
 
-// const Tablet = ({ news }: Props) => {
-//     const main = useRef<any>();
-//     const smoother = useRef<ScrollSmoother>();
+const Tablet = ({
+    news,
+    pointSettings,
+    roles,
+    rewards,
+    wayGetPaids,
+    faqs,
+    partnerSlides,
+    peopleSays,
+    featuredCreators,
+    sections
+}: Props) => {
 
-//     useGSAP(
-//         () => {
-//             // smoother.current = ScrollSmoother.create({
-//             //   smooth: 0,
-//             //   effects: true,
-//             //   smoothTouch: 0.5,
-//             //   ignoreMobileResize: true,
-//             //   normalizeScroll: true
-//             // });
-//         },
-//         {
-//             scope: main,
-//         }
-//     );
+    const leaderboardSection = sections.find(o => o.title == "Leaderboard");
 
-//     return (
-//         <Box id="smooth-wrapper" ref={main}>
-//             <Box
-//                 id="smooth-content"
-//                 className='bg-contain bg-repeat'
-//                 style={{
-//                     backgroundImage: "url('/version-3/banner/bg-mb.webp')",
-//                     backgroundColor: "#0A0014"
-//                 }}
-//             >
-//                 {/* <BannerTablet idols={idols} /> */}
-//                 <UnlimitedMobile />
-//                 <MoreMobile />
-//                 <GrowthMobile news={news} />
-//                 {/* <News news={news} /> */}
-//                 <Footer />
-//             </Box>
-//         </Box>
-//     );
-// };
+    const listMobile: Record<string, React.JSX.Element> = {
+        "Leaderboard": <LeaderBoardMobile pointSettings={pointSettings} roles={roles} rewards={rewards} phase={leaderboardSection?.phase || 1} />,
+        "User counters": <LeaderBoardCount />,
+        "Faster, Simpler and Smarter": <Ai />,
+        "Key USPS": <FeatureMobile />,
+        "More ways to get paid": <MuchMore wayGetPaids={wayGetPaids} />,
+        "Creating without limits": <LimitMobile />,
+        "Featured creators": <FeaturedCreator featuredCreators={featuredCreators} />,
+        "Earning estimation": <EarningEstimate />,
+        "Partners": <PartnerSlider partnerSlides={partnerSlides} />,
+        "People say": <PeopleSay peopleSays={peopleSays} />,
+        "News": <News news={news} />,
+        "FAQs": <Faq faqs={faqs} />,
+        "Refer your friends": <ReferFriend />
+    };
+
+    return (
+        <>
+            <Header />
+            <Box id="smooth-wrapper">
+                <Box
+                    id="smooth-content"
+                    className=''
+                    style={{
+                        backgroundColor: "#fff"
+                    }}
+                >
+                    <BannerPc />
+                    {sections.map((o, index) => {
+                        return (
+                            <React.Fragment key={index}>
+                                {listMobile[o.title] || ""}
+                            </React.Fragment>
+                        );
+                    })}
+                    <Footer roles={roles} />
+                </Box>
+            </Box>
+        </>
+    );
+};

@@ -28,12 +28,12 @@ export function PeopleSay({ peopleSays = [] }: Props) {
         <Box ref={ref} w={"100%"} py={{ base: 40, md: 60, xl: 80 }} bg={"#F7F7FC"}>
             <Flex
                 className='container'
-                direction={{ base: "column", md: "row" }}
+                direction={{ base: "column", lg: "row" }}
                 justify={{ base: "center", md: "space-between" }}
                 align={{ base: "center" }}
-                gap={24}
+                gap={{ base: 24, sm: 60, lg: "unset" }}
             >
-                <Flex w={{ base: "100%", md: "24%" }} direction={"column"} gap={{ base: 24, md: 32 }} align={{ base: "center", md: "unset" }}>
+                <Flex w={{ base: "100%", lg: "24%" }} direction={"column"} gap={{ base: 24, lg: 32 }} align={{ base: "center", lg: "unset" }}>
                     <Image src={trustIcon} alt='trustIcon' className='w-[130px] md:w-[160px] xl:w-[195px] h-auto' />
                     <Title order={4} fz={{ base: 32, md: 60, xl: 80 }} fw={{ base: 700, md: 600 }} lh={1.2} c={"#131416"}>
                         What
@@ -43,7 +43,7 @@ export function PeopleSay({ peopleSays = [] }: Props) {
                 </Flex>
 
                 <Flex
-                    w={{ base: "100%", md: "50%", x: 680 }}
+                    w={{ base: "100%", sm: "80%", lg: 680 }}
                     justify={"center"}
                     bg={"white"}
                     p={{ base: 24, md: 40, xl: 64 }}

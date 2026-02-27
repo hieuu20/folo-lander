@@ -184,7 +184,7 @@ export function Footer({ roles }: Props) {
 
 
   return (
-    <footer id="footer" className="bg-white overflow-hidden rounded-t-[24px] relative w-full aspect-[1.05340160936] -top-6 pt-6">
+    <footer id="footer" className="bg-white overflow-hidden rounded-t-[24px] relative w-full aspect-[0.6] lg:aspect-[1.05340160936] -top-6 pt-6">
       <BackgroundAnimation />
 
       <FadeInAni isInView={isInView} y={500} delay={delayStep * 3} classname="h-[30%] w-full absolute top-0 left-0 flex justify-center">
@@ -226,7 +226,7 @@ export function Footer({ roles }: Props) {
                       alt="social icons"
                       width={40}
                       height={40}
-                      className="w-10 md:w-11 xl:w-12 aspect-square"
+                      className="w-10 md:w-11 2xl:w-12 aspect-square"
                     />
                   </Link>
                 </FadeInAni>

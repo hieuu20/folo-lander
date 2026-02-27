@@ -11,7 +11,7 @@ import Image from 'next/image';
 
 export function LimitMobile() {
     return (
-        <Box pos={"relative"} w={"100%"} className='aspect-[0.53495007132] overflow-hidden'>
+        <Box pos={"relative"} w={"100%"} className='aspect-[0.53495007132] sm:aspect-[0.8] overflow-hidden'>
             <Box
                 pos={"absolute"}
                 top={"50%"}
@@ -30,9 +30,9 @@ export function LimitMobile() {
             </Box>
 
             <Flex pos={"absolute"} top={"0"} left={"50%"} gap={8} className='-translate-x-1/2'>
-                <Box pos="relative" w="70vw" h="100%" className='overflow-hidden'>
+                <Box pos="relative" w={{ base: "70vw", sm: "50vw" }} h="100%" className='overflow-hidden'>
                     <motion.div
-                        animate={{ y: ["-50%", "0%"] }}   // top → bottom
+                        animate={{ y: ["-50%", "0%"] }} 
                         transition={{
                             repeat: Infinity,
                             duration: 40,
@@ -46,7 +46,7 @@ export function LimitMobile() {
                     </motion.div>
                 </Box>
 
-                <Box pos="relative" w="70vw" h="100%" className='overflow-hidden'>
+                <Box pos="relative" w={{ base: "70vw", sm: "56vw" }} h="100%" className='overflow-hidden'>
                     <motion.div
                         animate={{ y: ["-50%", "0%"] }}   // top → bottom
                         transition={{
@@ -61,7 +61,7 @@ export function LimitMobile() {
                     </motion.div>
                 </Box>
 
-                <Box pos="relative" w="70vw" h="100%" className='overflow-hidden'>
+                <Box pos="relative" w={{ base: "70vw", sm: "56vw" }} h="100%" className='overflow-hidden'>
                     <motion.div
                         animate={{ y: ["-50%", "0%"] }}   // top → bottom
                         transition={{

@@ -8,7 +8,7 @@ import logoWhite from "@public/icons/logo-white.webp";
 
 import Image from 'next/image';
 import { motion, useAnimate, useScroll, useTransform } from 'framer-motion';
-import { useBrowserWidth, useWindowHeight } from '@/hooks';
+import { useWindowHeight } from '@/hooks';
 import { loadingTime } from '@/utils/constants';
 import downIcon from "@public/icons/down.svg";
 import { useApp } from '@/app/context/AppContext';
@@ -30,7 +30,6 @@ const getTopHeight = (wdHeight: number, wdWidth: number) => {
 export function BannerPc() {
     const { profile } = useApp();
     const wdHeight = useWindowHeight();
-    const { width } = useBrowserWidth();
     const [scope] = useAnimate();
     const [tileHeight, setTitleHeight] = useState(0);
 
@@ -52,11 +51,11 @@ export function BannerPc() {
         offset: ['start 0', 'start -0.3'],
     });
 
-    const scrollToLeaderboard = () => {
+    const scrollToSection = (htmlId: string) => {
         gsap.to(window, {
             duration: 1,
             scrollTo: {
-                y: "#Leaderboard",
+                y: `#${htmlId}`,
                 autoKill: false,
             },
             ease: "power2.out",
@@ -166,7 +165,7 @@ export function BannerPc() {
                                     px={0}
                                     c={"white"}
                                     mx={"auto"}
-                                    onClick={scrollToLeaderboard}
+                                    onClick={() => scrollToSection("Leaderboard")}
                                 />
 
                                 <SectionButton
@@ -185,8 +184,37 @@ export function BannerPc() {
                                 />
                             </Flex>
                         ) : (
-                            // <EmailWaitingListInput />
-                            <></>
+                            <Flex gap={16}>
+                                <SectionButton
+                                    // href='#Leaderboard'
+                                    show={true}
+                                    title='How it Works'
+                                    className='rounded-lg'
+                                    fz={{ base: 16 }}
+                                    fw={600}
+                                    w={{ base: 160 }}
+                                    h={40}
+                                    px={0}
+                                    c={"white"}
+                                    mx={"auto"}
+                                    onClick={() => scrollToSection("Features")}
+                                />
+
+                                <SectionButton
+                                    show={true}
+                                    title='Earning Calculator'
+                                    className='rounded-lg'
+                                    fz={{ base: 16 }}
+                                    fw={600}
+                                    w={{ base: 160 }}
+                                    h={40}
+                                    px={0}
+                                    bg={"#131416"}
+                                    c={"white"}
+                                    mx={"auto"}
+                                    onClick={() => scrollToSection("Earning")}
+                                />
+                            </Flex>
                         )}
                     </motion.div>
                 </Flex>

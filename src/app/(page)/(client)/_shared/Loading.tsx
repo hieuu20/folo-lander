@@ -48,7 +48,7 @@ export function Loading() {
                         }}
                         className="flex w-screen fixed top-0 left-0 bg-white justify-center items-center z-20"
                     >
-                        <div ref={logoRef} className="w-[90%] md:w-[32%] top-[-10.4vh] md:top-[-1vh] lg:top-[-2.1vh] h-auto relative" />
+                        <div ref={logoRef} className="w-[90%] md:w-[32%] top-[-14.4vh] md:top-[-1vh] lg:top-[-2.1vh] h-auto relative" />
                     </motion.div>
                 )}
             </AnimatePresence>

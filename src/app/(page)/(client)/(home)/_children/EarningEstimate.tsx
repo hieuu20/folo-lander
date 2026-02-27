@@ -49,7 +49,7 @@ export function EarningEstimate() {
     };
 
     return (
-        <Box w={"100%"} py={{ base: 40, md: 80, xl: 120 }}>
+        <Box w={"100%"} py={{ base: 40, md: 80, xl: 120 }} id='Earning'>
             <Box className='container h-fit'>
                 <Flex
                     w={"100%"}

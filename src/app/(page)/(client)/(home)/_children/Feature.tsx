@@ -157,6 +157,7 @@ export function Feature() {
       bg={"white"}
       py={{ base: 40, md: 60, xl: 90 }}
       mt={-24}
+      id="Features"
     >
       <Flex ref={containerRef} justify={"space-between"} className='container'>
         <Flex w={{ base: "100%", md: "40%" }} direction={"column"}>

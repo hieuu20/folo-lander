@@ -108,6 +108,7 @@ export function FeatureMobile() {
       bg={"white"}
       py={{ base: 40, md: 60, xl: 80 }}
       mt={-24}
+      id="Features"
     >
       <Flex ref={ref} direction={"column"} className='container'>
         <Flex pos={"relative"} w={"100%"} align={"center"} className='aspect-[0.93]'>

@@ -3,7 +3,7 @@
 "use client";
 
 import { Box, Flex, Text } from '@mantine/core';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import logoWhite from "@public/icons/logo-white.webp";
 
 import Image from 'next/image';
@@ -12,6 +12,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { useWindowHeight } from '@/hooks';
 import { loadingTime } from '@/utils';
 import { useApp } from '@/app/context/AppContext';
+import gsap from "gsap";
 
 export function BannerMobile() {
     const { profile } = useApp();
@@ -58,6 +59,17 @@ export function BannerMobile() {
         if (titleElement) {
             setTitleHeight(titleElement.getBoundingClientRect()?.height);
         }
+    }, []);
+
+    const scrollToSection = useCallback((htmlId: string) => {
+        gsap.to(window, {
+            duration: 1,
+            scrollTo: {
+                y: `#${htmlId}`,
+                autoKill: false,
+            },
+            ease: "power2.out",
+        });
     }, []);
 
     const topHeight = wdHeight - (tileHeight + 40 * 2 + 32);
@@ -143,7 +155,6 @@ export function BannerMobile() {
                         {profile ? (
                             <Flex justify={"space-between"}>
                                 <SectionButton
-                                    href='#Leaderboard'
                                     show={true}
                                     title='Share to earn'
                                     className='rounded-lg'
@@ -155,6 +166,7 @@ export function BannerMobile() {
                                     bg={"#435EFB"}
                                     c={"white"}
                                     mx={"auto"}
+                                    onClick={() => scrollToSection("Features")}
                                 />
 
                                 <SectionButton
@@ -171,11 +183,39 @@ export function BannerMobile() {
                                     mx={"auto"}
                                     href='/profile'
                                 />
-
                             </Flex>
                         ) : (
-                            // <EmailWaitingListInput />
-                            <></>
+                            <Flex justify={"space-between"}>
+                                <SectionButton
+                                    show={true}
+                                    title='How it Works'
+                                    className='rounded-lg'
+                                    fz={{ base: 16 }}
+                                    fw={600}
+                                    w={{ base: "48%" }}
+                                    h={40}
+                                    px={0}
+                                    bg={"#435EFB"}
+                                    c={"white"}
+                                    mx={"auto"}
+                                    onClick={() => scrollToSection("Features")}
+                                />
+
+                                <SectionButton
+                                    show={true}
+                                    title='Earning Calculator'
+                                    className='rounded-lg'
+                                    fz={{ base: 16 }}
+                                    fw={600}
+                                    w={{ base: "48%" }}
+                                    h={40}
+                                    px={0}
+                                    bg={"#131416"}
+                                    c={"white"}
+                                    mx={"auto"}
+                                    onClick={() => scrollToSection("Earning")}
+                                />
+                            </Flex>
                         )}
                     </motion.div>
                 </Flex>

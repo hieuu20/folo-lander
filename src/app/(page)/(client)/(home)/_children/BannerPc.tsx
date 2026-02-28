@@ -61,6 +61,27 @@ export function BannerPc() {
             ease: "power2.out",
         });
     };
+
+    const scrollToFeatureSection = () => {
+        gsap.to(window, {
+            duration: 1,
+            scrollTo: {
+                y: `#Features`,
+                autoKill: false,
+            },
+            ease: "power2.out",
+        });
+
+        const event = new CustomEvent("RESET_FEATURE_PROGRESS", {
+            detail: {
+                value: null,
+            },
+        });
+
+        setTimeout(() => {
+            window.dispatchEvent(event);
+        }, 400);
+    };
     const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
     return (
@@ -197,7 +218,7 @@ export function BannerPc() {
                                     px={0}
                                     c={"white"}
                                     mx={"auto"}
-                                    onClick={() => scrollToSection("Features")}
+                                    onClick={scrollToFeatureSection}
                                 />
 
                                 <SectionButton

@@ -72,6 +72,27 @@ export function BannerMobile() {
         });
     }, []);
 
+    const scrollToFeatureSection = () => {
+        gsap.to(window, {
+            duration: 1,
+            scrollTo: {
+                y: `#Features`,
+                autoKill: false,
+            },
+            ease: "power2.out",
+        });
+
+        const event = new CustomEvent("RESET_FEATURE_PROGRESS", {
+            detail: {
+                value: null,
+            },
+        });
+
+        setTimeout(() => {
+            window.dispatchEvent(event);
+        }, 100);
+    };
+
     const topHeight = wdHeight - (tileHeight + 40 * 2 + 32);
 
     return (
@@ -198,7 +219,7 @@ export function BannerMobile() {
                                     bg={"#435EFB"}
                                     c={"white"}
                                     mx={"auto"}
-                                    onClick={() => scrollToSection("Features")}
+                                    onClick={scrollToFeatureSection}
                                 />
 
                                 <SectionButton

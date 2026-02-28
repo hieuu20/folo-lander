@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Flex, Text } from '@mantine/core';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { Feature1 } from '../feature/Feature1';
 import { Feature2 } from '../feature/Feature2';
@@ -64,6 +64,33 @@ export function FeatureMobile() {
     }, DURATION);
   };
 
+  const onPrev = () => {
+    let index = activeIndex - 1;
+
+    if (activeIndex == 0) index = list.length - 1;
+
+    changeItem(index);
+  };
+
+  const onNext = () => {
+    let index = activeIndex + 1;
+    if (activeIndex == list.length - 1) index = 0;
+
+    changeItem(index);
+  };
+
+  const changeItem = useCallback((index: number) => {
+    setActiveIndex(index);
+    setProgressKey((prev) => prev + 1);
+
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+
+    startTimer();
+  }, []);
+
+
   useEffect(() => {
     if (isInView) {
       startTimer();
@@ -73,34 +100,14 @@ export function FeatureMobile() {
     };
   }, [isInView]);
 
-  const onPrev = () => {
-    let index = activeIndex - 1;
+  useEffect(() => {
+    const resetProgress = () => changeItem(0);
+    window.addEventListener("RESET_FEATURE_PROGRESS", resetProgress);
 
-    if (activeIndex == 0) index = list.length - 1;
-
-    setActiveIndex(index);
-    setProgressKey((prev) => prev + 1);
-
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-
-    startTimer();
-  };
-
-  const onNext = () => {
-    let index = activeIndex + 1;
-    if (activeIndex == list.length - 1) index = 0;
-
-    setActiveIndex(index);
-    setProgressKey((prev) => prev + 1);
-
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-
-    startTimer();
-  };
+    return () => {
+      window.removeEventListener("RESET_FEATURE_PROGRESS", resetProgress);
+    };
+  }, [changeItem]);
 
   return (
     <Box

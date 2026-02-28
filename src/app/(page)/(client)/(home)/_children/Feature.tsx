@@ -123,6 +123,19 @@ export function Feature() {
     }, remainingRef.current);
   };
 
+  const handleClick = useCallback((index: number) => {
+    if (index === activeIndex) return;
+
+    clearTimer();
+    controls.stop();
+    controls.set({ width: "0%" });
+
+    remainingRef.current = DURATION;
+
+    setActiveIndex(index);
+  }, [activeIndex, controls]);
+
+
   useEffect(() => {
     if (!isInView) return;
 
@@ -138,18 +151,15 @@ export function Feature() {
     };
   }, []);
 
+  useEffect(() => {
+    const resetProgress = () => handleClick(0);
+    window.addEventListener("RESET_FEATURE_PROGRESS", resetProgress);
 
-  const handleClick = (index: number) => {
-    if (index === activeIndex) return;
+    return () => {
+      window.removeEventListener("RESET_FEATURE_PROGRESS", resetProgress);
+    };
+  }, [handleClick]);
 
-    clearTimer();
-    controls.stop();
-    controls.set({ width: "0%" });
-
-    remainingRef.current = DURATION;
-
-    setActiveIndex(index);
-  };
 
   return (
     <Box

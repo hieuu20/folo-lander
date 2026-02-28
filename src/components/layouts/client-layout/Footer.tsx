@@ -432,7 +432,7 @@ export const TokenAnimation = () => {
         <Image
           src={token}
           alt="coin"
-          className="object-cover w-[70%] aspect-[0.86046511627] absolute top-1/2 left-1/2 -translate-x-[47%] -translate-y-[45%]"
+          className="object-cover w-[70%] aspect-[0.86046511627] absolute top-1/2 left-1/2 -translate-x-[49%] -translate-y-[45%]"
         />
 
         <div ref={compRef} className="w-full h-full relative" />
@@ -443,78 +443,3 @@ export const TokenAnimation = () => {
 
 // $FOLO 🌕 COMING SOON 🚀 $FOLO 🌕 COMING SOON 🔥
 
-const text = "$FOLO 🌕 COMING SOON 🚀 $FOLO 🌕 COMING SOON 🔥";
-
-export function CircularText() {
-  return (
-    <svg
-      width={240}
-      height={320}
-      viewBox="0 0 240 320"
-      style={{ transform: "rotate(35deg)" }} // 👈 nghiêng cố định
-    >
-      <defs>
-        <linearGradient id="textGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#EEA2FF" />
-          <stop offset="100%" stopColor="#376CEC" />
-        </linearGradient>
-
-        {/* Ellipse */}
-        <path
-          id="ellipsePath"
-          d="
-            M 120,160
-            m -90,0
-            a 90,130 0 1,1 180,0
-            a 90,130 0 1,1 -180,0
-          "
-        />
-
-        {/* Fade mask */}
-        <linearGradient id="fadeMask" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="white" stopOpacity="0" />
-          <stop offset="10%" stopColor="white" stopOpacity="1" />
-          <stop offset="90%" stopColor="white" stopOpacity="1" />
-          <stop offset="100%" stopColor="white" stopOpacity="0" />
-        </linearGradient>
-
-        <mask id="textFadeMask">
-          <rect width="100%" height="100%" fill="url(#fadeMask)" />
-        </mask>
-      </defs>
-
-      <text
-        fontSize="20"
-        fontWeight="900"
-        letterSpacing="3"
-        fill="url(#textGradient)"
-        mask="url(#textFadeMask)"
-      >
-        <motion.textPath
-          href="#ellipsePath"
-          startOffset="0%"
-          animate={{ startOffset: ["0%", "-50%"] }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        >
-          {text.repeat(3)}
-        </motion.textPath>
-      </text>
-    </svg>
-  );
-}
-
-
-
-
-
-
-// background: linear-gradient(180deg, #EEA2FF 0%, #376CEC 100%);
-
-
-// Social Commerce US LLC 🇺🇸  1201 North Orange St, Suite 711, Wilmington, 19801, Delaware, USA
-// Social Commerce UK Ltd 🇬🇧  71 - 75 Shelton Street, Covent Garden, London, WC2H 9JQ.UK
-// Social Commerce EU Ltd 🇪🇺  4th Floor, Agios Nikolaos, Kamares, 6037 Larnaca.Cyprus.EU

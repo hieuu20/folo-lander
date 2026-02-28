@@ -218,8 +218,6 @@ export function FooterMobile({ roles }: Props) {
                     <Box w={200} h={176}>
                         <TokenAnimation />
                     </Box>
-
-                    {/* <SignupPopup opened={opened} close={close} /> */}
                 </Flex>
             </Box>
         </footer >
@@ -250,11 +248,6 @@ const FadeInAni = ({ classname, isInView, children, delay = 0, y = 100 }: PropsW
 const BackgroundAnimation = () => {
     return (
         <>
-            {/* {Array.from({ length: 50 }).map((o, index) => {
-                return (
-                    <BackgroundAnimation key={index} index={index} />
-                );
-            })} */}
             <video
                 autoPlay={true}
                 playsInline

@@ -104,6 +104,27 @@ export function MuchMore({ wayGetPaids }: Props) {
 
 const MoreItem = ({ item }: { item: More }) => {
     const { isMb } = useBrowserWidth();
+
+    if (item.video) {
+        return (
+            <Flex
+                w={"100%"}
+                className='rounded-[40px] aspect-[0.60408921933] overflow-hidden'
+            >
+                <video
+                    autoPlay={true}
+                    playsInline
+                    loop
+                    preload="auto"
+                    controls={false}
+                    muted={true}
+                    className="w-full h-full object-cover"
+                >
+                    <source src={item.video} type="video/mp4" />
+                </video>
+            </Flex>
+        );
+    }
     return (
         <Flex
             direction={"column"}

@@ -56,6 +56,7 @@ export const moreList: More[] = [
         titleColor: '#fff',
         dscColor: '#FFFFFFCC',
         absolute: { bottom: true, right: false },
+        video: '/much-more/video2.mp4',
     },
     {
         id: 3,

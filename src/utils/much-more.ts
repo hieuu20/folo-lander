@@ -68,6 +68,7 @@ export const moreList: More[] = [
         titleColor: '#fff',
         dscColor: '#FFFFFFCC',
         backgroundImg: '/much-more/bg5.webp',
+        video: '/much-more/video3.mp4',
     },
     {
         id: 4,
@@ -92,6 +93,7 @@ export const moreList: More[] = [
         backgroundRadiant: 'linear-gradient(180deg, #376CEC 28.81%, #CADAFF 100%)',
         absolute: { bottom: true, right: true },
         larger: true,
+        video: '/much-more/video5.mp4',
     },
     {
         id: 6,
@@ -108,6 +110,7 @@ export const moreList: More[] = [
         icon: muchMore9Icon,
         isAi: true,
         imgMb: muchMore9Mb,
+        video: '/much-more/video6.mp4',
     },
     {
         id: 7,

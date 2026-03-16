@@ -191,7 +191,14 @@ const Desktop = ({
     const leaderboardSection = sections.find(o => o.title == "Leaderboard");
 
     const listDesktop: Record<string, React.JSX.Element> = {
-        "Leaderboard": <LeaderBoard pointSettings={pointSettings} roles={roles} rewards={rewards} phase={leaderboardSection?.phase || 1} />,
+        "Leaderboard": (
+            <LeaderBoard 
+                pointSettings={pointSettings} 
+                roles={roles} 
+                rewards={rewards} 
+                phase={leaderboardSection?.phase || 1} 
+            />
+        ),
         "User counters": <LeaderBoardCount />,
         "Faster, Simpler and Smarter": <Ai />,
         "Key USPS": <Feature />,

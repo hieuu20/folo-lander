@@ -1,11 +1,11 @@
 import React from 'react';
 
-import img2 from "@public/limit/2.webp";
-import img3 from "@public/limit/3.webp";
-import img4 from "@public/limit/4.webp";
 import img2_1 from "@public/limit/2-1.webp";
-import img4_1 from "@public/limit/4-1.webp";
-import { Box, Flex } from '@mantine/core';
+import img1 from "@public/limit/mb1.webp";
+import img2 from "@public/limit/mb2.webp";
+import img3 from "@public/limit/mb3.webp";
+
+import { Box, SimpleGrid } from '@mantine/core';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -17,8 +17,8 @@ export function LimitMobile() {
                 top={"50%"}
                 left={"50%"}
                 px={{ base: 16, md: 40 }}
-                py={{ base: 24, md: 40 }}
-                fz={{ base: 32, md: 56 }}
+                py={{ base: 16, md: 40 }}
+                fz={{ base: 28, md: 40 }}
                 fw={600}
                 lh={1.2}
                 w={"fit-content"}
@@ -29,16 +29,31 @@ export function LimitMobile() {
                 Creating without limits
             </Box>
 
-            <Flex pos={"absolute"} top={"0"} left={"50%"} gap={8} className='-translate-x-1/2'>
-                <Box pos="relative" w={{ base: "70vw", sm: "50vw" }} h="100%" className='overflow-hidden'>
+            <SimpleGrid cols={3} spacing={4} w={"100%"} h={"100%"} px={4}>
+                <Box pos="relative" w={"100%"} h="100%" className='overflow-hidden'>
                     <motion.div
-                        animate={{ y: ["-50%", "0%"] }} 
+                        animate={{ y: ["-50%", "0%"] }}
                         transition={{
                             repeat: Infinity,
                             duration: 40,
                             ease: "linear"
                         }}
-                        className="flex flex-col gap-2"
+                        className="flex flex-col gap-1"
+                    >
+                        <Image src={img1} alt="limit-img" className="w-full h-auto" />
+                        <Image src={img1} alt="limit-img" className="w-full h-auto" />
+                    </motion.div>
+                </Box>
+
+                <Box pos="relative" w={"100%"} h="100%" className='overflow-hidden'>
+                    <motion.div
+                        animate={{ y: ["-50%", "0%"] }}
+                        transition={{
+                            repeat: Infinity,
+                            duration: 46,
+                            ease: "linear"
+                        }}
+                        className="flex flex-col gap-1"
                     >
                         <Image src={img2} alt="limit-img" className="w-full h-auto" />
                         <Image src={img2} alt="limit-img" className="w-full h-auto" />
@@ -46,37 +61,21 @@ export function LimitMobile() {
                     </motion.div>
                 </Box>
 
-                <Box pos="relative" w={{ base: "70vw", sm: "56vw" }} h="100%" className='overflow-hidden'>
+                <Box pos="relative" w={"100%"} h="100%" className='overflow-hidden'>
                     <motion.div
-                        animate={{ y: ["-50%", "0%"] }}   // top → bottom
-                        transition={{
-                            repeat: Infinity,
-                            duration: 36,
-                            ease: "linear"
-                        }}
-                        className="flex flex-col gap-2"
-                    >
-                        <Image src={img3} alt="limit-img" className="w-full h-auto" />
-                        <Image src={img3} alt="limit-img" className="w-full h-auto" />
-                    </motion.div>
-                </Box>
-
-                <Box pos="relative" w={{ base: "70vw", sm: "56vw" }} h="100%" className='overflow-hidden'>
-                    <motion.div
-                        animate={{ y: ["-50%", "0%"] }}   // top → bottom
+                        animate={{ y: ["-50%", "0%"] }}
                         transition={{
                             repeat: Infinity,
                             duration: 40,
                             ease: "linear"
                         }}
-                        className="flex flex-col gap-2"
+                        className="flex flex-col gap-1"
                     >
-                        <Image src={img4} alt="limit-img" className="w-full h-auto" />
-                        <Image src={img4} alt="limit-img" className="w-full h-auto" />
-                        <Image src={img4_1} alt="limit-img" className="w-full h-auto" />
+                        <Image src={img3} alt="limit-img" className="w-full h-auto" />
+                        <Image src={img3} alt="limit-img" className="w-full h-auto" />
                     </motion.div>
                 </Box>
-            </Flex>
+            </SimpleGrid>
         </Box>
     );
 }

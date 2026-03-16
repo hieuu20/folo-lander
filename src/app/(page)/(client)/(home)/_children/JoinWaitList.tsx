@@ -14,12 +14,12 @@ interface Props {
 export function JoinWaitList({ roles }: Props) {
     const { profile } = useApp();
 
-    if (profile) {
+    if (profile && profile.userType != "ADMIN" ) {
         return <></>;
     }
 
     return (
-        <Box py={{ base: 60, md: 80 }}>
+        <Box id='JoinWaitList' py={{ base: 60, md: 80 }}>
             <Box className='container'>
                 <Flex
                     w={"100%"}

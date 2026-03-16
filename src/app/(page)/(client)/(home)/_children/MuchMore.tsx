@@ -74,6 +74,7 @@ export function MuchMore({ wayGetPaids }: Props) {
                 <Slider
                     ref={sliderRef}
                     {...settings}
+                    pauseOnHover={true}
                     className="[&_.slick-slide]:px-3 [&_.slick-list]:-mx-3 [&_.slick-track]:relative w-full"
                 >
                     {wayGetPaids.map((o, index) => {

@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 export function useBrowserWidth() {
     const isClient = typeof window !== "undefined";
-    const getWidth = useCallback(() => (isClient ? window.innerWidth : 0), []);
+    const getWidth = useCallback(() => (isClient ? window.innerWidth : 0), [isClient]);
 
     const [width, setWidth] = useState<number>(getWidth);
 

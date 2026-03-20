@@ -80,6 +80,7 @@ export const moreList: More[] = [
         titleColor: '#fff',
         dscColor: '#FFFFFFCC',
         absolute: { bottom: true, right: false },
+        video: '/much-more/video4.mp4',
     },
     {
         id: 5,
@@ -121,6 +122,7 @@ export const moreList: More[] = [
         backgroundColor: '#EEF7FF',
         titleColor: '#131416',
         dscColor: '#4D5053',
+        video: '/much-more/video7.mp4',
         // absolute: { bottom: true, right: false },
     },
 ];

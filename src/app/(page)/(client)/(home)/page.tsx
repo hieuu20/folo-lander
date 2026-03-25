@@ -29,9 +29,6 @@ export default async function Home() {
     getPartnerSlides()
   ]);
 
-  // console.log({ news, roles, pointSettings, rewards, sections, wayGetPaids, peopleSays, featuredCreators, faqs, partnerSlides });
-
-
   return (
     <Container 
       news={news} 

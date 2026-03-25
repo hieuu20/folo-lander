@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { Box, Button, Flex, Text } from "@mantine/core";
+import { Box, Flex, Text } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
 import lottie from 'lottie-web';
@@ -26,21 +25,20 @@ import ellip1 from "@public/footer/ellip1.webp";
 import ellip2 from "@public/footer/ellip2.webp";
 import ellip3 from "@public/footer/ellip3.webp";
 
-import xmaLogo from "@public/footer/xma-logo.webp";
-import xmaBg from "@public/footer/xma-bg.webp";
+// import xmaLogo from "@public/footer/xma-logo.webp";
+// import xmaBg from "@public/footer/xma-bg.webp";
 
 import smallLogo from "@public/footer/logo.svg";
 
 import flag1 from "@public/footer/flag-1.png";
 import flag2 from "@public/footer/flag-2.png";
 
-import SectionButton from "@/components/buttons/SectionButton";
+// import SectionButton from "@/components/buttons/SectionButton";
 import { motion, useInView } from "framer-motion";
 
 import token from "@public/footer/token.webp";
 import { PropsWithChildren, useEffect, useRef } from "react";
 import { isNil } from "lodash";
-import { useDisclosure } from "@/hooks";
 import { EmailWaitingListInput } from "@/app/(page)/(client)/_shared/EmailWaitingListInput";
 import { twMerge } from "tailwind-merge";
 import { useApp } from "@/app/context/AppContext";
@@ -199,7 +197,7 @@ export function Footer({ roles }: Props) {
         <Image src={ellip1} alt='elipse' className='w-auto h-full object-cover ' />
       </FadeInAni>
 
-      <Link
+      {/* <Link
         // href={"https://www.xbiz.com/news/292013/2025-euro-xma-winners-announced"}
         href={"/"}
         target="_blank"
@@ -207,10 +205,10 @@ export function Footer({ roles }: Props) {
       >
         <Image src={xmaBg} alt="xmaBg" className="w-full h-full object-cover" />
         <Image src={xmaLogo} alt="xmaLogo" className="w-full h-auto object-cover absolute left-0 top-[4%] group-hover:scale-105 transition-all duration-300" />
-      </Link>
+      </Link> */}
 
       <Box className="container" ref={ref}>
-        <Flex pos={"relative"} w={"100%"} mt={{ base: 136, md: 80 }} direction={"column"} align={"center"}>
+        <Flex pos={"relative"} w={"100%"} mt={{ base: 40 }} direction={"column"} align={"center"}>
           <Flex pos={"absolute"} top={0} right={0} direction={"column"} gap={{ base: 24 }}>
             {socials.map((s, index) => {
               return (

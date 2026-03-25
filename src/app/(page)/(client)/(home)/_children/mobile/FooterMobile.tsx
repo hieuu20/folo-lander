@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { Box, Flex, Text } from "@mantine/core";
@@ -9,7 +8,7 @@ import ellip1 from "@public/footer/ellip1.webp";
 import ellip2 from "@public/footer/ellip2.webp";
 import ellip3 from "@public/footer/ellip3.webp";
 
-import xma from "@public/footer/xma.webp";
+// import xma from "@public/footer/xma.webp";
 
 import smallLogo from "@public/footer/logo.svg";
 
@@ -55,17 +54,17 @@ export function FooterMobile({ roles }: Props) {
                 <Image src={ellip1} alt='elipse' className='w-auto h-full object-cover ' />
             </FadeInAni>
 
-            <Link
+            {/* <Link
                 // href={"https://www.xbiz.com/news/292013/2025-euro-xma-winners-announced"}
                 href={"/"}
                 target="_blank"
                 className="absolute top-0 left-1/2 -translate-x-1/2 w-[23.2%] pointer-events-none"
             >
                 <Image src={xma} alt="xma" className="w-full h-auto object-cover" />
-            </Link>
+            </Link> */}
 
             <Box className="container" ref={ref}>
-                <Flex pos={"relative"} w={"100%"} mt={{ base: 137, md: 80 }} direction={"column"} align={"center"}>
+                <Flex pos={"relative"} w={"100%"} mt={{ base: 40, md: 80 }} direction={"column"} align={"center"}>
 
                     <Flex direction={"column"} gap={{ base: 32 }} align={"center"} mb={{ base: 48 }}>
                         <Text ta={"center"} fz={{ base: 40 }} fw={600} c={"white"} lh={1.2}>

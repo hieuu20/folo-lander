@@ -71,7 +71,7 @@ const BackgroundAnimations = () => {
                 muted={true}
                 className="w-full h-full object-cover absolute top-0 left-0 object-top"
             >
-                <source src={"/slogan/layer.mov"} type="video/mp4" />
+                <source src={"/slogan/layer.mp4"} type="video/mp4" />
             </video>
         </>
     );

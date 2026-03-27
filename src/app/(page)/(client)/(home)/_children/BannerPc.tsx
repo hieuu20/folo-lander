@@ -126,7 +126,6 @@ export function BannerPc() {
                             transition={{ duration: 0.8, ease: "easeInOut", delay: loadingTime + 1.6 }}
                             className='rounded-[300px] overflow-hidden center-absolute'
                         >
-                            {/* <Image src={bgImage} alt='banner bg' fill className='object-cover' /> */}
                             <video
                                 autoPlay={true}
                                 playsInline
@@ -136,7 +135,7 @@ export function BannerPc() {
                                 muted={true}
                                 className="w-full h-full object-cover"
                             >
-                                <source src={"/banner/video1-pc.mp4"} type="video/mp4" />
+                                <source src={"/banner/video-pc.mp4"} type="video/mp4" />
                             </video>
                         </motion.div>
 

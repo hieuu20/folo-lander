@@ -256,50 +256,8 @@ const BackgroundAnimation = () => {
                 muted={true}
                 className="w-full h-full object-cover absolute top-0 left-0 object-bottom"
             >
-                <source src={"/footer/layer.mov"} type="video/mp4" />
+                <source src={"/footer/layer.mp4"} type="video/mp4" />
             </video>
         </>
     );
 };
-
-// const TokenAnimation = () => {
-//     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-//     const compRef = useRef<any>(null);
-//     useEffect(() => {
-//         const animation = lottie.loadAnimation({
-//             container: compRef.current,
-//             renderer: 'svg',
-//             loop: true,
-//             autoplay: true,
-//             path: '/json/comp1.json',
-//         });
-
-//         return () => animation.destroy(); // Cleanup khi unmount component
-//     }, []);
-
-//     return (
-//         <div className="relative w-full h-full">
-//             <motion.div
-//                 // initial={{ x: "-50%", y: "-50%" }}
-//                 // animate={{
-//                 //   y: ["-60%", "-45%" , "-60%"]
-//                 // }}
-
-//                 transition={{
-//                     duration: 4,
-//                     ease: "linear",
-//                     repeat: Infinity
-//                 }}
-//                 className="w-[70%] aspect-[0.86046511627] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-//             >
-//                 <Image
-//                     src={token}
-//                     alt="coin"
-//                     className="w-full h-full object-cover"
-//                 />
-//             </motion.div>
-
-//             <div ref={compRef} className="w-full h-full top-[-9.8vh] md:top-[-2.1vh] relative" />
-//         </div>
-//     );
-// };

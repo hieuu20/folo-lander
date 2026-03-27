@@ -136,7 +136,7 @@ export function BannerMobile() {
                                 muted={true}
                                 className="w-full h-full object-cover"
                             >
-                                <source src={"/banner/video1-mb.mp4"} type="video/mp4" />
+                                <source src={"/banner/video-mb.mp4"} type="video/mp4" />
                             </video>
                         </motion.div>
 

@@ -1,17 +1,3 @@
-import avatar1 from "@public/slogan/feature/2/avatar1.png";
-import avatar2 from "@public/slogan/feature/2/avatar2.png";
-import avatar3 from "@public/slogan/feature/2/avatar3.png";
-import avatar4 from "@public/slogan/feature/2/avatar4.png";
-import avatar5 from "@public/slogan/feature/2/avatar5.png";
-import avatar6 from "@public/slogan/feature/2/avatar6.png";
-import avatar7 from "@public/slogan/feature/2/avatar7.png";
-import avatar8 from "@public/slogan/feature/2/avatar8.png";
-
-import proTick from "@public/icons/pro-tick.svg";
-import premiumTick from "@public/icons/premium-tick.svg";
-import blackTick from "@public/icons/black-tick.svg";
-import { StaticImageData } from "next/image";
-
 export const HEADER_HEIGHT_MB = "64";
 
 export const HEADER_HEIGHT_PC = "80";
@@ -161,63 +147,5 @@ export const categoryParents: ICategoryParent[] = [
     title: "Merch",
   },
 ];
-
-export interface Cmt {
-  avatar: StaticImageData;
-  name: string;
-  text: string;
-  icons: StaticImageData[];
-}
-export const cmts: Cmt[] = [
-  {
-    avatar: avatar1,
-    name: "Naka Cuto",
-    text: "Thanks! Just text you~",
-    icons: [proTick],
-  },
-  {
-    avatar: avatar2,
-    name: "Khalim",
-    text: "It looks perfect! 🔥🔥🔥",
-    icons: [blackTick, premiumTick],
-  },
-  {
-    avatar: avatar3,
-    name: "Cristina",
-    text: "Do you have a pink one?",
-    icons: [blackTick],
-  },
-  {
-    avatar: avatar4,
-    name: "Leonie Casha",
-    text: "65% discount. What’s a deal 💋🥳",
-    icons: [blackTick, premiumTick],
-  },
-  {
-    avatar: avatar5,
-    name: "Sandra",
-    text: "Does it suitable for runner?",
-    icons: [proTick],
-  },
-  {
-    avatar: avatar6,
-    name: "Khalim",
-    text: "How many sizes does it come in?",
-    icons: [blackTick, premiumTick],
-  },
-  {
-    avatar: avatar7,
-    name: "Kimme",
-    text: "🤩🤩🤩",
-    icons: [blackTick],
-  },
-  {
-    avatar: avatar8,
-    name: "Annie",
-    text: "Love it 😘",
-    icons: [blackTick, premiumTick],
-  },
-];
-
 
 

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Flex, Text, Title } from '@mantine/core';
-import Image from 'next/image';
+import { Box, Flex, Title } from '@mantine/core';
 import React, { useCallback, useEffect, useRef } from 'react';
 import Slider from 'react-slick';
 import { useBrowserWidth } from '@/hooks';
@@ -104,76 +103,23 @@ export function MuchMore({ wayGetPaids }: Props) {
 
 
 const MoreItem = ({ item }: { item: More }) => {
-    const { isMb } = useBrowserWidth();
 
-    if (item.video) {
-        return (
-            <Flex
-                w={"100%"}
-                className='rounded-[40px] aspect-[0.60408921933] overflow-hidden'
-            >
-                <video
-                    autoPlay={true}
-                    playsInline
-                    loop
-                    preload="auto"
-                    controls={false}
-                    muted={true}
-                    className="w-full h-full object-cover"
-                >
-                    <source src={item.video} type="video/mp4" />
-                </video>
-            </Flex>
-        );
-    }
     return (
         <Flex
-            direction={"column"}
-            justify={"space-between"}
             w={"100%"}
-            bg={item.backgroundRadiant || item.backgroundColor || undefined}
-            style={{
-                backgroundImage: item.backgroundImg ? `url('${item.backgroundImg}')` : undefined
-            }}
-            p={{ base: 24 }}
-            className='rounded-[40px] aspect-[0.60408921933] overflow-hidden bg-no-repeat bg-cover'
+            className='rounded-[40px] aspect-[0.60408921933] overflow-hidden'
         >
-            <Flex direction={"column"} gap={{ base: 12 }}>
-                <Text fz={{ base: 24, md: 32 }} c={item.titleColor} fw={600} lh={1.2}>
-                    {item.title}
-                </Text>
-
-                <Text fz={{ base: 16, md: 20 }} c={item.dscColor} lh={1.4}>
-                    {item.description}
-                </Text>
-
-                {item.isCommingSoon && item.buttonImgMb && item.buttonImgPc && (
-                    <Box
-                        w={{ base: 76, md: 138 }}
-                        h={{ base: 23, md: 38 }}
-                        pos={"relative"}
-                    // className='hover:opacity-75 transition-all duration-200 cursor-pointer'
-                    >
-                        <Image src={isMb ? item.buttonImgMb : item.buttonImgPc} alt='cmsButton' fill className='object-contain' />
-                    </Box>
-                )}
-            </Flex>
-
-            {item.isAi && item.imgMb ? (
-                <Flex w={"100%"} h={"fit-content"} pos={"relative"}>
-                    <Image src={isMb ? item.imgMb : item.img} alt='more img' className='w-full h-auto object-cover' />
-                    <Image src={item.icon || ""} alt='much more icon' className='w-[36px] md:w-[40px] absolute right-0 top-0 translate-x-[40%] -translate-y-1/3' />
-                </Flex>
-            ) : (
-                <Box
-                    w={item.larger ? "calc(100% + 24px)" : "100%"}
-                    pos={"relative"}
-                    bottom={item.absolute?.bottom ? -24 : 0}
-                    right={item.absolute?.right ? 0 : 0}
-                >
-                    <Image src={item.img} alt={item.title} className='w-full h-auto' />
-                </Box>
-            )}
+            <video
+                autoPlay={true}
+                playsInline
+                loop
+                preload="auto"
+                controls={false}
+                muted={true}
+                className="w-full h-full object-cover"
+            >
+                <source src={item.video} type="video/mp4" />
+            </video>
         </Flex>
     );
 };

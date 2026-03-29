@@ -26,7 +26,7 @@ export function Loading({ children }: PropsWithChildren) {
 
             timeout1 = setTimeout(() => {
                 setDone(true);
-            }, 2.7 * 1000);
+            }, 3 * 1000);
         };
         handleLoad();
         // if (document.readyState === 'complete') {

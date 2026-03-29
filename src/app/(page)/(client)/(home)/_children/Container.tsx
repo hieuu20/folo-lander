@@ -183,7 +183,6 @@ const Desktop = ({
                         backgroundColor: "#fff"
                     }}
                 >
-
                     <BannerPc />
                     {sections.map((o, index) => {
                         return (

@@ -130,7 +130,7 @@ export function BannerMobile() {
                                 autoPlay={true}
                                 playsInline
                                 loop
-                                preload="metadata"
+                                preload="auto"
                                 controls={false}
                                 muted={true}
                                 className="w-full h-full object-cover"

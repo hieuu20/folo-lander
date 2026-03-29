@@ -10,7 +10,6 @@ import Image from 'next/image';
 import SectionButton from '@/components/buttons/SectionButton';
 import { motion, useAnimation } from 'framer-motion';
 import { useWindowHeight } from '@/hooks';
-import { loadingTime } from '@/utils';
 import { useApp } from '@/app/context/AppContext';
 import gsap from "gsap";
 
@@ -31,17 +30,17 @@ export function BannerMobile() {
             control2.start({
                 width: "100%",
                 aspectRatio: 0.77954545454,
-                transition: { duration: 0.6, ease: "easeInOut", delay: loadingTime + 1.4 }
+                transition: { duration: 0.6, ease: "easeInOut", delay: 0.2 }
             });
 
             control1.start({
                 top: spacing,
-                transition: { duration: 0.5, ease: "easeInOut", delay: loadingTime + 2 }
+                transition: { duration: 0.5, ease: "easeInOut", delay: 1 }
             });
 
             control3.start({
                 y: 0, opacity: 1, x: "-50%",
-                transition: { duration: 0.8, ease: "easeInOut", delay: loadingTime + 2 }
+                transition: { duration: 0.8, ease: "easeInOut", delay: 1 }
             });
         };
 

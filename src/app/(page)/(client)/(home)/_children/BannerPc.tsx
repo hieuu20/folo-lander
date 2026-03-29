@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { Box, Flex, Text } from '@mantine/core';
@@ -9,7 +8,6 @@ import logoWhite from "@public/icons/logo-white.webp";
 import Image from 'next/image';
 import { motion, useAnimate, useScroll, useTransform } from 'framer-motion';
 import { useWindowHeight } from '@/hooks';
-import { loadingTime } from '@/utils/constants';
 import downIcon from "@public/icons/down.svg";
 import { useApp } from '@/app/context/AppContext';
 import SectionButton from '@/components/buttons/SectionButton';
@@ -106,7 +104,11 @@ export function BannerPc() {
                     <motion.div
                         initial={{ top: wdHeight * 0.5 - (topHeight * 0.5) }}
                         animate={{ top: spacing }}
-                        transition={{ duration: 0.5, ease: "easeInOut", delay: loadingTime + 2.4 }}
+                        transition={{
+                            duration: 0.5,
+                            ease: "easeInOut",
+                            delay: 1
+                        }}
                         className='absolute aspect-[2.75862068966] z-10'
                         style={{
                             height: topHeight,
@@ -123,7 +125,11 @@ export function BannerPc() {
                                 aspectRatio: 2.75862068966,
                                 opacity: 1
                             }}
-                            transition={{ duration: 0.8, ease: "easeInOut", delay: loadingTime + 1.6 }}
+                            transition={{
+                                duration: 0.8,
+                                ease: "easeInOut",
+                                delay: 0.2
+                            }}
                             className='rounded-[300px] overflow-hidden center-absolute'
                         >
                             <video
@@ -150,7 +156,11 @@ export function BannerPc() {
                         id='banner-title'
                         initial={{ y: "100%", opacity: 0, x: "-50%" }}
                         animate={{ y: 0, opacity: 1, x: "-50%" }}
-                        transition={{ duration: 0.5, ease: "easeInOut", delay: loadingTime + 2.4 }}
+                        transition={{
+                            duration: 0.5,
+                            ease: "easeInOut",
+                            delay: 1
+                        }}
                         className='flex flex-col gap-6 justify-center items-center w-full absolute left-1/2'
                         style={{ bottom: spacing }}
                     >

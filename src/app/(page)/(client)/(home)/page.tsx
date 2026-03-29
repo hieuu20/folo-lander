@@ -13,7 +13,7 @@ import { getFeaturedCreators } from "@/service/featuredCreator";
 import { getFaqs } from "@/service/faq";
 import { getPartnerSlides } from "@/service/partnerSlide";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export default async function Home() {
   const [news, roles, pointSettings, rewards, sections, wayGetPaids, peopleSays, featuredCreators, faqs, partnerSlides] = await Promise.all([

@@ -130,7 +130,7 @@ export function BannerPc() {
                                 autoPlay={true}
                                 playsInline
                                 loop
-                                preload="auto"
+                                preload="metadata"
                                 controls={false}
                                 muted={true}
                                 className="w-full h-full object-cover"

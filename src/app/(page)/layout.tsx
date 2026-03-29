@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const myFont = localFont({
+const myFont = localFont({
   src: [
     {
       path: '../../../public/fonts/SFDisplay/SF-Pro-Display-Light.otf',
@@ -121,6 +121,7 @@ export const myFont = localFont({
   ],
   variable: '--font-myfont', // để dùng với Tailwind
   display: 'swap',
+  preload: false,
 });
 
 export default async function RootLayout({
@@ -164,10 +165,12 @@ export default async function RootLayout({
 
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=G-PRD5LQTVK4`}
+          strategy="lazyOnload"
         />
 
         <Script
           id="gtag-init"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];

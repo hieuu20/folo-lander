@@ -113,7 +113,7 @@ const MoreItem = ({ item }: { item: More }) => {
                 autoPlay={true}
                 playsInline
                 loop
-                preload="auto"
+                preload="none"
                 controls={false}
                 muted={true}
                 className="w-full h-full object-cover"

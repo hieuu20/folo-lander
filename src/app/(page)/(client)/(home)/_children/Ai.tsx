@@ -27,7 +27,7 @@ export function Ai() {
                     left={"50%"}
                     align={"center"}
                     c={"white"}
-                    w={{ base: "90%", md: "50%"}}
+                    w={{ base: "90%", md: "50%" }}
                     className='-translate-y-[52px] md:-translate-y-[74px] -translate-x-1/2 z-10'
                 >
                     <Image src={starIcon} alt='starIcon' className='w-[104px] md:w-[155px] h-auto mb-10' />
@@ -66,7 +66,7 @@ const BackgroundAnimations = () => {
                 autoPlay={true}
                 playsInline
                 loop
-                preload="auto"
+                preload="none"
                 controls={false}
                 muted={true}
                 className="w-full h-full object-cover absolute top-0 left-0 object-top"

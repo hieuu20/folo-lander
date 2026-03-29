@@ -4,7 +4,7 @@ export const getFaqs = async () => {
   const cks = cookies();
   const token = cks.get("access_token")?.value;
   const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `/client/faq`, {
-    cache: "no-store",
+    next: { revalidate: 300 },
     method: "GET",
     headers: {
       Authorization: `Bearer ${token || ""}`,

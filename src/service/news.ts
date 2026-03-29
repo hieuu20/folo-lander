@@ -5,7 +5,7 @@ export const getAllNews = async (): Promise<INews[]> => {
     const response = await fetch(
       process.env.NEXT_PUBLIC_API_URL + `/client/news`,
       {
-        cache: "no-store",
+        next: { revalidate: 300 },
         method: "GET",
       }
     );
@@ -21,7 +21,7 @@ export const getNewsBySlug = async (slug: string): Promise<INews> => {
   const response = await fetch(
     process.env.NEXT_PUBLIC_API_URL + `/client/news/${slug}`,
     {
-      cache: "no-store",
+      next: { revalidate: 300 },
       method: "GET",
     }
   );

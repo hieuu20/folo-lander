@@ -119,9 +119,10 @@ const Mobile = ({
                     }}
                 >
                     <BannerMobile />
-                    {sections.map((o, index) => {
+                    {sections.map((o) => {
                         return (
-                            <LazySection key={index}>
+                            // <LazySection key={index}>
+                            <>
                                 {renderMobileSection({
                                     sectionTitle: o.title,
                                     leaderboardPhase: leaderboardSection?.phase || 1,
@@ -135,7 +136,8 @@ const Mobile = ({
                                     peopleSays,
                                     featuredCreators,
                                 })}
-                            </LazySection>
+                            </>
+                            // </LazySection>
                         );
                     })}
                     <FooterMobile roles={roles} />

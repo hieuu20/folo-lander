@@ -66,7 +66,7 @@ const BackgroundAnimations = () => {
                 autoPlay={true}
                 playsInline
                 loop
-                preload="none"
+                preload="auto"
                 controls={false}
                 muted={true}
                 className="w-full h-full object-cover absolute top-0 left-0 object-top"

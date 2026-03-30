@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Flex, Text } from '@mantine/core';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { Feature1 } from '../feature/Feature1';
 import { Feature2 } from '../feature/Feature2';
 import { Feature3 } from '../feature/Feature3';

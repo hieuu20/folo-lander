@@ -26,7 +26,7 @@ import { IFaq } from "@/types/faq";
 import { PartnerSlide } from "@/types/partnerSlide";
 import { Section } from "@/types/section";
 import { useInView } from "framer-motion";
-import { Loading } from "../../_shared/Loading";
+import { LoadingDesktop, LoadingMobile } from "../../_shared/Loading";
 
 const LeaderBoardMobile = dynamic(() => import("./mobile/LeaderBoardMobile").then((mod) => mod.LeaderBoardMobile));
 const LeaderBoard = dynamic(() => import("./LeaderBoard").then((mod) => mod.LeaderBoard));
@@ -85,11 +85,10 @@ export default function Container(props: Props) {
     }, [router, searchParams]);
 
     return (
-        <Loading>
+        <>
             <ScrollToTop />
-
             {render()}
-        </Loading>
+        </>
     );
 }
 
@@ -108,7 +107,7 @@ const Mobile = ({
     const leaderboardSection = sections.find(o => o.title == "Leaderboard");
 
     return (
-        <>
+        <LoadingMobile>
             <Header />
             <Box id="smooth-wrapper">
                 <Box
@@ -143,7 +142,7 @@ const Mobile = ({
                     <FooterMobile roles={roles} />
                 </Box>
             </Box>
-        </>
+        </LoadingMobile>
     );
 };
 
@@ -175,7 +174,7 @@ const Desktop = ({
     const leaderboardSection = sections.find(o => o.title == "Leaderboard");
 
     return (
-        <>
+        <LoadingDesktop>
             <Header />
             <Box id="smooth-wrapper" ref={main}>
                 <Box
@@ -208,7 +207,7 @@ const Desktop = ({
                     <Footer roles={roles} />
                 </Box>
             </Box>
-        </>
+        </LoadingDesktop>
     );
 };
 
@@ -228,7 +227,7 @@ const Tablet = ({
     const leaderboardSection = sections.find(o => o.title == "Leaderboard");
 
     return (
-        <>
+        <LoadingMobile>
             <Header />
             <Box id="smooth-wrapper">
                 <Box
@@ -261,7 +260,7 @@ const Tablet = ({
                     <Footer roles={roles} />
                 </Box>
             </Box>
-        </>
+        </LoadingMobile>
     );
 };
 

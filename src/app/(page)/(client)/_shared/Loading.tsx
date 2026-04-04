@@ -6,6 +6,8 @@ import React, { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import lottie from 'lottie-web';
 import { Box } from "@mantine/core";
+import { BannerPc } from "../(home)/_children/BannerPc";
+import { BannerMobile } from "../(home)/_children/mobile/BannerMoblie";
 
 export function LoadingDesktop({ children }: PropsWithChildren) {
     const [done, setDone] = useState(false);
@@ -27,21 +29,23 @@ export function LoadingDesktop({ children }: PropsWithChildren) {
                 setDone(true);
             }, 3 * 1000);
         };
+        handleLoad();
 
-        if (document.readyState === 'complete') {
-            handleLoad();
-        } else {
-            window.addEventListener('load', handleLoad);
-        }
+        // if (document.readyState === 'complete') {
+        //     handleLoad();
+        // } else {
+        //     window.addEventListener('load', handleLoad);
+        // }
 
         return () => {
             clearTimeout(timeout1);
-            window.removeEventListener('load', handleLoad);
+            // window.removeEventListener('load', handleLoad);
         };
     }, []);
 
     return (
         <Box bg={"white"} w={"100vw"}>
+            <BannerPc isEndLoading={done} />
             <AnimatePresence>
                 {!done && (
                     <motion.div
@@ -98,6 +102,7 @@ export function LoadingMobile({ children }: PropsWithChildren) {
 
     return (
         <Box bg={"white"} w={"100vw"}>
+            <BannerMobile isEndLoading={done} />
             <AnimatePresence>
                 {!done && (
                     <motion.div

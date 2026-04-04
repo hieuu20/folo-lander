@@ -13,7 +13,11 @@ import { useWindowHeight } from '@/hooks';
 import { useApp } from '@/app/context/AppContext';
 import gsap from "gsap";
 
-export function BannerMobile() {
+interface Props {
+    isEndLoading: boolean;
+}
+
+export function BannerMobile({ isEndLoading }: Props) {
     const { profile } = useApp();
     const main = useRef<any>();
     const wdHeight = useWindowHeight();
@@ -44,14 +48,18 @@ export function BannerMobile() {
             });
         };
 
-        if (document.readyState === 'complete') {
+        if (isEndLoading) {
             handleLoad();
-        } else {
-            window.addEventListener('load', handleLoad);
         }
 
-        return () => window.removeEventListener('load', handleLoad);
-    }, [control1, control2, control3]);
+        // if (document.readyState === 'complete') {
+        //     handleLoad();
+        // } else {
+        //     window.addEventListener('load', handleLoad);
+        // }
+
+        // return () => window.removeEventListener('load', handleLoad);
+    }, [control1, control2, control3, isEndLoading]);
 
     useEffect(() => {
         const titleElement = document.getElementById("banner-title-mb");

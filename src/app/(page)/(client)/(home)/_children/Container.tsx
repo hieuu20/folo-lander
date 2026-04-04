@@ -7,9 +7,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { useBrowserWidth } from "@/hooks";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { BannerMobile } from "./mobile/BannerMoblie";
+// import { BannerMobile } from "./mobile/BannerMoblie";
 import { Footer, Header } from "@/components/layouts";
-import { BannerPc } from "./BannerPc";
 import { FooterMobile } from "./mobile/FooterMobile";
 import { setLocalStorage } from "@/utils";
 import { Role } from "@/types/role";
@@ -117,7 +116,7 @@ const Mobile = ({
                         backgroundColor: "#fff"
                     }}
                 >
-                    <BannerMobile />
+                    {/* <BannerMobile /> */}
                     {sections.map((o) => {
                         return (
                             // <LazySection key={index}>
@@ -164,7 +163,7 @@ const Desktop = ({
     useGSAP(
         () => {
             smoother.current = ScrollSmoother.create({
-                smooth: 2,
+                smooth: 4,
                 effects: true,
             });
         },
@@ -184,7 +183,7 @@ const Desktop = ({
                         backgroundColor: "#fff"
                     }}
                 >
-                    <BannerPc />
+                    {/* <BannerPc /> */}
                     {sections.map((o, index) => {
                         return (
                             <LazySection key={index}>
@@ -227,7 +226,7 @@ const Tablet = ({
     const leaderboardSection = sections.find(o => o.title == "Leaderboard");
 
     return (
-        <LoadingMobile>
+        <LoadingDesktop>
             <Header />
             <Box id="smooth-wrapper">
                 <Box
@@ -237,7 +236,6 @@ const Tablet = ({
                         backgroundColor: "#fff"
                     }}
                 >
-                    <BannerPc />
                     {sections.map((o, index) => {
                         return (
                             <LazySection key={index}>
@@ -260,7 +258,7 @@ const Tablet = ({
                     <Footer roles={roles} />
                 </Box>
             </Box>
-        </LoadingMobile>
+        </LoadingDesktop>
     );
 };
 

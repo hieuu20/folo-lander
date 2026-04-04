@@ -24,8 +24,10 @@ const getTopHeight = (wdHeight: number, wdWidth: number) => {
 
     return result;
 };
-
-export function BannerPc() {
+interface Props {
+    isEndLoading: boolean;
+}
+export function BannerPc({ isEndLoading }: Props) {
     const { profile } = useApp();
     const wdHeight = useWindowHeight();
     const [scope] = useAnimate();
@@ -103,7 +105,7 @@ export function BannerPc() {
                 >
                     <motion.div
                         initial={{ top: wdHeight * 0.5 - (topHeight * 0.5) }}
-                        animate={{ top: spacing }}
+                        animate={isEndLoading ? { top: spacing } : {}}
                         transition={{
                             duration: 0.5,
                             ease: "easeInOut",
@@ -120,11 +122,11 @@ export function BannerPc() {
                                 aspectRatio: 1.62727272727,
                                 opacity: 0
                             }}
-                            animate={{
+                            animate={isEndLoading ? {
                                 width: "100%",
                                 aspectRatio: 2.75862068966,
                                 opacity: 1
-                            }}
+                            } : {}}
                             transition={{
                                 duration: 0.8,
                                 ease: "easeInOut",
@@ -155,7 +157,7 @@ export function BannerPc() {
                     <motion.div
                         id='banner-title'
                         initial={{ y: "100%", opacity: 0, x: "-50%" }}
-                        animate={{ y: 0, opacity: 1, x: "-50%" }}
+                        animate={isEndLoading ? { y: 0, opacity: 1, x: "-50%" } : {}}
                         transition={{
                             duration: 0.5,
                             ease: "easeInOut",
@@ -184,7 +186,6 @@ export function BannerPc() {
                         {profile ? (
                             <Flex gap={16}>
                                 <SectionButton
-                                    // href='#Leaderboard'
                                     show={true}
                                     title='Share to earn'
                                     className='rounded-lg'
@@ -216,7 +217,6 @@ export function BannerPc() {
                         ) : (
                             <Flex gap={16}>
                                 <SectionButton
-                                    // href='#Leaderboard'
                                     show={true}
                                     title='How it Works'
                                     className='rounded-lg'

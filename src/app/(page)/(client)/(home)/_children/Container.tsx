@@ -183,10 +183,9 @@ const Desktop = ({
                         backgroundColor: "#fff"
                     }}
                 >
-                    {/* <BannerPc /> */}
-                    {sections.map((o, index) => {
+                    {sections.map((o) => {
                         return (
-                            <LazySection key={index}>
+                            <>
                                 {renderDesktopSection({
                                     sectionTitle: o.title,
                                     leaderboardPhase: leaderboardSection?.phase || 1,
@@ -200,7 +199,7 @@ const Desktop = ({
                                     peopleSays,
                                     featuredCreators,
                                 })}
-                            </LazySection>
+                            </>
                         );
                     })}
                     <Footer roles={roles} />

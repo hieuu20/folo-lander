@@ -108,39 +108,28 @@ const Mobile = ({
     return (
         <LoadingMobile>
             <Header />
-            <Box id="smooth-wrapper">
-                <Box
-                    id="smooth-content"
-                    className=''
-                    style={{
-                        backgroundColor: "#fff"
-                    }}
-                >
-                    {/* <BannerMobile /> */}
-                    {sections.map((o) => {
-                        return (
-                            // <LazySection key={index}>
-                            <>
-                                {renderMobileSection({
-                                    sectionTitle: o.title,
-                                    leaderboardPhase: leaderboardSection?.phase || 1,
-                                    news,
-                                    pointSettings,
-                                    roles,
-                                    rewards,
-                                    wayGetPaids,
-                                    faqs,
-                                    partnerSlides,
-                                    peopleSays,
-                                    featuredCreators,
-                                })}
-                            </>
-                            // </LazySection>
-                        );
-                    })}
-                    <FooterMobile roles={roles} />
-                </Box>
-            </Box>
+            {sections.map((o) => {
+                return (
+                    // <LazySection key={index}>
+                    <>
+                        {renderMobileSection({
+                            sectionTitle: o.title,
+                            leaderboardPhase: leaderboardSection?.phase || 1,
+                            news,
+                            pointSettings,
+                            roles,
+                            rewards,
+                            wayGetPaids,
+                            faqs,
+                            partnerSlides,
+                            peopleSays,
+                            featuredCreators,
+                        })}
+                    </>
+                    // </LazySection>
+                );
+            })}
+            <FooterMobile roles={roles} />
         </LoadingMobile>
     );
 };
@@ -163,7 +152,7 @@ const Desktop = ({
     useGSAP(
         () => {
             smoother.current = ScrollSmoother.create({
-                smooth: 4,
+                smooth: 2,
                 effects: true,
             });
         },
@@ -173,16 +162,16 @@ const Desktop = ({
     const leaderboardSection = sections.find(o => o.title == "Leaderboard");
 
     return (
-        <LoadingDesktop>
-            <Header />
-            <Box id="smooth-wrapper" ref={main}>
-                <Box
-                    id="smooth-content"
-                    className=''
-                    style={{
-                        backgroundColor: "#fff"
-                    }}
-                >
+        <Box id="smooth-wrapper" ref={main}>
+            <Box
+                id="smooth-content"
+                className=''
+                style={{
+                    backgroundColor: "#fff"
+                }}
+            >
+                <LoadingDesktop>
+                    <Header />
                     {sections.map((o) => {
                         return (
                             <>
@@ -203,9 +192,9 @@ const Desktop = ({
                         );
                     })}
                     <Footer roles={roles} />
-                </Box>
+                </LoadingDesktop>
             </Box>
-        </LoadingDesktop>
+        </Box>
     );
 };
 
@@ -227,36 +216,26 @@ const Tablet = ({
     return (
         <LoadingDesktop>
             <Header />
-            <Box id="smooth-wrapper">
-                <Box
-                    id="smooth-content"
-                    className=''
-                    style={{
-                        backgroundColor: "#fff"
-                    }}
-                >
-                    {sections.map((o, index) => {
-                        return (
-                            <LazySection key={index}>
-                                {renderMobileSection({
-                                    sectionTitle: o.title,
-                                    leaderboardPhase: leaderboardSection?.phase || 1,
-                                    news,
-                                    pointSettings,
-                                    roles,
-                                    rewards,
-                                    wayGetPaids,
-                                    faqs,
-                                    partnerSlides,
-                                    peopleSays,
-                                    featuredCreators,
-                                })}
-                            </LazySection>
-                        );
-                    })}
-                    <Footer roles={roles} />
-                </Box>
-            </Box>
+            {sections.map((o, index) => {
+                return (
+                    <LazySection key={index}>
+                        {renderMobileSection({
+                            sectionTitle: o.title,
+                            leaderboardPhase: leaderboardSection?.phase || 1,
+                            news,
+                            pointSettings,
+                            roles,
+                            rewards,
+                            wayGetPaids,
+                            faqs,
+                            partnerSlides,
+                            peopleSays,
+                            featuredCreators,
+                        })}
+                    </LazySection>
+                );
+            })}
+            <Footer roles={roles} />
         </LoadingDesktop>
     );
 };
